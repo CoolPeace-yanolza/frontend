@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import styled from '@emotion/styled';
 import { css } from '@emotion/react';
-import GlobalStyle from './GlobalStyle.tsx';
+import GlobalStyle from '@/styles/GlobalStyle.tsx';
 
 const App = () => {
   const [primary, setPrimary] = useState(false);
