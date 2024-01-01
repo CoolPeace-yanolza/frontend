@@ -1,7 +1,7 @@
-import { useState } from "react";
-import styled from "@emotion/styled";
-import { css } from "@emotion/react";
-import GlobalStyle from "./GlobalStyle.tsx";
+import { useState } from 'react';
+import styled from '@emotion/styled';
+import { css } from '@emotion/react';
+import GlobalStyle from './GlobalStyle.tsx';
 
 const App = () => {
   const [primary, setPrimary] = useState(false);
@@ -12,7 +12,7 @@ const App = () => {
       <EmotionExampleWrapper>
         <EmotionExample
           $primary={primary}
-          onClick={() => setPrimary((prev) => !prev)}
+          onClick={() => setPrimary(prev => !prev)}
         >
           쿨피스 응원 버튼
           <br />
@@ -81,7 +81,7 @@ const EmotionExample = styled.button<{ $primary?: boolean }>`
   }
 
   /* 6. props에 따른 스타일 */
-  ${(props) =>
+  ${props =>
     props.$primary &&
     css`
       background: var(--accent-color);

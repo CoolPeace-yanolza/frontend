@@ -1,4 +1,4 @@
-import { css, Global } from "@emotion/react";
+import { css, Global } from '@emotion/react';
 
 const GlobalStyle = () => {
   return <Global styles={resetCSS} />;
@@ -125,7 +125,7 @@ const resetCSS = css`
   blockquote:after,
   q:before,
   q:after {
-    content: "";
+    content: '';
     content: none;
   }
   table {
