@@ -37,6 +37,7 @@ const EmotionExampleWrapper = styled.div`
   /* 3. margin / border / padding */
   /* 4. display */
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 
