@@ -1,7 +1,8 @@
 import { useState } from 'react';
+import Example from '@pages/Example';
 import styled from '@emotion/styled';
 import { css } from '@emotion/react';
-import GlobalStyle from '@/styles/GlobalStyle.tsx';
+import GlobalStyle from '@styles/GlobalStyle';
 
 const App = () => {
   const [primary, setPrimary] = useState(false);
@@ -18,6 +19,7 @@ const App = () => {
           <br />
           (emotion props 사용 예시)
         </EmotionExample>
+        <Example />
       </EmotionExampleWrapper>
     </>
   );

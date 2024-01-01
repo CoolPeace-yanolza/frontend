@@ -1,1 +1,1 @@
-// import { instance } from '@/utils/api/index';
+// import { instance } from '@api/index';

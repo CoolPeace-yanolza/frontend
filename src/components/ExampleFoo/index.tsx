@@ -1,6 +1,7 @@
+import { useExample } from '@hooks/index';
 import ExampleBar from './ExampleBar';
 import ExampleBaz from './ExampleBaz';
-import useExample from '@/hooks/useExample';
+import ExampleToast from '@components/common/ExampleToast';
 
 const ExampleFoo = () => {
   const example: useExampleType = useExample();
@@ -10,6 +11,7 @@ const ExampleFoo = () => {
       {example}
       <ExampleBar />
       <ExampleBaz />
+      <ExampleToast />
     </>
   );
 };

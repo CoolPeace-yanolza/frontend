@@ -1,4 +1,4 @@
-import ExampleFoo from '@/components/ExampleFoo';
+import ExampleFoo from '@components/ExampleFoo';
 
 const Example = () => {
   return <ExampleFoo />;
