@@ -1,11 +1,7 @@
 import ExampleFoo from '@/components/ExampleFoo';
 
 const Example = () => {
-  return (
-    <>
-      <ExampleFoo />
-    </>
-  );
+  return <ExampleFoo />;
 };
 
 export default Example;
