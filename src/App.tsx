@@ -1,21 +1,25 @@
 import { useState } from "react";
 import styled from "@emotion/styled";
 import { css } from "@emotion/react";
+import GlobalStyle from "./GlobalStyle.tsx";
 
 const App = () => {
   const [primary, setPrimary] = useState(false);
 
   return (
-    <EmotionExampleWrapper>
-      <EmotionExample
-        $primary={primary}
-        onClick={() => setPrimary((prev) => !prev)}
-      >
-        쿨피스 응원 버튼
-        <br />
-        (emotion props 사용 예시)
-      </EmotionExample>
-    </EmotionExampleWrapper>
+    <>
+      <GlobalStyle />
+      <EmotionExampleWrapper>
+        <EmotionExample
+          $primary={primary}
+          onClick={() => setPrimary((prev) => !prev)}
+        >
+          쿨피스 응원 버튼
+          <br />
+          (emotion props 사용 예시)
+        </EmotionExample>
+      </EmotionExampleWrapper>
+    </>
   );
 };
 
@@ -41,7 +45,7 @@ const EmotionExampleWrapper = styled.div`
 
 const EmotionExample = styled.button<{ $primary?: boolean }>`
   /* 0. emotipn 변수 */
-  --accent-color: white;
+  --accent-color: purple;
 
   /* 1. position */
 
@@ -62,6 +66,9 @@ const EmotionExample = styled.button<{ $primary?: boolean }>`
   color: var(--accent-color);
   background: transparent;
 
+  font-size: 15px;
+  font-weight: 600;
+
   transition: all 200ms ease-in-out;
 
   /* 5. 인터렉션 */
@@ -78,6 +85,8 @@ const EmotionExample = styled.button<{ $primary?: boolean }>`
     props.$primary &&
     css`
       background: var(--accent-color);
-      color: black;
+      color: white;
+
+      opacity: 0.7;
     `}
 `;
