@@ -1,1 +1,2 @@
-export { default as exampleUtil } from './exampleUtil';
+export { default as examplePlus } from './examplePlus';
+export { default as exampleMinus } from './exampleMinus';
