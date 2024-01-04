@@ -1,4 +1,6 @@
 import GlobalStyle from '@styles/GlobalStyle';
+import { ThemeProvider } from '@emotion/react';
+import theme from '@styles/theme';
 import { BrowserRouter } from 'react-router-dom';
 import MainRouter from './routes/MainRouter';
 
@@ -6,9 +8,11 @@ const App = () => {
   return (
     <>
       <GlobalStyle />
-      <BrowserRouter>
-        <MainRouter />
-      </BrowserRouter>
+      <ThemeProvider theme={theme}>
+        <BrowserRouter>
+          <MainRouter />
+        </BrowserRouter>
+      </ThemeProvider>
     </>
   );
 };
