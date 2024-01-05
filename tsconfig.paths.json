@@ -11,7 +11,8 @@
       "@utils/*": ["src/utils/*"],
       "@api/*": ["src/utils/api/*"],
       "@constants/*": ["src/utils/constants/*"],
-      "@test/*": ["src/utils/test/*"]
+      "@test/*": ["src/utils/test/*"],
+      "@routes/": ["src/routes/*"]
     }
   }
 }
