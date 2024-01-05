@@ -1,7 +1,13 @@
-import ExampleFoo from '@components/ExampleFoo';
+import { ExampleFoo } from '@components/index';
+import { ExampleToast } from '@components/common';
 
 const Example = () => {
-  return <ExampleFoo />;
+  return (
+    <>
+      <ExampleFoo />
+      <ExampleToast />
+    </>
+  );
 };
 
 export default Example;
