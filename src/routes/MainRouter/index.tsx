@@ -1,4 +1,5 @@
 import Login from '@pages/Login';
+import SignUp from '@pages/SignUp';
 import { Route, Routes } from 'react-router-dom';
 import { Layout } from '@components/common';
 
@@ -11,9 +12,7 @@ const MainRouter = () => {
       />
       <Route
         path="/signup"
-        element={
-          <p style={{ fontSize: '1rem' }}>🧃 회원가입 페이지 입주 예정 🧃</p>
-        }
+        element={<SignUp />}
       />
       <Route element={<Layout />}>
         <Route
