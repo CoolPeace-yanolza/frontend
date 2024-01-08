@@ -18,7 +18,7 @@ const Login = () => {
           placeholder="비밀번호 입력"
         />
         <button>로그인</button>
-        <a href="/register">회원가입</a>
+        <a href="/signup">회원가입</a>
       </div>
     </div>
   );
