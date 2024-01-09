@@ -1,5 +1,8 @@
 const theme = {
   colors: {
+    background: '#F2F3F5',
+    hover: '#1A2849',
+
     ink100: '#72777A',
     ink200: '#6C7072',
     ink300: '#404446',
