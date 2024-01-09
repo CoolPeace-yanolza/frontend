@@ -75,22 +75,26 @@ const Container = styled(NavLink)<{
   display: flex;
   flex-direction: column;
 
-  color: ${props =>
-    props.$userPath === 'coupons'
-      ? props.theme.colors.white
-      : props.$isToggleOpen
-        ? props.theme.colors.white
-        : props.theme.colors.black};
+  color: ${props => {
+    if (props.$userPath === 'coupons') {
+      return props.theme.colors.white;
+    } else if (props.$isToggleOpen) {
+      return props.theme.colors.white;
+    } else {
+      return props.theme.colors.black;
+    }
+  }};
 
   // HACK: 조건 단순화 필요
-  background-color: ${props =>
-    props.$userPath === 'coupons'
-      ? props.theme.colors.hover
-      : props.$isSidebarOpen
-        ? props.$isToggleOpen
-          ? props.theme.colors.ink100
-          : 'transparent'
-        : 'transparent'};
+  background-color: ${props => {
+    if (props.$userPath === 'coupons') {
+      return props.theme.colors.hover;
+    } else if (props.$isSidebarOpen) {
+      return props.$isToggleOpen ? props.theme.colors.ink100 : 'transparent';
+    } else {
+      return 'transparent';
+    }
+  }};
 
   font-weight: ${props => props.theme.fontWeight.large};
 
