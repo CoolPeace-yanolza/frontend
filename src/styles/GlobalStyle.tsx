@@ -1,4 +1,5 @@
 import { css, Global } from '@emotion/react';
+import theme from './theme';
 
 const GlobalStyle = () => {
   return <Global styles={resetCSS} />;
@@ -91,10 +92,12 @@ const resetCSS = css`
     margin: 0;
     padding: 0;
     border: 0;
+
     font-size: 100%;
     font: inherit;
-    vertical-align: baseline;
+
     text-decoration: none;
+    vertical-align: baseline;
   }
   /* HTML5 display-role reset for older browsers */
   article,
@@ -136,7 +139,13 @@ const resetCSS = css`
   html,
   body,
   #root {
-    color: rgba(255, 255, 255, 0.87);
-    background: linear-gradient(45deg, Violet, Orange);
+    color: ${theme.colors.black};
+    background: ${theme.colors.background};
+  }
+
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
   }
 `;
