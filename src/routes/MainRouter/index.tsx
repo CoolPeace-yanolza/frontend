@@ -1,3 +1,4 @@
+// import CouponList from '@pages/CouponList';
 import { Route, Routes } from 'react-router-dom';
 
 const MainRouter = () => {
@@ -15,6 +16,10 @@ const MainRouter = () => {
         path="/signup"
         element={<p style={{ fontSize: '5rem' }}>회원가입페이지</p>}
       />
+      {/* <Route
+        path="/coupon"
+        element={<CouponList />}
+      /> */}
     </Routes>
   );
 };
