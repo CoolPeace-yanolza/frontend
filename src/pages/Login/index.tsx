@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import styled from '@emotion/styled';
 
 import { toRem } from '@utils/index';
+import logo from '@assets/icons/ic-logo.svg';
 
 const Login = () => {
   // HACK: 유효성 검사 기능 구현 후 유효성 메세지 노출 여부 결정
@@ -10,8 +11,10 @@ const Login = () => {
     <>
       <Container>
         <TitleWrapper>
-          {/* HACK: 지훈님 레이아웃 pull받아서 로고 이미지로 변경 예정 */}
-          <Title>사장님 비서ya</Title>
+          <LogoIcon
+            src={logo}
+            alt="사장님 비서ya"
+          />
           <Title>통합 로그인</Title>
         </TitleWrapper>
         <form>
@@ -54,10 +57,16 @@ const Container = styled.div`
   gap: ${toRem(65)};
 `;
 
+const LogoIcon = styled.img`
+  width: ${toRem(288)};
+  height: ${toRem(60)};
+`;
+
 const TitleWrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
   gap: ${toRem(11)};
 
   text-align: center;

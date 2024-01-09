@@ -125,6 +125,7 @@ const SubmitButton = styled.button<{ $isDisabled: boolean }>`
     cursor: pointer;
   }
 `;
+
 const LogoIcon = styled.img`
   width: ${toRem(172.8)};
   height: ${toRem(36)};
