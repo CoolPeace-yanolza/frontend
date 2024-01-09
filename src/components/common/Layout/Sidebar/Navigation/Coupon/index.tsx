@@ -76,12 +76,17 @@ const Container = styled(NavLink)<{
   flex-direction: column;
 
   // HACK: 조건 단순화 필요
-  color: ${props =>
-    props.$userPath === 'coupons'
-      ? props.theme.colors.white
-      : props.$isToggleOpen
-        ? props.theme.colors.white
-        : props.theme.colors.black};
+  color: ${props => {
+    if (props.$userPath === 'coupons') {
+      return props.theme.colors.white;
+    } else {
+      if (props.$isToggleOpen) {
+        return props.theme.colors.white;
+      } else {
+        return props.theme.colors.black;
+      }
+    }
+  }};
 
   // HACK: 조건 단순화 필요
   background-color: ${props =>
@@ -124,7 +129,7 @@ const Contents = styled.div<{ $isSidebarOpen?: boolean }>`
   height: ${props => (props.$isSidebarOpen ? '3.75rem' : '4.6875rem')};
 
   display: flex;
-  flex-direction: ${props => (props.$isSidebarOpen ? 'low' : 'column')};
+  flex-direction: ${props => (props.$isSidebarOpen ? 'row' : 'column')};
   justify-content: ${props => (props.$isSidebarOpen ? 'flex-start' : 'center')};
   align-items: center;
 `;
