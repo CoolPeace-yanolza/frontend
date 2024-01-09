@@ -36,7 +36,6 @@ const Container = styled.div<{ $isSidebarOpen?: boolean }>`
 
   background-color: ${props => props.theme.colors.white};
 
-  box-sizing: border-box;
   overflow: hidden;
   // HACK: z-index 상수화 (const enum, as const 학습 후 적용)
   z-index: 100;

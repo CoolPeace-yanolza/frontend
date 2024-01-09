@@ -142,4 +142,10 @@ const resetCSS = css`
     color: ${theme.colors.black};
     background: ${theme.colors.background};
   }
+
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
 `;

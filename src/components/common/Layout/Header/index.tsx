@@ -70,8 +70,6 @@ const Container = styled.header`
   justify-content: space-between;
 
   background-color: ${props => props.theme.colors.white};
-
-  box-sizing: border-box;
 `;
 
 const LogoLink = styled(NavLink)`
@@ -95,7 +93,7 @@ const Accommodations = styled.select`
 const Accommodation = styled.option``;
 
 const UserIcon = styled.img`
-  width: 2.5rem;
+  width: 0.31rem;
   height: 2.5rem;
 
   border-radius: 50%;
