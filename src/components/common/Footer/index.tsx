@@ -1,16 +1,57 @@
 import React from 'react';
+import styled from '@emotion/styled';
 
 const Footer = () => {
   return (
-    <div>
-      <p>이용약관</p>
-      <p>개인정보 처리방침</p>
-      <p>
+    <Container>
+      <Policy>
+        <Text>이용약관</Text>
+        <Text>|</Text>
+        <BoldText>개인정보 처리방침</BoldText>
+      </Policy>
+      <Copyright>
         (주) 야놀자 Copyright © 2005-2023 Yanolja Co., Ltd. All rights
         reserved.
-      </p>
-    </div>
+      </Copyright>
+    </Container>
   );
 };
 
 export default Footer;
+
+const Container = styled.div`
+  margin: 32px auto;
+
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+`;
+
+const Policy = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 7px;
+`;
+
+const Text = styled.p`
+  color: #404446;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 18px;
+`;
+
+const BoldText = styled.p`
+  color: #404446;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 18px;
+`;
+
+const Copyright = styled.p`
+  color: #e3e5e5;
+  font-size: 10px;
+  font-weight: 400;
+  line-height: 15px;
+  text-align: center;
+`;
