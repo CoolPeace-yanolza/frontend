@@ -37,12 +37,12 @@ const Header = () => {
           value={selected}
         >
           {selectList.map(item => (
-            <Accommodation
+            <option
               value={item}
               key={item}
             >
               {item}
-            </Accommodation>
+            </option>
           ))}
         </Accommodations>
 
@@ -89,8 +89,6 @@ const Buttons = styled.div`
 const Accommodations = styled.select`
   margin-right: 2rem;
 `;
-
-const Accommodation = styled.option``;
 
 const UserIcon = styled.img`
   width: 0.31rem;

@@ -16,7 +16,7 @@ const CouponNav = () => {
           src={home}
           alt="홈"
         />
-        <Text>홈</Text>
+        <span>홈</span>
       </Link>
       <Link
         to="/coupons"
@@ -26,7 +26,7 @@ const CouponNav = () => {
           src={coupons}
           alt="쿠폰 조회"
         />
-        <Text>쿠폰 조회</Text>
+        <span>쿠폰 조회</span>
       </Link>
       <Link
         to="/coupons/register"
@@ -36,7 +36,7 @@ const CouponNav = () => {
           src={couponRegister}
           alt="쿠폰 등록"
         />
-        <Text>쿠폰 등록</Text>
+        <span>쿠폰 등록</span>
       </Link>
     </Container>
   );
@@ -111,5 +111,3 @@ const CouponRegisterIcon = styled.img`
 
   margin-right: 0.9375rem;
 `;
-
-const Text = styled.span``;

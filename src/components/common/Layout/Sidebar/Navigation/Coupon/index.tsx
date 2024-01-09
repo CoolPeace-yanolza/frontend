@@ -37,7 +37,7 @@ const Coupon = ({ isSidebarOpen }: { isSidebarOpen: boolean }) => {
             alt="쿠폰"
             $isSidebarOpen={isSidebarOpen}
           />
-          <CouponText>쿠폰</CouponText>
+          <span>쿠폰</span>
         </Contents>
         <Toggle
           $isSidebarOpen={isSidebarOpen}
@@ -57,9 +57,9 @@ const Coupon = ({ isSidebarOpen }: { isSidebarOpen: boolean }) => {
 export default Coupon;
 
 const Container = styled(NavLink)<{
-  $isSidebarOpen?: boolean;
-  $isToggleOpen?: boolean;
-  $userPath?: string;
+  $isSidebarOpen: boolean;
+  $isToggleOpen: boolean;
+  $userPath: string;
 }>`
   width: 100%;
   height: ${props =>
@@ -75,18 +75,12 @@ const Container = styled(NavLink)<{
   display: flex;
   flex-direction: column;
 
-  // HACK: 조건 단순화 필요
-  color: ${props => {
-    if (props.$userPath === 'coupons') {
-      return props.theme.colors.white;
-    } else {
-      if (props.$isToggleOpen) {
-        return props.theme.colors.white;
-      } else {
-        return props.theme.colors.black;
-      }
-    }
-  }};
+  color: ${props =>
+    props.$userPath === 'coupons'
+      ? props.theme.colors.white
+      : props.$isToggleOpen
+        ? props.theme.colors.white
+        : props.theme.colors.black};
 
   // HACK: 조건 단순화 필요
   background-color: ${props =>
@@ -160,5 +154,3 @@ const CouponIcon = styled.img<{ $isSidebarOpen?: boolean }>`
   margin: ${props =>
     props.$isSidebarOpen ? '0 0.625rem 0 1.5625rem' : '0.625rem'};
 `;
-
-const CouponText = styled.span``;

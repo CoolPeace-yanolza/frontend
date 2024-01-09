@@ -15,7 +15,7 @@ const Settlements = ({ isSidebarOpen }: { isSidebarOpen: boolean }) => {
           alt="정산관리"
           $isSidebarOpen={isSidebarOpen}
         />
-        <SettlementsText>정산관리</SettlementsText>
+        <span>정산관리</span>
       </Contents>
     </Container>
   );
@@ -65,5 +65,3 @@ const SettlementsIcon = styled.img<{ $isSidebarOpen?: boolean }>`
   margin: ${props =>
     props.$isSidebarOpen ? '0 0.625rem 0 1.4375rem' : '0.625rem'};
 `;
-
-const SettlementsText = styled.span``;
