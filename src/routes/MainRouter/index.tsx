@@ -1,11 +1,12 @@
 import { Route, Routes } from 'react-router-dom';
+import Dashboard from '@pages/Dashboard.tsx';
 
 const MainRouter = () => {
   return (
     <Routes>
       <Route
         path="/"
-        element={<p style={{ fontSize: '5rem' }}>메인페이지</p>}
+        element={<Dashboard />}
       />
       <Route
         path="/login"
