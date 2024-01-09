@@ -4,6 +4,7 @@ import { NavLink } from 'react-router-dom';
 import home from '@assets/icons/ic-sidebar-home.svg';
 import coupons from '@assets/icons/ic-sidebar-coupons.svg';
 import couponRegister from '@assets/icons/ic-sidebar-couponRegister.svg';
+import { toRem } from '@utils/index';
 
 const CouponNav = () => {
   return (
@@ -12,7 +13,7 @@ const CouponNav = () => {
         to="/"
         end
       >
-        <HomeIcon
+        <Icon
           src={home}
           alt="홈"
         />
@@ -22,7 +23,7 @@ const CouponNav = () => {
         to="/coupons"
         end
       >
-        <CouponsIcon
+        <Icon
           src={coupons}
           alt="쿠폰 조회"
         />
@@ -32,7 +33,7 @@ const CouponNav = () => {
         to="/coupons/register"
         end
       >
-        <CouponRegisterIcon
+        <Icon
           src={couponRegister}
           alt="쿠폰 등록"
         />
@@ -51,24 +52,24 @@ const Container = styled.nav`
   flex-direction: column;
   align-items: center;
 
-  font-size: 0.875rem;
+  font-size: ${toRem(14)};
 
   &:hover {
     color: ${props => props.theme.colors.white};
   }
 
   &:last-child {
-    margin-bottom: 0.625rem;
+    margin-bottom: ${toRem(10)};
   }
 `;
 
 const Link = styled(NavLink)`
-  width: 11.875rem;
-  height: 3.125rem;
+  width: ${toRem(190)};
+  height: ${toRem(50)};
 
-  margin: 0.3125rem;
-  border-radius: 0.6875rem;
-  padding: 0.625rem 0.75rem;
+  margin: ${toRem(5)};
+  border-radius: ${toRem(11)};
+  padding: ${toRem(10)} ${toRem(12)};
 
   display: flex;
   justify-content: flex-start;
@@ -76,7 +77,7 @@ const Link = styled(NavLink)`
 
   color: ${props => props.theme.colors.white};
 
-  font-size: 0.875rem;
+  font-size: ${toRem(14)};
   font-weight: 400;
 
   box-sizing: border-box;
@@ -92,23 +93,9 @@ const Link = styled(NavLink)`
   }
 `;
 
-const HomeIcon = styled.img`
-  width: 1.5rem;
-  height: 1.5rem;
+const Icon = styled.img`
+  width: ${toRem(24)};
+  height: ${toRem(24)};
 
-  margin-right: 0.9375rem;
-`;
-
-const CouponsIcon = styled.img`
-  width: 1.5rem;
-  height: 1.5rem;
-
-  margin-right: 0.9375rem;
-`;
-
-const CouponRegisterIcon = styled.img`
-  width: 1.5rem;
-  height: 1.5rem;
-
-  margin-right: 0.9375rem;
+  margin-right: ${toRem(15)};
 `;

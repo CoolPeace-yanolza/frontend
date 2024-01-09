@@ -3,6 +3,7 @@ import styled from '@emotion/styled';
 
 import Header from './Header';
 import Navigation from './Navigation';
+import { toRem } from '@utils/index';
 
 const Sidebar = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -30,10 +31,10 @@ export default Sidebar;
 const Container = styled.div<SidebarOpen>`
   position: fixed;
 
-  width: ${props => (props.$isSidebarOpen ? '15.625rem' : '6.25rem')};
+  width: ${props => (props.$isSidebarOpen ? toRem(250) : toRem(100))};
   min-height: 100vh;
 
-  padding: 1.25rem 0.625rem;
+  padding: ${toRem(20)} ${toRem(10)};
 
   background-color: ${props => props.theme.colors.white};
 
@@ -45,7 +46,7 @@ const Container = styled.div<SidebarOpen>`
 `;
 
 const Menu = styled.div`
-  width: 14.375rem;
+  width: ${toRem(230)};
   height: 100%;
 
   display: flex;

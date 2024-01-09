@@ -5,6 +5,7 @@ import styled from '@emotion/styled';
 import CouponNav from './CouponNav';
 import toggle from '@assets/icons/ic-sidebar-toggle.svg';
 import coupon from '@assets/icons/ic-sidebar-coupon.svg';
+import { toRem } from '@utils/index';
 
 const Coupon = ({ isSidebarOpen }: { isSidebarOpen: boolean }) => {
   const [isToggleOpen, setIsToggleOpen] = useState(true);
@@ -60,16 +61,16 @@ const Container = styled(NavLink)<SidebarStyleProps>`
   width: 100%;
   height: ${props => {
     if (!props.$isSidebarOpen) {
-      return '5rem';
+      return toRem(80);
     } else if (props.$isToggleOpen) {
-      return '15.635rem';
+      return toRem(250);
     } else {
-      return '3.75rem';
+      return toRem(60);
     }
   }};
 
-  margin: 0.3125rem 0;
-  border-radius: 0.6875rem;
+  margin: ${toRem(5)} 0;
+  border-radius: ${toRem(11)};
 
   display: flex;
   flex-direction: column;
@@ -120,7 +121,7 @@ const Header = styled.div<Opens>`
 
 const Contents = styled.div<SidebarOpen>`
   width: 100%;
-  height: ${props => (props.$isSidebarOpen ? '3.75rem' : '4.6875rem')};
+  height: ${props => (props.$isSidebarOpen ? toRem(60) : toRem(75))};
 
   display: flex;
   flex-direction: ${props => (props.$isSidebarOpen ? 'row' : 'column')};
@@ -129,10 +130,10 @@ const Contents = styled.div<SidebarOpen>`
 `;
 
 const Toggle = styled.button<SidebarOpen>`
-  width: 1.25rem;
+  width: ${toRem(20)};
   height: 100%;
 
-  margin-right: 1.25rem;
+  margin-right: ${toRem(20)};
   border: none;
 
   display: ${props => (props.$isSidebarOpen ? 'relative' : 'none')};
@@ -143,14 +144,14 @@ const Toggle = styled.button<SidebarOpen>`
 `;
 
 const ToggleIcon = styled.img`
-  width: 0.9375rem;
-  height: 0.625rem;
+  width: ${toRem(15)};
+  height: ${toRem(10)};
 `;
 
 const CouponIcon = styled.img<SidebarOpen>`
-  width: 1.25rem;
-  height: 1.5625rem;
+  width: ${toRem(20)};
+  height: ${toRem(25)};
 
   margin: ${props =>
-    props.$isSidebarOpen ? '0 0.625rem 0 1.5625rem' : '0.625rem'};
+    props.$isSidebarOpen ? `0 ${toRem(10)} 0 ${toRem(25)}` : toRem(10)};
 `;
