@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import styled from '@emotion/styled';
 
+import { toRem } from '@utils/index';
+
 const Login = () => {
   // HACK: 유효성 검사 기능 구현 후 유효성 메세지 노출 여부 결정
   const [isInvalid, setIsInvalid] = useState(true);
@@ -42,75 +44,76 @@ const Login = () => {
 export default Login;
 
 const Container = styled.div`
-  max-width: 524px;
+  max-width: ${toRem(524)};
 
-  margin: 175px auto 0;
+  margin: ${toRem(175)} auto 0;
 
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: 65px;
+  gap: ${toRem(65)};
 `;
 
 const TitleWrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: 11px;
+  gap: ${toRem(11)};
 
   text-align: center;
 `;
 
 const Title = styled.h1`
   color: #1a2849;
-  font-size: 44.374px;
+  font-size: ${toRem(44.374)};
   font-weight: 900;
-  line-height: 51.769px;
+  line-height: ${toRem(51.769)};
 `;
 
 const Inputs = styled.div<{ $isInvalid: boolean }>`
-  margin-bottom: ${props => (props.$isInvalid ? '10px' : '65px')};
+  margin-bottom: ${props =>
+    props.$isInvalid ? '${toRem(10)}' : '${toRem(65)}'};
 
   display: flex;
   flex-direction: column;
-  gap: 19px;
+  gap: ${toRem(19)};
 `;
 
 const Input = styled.input`
-  width: 524px;
+  width: ${toRem(524)};
 
-  border-radius: 16px;
-  border: 2px solid #757676;
-  padding: 23px 20px;
+  border-radius: ${toRem(16)};
+  border: ${toRem(2)} solid #757676;
+  padding: ${toRem(23)} ${toRem(20)};
 
   display: flex;
   align-items: center;
 
   color: #1a2849;
-  font-size: 18px;
+  font-size: ${toRem(18)};
   font-weight: 500;
-  line-height: 32px;
+  line-height: ${toRem(32)};
 
   ::placeholder {
     color: #979c9e;
-    font-size: 18px;
+    font-size: ${toRem(18)};
     font-weight: 500;
-    line-height: 32px;
+    line-height: ${toRem(32)};
   }
 
   :focus {
     outline: none;
-    border: 5px solid #1a2849;
+    border: ${toRem(5)} solid #1a2849;
   }
 `;
 
 const ValidationText = styled.p`
-  padding-left: 12px;
+  padding-left: ${toRem(12)};
 
   color: #da1e28;
-  font-size: 15px;
+  font-size: ${toRem(15)};
   font-weight: 500;
-  line-height: 32px;
+  line-height: ${toRem(32)};
 `;
 
 const ValidationBoldText = styled.span`
@@ -118,24 +121,24 @@ const ValidationBoldText = styled.span`
 `;
 
 const Buttons = styled.div<{ $isInvalid: boolean }>`
-  margin-top: ${props => (props.$isInvalid ? '23px' : 0)};
+  margin-top: ${props => (props.$isInvalid ? '${toRem(23)}' : 0)};
 
   display: flex;
   flex-direction: column;
-  gap: 13px;
+  gap: ${toRem(13)};
 `;
 
 const LoginButton = styled.button<{ $type: string }>`
-  min-width: 524px;
+  min-width: ${toRem(524)};
 
   border: none;
-  border-radius: 16px;
-  padding: 23px 0;
+  border-radius: ${toRem(16)};
+  padding: ${toRem(23)} 0;
 
   color: #fff;
-  font-size: 22px;
+  font-size: ${toRem(22)};
   font-weight: 700;
-  line-height: 32px;
+  line-height: ${toRem(32)};
 
   background: ${props =>
     props.$type === 'login'
