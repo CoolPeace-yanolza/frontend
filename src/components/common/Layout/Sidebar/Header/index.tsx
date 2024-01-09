@@ -38,11 +38,13 @@ const Hamberger = styled.button`
 
   margin: 0.3125rem 0.625rem;
   border: none;
-  border-radius: 1.25rem;
+  border-radius: 0.6875rem;
 
   background-color: transparent;
 
   cursor: pointer;
+
+  transition: all 0.3s;
 
   &:hover {
     background-color: #e9eef6;

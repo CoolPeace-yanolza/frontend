@@ -27,7 +27,7 @@ const Container = styled(NavLink)<{ $isSidebarOpen?: boolean }>`
   height: ${props => (props.$isSidebarOpen ? '3.75rem' : '5rem')};
 
   margin: 0.3125rem 0;
-  border-radius: 1.25rem;
+  border-radius: 0.6875rem;
 
   color: ${props => props.theme.colors.black};
 

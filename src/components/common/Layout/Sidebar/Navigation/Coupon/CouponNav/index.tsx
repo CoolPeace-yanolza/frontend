@@ -66,7 +66,7 @@ const Link = styled(NavLink)`
   height: 3.125rem;
 
   margin: 0.3125rem;
-  border-radius: 0.9375rem;
+  border-radius: 0.6875rem;
   padding: 0.625rem 0.75rem;
 
   display: flex;
@@ -82,7 +82,7 @@ const Link = styled(NavLink)`
 
   cursor: pointer;
 
-  transition: all 0.1s;
+  transition: all 0.3s;
 
   &:hover,
   &.active {
