@@ -4,7 +4,7 @@ import ExampleBaz from './ExampleBaz';
 import ExampleToast from '@components/common/ExampleToast';
 
 const ExampleFoo = () => {
-  const example: useExampleType = useExample();
+  const example = useExample();
 
   return (
     <>
