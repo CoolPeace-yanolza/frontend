@@ -5,6 +5,7 @@ import styled from '@emotion/styled';
 import logo from '@assets/icons/ic-logo.svg';
 // HACK: 디자이너에게 유저 아이콘 다시 받을 예정
 import user from '@assets/icons/ic-header-user.svg';
+import { toRem } from '@utils/index';
 
 const Header = () => {
   // HACK: 예시 데이터, 백엔드에 리스트로 넘겨 받기
@@ -59,11 +60,11 @@ export default Header;
 
 const Container = styled.header`
   width: 100%;
-  height: 5.3rem;
+  height: ${toRem(85)};
 
-  border-radius: 1.25rem;
-  padding: 1.25rem;
-  padding-left: 1.875rem;
+  border-radius: ${toRem(20)};
+  padding: ${toRem(20)};
+  padding-left: ${toRem(30)};
 
   display: flex;
   align-items: center;
@@ -73,8 +74,8 @@ const Container = styled.header`
 `;
 
 const LogoLink = styled(NavLink)`
-  width: 8.75rem;
-  height: 1.875rem;
+  width: ${toRem(140)};
+  height: ${toRem(30)};
 `;
 
 const LogoIcon = styled.img`
@@ -87,12 +88,12 @@ const Buttons = styled.div`
 `;
 
 const Accommodations = styled.select`
-  margin-right: 2rem;
+  margin-right: ${toRem(32)};
 `;
 
 const UserIcon = styled.img`
-  width: 0.31rem;
-  height: 2.5rem;
+  width: ${toRem(40)};
+  height: ${toRem(40)};
 
   border-radius: 50%;
 `;

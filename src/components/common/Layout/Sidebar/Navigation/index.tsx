@@ -2,6 +2,7 @@ import styled from '@emotion/styled';
 
 import Coupon from './Coupon';
 import Settlements from './Settlements';
+import { toRem } from '@utils/index';
 
 const Navigation = ({ isSidebarOpen }: { isSidebarOpen: boolean }) => {
   return (
@@ -15,10 +16,10 @@ const Navigation = ({ isSidebarOpen }: { isSidebarOpen: boolean }) => {
 export default Navigation;
 
 const Container = styled.nav<SidebarOpen>`
-  width: ${props => (props.$isSidebarOpen ? '100%' : '5rem')};
+  width: ${props => (props.$isSidebarOpen ? '100%' : toRem(80))};
 
   display: flex;
   flex-direction: column;
 
-  font-size: ${props => (props.$isSidebarOpen ? '0.875rem' : '0.75rem')};
+  font-size: ${props => (props.$isSidebarOpen ? toRem(14) : toRem(12))};
 `;
