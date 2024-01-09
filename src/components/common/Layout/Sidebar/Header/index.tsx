@@ -21,6 +21,7 @@ const Header = ({ isSidebarOpen, setIsSidebarOpen }: SidebarHeader) => {
     </Container>
   );
 };
+
 export default Header;
 
 const Container = styled.div`
