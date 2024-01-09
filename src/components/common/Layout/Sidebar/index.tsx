@@ -26,7 +26,7 @@ const Sidebar = () => {
 };
 export default Sidebar;
 
-const Container = styled.div<{ $isSidebarOpen?: boolean }>`
+const Container = styled.div<SidebarOpen>`
   position: fixed;
 
   width: ${props => (props.$isSidebarOpen ? '15.625rem' : '6.25rem')};

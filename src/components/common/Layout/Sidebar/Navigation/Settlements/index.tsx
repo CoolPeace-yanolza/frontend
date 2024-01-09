@@ -22,7 +22,7 @@ const Settlements = ({ isSidebarOpen }: { isSidebarOpen: boolean }) => {
 };
 export default Settlements;
 
-const Container = styled(NavLink)<{ $isSidebarOpen?: boolean }>`
+const Container = styled(NavLink)<SidebarOpen>`
   width: 100%;
   height: ${props => (props.$isSidebarOpen ? '3.75rem' : '5rem')};
 
@@ -48,7 +48,7 @@ const Container = styled(NavLink)<{ $isSidebarOpen?: boolean }>`
   }
 `;
 
-const Contents = styled.div<{ $isSidebarOpen?: boolean }>`
+const Contents = styled.div<SidebarOpen>`
   width: ${props => (props.$isSidebarOpen ? '100%' : '5rem')};
   height: 100%;
 
@@ -58,7 +58,7 @@ const Contents = styled.div<{ $isSidebarOpen?: boolean }>`
   align-items: center;
 `;
 
-const SettlementsIcon = styled.img<{ $isSidebarOpen?: boolean }>`
+const SettlementsIcon = styled.img<SidebarOpen>`
   width: 1.5625rem;
   height: 1.25rem;
 

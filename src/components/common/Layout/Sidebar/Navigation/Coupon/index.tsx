@@ -56,11 +56,7 @@ const Coupon = ({ isSidebarOpen }: { isSidebarOpen: boolean }) => {
 
 export default Coupon;
 
-const Container = styled(NavLink)<{
-  $isSidebarOpen: boolean;
-  $isToggleOpen: boolean;
-  $userPath: string;
-}>`
+const Container = styled(NavLink)<SidebarStyleProps>`
   width: 100%;
   height: ${props =>
     props.$isSidebarOpen
@@ -110,10 +106,7 @@ const Container = styled(NavLink)<{
   }
 `;
 
-const Header = styled.div<{
-  $isSidebarOpen?: boolean;
-  $isToggleOpen?: boolean;
-}>`
+const Header = styled.div<Opens>`
   width: 100%;
   height: 100%;
 
@@ -122,7 +115,7 @@ const Header = styled.div<{
   transition: all 0.3s;
 `;
 
-const Contents = styled.div<{ $isSidebarOpen?: boolean }>`
+const Contents = styled.div<SidebarOpen>`
   width: 100%;
   height: ${props => (props.$isSidebarOpen ? '3.75rem' : '4.6875rem')};
 
@@ -132,7 +125,7 @@ const Contents = styled.div<{ $isSidebarOpen?: boolean }>`
   align-items: center;
 `;
 
-const Toggle = styled.button<{ $isSidebarOpen?: boolean }>`
+const Toggle = styled.button<SidebarOpen>`
   width: 1.25rem;
   height: 100%;
 
@@ -151,7 +144,7 @@ const ToggleIcon = styled.img`
   height: 0.625rem;
 `;
 
-const CouponIcon = styled.img<{ $isSidebarOpen?: boolean }>`
+const CouponIcon = styled.img<SidebarOpen>`
   width: 1.25rem;
   height: 1.5625rem;
 

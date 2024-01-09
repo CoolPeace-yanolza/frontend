@@ -13,7 +13,7 @@ const Navigation = ({ isSidebarOpen }: { isSidebarOpen: boolean }) => {
 };
 export default Navigation;
 
-const Container = styled.nav<{ $isSidebarOpen?: boolean }>`
+const Container = styled.nav<SidebarOpen>`
   width: ${props => (props.$isSidebarOpen ? '100%' : '5rem')};
 
   display: flex;
