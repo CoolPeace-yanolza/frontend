@@ -58,12 +58,15 @@ export default Coupon;
 
 const Container = styled(NavLink)<SidebarStyleProps>`
   width: 100%;
-  height: ${props =>
-    props.$isSidebarOpen
-      ? props.$isToggleOpen
-        ? '15.635rem'
-        : '3.75rem'
-      : '5rem'};
+  height: ${props => {
+    if (!props.$isSidebarOpen) {
+      return '5rem';
+    } else if (props.$isToggleOpen) {
+      return '15.635rem';
+    } else {
+      return '3.75rem';
+    }
+  }};
 
   margin: 0.3125rem 0;
   border-radius: 0.6875rem;
