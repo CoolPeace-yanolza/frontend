@@ -20,6 +20,7 @@ const Settlements = ({ isSidebarOpen }: { isSidebarOpen: boolean }) => {
     </Container>
   );
 };
+
 export default Settlements;
 
 const Container = styled(NavLink)<SidebarOpen>`

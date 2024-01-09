@@ -41,6 +41,7 @@ const CouponNav = () => {
     </Container>
   );
 };
+
 export default CouponNav;
 
 const Container = styled.nav`

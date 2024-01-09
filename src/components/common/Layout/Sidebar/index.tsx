@@ -24,6 +24,7 @@ const Sidebar = () => {
     </>
   );
 };
+
 export default Sidebar;
 
 const Container = styled.div<SidebarOpen>`

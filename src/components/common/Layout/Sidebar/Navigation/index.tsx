@@ -11,6 +11,7 @@ const Navigation = ({ isSidebarOpen }: { isSidebarOpen: boolean }) => {
     </Container>
   );
 };
+
 export default Navigation;
 
 const Container = styled.nav<SidebarOpen>`
