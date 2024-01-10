@@ -1,5 +1,6 @@
 import { Route, Routes } from 'react-router-dom';
 import { Layout } from '@components/common';
+import { SettlementsLeft, SettlementRight } from '@components/Settlements';
 
 const MainRouter = () => {
   return (
@@ -42,7 +43,7 @@ const MainRouter = () => {
                 display: 'flex',
                 justifyContent: 'center',
                 alignItems: 'center',
-                fontSize: '1.5rem'
+                fontSize: '1.5rem',
               }}
             >
               🧃 쿠폰 조회 페이지 입주 예정 🧃
@@ -68,17 +69,10 @@ const MainRouter = () => {
         <Route
           path="/settlements"
           element={
-            <div
-              style={{
-                height: '100%',
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-                fontSize: '1.5rem'
-              }}
-            >
-              🧃 정산관리 페이지 입주 예정 🧃
-            </div>
+            <>
+              <SettlementsLeft /> 
+              <SettlementRight /> 
+            </>
           }
         />
       </Route>
