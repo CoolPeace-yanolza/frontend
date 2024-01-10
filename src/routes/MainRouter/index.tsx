@@ -1,6 +1,7 @@
 // import CouponList from '@pages/CouponList';
 import { Route, Routes } from 'react-router-dom';
 import { Layout } from '@components/common';
+import CouponList from '@pages/CouponList';
 
 const MainRouter = () => {
   return (
@@ -36,19 +37,7 @@ const MainRouter = () => {
         />
         <Route
           path="/coupons"
-          element={
-            <div
-              style={{
-                height: '100%',
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-                fontSize: '1.5rem'
-              }}
-            >
-              🧃 쿠폰 조회 페이지 입주 예정 🧃
-            </div>
-          }
+          element={<CouponList />}
         />
         <Route
           path="/coupons/register"
