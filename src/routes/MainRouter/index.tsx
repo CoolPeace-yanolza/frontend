@@ -1,5 +1,6 @@
 import { Route, Routes } from 'react-router-dom';
 import { Layout } from '@components/common';
+import Register from '@pages/Register';
 
 const MainRouter = () => {
   return (
@@ -51,19 +52,7 @@ const MainRouter = () => {
         />
         <Route
           path="/coupons/register"
-          element={
-            <div
-              style={{
-                height: '100%',
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-                fontSize: '1.5rem'
-              }}
-            >
-              🧃 쿠폰 등록 페이지 입주 예정 🧃
-            </div>
-          }
+          element={<Register />}
         />
         <Route
           path="/settlements"
