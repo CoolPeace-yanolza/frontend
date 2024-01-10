@@ -14,14 +14,9 @@ const SettlementsLeft = () => {
   )
 }
 
-export default SettlementsLeft
+export default SettlementsLeft;
 
 const Container = styled.div`
   width: 80%;
   height: 100%;
-
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: #111F3F;
 `;

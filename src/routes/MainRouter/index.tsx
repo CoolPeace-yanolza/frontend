@@ -1,6 +1,7 @@
 import { Route, Routes } from 'react-router-dom';
 import { Layout } from '@components/common';
-import { SettlementsLeft, SettlementRight } from '@components/Settlements';
+
+import Settlements  from '../../pages/Settlements'
 
 const MainRouter = () => {
   return (
@@ -70,8 +71,7 @@ const MainRouter = () => {
           path="/settlements"
           element={
             <>
-              <SettlementsLeft /> 
-              <SettlementRight /> 
+              <Settlements />
             </>
           }
         />
