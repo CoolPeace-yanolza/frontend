@@ -1,6 +1,10 @@
 import { BrowserRouter } from 'react-router-dom';
 import { ThemeProvider } from '@emotion/react';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import {
+  QueryClient,
+  QueryClientProvider,
+  useQueryErrorResetBoundary
+} from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { RecoilRoot } from 'recoil';
 import { ErrorBoundary } from 'react-error-boundary';
@@ -23,21 +27,20 @@ const queryClient = new QueryClient();
  */
 
 const App = () => {
+  const { reset } = useQueryErrorResetBoundary();
+
   return (
     <QueryClientProvider client={queryClient}>
       <RecoilRoot>
         <ThemeProvider theme={theme}>
           <GlobalStyle />
           <ErrorBoundary
+            onReset={reset}
             FallbackComponent={ErrorApp}
 
-            /* HACK: onReset 구현 방식 찾는 중, logError 논의 필요
-            
-            onReset={details => {
-              // Reset the state of your app so the error doesn't happen again
-            }}
-            
-            // onError={logError}
+            /* HACK: logError 논의 필요
+
+              onError={logError}
 
             */
           >
