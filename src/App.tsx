@@ -7,10 +7,10 @@ import { ErrorBoundary } from 'react-error-boundary';
 import { Suspense } from 'react';
 
 import { MainRouter } from './routes';
-import LoadingApp from '@components/Loading/LoadingApp';
 import GlobalStyle from '@styles/GlobalStyle';
 import theme from '@styles/theme';
-import { FallbackApp } from './components';
+import { FallbackApp } from '@components/ErrorFallback';
+import { LoadingApp } from '@components/Loading';
 
 const queryClient = new QueryClient();
 
