@@ -1,6 +1,6 @@
 import { FallbackProps } from 'react-error-boundary';
 
-const FallbackApp = ({ error, resetErrorBoundary }: FallbackProps) => {
+const ErrorApp = ({ error, resetErrorBoundary }: FallbackProps) => {
   return (
     <div
       role="alert"
@@ -12,4 +12,4 @@ const FallbackApp = ({ error, resetErrorBoundary }: FallbackProps) => {
   );
 };
 
-export default FallbackApp;
+export default ErrorApp;

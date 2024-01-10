@@ -1,1 +1,1 @@
-export { default as FallbackApp } from './FallbackApp';
+export { default as ErrorApp } from './ErrorApp';

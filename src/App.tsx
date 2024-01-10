@@ -9,7 +9,7 @@ import { Suspense } from 'react';
 import { MainRouter } from './routes';
 import GlobalStyle from '@styles/GlobalStyle';
 import theme from '@styles/theme';
-import { FallbackApp } from '@components/ErrorFallback';
+import { ErrorApp } from '@components/ErrorFallback';
 import { LoadingApp } from '@components/Loading';
 
 const queryClient = new QueryClient();
@@ -29,7 +29,7 @@ const App = () => {
         <ThemeProvider theme={theme}>
           <GlobalStyle />
           <ErrorBoundary
-            FallbackComponent={FallbackApp}
+            FallbackComponent={ErrorApp}
 
             /* HACK: onReset 구현 방식 찾는 중, logError 논의 필요
             
