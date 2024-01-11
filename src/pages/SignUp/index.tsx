@@ -47,7 +47,6 @@ const SignUp = () => {
                   </ValidationText>
                 )}
               </InputLabelWrapper>
-              <Divider />
               <InputLabelWrapper>
                 <Label htmlFor="user_email">이메일</Label>
                 <EmailInputWrapper>
@@ -210,28 +209,9 @@ const InputLabelWrapper = styled.div`
 const Form = styled.form`
   margin-top: 26px;
 
-  div:nth-child(1) {
-    margin-bottom: 16px;
-  }
-  hr:nth-child(2) {
-    margin-bottom: 7px;
-  }
-  div:nth-child(3) {
-    margin-bottom: 47px;
-  }
-  div:nth-child(4) {
-    margin-bottom: 8px;
-  }
-  div:nth-child(5) {
-    margin-bottom: 30px;
-  }
-`;
-
-const Divider = styled.hr`
-  width: 525px;
-
-  margin: 0;
-  border: 0.25px solid #c7c7c7;
+  display: flex;
+  flex-direction: column;
+  gap: 23px;
 `;
 
 const Label = styled.label`
