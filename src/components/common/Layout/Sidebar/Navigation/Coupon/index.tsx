@@ -131,14 +131,18 @@ const Contents = styled.div<SidebarOpen>`
 
 const Toggle = styled.button<SidebarOpen>`
   width: ${toRem(20)};
-  height: 100%;
+  height: ${toRem(20)};
 
   margin-right: ${toRem(20)};
   border: none;
 
-  display: ${props => (props.$isSidebarOpen ? 'relative' : 'none')};
+  display: ${props => (props.$isSidebarOpen ? 'flex' : 'none')};
+  align-items: center;
+  justify-content: center;
 
   background-color: transparent;
+
+  align-self: center;
 
   cursor: pointer;
 `;
