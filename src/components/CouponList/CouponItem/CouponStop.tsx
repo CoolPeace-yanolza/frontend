@@ -205,7 +205,7 @@ const CouponMain = styled.div`
 
 const CountWrap = styled.div`
   display: flex;
-  margin-top: 15px;
+  margin-top: 10px;
 `;
 
 const CountItemWrap = styled.div`
@@ -244,7 +244,7 @@ const ConditionWrap = styled.div`
   display: flex;
   flex-direction: column;
   padding: 16px 15px 13px 14px;
-  margin-top: 8px;
+  margin-top: 5px;
 
   border-radius: 12px;
   background-color: ${props => props.theme.colors.white};

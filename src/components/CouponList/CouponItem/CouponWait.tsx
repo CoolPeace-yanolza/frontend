@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
 import React from 'react';
 import waitIcon from '@assets/icons/CouponList/ic_expose_wait.svg';
+import centerIcon from '@assets/icons/CouponList/ic_center.svg';
 
 const CouponWait = () => {
   return (
@@ -55,6 +56,14 @@ const CouponWait = () => {
             <div>2023.12.01</div>
           </RegisterDateWrap>
         </ExposeDateContainer>
+        <ButtonWrap>
+          <button>수정</button>
+          <img
+            src={centerIcon}
+            alt="centerIcon"
+          />
+          <button>삭제</button>
+        </ButtonWrap>
       </CouponMain>
     </div>
   );
@@ -174,7 +183,7 @@ const CouponMain = styled.div`
 
 const CountWrap = styled.div`
   display: flex;
-  margin-top: 15px;
+  margin-top: 10px;
 `;
 
 const CountItemWrap = styled.div`
@@ -213,7 +222,7 @@ const ConditionWrap = styled.div`
   display: flex;
   flex-direction: column;
   padding: 16px 15px 13px 14px;
-  margin-top: 8px;
+  margin-top: 5px;
 
   border-radius: 12px;
   background-color: ${props => props.theme.colors.white};
@@ -271,5 +280,20 @@ const RegisterDateWrap = styled.div`
     font-weight: 400;
     margin-top: 8px;
     margin-right: 3px;
+  }
+`;
+
+const ButtonWrap = styled.div`
+  display: flex;
+  margin-left: 115px;
+  margin-top: -3px;
+
+  button {
+    background: transparent;
+    border: none;
+    color: #6c7072;
+    font-size: 11px;
+    font-style: normal;
+    font-weight: 700;
   }
 `;
