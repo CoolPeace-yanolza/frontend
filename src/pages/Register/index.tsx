@@ -1,12 +1,44 @@
+import { useState } from 'react';
 import styled from '@emotion/styled';
 
+import { Stepper, StepperController } from '@components/Register';
+import {
+  FirstStep,
+  SecondStep,
+  ThirdStep,
+  FourthStep
+} from '@components/Register/Steps';
+
 const Register = () => {
+  const [currentStep, setCurrentStep] = useState(0);
+
+  const displayStep = (currentStep: number) => {
+    switch (currentStep) {
+      case 0:
+        return <FirstStep />;
+      case 1:
+        return <SecondStep />;
+      case 2:
+        return <ThirdStep />;
+      case 3:
+        return <FourthStep />;
+      default:
+        throw new Error(`Unsupported step: ${currentStep}`);
+    }
+  };
+
   return (
     <Background>
       <Container>
         <TitleWrapper>
           <Title>신규 쿠폰 등록하기</Title>
+          <Stepper currentStep={currentStep} />
         </TitleWrapper>
+        {displayStep(currentStep)}
+        <StepperController
+          currentStep={currentStep}
+          onButtonClick={setCurrentStep}
+        />
       </Container>
     </Background>
   );
@@ -30,6 +62,8 @@ const Background = styled.div`
 `;
 
 const Container = styled.div`
+  position: relative;
+
   width: 100%;
   height: 100%;
 
@@ -50,7 +84,8 @@ const TitleWrapper = styled.div`
 
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: center;
+  gap: 25px;
 
   border-radius: 0px 60px;
   background: rgba(255, 255, 255, 0.9);
