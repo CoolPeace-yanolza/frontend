@@ -1,17 +1,26 @@
 import styled from '@emotion/styled';
 import { Outlet } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 
 import { toRem } from '@utils/index';
 import Sidebar from './Sidebar';
 import Header from './Header';
 
 const Layout = () => {
+  const location = useLocation();
+
   return (
     <Container>
       <Sidebar />
       <Section>
         <Header />
-        <OutletLayout>
+        <OutletLayout
+          className={
+            location.pathname === '/' || location.pathname === '/report'
+              ? 'home'
+              : ''
+          }
+        >
           <Outlet />
         </OutletLayout>
       </Section>
@@ -51,4 +60,8 @@ const OutletLayout = styled.div`
   border-radius: ${toRem(20)};
 
   background-color: ${props => props.theme.colors.white};
+
+  &.home {
+    background-color: transparent;
+  }
 `;
