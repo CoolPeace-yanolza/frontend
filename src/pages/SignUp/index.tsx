@@ -7,9 +7,9 @@ import { Footer } from '@components/common';
 
 const SignUp = () => {
   // TODO: react-hook-form 사용해서 유효성 검사 예정
-  const [isInvalid, setIsInvalid] = useState(true);
+  const [isInvalid, setIsInvalid] = useState(false);
   const [isEmailValidationVisible, setIsEmailValidationVisible] =
-    useState(true);
+    useState(false);
 
   // 버튼 disabled 처리하기 위한 state
   // TODO: 변수명이 길어서 가독성이 떨어지는 것같아 더 좋은 이름이 있다면 추천 부탁드려요
@@ -18,87 +18,93 @@ const SignUp = () => {
   const [isSubmitButtonDisabled, setIsSubmitButtonDisabled] = useState(true);
   return (
     <WhiteBackground>
-      <LogoIcon
-        src={logo}
-        alt="사장님 비서ya"
-      />
-      <Container>
-        <TitleWrapper>
-          <Title>회원가입</Title>
-          <Description>
-            야놀자가 준비한 사장님 비서ya만의 혜택을 받아보세요.
-          </Description>
-        </TitleWrapper>
-        <Form>
-          <InputLabelWrapper>
-            <Label htmlFor="user_name">이름</Label>
-            <Input
-              type="text"
-              id="user_name"
-              placeholder="이름 입력"
-              required
-            />
-            {isInvalid && (
-              <ValidationText $isInvalid={isInvalid}>
-                이름을 입력해 주세요.
-              </ValidationText>
-            )}
-          </InputLabelWrapper>
-          <Divider />
-          <InputLabelWrapper>
-            <Label htmlFor="user_email">이메일</Label>
-            <EmailInputWrapper>
-              <EmailInput
-                type="email"
-                id="user_email"
-                placeholder="이메일 입력"
-                required
-              />
-              <EmailValidationButton
-                $isDisabled={isEmailValidationButtonDisabled}
-              >
-                중복확인
-              </EmailValidationButton>
-            </EmailInputWrapper>
-            {isEmailValidationVisible && (
-              <ValidationText $isInvalid={!isInvalid}>
-                사용 가능한 아이디입니다.
-              </ValidationText>
-            )}
-          </InputLabelWrapper>
-          <InputLabelWrapper>
-            <Label htmlFor="user_password">비밀번호</Label>
-            <Input
-              type="password"
-              id="user_password"
-              placeholder="8-20자, 영문/숫자/특수문자 조합"
-              required
-            />
-            {isInvalid && (
-              <ValidationText $isInvalid={isInvalid}>
-                비밀번호 형식이 아닙니다.
-              </ValidationText>
-            )}
-          </InputLabelWrapper>
-          <InputLabelWrapper>
-            <Label htmlFor="user_password_confirm">비밀번호 확인</Label>
-            <Input
-              type="password"
-              id="user_password_confirm"
-              placeholder="다시 한번 입력해주세요."
-              required
-            />
-            {isInvalid && (
-              <ValidationText $isInvalid={isInvalid}>
-                비밀번호가 일치하지 않습니다.
-              </ValidationText>
-            )}
-          </InputLabelWrapper>
-          <SubmitButton $isDisabled={isSubmitButtonDisabled}>
-            회원가입
-          </SubmitButton>
-        </Form>
-      </Container>
+      <WithoutFooterSection>
+        <Logo>
+          <LogoIcon
+            src={logo}
+            alt="사장님 비서ya"
+          />
+        </Logo>
+        <Container>
+          <Content>
+            <TitleWrapper>
+              <Title>회원가입</Title>
+              <Description>
+                야놀자가 준비한 사장님 비서ya만의 혜택을 받아보세요.
+              </Description>
+            </TitleWrapper>
+            <Form>
+              <InputLabelWrapper>
+                <Label htmlFor="user_name">이름</Label>
+                <Input
+                  type="text"
+                  id="user_name"
+                  placeholder="이름 입력"
+                  required
+                />
+                {isInvalid && (
+                  <ValidationText $isInvalid={isInvalid}>
+                    이름을 입력해 주세요.
+                  </ValidationText>
+                )}
+              </InputLabelWrapper>
+              <Divider />
+              <InputLabelWrapper>
+                <Label htmlFor="user_email">이메일</Label>
+                <EmailInputWrapper>
+                  <EmailInput
+                    type="email"
+                    id="user_email"
+                    placeholder="이메일 입력"
+                    required
+                  />
+                  <EmailValidationButton
+                    $isDisabled={isEmailValidationButtonDisabled}
+                  >
+                    중복확인
+                  </EmailValidationButton>
+                </EmailInputWrapper>
+                {isEmailValidationVisible && (
+                  <ValidationText $isInvalid={!isInvalid}>
+                    사용 가능한 아이디입니다.
+                  </ValidationText>
+                )}
+              </InputLabelWrapper>
+              <InputLabelWrapper>
+                <Label htmlFor="user_password">비밀번호</Label>
+                <Input
+                  type="password"
+                  id="user_password"
+                  placeholder="8-20자, 영문/숫자/특수문자 조합"
+                  required
+                />
+                {isInvalid && (
+                  <ValidationText $isInvalid={isInvalid}>
+                    비밀번호 형식이 아닙니다.
+                  </ValidationText>
+                )}
+              </InputLabelWrapper>
+              <InputLabelWrapper>
+                <Label htmlFor="user_password_confirm">비밀번호 확인</Label>
+                <Input
+                  type="password"
+                  id="user_password_confirm"
+                  placeholder="다시 한번 입력해주세요."
+                  required
+                />
+                {isInvalid && (
+                  <ValidationText $isInvalid={isInvalid}>
+                    비밀번호가 일치하지 않습니다.
+                  </ValidationText>
+                )}
+              </InputLabelWrapper>
+              <SubmitButton $isDisabled={isSubmitButtonDisabled}>
+                회원가입
+              </SubmitButton>
+            </Form>
+          </Content>
+        </Container>
+      </WithoutFooterSection>
       <Footer />
     </WhiteBackground>
   );
@@ -135,25 +141,44 @@ const WhiteBackground = styled.div`
 
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
+  gap: 50px;
 
   background-color: #fff;
 `;
 
-const LogoIcon = styled.img`
-  width: ${toRem(172.8)};
+const WithoutFooterSection = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 67px;
+`;
+
+const Logo = styled.div`
   height: ${toRem(36)};
 
   margin-top: ${toRem(48)};
   margin-left: ${toRem(57)};
 `;
 
+const LogoIcon = styled.img`
+  width: ${toRem(172.8)};
+  height: 100%;
+`;
+
 const Container = styled.div`
   max-width: ${toRem(524)};
+  height: calc(100% - 36px - 100px);
+
+  margin: auto;
+`;
+
+const Content = styled.div`
+  width: 100%;
+  height: 100%;
 
   display: flex;
   flex-direction: column;
-
-  margin: ${toRem(67)} auto ${toRem(141)};
 `;
 
 const TitleWrapper = styled.div`

@@ -3,6 +3,7 @@ import styled from '@emotion/styled';
 
 import { toRem } from '@utils/index';
 import logo from '@assets/icons/ic-logo.svg';
+import { Footer } from '@components/common';
 
 const Login = () => {
   // HACK: 유효성 검사 기능 구현 후 유효성 메세지 노출 여부 결정
@@ -10,35 +11,38 @@ const Login = () => {
   return (
     <WhiteBackground>
       <Container>
-        <TitleWrapper>
-          <LogoIcon
-            src={logo}
-            alt="사장님 비서ya"
-          />
-          <Title>통합 로그인</Title>
-        </TitleWrapper>
-        <form>
-          <Inputs $isInvalid={isInvalid}>
-            <Input
-              type="email"
-              placeholder="이메일 입력"
+        <Content>
+          <TitleWrapper>
+            <LogoIcon
+              src={logo}
+              alt="사장님 비서ya"
             />
-            <Input
-              type="password"
-              placeholder="비밀번호 입력"
-            />
-          </Inputs>
-          {isInvalid && (
-            <ValidationText>
-              <ValidationBoldText>아이디</ValidationBoldText>를 입력해 주세요
-            </ValidationText>
-          )}
-          <Buttons $isInvalid={isInvalid}>
-            <LoginButton $type="login">로그인</LoginButton>
-            <SignUpButton $type="signUp">회원가입</SignUpButton>
-          </Buttons>
-        </form>
+            <Title>통합 로그인</Title>
+          </TitleWrapper>
+          <form>
+            <Inputs $isInvalid={isInvalid}>
+              <Input
+                type="email"
+                placeholder="이메일 입력"
+              />
+              <Input
+                type="password"
+                placeholder="비밀번호 입력"
+              />
+            </Inputs>
+            {isInvalid && (
+              <ValidationText>
+                <ValidationBoldText>아이디</ValidationBoldText>를 입력해 주세요
+              </ValidationText>
+            )}
+            <Buttons $isInvalid={isInvalid}>
+              <LoginButton $type="login">로그인</LoginButton>
+              <SignUpButton $type="signUp">회원가입</SignUpButton>
+            </Buttons>
+          </form>
+        </Content>
       </Container>
+      <Footer />
       {/* HACK: 모달 제작 후 오류 메세지 표시 예정 */}
     </WhiteBackground>
   );
@@ -55,14 +59,23 @@ const WhiteBackground = styled.div`
 
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
 
   background-color: #fff;
 `;
 
 const Container = styled.div`
   max-width: ${toRem(524)};
+  height: calc(100% - 100px);
 
-  margin: ${toRem(175)} auto 0;
+  margin: auto;
+`;
+
+const Content = styled.div`
+  width: 100%;
+  height: 100%;
+
+  margin: 50px auto;
 
   display: flex;
   flex-direction: column;
