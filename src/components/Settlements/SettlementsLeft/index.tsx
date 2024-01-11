@@ -9,10 +9,10 @@ const SettlementsLeft = () => {
     <Container>
         <SettlementsHeader/>
         <SettlementsCalender />
-        <Settlemented />
         <BreakLine>
             <hr />
         </BreakLine>
+        <Settlemented />
     </Container>
   )
 }
