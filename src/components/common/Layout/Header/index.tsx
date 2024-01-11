@@ -4,7 +4,6 @@ import styled from '@emotion/styled';
 import logo from '@assets/icons/ic-logo.svg';
 // HACK: 디자이너에게 유저 아이콘 다시 받을 예정
 import user from '@assets/icons/ic-header-user.svg';
-import { toRem } from '@utils/index';
 import Select from './Select';
 
 const Header = () => {
@@ -35,11 +34,11 @@ export default Header;
 
 const Container = styled.header`
   width: 100%;
-  height: ${toRem(85)};
+  height: 85px;
 
-  border-radius: ${toRem(20)};
-  padding: ${toRem(20)};
-  padding-left: ${toRem(30)};
+  border-radius: 20px;
+  padding: 20px;
+  padding-left: 30px;
 
   display: flex;
   align-items: center;
@@ -49,8 +48,8 @@ const Container = styled.header`
 `;
 
 const LogoLink = styled(NavLink)`
-  width: ${toRem(140)};
-  height: ${toRem(30)};
+  width: 140px;
+  height: 30px;
 `;
 
 const LogoIcon = styled.img`
@@ -63,8 +62,8 @@ const Buttons = styled.div`
 `;
 
 const UserIcon = styled.img`
-  width: ${toRem(40)};
-  height: ${toRem(40)};
+  width: 40px;
+  height: 40px;
 
   border-radius: 50%;
 `;

@@ -5,7 +5,6 @@ import styled from '@emotion/styled';
 import CouponNav from './CouponNav';
 import toggle from '@assets/icons/ic-sidebar-toggle.svg';
 import coupon from '@assets/icons/ic-sidebar-coupon.svg';
-import { toRem } from '@utils/index';
 
 const Coupon = ({ isSidebarOpen }: { isSidebarOpen: boolean }) => {
   const [isToggleOpen, setIsToggleOpen] = useState(true);
@@ -62,16 +61,16 @@ const Container = styled(NavLink)<SidebarStyleProps>`
   width: 100%;
   height: ${props => {
     if (!props.$isSidebarOpen) {
-      return toRem(80);
+      return '80px';
     } else if (props.$isToggleOpen) {
-      return toRem(250);
+      return '250px';
     } else {
-      return toRem(60);
+      return '60px';
     }
   }};
 
-  margin: ${toRem(5)} 0;
-  border-radius: ${toRem(11)};
+  margin: 5px 0;
+  border-radius: 11px;
 
   display: flex;
   flex-direction: column;
@@ -122,7 +121,7 @@ const Header = styled.div<Opens>`
 
 const Contents = styled.div<SidebarOpen>`
   width: 100%;
-  height: ${props => (props.$isSidebarOpen ? toRem(60) : toRem(75))};
+  height: ${props => (props.$isSidebarOpen ? '60px' : '75px')};
 
   display: flex;
   flex-direction: ${props => (props.$isSidebarOpen ? 'row' : 'column')};
@@ -131,10 +130,10 @@ const Contents = styled.div<SidebarOpen>`
 `;
 
 const Toggle = styled.button<Opens>`
-  width: ${toRem(20)};
-  height: ${toRem(20)};
+  width: 20px;
+  height: 20px;
 
-  margin-right: ${toRem(20)};
+  margin-right: 20px;
   border: none;
 
   display: ${props => (props.$isSidebarOpen ? 'flex' : 'none')};
@@ -151,14 +150,13 @@ const Toggle = styled.button<Opens>`
 `;
 
 const ToggleIcon = styled.img`
-  width: ${toRem(15)};
-  height: ${toRem(10)};
+  width: 15px;
+  height: 10px;
 `;
 
 const CouponIcon = styled.img<SidebarOpen>`
-  width: ${toRem(20)};
-  height: ${toRem(25)};
+  width: 20px;
+  height: 25px;
 
-  margin: ${props =>
-    props.$isSidebarOpen ? `0 ${toRem(10)} 0 ${toRem(25)}` : toRem(10)};
+  margin: ${props => (props.$isSidebarOpen ? '0 10px 0 25px' : '10px')};
 `;
