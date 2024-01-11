@@ -3,7 +3,7 @@ import exposeIcon from '@assets/icons/CouponList/ic_expose.svg';
 import toggleOnIcon from '@assets/icons/CouponList/ic_toggle_on.svg';
 import styled from '@emotion/styled';
 
-const CouponItem = () => {
+const CouponExpose = () => {
   return (
     <div>
       <CouponHeader>
@@ -68,7 +68,7 @@ const CouponItem = () => {
   );
 };
 
-export default CouponItem;
+export default CouponExpose;
 
 const CouponHeader = styled.div`
   width: 219px;
@@ -174,7 +174,7 @@ const CouponNabWrap = styled.div`
   margin-left: 1px;
   padding: 15px;
   box-shadow: 0px -4px 4px 0px rgba(0, 0, 0, 0.25);
-  border-bottom: 3px dashed ${props => props.theme.colors.pink500};
+  border-bottom: 2px dashed ${props => props.theme.colors.pink500};
 
   background-color: ${props => props.theme.colors.white};
 `;
@@ -208,7 +208,7 @@ const CouponMain = styled.div`
 
 const CountWrap = styled.div`
   display: flex;
-  margin-top: 15px;
+  margin-top: 10px;
 `;
 
 const CountItemWrap = styled.div`
@@ -247,7 +247,7 @@ const ConditionWrap = styled.div`
   display: flex;
   flex-direction: column;
   padding: 16px 15px 13px 14px;
-  margin-top: 8px;
+  margin-top: 5px;
 
   border-radius: 12px;
   background-color: ${props => props.theme.colors.white};

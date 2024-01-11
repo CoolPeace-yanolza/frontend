@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 import React from 'react';
-import exposeIcon from '@assets/icons/CouponList/ic_expose_stop.svg';
+import stopIcon from '@assets/icons/CouponList/ic_expose_stop.svg';
 import toggleOffIcon from '@assets/icons/CouponList/ic_toggle_off.svg';
 const CouponStop = () => {
   const handleExpose = () => {};
@@ -11,8 +11,8 @@ const CouponStop = () => {
         <ExposeContainer>
           <ExposeWrap>
             <img
-              src={exposeIcon}
-              alt="exposeIcon"
+              src={stopIcon}
+              alt="stopIcon"
             />
             <ExposeText>쿠폰 노출 중지</ExposeText>
           </ExposeWrap>
@@ -171,7 +171,7 @@ const CouponNabWrap = styled.div`
   margin-left: 1px;
   padding: 15px;
   box-shadow: 0px -4px 4px 0px rgba(0, 0, 0, 0.25);
-  border-bottom: 3px dashed #cdcfd0;
+  border-bottom: 2px dashed #cdcfd0;
 
   background-color: ${props => props.theme.colors.white};
 `;
