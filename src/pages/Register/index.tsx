@@ -60,12 +60,9 @@ const TitleWrapper = styled.div`
   backdrop-filter: blur(71px);
 `;
 
-// FIXME: 폰트 적용 후 수정 필요
 const Title = styled.span`
-  font-family: Noto Sans KR;
   font-size: 26px;
-  font-style: normal;
   font-weight: 700;
-  line-height: 31.062px; /* 119.468% */
+  line-height: 31px;
   letter-spacing: -0.78px;
 `;

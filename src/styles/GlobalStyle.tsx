@@ -141,11 +141,17 @@ const resetCSS = css`
   #root {
     color: ${theme.colors.black};
     background: ${theme.colors.background};
+    font-family: 'Noto Sans KR';
   }
 
   *,
   *::before,
   *::after {
     box-sizing: border-box;
+  }
+
+  @font-face {
+    font-family: 'Noto Sans KR';
+    src: url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@500;700&display=swap');
   }
 `;
