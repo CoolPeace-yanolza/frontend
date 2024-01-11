@@ -1,28 +1,19 @@
 import styled from '@emotion/styled';
 
-import {
-  GraphSection,
-  CouponStatusSection,
-  CouponRecommendSection,
-  DailyReportSection
-} from '@components/Dashboard';
+import { ReportGraphSection } from '@components/Report';
 
-const Dashboard = () => {
+const Report = () => {
   return (
     <Container>
       <SectionLeft>
-        <GraphSection />
-        <CouponRecommendSection />
+        <ReportGraphSection />
       </SectionLeft>
-      <SectionRight>
-        <CouponStatusSection />
-        <DailyReportSection />
-      </SectionRight>
+      <SectionRight></SectionRight>
     </Container>
   );
 };
 
-export default Dashboard;
+export default Report;
 
 const Container = styled.div`
   display: flex;
