@@ -20,10 +20,15 @@ const Footer = () => {
 export default Footer;
 
 const Container = styled.div`
-  margin: 32px auto;
+  position: relative;
+  bottom: 0;
+
+  height: 100px;
 
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
   gap: 7px;
 `;
 
