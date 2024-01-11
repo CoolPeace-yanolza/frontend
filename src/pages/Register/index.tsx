@@ -1,7 +1,12 @@
 import { useState } from 'react';
 import styled from '@emotion/styled';
 
-import { Stepper, StepperController } from '@components/Register';
+import {
+  Stepper,
+  StepperController,
+  StepTitle,
+  Preview
+} from '@components/Register';
 import {
   FirstStep,
   SecondStep,
@@ -11,6 +16,28 @@ import {
 
 const Register = () => {
   const [currentStep, setCurrentStep] = useState(0);
+  const steps = [
+    {
+      title: '정보 입력',
+      isCurrent: false,
+      isCompleted: false
+    },
+    {
+      title: '유형 선택',
+      isCurrent: false,
+      isCompleted: false
+    },
+    {
+      title: '조건 선택',
+      isCurrent: false,
+      isCompleted: false
+    },
+    {
+      title: '노출 기간 선택',
+      isCurrent: false,
+      isCompleted: false
+    }
+  ];
 
   const displayStep = (currentStep: number) => {
     switch (currentStep) {
@@ -32,13 +59,25 @@ const Register = () => {
       <Container>
         <TitleWrapper>
           <Title>신규 쿠폰 등록하기</Title>
-          <Stepper currentStep={currentStep} />
+          <Stepper
+            steps={steps}
+            currentStep={currentStep}
+          />
         </TitleWrapper>
-        {displayStep(currentStep)}
-        <StepperController
-          currentStep={currentStep}
-          onButtonClick={setCurrentStep}
-        />
+        <ContentWrapper>
+          <InnerContentWrapper>
+            <StepTitle
+              steps={steps}
+              currentStep={currentStep}
+            />
+            <StepWrapper>{displayStep(currentStep)}</StepWrapper>
+            <Preview />
+            <StepperController
+              currentStep={currentStep}
+              onButtonClick={setCurrentStep}
+            />
+          </InnerContentWrapper>
+        </ContentWrapper>
       </Container>
     </Background>
   );
@@ -78,14 +117,14 @@ const Container = styled.div`
 
 const TitleWrapper = styled.div`
   width: 100%;
-  height: 25%;
+  height: 20%;
 
   padding: 27px 54px;
 
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: 25px;
+  gap: 25%;
 
   border-radius: 0px 60px;
   background: rgba(255, 255, 255, 0.9);
@@ -100,4 +139,37 @@ const Title = styled.span`
   font-weight: 700;
   line-height: 31px;
   letter-spacing: -0.78px;
+`;
+
+const ContentWrapper = styled.div`
+  position: relative;
+
+  width: 100%;
+  height: 80%;
+`;
+
+const InnerContentWrapper = styled.div`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  width: 90%;
+  height: 84%;
+
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 66px 430px 80px;
+  grid-column-gap: 6%;
+
+  overflow: auto;
+`;
+
+const StepWrapper = styled.div`
+  width: 100%;
+  height: 100%;
+
+  display: grid;
+  grid-column: 1 / 2;
+  grid-row: 2 / 4;
 `;

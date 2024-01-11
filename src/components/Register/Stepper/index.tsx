@@ -4,30 +4,7 @@ import theme from '@styles/theme';
 import { StepperProps, NumberProps, LineProps } from '@/types/register';
 import checkMark from '@assets/icons/ic-register-check.svg';
 
-const Stepper = ({ currentStep }: StepperProps) => {
-  const steps = [
-    {
-      title: '정보 입력',
-      isCurrent: false,
-      isCompleted: false
-    },
-    {
-      title: '유형 선택',
-      isCurrent: false,
-      isCompleted: false
-    },
-    {
-      title: '조건 선택',
-      isCurrent: false,
-      isCompleted: false
-    },
-    {
-      title: '노출 기간 선택',
-      isCurrent: false,
-      isCompleted: false
-    }
-  ];
-
+const Stepper = ({ steps, currentStep }: StepperProps) => {
   return (
     <StepperContainer>
       {steps.map((step, index) => {
@@ -79,7 +56,7 @@ const Number = styled.div<NumberProps>`
   height: 35px;
 
   margin-right: 10px;
-  padding-top: 3px;
+  padding-bottom: 2px;
   border: 3px solid ${theme.colors.hover};
   border-radius: 50%;
 

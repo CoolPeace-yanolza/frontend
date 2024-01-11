@@ -20,8 +20,10 @@ const StepperController = ({
 
   return (
     <ButtonContainer>
-      <ControllerButton onClick={handlePreviousButton}>이전</ControllerButton>
-      <ControllerButton onClick={handleNextButton}>다음</ControllerButton>
+      <InnerButtonContainer>
+        <ControllerButton onClick={handlePreviousButton}>이전</ControllerButton>
+        <ControllerButton onClick={handleNextButton}>다음</ControllerButton>
+      </InnerButtonContainer>
     </ButtonContainer>
   );
 };
@@ -29,11 +31,15 @@ const StepperController = ({
 export default StepperController;
 
 const ButtonContainer = styled.div`
-  position: absolute;
-  bottom: 33px;
-  right: 65px;
+  display: grid;
+  grid-column: 2 / 3;
+  grid-row: 3 / 4;
+`;
 
+const InnerButtonContainer = styled.div`
   display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
   gap: 27px;
 `;
 

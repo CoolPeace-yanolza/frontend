@@ -1,4 +1,9 @@
 export type StepperProps = {
+  steps: {
+    title: string;
+    isCurrent: boolean;
+    isCompleted: boolean;
+  }[];
   currentStep: number;
 };
 
@@ -14,3 +19,12 @@ export interface StepperControllerProps {
   currentStep: number;
   onButtonClick: React.Dispatch<React.SetStateAction<number>>;
 }
+
+export type StepTitleProps = {
+  steps: {
+    title: string;
+    isCurrent: boolean;
+    isCompleted: boolean;
+  }[];
+  currentStep: number;
+};
