@@ -285,4 +285,5 @@ const DeleteButton = styled.button`
   font-weight: 700;
   color: #6c7072;
   background: transparent;
+  cursor: pointer;
 `;

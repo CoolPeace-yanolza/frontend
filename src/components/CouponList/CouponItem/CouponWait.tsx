@@ -295,5 +295,6 @@ const ButtonWrap = styled.div`
     font-size: 11px;
     font-style: normal;
     font-weight: 700;
+    cursor: pointer;
   }
 `;
