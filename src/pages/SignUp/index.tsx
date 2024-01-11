@@ -247,8 +247,8 @@ const Input = styled.input`
   }
 
   :focus {
-    outline: none;
-    border: 5px solid #1a2849;
+    outline: 2px solid #1a2849;
+    border-color: #1a2849;
   }
 `;
 
