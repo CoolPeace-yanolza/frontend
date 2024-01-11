@@ -5,7 +5,7 @@ const ErrorApp = ({ error, resetErrorBoundary }: FallbackProps) => {
     <div>
       <span>App 전체 에러 발생</span>
       <pre style={{ color: 'red' }}>{error.message}</pre>
-      <button onClick={() => resetErrorBoundary()}>다시 시도</button>
+      <button onClick={resetErrorBoundary}>다시 시도</button>
     </div>
   );
 };
