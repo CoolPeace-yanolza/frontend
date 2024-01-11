@@ -46,11 +46,13 @@ const InnerContainer = styled.div`
 `;
 
 const LeftSection = styled.div`
-  flex: 6;
   height: 100%;
+
+  flex: 6;
 `;
 
 const RightSection = styled.div`
-  flex: 4;
   height: 100%;
+
+  flex: 4;
 `;

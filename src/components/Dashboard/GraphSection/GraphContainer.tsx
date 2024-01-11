@@ -153,6 +153,7 @@ const Title = styled.span`
 const GraphWrapper = styled.div`
   width: 100%;
   height: 100%;
+
   border-radius: 20px;
 
   display: flex;
@@ -167,5 +168,5 @@ const GraphInnerWrapper = styled.div`
 
   border-radius: 20px;
 
-  background-color: #fff;
+  background-color: white;
 `;

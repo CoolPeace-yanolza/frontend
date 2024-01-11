@@ -15,7 +15,7 @@ const Container = styled.div`
   min-height: 379px;
 
   margin-top: 17px;
-  padding: 38.5px 15px 0px 15px;
+  padding: 38.5px 15px 0px;
   border-radius: 20px;
 
   display: flex;

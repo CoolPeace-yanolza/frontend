@@ -16,26 +16,26 @@ const Report = () => {
 export default Report;
 
 const Container = styled.div`
+  width: 100%;
+  height: 100%;
+
   display: flex;
   justify-content: space-between;
   gap: 25px;
-
-  width: 100%;
-  height: 100%;
 `;
 
 const SectionLeft = styled.div`
+  height: 100%;
+
   display: flex;
   flex-direction: column;
-
   flex: 8;
-  height: 100%;
 `;
 
 const SectionRight = styled.div`
+  height: 100%;
+
   display: flex;
   flex-direction: column;
-
   flex: 2;
-  height: 100%;
 `;

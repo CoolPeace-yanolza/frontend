@@ -73,26 +73,25 @@ const ReportNav = styled(DashboardNav)`
 `;
 
 const Button = styled.button`
-  display: flex;
+  position: absolute;
+  bottom: 0;
+  right: 0;
 
   width: 175px;
   height: 44px;
 
   margin-bottom: 10px;
   padding: 14px 20px;
+  border: none;
   border-radius: 12px;
+
+  display: flex;
   justify-content: center;
   align-items: center;
-
-  border: none;
 
   background: linear-gradient(273deg, #ff0a5c 43.78%, #ff4281 99.72%);
   color: white;
   font-size: 17px;
-
-  position: absolute;
-  bottom: 0;
-  right: 0;
 
   cursor: pointer;
 `;
