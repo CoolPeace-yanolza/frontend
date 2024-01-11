@@ -8,7 +8,7 @@ const Login = () => {
   // HACK: 유효성 검사 기능 구현 후 유효성 메세지 노출 여부 결정
   const [isInvalid, setIsInvalid] = useState(true);
   return (
-    <>
+    <WhiteBackground>
       <Container>
         <TitleWrapper>
           <LogoIcon
@@ -40,11 +40,24 @@ const Login = () => {
         </form>
       </Container>
       {/* HACK: 모달 제작 후 오류 메세지 표시 예정 */}
-    </>
+    </WhiteBackground>
   );
 };
 
 export default Login;
+
+const WhiteBackground = styled.div`
+  position: relative;
+
+  width: 100%;
+  height: 100%;
+  min-height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+
+  background-color: #fff;
+`;
 
 const Container = styled.div`
   max-width: ${toRem(524)};

@@ -17,7 +17,7 @@ const SignUp = () => {
     useState(true);
   const [isSubmitButtonDisabled, setIsSubmitButtonDisabled] = useState(true);
   return (
-    <>
+    <WhiteBackground>
       <LogoIcon
         src={logo}
         alt="사장님 비서ya"
@@ -100,7 +100,7 @@ const SignUp = () => {
         </Form>
       </Container>
       <Footer />
-    </>
+    </WhiteBackground>
   );
 };
 
@@ -124,6 +124,19 @@ const SubmitButton = styled.button<{ $isDisabled: boolean }>`
   :hover {
     cursor: pointer;
   }
+`;
+
+const WhiteBackground = styled.div`
+  position: relative;
+
+  width: 100%;
+  height: 100%;
+  min-height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+
+  background-color: #fff;
 `;
 
 const LogoIcon = styled.img`
