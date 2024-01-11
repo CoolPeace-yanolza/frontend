@@ -9,7 +9,7 @@ const DashboardHeader = () => {
     <Container>
       <Menucontainer>
         <DashboardNav
-          className={location.pathname === '/' ? 'dashboard' : ''}
+          $pathname={location.pathname}
           onClick={() => {
             navigate('/');
           }}
@@ -17,9 +17,9 @@ const DashboardHeader = () => {
           대시보드
         </DashboardNav>
         <ReportNav
-          className={location.pathname === '/report' ? 'report' : ''}
+          $pathname={location.pathname}
           onClick={() => {
-            navigate('/report');
+            navigate('/coupons/report');
           }}
         >
           누적 리포트
@@ -47,29 +47,25 @@ const Menucontainer = styled.div`
   display: flex;
 `;
 
-const DashboardNav = styled.div`
+const DashboardNav = styled.div<{ $pathname: string }>`
   margin-right: 45px;
   padding: 16px 0;
-  border-bottom: none;
+  border-bottom: ${props =>
+    props.$pathname === '/' ? '2px solid #001d6c' : 'none'};
+
   font-size: 17px;
   font-weight: 700;
-  color: #73757c;
+  color: ${props => (props.$pathname === '/' ? '#001d6c' : '#757676')};
 
   cursor: pointer;
-
-  &.dashboard {
-    border-bottom: 2px solid #001d6c;
-
-    color: #001d6c;
-  }
 `;
 
 const ReportNav = styled(DashboardNav)`
-  &.report {
-    border-bottom: 2px solid #001d6c;
+  border-bottom: ${props =>
+    props.$pathname === '/coupons/report' ? '2px solid #001d6c' : 'none'};
 
-    color: #001d6c;
-  }
+  color: ${props =>
+    props.$pathname === '/coupons/report' ? '#001d6c' : '#757676'};
 `;
 
 const Button = styled.button`
