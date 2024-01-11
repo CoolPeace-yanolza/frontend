@@ -5,6 +5,7 @@ import styled from '@emotion/styled';
 import CouponNav from './CouponNav';
 import toggle from '@assets/icons/ic-sidebar-toggle.svg';
 import coupon from '@assets/icons/ic-sidebar-coupon.svg';
+import { Opens, SidebarOpen, SidebarStyleProps } from '@/types/sidebar';
 
 const Coupon = ({ isSidebarOpen }: { isSidebarOpen: boolean }) => {
   const [isToggleOpen, setIsToggleOpen] = useState(true);

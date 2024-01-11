@@ -2,6 +2,7 @@ import styled from '@emotion/styled';
 
 import hamberger from '@assets/icons/ic-sidebar-hamberger.svg';
 import logo from '@assets/icons/ic-logo.svg';
+import { SidebarHeader } from '@/types/sidebar';
 
 const Header = ({ isSidebarOpen, setIsSidebarOpen }: SidebarHeader) => {
   return (

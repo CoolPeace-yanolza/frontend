@@ -2,6 +2,7 @@ import { NavLink } from 'react-router-dom';
 import styled from '@emotion/styled';
 
 import settlement from '@assets/icons/ic-sidebar-settlement.svg';
+import { SidebarOpen } from '@/types/sidebar';
 
 const Settlements = ({ isSidebarOpen }: { isSidebarOpen: boolean }) => {
   return (
