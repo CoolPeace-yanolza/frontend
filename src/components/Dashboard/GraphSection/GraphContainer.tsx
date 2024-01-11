@@ -1,5 +1,4 @@
 import styled from '@emotion/styled';
-import { useState } from 'react';
 import {
   Chart as ChartJS,
   LinearScale,
@@ -63,8 +62,6 @@ export const data = {
 };
 
 const GraphContainer = () => {
-  const [doownLoad, setDownLoad] = useState(0);
-
   const options: any = {
     responsive: true,
     plugins: {
@@ -97,6 +94,7 @@ const GraphContainer = () => {
     },
     onClick: (event: MouseEvent, elements: any[]) => {
       if (elements.length > 0) {
+        event.preventDefault;
         const clickedIndex: number = elements[0].index;
         const clickedLabel: string = labels[clickedIndex];
 
@@ -106,7 +104,6 @@ const GraphContainer = () => {
           dataset => dataset.data[clickedIndex]
         );
         console.log(`Data for ${clickedLabel}:`, allDataForClickedMonth);
-        setDownLoad(allDataForClickedMonth[1]);
       }
     }
   };
