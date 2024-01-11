@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import styled from '@emotion/styled';
 
-import { toRem } from '@utils/index';
 import logo from '@assets/icons/ic-logo.svg';
 import { Footer } from '@components/common';
 
@@ -113,17 +112,17 @@ const SignUp = () => {
 export default SignUp;
 
 const SubmitButton = styled.button<{ $isDisabled: boolean }>`
-  min-width: ${toRem(524)};
-  height: ${toRem(78)};
+  min-width: 524px;
+  height: 78px;
 
   border: none;
-  border-radius: ${toRem(16)};
-  padding: ${toRem(23)} auto;
+  border-radius: 16px;
+  padding: 23px auto;
 
   color: #fff;
-  font-size: ${toRem(22)};
+  font-size: 22px;
   font-weight: 700;
-  line-height: ${toRem(32)};
+  line-height: 32px;
 
   background: ${props => (props.$isDisabled ? '#C1C1C1' : '#1A2849')};
 
@@ -155,19 +154,19 @@ const WithoutFooterSection = styled.div`
 `;
 
 const Logo = styled.div`
-  height: ${toRem(36)};
+  height: 36px;
 
-  margin-top: ${toRem(48)};
-  margin-left: ${toRem(57)};
+  margin-top: 48px;
+  margin-left: 57px;
 `;
 
 const LogoIcon = styled.img`
-  width: ${toRem(172.8)};
+  width: 172.8px;
   height: 100%;
 `;
 
 const Container = styled.div`
-  max-width: ${toRem(524)};
+  max-width: 524px;
   height: calc(100% - 36px - 100px);
 
   margin: auto;
@@ -190,17 +189,17 @@ const TitleWrapper = styled.div`
 
 const Title = styled.h1`
   color: #202325;
-  font-size: ${toRem(26)};
+  font-size: 26px;
   font-weight: 700;
-  line-height: ${toRem(31)};
-  letter-spacing: ${toRem(-0.78)};
+  line-height: 31px;
+  letter-spacing: -0.78px;
 `;
 
 const Description = styled.p`
   color: #979c9e;
-  font-size: ${toRem(18)};
+  font-size: 18px;
   font-weight: 500;
-  line-height: ${toRem(32)};
+  line-height: 32px;
 `;
 
 const InputLabelWrapper = styled.div`
@@ -209,67 +208,67 @@ const InputLabelWrapper = styled.div`
 `;
 
 const Form = styled.form`
-  margin-top: ${toRem(26)};
+  margin-top: 26px;
 
   div:nth-child(1) {
-    margin-bottom: ${toRem(16)};
+    margin-bottom: 16px;
   }
   hr:nth-child(2) {
-    margin-bottom: ${toRem(7)};
+    margin-bottom: 7px;
   }
   div:nth-child(3) {
-    margin-bottom: ${toRem(47)};
+    margin-bottom: 47px;
   }
   div:nth-child(4) {
-    margin-bottom: ${toRem(8)};
+    margin-bottom: 8px;
   }
   div:nth-child(5) {
-    margin-bottom: ${toRem(30)};
+    margin-bottom: 30px;
   }
 `;
 
 const Divider = styled.hr`
-  width: ${toRem(525)};
+  width: 525px;
 
   margin: 0;
-  border: ${toRem(0.25)} solid #c7c7c7;
+  border: 0.25px solid #c7c7c7;
 `;
 
 const Label = styled.label`
-  margin-bottom: ${toRem(10)};
+  margin-bottom: 10px;
 
   color: #757676;
-  font-size: ${toRem(18)};
+  font-size: 18px;
   font-weight: 700;
-  line-height: ${toRem(32)};
+  line-height: 32px;
 `;
 
 const Input = styled.input`
-  width: ${toRem(524)};
-  height: ${toRem(79)};
+  width: 524px;
+  height: 79px;
 
-  border-radius: ${toRem(16)};
-  border: ${toRem(2)} solid #757676;
-  padding: ${toRem(23)} ${toRem(20)};
+  border-radius: 16px;
+  border: 2px solid #757676;
+  padding: 23px 20px;
 
   display: flex;
   align-items: center;
 
   color: #1a2849;
-  font-size: ${toRem(18)};
+  font-size: 18px;
   font-weight: 500;
-  line-height: ${toRem(32)};
+  line-height: 32px;
 
   ::placeholder {
     color: #979c9e;
-    font-size: ${toRem(18)};
+    font-size: 18px;
     font-weight: 500;
-    line-height: ${toRem(32)};
+    line-height: 32px;
   }
 
   :focus {
     outline: none;
-    border: ${toRem(5)} solid #1a2849;
+    border: 5px solid #1a2849;
   }
 `;
 
@@ -280,19 +279,19 @@ const EmailInputWrapper = styled.div`
 `;
 
 const EmailInput = styled(Input)`
-  width: ${toRem(358)};
+  width: 358px;
 `;
 
 const EmailValidationButton = styled(SubmitButton)`
-  min-width: ${toRem(152)};
+  min-width: 152px;
 `;
 
 const ValidationText = styled.p<{ $isInvalid: boolean }>`
-  margin-top: ${toRem(2)};
-  margin-left: ${toRem(12)};
+  margin-top: 2px;
+  margin-left: 12px;
 
   color: ${props => (props.$isInvalid ? '#DA1E28' : '#1a2849')};
-  font-size: ${toRem(15)};
+  font-size: 15px;
   font-weight: 700;
-  line-height: ${toRem(32)};
+  line-height: 32px;
 `;
