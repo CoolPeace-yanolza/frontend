@@ -1,11 +1,11 @@
 import { css, Global } from '@emotion/react';
 import theme from './theme';
 
-const GlobalStyle = () => {
+const GlobalStyles = () => {
   return <Global styles={resetCSS} />;
 };
 
-export default GlobalStyle;
+export default GlobalStyles;
 
 const resetCSS = css`
   html,
