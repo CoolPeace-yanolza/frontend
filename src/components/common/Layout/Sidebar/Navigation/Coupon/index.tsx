@@ -42,6 +42,7 @@ const Coupon = ({ isSidebarOpen }: { isSidebarOpen: boolean }) => {
         </Contents>
         <Toggle
           $isSidebarOpen={isSidebarOpen}
+          $isToggleOpen={isToggleOpen}
           onClick={() => setIsToggleOpen(prev => !prev)}
         >
           <ToggleIcon
@@ -129,7 +130,7 @@ const Contents = styled.div<SidebarOpen>`
   align-items: center;
 `;
 
-const Toggle = styled.button<SidebarOpen>`
+const Toggle = styled.button<Opens>`
   width: ${toRem(20)};
   height: ${toRem(20)};
 
@@ -139,12 +140,14 @@ const Toggle = styled.button<SidebarOpen>`
   display: ${props => (props.$isSidebarOpen ? 'flex' : 'none')};
   align-items: center;
   justify-content: center;
+  align-self: center;
 
   background-color: transparent;
 
-  align-self: center;
-
   cursor: pointer;
+
+  transition: all 0.4s;
+  transform: rotate(${props => (props.$isToggleOpen ? '180deg' : '0deg')});
 `;
 
 const ToggleIcon = styled.img`
