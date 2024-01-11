@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 
 import home from '@assets/icons/ic-sidebar-home.svg';
 import coupons from '@assets/icons/ic-sidebar-coupons.svg';
-import couponRegister from '@assets/icons/ic-sidebar-couponRegister.svg';
+import couponRegister from '@assets/icons/ic-sidebar-coupon-register.svg';
 
 const CouponNav = () => {
   return (

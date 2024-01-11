@@ -60,8 +60,7 @@ const Contents = styled.div<SidebarOpen>`
 `;
 
 const SettlementsIcon = styled.img<SidebarOpen>`
-  width: 25px;
-  height: 20px;
+  height: 30px;
 
   margin: ${props => (props.$isSidebarOpen ? '0 10px 0 23px' : '10px')};
 `;
