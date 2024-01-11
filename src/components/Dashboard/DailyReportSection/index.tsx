@@ -11,8 +11,8 @@ const DailyReportSection = () => {
 export default DailyReportSection;
 
 const Container = styled.div`
-  width: 100%;
-  height: 379px;
+  height: 45%;
+  min-height: 379px;
 
   margin-top: 17px;
   padding: 38.5px 15px 0px 15px;

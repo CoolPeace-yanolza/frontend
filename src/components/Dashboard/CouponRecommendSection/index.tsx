@@ -7,8 +7,7 @@ const CouponRecommendSection = () => {
 export default CouponRecommendSection;
 
 const Container = styled.div`
-  width: 100%;
-  height: 327px;
+  min-height: 327px;
 
   margin-top: 17px;
   border-radius: 20px;
@@ -17,6 +16,7 @@ const Container = styled.div`
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  flex: 4;
 
   background-color: white;
 `;

@@ -130,6 +130,7 @@ export default GraphContainer;
 
 const Container = styled.div`
   width: 100%;
+  height: 100%;
 
   display: flex;
   flex-direction: column;
@@ -150,7 +151,6 @@ const Title = styled.span`
 `;
 
 const GraphWrapper = styled.div`
-  min-height: 357px;
   width: 100%;
   height: 100%;
   border-radius: 20px;
@@ -163,7 +163,7 @@ const GraphWrapper = styled.div`
 `;
 
 const GraphInnerWrapper = styled.div`
-  width: 90%;
+  width: 95%;
 
   border-radius: 20px;
 

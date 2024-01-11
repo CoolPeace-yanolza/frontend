@@ -23,32 +23,34 @@ const GraphSection = () => {
 export default GraphSection;
 
 const Container = styled.div`
-  width: 100%;
-  height: 533px;
+  min-height: 533px;
 
-  padding: 37px 18px 35px 37px;
+  padding: 30px 18px 30px 37px;
   border-radius: 20px;
 
   display: flex;
   flex-direction: column;
+  flex: 6;
 
   background-color: white;
 `;
 
 const InnerContainer = styled.div`
+  width: 100%;
+  height: 100%;
+
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   gap: 12px;
-
-  width: 100%;
-  height: 100%;
 `;
 
 const LeftSection = styled.div`
   flex: 6;
+  height: 100%;
 `;
 
 const RightSection = styled.div`
   flex: 4;
+  height: 100%;
 `;

@@ -14,7 +14,8 @@ const CouponStatusSection = () => {
 export default CouponStatusSection;
 
 const Container = styled.div`
-  height: 481px;
+  height: 55%;
+  min-height: 481px;
 
   padding: 29px 15px;
   border-radius: 20px;

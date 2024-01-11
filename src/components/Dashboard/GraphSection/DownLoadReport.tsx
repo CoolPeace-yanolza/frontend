@@ -31,15 +31,13 @@ const Header = styled.div`
 const Title = styled.span`
   color: #484e59;
   font-size: 18px;
-  font-weight: 700;
 `;
 
 const InnerContainer = styled.div`
-  min-height: 363.88px;
+  width: 100%;
+  height: 100%;
 
   border-radius: 20px;
-
-  flex: 1;
 
   background-color: #fafafb;
 `;
