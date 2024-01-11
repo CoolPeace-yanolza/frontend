@@ -72,7 +72,7 @@ const MainRouter = () => {
           }
         />
         <Route
-          path="/report"
+          path="/coupons/report"
           element={<Report />}
         />
       </Route>
