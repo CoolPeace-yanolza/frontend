@@ -23,14 +23,14 @@ const SettlementsCalender = () => {
         src={CalendarIcon}
         alt="캘린더" />
       <CalendarText>기간 설정</CalendarText>
-      <DatePicker
+      <StyledDatePicker
         selected={startDate}
         onChange={handleStartDateChange}
         dateFormat="yyyy/MM"
         showMonthYearPicker
         placeholderText=""
       />
-      <DatePicker
+      <StyledDatePicker
         selected={endDate}
         onChange={handleEndDateChange}
         dateFormat="yyyy/MM"
@@ -55,8 +55,18 @@ const Container = styled.nav`
 const Calendar = styled.img`
 `;
 
+const StyledDatePicker = styled(DatePicker)`
+  border: none;
+  border-radius: 8px; 
+  padding: 5px; 
+  margin-right: 10px;
+  width: 100px;
+`;
+
 const CalendarText = styled.div`
   font-size: 15px;
   font-weight: bold;
   color: white;
+
+  margin-right: 10px;
 `;

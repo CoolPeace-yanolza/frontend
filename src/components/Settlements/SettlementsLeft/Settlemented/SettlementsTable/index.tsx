@@ -1,8 +1,6 @@
 import styled from '@emotion/styled';
-
 import { SettlementItem } from '../../../../../types/settlements';
-// import settlementsFrame from '@assets/settlement-data-frame.svg';
-// import settlementsFrame from '@assets/settlement-data-frame2.svg';
+import settlementsFrame from '@assets/icons/settlements-data-frame.svg'; 
 
 const SettlementsTable = ({ data }: { data: SettlementItem[] }) => {
   const keys = [
@@ -24,9 +22,11 @@ const SettlementsTable = ({ data }: { data: SettlementItem[] }) => {
             <KeyElement key={index}>{key}</KeyElement>
           ))}
         </Header>
+        <FrameContainer>
         <Frame>
           <div>데이터가 없습니다.</div>
         </Frame>
+        </FrameContainer>
       </Container>
     );
   }
@@ -53,15 +53,17 @@ export default SettlementsTable;
 
 const Container = styled.div`
   margin-top: 30px;
+
   display: flex;
   flex-direction: column;
 `;
 
 const Header = styled.div`
   padding: 20px 0;
-  margin-bottom: 20px;
+
   display: flex;
   justify-content: space-between;
+
   border: 1px solid #000;
   border-radius: 10px;
   background-color: rgba(255, 255, 255, 0.05);
@@ -70,6 +72,7 @@ const Header = styled.div`
 const KeyElement = styled.div`
   flex: 1;
   text-align: center;
+
   font-size: 14px;
   font-weight: bold;
   color: white;
@@ -77,13 +80,22 @@ const KeyElement = styled.div`
 
 const Row = styled.div`
   margin-bottom: 10px;
+
   display: flex;
   justify-content: space-between;
 `;
 
+const FrameContainer = styled.div`
+  width: 100%;
+
+  padding-left: 10px;
+  padding-right: 10px;
+
+  text-align: center;
+`;
+
 const Frame = styled.div`
   height: 500px;
-  background: white;
-//   border-bottom: 6px dashed rgba(17, 31, 63, 1);
-  border-radius: 10px;
+
+  background: url(${settlementsFrame});
 `;
