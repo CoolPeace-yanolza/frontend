@@ -46,6 +46,7 @@ const Section = styled.section`
   flex-direction: column;
 `;
 
+//HACK: 타입 분리 예정!
 const OutletLayout = styled.div<{ $pathname: string }>`
   width: 100%;
   height: 100%;
