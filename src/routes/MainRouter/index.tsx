@@ -1,7 +1,8 @@
+import { Route, Routes } from 'react-router-dom';
+
+import { Layout } from '@components/common';
 import Login from '@pages/Login';
 import SignUp from '@pages/SignUp';
-import { Route, Routes } from 'react-router-dom';
-import { Layout } from '@components/common';
 import Dashboard from '@pages/Dashboard.tsx';
 import Report from '@pages/Report.tsx';
 

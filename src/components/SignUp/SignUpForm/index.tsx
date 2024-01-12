@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+
 import { SignUpDisabledButton, SignUpInputValidation } from '@/types/signUp';
 
 const SignUpForm = () => {
