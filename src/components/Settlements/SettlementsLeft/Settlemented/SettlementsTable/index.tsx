@@ -3,7 +3,7 @@ import { SettlementItem } from '../../../../../types/settlements';
 import settlementsFrame from '@assets/icons/settlements-data-frame.svg'; 
 
 const SettlementsTable = ({ data }: { data: SettlementItem[] }) => {
-  const keys = [
+  const keys: (keyof SettlementItem)[] = [
     'NO',
     '쿠폰 적용일',
     '쿠폰번호',
@@ -24,9 +24,9 @@ const SettlementsTable = ({ data }: { data: SettlementItem[] }) => {
           ))}
         </Header>
         <FrameContainer>
-        <Frame>
-          <div>데이터가 없습니다.</div>
-        </Frame>
+          <Frame>
+            <div>데이터가 없습니다.</div>
+          </Frame>
         </FrameContainer>
       </Container>
     );
@@ -39,13 +39,17 @@ const SettlementsTable = ({ data }: { data: SettlementItem[] }) => {
           <KeyElement key={index}>{key}</KeyElement>
         ))}
       </Header>
-      {data.map((row, index) => (
-        <Row key={index}>
-          {Object.values(row).map((value, index) => (
-            <div key={index}>{value}</div>
+      <FrameContainer>
+        <Frame>
+          {data.map((row, index) => (
+            <Row key={index}>
+              {keys.map((key) => (
+                <DataElement key={key}>{row[key]}</DataElement>
+              ))}
+            </Row>
           ))}
-        </Row>
-      ))}
+        </Frame>
+      </FrameContainer>
     </Container>
   );
 };
@@ -71,7 +75,7 @@ const Header = styled.div`
 `;
 
 const KeyElement = styled.div`
-  flex: 1;
+  width: 10%;
   text-align: center;
 
   font-size: 14px;
@@ -92,6 +96,8 @@ const FrameContainer = styled.div`
   padding-left: 10px;
   padding-right: 10px;
 
+  box-sizing: border-box;
+
   text-align: center;
 `;
 
@@ -99,4 +105,16 @@ const Frame = styled.div`
   height: 500px;
 
   background: url(${settlementsFrame});
+`;
+
+const DataElement = styled.div`
+  width: 10%;
+  height: 35px;
+
+  padding-top: 10px;
+
+  text-align: center;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 `;
