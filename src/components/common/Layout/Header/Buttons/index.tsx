@@ -1,7 +1,6 @@
 import styled from '@emotion/styled';
 
 import user from '@assets/icons/ic-header-user.svg';
-import { toRem } from '@utils/index';
 import { useRecoilState } from 'recoil';
 import { headerAccomodationState } from '@recoil/index';
 
@@ -76,12 +75,12 @@ const Container = styled.div`
 `;
 
 const Accommodations = styled.select`
-  margin-right: ${toRem(32)};
+  margin-right: 32px;
 `;
 
 const UserIcon = styled.img`
-  width: ${toRem(40)};
-  height: ${toRem(40)};
+  width: 40px;
+  height: 40px;
 
   border-radius: 50%;
 `;
