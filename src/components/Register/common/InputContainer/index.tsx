@@ -4,12 +4,10 @@ import { InputContainerProps } from '@/types/register';
 
 const InputContainer = ({ description, children }: InputContainerProps) => {
   return (
-    <div>
-      <Container>
-        <Description>{description}</Description>
-        {children}
-      </Container>
-    </div>
+    <Container>
+      <Description>{description}</Description>
+      {children}
+    </Container>
   );
 };
 

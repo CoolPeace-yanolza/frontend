@@ -56,17 +56,17 @@ const Register = () => {
 
   return (
     <Background>
-      <Container>
-        <TitleWrapper>
+      <RegisterContainer>
+        <TitleContainer>
           <Title>신규 쿠폰 등록하기</Title>
           <Stepper
             steps={steps}
             currentStep={currentStep}
           />
-        </TitleWrapper>
-        <ContentWrapper>
-          <InnerContentWrapper>
-            <SectionWrapper>
+        </TitleContainer>
+        <ContentContainer>
+          <InnerContentContainer>
+            <SectionContainer>
               <LeftSection>
                 <StepTitle
                   steps={steps}
@@ -81,10 +81,10 @@ const Register = () => {
                   onButtonClick={setCurrentStep}
                 />
               </RightSection>
-            </SectionWrapper>
-          </InnerContentWrapper>
-        </ContentWrapper>
-      </Container>
+            </SectionContainer>
+          </InnerContentContainer>
+        </ContentContainer>
+      </RegisterContainer>
     </Background>
   );
 };
@@ -106,7 +106,7 @@ const Background = styled.div`
   );
 `;
 
-const Container = styled.div`
+const RegisterContainer = styled.div`
   position: relative;
 
   width: 100%;
@@ -121,7 +121,7 @@ const Container = styled.div`
   backdrop-filter: blur(71px);
 `;
 
-const TitleWrapper = styled.div`
+const TitleContainer = styled.div`
   width: 100%;
   height: 20%;
 
@@ -147,14 +147,14 @@ const Title = styled.span`
   letter-spacing: -0.78px;
 `;
 
-const ContentWrapper = styled.div`
+const ContentContainer = styled.div`
   position: relative;
 
   width: 100%;
   height: 80%;
 `;
 
-const InnerContentWrapper = styled.div`
+const InnerContentContainer = styled.div`
   position: absolute;
   top: 50%;
   left: 50%;
@@ -166,7 +166,7 @@ const InnerContentWrapper = styled.div`
   overflow: auto;
 `;
 
-const SectionWrapper = styled.div`
+const SectionContainer = styled.div`
   position: relative;
 
   width: 100%;

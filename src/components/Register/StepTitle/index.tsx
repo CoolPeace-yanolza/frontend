@@ -7,7 +7,7 @@ const StepTitle = ({ steps, currentStep }: StepTitleProps) => {
   return (
     <StepTitleContainer>
       <StepTitleWrapper>
-        {`${currentStep + 1}.  ${steps[currentStep].title}`}
+        {`${currentStep + 1}. ${steps[currentStep].title}`}
         {!currentStep && (
           <PreviousCoupon>이전 쿠폰 정보 불러오기</PreviousCoupon>
         )}
