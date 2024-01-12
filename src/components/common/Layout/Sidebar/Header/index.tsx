@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 
 import hamberger from '@assets/icons/ic-sidebar-hamberger.svg';
 import logo from '@assets/icons/ic-logo.svg';
-import { toRem } from '@utils/index';
+import { SidebarHeader } from '@/types/sidebar';
 
 const Header = ({ isSidebarOpen, setIsSidebarOpen }: SidebarHeader) => {
   return (
@@ -35,12 +35,12 @@ const Container = styled.div`
 `;
 
 const Hamberger = styled.button`
-  width: ${toRem(60)};
-  height: ${toRem(60)};
+  width: 60px;
+  height: 60px;
 
-  margin: ${toRem(5)} ${toRem(10)};
+  margin: 5px 10px;
   border: none;
-  border-radius: ${toRem(11)};
+  border-radius: 11px;
 
   background-color: transparent;
 
@@ -54,13 +54,13 @@ const Hamberger = styled.button`
 `;
 
 const HambergerIcon = styled.img`
-  width: ${toRem(30)};
-  height: ${toRem(20)};
+  width: 30px;
+  height: 20px;
 `;
 
 const LogoIcon = styled.img`
-  width: ${toRem(120)};
-  height: ${toRem(30)};
+  width: 120px;
+  height: 30px;
 
-  margin-right: ${toRem(30)};
+  margin-right: 30px;
 `;
