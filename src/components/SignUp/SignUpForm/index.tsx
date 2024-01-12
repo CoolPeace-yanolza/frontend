@@ -7,10 +7,9 @@ const SignUpForm = () => {
   const isInvalid = false;
   const isEmailValidationVisible = false;
 
-  // 버튼 disabled 처리하기 위한 state
-  // TODO: 변수명이 길어서 가독성이 떨어지는 것같아 더 좋은 이름이 있다면 추천 부탁드려요
-  const isEmailValidationButtonDisabled = true;
-  const isSubmitButtonDisabled = true;
+  // 2가지 버튼 disabled 처리하기 위한 state
+  const isEmailValidationDisabled = true;
+  const isSubmitValidationDisabled = true;
 
   return (
     <Form>
@@ -37,7 +36,7 @@ const SignUpForm = () => {
             placeholder="이메일 입력"
             required
           />
-          <EmailValidationButton $isDisabled={isEmailValidationButtonDisabled}>
+          <EmailValidationButton $isDisabled={isEmailValidationDisabled}>
             중복확인
           </EmailValidationButton>
         </EmailInputWrapper>
@@ -75,7 +74,9 @@ const SignUpForm = () => {
           </ValidationText>
         )}
       </InputLabelWrapper>
-      <SubmitButton $isDisabled={isSubmitButtonDisabled}>회원가입</SubmitButton>
+      <SubmitButton $isDisabled={isSubmitValidationDisabled}>
+        회원가입
+      </SubmitButton>
     </Form>
   );
 };
