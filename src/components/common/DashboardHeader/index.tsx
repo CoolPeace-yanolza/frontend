@@ -1,6 +1,8 @@
 import styled from '@emotion/styled';
 import { useNavigate, useLocation } from 'react-router-dom';
 
+import { NavigationPath } from '@/types/dashboardHeader';
+
 const DashboardHeader = () => {
   const navigate = useNavigate();
   const location = useLocation();
@@ -8,22 +10,22 @@ const DashboardHeader = () => {
   return (
     <Container>
       <MenuContainer>
-        <DashboardNav
+        <DashboardNavigation
           $pathname={location.pathname}
           onClick={() => {
             navigate('/');
           }}
         >
           대시보드
-        </DashboardNav>
-        <ReportNav
+        </DashboardNavigation>
+        <ReportPageNavigation
           $pathname={location.pathname}
           onClick={() => {
             navigate('/coupons/report');
           }}
         >
           누적 리포트
-        </ReportNav>
+        </ReportPageNavigation>
       </MenuContainer>
       <Button>쿠폰 등록하기</Button>
     </Container>
@@ -33,8 +35,6 @@ const DashboardHeader = () => {
 export default DashboardHeader;
 
 const Container = styled.div`
-  position: relative;
-
   width: 100%;
 
   border-bottom: 2px solid #c5c5c57f;
@@ -47,7 +47,7 @@ const MenuContainer = styled.div`
   display: flex;
 `;
 
-const DashboardNav = styled.div<{ $pathname: string }>`
+const DashboardNavigation = styled.div<NavigationPath>`
   margin-right: 45px;
   padding: 16px 0;
   border-bottom: ${props =>
@@ -60,7 +60,7 @@ const DashboardNav = styled.div<{ $pathname: string }>`
   cursor: pointer;
 `;
 
-const ReportNav = styled(DashboardNav)`
+const ReportPageNavigation = styled(DashboardNavigation)`
   border-bottom: ${props =>
     props.$pathname === '/coupons/report' ? '3px solid #001d6c' : 'none'};
 
@@ -69,10 +69,6 @@ const ReportNav = styled(DashboardNav)`
 `;
 
 const Button = styled.button`
-  position: absolute;
-  bottom: 0;
-  right: 0;
-
   width: 175px;
   height: 44px;
 
