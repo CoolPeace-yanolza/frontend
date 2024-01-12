@@ -2,7 +2,7 @@ import { NavLink } from 'react-router-dom';
 import styled from '@emotion/styled';
 
 import settlement from '@assets/icons/ic-sidebar-settlement.svg';
-import { toRem } from '@utils/index';
+import { SidebarOpen } from '@/types/sidebar';
 
 const Settlements = ({ isSidebarOpen }: { isSidebarOpen: boolean }) => {
   return (
@@ -26,10 +26,10 @@ export default Settlements;
 
 const Container = styled(NavLink)<SidebarOpen>`
   width: 100%;
-  height: ${props => (props.$isSidebarOpen ? toRem(60) : toRem(80))};
+  height: ${props => (props.$isSidebarOpen ? '60px' : '80px')};
 
-  margin: ${toRem(5)} 0;
-  border-radius: ${toRem(11)};
+  margin: 5px 0;
+  border-radius: 11px;
 
   color: ${props => props.theme.colors.black};
 
@@ -51,7 +51,7 @@ const Container = styled(NavLink)<SidebarOpen>`
 `;
 
 const Contents = styled.div<SidebarOpen>`
-  width: ${props => (props.$isSidebarOpen ? '100%' : toRem(80))};
+  width: ${props => (props.$isSidebarOpen ? '100%' : '80px')};
   height: 100%;
 
   display: flex;
@@ -61,9 +61,8 @@ const Contents = styled.div<SidebarOpen>`
 `;
 
 const SettlementsIcon = styled.img<SidebarOpen>`
-  width: ${toRem(25)};
-  height: ${toRem(20)};
+  width: 30px;
+  height: 30px;
 
-  margin: ${props =>
-    props.$isSidebarOpen ? `0 ${toRem(10)} 0 ${toRem(23)}` : toRem(10)};
+  margin: ${props => (props.$isSidebarOpen ? '0 10px 0 20px' : '0 0 5px 0')};
 `;
