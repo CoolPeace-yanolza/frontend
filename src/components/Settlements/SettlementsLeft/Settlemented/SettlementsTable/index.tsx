@@ -4,6 +4,7 @@ import settlementsFrame from '@assets/icons/settlements-data-frame.svg';
 
 const SettlementsTable = ({ data }: { data: SettlementItem[] }) => {
   const keys = [
+    'NO',
     '쿠폰 적용일',
     '쿠폰번호',
     '관리 쿠폰명',
