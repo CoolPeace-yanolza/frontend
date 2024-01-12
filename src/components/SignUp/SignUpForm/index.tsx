@@ -156,7 +156,6 @@ const Input = styled.input`
 
 const EmailInputWrapper = styled.div`
   display: flex;
-  flex-direction: row;
   justify-content: space-between;
 `;
 
