@@ -1,3 +1,11 @@
+import { ReactNode } from 'react';
+
+// InputContainer
+export type InputContainerProps = {
+  description: string;
+  children: ReactNode;
+};
+
 // Stepper
 export type StepperProps = {
   steps: {
