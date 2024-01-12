@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import styled from '@emotion/styled';
+import { ButtonText, InputValidation } from '@/types/login';
 
 const LoginForm = () => {
   // HACK: 유효성 검사 기능 구현 후 유효성 메세지 노출 여부 결정
@@ -23,8 +24,8 @@ const LoginForm = () => {
         </ValidationText>
       )}
       <Buttons $isInvalid={isInvalid}>
-        <LoginButton $type="login">로그인</LoginButton>
-        <SignUpButton $type="signUp">회원가입</SignUpButton>
+        <LoginButton $text="login">로그인</LoginButton>
+        <SignUpButton $text="signUp">회원가입</SignUpButton>
       </Buttons>
     </form>
   );
@@ -32,7 +33,7 @@ const LoginForm = () => {
 
 export default LoginForm;
 
-const Inputs = styled.div<{ $isInvalid: boolean }>`
+const Inputs = styled.div<InputValidation>`
   margin-bottom: ${props => (props.$isInvalid ? '10px' : '65px')};
 
   display: flex;
@@ -82,7 +83,7 @@ const ValidationBoldText = styled.span`
   font-weight: 700;
 `;
 
-const Buttons = styled.div<{ $isInvalid: boolean }>`
+const Buttons = styled.div<InputValidation>`
   display: flex;
   flex-direction: column;
   gap: 13px;
@@ -90,7 +91,7 @@ const Buttons = styled.div<{ $isInvalid: boolean }>`
   ${props => props.$isInvalid && 'margin-top: 23px'};
 `;
 
-const LoginButton = styled.button<{ $type: string }>`
+const LoginButton = styled.button<ButtonText>`
   min-width: 524px;
 
   border: none;
@@ -103,7 +104,7 @@ const LoginButton = styled.button<{ $type: string }>`
   line-height: 32px;
 
   background: ${props =>
-    props.$type === 'login'
+    props.$text === 'login'
       ? '#1A2849'
       : 'linear-gradient(91deg, #FF3478 1.39%, #FF83AD 98.63%)'};
 
@@ -112,4 +113,4 @@ const LoginButton = styled.button<{ $type: string }>`
   }
 `;
 
-const SignUpButton = styled(LoginButton)<{ $type: string }>``;
+const SignUpButton = styled(LoginButton)<ButtonText>``;
