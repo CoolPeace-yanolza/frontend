@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from '@emotion/styled';
 import { ButtonText, InputValidation } from '@/types/login';
 
 const LoginForm = () => {
   // HACK: 유효성 검사 기능 구현 후 유효성 메세지 노출 여부 결정
-  const [isInvalid, setIsInvalid] = useState(false);
+  const isInvalid = true;
 
   return (
     <form>

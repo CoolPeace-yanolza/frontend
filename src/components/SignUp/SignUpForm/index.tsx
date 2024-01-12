@@ -1,18 +1,16 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from '@emotion/styled';
 import { SignUpDisabledButton, SignUpInputValidation } from '@/types/signUp';
 
 const SignUpForm = () => {
   // TODO: react-hook-form 사용해서 유효성 검사 예정
-  const [isInvalid, setIsInvalid] = useState(false);
-  const [isEmailValidationVisible, setIsEmailValidationVisible] =
-    useState(false);
+  const isInvalid = false;
+  const isEmailValidationVisible = false;
 
   // 버튼 disabled 처리하기 위한 state
   // TODO: 변수명이 길어서 가독성이 떨어지는 것같아 더 좋은 이름이 있다면 추천 부탁드려요
-  const [isEmailValidationButtonDisabled, setIsEmailValidationButtonDisabled] =
-    useState(true);
-  const [isSubmitButtonDisabled, setIsSubmitButtonDisabled] = useState(true);
+  const isEmailValidationButtonDisabled = true;
+  const isSubmitButtonDisabled = true;
 
   return (
     <Form>
