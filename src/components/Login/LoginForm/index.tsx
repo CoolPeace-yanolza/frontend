@@ -56,14 +56,14 @@ const Input = styled.input`
   font-weight: 500;
   line-height: 32px;
 
-  ::placeholder {
+  &::placeholder {
     color: #979c9e;
     font-size: 18px;
     font-weight: 500;
     line-height: 32px;
   }
 
-  :focus {
+  &:focus {
     outline: 2px solid #1a2849;
     border-color: #1a2849;
   }
@@ -107,7 +107,7 @@ const LoginButton = styled.button<ButtonText>`
       ? '#1A2849'
       : 'linear-gradient(91deg, #FF3478 1.39%, #FF83AD 98.63%)'};
 
-  :hover {
+  &:hover {
     cursor: pointer;
   }
 `;

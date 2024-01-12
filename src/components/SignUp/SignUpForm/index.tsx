@@ -96,7 +96,7 @@ const SubmitButton = styled.button<SignUpDisabledButton>`
 
   background: ${props => (props.$isDisabled ? '#C1C1C1' : '#1A2849')};
 
-  :hover {
+  &:hover {
     cursor: pointer;
   }
 `;
@@ -139,14 +139,14 @@ const Input = styled.input`
   font-weight: 500;
   line-height: 32px;
 
-  ::placeholder {
+  &::placeholder {
     color: #979c9e;
     font-size: 18px;
     font-weight: 500;
     line-height: 32px;
   }
 
-  :focus {
+  &:focus {
     outline: 2px solid #1a2849;
     border-color: #1a2849;
   }
