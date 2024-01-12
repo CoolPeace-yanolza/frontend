@@ -109,9 +109,9 @@ const Frame = styled.div`
 
 const DataElement = styled.div`
   width: 10%;
-  height: 35px;
+  height: 40px;
 
-  padding-top: 10px;
+  padding-top: 15px;
 
   text-align: center;
   overflow: hidden;

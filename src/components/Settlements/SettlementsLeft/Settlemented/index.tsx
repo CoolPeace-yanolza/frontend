@@ -1,6 +1,8 @@
 import styled from '@emotion/styled';
 
 import SettlementsTable from './SettlementsTable';
+import SettlementsPagination from './SettlementsPagination';
+import { SetStateAction, useState } from 'react';
 
 const Settlemented = () => {
 
@@ -44,6 +46,20 @@ const Settlemented = () => {
 
    const reversedData = [...dataWithNumber].reverse();
 
+   const itemsPerPage = 10; 
+  const totalItems = reversedData.length;
+  const totalPages = Math.ceil(totalItems / itemsPerPage);
+
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const handlePageChange = (page: SetStateAction<number>) => {
+    setCurrentPage(page);
+  };
+
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+  const currentData = reversedData.slice(startIndex, endIndex);
+
 
   return (
     <Container>
@@ -61,7 +77,12 @@ const Settlemented = () => {
         </OptionContainer>
       </SettlementedHeader>
       <DataLow>
-        <SettlementsTable data={reversedData} />
+        <SettlementsTable data={currentData} />
+        <SettlementsPagination
+            currentPage={currentPage}
+            totalPages={totalPages}
+            onPageChange={handlePageChange}
+            />
       </DataLow>
       <Data>
       </Data>
