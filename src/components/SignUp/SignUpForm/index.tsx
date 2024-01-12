@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import styled from '@emotion/styled';
+import { SignUpDisabledButton, SignUpInputValidation } from '@/types/signUp';
 
 const SignUpForm = () => {
   // TODO: react-hook-form 사용해서 유효성 검사 예정
@@ -83,7 +84,7 @@ const SignUpForm = () => {
 
 export default SignUpForm;
 
-const SubmitButton = styled.button<{ $isDisabled: boolean }>`
+const SubmitButton = styled.button<SignUpDisabledButton>`
   min-width: 524px;
   height: 78px;
 
@@ -168,7 +169,7 @@ const EmailValidationButton = styled(SubmitButton)`
   min-width: 152px;
 `;
 
-const ValidationText = styled.p<{ $isInvalid: boolean }>`
+const ValidationText = styled.p<SignUpInputValidation>`
   margin-top: 2px;
   margin-left: 12px;
 
