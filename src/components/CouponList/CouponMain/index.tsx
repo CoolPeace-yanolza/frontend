@@ -4,14 +4,18 @@ import CouponExpose from '../CouponItem/CouponExpose';
 import CouponExpired from '../CouponItem/CouponExpired';
 import CouponStop from '../CouponItem/CouponStop';
 import CouponWait from '../CouponItem/CouponWait';
+import CouponExposeA from '../CouponItem/CouponExposeA';
 
 const CouponMain = () => {
   return (
     <MainContainer>
-      <CouponExpose />
-      <CouponExpired />
-      <CouponStop />
-      <CouponWait />
+      <CouponExposeA />
+      <CouponExposeA />
+      <CouponExposeA />
+      <CouponExposeA />
+      <CouponExposeA />
+      <CouponExposeA />
+      <CouponExposeA />
     </MainContainer>
   );
 };
@@ -19,8 +23,8 @@ const CouponMain = () => {
 export default CouponMain;
 
 const MainContainer = styled.div`
-  margin: 14px 34.5px;
-
   display: flex;
-  justify-content: space-around;
+  flex-flow: row wrap;
+
+  margin-left: 50px;
 `;

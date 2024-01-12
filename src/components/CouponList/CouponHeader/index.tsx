@@ -1,7 +1,14 @@
 import styled from '@emotion/styled';
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const CouponHeader = () => {
+  const navigate = useNavigate();
+
+  const handleCouponRegister = () => {
+    navigate('/coupons/register');
+  };
+
   return (
     <CouponHeaderContainer>
       <CouponHeaderWrapper>
@@ -10,7 +17,9 @@ const CouponHeader = () => {
           보다 더 편리한 쿠폰 관리를 도와드립니다.
         </CouponDescription>
       </CouponHeaderWrapper>
-      <CouponRegisterButton>쿠폰 등록하기</CouponRegisterButton>
+      <CouponRegisterButton onClick={handleCouponRegister}>
+        쿠폰 등록하기
+      </CouponRegisterButton>
     </CouponHeaderContainer>
   );
 };

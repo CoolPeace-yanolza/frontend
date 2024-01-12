@@ -1,5 +1,6 @@
 import styled from '@emotion/styled';
 import React from 'react';
+import searchIcon from '@assets/icons/CouponList/ic_search.svg';
 
 const CouponNav = () => {
   return (
@@ -28,10 +29,15 @@ const CouponNav = () => {
         </TabWrap>
         <SearchWrap>
           <SearchInput
+            id="search"
             type="text"
             placeholder="관리 쿠폰명을 입력하세요."
           ></SearchInput>
-          <SearchButton>검색</SearchButton>
+          <SearchImg
+            src={searchIcon}
+            alt="search"
+          />
+          <SearchButton type="submit">검색</SearchButton>
         </SearchWrap>
       </TabNavContainer>
     </div>
@@ -98,9 +104,10 @@ const TabCount = styled.div`
 
   background-color: #f3f3f3;
   border-radius: 20px;
+  cursor: pointer;
 `;
 
-const SearchWrap = styled.div`
+const SearchWrap = styled.form`
   display: flex;
 `;
 
@@ -114,6 +121,12 @@ const SearchInput = styled.input`
   background: #f3f3f3;
   color: #646464;
   font-size: 14px;
+`;
+
+const SearchImg = styled.img`
+  position: absolute;
+  margin-top: 7px;
+  margin-left: 16px;
 `;
 
 const SearchButton = styled.button`
