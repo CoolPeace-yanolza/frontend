@@ -1,5 +1,7 @@
 import { Route, Routes } from 'react-router-dom';
 import { Layout } from '@components/common';
+import Dashboard from '@pages/Dashboard.tsx';
+import Report from '@pages/Report.tsx';
 
 import Settlements  from '../../pages/Settlements'
 
@@ -21,19 +23,7 @@ const MainRouter = () => {
       <Route element={<Layout />}>
         <Route
           path="/"
-          element={
-            <div
-              style={{
-                height: '100%',
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-                fontSize: '1.5rem'
-              }}
-            >
-              🧃 대시보드 페이지 입주 예정 🧃
-            </div>
-          }
+          element={<Dashboard />}
         />
         <Route
           path="/coupons"
@@ -74,6 +64,10 @@ const MainRouter = () => {
               <Settlements />
             </>
           }
+        />
+        <Route
+          path="/coupons/report"
+          element={<Report />}
         />
       </Route>
     </Routes>
