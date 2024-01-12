@@ -50,7 +50,7 @@ const Settlemented = () => {
   const totalItems = reversedData.length;
   const totalPages = Math.ceil(totalItems / itemsPerPage);
 
-  const [currentPage, setCurrentPage] = useState(1);
+  const [currentPage, setCurrentPage] = useState<number>(1);
 
   const handlePageChange = (page: SetStateAction<number>) => {
     setCurrentPage(page);
@@ -115,6 +115,7 @@ const TotalData = styled.div`
 
 const OptionContainer = styled.div`
   display: flex;
+  align-items: center;
 `;
 
 const SortOption = styled.div`
@@ -132,6 +133,16 @@ const ExcelDownload = styled.div`
   width: 100%;
 
   white-space: nowrap;
+
+  button {
+    font-size: 14px;
+    font-weight: bold;
+    color: white;
+    border: none;
+    text-decoration: underline;
+    cursor: pointer;
+    background: none; 
+  }
 `;
 
 const DataLow = styled.div`
