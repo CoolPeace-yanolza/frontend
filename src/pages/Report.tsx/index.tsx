@@ -5,10 +5,10 @@ import { ReportGraphSection } from '@components/Report';
 const Report = () => {
   return (
     <Container>
-      <SectionLeft>
+      <LeftSection>
         <ReportGraphSection />
-      </SectionLeft>
-      <SectionRight></SectionRight>
+      </LeftSection>
+      <RightSection></RightSection>
     </Container>
   );
 };
@@ -24,7 +24,7 @@ const Container = styled.div`
   gap: 25px;
 `;
 
-const SectionLeft = styled.div`
+const LeftSection = styled.div`
   height: 100%;
 
   display: flex;
@@ -32,7 +32,7 @@ const SectionLeft = styled.div`
   flex: 8;
 `;
 
-const SectionRight = styled.div`
+const RightSection = styled.div`
   height: 100%;
 
   display: flex;
