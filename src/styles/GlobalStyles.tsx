@@ -8,6 +8,8 @@ const GlobalStyles = () => {
 export default GlobalStyles;
 
 const resetCSS = css`
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@500;600;700&display=swap');
+
   html,
   body,
   div,
@@ -148,10 +150,5 @@ const resetCSS = css`
   *::before,
   *::after {
     box-sizing: border-box;
-  }
-
-  @font-face {
-    font-family: 'Noto Sans KR';
-    src: url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@500;700&display=swap');
   }
 `;
