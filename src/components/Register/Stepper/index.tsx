@@ -1,7 +1,11 @@
 import styled from '@emotion/styled';
 import theme from '@styles/theme';
 
-import { StepperProps, NumberProps, LineProps } from '@/types/register';
+import {
+  StepperProps,
+  NumberStyleProps,
+  LineStyleProps
+} from '@/types/register';
 import checkMark from '@assets/icons/ic-register-check.svg';
 
 const Stepper = ({ steps, currentStep }: StepperProps) => {
@@ -51,7 +55,7 @@ const Step = styled.div`
   align-items: center;
 `;
 
-const Number = styled.div<NumberProps>`
+const Number = styled.div<NumberStyleProps>`
   width: 35px;
   height: 35px;
 
@@ -99,7 +103,7 @@ const Description = styled.div`
   }
 `;
 
-const Line = styled.div<LineProps>`
+const Line = styled.div<LineStyleProps>`
   margin: 0px 40px;
 
   display: ${props => (props.$isLastStep === 3 ? 'none' : 'block')};

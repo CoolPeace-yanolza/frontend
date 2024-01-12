@@ -1,3 +1,4 @@
+// Stepper
 export type StepperProps = {
   steps: {
     title: string;
@@ -7,19 +8,21 @@ export type StepperProps = {
   currentStep: number;
 };
 
-export type StepperStyleProps = {
+export type NumberStyleProps = {
   src: string;
+};
+
+export type LineStyleProps = {
   $isLastStep: number;
 };
 
-export type NumberProps = Pick<StepperStyleProps, 'src'>;
-export type LineProps = Pick<StepperStyleProps, '$isLastStep'>;
-
+// StepperController
 export interface StepperControllerProps {
   currentStep: number;
   onButtonClick: React.Dispatch<React.SetStateAction<number>>;
 }
 
+// StepTitle
 export type StepTitleProps = {
   steps: {
     title: string;
