@@ -3,6 +3,7 @@ import { Outlet } from 'react-router-dom';
 
 import Sidebar from './Sidebar';
 import Header from './Header';
+import theme from '@styles/theme';
 
 const Layout = () => {
   return (
@@ -28,12 +29,11 @@ const Container = styled.div`
 
   display: flex;
 
-  background-color: ${props => props.theme.colors.background};
+  background-color: ${theme.colors.background};
 `;
 
 const Section = styled.section`
   width: 100%;
-  min-height: 100%;
 
   margin-left: 100px;
   padding: 13px 22px;
@@ -44,10 +44,10 @@ const Section = styled.section`
 
 const OutletLayout = styled.div`
   width: 100%;
-  height: 100%;
+  min-height: 100vh;
 
   margin-top: 16px;
   border-radius: 20px;
 
-  background-color: ${props => props.theme.colors.white};
+  background-color: ${theme.colors.white};
 `;
