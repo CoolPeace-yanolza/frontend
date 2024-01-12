@@ -6,6 +6,14 @@ export type InputContainerProps = {
   children: ReactNode;
 };
 
+// InputButton
+export type InputButtonProps = {
+  type: string;
+  id: string;
+  name: string;
+  buttonName: string;
+};
+
 // Stepper
 export type StepperProps = {
   steps: {
