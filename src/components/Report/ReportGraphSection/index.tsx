@@ -15,9 +15,9 @@ export default ReportGraphSection;
 
 const Container = styled.div`
   width: 100%;
-  height: 533px;
+  height: 100%;
 
-  padding: 37px 18px 35px 37px;
+  padding: 30px 18px 30px 37px;
   border-radius: 20px;
 
   display: flex;

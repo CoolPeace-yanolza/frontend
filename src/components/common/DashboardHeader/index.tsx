@@ -7,7 +7,7 @@ const DashboardHeader = () => {
 
   return (
     <Container>
-      <Menucontainer>
+      <MenuContainer>
         <DashboardNav
           $pathname={location.pathname}
           onClick={() => {
@@ -24,7 +24,7 @@ const DashboardHeader = () => {
         >
           누적 리포트
         </ReportNav>
-      </Menucontainer>
+      </MenuContainer>
       <Button>쿠폰 등록하기</Button>
     </Container>
   );
@@ -43,7 +43,7 @@ const Container = styled.div`
   justify-content: space-between;
 `;
 
-const Menucontainer = styled.div`
+const MenuContainer = styled.div`
   display: flex;
 `;
 
@@ -51,7 +51,7 @@ const DashboardNav = styled.div<{ $pathname: string }>`
   margin-right: 45px;
   padding: 16px 0;
   border-bottom: ${props =>
-    props.$pathname === '/' ? '2px solid #001d6c' : 'none'};
+    props.$pathname === '/' ? '3px solid #001d6c' : 'none'};
 
   font-size: 17px;
   font-weight: 700;
@@ -62,7 +62,7 @@ const DashboardNav = styled.div<{ $pathname: string }>`
 
 const ReportNav = styled(DashboardNav)`
   border-bottom: ${props =>
-    props.$pathname === '/coupons/report' ? '2px solid #001d6c' : 'none'};
+    props.$pathname === '/coupons/report' ? '3px solid #001d6c' : 'none'};
 
   color: ${props =>
     props.$pathname === '/coupons/report' ? '#001d6c' : '#757676'};
