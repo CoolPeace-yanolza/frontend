@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 
 import { DashboardHeader } from '@components/common';
 import GraphContainer from './GraphContainer';
-import DownLoadReport from './DownLoadReport';
+import DownloadReport from './DownloadReport';
 
 const GraphSection = () => {
   return (
@@ -13,7 +13,7 @@ const GraphSection = () => {
           <GraphContainer />
         </LeftSection>
         <RightSection>
-          <DownLoadReport />
+          <DownloadReport />
         </RightSection>
       </InnerContainer>
     </Container>
