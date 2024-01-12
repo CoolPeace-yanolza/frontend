@@ -135,8 +135,8 @@ const TitleWrapper = styled.div`
 `;
 
 const Title = styled.span`
-  font-size: 26px;
-  font-weight: 700;
+  font-size: 24px;
+  font-weight: 600;
   line-height: 31px;
   letter-spacing: -0.78px;
 `;

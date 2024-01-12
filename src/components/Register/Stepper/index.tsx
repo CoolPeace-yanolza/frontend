@@ -57,7 +57,7 @@ const Number = styled.div<NumberProps>`
 
   margin-right: 10px;
   padding-bottom: 2px;
-  border: 3px solid ${theme.colors.hover};
+  border: 2px solid ${theme.colors.hover};
   border-radius: 50%;
 
   display: flex;
@@ -65,7 +65,7 @@ const Number = styled.div<NumberProps>`
   align-items: center;
 
   color: ${theme.colors.hover};
-  font-weight: 700;
+  font-weight: 600;
   line-height: 100%;
   letter-spacing: 0.5px;
 
@@ -78,7 +78,7 @@ const Number = styled.div<NumberProps>`
   }
 
   &.disabled {
-    border: 3px solid #979c9e;
+    border: 2px solid #979c9e;
 
     & > span {
       color: #979c9e;
@@ -89,12 +89,13 @@ const Number = styled.div<NumberProps>`
 const Description = styled.div`
   color: ${theme.colors.ink600};
   font-size: 22px;
-  font-weight: 700;
+  font-weight: 600;
   line-height: 26.148px;
   letter-spacing: -0.7px;
 
   &.disabled {
     color: #979c9e;
+    font-weight: 500;
   }
 `;
 

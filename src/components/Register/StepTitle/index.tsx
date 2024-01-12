@@ -29,8 +29,8 @@ const StepTitleContainer = styled.div`
 
   display: grid;
 
-  font-size: 26px;
-  font-weight: 700;
+  font-size: 24px;
+  font-weight: 600;
   line-height: 31px;
   letter-spacing: -0.78px;
 `;
@@ -50,7 +50,6 @@ const PreviousCoupon = styled.button`
   color: ${theme.colors.pink500};
   font-family: 'Noto Sans KR';
   font-size: 15px;
-  font-weight: 700;
   text-decoration: underline;
   text-underline-position: under;
 
@@ -64,6 +63,6 @@ const Description = styled.span`
 
   color: #6c7072;
   font-size: 13px;
-  font-weight: 700;
+  letter-spacing: 0.1px;
   line-height: 150%;
 `;
