@@ -42,7 +42,7 @@ const SettlementsTable = ({ data }: { data: SettlementItem[] }) => {
       <FrameContainer>
         <Frame>
           {data.map((row, index) => (
-            <Row key={index}>
+            <Row key={index} isLast={false}>
               {keys.map((key) => (
                 <DataElement key={key}>{row[key]}</DataElement>
               ))}
@@ -83,11 +83,17 @@ const KeyElement = styled.div`
   color: white;
 `;
 
-const Row = styled.div`
-  margin-bottom: 10px;
+const Row = styled.div<{ isLast: boolean }>`
+  // margin-bottom: 10px;
 
   display: flex;
   justify-content: space-between;
+
+  border-bottom: ${(props) => (props.isLast ? 'none' : '1px solid #ccc')}; 
+
+  &:last-child {
+    border-bottom: none;
+  }
 `;
 
 const FrameContainer = styled.div`
@@ -109,12 +115,16 @@ const Frame = styled.div`
 
 const DataElement = styled.div`
   width: 10%;
-  height: 40px;
+  height: 48px;
 
-  padding-top: 15px;
+  padding-top: 18px;
 
-  text-align: center;
+  // display: flex;
+  // align-items: center;
+  justify-content: center;
+
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
 `;
+

@@ -114,6 +114,8 @@ const TotalData = styled.div`
 `;
 
 const OptionContainer = styled.div`
+  margin-right: 26px;
+
   display: flex;
   align-items: center;
 `;

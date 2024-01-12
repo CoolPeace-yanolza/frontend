@@ -76,6 +76,16 @@ const PaginationContainer = styled.div`
     }
   }
 
+  .pagination-li.active {
+    padding: 9.4px 0px;
+
+    font-weight: bold; 
+
+    border-width: 2px;
+    border: 1.5px solid #FFFFFF;
+    border-radius: 4px;
+  }
+
   .pagination-previous,
   .pagination-next {
     padding: 8px 12px;
