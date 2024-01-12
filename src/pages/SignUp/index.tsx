@@ -63,8 +63,11 @@ const LogoIcon = styled.img`
 `;
 
 const Container = styled.div`
+  --logo-height: 36px;
+  --footer-height: 100px;
+
   max-width: 524px;
-  height: calc(100% - 36px - 100px);
+  height: calc(100% - var(--logo-height) - var(--footer-height));
 
   margin: auto;
 `;
