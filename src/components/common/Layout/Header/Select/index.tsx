@@ -60,7 +60,7 @@ const Select = () => {
           </Accommodation>
         ))}
       </Accommodations>
-      <SelectBtn></SelectBtn>
+      <SelectButton></SelectButton>
     </Container>
   );
 };
@@ -103,7 +103,7 @@ const Accommodation = styled.option`
   right: 0;
 `;
 
-const SelectBtn = styled.div`
+const SelectButton = styled.div`
   position: absolute;
   top: 16px;
   right: 45px;
