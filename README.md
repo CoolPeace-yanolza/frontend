@@ -1,30 +1,43 @@
-# React + TypeScript + Vite
+# Cool Peace Client
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## 요청 사항
 
-Currently, two official plugins are available:
+- dev 브랜치를 평가받고 싶습니다.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 현재 진행 상황
 
-## Expanding the ESLint configuration
+- 프로젝트 초기 세팅을 완료하였습니다. [쿨피스 초기 세팅 문서](https://sugar-gasoline-6bc.notion.site/5c6f48673f124145b3322f60663d322e?pvs=4)
+- 사이드바 및 헤더 등 기본적인 레이아웃이 배포되었습니다.
+- 현재 각 페이지별로 레이아웃 작업을 진행중에 있습니다.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## 1차 야놀자 멘토링 질문
 
-- Configure the top-level `parserOptions` property like this:
+1. 현재 쿨피스 프로젝트는프로젝트 초기 세팅 및 파일 구조가 잘 적용 되어있는지, 부족한 점은 없는지 궁금합니다.
+2. [쿨피스 컨벤션](https://sugar-gasoline-6bc.notion.site/FE-adb78e85671b4d80988cd08cb88a93cf?pvs=4)에서 오류가 있거나, 보완한 부분은 없는지 궁금합니다.
+3. [리액트 쿼리를 활용한 에러 바운더리, 서스펜스 실습](https://github.com/JitHoon/react-error-loading)에서 잘못 사용된 부분은 없는지, 더 잘 활용하기 위한 추천 사항은 없는지 궁금합니다.
+4. closed된 PR 에서 코드 리뷰가 잘 진행되고 있는지, PR의 규모는 적절한지 궁금합니다. 또한 추천하시는 코드 리뷰 방식이나 PR 규모가 궁금합니다.
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname
-  }
-};
+## Contributor
+
+- @로그인/회원가입 (김다빈)
+- @대시보드 (김특희, 최지훈)
+- @쿠폰조회 (정진주)
+- @쿠폰등록 (한은지)
+- @정산관리 (정지오)
+
+## Tech Stack
+
+- 어플리케이션 보일러플레이트 생성 : Vite (react-swc-ts)
+- 스타일 : emotion, reset css
+- 코드 컨벤션 : Eslint, prettier
+- 배포, CI/CD : Vercel (+ Github Actions)
+- 테스트 : Jest
+- 비동기 처리, 상태 관리, 에러 컨트롤 : Axios, Reac-Query, Recoil,react-error-boundary
+
+## Script
+
+앱 실행
+
 ```
-
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+$ npm run dev
+```
