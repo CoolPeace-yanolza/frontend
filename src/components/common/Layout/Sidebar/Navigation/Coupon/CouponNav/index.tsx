@@ -3,8 +3,7 @@ import { NavLink } from 'react-router-dom';
 
 import home from '@assets/icons/ic-sidebar-home.svg';
 import coupons from '@assets/icons/ic-sidebar-coupons.svg';
-import couponRegister from '@assets/icons/ic-sidebar-couponRegister.svg';
-import { toRem } from '@utils/index';
+import couponRegister from '@assets/icons/ic-sidebar-coupon-register.svg';
 
 const CouponNav = () => {
   return (
@@ -52,24 +51,24 @@ const Container = styled.nav`
   flex-direction: column;
   align-items: center;
 
-  font-size: ${toRem(14)};
+  font-size: 14px;
 
   &:hover {
     color: ${props => props.theme.colors.white};
   }
 
   &:last-child {
-    margin-bottom: ${toRem(10)};
+    margin-bottom: 10px;
   }
 `;
 
 const Link = styled(NavLink)`
-  width: ${toRem(190)};
-  height: ${toRem(50)};
+  width: 190px;
+  height: 50px;
 
-  margin: ${toRem(5)};
-  border-radius: ${toRem(11)};
-  padding: ${toRem(10)} ${toRem(12)};
+  margin: 5px;
+  border-radius: 11px;
+  padding: 10px 12px;
 
   display: flex;
   justify-content: flex-start;
@@ -77,7 +76,7 @@ const Link = styled(NavLink)`
 
   color: ${props => props.theme.colors.white};
 
-  font-size: ${toRem(14)};
+  font-size: 14px;
   font-weight: 400;
 
   box-sizing: border-box;
@@ -94,8 +93,8 @@ const Link = styled(NavLink)`
 `;
 
 const Icon = styled.img`
-  width: ${toRem(24)};
-  height: ${toRem(24)};
+  width: 24px;
+  height: 24px;
 
-  margin-right: ${toRem(15)};
+  margin-right: 15px;
 `;

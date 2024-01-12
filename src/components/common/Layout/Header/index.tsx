@@ -2,7 +2,6 @@ import { NavLink } from 'react-router-dom';
 import styled from '@emotion/styled';
 
 import logo from '@assets/icons/ic-logo.svg';
-import { toRem } from '@utils/index';
 import Buttons from './Buttons';
 
 const Header = () => {
@@ -17,6 +16,7 @@ const Header = () => {
           alt="사장님 비서ya"
         />
       </LogoLink>
+
       <Buttons />
     </Container>
   );
@@ -26,11 +26,11 @@ export default Header;
 
 const Container = styled.header`
   width: 100%;
-  height: ${toRem(85)};
+  height: 85px;
 
-  border-radius: ${toRem(20)};
-  padding: ${toRem(20)};
-  padding-left: ${toRem(30)};
+  border-radius: 20px;
+  padding: 20px;
+  padding-left: 30px;
 
   display: flex;
   align-items: center;
@@ -40,8 +40,8 @@ const Container = styled.header`
 `;
 
 const LogoLink = styled(NavLink)`
-  width: ${toRem(140)};
-  height: ${toRem(30)};
+  width: 140px;
+  height: 30px;
 `;
 
 const LogoIcon = styled.img`
