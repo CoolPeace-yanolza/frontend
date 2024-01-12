@@ -66,16 +66,22 @@ const Register = () => {
         </TitleWrapper>
         <ContentWrapper>
           <InnerContentWrapper>
-            <StepTitle
-              steps={steps}
-              currentStep={currentStep}
-            />
-            <StepWrapper>{displayStep(currentStep)}</StepWrapper>
-            <Preview />
-            <StepperController
-              currentStep={currentStep}
-              onButtonClick={setCurrentStep}
-            />
+            <SectionWrapper>
+              <LeftSection>
+                <StepTitle
+                  steps={steps}
+                  currentStep={currentStep}
+                />
+                {displayStep(currentStep)}
+              </LeftSection>
+              <RightSection>
+                <Preview />
+                <StepperController
+                  currentStep={currentStep}
+                  onButtonClick={setCurrentStep}
+                />
+              </RightSection>
+            </SectionWrapper>
           </InnerContentWrapper>
         </ContentWrapper>
       </Container>
@@ -157,19 +163,32 @@ const InnerContentWrapper = styled.div`
   width: 90%;
   height: 84%;
 
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 66px 430px 80px;
-  grid-column-gap: 6%;
-
   overflow: auto;
 `;
 
-const StepWrapper = styled.div`
+const SectionWrapper = styled.div`
+  position: relative;
+
   width: 100%;
+
+  display: inline-block;
+`;
+
+const LeftSection = styled.div`
+  width: 47%;
+
+  display: inline-block;
+`;
+
+const RightSection = styled.div`
+  position: absolute;
+  top: 0px;
+  right: 0px;
+
+  width: 47%;
   height: 100%;
 
-  display: grid;
-  grid-column: 1 / 2;
-  grid-row: 2 / 4;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 `;

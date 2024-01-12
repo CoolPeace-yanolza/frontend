@@ -25,9 +25,7 @@ export default StepTitle;
 
 const StepTitleContainer = styled.div`
   width: 100%;
-  height: 100%;
-
-  display: grid;
+  height: 60px;
 
   font-size: 24px;
   font-weight: 600;

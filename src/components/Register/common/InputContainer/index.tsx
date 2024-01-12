@@ -18,6 +18,7 @@ export default InputContainer;
 const Container = styled.div`
   width: 100%;
 
+  margin-bottom: 30px;
   padding: 24px;
   border: 1px solid #cdcfd0;
   border-radius: 16px;
