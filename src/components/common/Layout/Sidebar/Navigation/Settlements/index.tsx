@@ -3,6 +3,7 @@ import styled from '@emotion/styled';
 
 import settlement from '@assets/icons/ic-sidebar-settlement.svg';
 import { SidebarOpen } from '@/types/sidebar';
+import theme from '@styles/theme';
 
 const Settlements = ({ isSidebarOpen }: { isSidebarOpen: boolean }) => {
   return (
@@ -31,9 +32,9 @@ const Container = styled(NavLink)<SidebarOpen>`
   margin: 5px 0;
   border-radius: 11px;
 
-  color: ${props => props.theme.colors.black};
+  color: ${theme.colors.black};
 
-  font-weight: ${props => props.theme.fontWeight.large};
+  font-weight: ${theme.fontWeight.large};
 
   cursor: pointer;
 
@@ -41,8 +42,8 @@ const Container = styled(NavLink)<SidebarOpen>`
 
   &:hover,
   &.active {
-    color: ${props => props.theme.colors.white};
-    background-color: ${props => props.theme.colors.hover};
+    color: ${theme.colors.white};
+    background-color: ${theme.colors.hover};
   }
 
   &:link {

@@ -5,6 +5,7 @@ import logo from '@assets/icons/ic-logo.svg';
 // HACK: 디자이너에게 유저 아이콘 다시 받을 예정
 import user from '@assets/icons/ic-header-user.svg';
 import Select from './Select';
+import theme from '@styles/theme';
 
 const Header = () => {
   return (
@@ -33,6 +34,10 @@ const Header = () => {
 export default Header;
 
 const Container = styled.header`
+  position: sticky;
+  top: 0;
+  left: 0;
+
   width: 100%;
   height: 85px;
 
@@ -44,7 +49,7 @@ const Container = styled.header`
   align-items: center;
   justify-content: space-between;
 
-  background-color: ${props => props.theme.colors.white};
+  background-color: ${theme.colors.white};
 `;
 
 const LogoLink = styled(NavLink)`

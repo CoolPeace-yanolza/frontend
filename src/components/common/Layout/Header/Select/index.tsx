@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import styled from '@emotion/styled';
+import theme from '@styles/theme';
 
 const Select = () => {
   // HACK: 예시 데이터, 백엔드에 리스트로 넘겨 받기
@@ -58,7 +59,7 @@ const Accommodations = styled.select`
 
   color: rgba(60, 60, 67, 0.6);
   background-color: rgba(247, 248, 252, 1);
-  outline-color: ${props => props.theme.colors.brand};
+  outline-color: ${theme.colors.brand};
 
   appearance: none;
 
