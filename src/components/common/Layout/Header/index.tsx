@@ -2,7 +2,8 @@ import { NavLink } from 'react-router-dom';
 import styled from '@emotion/styled';
 
 import logo from '@assets/icons/ic-logo.svg';
-import Buttons from './Buttons';
+import user from '@assets/icons/ic-header-user.svg';
+import Select from './Select';
 
 const Header = () => {
   return (
@@ -16,8 +17,13 @@ const Header = () => {
           alt="사장님 비서ya"
         />
       </LogoLink>
-
-      <Buttons />
+      <Buttons>
+        <Select />
+        <UserIcon
+          src={user}
+          alt="사용자 프로필"
+        />
+      </Buttons>
     </Container>
   );
 };
@@ -47,4 +53,15 @@ const LogoLink = styled(NavLink)`
 const LogoIcon = styled.img`
   width: 100%;
   height: 100%;
+`;
+
+const Buttons = styled.div`
+  display: flex;
+`;
+
+const UserIcon = styled.img`
+  width: 40px;
+  height: 40px;
+
+  border-radius: 50%;
 `;

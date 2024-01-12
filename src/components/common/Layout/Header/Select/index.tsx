@@ -1,32 +1,62 @@
-import { useState } from 'react';
 import styled from '@emotion/styled';
 
-const Select = () => {
-  // HACK: 예시 데이터, 백엔드에 리스트로 넘겨 받기
-  const selectList = [
-    '영덕 아이스 풀빌라',
-    '영덕 아이스 풀빌라2',
-    '영덕 아이스 풀빌라3',
-    '영덕 아이스 풀빌라4'
-  ];
-  const [selected, setSelected] = useState(selectList[0]);
+import { useRecoilState } from 'recoil';
+import { headerAccomodationState } from '@recoil/index';
 
-  // HACK: select 값에 따른 API 요청을 어떻게 보낼 건지 논의 필요
-  const handleSelect = (e: React.ChangeEvent<HTMLSelectElement>) =>
-    setSelected(e.target.value);
+const Select = () => {
+  /* HACK: 예시 데이터, 리액트 쿼리를 활용하여 넘겨 selectList 배열을 받음
+
+    const { data: selectList } = useFetchAccommodation();
+
+  */
+
+  const selectList = [
+    {
+      accomodationId: 1,
+      accomodationName: '영덕 아이스 풀빌라'
+    },
+    {
+      accomodationId: 2,
+      accomodationName: '영덕 아이스 풀빌라2'
+    },
+    {
+      accomodationId: 3,
+      accomodationName: '영덕 아이스 풀빌라3'
+    },
+    {
+      accomodationId: 4,
+      accomodationName: '영덕 아이스 풀빌라4'
+    }
+  ];
+
+  const [headerAccomodation, setHeaderAccomodation] = useRecoilState(
+    headerAccomodationState
+  );
+
+  console.log(headerAccomodation);
+
+  const handleSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const accomodationId = Number(e.target.value);
+
+    setHeaderAccomodation({
+      accomodationId,
+      accomodationName: `${e.target.children[accomodationId - 1].textContent}`
+    });
+  };
 
   return (
     <Container>
       <Accommodations
+        name="Accommodations"
         onChange={handleSelect}
-        value={selected}
+        value={headerAccomodation.accomodationId}
       >
         {selectList.map(item => (
           <Accommodation
-            value={item}
-            key={item}
+            value={item.accomodationId}
+            key={item.accomodationId}
           >
-            {item}
+            {item.accomodationName}
           </Accommodation>
         ))}
       </Accommodations>
