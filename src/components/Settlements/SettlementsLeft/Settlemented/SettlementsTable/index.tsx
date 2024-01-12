@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+
 import { SettlementItem } from '../../../../../types/settlements';
 import settlementsFrame from '@assets/icons/settlements-data-frame.svg'; 
 
