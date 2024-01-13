@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import toggleOnIcon from '@assets/icons/CouponList/ic_toggle_on.svg';
-import toggleOffIcon from '@assets/icons/CouponList/ic_toggle_off.svg';
+import toggleOnIcon from '@assets/icons/CouponList/ic_toggleOn.svg';
+import toggleOffIcon from '@assets/icons/CouponList/ic_toggleOff.svg';
 import styled from '@emotion/styled';
 
 const CouponExposeA = () => {
@@ -15,7 +15,10 @@ const CouponExposeA = () => {
         <CouponHeader>
           <CouponTitle>2024 신년행사</CouponTitle>
           {isToggle ? (
-            <ToggleWrap onClick={handleToggle}>
+            <ToggleWrap
+              isToggle={isToggle}
+              onClick={handleToggle}
+            >
               <ToggleOn>ON</ToggleOn>
               <ToggleOnImg
                 src={toggleOnIcon}
@@ -23,7 +26,10 @@ const CouponExposeA = () => {
               />
             </ToggleWrap>
           ) : (
-            <ToggleWrap onClick={handleToggle}>
+            <ToggleWrap
+              isToggle={isToggle}
+              onClick={handleToggle}
+            >
               <ToggleOffImg
                 src={toggleOffIcon}
                 alt="toggleOffIcon"
@@ -76,9 +82,7 @@ export default CouponExposeA;
 
 const CouponContainer = styled.div`
   width: 290px;
-  height: 202px;
-
-  margin-bottom: 36px;
+  height: 203px;
 
   border-radius: 8px;
   background: #ffebf1;
@@ -87,7 +91,7 @@ const CouponContainer = styled.div`
 
 const CouponHeaderContainer = styled.div`
   height: 64px;
-  padding: 13px;
+  padding: 14px 10px 0 12px;
 
   display: flex;
   flex-direction: column;
@@ -113,12 +117,13 @@ const CouponCustomer = styled.div`
   font-weight: 700;
 `;
 
-const ToggleWrap = styled.button`
+const ToggleWrap = styled.button<{ isToggle: boolean }>`
   width: 50px;
   height: 22.93;
 
   border-radius: 22.93px;
-  border: 1px solid #e3e5e5;
+  border: 1px solid;
+  border-color: ${props => (props.isToggle ? '#FF3478' : '#404446')};
 
   display: flex;
   align-items: center;
@@ -132,28 +137,29 @@ const ToggleOn = styled.div`
   font-family: Pretendard;
   font-size: 10px;
   font-weight: 700;
-  margin-right: 4px;
+  margin: 2px 5px 1px 1px;
 
   color: ${props => props.theme.colors.pink500};
 `;
 
 const ToggleOff = styled.div`
-  margin-top: 1px;
+  margin-top: 2px;
   font-family: Pretendard;
   font-size: 10px;
   font-weight: 700;
-  color: #cdcfd0;
+  color: #404446;
 `;
 const ToggleOnImg = styled.img`
-  margin-top: 1px;
+  margin: 1px;
 `;
 
 const ToggleOffImg = styled.img`
-  margin-top: 1px;
+  margin: 1px;
   margin-left: -3.5px;
 `;
 
 const CouponMain = styled.div`
+  padding: 12px 10px 0 12px;
   display: flex;
   align-items: center;
 `;
@@ -162,7 +168,7 @@ const CountWrap = styled.div`
   width: 58px;
   height: 62px;
 
-  margin: 12px 0 0 12px;
+  margin-right: 7.5px;
 
   display: flex;
   flex-direction: column;
@@ -191,10 +197,7 @@ const CountNumber = styled.div`
   font-weight: 700;
 `;
 
-const ContentContainer = styled.div`
-  margin-top: 15px;
-  margin-left: 13px;
-`;
+const ContentContainer = styled.div``;
 
 const ContentWrap = styled.div`
   display: flex;
@@ -218,10 +221,11 @@ const ContentValue = styled.div`
 `;
 
 const DateContainer = styled.div`
-  margin: 11px 0 0 11px;
+  padding: 9px 0 0 12px;
 `;
 
 const ExposeDateWrap = styled.div`
+  margin-bottom: 4px;
   display: flex;
   align-items: center;
 `;

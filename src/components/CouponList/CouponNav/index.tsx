@@ -94,6 +94,7 @@ const TabNavContainer = styled.div`
   margin: 19px 0px;
 
   display: flex;
+  flex 1 0 auto;
   justify-content: space-between;
 
   border-bottom: 1px solid #dde1e6;

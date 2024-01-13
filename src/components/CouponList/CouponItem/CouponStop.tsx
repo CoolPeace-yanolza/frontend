@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import React from 'react';
 import stopIcon from '@assets/icons/CouponList/ic_expose_stop.svg';
-import toggleOffIcon from '@assets/icons/CouponList/ic_toggle_off.svg';
+import toggleOffIcon from '@assets/icons/CouponList/ic_toggleOff.svg';
 const CouponStop = () => {
   const handleExpose = () => {};
 

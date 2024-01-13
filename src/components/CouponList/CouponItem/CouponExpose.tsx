@@ -1,6 +1,6 @@
 import React from 'react';
 import exposeIcon from '@assets/icons/CouponList/ic_expose.svg';
-import toggleOnIcon from '@assets/icons/CouponList/ic_toggle_on.svg';
+import toggleOnIcon from '@assets/icons/CouponList/ic_toggleOn.svg';
 import styled from '@emotion/styled';
 
 const CouponExpose = () => {
