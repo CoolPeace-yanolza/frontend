@@ -1,11 +1,10 @@
 import styled from '@emotion/styled';
 
-import LeftSection from './LeftSection';
-import RightSection from './RightSection';
+import { LeftSection, RightSection } from '@components/Report';
 
 const Report = () => {
   return (
-    // HACK: 로딩 화면 구현 (Suspense) // 어떤 기준으로 감싸야하나..
+    // HACK: 로딩 화면 구현 (Suspense) // 로딩 감싸는 기준 정하기
     <Container>
       <LeftSection />
       <RightSection />
