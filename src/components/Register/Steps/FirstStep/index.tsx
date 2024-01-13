@@ -5,10 +5,10 @@ import { InputContainer, InputButton } from '@components/Register/common';
 const FirstStep = () => {
   return (
     <>
-      <InputContainer description="쿠폰의 이름을 입력해주세요.">
+      <InputContainer title="쿠폰의 이름을 입력해주세요.">
         <Input placeholder="20자 내외로 입력하세요. ex) 크리스마스 이벤트 1" />
       </InputContainer>
-      <InputContainer description="누구에게 쿠폰을 제공하시겠어요?">
+      <InputContainer title="누구에게 쿠폰을 제공하시겠어요?">
         <ButtonWrapper>
           <InputButton
             type="radio"
@@ -30,7 +30,7 @@ const FirstStep = () => {
           />
         </ButtonWrapper>
       </InputContainer>
-      <InputContainer description="어떤 쿠폰을 제공하시겠어요?">
+      <InputContainer title="어떤 쿠폰을 제공하시겠어요?">
         <ButtonWrapper>
           <InputButton
             type="radio"

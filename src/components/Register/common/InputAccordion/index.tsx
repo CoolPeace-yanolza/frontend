@@ -4,7 +4,7 @@ import styled from '@emotion/styled';
 import { InputAccordionProps, ButtonStyleProps } from '@/types/register';
 import toggle from '@assets/icons/ic-register-toggle.svg';
 
-const InputAccordion = ({ description, content }: InputAccordionProps) => {
+const InputAccordion = ({ title, content }: InputAccordionProps) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const contentWrapperRef = useRef<HTMLDivElement>(null);
@@ -24,7 +24,7 @@ const InputAccordion = ({ description, content }: InputAccordionProps) => {
   return (
     <Container>
       <Header>
-        <Description>{description}</Description>
+        <Description>{title}</Description>
         <Button
           $isOpen={isOpen}
           src={toggle}

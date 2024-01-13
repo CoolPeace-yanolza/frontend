@@ -2,7 +2,7 @@ import { ReactNode } from 'react';
 
 // InputContainer
 export type InputContainerProps = {
-  description: string;
+  title: string;
   children: ReactNode;
 };
 
@@ -16,7 +16,7 @@ export type InputButtonProps = {
 
 // InputAccordion
 export type InputAccordionProps = {
-  description: string;
+  title: string;
   content: JSX.Element;
 };
 

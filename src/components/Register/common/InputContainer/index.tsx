@@ -2,10 +2,10 @@ import styled from '@emotion/styled';
 
 import { InputContainerProps } from '@/types/register';
 
-const InputContainer = ({ description, children }: InputContainerProps) => {
+const InputContainer = ({ title, children }: InputContainerProps) => {
   return (
     <Container>
-      <Description>{description}</Description>
+      <Description>{title}</Description>
       {children}
     </Container>
   );

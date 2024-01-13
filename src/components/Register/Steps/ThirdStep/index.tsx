@@ -6,11 +6,11 @@ const ThirdStep = () => {
   return (
     <>
       <InputAccordion
-        description="결제금액에 따라 달라요."
+        title="결제금액에 따라 달라요."
         content={temp}
       ></InputAccordion>
       <InputAccordion
-        description="특정 요일에 사용이 가능해요."
+        title="특정 요일에 사용이 가능해요."
         content={temp}
       ></InputAccordion>
     </>

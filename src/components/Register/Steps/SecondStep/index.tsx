@@ -5,7 +5,7 @@ import { InputContainer, InputButton } from '@components/Register/common';
 const SecondStep = () => {
   return (
     <>
-      <InputContainer description="쿠폰을 적용할 유형을 선택해주세요.">
+      <InputContainer title="쿠폰을 적용할 유형을 선택해주세요.">
         <ButtonWrapper>
           <InputButton
             type="checkbox"
@@ -21,7 +21,7 @@ const SecondStep = () => {
           />
         </ButtonWrapper>
       </InputContainer>
-      <InputContainer description="쿠폰을 적용할 객실을 선택해주세요.">
+      <InputContainer title="쿠폰을 적용할 객실을 선택해주세요.">
         <ButtonWrapper>
           <InputButton
             type="radio"
