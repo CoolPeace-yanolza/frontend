@@ -14,6 +14,17 @@ export type InputButtonProps = {
   buttonName: string;
 };
 
+// InputAccordion
+export type InputAccordionProps = {
+  description: string;
+  content: JSX.Element;
+};
+
+export type ButtonStyleProps = {
+  $isOpen: boolean;
+  src: string;
+};
+
 // Stepper
 export type StepperProps = {
   steps: {
