@@ -1,1 +1,1 @@
-export { default as headerAccomodationState } from './atoms/headerAccomodationState';
+export { default as headerAccommodationState } from './atoms/headerAccommodationState';

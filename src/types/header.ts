@@ -1,4 +1,4 @@
-export type headerAccomodationAtom = {
-  accomodationId: number;
-  accomodationName: string;
+export type headerAccommodationAtom = {
+  accommodationId: number;
+  accommodationName: string;
 };

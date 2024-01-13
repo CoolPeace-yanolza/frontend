@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 
 import { useRecoilState } from 'recoil';
-import { headerAccomodationState } from '@recoil/index';
+import { headerAccommodationState } from '@recoil/index';
 
 const Select = () => {
   /* HACK: 예시 데이터, 리액트 쿼리를 활용하여 넘겨 selectList 배열을 받음
@@ -12,35 +12,33 @@ const Select = () => {
 
   const selectList = [
     {
-      accomodationId: 1,
-      accomodationName: '영덕 아이스 풀빌라'
+      accommodationId: 1,
+      accommodationName: '영덕 아이스 풀빌라'
     },
     {
-      accomodationId: 2,
-      accomodationName: '영덕 아이스 풀빌라2'
+      accommodationId: 2,
+      accommodationName: '영덕 아이스 풀빌라2'
     },
     {
-      accomodationId: 3,
-      accomodationName: '영덕 아이스 풀빌라3'
+      accommodationId: 3,
+      accommodationName: '영덕 아이스 풀빌라3'
     },
     {
-      accomodationId: 4,
-      accomodationName: '영덕 아이스 풀빌라4'
+      accommodationId: 4,
+      accommodationName: '영덕 아이스 풀빌라4'
     }
   ];
 
-  const [headerAccomodation, setHeaderAccomodation] = useRecoilState(
-    headerAccomodationState
+  const [headerAccommodation, setHeaderAccommodation] = useRecoilState(
+    headerAccommodationState
   );
 
-  console.log(headerAccomodation);
-
   const handleSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const accomodationId = Number(e.target.value);
+    const accommodationId = Number(e.target.value);
 
-    setHeaderAccomodation({
-      accomodationId,
-      accomodationName: `${e.target.children[accomodationId - 1].textContent}`
+    setHeaderAccommodation({
+      accommodationId,
+      accommodationName: `${e.target.children[accommodationId - 1].textContent}`
     });
   };
 
@@ -49,14 +47,14 @@ const Select = () => {
       <Accommodations
         name="Accommodations"
         onChange={handleSelect}
-        value={headerAccomodation.accomodationId}
+        value={headerAccommodation.accommodationId}
       >
         {selectList.map(item => (
           <Accommodation
-            value={item.accomodationId}
-            key={item.accomodationId}
+            value={item.accommodationId}
+            key={item.accommodationId}
           >
-            {item.accomodationName}
+            {item.accommodationName}
           </Accommodation>
         ))}
       </Accommodations>
