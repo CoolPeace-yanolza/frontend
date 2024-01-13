@@ -1,7 +1,7 @@
 import { Route, Routes } from 'react-router-dom';
 import { Layout } from '@components/common';
 import Dashboard from '@pages/Dashboard.tsx';
-import Report from '@pages/Report.tsx';
+import Report from '@pages/Report';
 
 const MainRouter = () => {
   return (
