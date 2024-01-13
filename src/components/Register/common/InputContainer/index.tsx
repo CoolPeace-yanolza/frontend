@@ -25,7 +25,5 @@ const Container = styled.div`
 `;
 
 const Description = styled.div`
-  margin-bottom: 30px;
-
   font-size: 18px;
 `;

@@ -56,6 +56,7 @@ const Input = styled.input`
   width: 348px;
   height: 40px;
 
+  margin-top: 20px;
   border: none;
   border-radius: 30px;
 
@@ -74,6 +75,8 @@ const Input = styled.input`
 `;
 
 const ButtonWrapper = styled.div`
+  margin-top: 20px;
+
   display: flex;
   gap: 23px;
 `;

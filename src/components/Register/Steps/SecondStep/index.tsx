@@ -44,6 +44,8 @@ const SecondStep = () => {
 export default SecondStep;
 
 const ButtonWrapper = styled.div`
+  margin-top: 20px;
+
   display: flex;
   gap: 23px;
 `;
