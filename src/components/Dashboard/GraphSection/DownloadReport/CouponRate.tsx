@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 
 import theme from '@styles/theme';
-import reportIcon from 'public/images/ic-dashboard-couponRate.png';
+import reportIcon from '/images/ic-dashboard-couponRate.png';
 import { CouponRateResult } from '@/types/dashboard';
 
 const CouponRate = ({ result }: CouponRateResult) => {
