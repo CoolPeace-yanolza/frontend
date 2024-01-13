@@ -1,8 +1,7 @@
+import { YearReportProps } from '@/types/report';
 import styled from '@emotion/styled';
 
 import { renderCouponAmount, renderCouponText } from '@utils/index';
-
-type YearReportProps = [string, string][];
 
 const YearReport = ({
   yearReportData

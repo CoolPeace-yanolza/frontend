@@ -1,12 +1,8 @@
 import styled from '@emotion/styled';
 
-type GraphProps = {
-  statistics_month: string;
-  total_sales: string;
-  coupon_total_sales: string;
-}[];
+import { ReportGraphProps } from '@/types/report';
 
-const Graph = ({ graphData }: { graphData: GraphProps }) => {
+const Graph = ({ graphData }: { graphData: ReportGraphProps }) => {
   // HACK: Notice 업데이트 정책 변경
   return (
     <Container>
