@@ -1,10 +1,11 @@
 import styled from '@emotion/styled';
 import React from 'react';
 import searchIcon from '@assets/icons/CouponList/ic_search.svg';
+import centerIcon from '@assets/icons/CouponList/ic_period_center.svg';
 
 const CouponNav = () => {
   return (
-    <div>
+    <TabContainer>
       <TabBanner>
         현재 우리 숙소의 가장 인기있는 쿠폰은? 재방문 고객 20% 할인쿠폰 이에요!{' '}
       </TabBanner>
@@ -40,17 +41,42 @@ const CouponNav = () => {
           <SearchButton type="submit">검색</SearchButton>
         </SearchWrap>
       </TabNavContainer>
-    </div>
+      <TabBottomContainer>
+        <TabBottomWrap>
+          <SecondTabName>전체</SecondTabName>
+          <SecondTabCount>20개</SecondTabCount>
+          <CouponDescription>
+            모든 쿠폰은 다운로드 후 14일까지 사용 가능하며, 등록 후 1년이 경과한
+            쿠폰은 조회되지 않습니다.
+          </CouponDescription>
+        </TabBottomWrap>
+        <ResisterPeriodWrap>
+          <ResisterPeriod>등록일 기준 최근</ResisterPeriod>
+          <ResisterPeriod>1년</ResisterPeriod>
+          <img
+            src={centerIcon}
+            alt="centerIcon"
+          />
+          <ResisterPeriod>6개월</ResisterPeriod>
+          <img
+            src={centerIcon}
+            alt="centerIcon"
+          />
+          <ResisterPeriod>3개월</ResisterPeriod>
+        </ResisterPeriodWrap>
+      </TabBottomContainer>
+    </TabContainer>
   );
 };
 
 export default CouponNav;
 
-const TabContainer = styled.div``;
+const TabContainer = styled.div`
+  margin: 14px 50px;
+`;
 
 const TabBanner = styled.div`
   height: 83px;
-  margin: 14px 34.5px;
 
   display: flex;
   align-items: center;
@@ -64,10 +90,11 @@ const TabBanner = styled.div`
 `;
 
 const TabNavContainer = styled.div`
+  padding-bottom: 17px;
+  margin: 19px 0px;
+
   display: flex;
   justify-content: space-between;
-  margin: 17px 34.5px;
-  padding-bottom: 17px;
 
   border-bottom: 1px solid #dde1e6;
 `;
@@ -143,4 +170,54 @@ const SearchButton = styled.button`
   border: none;
   border-radius: 10px;
   cursor: pointer;
+`;
+
+const TabBottomContainer = styled.div`
+  margin: 23.88px 0px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+`;
+
+const TabBottomWrap = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
+const SecondTabName = styled.div`
+  margin-right: 5px;
+
+  color: #a4a4a4;
+
+  font-size: 14px;
+  font-weight: 700;
+`;
+
+const SecondTabCount = styled.div`
+  margin-right: 19px;
+
+  color: #1a2849;
+
+  font-size: 14px;
+  font-weight: 700;
+`;
+
+const CouponDescription = styled.div`
+  color: #a4a4a4;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 700;
+`;
+
+const ResisterPeriodWrap = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
+const ResisterPeriod = styled.div`
+  color: #a4a4a4;
+  font-size: 12px;
+  font-weight: 400;
+  margin: 0px 5px;
 `;

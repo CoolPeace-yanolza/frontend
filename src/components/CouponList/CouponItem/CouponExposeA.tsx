@@ -78,7 +78,6 @@ const CouponContainer = styled.div`
   width: 290px;
   height: 202px;
 
-  margin-right: 22px;
   margin-bottom: 36px;
 
   border-radius: 8px;

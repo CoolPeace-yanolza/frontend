@@ -30,7 +30,7 @@ const CouponHeaderContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 56px 34.5px 0px;
+  margin: 56px 50px 0px;
 
   border-bottom: 1px solid #dde1e6;
 `;

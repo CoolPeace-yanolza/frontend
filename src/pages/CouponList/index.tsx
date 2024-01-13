@@ -17,6 +17,5 @@ const CouponList = () => {
 export default CouponList;
 
 const CouponListContainer = styled.div`
-  min-width: 100%;
-  height: 100%;
+  width: 100%;
 `;

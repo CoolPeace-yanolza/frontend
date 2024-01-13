@@ -2,9 +2,6 @@
 import { Route, Routes } from 'react-router-dom';
 import { Layout } from '@components/common';
 import CouponList from '@pages/CouponList';
-import CouponExpired from '@components/CouponList/CouponItem/CouponExpired';
-import CouponExpose from '@components/CouponList/CouponItem/CouponExpose';
-import CouponStop from '@components/CouponList/CouponItem/CouponStop';
 
 const MainRouter = () => {
   return (
@@ -12,20 +9,7 @@ const MainRouter = () => {
       <Route
         path="/login"
         element={
-          <div
-            style={{
-              height: '100%',
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center',
-              fontSize: '1.5rem'
-            }}
-          >
-            <CouponExpired />
-            <CouponExpose />
-            <CouponStop />
-            <CouponExpired />
-          </div>
+          <p style={{ fontSize: '1rem' }}>🧃 로그인 페이지 입주 예정 🧃</p>
         }
       />
       <Route
@@ -37,7 +21,19 @@ const MainRouter = () => {
       <Route element={<Layout />}>
         <Route
           path="/"
-          element={<div style={{}}>🧃 대시보드 페이지 입주 예정 🧃</div>}
+          element={
+            <div
+              style={{
+                height: '100%',
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                fontSize: '1.5rem'
+              }}
+            >
+              🧃 대시보드 페이지 입주 예정 🧃
+            </div>
+          }
         />
         <Route
           path="/coupons"
