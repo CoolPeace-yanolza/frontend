@@ -90,18 +90,20 @@ const TabBanner = styled.div`
 `;
 
 const TabNavContainer = styled.div`
-  padding-bottom: 17px;
   margin: 19px 0px;
 
   display: flex;
-  flex 1 0 auto;
   justify-content: space-between;
+  flex-wrap: wrap;
 
   border-bottom: 1px solid #dde1e6;
 `;
 
 const TabWrap = styled.div`
+  margin-bottom: 19px;
+
   display: flex;
+  flex-wrap: wrap;
 `;
 
 const TapItemWrapper = styled.div`
@@ -137,13 +139,15 @@ const TabCount = styled.div`
 
 const SearchWrap = styled.form`
   display: flex;
+  flex-wrap: wrap;
 `;
 
 const SearchInput = styled.input`
   width: 311px;
   height: 37.123px;
 
-  padding-left: 49px;
+  margin: 0px 13px 5px 0px;
+  padding-left: 51px;
   border: none;
   border-radius: 12.374px;
   background: #f3f3f3;
@@ -154,7 +158,7 @@ const SearchInput = styled.input`
 const SearchImg = styled.img`
   position: absolute;
   margin-top: 7px;
-  margin-left: 16px;
+  margin-left: 20px;
 `;
 
 const SearchButton = styled.button`
@@ -164,7 +168,6 @@ const SearchButton = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-left: 13px;
 
   color: ${props => props.theme.colors.white};
   background-color: #1a2849;

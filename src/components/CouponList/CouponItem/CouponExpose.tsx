@@ -1,309 +1,263 @@
-import React from 'react';
-import exposeIcon from '@assets/icons/CouponList/ic_expose.svg';
+import React, { useState } from 'react';
 import toggleOnIcon from '@assets/icons/CouponList/ic_toggleOn.svg';
+import toggleOffIcon from '@assets/icons/CouponList/ic_toggleOff.svg';
 import styled from '@emotion/styled';
 
 const CouponExpose = () => {
+  const [isToggle, setIsToggle] = useState(true);
+
+  const handleToggle = () => {
+    setIsToggle(!isToggle);
+  };
   return (
-    <div>
-      <CouponHeader>
-        <ExposeContainer>
-          <ExposeWrap>
-            <img
-              src={exposeIcon}
-              alt="exposeIcon"
-            />
-            <ExposeText>현재 노출 중</ExposeText>
-          </ExposeWrap>
-          <ToggleWrap>
-            <ToggleText>ON</ToggleText>
-            <img
-              src={toggleOnIcon}
-              alt="toggleOnIcon"
-            />
-          </ToggleWrap>
-        </ExposeContainer>
-        <RoomWrap>
-          <ApplyRoom>적용 객실</ApplyRoom>
-          <RoomButton>전체</RoomButton>
-        </RoomWrap>
-      </CouponHeader>
-      <CouponNabWrap>
-        <CouponTitle>크리스마스 이벤트1</CouponTitle>
+    <CouponContainer>
+      <CouponHeaderContainer>
+        <CouponHeader>
+          <CouponTitle>2024 신년행사</CouponTitle>
+          {isToggle ? (
+            <ToggleWrap
+              isToggle={isToggle}
+              onClick={handleToggle}
+            >
+              <ToggleOn>ON</ToggleOn>
+              <ToggleOnImg
+                src={toggleOnIcon}
+                alt="toggleOnIcon"
+              />
+            </ToggleWrap>
+          ) : (
+            <ToggleWrap
+              isToggle={isToggle}
+              onClick={handleToggle}
+            >
+              <ToggleOffImg
+                src={toggleOffIcon}
+                alt="toggleOffIcon"
+              />
+              <ToggleOff>OFF</ToggleOff>
+            </ToggleWrap>
+          )}
+        </CouponHeader>
         <CouponCustomer>모든 고객 10% 할인</CouponCustomer>
-      </CouponNabWrap>
+      </CouponHeaderContainer>
       <CouponMain>
         <CountWrap>
-          <CountItemWrap>
-            <CountItemText>다운로드</CountItemText>
-            <p>50</p>
-          </CountItemWrap>
-          <CountItemWrap>
-            <CountItemText>사용완료</CountItemText>
-            <p>50</p>
-          </CountItemWrap>
+          <CountText>다운로드</CountText>
+          <CountNumber>50</CountNumber>
         </CountWrap>
-        <ConditionWrap>
-          <ConditionWrapText>
-            <div>가격 조건</div>
-            <p>300,000원 이상</p>
-          </ConditionWrapText>
-          <ConditionWrapText>
-            <div>일정 조건</div>
-            <p>2박 이상, 금~토</p>
-          </ConditionWrapText>
-        </ConditionWrap>
-        <ExposeDateContainer>
-          <ExposeDateWrap>
-            <div>노출 일자</div>
-            <p>2023.12.01 ~ 2023.12.31</p>
-          </ExposeDateWrap>
-          <RegisterDateWrap>
-            <div>등록일</div>
-            <div>2023.12.01</div>
-          </RegisterDateWrap>
-        </ExposeDateContainer>
+        <CountWrap>
+          <CountText>사용완료</CountText>
+          <CountNumber>50</CountNumber>
+        </CountWrap>
+        <ContentContainer>
+          <ContentWrap>
+            <ContentTitle>가격</ContentTitle>
+            <ContentValue>99,999,999원 이상</ContentValue>
+          </ContentWrap>
+          <ContentWrap>
+            <ContentTitle>일정</ContentTitle>
+            <ContentValue>2박 이상, 일~목</ContentValue>
+          </ContentWrap>
+          <ContentWrap>
+            <ContentTitle>객실</ContentTitle>
+            <ContentValue>전체</ContentValue>
+          </ContentWrap>
+        </ContentContainer>
       </CouponMain>
-    </div>
+      <DateContainer>
+        <ExposeDateWrap>
+          <ExposeDateTitle>노출기간</ExposeDateTitle>
+          <ExposeValue>2024.01.31 ~ 2024.02.10</ExposeValue>
+        </ExposeDateWrap>
+        <ExposeDateWrap>
+          <RegisterDateTitle>등록일</RegisterDateTitle>
+          <RegisterDateValue>2024.12.01</RegisterDateValue>
+        </ExposeDateWrap>
+      </DateContainer>
+    </CouponContainer>
   );
 };
 
 export default CouponExpose;
 
-const CouponHeader = styled.div`
-  width: 219px;
-  height: 77px;
+const CouponContainer = styled.div`
+  width: 290px;
+  height: 203px;
 
-  border-radius: 10.608px 10.608px 0px 0px;
+  border-radius: 8px;
+  background: #ffebf1;
+  box-shadow: 0px 1px 4px 1px rgba(0, 0, 0, 0.25);
+`;
+
+const CouponHeaderContainer = styled.div`
+  height: 64px;
+  padding: 14px 10px 0 12px;
 
   display: flex;
   flex-direction: column;
-  justify-content: center;
 
-  background: var(
-    --gradient,
-    linear-gradient(91deg, #ff3478 1.39%, #ff83ad 98.63%)
-  );
+  border-bottom: 1px dashed #8f8f8f;
 `;
 
-const ExposeContainer = styled.div`
-  display: flex;
-  justify-content: space-between;
-  padding: 4px 10px;
-`;
-
-const ExposeWrap = styled.div`
+const CouponHeader = styled.div`
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
 `;
 
-const ExposeText = styled.div`
-  color: ${props => props.theme.colors.white};
-
-  margin-left: 2px;
-
-  font-size: 12px;
+const CouponTitle = styled.div`
+  color: #8f8f8f;
+  font-size: 11px;
+  font-weight: 600;
 `;
 
-const ToggleWrap = styled.div`
-  width: 48.229px;
-  height: 23.526px;
+const CouponCustomer = styled.div`
+  color: #404040;
+  font-size: 18px;
+  font-weight: 700;
+`;
 
-  border-radius: 17.68px;
-  border: 1px solid #e3e5e5;
+const ToggleWrap = styled.button<{ isToggle: boolean }>`
+  width: 50px;
+  height: 22.93;
+
+  border-radius: 22.93px;
+  border: 1px solid;
+  border-color: ${props => (props.isToggle ? '#FF3478' : '#404446')};
 
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding-top: 3px;
-  padding-left: 5px;
 
   background-color: ${props => props.theme.colors.white};
   cursor: pointer;
 `;
 
-const ToggleText = styled.div`
+const ToggleOn = styled.div`
+  font-family: Pretendard;
   font-size: 10px;
+  font-weight: 700;
+  margin: 2px 5px 1px 1px;
 
   color: ${props => props.theme.colors.pink500};
 `;
 
-const RoomWrap = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
-
-const ApplyRoom = styled.div`
-  position: relative;
-
-  width: 194px;
-  height: 31px;
-
-  padding-top: 12px;
-  padding-left: 10px;
-  border-radius: 8px;
-
-  background-color: ${props => props.theme.colors.white};
-
+const ToggleOff = styled.div`
+  margin-top: 2px;
+  font-family: Pretendard;
   font-size: 10px;
+  font-weight: 700;
   color: #404446;
 `;
-
-const RoomButton = styled.button`
-  position: absolute;
-
-  width: 113px;
-  height: 23px;
-
-  margin-left: 76px;
-  border-radius: 12px;
-  border: 1px solid #ffadc8;
-
-  background-color: transparent;
-
-  color: ${props => props.theme.colors.pink500};
-  font-size: 11px;
+const ToggleOnImg = styled.img`
+  margin: 1px;
 `;
 
-const CouponNabWrap = styled.div`
-  width: 217px;
-  height: 72px;
-
-  margin-left: 1px;
-  padding: 15px;
-  box-shadow: 0px -4px 4px 0px rgba(0, 0, 0, 0.25);
-  border-bottom: 2px dashed ${props => props.theme.colors.pink500};
-
-  background-color: ${props => props.theme.colors.white};
-`;
-
-const CouponTitle = styled.div`
-  color: #6c7072;
-  font-size: 13px;
-`;
-
-const CouponCustomer = styled.div`
-  font-size: 16.997px;
-  font-weight: 700;
-
-  margin-top: 5px;
-  color: #202325;
+const ToggleOffImg = styled.img`
+  margin: 1px;
+  margin-left: -3.5px;
 `;
 
 const CouponMain = styled.div`
-  width: 217px;
-  height: 245px;
-
-  margin-left: 1px;
-  border-bottom: 1px dashed #b2b2b2;
-
+  padding: 12px 10px 0 12px;
   display: flex;
-  flex-direction: column;
   align-items: center;
-  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-  background: #fafafb;
 `;
 
 const CountWrap = styled.div`
-  display: flex;
-  margin-top: 10px;
-`;
+  width: 58px;
+  height: 62px;
 
-const CountItemWrap = styled.div`
-  width: 79px;
-  height: 83px;
+  margin-right: 7.5px;
 
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: 8px;
 
-  border-radius: 12px;
+  border-radius: 10px;
 
   background-color: ${props => props.theme.colors.white};
-  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-
-  p {
-    color: #404446;
-    font-size: 18px;
-    font-weight: 700;
-  }
 `;
 
-const CountItemText = styled.div`
-  font-size: 12px;
+const CountText = styled.div`
+  color: #8f8f8f;
+  text-align: center;
+  font-size: 11px;
   font-weight: 600;
-  color: #757676;
-  margin: 5px;
 `;
 
-const ConditionWrap = styled.div`
-  width: 176px;
-  height: 56px;
-
-  display: flex;
-  flex-direction: column;
-  padding: 16px 15px 13px 14px;
+const CountNumber = styled.div`
   margin-top: 5px;
 
-  border-radius: 12px;
-  background-color: ${props => props.theme.colors.white};
-  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  color: #505050;
+  text-align: center;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 700;
 `;
 
-const ConditionWrapText = styled.div`
+const ContentContainer = styled.div``;
+
+const ContentWrap = styled.div`
   display: flex;
-  margin-top: 2px;
-
-  div {
-    color: #404446;
-    font-size: 11px;
-    font-weight: 600;
-    margin-right: 10px;
-  }
-
-  p {
-    color: #404446;
-    font-size: 11px;
-    font-weight: 400;
-  }
+  align-items: center;
+  margin: 8px;
 `;
 
-const ExposeDateContainer = styled.div`
-  margin-top: 18px;
+const ContentTitle = styled.div`
+  color: #505050;
+  font-size: 11px;
+  font-style: normal;
+  font-weight: 600;
+  margin-right: 5px;
+`;
+
+const ContentValue = styled.div`
+  color: #8f8f8f;
+  font-size: 11px;
+  font-style: normal;
+  font-weight: 400;
+`;
+
+const DateContainer = styled.div`
+  padding: 9px 0 0 12px;
 `;
 
 const ExposeDateWrap = styled.div`
+  margin-bottom: 4px;
   display: flex;
   align-items: center;
-
-  div {
-    color: #404446;
-    font-size: 11px;
-    font-weight: 600;
-    margin-right: 3px;
-  }
-
-  p {
-    color: ${props => props.theme.colors.pink500};
-    font-size: 12px;
-    font-weight: 700;
-    text-decoration-line: underline;
-  }
 `;
 
-const RegisterDateWrap = styled.div`
-  display: flex;
-  align-items: center;
+const ExposeDateTitle = styled.div`
+  margin-right: 5px;
 
-  div {
-    color: #757676;
-    font-size: 9.724px;
-    font-weight: 400;
-    margin-top: 8px;
-    margin-right: 3px;
-  }
+  color: #ff3478;
+  font-size: 11px;
+  font-style: normal;
+  font-weight: 600;
+`;
+
+const ExposeValue = styled.div`
+  color: #ff3478;
+  font-size: 11px;
+  font-style: normal;
+  font-weight: 600;
+`;
+
+const RegisterDateTitle = styled.div`
+  margin-right: 5px;
+
+  color: #757676;
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 400;
+`;
+
+const RegisterDateValue = styled.div`
+  color: #757676;
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 400;
 `;

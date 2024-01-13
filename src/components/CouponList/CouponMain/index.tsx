@@ -1,22 +1,22 @@
 import styled from '@emotion/styled';
 import React from 'react';
 
-import CouponExposeA from '../CouponItem/CouponExposeA';
+import CouponExpose from '../CouponItem/CouponExpose';
 
 const CouponMain = () => {
   return (
     <MainContainer>
-      <CouponExposeA />
-      <CouponExposeA />
-      <CouponExposeA />
-      <CouponExposeA />
-      <CouponExposeA />
-      <CouponExposeA />
-      <CouponExposeA />
-      <CouponExposeA />
-      <CouponExposeA />
-      <CouponExposeA />
-      <CouponExposeA />
+      <CouponExpose />
+      <CouponExpose />
+      <CouponExpose />
+      <CouponExpose />
+      <CouponExpose />
+      <CouponExpose />
+      <CouponExpose />
+      <CouponExpose />
+      <CouponExpose />
+      <CouponExpose />
+      <CouponExpose />
     </MainContainer>
   );
 };
