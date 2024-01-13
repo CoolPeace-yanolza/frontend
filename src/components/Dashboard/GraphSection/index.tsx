@@ -25,7 +25,7 @@ export default GraphSection;
 const Container = styled.div`
   min-height: 533px;
 
-  padding: 30px 18px 30px 37px;
+  padding: 20px 30px;
   border-radius: 20px;
 
   display: flex;
@@ -46,13 +46,12 @@ const InnerContainer = styled.div`
 `;
 
 const LeftSection = styled.div`
-  height: 100%;
+  height: 98%;
 
-  flex: 6;
+  flex: 1;
 `;
 
 const RightSection = styled.div`
+  width: 350px;
   height: 100%;
-
-  flex: 4;
 `;

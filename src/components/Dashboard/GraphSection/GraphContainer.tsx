@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import { useState } from 'react';
 import {
   Chart as ChartJS,
   LinearScale,
@@ -8,10 +9,15 @@ import {
   LineElement,
   Legend,
   Tooltip,
+  Filler,
   LineController,
   BarController
 } from 'chart.js';
 import { Chart } from 'react-chartjs-2';
+
+import theme from '@styles/theme';
+import { GraphHeaderTag } from '@/types/dashboard';
+import graphOptions from './graphOptions';
 
 ChartJS.register(
   LinearScale,
@@ -21,15 +27,16 @@ ChartJS.register(
   LineElement,
   Legend,
   Tooltip,
+  Filler,
   LineController,
   BarController
 );
 
 //HACK: 그래프 데이터 렌더링에 대한 테스트파일입니다. 실제 기능 구현에서는 해당 파일 다소 변경될 것 같습니다.
 
-const labels = ['1월', '2월', '3월', '4월', '5월', '6월', '7월'];
+const labels = ['1월', '2월', '3월', '4월', '5월', '6월'];
 
-export const data = {
+export const barGraphData = {
   labels,
   datasets: [
     {
@@ -38,12 +45,10 @@ export const data = {
       borderColor: '#FFADC8',
       backgroundColor: '#FFADC8',
       borderWidth: 2,
-      fill: false,
       data: [900, 900, 900, 900, 800, 600, 800]
     },
     {
       type: 'bar' as const,
-      // fill: true,
       label: '쿠폰 다운로드',
       data: [600, 500, 400, 500, 600, 800, 800],
       backgroundColor: '#3182F6',
@@ -52,7 +57,6 @@ export const data = {
 
     {
       type: 'bar' as const,
-      // fill: true,
       label: '쿠폰 사용완료',
       data: [300, 400, 200, 200, 400, 600, 700],
       backgroundColor: '#FF3478',
@@ -61,64 +65,76 @@ export const data = {
   ]
 };
 
-const GraphContainer = () => {
-  const options: any = {
-    responsive: true,
-    plugins: {
-      // legend: {
-      //   display: false
-      // }
+export const lineGraphData = {
+  labels,
+  datasets: [
+    {
+      fill: true,
+      label: '쿠폰매출',
+      data: [300, 400, 200, 200, 400, 600, 700],
+      borderColor: 'rgb(63, 153, 201)',
+      backgroundColor: 'rgba(63, 153, 201, 0.5)'
     },
 
-    scales: {
-      x: {
-        grid: {
-          display: false
-        },
-        ticks: {
-          color: 'gray',
-          font: {
-            size: 14,
-            weight: 500
-          },
-          padding: 15
-        }
-      },
-      y: {
-        beginAtZero: true,
-        max: 1200,
-        grid: {
-          display: false
-        }
-      }
-    },
-    onClick: (event: MouseEvent, elements: any[]) => {
-      if (elements.length > 0) {
-        event.preventDefault;
-        const clickedIndex: number = elements[0].index;
-        const clickedLabel: string = labels[clickedIndex];
-
-        console.log(`Clicked on ${clickedLabel}`);
-
-        const allDataForClickedMonth: number[] = data.datasets.map(
-          dataset => dataset.data[clickedIndex]
-        );
-        console.log(`Data for ${clickedLabel}:`, allDataForClickedMonth);
-      }
+    {
+      fill: true,
+      label: '전체매출',
+      data: [600, 500, 400, 500, 600, 800, 800],
+      borderColor: 'rgb(255, 99, 132)',
+      backgroundColor: 'rgba(255, 99, 132, 0.5)'
     }
-  };
+  ]
+};
+
+//HACK 추후 utils에 적절한 폴더 생기면 옮길 예정
+const getUpdatedDate = () => {
+  const today = new Date();
+  today.setMonth(today.getMonth() - 1);
+  const lastDayOfMonth = new Date(today.getFullYear(), today.getMonth() + 1, 0);
+
+  const year = lastDayOfMonth.getFullYear().toString().slice(-2);
+  const month = (lastDayOfMonth.getMonth() + 1).toString().padStart(2, '0');
+  const day = lastDayOfMonth.getDate().toString();
+
+  return `${year}.${month}.${day}`;
+};
+
+const GraphContainer = () => {
+  const [isIncomeGraph, setisIncomeGraph] = useState(true);
 
   return (
     <Container>
       <Header>
         <Title>월별 차트</Title>
+        <HeaderDiscription>
+          프로모션 적용 이후 예약 현황을 알려드립니다.{' '}
+          <span>({getUpdatedDate()} 업데이트)</span>
+        </HeaderDiscription>
       </Header>
       <GraphWrapper>
+        <GraphHeader>
+          <GraphHeaderTag
+            $active={isIncomeGraph}
+            onClick={() => {
+              setisIncomeGraph(true);
+            }}
+          >
+            매출 현황
+          </GraphHeaderTag>
+          <GraphHeaderTag
+            $active={!isIncomeGraph}
+            onClick={() => {
+              setisIncomeGraph(false);
+            }}
+          >
+            쿠폰사용 현황
+          </GraphHeaderTag>
+        </GraphHeader>
         <GraphInnerWrapper>
           <Chart
-            options={options}
-            type="bar"
-            data={data}
+            options={graphOptions}
+            type={isIncomeGraph ? 'line' : 'bar'}
+            data={isIncomeGraph ? lineGraphData : barGraphData}
           />
         </GraphInnerWrapper>
       </GraphWrapper>
@@ -150,23 +166,65 @@ const Title = styled.span`
   line-height: 100%;
 `;
 
+const HeaderDiscription = styled.div`
+  padding: 0px 10px 3px;
+
+  color: #5e5e5e;
+  font-size: 12px;
+  font-weight: 700;
+
+  & > span {
+    color: #8e8e8e;
+    font-size: 10.519px;
+    font-weight: 500;
+  }
+`;
+
 const GraphWrapper = styled.div`
   width: 100%;
   height: 100%;
 
+  padding: 20px;
   border-radius: 20px;
 
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
 
   background-color: #fafafb;
 `;
 
+const GraphHeader = styled.div`
+  width: 100%;
+
+  margin-bottom: 15px;
+  border-bottom: 1px solid #dde1e6;
+
+  display: flex;
+  flex-direction: row;
+`;
+
+const GraphHeaderTag = styled.span<GraphHeaderTag>`
+  margin-right: 25px;
+  padding: 5px;
+
+  border-bottom: ${props => (props.$active ? '2px solid #022C79' : null)};
+
+  color: ${props => (props.$active ? '#022C79' : '#6c7072')};
+  font-size: 13.005px;
+  font-weight: 700;
+
+  cursor: pointer;
+`;
+
 const GraphInnerWrapper = styled.div`
-  width: 95%;
+  width: 98%;
+  height: 100%;
+  max-height: 300px;
 
   border-radius: 20px;
 
   background-color: white;
+
+  box-shadow: ${theme.shadow.small};
 `;
