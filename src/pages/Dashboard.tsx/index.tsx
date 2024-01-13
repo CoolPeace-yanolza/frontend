@@ -38,13 +38,13 @@ const LeftSection = styled.div`
 
   display: flex;
   flex-direction: column;
-  flex: 8;
+  flex: 2;
 `;
 
 const RightSection = styled.div`
+  width: 250px;
   height: 100%;
 
   display: flex;
   flex-direction: column;
-  flex: 2;
 `;
