@@ -24,8 +24,8 @@ const LoginForm = () => {
         </ValidationText>
       )}
       <Buttons $isInvalid={isInvalid}>
-        <LoginButton $text="login">로그인</LoginButton>
-        <SignUpButton $text="signUp">회원가입</SignUpButton>
+        <Button $text="login">로그인</Button>
+        <Button $text="signUp">회원가입</Button>
       </Buttons>
     </form>
   );
@@ -91,7 +91,7 @@ const Buttons = styled.div<InputValidation>`
   ${props => props.$isInvalid && 'margin-top: 23px'};
 `;
 
-const LoginButton = styled.button<ButtonText>`
+const Button = styled.button<ButtonText>`
   min-width: 524px;
 
   border: none;
@@ -112,5 +112,3 @@ const LoginButton = styled.button<ButtonText>`
     cursor: pointer;
   }
 `;
-
-const SignUpButton = styled(LoginButton)<ButtonText>``;
