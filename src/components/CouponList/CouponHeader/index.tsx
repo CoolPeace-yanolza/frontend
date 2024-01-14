@@ -27,12 +27,12 @@ const CouponHeader = () => {
 export default CouponHeader;
 
 const CouponHeaderContainer = styled.div`
+  margin: 56px 50px 0px;
+  border-bottom: 1px solid #dde1e6;
+
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 56px 50px 0px;
-
-  border-bottom: 1px solid #dde1e6;
 `;
 
 const CouponHeaderWrapper = styled.div`
@@ -58,15 +58,16 @@ const CouponRegisterButton = styled.div`
   width: 175px;
   height: 44px;
 
-  display: flex;
+  margin-bottom: 10px;
   padding: 14px 20px;
+  border-radius: 12px;
+
+  display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 17px;
-  margin-bottom: 10px;
 
+  font-size: 17px;
   color: ${props => props.theme.colors.white};
-  border-radius: 12px;
   background: #ff3478;
   cursor: pointer;
 `;

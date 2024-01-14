@@ -1,8 +1,6 @@
-import CouponHeader from '@components/CouponList/CouponHeader';
-import CouponMain from '@components/CouponList/CouponMain';
-import CouponNav from '@components/CouponList/CouponNav';
 import styled from '@emotion/styled';
 import React from 'react';
+import { CouponHeader, CouponNav, CouponMain } from '@components/CouponList';
 
 const CouponList = () => {
   return (

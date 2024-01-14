@@ -91,12 +91,12 @@ const CouponContainer = styled.div`
 
 const CouponHeaderContainer = styled.div`
   height: 64px;
+
   padding: 14px 10px 0 12px;
+  border-bottom: 1px dashed #8f8f8f;
 
   display: flex;
   flex-direction: column;
-
-  border-bottom: 1px dashed #8f8f8f;
 `;
 
 const CouponHeader = styled.div`
@@ -134,16 +134,17 @@ const ToggleWrap = styled.button<{ isToggle: boolean }>`
 `;
 
 const ToggleOn = styled.div`
+  margin: 2px 5px 1px 1px;
+
   font-family: Pretendard;
   font-size: 10px;
   font-weight: 700;
-  margin: 2px 5px 1px 1px;
-
   color: ${props => props.theme.colors.pink500};
 `;
 
 const ToggleOff = styled.div`
   margin-top: 2px;
+
   font-family: Pretendard;
   font-size: 10px;
   font-weight: 700;
@@ -160,6 +161,7 @@ const ToggleOffImg = styled.img`
 
 const CouponMain = styled.div`
   padding: 12px 10px 0 12px;
+
   display: flex;
   align-items: center;
 `;
@@ -169,13 +171,12 @@ const CountWrap = styled.div`
   height: 62px;
 
   margin-right: 7.5px;
+  border-radius: 10px;
 
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
-  border-radius: 10px;
 
   background-color: ${props => props.theme.colors.white};
 `;
@@ -206,11 +207,12 @@ const ContentWrap = styled.div`
 `;
 
 const ContentTitle = styled.div`
+  margin-right: 5px;
+
   color: #505050;
   font-size: 11px;
   font-style: normal;
   font-weight: 600;
-  margin-right: 5px;
 `;
 
 const ContentValue = styled.div`
@@ -226,6 +228,7 @@ const DateContainer = styled.div`
 
 const ExposeDateWrap = styled.div`
   margin-bottom: 4px;
+
   display: flex;
   align-items: center;
 `;

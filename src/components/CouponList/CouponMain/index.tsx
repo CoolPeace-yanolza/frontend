@@ -1,7 +1,6 @@
 import styled from '@emotion/styled';
 import React from 'react';
-
-import CouponExpose from '../CouponItem/CouponExpose';
+import CouponExpose from '../CouponItem';
 
 const CouponMain = () => {
   return (

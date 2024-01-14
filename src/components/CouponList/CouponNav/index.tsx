@@ -2,10 +2,10 @@ import styled from '@emotion/styled';
 import React, { useState } from 'react';
 import searchIcon from '@assets/icons/CouponList/ic_search.svg';
 import centerIcon from '@assets/icons/CouponList/ic_period_center.svg';
-import bannerIcon from '@assets/icons/CouponList/ic_banner.png';
+import bannerIcon from '@assets/icons/CouponList/ic_speaker.svg';
 
 const CouponNav = () => {
-  const [isClick, setIsClick] = useState<string>('');
+  const [isClick, setIsClick] = useState<string>('1년');
 
   const handleDateClick = (period: string) => {
     setIsClick(period);
@@ -166,16 +166,17 @@ const TabCount = styled.div`
   width: 70px;
   height: 40px;
 
+  margin-left: 9.4px;
+  border-radius: 20px;
+
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-left: 9.4px;
+
   color: #404040;
   font-size: 20px;
   font-weight: 700;
-
   background-color: #f3f3f3;
-  border-radius: 20px;
   cursor: pointer;
 `;
 
@@ -192,6 +193,7 @@ const SearchInput = styled.input`
   padding-left: 51px;
   border: none;
   border-radius: 12.374px;
+
   background: #f3f3f3;
   color: #646464;
   font-size: 14px;
@@ -207,14 +209,15 @@ const SearchButton = styled.button`
   width: 75px;
   height: 37px;
 
+  border: none;
+  border-radius: 10px;
+
   display: flex;
   justify-content: center;
   align-items: center;
 
   color: ${props => props.theme.colors.white};
   background-color: #1a2849;
-  border: none;
-  border-radius: 10px;
   cursor: pointer;
 `;
 
@@ -235,7 +238,6 @@ const SecondTabName = styled.div`
   margin-right: 5px;
 
   color: #a4a4a4;
-
   font-size: 14px;
   font-weight: 700;
 `;
@@ -244,7 +246,6 @@ const SecondTabCount = styled.div`
   margin-right: 19px;
 
   color: #1a2849;
-
   font-size: 14px;
   font-weight: 700;
 `;
@@ -269,12 +270,10 @@ const ResisterPeriodTitle = styled.div`
 `;
 
 const ResisterPeriod = styled.div<{ isClick: boolean }>`
-  color: #a4a4a4;
-  font-size: 12px;
-  font-weight: 400;
   margin: 0px 5px;
-  cursor: pointer;
 
+  font-size: 12px;
+  cursor: pointer;
   color: ${props => (props.isClick ? '#404040' : '#A4A4A4')};
   font-weight: ${props => (props.isClick ? '700' : '400')};
 `;
