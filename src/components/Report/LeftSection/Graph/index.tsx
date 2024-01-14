@@ -4,6 +4,7 @@ import { ReportGraphProps } from '@/types/report';
 
 const Graph = ({ graphData }: { graphData: ReportGraphProps }) => {
   // HACK: Notice 업데이트 정책 변경
+  // utils/calculation.ts 파일 사용하여 마지막 날짜 불러오기
   return (
     <Container>
       <Header>
@@ -37,7 +38,6 @@ const Header = styled.div`
   padding: 20px 0;
 
   display: flex;
-  flex-direction: row;
   align-items: flex-end;
 `;
 

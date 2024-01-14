@@ -1,7 +1,7 @@
-import { YearReportProps } from '@/types/report';
 import styled from '@emotion/styled';
 
 import { renderCouponAmount, renderCouponText } from '@utils/index';
+import { YearReportProps } from '@/types/report';
 
 const YearReport = ({
   yearReportData
@@ -61,14 +61,14 @@ const Contents = styled.div`
   background-color: #f2f4f5;
 `;
 
-const Text = styled.div`
+const Text = styled.span`
   font-size: 13px;
   font-weight: 700;
 
   align-self: flex-start;
 `;
 
-const Amount = styled.div`
+const Amount = styled.span`
   width: 100%;
   height: 55px;
 

@@ -5,3 +5,5 @@ export type ReportGraphProps = {
 }[];
 
 export type YearReportProps = [string, string][];
+
+export type AmountStyleProps = { $isfirstamount: number };
