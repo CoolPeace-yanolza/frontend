@@ -2,11 +2,11 @@ import styled from '@emotion/styled';
 
 import Coupon from './Coupon';
 import Settlements from './Settlements';
-import { SidebarOpen } from '@/types/sidebar';
+import { SidebarOpen } from '@/types/layout';
 
 const Navigation = ({ isSidebarOpen }: { isSidebarOpen: boolean }) => {
   return (
-    <Container $isSidebarOpen={isSidebarOpen}>
+    <Container $issidebaropen={isSidebarOpen}>
       <Coupon isSidebarOpen={isSidebarOpen} />
       <Settlements isSidebarOpen={isSidebarOpen} />
     </Container>
@@ -16,10 +16,10 @@ const Navigation = ({ isSidebarOpen }: { isSidebarOpen: boolean }) => {
 export default Navigation;
 
 const Container = styled.nav<SidebarOpen>`
-  width: ${props => (props.$isSidebarOpen ? '100%' : '80px')};
+  width: ${props => (props.$issidebaropen ? '100%' : '80px')};
 
   display: flex;
   flex-direction: column;
 
-  font-size: ${props => (props.$isSidebarOpen ? '14px' : '12px')};
+  font-size: ${props => (props.$issidebaropen ? '14px' : '12px')};
 `;

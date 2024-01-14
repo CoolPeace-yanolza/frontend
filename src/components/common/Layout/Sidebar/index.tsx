@@ -3,14 +3,14 @@ import styled from '@emotion/styled';
 
 import Header from './Header';
 import Navigation from './Navigation';
-import { SidebarOpen } from '@/types/sidebar';
+import { SidebarOpen } from '@/types/layout';
 
 const Sidebar = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   return (
     <>
-      <Container $isSidebarOpen={isSidebarOpen}>
+      <Container $issidebaropen={isSidebarOpen}>
         <Menu>
           <Header
             isSidebarOpen={isSidebarOpen}
@@ -31,7 +31,7 @@ export default Sidebar;
 const Container = styled.div<SidebarOpen>`
   position: fixed;
 
-  width: ${props => (props.$isSidebarOpen ? '250px' : '100px')};
+  width: ${props => (props.$issidebaropen ? '250px' : '100px')};
   min-height: 100vh;
 
   padding: 20px 10px;
