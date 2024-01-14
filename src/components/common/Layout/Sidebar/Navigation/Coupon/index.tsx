@@ -1,11 +1,12 @@
 import { useEffect, useState } from 'react';
-import { useLocation, NavLink } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import styled from '@emotion/styled';
 
-import CouponNav from './CouponNav';
 import toggle from '@assets/icons/ic-sidebar-toggle.svg';
 import coupon from '@assets/icons/ic-sidebar-coupon.svg';
-import { Opens, SidebarOpen, SidebarStyleProps } from '@/types/sidebar';
+import CouponNav from './CouponNav';
+import CostumeNavLink from '../CostumeNavLink';
+import { Opens, SidebarOpen, SidebarStyleProps } from '@/types/layout';
 
 const Coupon = ({ isSidebarOpen }: { isSidebarOpen: boolean }) => {
   const [isToggleOpen, setIsToggleOpen] = useState(true);
@@ -20,29 +21,29 @@ const Coupon = ({ isSidebarOpen }: { isSidebarOpen: boolean }) => {
   return (
     <Container
       to="/"
-      $isSidebarOpen={isSidebarOpen}
-      $isToggleOpen={isToggleOpen}
-      $userPath={userPath}
+      end
+      $issidebaropen={isSidebarOpen}
+      $istoggleopen={isToggleOpen}
+      $userpath={userPath}
       {...(isSidebarOpen && {
         onClick: e => e.preventDefault()
       })}
-      end
     >
       <Header
-        $isSidebarOpen={isSidebarOpen}
-        $isToggleOpen={isToggleOpen}
+        $issidebaropen={isSidebarOpen}
+        $istoggleopen={isToggleOpen}
       >
-        <Contents $isSidebarOpen={isSidebarOpen}>
+        <Contents $issidebaropen={isSidebarOpen}>
           <CouponIcon
             src={coupon}
             alt="쿠폰"
-            $isSidebarOpen={isSidebarOpen}
+            $issidebaropen={isSidebarOpen}
           />
           <span>쿠폰</span>
         </Contents>
         <Toggle
-          $isSidebarOpen={isSidebarOpen}
-          $isToggleOpen={isToggleOpen}
+          $issidebaropen={isSidebarOpen}
+          $istoggleopen={isToggleOpen}
           onClick={() => setIsToggleOpen(prev => !prev)}
         >
           <ToggleIcon
@@ -58,12 +59,12 @@ const Coupon = ({ isSidebarOpen }: { isSidebarOpen: boolean }) => {
 
 export default Coupon;
 
-const Container = styled(NavLink)<SidebarStyleProps>`
+const Container = styled(CostumeNavLink)<SidebarStyleProps>`
   width: 100%;
   height: ${props => {
-    if (!props.$isSidebarOpen) {
+    if (!props.$issidebaropen) {
       return '80px';
-    } else if (props.$isToggleOpen) {
+    } else if (props.$istoggleopen) {
       return '250px';
     } else {
       return '60px';
@@ -77,21 +78,20 @@ const Container = styled(NavLink)<SidebarStyleProps>`
   flex-direction: column;
 
   color: ${props => {
-    if (props.$userPath === 'coupons') {
+    if (props.$userpath === 'coupons') {
       return props.theme.colors.white;
-    } else if (props.$isToggleOpen) {
+    } else if (props.$istoggleopen) {
       return props.theme.colors.white;
     } else {
       return props.theme.colors.black;
     }
   }};
 
-  // HACK: 조건 단순화 필요
   background-color: ${props => {
-    if (props.$userPath === 'coupons') {
+    if (props.$userpath === 'coupons') {
       return props.theme.colors.hover;
-    } else if (props.$isSidebarOpen) {
-      return props.$isToggleOpen ? props.theme.colors.ink100 : 'transparent';
+    } else if (props.$issidebaropen) {
+      return props.$istoggleopen ? props.theme.colors.ink100 : 'transparent';
     } else {
       return 'transparent';
     }
@@ -100,7 +100,8 @@ const Container = styled(NavLink)<SidebarStyleProps>`
   font-weight: ${props => props.theme.fontWeight.large};
 
   overflow: hidden;
-  cursor: ${props => (props.$isSidebarOpen ? 'default' : 'pointer')};
+
+  ${props => (props.$issidebaropen ? 'cursor: default;' : 'cursor: pointer;')};
 
   transition: all 0.3s;
 
@@ -122,11 +123,11 @@ const Header = styled.div<Opens>`
 
 const Contents = styled.div<SidebarOpen>`
   width: 100%;
-  height: ${props => (props.$isSidebarOpen ? '60px' : '75px')};
+  height: ${props => (props.$issidebaropen ? '60px' : '75px')};
 
   display: flex;
-  flex-direction: ${props => (props.$isSidebarOpen ? 'row' : 'column')};
-  justify-content: ${props => (props.$isSidebarOpen ? 'flex-start' : 'center')};
+  flex-direction: ${props => (props.$issidebaropen ? 'row' : 'column')};
+  justify-content: ${props => (props.$issidebaropen ? 'flex-start' : 'center')};
   align-items: center;
 `;
 
@@ -137,7 +138,7 @@ const Toggle = styled.button<Opens>`
   margin-right: 20px;
   border: none;
 
-  display: ${props => (props.$isSidebarOpen ? 'flex' : 'none')};
+  display: ${props => (props.$issidebaropen ? 'flex' : 'none')};
   align-items: center;
   justify-content: center;
   align-self: center;
@@ -147,7 +148,7 @@ const Toggle = styled.button<Opens>`
   cursor: pointer;
 
   transition: all 0.4s;
-  transform: rotate(${props => (props.$isToggleOpen ? '180deg' : '0deg')});
+  transform: rotate(${props => (props.$istoggleopen ? '180deg' : '0deg')});
 `;
 
 const ToggleIcon = styled.img`
@@ -159,5 +160,5 @@ const CouponIcon = styled.img<SidebarOpen>`
   width: 20px;
   height: 25px;
 
-  margin: ${props => (props.$isSidebarOpen ? '0 10px 0 25px' : '10px')};
+  margin: ${props => (props.$issidebaropen ? '0 10px 0 25px' : '10px')};
 `;

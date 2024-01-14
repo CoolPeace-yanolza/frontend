@@ -1,20 +1,21 @@
-import { NavLink } from 'react-router-dom';
 import styled from '@emotion/styled';
 
 import settlement from '@assets/icons/ic-sidebar-settlement.svg';
-import { SidebarOpen } from '@/types/sidebar';
+import CostumeNavLink from '../CostumeNavLink';
+import { SidebarOpen } from '@/types/layout';
 
 const Settlements = ({ isSidebarOpen }: { isSidebarOpen: boolean }) => {
   return (
     <Container
       to="/settlements"
-      $isSidebarOpen={isSidebarOpen}
+      end
+      $issidebaropen={isSidebarOpen}
     >
-      <Contents $isSidebarOpen={isSidebarOpen}>
+      <Contents $issidebaropen={isSidebarOpen}>
         <SettlementsIcon
           src={settlement}
           alt="정산관리"
-          $isSidebarOpen={isSidebarOpen}
+          $issidebaropen={isSidebarOpen}
         />
         <span>정산관리</span>
       </Contents>
@@ -24,9 +25,9 @@ const Settlements = ({ isSidebarOpen }: { isSidebarOpen: boolean }) => {
 
 export default Settlements;
 
-const Container = styled(NavLink)<SidebarOpen>`
+const Container = styled(CostumeNavLink)<SidebarOpen>`
   width: 100%;
-  height: ${props => (props.$isSidebarOpen ? '60px' : '80px')};
+  height: ${props => (props.$issidebaropen ? '60px' : '80px')};
 
   margin: 5px 0;
   border-radius: 11px;
@@ -51,12 +52,12 @@ const Container = styled(NavLink)<SidebarOpen>`
 `;
 
 const Contents = styled.div<SidebarOpen>`
-  width: ${props => (props.$isSidebarOpen ? '100%' : '80px')};
+  width: ${props => (props.$issidebaropen ? '100%' : '80px')};
   height: 100%;
 
   display: flex;
-  flex-direction: ${props => (props.$isSidebarOpen ? 'row' : 'column')};
-  justify-content: ${props => (props.$isSidebarOpen ? 'flex-start' : 'center')};
+  flex-direction: ${props => (props.$issidebaropen ? 'row' : 'column')};
+  justify-content: ${props => (props.$issidebaropen ? 'flex-start' : 'center')};
   align-items: center;
 `;
 
@@ -64,5 +65,5 @@ const SettlementsIcon = styled.img<SidebarOpen>`
   width: 30px;
   height: 30px;
 
-  margin: ${props => (props.$isSidebarOpen ? '0 10px 0 20px' : '0 0 5px 0')};
+  margin: ${props => (props.$issidebaropen ? '0 10px 0 20px' : '0 0 5px 0')};
 `;
