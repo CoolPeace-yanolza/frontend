@@ -7,12 +7,13 @@
       "@hooks/*": ["src/hooks/*"],
       "@pages/*": ["src/pages/*"],
       "@styles/*": ["src/styles/*"],
-      "@types/*": ["src/types/*"],
+      "@/types/*": ["src/types/*"],
       "@utils/*": ["src/utils/*"],
       "@api/*": ["src/utils/api/*"],
       "@constants/*": ["src/utils/constants/*"],
       "@test/*": ["src/utils/test/*"],
-      "@routes/": ["src/routes/*"]
+      "@routes/*": ["src/routes/*"],
+      "@recoil/*": ["src/recoil/*"]
     }
   }
 }

@@ -1,18 +1,18 @@
 import styled from '@emotion/styled';
 
-import hamberger from '@assets/icons/ic-sidebar-hamberger.svg';
+import hamburger from '@assets/icons/ic-sidebar-hamburger.svg';
 import logo from '@assets/icons/ic-logo.svg';
-import { toRem } from '@utils/index';
+import { SidebarHeader } from '@/types/sidebar';
 
 const Header = ({ isSidebarOpen, setIsSidebarOpen }: SidebarHeader) => {
   return (
     <Container>
-      <Hamberger onClick={() => setIsSidebarOpen(prev => !prev)}>
-        <HambergerIcon
-          src={hamberger}
+      <Hamburger onClick={() => setIsSidebarOpen(prev => !prev)}>
+        <HamburgerIcon
+          src={hamburger}
           alt="메뉴"
         />
-      </Hamberger>
+      </Hamburger>
       {isSidebarOpen && (
         <LogoIcon
           src={logo}
@@ -34,13 +34,13 @@ const Container = styled.div`
   align-items: center;
 `;
 
-const Hamberger = styled.button`
-  width: ${toRem(60)};
-  height: ${toRem(60)};
+const Hamburger = styled.button`
+  width: 60px;
+  height: 60px;
 
-  margin: ${toRem(5)} ${toRem(10)};
+  margin: 5px 10px;
   border: none;
-  border-radius: ${toRem(11)};
+  border-radius: 11px;
 
   background-color: transparent;
 
@@ -53,14 +53,14 @@ const Hamberger = styled.button`
   }
 `;
 
-const HambergerIcon = styled.img`
-  width: ${toRem(30)};
-  height: ${toRem(20)};
+const HamburgerIcon = styled.img`
+  width: 30px;
+  height: 20px;
 `;
 
 const LogoIcon = styled.img`
-  width: ${toRem(120)};
-  height: ${toRem(30)};
+  width: 120px;
+  height: 30px;
 
-  margin-right: ${toRem(30)};
+  margin-right: 30px;
 `;
