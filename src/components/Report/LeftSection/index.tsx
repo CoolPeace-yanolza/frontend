@@ -6,7 +6,7 @@ import Graph from './Graph';
 
 const LeftSection = () => {
   /*
-    // react-query : API 요청으로 TotallReportInfo fetch
+    // react-query : API 요청으로 TotalReportInfo fetch
     // url : /v1/dashboards/{accommodation_id}/reports/year
 
     // const { data: yearReportData } = useFetchYearReportData;

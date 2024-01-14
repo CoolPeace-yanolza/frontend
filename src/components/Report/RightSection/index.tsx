@@ -1,11 +1,11 @@
 import styled from '@emotion/styled';
 
-import TotallReport from './TotallReport';
+import TotalReport from './TotalReport';
 
 const RightSection = () => {
   return (
     <Container>
-      <TotallReport />
+      <TotalReport />
     </Container>
   );
 };
