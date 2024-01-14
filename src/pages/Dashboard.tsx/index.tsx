@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 import {
   GraphSection,
   CouponStatusSection,
-  CouponRecommendSection,
+  LocalInformationSection,
   DailyReportSection
 } from '@components/Dashboard';
 
@@ -12,7 +12,7 @@ const Dashboard = () => {
     <Container>
       <LeftSection>
         <GraphSection />
-        <CouponRecommendSection />
+        <LocalInformationSection />
       </LeftSection>
       <RightSection>
         <CouponStatusSection />

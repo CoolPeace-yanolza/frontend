@@ -1,10 +1,10 @@
 import styled from '@emotion/styled';
 
-const CouponRecommendSection = () => {
+const LocalInformationSection = () => {
   return <Container></Container>;
 };
 
-export default CouponRecommendSection;
+export default LocalInformationSection;
 
 const Container = styled.div`
   min-height: 327px;
