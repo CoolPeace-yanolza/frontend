@@ -20,3 +20,15 @@ export type CouponCounterStyleProps = {
 };
 
 export type CouponRateResult = Pick<CouponCounterProps, 'result'>;
+
+// CouponStatus
+
+export type StatusItemProps = {
+  title: string;
+  result: string;
+  index?: number;
+};
+
+export type StatusItemStyleProps = {
+  $index?: number;
+};

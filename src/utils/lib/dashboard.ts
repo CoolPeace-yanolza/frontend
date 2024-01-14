@@ -3,7 +3,13 @@ import statusImage02 from '/images/ic-dailyReport-status02.png';
 import statusImage03 from '/images/ic-dailyReport-status03.png';
 import statusImage04 from '/images/ic-dailyReport-status04.png';
 
-// DailyReport
+// CouponStatusSection : 이번달 똑똑 현황
+
+export const getStatusToLocaleString = (data: string) => {
+  return Number(data).toLocaleString();
+};
+
+// DailyReport : 우리 숙소 일간 리포트
 
 export const getMatchedImage = (condition: number) => {
   switch (condition) {
