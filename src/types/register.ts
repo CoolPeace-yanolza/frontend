@@ -98,3 +98,8 @@ export type StepTitleProps = {
   }[];
   currentStep: number;
 };
+
+// FirstStep
+export type LimitWrapperStyleProps = {
+  $isLimit: boolean;
+};

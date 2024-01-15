@@ -1,10 +1,19 @@
 import { useState } from 'react';
 import styled from '@emotion/styled';
 
-import { InputContainer, InputButton } from '@components/Register/common';
+import {
+  InputContainer,
+  InputButton,
+  InputField,
+  InputCheckBox
+} from '@components/Register/common';
+import { LimitWrapperStyleProps } from '@/types/register';
 
 const FirstStep = () => {
   const [currentInput, setCurrentInput] = useState(0);
+  const [isLimit, setIsLimit] = useState(false);
+
+  const handleInput = (e: React.FormEvent<HTMLInputElement>) => {};
 
   return (
     <>
@@ -52,6 +61,40 @@ const FirstStep = () => {
             onButtonClick={setCurrentInput}
           />
         </ButtonWrapper>
+        <ContentWrapper>
+          <InputField
+            placeholder="ex) 5000"
+            text="원"
+            whichInput={1}
+            currentInput={currentInput}
+            onInputChange={handleInput}
+          />
+          <InnerContentWrapper>
+            <InputField
+              placeholder="ex) 50"
+              text="% 할인"
+              whichInput={2}
+              currentInput={currentInput}
+              onInputChange={handleInput}
+            />
+            <InputCheckBox
+              id="discountLimit"
+              whichInput={2}
+              currentInput={currentInput}
+              text="최대 할인 한도 설정하기"
+              onChecked={setIsLimit}
+            />
+          </InnerContentWrapper>
+          <LimitWrapper $isLimit={isLimit}>
+            <InputField
+              placeholder="ex) 5000"
+              text="원"
+              whichInput={2}
+              currentInput={currentInput}
+              onInputChange={handleInput}
+            />
+          </LimitWrapper>
+        </ContentWrapper>
       </InputContainer>
     </>
   );
@@ -86,4 +129,20 @@ const ButtonWrapper = styled.div`
 
   display: flex;
   gap: 23px;
+`;
+
+const ContentWrapper = styled.div`
+  width: 100%;
+
+  margin-top: 9px;
+
+  display: inline-block;
+`;
+
+const InnerContentWrapper = styled.div`
+  display: flex;
+`;
+
+const LimitWrapper = styled.div<LimitWrapperStyleProps>`
+  display: ${props => (props.$isLimit ? 'block' : 'none')};
 `;
