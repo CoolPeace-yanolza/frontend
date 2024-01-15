@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import styled from '@emotion/styled';
 
 import { InputValidation } from '@/types/login';
-import { InputNormal, InputPassword } from '@components/common/Inputs';
+import { InputNormal, InputPassword } from '@components/common/Auth/Inputs';
 import { AuthButton } from '@components/common/Auth';
 
 const LoginForm = () => {

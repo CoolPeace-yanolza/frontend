@@ -2,7 +2,7 @@ import { useState } from 'react';
 import styled from '@emotion/styled';
 
 import { SignUpInputValidation } from '@/types/signUp';
-import { InputNormal, InputPassword } from '@components/common/Inputs';
+import { InputNormal, InputPassword } from '@components/common/Auth/Inputs';
 import { AuthButton } from '@components/common/Auth';
 
 const SignUpForm = () => {
