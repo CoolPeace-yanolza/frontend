@@ -113,7 +113,7 @@ const Amount = styled.span<AmountStyleProps>`
   justify-content: center;
   align-items: center;
 
-  color: ${props => (props.$isfirstamount ? '#FF3478' : '#022c79')};
+  color: ${props => (props.$isfirstamount ? '#022c79' : '#FF3478')};
   background-color: white;
   font-size: 20px;
   font-weight: 700;
