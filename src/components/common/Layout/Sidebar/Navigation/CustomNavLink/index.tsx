@@ -5,9 +5,9 @@ import { CustomNavLinkProps } from '@/types/layout';
 const CustomNavLink = ({
   children,
   to,
-  $issidebaropen,
-  $istoggleopen,
-  $userpath,
+  $isSidebarOpen,
+  $isToggleOpen,
+  $userPath,
   ...props
 }: CustomNavLinkProps & NavLinkProps) => {
   return (

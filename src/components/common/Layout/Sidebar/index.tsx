@@ -10,7 +10,7 @@ const Sidebar = () => {
 
   return (
     <>
-      <Container $issidebaropen={isSidebarOpen}>
+      <Container $isSidebarOpen={isSidebarOpen}>
         <Menu>
           <Header
             isSidebarOpen={isSidebarOpen}
@@ -31,7 +31,7 @@ export default Sidebar;
 const Container = styled.div<SidebarOpen>`
   position: fixed;
 
-  width: ${props => (props.$issidebaropen ? '250px' : '100px')};
+  width: ${props => (props.$isSidebarOpen ? '250px' : '100px')};
   min-height: 100vh;
 
   padding: 20px 10px;

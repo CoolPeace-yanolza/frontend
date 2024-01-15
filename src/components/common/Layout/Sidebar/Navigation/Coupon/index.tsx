@@ -22,28 +22,28 @@ const Coupon = ({ isSidebarOpen }: { isSidebarOpen: boolean }) => {
     <Container
       to="/"
       end
-      $issidebaropen={isSidebarOpen}
-      $istoggleopen={isToggleOpen}
-      $userpath={userPath}
+      $isSidebarOpen={isSidebarOpen}
+      $isToggleOpen={isToggleOpen}
+      $userPath={userPath}
       {...(isSidebarOpen && {
         onClick: e => e.preventDefault()
       })}
     >
       <Header
-        $issidebaropen={isSidebarOpen}
-        $istoggleopen={isToggleOpen}
+        $isSidebarOpen={isSidebarOpen}
+        $isToggleOpen={isToggleOpen}
       >
-        <Contents $issidebaropen={isSidebarOpen}>
+        <Contents $isSidebarOpen={isSidebarOpen}>
           <CouponIcon
             src={coupon}
             alt="쿠폰"
-            $issidebaropen={isSidebarOpen}
+            $isSidebarOpen={isSidebarOpen}
           />
           <span>쿠폰</span>
         </Contents>
         <Toggle
-          $issidebaropen={isSidebarOpen}
-          $istoggleopen={isToggleOpen}
+          $isSidebarOpen={isSidebarOpen}
+          $isToggleOpen={isToggleOpen}
           onClick={() => setIsToggleOpen(prev => !prev)}
         >
           <ToggleIcon
@@ -62,9 +62,9 @@ export default Coupon;
 const Container = styled(CustomNavLink)<SidebarStyleProps>`
   width: 100%;
   height: ${props => {
-    if (!props.$issidebaropen) {
+    if (!props.$isSidebarOpen) {
       return '80px';
-    } else if (props.$istoggleopen) {
+    } else if (props.$isToggleOpen) {
       return '250px';
     } else {
       return '60px';
@@ -78,9 +78,9 @@ const Container = styled(CustomNavLink)<SidebarStyleProps>`
   flex-direction: column;
 
   color: ${props => {
-    if (props.$userpath === 'coupons') {
+    if (props.$userPath === 'coupons') {
       return props.theme.colors.white;
-    } else if (props.$istoggleopen) {
+    } else if (props.$isToggleOpen) {
       return props.theme.colors.white;
     } else {
       return props.theme.colors.black;
@@ -88,10 +88,10 @@ const Container = styled(CustomNavLink)<SidebarStyleProps>`
   }};
 
   background-color: ${props => {
-    if (props.$userpath === 'coupons') {
+    if (props.$userPath === 'coupons') {
       return props.theme.colors.hover;
-    } else if (props.$issidebaropen) {
-      return props.$istoggleopen ? props.theme.colors.ink100 : 'transparent';
+    } else if (props.$isSidebarOpen) {
+      return props.$isToggleOpen ? props.theme.colors.ink100 : 'transparent';
     } else {
       return 'transparent';
     }
@@ -99,7 +99,7 @@ const Container = styled(CustomNavLink)<SidebarStyleProps>`
 
   font-weight: ${props => props.theme.fontWeight.large};
   overflow: hidden;
-  cursor: ${props => (props.$issidebaropen ? 'default' : 'pointer')};
+  cursor: ${props => (props.$isSidebarOpen ? 'default' : 'pointer')};
   transition: all 0.3s;
 
   &:hover,
@@ -120,11 +120,11 @@ const Header = styled.div<Opens>`
 
 const Contents = styled.div<SidebarOpen>`
   width: 100%;
-  height: ${props => (props.$issidebaropen ? '60px' : '75px')};
+  height: ${props => (props.$isSidebarOpen ? '60px' : '75px')};
 
   display: flex;
-  flex-direction: ${props => (props.$issidebaropen ? 'row' : 'column')};
-  justify-content: ${props => (props.$issidebaropen ? 'flex-start' : 'center')};
+  flex-direction: ${props => (props.$isSidebarOpen ? 'row' : 'column')};
+  justify-content: ${props => (props.$isSidebarOpen ? 'flex-start' : 'center')};
   align-items: center;
 `;
 
@@ -135,7 +135,7 @@ const Toggle = styled.button<Opens>`
   margin-right: 20px;
   border: none;
 
-  display: ${props => (props.$issidebaropen ? 'flex' : 'none')};
+  display: ${props => (props.$isSidebarOpen ? 'flex' : 'none')};
   align-items: center;
   justify-content: center;
   align-self: center;
@@ -145,7 +145,7 @@ const Toggle = styled.button<Opens>`
   cursor: pointer;
 
   transition: all 0.4s;
-  transform: rotate(${props => (props.$istoggleopen ? '180deg' : '0deg')});
+  transform: rotate(${props => (props.$isToggleOpen ? '180deg' : '0deg')});
 `;
 
 const ToggleIcon = styled.img`
@@ -157,5 +157,5 @@ const CouponIcon = styled.img<SidebarOpen>`
   width: 20px;
   height: 25px;
 
-  margin: ${props => (props.$issidebaropen ? '0 10px 0 25px' : '10px')};
+  margin: ${props => (props.$isSidebarOpen ? '0 10px 0 25px' : '10px')};
 `;

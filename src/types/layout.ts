@@ -6,19 +6,19 @@ export type SidebarHeader = {
 };
 
 export type SidebarStyleProps = {
-  $issidebaropen: boolean;
-  $istoggleopen: boolean;
-  $userpath: string;
+  $isSidebarOpen: boolean;
+  $isToggleOpen: boolean;
+  $userPath: string;
 };
 
-export type SidebarOpen = Pick<SidebarStyleProps, '$issidebaropen'>;
-export type ToggleOpen = Pick<SidebarStyleProps, '$istoggleopen'>;
-export type Opens = Omit<SidebarStyleProps, '$userpath'>;
+export type SidebarOpen = Pick<SidebarStyleProps, '$isSidebarOpen'>;
+export type ToggleOpen = Pick<SidebarStyleProps, '$isToggleOpen'>;
+export type Opens = Omit<SidebarStyleProps, '$userPath'>;
 
 export type CustomNavLinkProps = {
   children: ReactNode;
   to: string;
-  $issidebaropen?: boolean;
-  $istoggleopen?: boolean;
-  $userpath?: string;
+  $isSidebarOpen?: boolean;
+  $isToggleOpen?: boolean;
+  $userPath?: string;
 };
