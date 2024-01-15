@@ -34,3 +34,5 @@ export type AuthButton = {
     | EmailValidCheckAPIButton
     | MoveToSignUpButton;
 };
+
+export type AuthButtonStyleProps = { $size: string; $variant: string };

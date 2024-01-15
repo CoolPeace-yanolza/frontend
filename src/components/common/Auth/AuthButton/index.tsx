@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 
-import { AuthButton } from '@/types/auth';
+import { AuthButton, AuthButtonStyleProps } from '@/types/auth';
 
 const AuthButton = ({ size, variant, text, buttonFunc }: AuthButton) => {
   return (
@@ -16,7 +16,7 @@ const AuthButton = ({ size, variant, text, buttonFunc }: AuthButton) => {
 
 export default AuthButton;
 
-const SubmitButton = styled.button<{ $size: string; $variant: string }>`
+const SubmitButton = styled.button<AuthButtonStyleProps>`
   width: ${props => (props.$size === 'small' ? '152px' : '524px')};
   height: 78px;
 
@@ -40,6 +40,12 @@ const SubmitButton = styled.button<{ $size: string; $variant: string }>`
   }};
 
   &:hover {
-    cursor: pointer;
+    cursor: ${props => {
+      if (props.$variant === 'disabled') {
+        return 'default';
+      } else {
+        return 'pointer';
+      }
+    }};
   }
 `;
