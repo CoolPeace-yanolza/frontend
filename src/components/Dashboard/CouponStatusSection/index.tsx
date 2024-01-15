@@ -1,14 +1,10 @@
 import styled from '@emotion/styled';
 
 import StatusItem from './StatusItem';
-import { getStatusToLocaleString } from '@utils/lib/dashboard';
-
-// DUMMYDATA(삭제예정)
-const statusDummyData = {
-  total_sales: '460000',
-  used_count: '19',
-  settlemnet_amount: '20000'
-};
+import {
+  getMatchedStatusItemTitle,
+  getStatusToLocaleString
+} from '@utils/lib/dashboard';
 
 //HACK : 데이터 형식 예시
 // {
@@ -20,27 +16,31 @@ const statusDummyData = {
 // 데이터를 배열로 받게될 경우 하위 컴포넌트 내에서 map함수로 처리 예정 \
 
 const CouponStatusSection = () => {
+  //HACK: API RESPONSE 순회해보기
+  const statusDummyData = {
+    total_sales: '460000',
+    used_count: '19',
+    settlement_amount: '20000'
+  };
+
+  const dataKeys = Object.keys(
+    statusDummyData
+  ) as (keyof typeof statusDummyData)[];
+
   return (
     <Container>
       <Header>
         <Title>이번 달 똑똑현황</Title>
       </Header>
       <InnerContainer>
-        <StatusItem
-          title="쿠폰 사용 총 매출"
-          result={getStatusToLocaleString(statusDummyData.total_sales) + '원'}
-          index={1}
-        />
-        <StatusItem
-          title="쿠폰 적용 예약 건수"
-          result={getStatusToLocaleString(statusDummyData.used_count) + '건'}
-        />
-        <StatusItem
-          title="쿠폰 정산 금액"
-          result={
-            getStatusToLocaleString(statusDummyData.settlemnet_amount) + '원'
-          }
-        />
+        {dataKeys.map((dataKey, index) => (
+          <StatusItem
+            key={dataKey}
+            title={getMatchedStatusItemTitle(dataKey)}
+            result={getStatusToLocaleString(dataKey, statusDummyData[dataKey])}
+            index={index}
+          />
+        ))}
       </InnerContainer>
     </Container>
   );
