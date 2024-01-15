@@ -201,5 +201,4 @@ const Icon = styled.img`
 
 const ReceiptIcon = styled.img`
   margin-top: 40px;
-  margin-left: auto;
 `;

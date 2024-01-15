@@ -17,6 +17,10 @@ const SettlementsCalender = () => {
     setEndDate(date); 
   };
 
+  const handleButtonClick = () => {
+    console.log('조회하기 버튼이 클릭되었습니다.');
+  };
+
   return (
     <Container>
        <Calendar
@@ -37,7 +41,7 @@ const SettlementsCalender = () => {
         showMonthYearPicker
         placeholderText=""
       />
-      <button>기간 선택</button>
+      <StyledButton onClick={handleButtonClick}>조회하기</StyledButton>
     </Container>
   )
 }
@@ -53,6 +57,10 @@ const Container = styled.nav`
 `;
 
 const Calendar = styled.img`
+  width: 24px;
+  height: 24px;
+
+  margin-right: 10px;
 `;
 
 const StyledDatePicker = styled(DatePicker)`
@@ -69,4 +77,20 @@ const CalendarText = styled.div`
   color: white;
 
   margin-right: 10px;
+`;
+
+const StyledButton = styled.button`
+  padding: 5px 10px;
+
+  background-color: #3182F6;
+  color: white;
+  font-weight: 700;
+
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  cursor: pointer;
+  
+  &:hover {
+    opacity: 1;
+  }
 `;
