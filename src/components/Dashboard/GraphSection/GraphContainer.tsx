@@ -17,6 +17,7 @@ import { Chart } from 'react-chartjs-2';
 
 import { GraphHeaderTag } from '@/types/dashboard';
 import graphOptions from './graphOptions';
+import { getUpdatedDate } from '@utils/index';
 
 ChartJS.register(
   LinearScale,
@@ -91,17 +92,6 @@ export const lineGraphData = {
 };
 
 //HACK 추후 utils에 적절한 폴더 생기면 옮길 예정
-const getUpdatedDate = () => {
-  const today = new Date();
-  today.setMonth(today.getMonth() - 1);
-  const lastDayOfMonth = new Date(today.getFullYear(), today.getMonth() + 1, 0);
-
-  const year = lastDayOfMonth.getFullYear().toString().slice(-2);
-  const month = (lastDayOfMonth.getMonth() + 1).toString().padStart(2, '0');
-  const day = lastDayOfMonth.getDate().toString();
-
-  return `${year}.${month}.${day}`;
-};
 
 const GraphContainer = () => {
   const [isIncomeGraph, setisIncomeGraph] = useState(true);
