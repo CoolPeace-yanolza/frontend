@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
 
 const Footer = () => {
+  const thisYear = new Date().getFullYear();
   return (
     <Container>
       <Policy>
@@ -9,7 +10,7 @@ const Footer = () => {
         <BoldText>개인정보 처리방침</BoldText>
       </Policy>
       <Copyright>
-        (주) 야놀자 Copyright © 2005-2023 Yanolja Co., Ltd. All rights
+        (주) 야놀자 Copyright © 2005-{thisYear} Yanolja Co., Ltd. All rights
         reserved.
       </Copyright>
     </Container>
