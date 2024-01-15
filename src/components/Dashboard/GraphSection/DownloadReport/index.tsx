@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 
-import CouponCounter from './CouponConter';
+import CouponCounter from './CouponCounter';
 import CouponRate from './CouponRate';
 import titleIcon from '@assets/icons/ic-dashboard-downloadReport.svg';
 import reloadIcon from '@assets/icons/ic-dashboard-reload.svg';
