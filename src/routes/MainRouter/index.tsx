@@ -4,7 +4,7 @@ import { Layout } from '@components/common';
 import Login from '@pages/Login';
 import SignUp from '@pages/SignUp';
 import Dashboard from '@pages/Dashboard.tsx';
-import Report from '@pages/Report.tsx';
+import Report from '@pages/Report';
 
 const MainRouter = () => {
   return (

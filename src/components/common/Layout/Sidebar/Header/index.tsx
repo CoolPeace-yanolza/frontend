@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 
 import hamburger from '@assets/icons/ic-sidebar-hamburger.svg';
 import logo from '@assets/icons/ic-logo.svg';
-import { SidebarHeader } from '@/types/sidebar';
+import { SidebarHeader } from '@/types/layout';
 
 const Header = ({ isSidebarOpen, setIsSidebarOpen }: SidebarHeader) => {
   return (
