@@ -1,21 +1,30 @@
+import { useState } from 'react';
 import styled from '@emotion/styled';
 
 import { ButtonText, InputValidation } from '@/types/login';
+import { InputNormal, InputPassword } from '@components/common/Inputs';
 
 const LoginForm = () => {
   // HACK: 유효성 검사 기능 구현 후 유효성 메세지 노출 여부 결정
   const isInvalid = true;
+  const [showPW, setShowPW] = useState(false);
 
   return (
     <form>
       <Inputs $isInvalid={isInvalid}>
-        <Input
+        <InputNormal
           type="email"
           placeholder="이메일 입력"
+          usedFor="login"
+          isInvalid={isInvalid}
         />
-        <Input
-          type="password"
+        <InputPassword
+          type={showPW ? 'text' : 'password'}
           placeholder="비밀번호 입력"
+          usedFor="login"
+          showPW={showPW}
+          setShowPW={setShowPW}
+          isInvalid={isInvalid}
         />
       </Inputs>
       {isInvalid && (
@@ -39,35 +48,6 @@ const Inputs = styled.div<InputValidation>`
   display: flex;
   flex-direction: column;
   gap: 19px;
-`;
-
-const Input = styled.input`
-  width: 524px;
-  height: 79px;
-
-  border-radius: 16px;
-  border: 2px solid #757676;
-  padding: 23px 20px;
-
-  display: flex;
-  align-items: center;
-
-  color: #1a2849;
-  font-size: 18px;
-  font-weight: 500;
-  line-height: 32px;
-
-  &::placeholder {
-    color: #979c9e;
-    font-size: 18px;
-    font-weight: 500;
-    line-height: 32px;
-  }
-
-  &:focus {
-    outline: 2px solid #1a2849;
-    border-color: #1a2849;
-  }
 `;
 
 const ValidationText = styled.p`
