@@ -42,6 +42,27 @@ export type InputFieldContainerStyleProps = {
   $isSelected: boolean;
 };
 
+// InputCheckBox
+export type InputCheckBoxProps = {
+  id: string;
+  whichInput: number;
+  currentInput: number;
+  text: string;
+  onChecked?: React.Dispatch<React.SetStateAction<boolean>>;
+};
+
+export type InputCheckBoxContainerStyleProps = {
+  $isSelected: boolean;
+};
+
+export type LabelStyleProps = {
+  $isChecked: boolean;
+};
+
+export type CheckIconStyleProps = {
+  $src: string;
+};
+
 // Stepper
 export type StepperProps = {
   steps: {
