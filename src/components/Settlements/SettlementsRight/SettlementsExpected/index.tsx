@@ -24,10 +24,10 @@ const SettlementsExpected = () => {
           <TextContainer>
             <ExpectedMonth>
               {`${nextMonth.getMonth() + 1}월`}
+                <ExpectedText>
+                  정산 예정 금액
+              </ExpectedText>
             </ExpectedMonth>
-            <ExpectedText>
-              정산 예정 금액
-            </ExpectedText>
           </TextContainer>
           <CommonContainer>
             <Icon src={SyncIcon} alt="업데이트" />
@@ -94,24 +94,22 @@ const ExpectedContainer = styled.div`
 `;
 
 const TextContainer = styled.div`
-  display:flex;
-  flex-direction: row;
+  display: flex;
+  // white-space: nowrap;
 `;
 
-const ExpectedMonth = styled.div`
+const ExpectedMonth = styled.p`
   font-size: 22px;
   font-weight: bold;
   color: white;
+
+  & > span {
+    font-size: 18px;
+  }
 `;
 
-const ExpectedText = styled.div`
-  margin-top: auto;
-  margin-bottom: auto;
+const ExpectedText = styled.span`
   margin-left: 5px;
-  
-  font-size: 18px;
-  font-weight: bold;
-  color: white;
 `;
 
 const CommonContainer = styled.div`
@@ -134,7 +132,7 @@ const UpdatedText = styled.div`
 const UpdatedContainer = styled.div`
   width: 100%;
 
-  margin-top: 40px;
+  margin-top: 25px;
 
   border: 1.5px solid white;
   border-radius: 8px;

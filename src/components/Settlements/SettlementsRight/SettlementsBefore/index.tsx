@@ -123,7 +123,7 @@ const UpdatedText = styled.div`
 const UpdatedContainer = styled.div`
   width: 100%;
 
-  margin-top: 40px;
+  margin-top: 25px;
 
   border: 1.5px solid white;
   border-radius: 8px;
@@ -179,7 +179,7 @@ const DueDateMoney = styled.div`
 `;
 
 const MoneyContainer = styled.div`
-  margin: 30px 15px;
+  margin: 20px 15px;
 `;
 
 const MoneyText = styled.div`

@@ -34,7 +34,7 @@ const Container = styled.div`
 
 const InnerContainer = styled.div`
   height: 100%;
-  
+
   position: relative;
   z-index: 999;
 
@@ -42,7 +42,7 @@ const InnerContainer = styled.div`
   border: 1px solid rgba(255, 255, 255, 0.1); 
 
   hr {
-    margin: 0 15px;
+    margin: 30px 15px;
 
     border-top: 1px solid rgba(217, 217, 217, 0.2); 
   }
