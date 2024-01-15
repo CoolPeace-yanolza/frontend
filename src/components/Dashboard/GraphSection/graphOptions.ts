@@ -40,7 +40,7 @@ const graphOptions: any = {
       },
       max: 100,
       ticks: {
-        callback: function (value: any) {
+        callback: function () {
           return ``;
         }
       }
