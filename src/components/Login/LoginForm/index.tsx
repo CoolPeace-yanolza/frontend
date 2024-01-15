@@ -2,8 +2,9 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from '@emotion/styled';
 
-import { ButtonText, InputValidation } from '@/types/login';
+import { InputValidation } from '@/types/login';
 import { InputNormal, InputPassword } from '@components/common/Inputs';
+import { AuthButton } from '@components/common/Auth';
 
 const LoginForm = () => {
   const navigate = useNavigate();
@@ -41,13 +42,20 @@ const LoginForm = () => {
         </ValidationText>
       )}
       <Buttons $isInvalid={isInvalid}>
-        <Button $text="login">로그인</Button>
-        <Button
-          $text="signUp"
-          onClick={movetoSignUp}
-        >
-          회원가입
-        </Button>
+        <AuthButton
+          size="large"
+          variant="navy"
+          text="로그인"
+          buttonFunc={() => {
+            // TODO : 로그인 API 요청
+          }}
+        />
+        <AuthButton
+          size="large"
+          variant="pink"
+          text="회원가입"
+          buttonFunc={movetoSignUp}
+        />
       </Buttons>
     </form>
   );
@@ -82,26 +90,4 @@ const Buttons = styled.div<InputValidation>`
   gap: 13px;
 
   ${props => props.$isInvalid && 'margin-top: 23px'};
-`;
-
-const Button = styled.button<ButtonText>`
-  min-width: 524px;
-
-  border: none;
-  border-radius: 16px;
-  padding: 23px 0;
-
-  color: #fff;
-  font-size: 22px;
-  font-weight: 700;
-  line-height: 32px;
-
-  background: ${props =>
-    props.$text === 'login'
-      ? '#1A2849'
-      : 'linear-gradient(91deg, #FF3478 1.39%, #FF83AD 98.63%)'};
-
-  &:hover {
-    cursor: pointer;
-  }
 `;

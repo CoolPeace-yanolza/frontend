@@ -27,8 +27,15 @@ const SubmitButton = styled.button<{ $size: string; $variant: string }>`
   font-weight: 700;
   line-height: 32px;
 
-  background: ${props =>
-    props.$variant === 'disabled' ? '#C1C1C1' : '#1A2849'};
+  background: ${props => {
+    if (props.$variant === 'disabled') {
+      return '#C1C1C1';
+    } else if (props.$variant === 'pink') {
+      return 'linear-gradient(91deg, #FF3478 1.39%, #FF83AD 98.63%)';
+    } else {
+      return '#1A2849';
+    }
+  }};
 
   &:hover {
     cursor: pointer;

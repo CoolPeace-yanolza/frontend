@@ -42,7 +42,9 @@ const SignUpForm = () => {
             size="small"
             variant="disabled"
             text="회원가입"
-            buttonFunc={() => {}}
+            buttonFunc={() => {
+              // TODO : 회원가입 API 요청 로직
+            }}
           />
         </EmailInputWrapper>
         {isEmailValidationVisible && (
