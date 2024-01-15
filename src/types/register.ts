@@ -25,6 +25,23 @@ export type ButtonStyleProps = {
   src: string;
 };
 
+// InputField
+export type InputFieldProps = {
+  placeholder: string;
+  text: string;
+  whichInput: number;
+  currentInput: number;
+  onInputChange: (e: React.FormEvent<HTMLInputElement>) => void;
+};
+
+export type InputFieldStyleProps = {
+  $text: string;
+};
+
+export type ContainerStyleProps = {
+  $isSelected: boolean;
+};
+
 // Stepper
 export type StepperProps = {
   steps: {
