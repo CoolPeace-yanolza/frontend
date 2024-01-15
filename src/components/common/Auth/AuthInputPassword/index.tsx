@@ -1,7 +1,7 @@
 import { ChangeEvent, useState } from 'react';
 import styled from '@emotion/styled';
 
-import { InputPassword } from '@/types/common';
+import { InputPassword } from '@/types/auth';
 import eyeOn from '@assets/icons/ic-login-eye-on.svg';
 import eyeOff from '@assets/icons/ic-login-eye-off.svg';
 import closeIcon from '@assets/icons/ic-login-close.svg';

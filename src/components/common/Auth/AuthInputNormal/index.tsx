@@ -1,7 +1,7 @@
 import { ChangeEvent, useState } from 'react';
 import styled from '@emotion/styled';
 
-import { InputNormal } from '@/types/common';
+import { InputNormal } from '@/types/auth';
 import closeIcon from '@assets/icons/ic-login-close.svg';
 import checkInvalid from '@assets/icons/ic-signup-check-invalid.svg';
 import checkValid from '@assets/icons/ic-signup-check-valid.svg';
