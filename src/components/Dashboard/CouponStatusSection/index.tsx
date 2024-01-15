@@ -4,7 +4,7 @@ import StatusItem from './StatusItem';
 import {
   getMatchedStatusItemTitle,
   getStatusToLocaleString
-} from '@utils/lib/dashboard';
+} from '@utils/index';
 
 //HACK : 데이터 형식 예시
 // {
