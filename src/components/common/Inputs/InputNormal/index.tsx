@@ -8,6 +8,7 @@ import checkValid from '@assets/icons/ic-signup-check-valid.svg';
 
 const InputNormal = ({
   type,
+  id,
   placeholder,
   usedFor,
   isInvalid
@@ -28,6 +29,7 @@ const InputNormal = ({
     <Container>
       <Input
         type={type}
+        id={id}
         placeholder={placeholder}
         value={text}
         onChange={handleChange}

@@ -10,6 +10,7 @@ import checkValid from '@assets/icons/ic-signup-check-valid.svg';
 
 const InputPassword = ({
   type,
+  id,
   placeholder,
   usedFor,
   showPW,
@@ -26,22 +27,22 @@ const InputPassword = ({
     setText('');
   };
 
-  const handleShowPW = () => {
+  const handleShowPW = (event: any) => {
+    event.preventDefault();
     setShowPW(prev => !prev);
-    // setShowPW(!showPW);
-    console.log('비번 보여라');
   };
 
   return (
     <Container>
       <Input
         type={type}
+        id={id}
         placeholder={placeholder}
         value={text}
         onChange={handleChange}
       />
-      {text.length > 0 && (
-        <Buttons>
+      <Buttons>
+        {text.length > 0 && (
           <Button onClick={handleShowPW}>
             {showPW ? (
               <Icon
@@ -55,20 +56,22 @@ const InputPassword = ({
               />
             )}
           </Button>
-          {usedFor === 'login' ? (
+        )}
+        {usedFor === 'login' ? (
+          text.length > 0 && (
             <Button onClick={handleReset}>
               <Icon
                 src={closeIcon}
                 alt="지우기 버튼"
               />
             </Button>
-          ) : isInvalid ? (
-            <Icon src={checkInvalid} />
-          ) : (
-            <Icon src={checkValid} />
-          )}
-        </Buttons>
-      )}
+          )
+        ) : isInvalid ? (
+          <Icon src={checkInvalid} />
+        ) : (
+          <Icon src={checkValid} />
+        )}
+      </Buttons>
     </Container>
   );
 };

@@ -1,7 +1,6 @@
-import { SetStateAction } from 'react';
-
 export type InputNormal = {
   type: string;
+  id: string;
   placeholder: string;
   usedFor: string;
   isInvalid: boolean;
@@ -9,9 +8,10 @@ export type InputNormal = {
 
 export type InputPassword = {
   type: string;
+  id: string;
   placeholder: string;
   usedFor: string;
   showPW: boolean;
-  setShowPW: React.Dispatch<SetStateAction<boolean>>;
+  setShowPW: React.Dispatch<React.SetStateAction<boolean>>;
   isInvalid: boolean;
 };

@@ -1,10 +1,15 @@
+import { useState } from 'react';
 import styled from '@emotion/styled';
 
 import { SignUpDisabledButton, SignUpInputValidation } from '@/types/signUp';
+import { InputNormal, InputPassword } from '@components/common/Inputs';
 
 const SignUpForm = () => {
+  const [showPW, setShowPW] = useState(false);
+  const [showPWConfirm, setShowPWConfirm] = useState(false);
+
   // TODO: react-hook-form 사용해서 유효성 검사 예정
-  const isInvalid = false;
+  const isInvalid = true;
   const isEmailValidationVisible = false;
 
   // 2가지 버튼 disabled 처리하기 위한 state
@@ -15,11 +20,12 @@ const SignUpForm = () => {
     <Form>
       <InputLabelWrapper>
         <Label htmlFor="user_name">이름</Label>
-        <Input
+        <InputNormal
           type="text"
           id="user_name"
           placeholder="이름 입력"
-          required
+          usedFor="signup"
+          isInvalid={isInvalid}
         />
         {isInvalid && (
           <ValidationText $isInvalid={isInvalid}>
@@ -34,7 +40,6 @@ const SignUpForm = () => {
             type="email"
             id="user_email"
             placeholder="이메일 입력"
-            required
           />
           <EmailValidationButton $isDisabled={isEmailValidationDisabled}>
             중복확인
@@ -48,11 +53,14 @@ const SignUpForm = () => {
       </InputLabelWrapper>
       <InputLabelWrapper>
         <Label htmlFor="user_password">비밀번호</Label>
-        <Input
-          type="password"
+        <InputPassword
+          type={showPW ? 'text' : 'password'}
           id="user_password"
           placeholder="8-20자, 영문/숫자/특수문자 조합"
-          required
+          usedFor="signup"
+          showPW={showPW}
+          setShowPW={setShowPW}
+          isInvalid={isInvalid}
         />
         {isInvalid && (
           <ValidationText $isInvalid={isInvalid}>
@@ -62,11 +70,14 @@ const SignUpForm = () => {
       </InputLabelWrapper>
       <InputLabelWrapper>
         <Label htmlFor="user_password_confirm">비밀번호 확인</Label>
-        <Input
-          type="password"
+        <InputPassword
+          type={showPWConfirm ? 'text' : 'password'}
           id="user_password_confirm"
           placeholder="다시 한번 입력해주세요."
-          required
+          usedFor="signup"
+          showPW={showPWConfirm}
+          setShowPW={setShowPWConfirm}
+          isInvalid={isInvalid}
         />
         {isInvalid && (
           <ValidationText $isInvalid={isInvalid}>

@@ -14,13 +14,15 @@ const LoginForm = () => {
       <Inputs $isInvalid={isInvalid}>
         <InputNormal
           type="email"
+          id="user_email"
           placeholder="이메일 입력"
           usedFor="login"
           isInvalid={isInvalid}
         />
         <InputPassword
           type={showPW ? 'text' : 'password'}
-          placeholder="비밀번호 입력"
+          id="user_password"
+          placeholder="8-20자, 영문/숫자/특수문자 조합"
           usedFor="login"
           showPW={showPW}
           setShowPW={setShowPW}
