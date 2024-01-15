@@ -43,7 +43,7 @@ const ResultContainer = styled.div<StatusItemStyleProps>`
 
   background-color: #fff;
 
-  color: ${props => (props.$index ? '#FF3478' : '#022C79')};
+  color: ${props => (!props.$index ? '#FF3478' : '#022C79')};
   font-size: 22px;
   font-weight: 700;
   text-align: center;

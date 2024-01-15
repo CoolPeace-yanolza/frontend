@@ -1,7 +1,11 @@
 import styled from '@emotion/styled';
 
-import { getMatchedImage } from '@utils/lib/dashboard';
-import { getMatchedComponent } from './StatusComponents';
+import {
+  StatusComponent01,
+  StatusComponent02,
+  StatusComponent03,
+  StatusComponent04
+} from './StatusComponents';
 
 // DATA 예시
 // {
@@ -14,24 +18,29 @@ import { getMatchedComponent } from './StatusComponents';
 //   "coupon_titles" : {}
 // }
 
-// HACK : 백엔드 요청사항
+// TODO : 백엔드 요청사항
 // --> condition_code : 1 ~ 4; 추가되도록 요청
 // condition_code로 조건에 맞는 화면 렌더링
+
+const getMatchedComponent = (condition: number) => {
+  switch (condition) {
+    case 1:
+      return <StatusComponent01 />;
+    case 2:
+      return <StatusComponent02 />;
+    case 3:
+      return <StatusComponent03 />;
+    case 4:
+      return <StatusComponent04 />;
+  }
+};
 
 const DailyReportSection = () => {
   return (
     <Container>
       <Title>우리 숙소 일간 리포트</Title>
       <Discription>사장님! 쿠폰 상태를 확인해보세요</Discription>
-      <ImageContainer>
-        <img
-          src={getMatchedImage(1)} // <= condition_code : 1
-          alt="report-image"
-        />
-      </ImageContainer>
-      <AlarmContainer>
-        <AlarmInnerContainer>{getMatchedComponent(1)}</AlarmInnerContainer>
-      </AlarmContainer>
+      {getMatchedComponent(1)}
     </Container>
   );
 };
@@ -63,49 +72,4 @@ const Discription = styled.div`
   color: #6c7072;
   font-size: 13.005px;
   font-weight: 700;
-`;
-
-const ImageContainer = styled.div`
-  width: 100%;
-  height: 40%;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
-
-const AlarmContainer = styled.div`
-  width: 100%;
-  min-height: 140px;
-
-  margin-top: 10px;
-  padding: 12px;
-  border-radius: 17px;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  background-color: #fafafb;
-`;
-
-const AlarmInnerContainer = styled.div`
-  width: 100%;
-  height: 100%;
-
-  padding: 10px;
-  border-radius: 17px;
-
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 5px;
-
-  color: #202325;
-  text-align: center;
-
-  box-shadow:
-    0px 17.525px 21.907px 0px rgba(0, 0, 0, 0.05),
-    -0.73px 0.73px 0.73px -1.46px rgba(255, 255, 255, 0.35) inset;
 `;
