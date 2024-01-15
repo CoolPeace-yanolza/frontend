@@ -1,11 +1,12 @@
 import { useEffect, useState } from 'react';
-import { useLocation, NavLink } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import styled from '@emotion/styled';
 
-import CouponNav from './CouponNav';
 import toggle from '@assets/icons/ic-sidebar-toggle.svg';
 import coupon from '@assets/icons/ic-sidebar-coupon.svg';
-import { Opens, SidebarOpen, SidebarStyleProps } from '@/types/sidebar';
+import CouponNav from './CouponNav';
+import CustomNavLink from '../CustomNavLink';
+import { Opens, SidebarOpen, SidebarStyleProps } from '@/types/layout';
 import theme from '@styles/theme';
 
 const Coupon = ({ isSidebarOpen }: { isSidebarOpen: boolean }) => {
@@ -21,13 +22,13 @@ const Coupon = ({ isSidebarOpen }: { isSidebarOpen: boolean }) => {
   return (
     <Container
       to="/"
+      end
       $isSidebarOpen={isSidebarOpen}
       $isToggleOpen={isToggleOpen}
       $userPath={userPath}
       {...(isSidebarOpen && {
         onClick: e => e.preventDefault()
       })}
-      end
     >
       <Header
         $isSidebarOpen={isSidebarOpen}
@@ -59,7 +60,7 @@ const Coupon = ({ isSidebarOpen }: { isSidebarOpen: boolean }) => {
 
 export default Coupon;
 
-const Container = styled(NavLink)<SidebarStyleProps>`
+const Container = styled(CustomNavLink)<SidebarStyleProps>`
   width: 100%;
   height: ${props => {
     if (!props.$isSidebarOpen) {
@@ -87,7 +88,6 @@ const Container = styled(NavLink)<SidebarStyleProps>`
     }
   }};
 
-  // HACK: 조건 단순화 필요
   background-color: ${props => {
     if (props.$userPath === 'coupons') {
       return theme.colors.hover;
@@ -98,11 +98,9 @@ const Container = styled(NavLink)<SidebarStyleProps>`
     }
   }};
 
-  font-weight: ${theme.fontWeight.large};
-
+  font-weight: ${props => props.theme.fontWeight.large};
   overflow: hidden;
   cursor: ${props => (props.$isSidebarOpen ? 'default' : 'pointer')};
-
   transition: all 0.3s;
 
   &:hover,

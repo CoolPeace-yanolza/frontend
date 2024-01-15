@@ -2,7 +2,6 @@ import { NavLink } from 'react-router-dom';
 import styled from '@emotion/styled';
 
 import logo from '@assets/icons/ic-logo.svg';
-// HACK: 디자이너에게 유저 아이콘 다시 받을 예정
 import user from '@assets/icons/ic-header-user.svg';
 import Select from './Select';
 import theme from '@styles/theme';
@@ -21,10 +20,9 @@ const Header = () => {
       </LogoLink>
       <Buttons>
         <Select />
-
         <UserIcon
           src={user}
-          alt="사장님 비서ya"
+          alt="사용자 프로필"
         />
       </Buttons>
     </Container>

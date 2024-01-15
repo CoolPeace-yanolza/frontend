@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 
 import Coupon from './Coupon';
 import Settlements from './Settlements';
-import { SidebarOpen } from '@/types/sidebar';
+import { SidebarOpen } from '@/types/layout';
 
 const Navigation = ({ isSidebarOpen }: { isSidebarOpen: boolean }) => {
   return (

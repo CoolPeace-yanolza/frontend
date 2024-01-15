@@ -28,7 +28,7 @@ const Container = styled.div`
   position: relative;
 
   min-width: 100vw;
-  min-height: 100vh;
+  max-height: 100vh;
 
   display: flex;
 
@@ -37,6 +37,7 @@ const Container = styled.div`
 
 const Section = styled.section`
   width: 100%;
+  height: 100vh;
 
   margin-left: 100px;
   padding: 13px 22px;
@@ -62,4 +63,6 @@ const OutletLayout = styled.div<{ $pathname: string }>`
       return theme.colors.white;
     }
   }};
+
+  overflow-y: auto;
 `;

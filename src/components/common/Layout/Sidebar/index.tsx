@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 
 import Header from './Header';
 import Navigation from './Navigation';
-import { SidebarOpen } from '@/types/sidebar';
+import { SidebarOpen } from '@/types/layout';
 import theme from '@styles/theme';
 
 const Sidebar = () => {
