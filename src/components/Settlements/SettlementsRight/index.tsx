@@ -7,9 +7,11 @@ import settlementsLogo from '@assets/icons/settlements-logo.svg';
 const SettlementsRight = () => {
   return (
     <Container>
-        <SettlementsExpected />
-        <SettlementsBefore />
-        <Logo />
+        <InnerContainer>
+          <SettlementsExpected />
+          <SettlementsBefore />
+        </InnerContainer>
+          <Logo />
     </Container>
   )
 }
@@ -25,6 +27,13 @@ const Container = styled.div`
   background-color: #1A2849;
   border-top-right-radius: 1.25rem;
   border-bottom-right-radius: 1.25rem;
+`;
+
+const InnerContainer = styled.div`
+  height: 100%;
+
+  background-color: rgba(255, 255, 255, 0.1); 
+  border: 1px solid rgba(255, 255, 255, 0.1); 
 `;
 
 const Logo = styled.div`
