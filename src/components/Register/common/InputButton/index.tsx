@@ -3,7 +3,20 @@ import theme from '@styles/theme';
 
 import { InputButtonProps } from '@/types/register';
 
-const InputButton = ({ type, id, name, buttonName }: InputButtonProps) => {
+const InputButton = ({
+  type,
+  id,
+  name,
+  buttonName,
+  value,
+  onButtonClick
+}: InputButtonProps) => {
+  const handleToggle = () => {
+    if (value && onButtonClick) {
+      onButtonClick(value);
+    }
+  };
+
   return (
     <>
       <Input
@@ -11,7 +24,12 @@ const InputButton = ({ type, id, name, buttonName }: InputButtonProps) => {
         type={type}
         name={name}
       />
-      <Button htmlFor={id}>{buttonName}</Button>
+      <Button
+        htmlFor={id}
+        onClick={handleToggle}
+      >
+        {buttonName}
+      </Button>
     </>
   );
 };

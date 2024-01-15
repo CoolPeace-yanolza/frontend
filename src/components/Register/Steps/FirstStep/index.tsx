@@ -1,8 +1,11 @@
+import { useState } from 'react';
 import styled from '@emotion/styled';
 
 import { InputContainer, InputButton } from '@components/Register/common';
 
 const FirstStep = () => {
+  const [currentInput, setCurrentInput] = useState(0);
+
   return (
     <>
       <InputContainer title="쿠폰의 이름을 입력해주세요.">
@@ -37,12 +40,16 @@ const FirstStep = () => {
             id="price"
             name="discountType"
             buttonName="정액 할인"
+            value={1}
+            onButtonClick={setCurrentInput}
           />
           <InputButton
             type="radio"
             id="rate"
             name="discountType"
             buttonName="정률 할인"
+            value={2}
+            onButtonClick={setCurrentInput}
           />
         </ButtonWrapper>
       </InputContainer>

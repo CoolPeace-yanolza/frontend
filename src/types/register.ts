@@ -12,6 +12,8 @@ export type InputButtonProps = {
   id: string;
   name: string;
   buttonName: string;
+  value?: number;
+  onButtonClick?: React.Dispatch<React.SetStateAction<number>>;
 };
 
 // InputAccordion
