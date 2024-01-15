@@ -3,66 +3,79 @@ import styled from '@emotion/styled';
 import SyncIcon from '@assets/icons/sync-outline.svg';
 
 const SettlementsExpected = () => {
+  const currentDate = new Date();
+
+  const nextMonth = new Date(currentDate);
+  nextMonth.setMonth(currentDate.getMonth() + 1);
+
+  const formatDate = (date: Date) => {
+    const year = date.getFullYear();
+    const month = date.getMonth() + 1;
+    const day = date.getDate();
+    return `${year}.${month < 10 ? '0' : ''}${month}.${day < 10 ? '0' : ''}${day}`;
+  };
+
+  const firstDayOfMonth = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1);
+
   return (
     <Container>
-    <InnerContainer>
-      <ExpectedContainer>
-      <ExpectedText>
-        정산 예정 금액
-      </ExpectedText>
-      <CommonContainer>
-      <Icon
-        src={SyncIcon}
-        alt="업데이트" />
-      <UpdatedText>
-        매월 1일 00시 00분 업데이트
-      </UpdatedText>
-      </CommonContainer>
-      </ExpectedContainer>
-      <UpdatedContainer>
-        <CouponContainer>
-          <CouponText>
-            쿠폰 적용 기간
-          </CouponText>
-          <CouponDay>
-            2024.04.01 ~ 2024.04.30
-          </CouponDay>
-        </CouponContainer>
-      <UpdatedInnerContainer>
-        <UpdatedWrapper>
-          <WrapperTop>
-            <DueDateText>
-              정산예정일
-            </DueDateText>
-            <DueDateDay>
-              2024년 5월 10일
-            </DueDateDay>
-          </WrapperTop>
-          <WrapperBottom>
-            <DueDateText>
-              4월 1일부터 현재까지 금액
-            </DueDateText>
-            <CommonContainer>
-              <Icon
-                src={SyncIcon}
-                alt="업데이트" />
-              <UpdatedText>
-                매일 00시 00분에 업데이트
+      <InnerContainer>
+        <ExpectedContainer>
+          <ExpectedText>
+            {`${nextMonth.getMonth() + 1}월 정산 예정 금액`}
+          </ExpectedText>
+          <CommonContainer>
+            <Icon src={SyncIcon} alt="업데이트" />
+            <UpdatedText>
+              매월 1일 00시 00분 업데이트
             </UpdatedText>
-            </CommonContainer>
-            <DueDateDay>
-              50000원
-            </DueDateDay>
-          </WrapperBottom>
-        </UpdatedWrapper>
-      </UpdatedInnerContainer>
-      </UpdatedContainer>
-    </InnerContainer>
-  </Container>
-  )
-}
+          </CommonContainer>
+        </ExpectedContainer>
+        <UpdatedContainer>
+          <CouponContainer>
+            <CouponText>
+              쿠폰 적용 기간
+            </CouponText>
+            <CouponDay>
+            {`${formatDate(firstDayOfMonth)} ~ ${formatDate(new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0))}`}
+            </CouponDay>
+          </CouponContainer>
+          <UpdatedInnerContainer>
+            <UpdatedWrapper>
+              <WrapperTop>
+                <DueDateText>
+                  정산예정일
+                </DueDateText>
+                <DueDateDay>
+                {`${currentDate.getFullYear()}년 ${currentDate.getMonth() + 2}월 10일`}
+                </DueDateDay>
+              </WrapperTop>
+              <WrapperBottom>
+                <DueDateText>
+                  {`${currentDate.getMonth() + 1}월 1일부터 현재까지 금액`}
+                </DueDateText>
+                <CommonContainer>
+                  <Icon src={SyncIcon} alt="업데이트" />
+                  <UpdatedText>
+                    매일 00시 00분에 업데이트
+                  </UpdatedText>
+                </CommonContainer>
+                <DueDateDay>
+                  50000원
+                </DueDateDay>
+              </WrapperBottom>
+            </UpdatedWrapper>
+          </UpdatedInnerContainer>
+        </UpdatedContainer>
+      </InnerContainer>
+    </Container>
+  );
+};
 
 export default SettlementsExpected;
+
+// 나머지 스타일 컴포넌트는 그대로 유지
+
 
 const Container = styled.div`
   margin: 15px;
@@ -95,6 +108,7 @@ const CommonContainer = styled.div`
 
 const UpdatedText = styled.div`
   margin-top: 1px;
+  
   font-size: 11px;
   font-weight: normal;
   color: #CDCFD0;

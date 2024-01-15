@@ -1,47 +1,81 @@
 import styled from '@emotion/styled';
 
 import SyncIcon from '@assets/icons/sync-outline.svg';
+import receiptIcon from '@assets/icons/receipt-sharp.svg'; 
 
 const SettlementsBefore = () => {
+
+  const currentDate = new Date();
+  const lastMonth = new Date(currentDate);
+  lastMonth.setMonth(currentDate.getMonth() - 1);
+  lastMonth.setDate(1);
+
+  const formatDate = (date: Date) => {
+    const year = date.getFullYear();
+    const month = date.getMonth() + 1;
+    const day = date.getDate();
+    return `${year}.${month < 10 ? '0' : ''}${month}.${day < 10 ? '0' : ''}${day}`;
+  };
+
+  const isBeforeDueDate = currentDate.getDate() < 10;
+
+
   return (
     <Container>
     <InnerContainer>
       <ExpectedContainer>
       <ExpectedText>
-        정산 금액
+      {`${currentDate.getMonth() + 1}월 정산 금액`}
       </ExpectedText>
       <CommonContainer>
       <Icon
         src={SyncIcon}
         alt="업데이트" />
       <UpdatedText>
-        매월 1일 00시 00분 업데이트
+        {isBeforeDueDate
+          ? `매월 1일 00시 00분 업데이트`
+          : `매월 11일 00시 00분 업데이트`
+        }
       </UpdatedText>
       </CommonContainer>
       </ExpectedContainer>
       <UpdatedContainer>
         <MoneyContainer>
           <MoneyText>
-            정산 예정 금액
+            쿠폰 적용 금액
           </MoneyText>
           <MoneyDay>
-            2024.04.01 ~ 2024.04.30
+          {`${lastMonth.getFullYear()}.${lastMonth.getMonth() < 9 ? '0' : ''}${lastMonth.getMonth() + 1}.01 ~ ${formatDate(new Date(currentDate.getFullYear(), currentDate.getMonth(), 0))}`}
           </MoneyDay>
         </MoneyContainer>
       <UpdatedInnerContainer>
         <UpdatedWrapper>
           <WrapperTop>
             <DueDateText>
-              정산 예정금액
+              {isBeforeDueDate
+                ? `정산 예정 금액`
+                : `정산 완료 금액`
+              }
             </DueDateText>
-            <DueDateDay>
-              2024년 5월 10일
-            </DueDateDay>
+            <DueDateInnerContainer>
+              <DueDateDay>
+                {isBeforeDueDate
+                  ? `${currentDate.getMonth() + 1}월 10일에 정산할 금액`
+                  : `${currentDate.getMonth() + 1}월 10일 정산 완료 금액`
+                }
+              </DueDateDay>
+              <DueDateMoney>
+                50,000원
+              </DueDateMoney>
+            </DueDateInnerContainer>
           </WrapperTop>
         </UpdatedWrapper>
       </UpdatedInnerContainer>
       </UpdatedContainer>
     </InnerContainer>
+    <ReceiptIcon
+     src={receiptIcon}
+     alt="영수증" />
   </Container>
   )
 }
@@ -52,6 +86,7 @@ const Container = styled.div`
   margin: 15px;
 
   display: flex;
+  flex-direction: column;
 `;
 
 const InnerContainer = styled.div`
@@ -79,6 +114,7 @@ const CommonContainer = styled.div`
 
 const UpdatedText = styled.div`
   margin-top: 1px;
+
   font-size: 11px;
   font-weight: normal;
   color: #CDCFD0;
@@ -117,19 +153,33 @@ const DueDateText = styled.div`
   color: black;
 `;
 
-const DueDateDay = styled.div`
-  margin-left: auto;
+const DueDateInnerContainer = styled.div`
   margin-top: 10px;
+
+  display: flex;
+  flex-direction: row;
+
+  justify-content: space-between;
+  align-items: center;
+`;
+
+const DueDateDay = styled.div`
+  font-size: 12px;
+  font-weight: regular;
+  color: black;
+`;
+
+const DueDateMoney = styled.div`
+  margin-left: auto;
 
   align-items: flex-end
 
   font-size: 16px;
   font-weight: bold;
-  color: #3182F6;
 `;
 
 const MoneyContainer = styled.div`
-  margin: 15px;
+  margin: 30px 15px;
 `;
 
 const MoneyText = styled.div`
@@ -147,4 +197,9 @@ const MoneyDay = styled.div`
 
 const Icon = styled.img`
   margin-right: 3px;
+`;
+
+const ReceiptIcon = styled.img`
+  margin-top: 40px;
+  margin-left: auto;
 `;

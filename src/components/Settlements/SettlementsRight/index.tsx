@@ -10,7 +10,9 @@ const SettlementsRight = () => {
         <InnerContainer>
           <SettlementsExpected />
           <hr />
-          <SettlementsBefore />
+          <StyledSettlementsBefore>
+            <SettlementsBefore />
+          </StyledSettlementsBefore>
         </InnerContainer>
           <Logo />
     </Container>
@@ -32,14 +34,23 @@ const Container = styled.div`
 
 const InnerContainer = styled.div`
   height: 100%;
+  
+  position: relative;
+  z-index: 999;
 
   background-color: rgba(255, 255, 255, 0.1); 
   border: 1px solid rgba(255, 255, 255, 0.1); 
 
   hr {
     margin: 0 15px;
+
     border-top: 1px solid rgba(217, 217, 217, 0.2); 
   }
+`;
+
+const StyledSettlementsBefore =  styled.div`
+  position: relative;
+  z-index: 1;
 `;
 
 const Logo = styled.div`
