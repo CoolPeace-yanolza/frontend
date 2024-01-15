@@ -2,7 +2,6 @@ import styled from '@emotion/styled';
 
 import SyncIcon from '@assets/icons/sync-outline.svg';
 
-
 const SettlementsExpected = () => {
   return (
     <Container>
@@ -111,7 +110,7 @@ const UpdatedContainer = styled.div`
 `;
 
 const UpdatedInnerContainer = styled.div`
-  margin-top: 40px;
+  margin-top: 20px;
 
   background-color: white;
 
