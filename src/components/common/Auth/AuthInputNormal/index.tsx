@@ -1,22 +1,18 @@
 import { ChangeEvent, useState } from 'react';
 import styled from '@emotion/styled';
 
-import { InputPassword } from '@/types/common';
-import eyeOn from '@assets/icons/ic-login-eye-on.svg';
-import eyeOff from '@assets/icons/ic-login-eye-off.svg';
+import { InputNormal } from '@/types/common';
 import closeIcon from '@assets/icons/ic-login-close.svg';
 import checkInvalid from '@assets/icons/ic-signup-check-invalid.svg';
 import checkValid from '@assets/icons/ic-signup-check-valid.svg';
 
-const InputPassword = ({
+const AuthInputNormal = ({
   type,
   id,
   placeholder,
   usedFor,
-  showPW,
-  setShowPW,
   isInvalid
-}: InputPassword) => {
+}: InputNormal) => {
   const [text, setText] = useState<string>('');
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -28,10 +24,7 @@ const InputPassword = ({
     setText('');
   };
 
-  const handleShowPW = (event: React.MouseEvent<HTMLButtonElement>) => {
-    event.preventDefault();
-    setShowPW(prev => !prev);
-  };
+  // TODO : react-hook-form 적용 후 유효성 검사 로직 예정
 
   return (
     <Container>
@@ -43,21 +36,6 @@ const InputPassword = ({
         onChange={handleChange}
       />
       <Buttons>
-        {text.length > 0 && (
-          <Button onClick={handleShowPW}>
-            {showPW ? (
-              <Icon
-                src={eyeOn}
-                alt="비밀번호 보기 버튼"
-              />
-            ) : (
-              <Icon
-                src={eyeOff}
-                alt="비밀번호 숨김 버튼"
-              />
-            )}
-          </Button>
-        )}
         {usedFor === 'login' ? (
           text.length > 0 && (
             <Button onClick={handleReset}>
@@ -77,7 +55,7 @@ const InputPassword = ({
   );
 };
 
-export default InputPassword;
+export default AuthInputNormal;
 
 const Container = styled.div`
   position: relative;
@@ -90,12 +68,12 @@ const Container = styled.div`
 `;
 
 const Input = styled.input`
-  width: 100%;
-  height: 100%;
+  width: 524px;
+  height: 79px;
 
   border-radius: 16px;
   border: 2px solid #757676;
-  padding: 23px 87px 23px 20px;
+  padding: 23px 20px;
 
   display: flex;
   align-items: center;
@@ -122,13 +100,13 @@ const Buttons = styled.div`
   position: absolute;
   right: 22px;
 
-  display: flex;
-  gap: 17px;
+  width: 24px;
+  height: 24px;
 `;
 
 const Button = styled.button`
-  width: 24px;
-  height: 24px;
+  width: 100%;
+  height: 100%;
 
   padding: 0;
   border: none;

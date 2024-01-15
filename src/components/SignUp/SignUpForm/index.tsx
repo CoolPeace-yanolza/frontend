@@ -2,8 +2,11 @@ import { useState } from 'react';
 import styled from '@emotion/styled';
 
 import { SignUpInputValidation } from '@/types/signUp';
-import { InputNormal, InputPassword } from '@components/common/Auth/Inputs';
-import { AuthButton } from '@components/common/Auth';
+import {
+  AuthButton,
+  AuthInputNormal,
+  AuthInputPassword
+} from '@components/common/Auth';
 
 const SignUpForm = () => {
   const [showPW, setShowPW] = useState(false);
@@ -17,7 +20,7 @@ const SignUpForm = () => {
     <Form>
       <InputLabelWrapper>
         <Label htmlFor="user_name">이름</Label>
-        <InputNormal
+        <AuthInputNormal
           type="text"
           id="user_name"
           placeholder="이름 입력"
@@ -55,7 +58,7 @@ const SignUpForm = () => {
       </InputLabelWrapper>
       <InputLabelWrapper>
         <Label htmlFor="user_password">비밀번호</Label>
-        <InputPassword
+        <AuthInputPassword
           type={showPW ? 'text' : 'password'}
           id="user_password"
           placeholder="8-20자, 영문/숫자/특수문자 조합"
@@ -72,7 +75,7 @@ const SignUpForm = () => {
       </InputLabelWrapper>
       <InputLabelWrapper>
         <Label htmlFor="user_password_confirm">비밀번호 확인</Label>
-        <InputPassword
+        <AuthInputPassword
           type={showPWConfirm ? 'text' : 'password'}
           id="user_password_confirm"
           placeholder="다시 한번 입력해주세요."

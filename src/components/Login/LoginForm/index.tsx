@@ -3,8 +3,11 @@ import { useNavigate } from 'react-router-dom';
 import styled from '@emotion/styled';
 
 import { InputValidation } from '@/types/login';
-import { InputNormal, InputPassword } from '@components/common/Auth/Inputs';
-import { AuthButton } from '@components/common/Auth';
+import {
+  AuthButton,
+  AuthInputNormal,
+  AuthInputPassword
+} from '@components/common/Auth';
 
 const LoginForm = () => {
   const navigate = useNavigate();
@@ -19,14 +22,14 @@ const LoginForm = () => {
   return (
     <form>
       <Inputs $isInvalid={isInvalid}>
-        <InputNormal
+        <AuthInputNormal
           type="email"
           id="user_email"
           placeholder="이메일 입력"
           usedFor="login"
           isInvalid={isInvalid}
         />
-        <InputPassword
+        <AuthInputPassword
           type={showPW ? 'text' : 'password'}
           id="user_password"
           placeholder="8-20자, 영문/숫자/특수문자 조합"
