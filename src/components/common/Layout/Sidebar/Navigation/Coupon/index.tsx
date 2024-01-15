@@ -5,7 +5,7 @@ import styled from '@emotion/styled';
 import toggle from '@assets/icons/ic-sidebar-toggle.svg';
 import coupon from '@assets/icons/ic-sidebar-coupon.svg';
 import CouponNav from './CouponNav';
-import CostumeNavLink from '../CostumeNavLink';
+import CustomNavLink from '../CustomNavLink';
 import { Opens, SidebarOpen, SidebarStyleProps } from '@/types/layout';
 
 const Coupon = ({ isSidebarOpen }: { isSidebarOpen: boolean }) => {
@@ -59,7 +59,7 @@ const Coupon = ({ isSidebarOpen }: { isSidebarOpen: boolean }) => {
 
 export default Coupon;
 
-const Container = styled(CostumeNavLink)<SidebarStyleProps>`
+const Container = styled(CustomNavLink)<SidebarStyleProps>`
   width: 100%;
   height: ${props => {
     if (!props.$issidebaropen) {

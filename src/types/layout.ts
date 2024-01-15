@@ -15,7 +15,7 @@ export type SidebarOpen = Pick<SidebarStyleProps, '$issidebaropen'>;
 export type ToggleOpen = Pick<SidebarStyleProps, '$istoggleopen'>;
 export type Opens = Omit<SidebarStyleProps, '$userpath'>;
 
-export type CostumeNavLinkProps = {
+export type CustomNavLinkProps = {
   children: ReactNode;
   to: string;
   $issidebaropen?: boolean;

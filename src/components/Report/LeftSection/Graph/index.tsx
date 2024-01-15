@@ -10,8 +10,8 @@ const Graph = ({ graphData }: { graphData: ReportGraphProps }) => {
       <Header>
         <Title>누적 리포트</Title>
         <Notice>
-          프로모션 적용 이후 예약 현황을 알려드립니다.{' '}
-          <span>(23.12.29 업데이트)</span>
+          프로모션 적용 이후 예약 현황을 알려드립니다.
+          <Update>(23.12.29 업데이트)</Update>
         </Notice>
       </Header>
       <InnerContainer>
@@ -59,6 +59,10 @@ const Notice = styled.p`
     font-size: 10.5px;
     font-weight: 500;
   }
+`;
+
+const Update = styled.span`
+  margin-left: 10px;
 `;
 
 const InnerContainer = styled.div`

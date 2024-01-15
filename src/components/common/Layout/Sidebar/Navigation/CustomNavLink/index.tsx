@@ -1,15 +1,15 @@
 import { NavLink as ReactRouterDomLink, NavLinkProps } from 'react-router-dom';
 
-import { CostumeNavLinkProps } from '@/types/layout';
+import { CustomNavLinkProps } from '@/types/layout';
 
-const CostumeNavLink = ({
+const CustomNavLink = ({
   children,
   to,
   $issidebaropen,
   $istoggleopen,
   $userpath,
   ...props
-}: CostumeNavLinkProps & NavLinkProps) => {
+}: CustomNavLinkProps & NavLinkProps) => {
   return (
     <ReactRouterDomLink
       to={to}
@@ -21,4 +21,4 @@ const CostumeNavLink = ({
   );
 };
 
-export default CostumeNavLink;
+export default CustomNavLink;

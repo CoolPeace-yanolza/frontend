@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 
 import settlement from '@assets/icons/ic-sidebar-settlement.svg';
-import CostumeNavLink from '../CostumeNavLink';
+import CustomNavLink from '../CustomNavLink';
 import { SidebarOpen } from '@/types/layout';
 
 const Settlements = ({ isSidebarOpen }: { isSidebarOpen: boolean }) => {
@@ -25,7 +25,7 @@ const Settlements = ({ isSidebarOpen }: { isSidebarOpen: boolean }) => {
 
 export default Settlements;
 
-const Container = styled(CostumeNavLink)<SidebarOpen>`
+const Container = styled(CustomNavLink)<SidebarOpen>`
   width: 100%;
   height: ${props => (props.$issidebaropen ? '60px' : '80px')};
 
