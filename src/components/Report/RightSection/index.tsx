@@ -21,6 +21,5 @@ const Section = styled.section`
   display: flex;
   flex-direction: column;
   align-self: flex-start;
-
   gap: 30px;
 `;
