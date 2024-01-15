@@ -1,14 +1,20 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import styled from '@emotion/styled';
 
 import { ButtonText, InputValidation } from '@/types/login';
 import { InputNormal, InputPassword } from '@components/common/Inputs';
 
 const LoginForm = () => {
+  const navigate = useNavigate();
   // HACK: 유효성 검사 기능 구현 후 유효성 메세지 노출 여부 결정
   const isInvalid = true;
   const [showPW, setShowPW] = useState(false);
 
+  const movetoSignUp = (event: React.MouseEvent<HTMLButtonElement>) => {
+    event.preventDefault();
+    navigate('/signup');
+  };
   return (
     <form>
       <Inputs $isInvalid={isInvalid}>
@@ -36,7 +42,12 @@ const LoginForm = () => {
       )}
       <Buttons $isInvalid={isInvalid}>
         <Button $text="login">로그인</Button>
-        <Button $text="signUp">회원가입</Button>
+        <Button
+          $text="signUp"
+          onClick={movetoSignUp}
+        >
+          회원가입
+        </Button>
       </Buttons>
     </form>
   );
