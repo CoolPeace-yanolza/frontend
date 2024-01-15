@@ -1,6 +1,8 @@
 import styled from '@emotion/styled';
 
-const AuthButton = ({ size, variant, text, buttonFunc }: any) => {
+import { AuthButton } from '@/types/auth';
+
+const AuthButton = ({ size, variant, text, buttonFunc }: AuthButton) => {
   return (
     <SubmitButton
       $size={size}

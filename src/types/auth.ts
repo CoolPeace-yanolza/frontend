@@ -1,4 +1,4 @@
-export type InputNormal = {
+export type AuthInputNormal = {
   type: string;
   id: string;
   placeholder: string;
@@ -6,7 +6,7 @@ export type InputNormal = {
   isInvalid: boolean;
 };
 
-export type InputPassword = {
+export type AuthInputPassword = {
   type: string;
   id: string;
   placeholder: string;
@@ -14,4 +14,22 @@ export type InputPassword = {
   showPW: boolean;
   setShowPW: React.Dispatch<React.SetStateAction<boolean>>;
   isInvalid: boolean;
+};
+
+export type LoginAPIButton = () => void;
+export type SignUpAPIButton = () => void;
+export type EmailValidCheckAPIButton = () => void;
+export type MoveToSignUpButton = (
+  event: React.MouseEvent<HTMLButtonElement>
+) => void;
+
+export type AuthButton = {
+  size: string;
+  variant: string;
+  text: string;
+  buttonFunc:
+    | LoginAPIButton
+    | SignUpAPIButton
+    | EmailValidCheckAPIButton
+    | MoveToSignUpButton;
 };

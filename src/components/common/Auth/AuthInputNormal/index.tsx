@@ -1,7 +1,7 @@
 import { ChangeEvent, useState } from 'react';
 import styled from '@emotion/styled';
 
-import { InputNormal } from '@/types/auth';
+import { AuthInputNormal } from '@/types/auth';
 import closeIcon from '@assets/icons/ic-login-close.svg';
 import checkInvalid from '@assets/icons/ic-signup-check-invalid.svg';
 import checkValid from '@assets/icons/ic-signup-check-valid.svg';
@@ -12,7 +12,7 @@ const AuthInputNormal = ({
   placeholder,
   usedFor,
   isInvalid
-}: InputNormal) => {
+}: AuthInputNormal) => {
   const [text, setText] = useState<string>('');
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
