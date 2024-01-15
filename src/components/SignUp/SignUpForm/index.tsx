@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 
 import { SignUpInputValidation } from '@/types/signUp';
 import { InputNormal, InputPassword } from '@components/common/Inputs';
-import Button from '@components/common/Auth/Button';
+import { AuthButton } from '@components/common/Auth';
 
 const SignUpForm = () => {
   const [showPW, setShowPW] = useState(false);
@@ -38,7 +38,7 @@ const SignUpForm = () => {
             id="user_email"
             placeholder="이메일 입력"
           />
-          <Button
+          <AuthButton
             size="small"
             variant="disabled"
             text="회원가입"
@@ -85,7 +85,7 @@ const SignUpForm = () => {
           </ValidationText>
         )}
       </InputLabelWrapper>
-      <Button
+      <AuthButton
         size="large"
         variant="navy"
         text="회원가입"

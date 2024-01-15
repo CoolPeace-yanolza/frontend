@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 
-const Button = ({ size, variant, text, buttonFunc }: any) => {
+const AuthButton = ({ size, variant, text, buttonFunc }: any) => {
   return (
     <SubmitButton
       $size={size}
@@ -12,7 +12,7 @@ const Button = ({ size, variant, text, buttonFunc }: any) => {
   );
 };
 
-export default Button;
+export default AuthButton;
 
 const SubmitButton = styled.button<{ $size: string; $variant: string }>`
   width: ${props => (props.$size === 'small' ? '152px' : '524px')};
