@@ -65,6 +65,17 @@ export type CheckIconStyleProps = {
   $src: string;
 };
 
+// InputWrapper
+export type InputWrapperProps = {
+  whichInput: number;
+  currentInput: number;
+  children: ReactNode;
+};
+
+export type WrapperStyleProps = {
+  $isSelected: boolean;
+};
+
 // Stepper
 export type StepperProps = {
   steps: {
