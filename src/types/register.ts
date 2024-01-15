@@ -38,7 +38,7 @@ export type InputFieldStyleProps = {
   $text: string;
 };
 
-export type ContainerStyleProps = {
+export type InputFieldContainerStyleProps = {
   $isSelected: boolean;
 };
 

@@ -4,7 +4,7 @@ import theme from '@styles/theme';
 import {
   InputFieldProps,
   InputFieldStyleProps,
-  ContainerStyleProps
+  InputFieldContainerStyleProps
 } from '@/types/register';
 
 const InputField = ({
@@ -33,7 +33,7 @@ const InputField = ({
 
 export default InputField;
 
-const Container = styled.div<ContainerStyleProps>`
+const Container = styled.div<InputFieldContainerStyleProps>`
   position: relative;
 
   display: ${props => (props.$isSelected ? 'block' : 'none')};
