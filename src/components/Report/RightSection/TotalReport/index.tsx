@@ -56,12 +56,16 @@ export default TotalReport;
 
 const Container = styled.div`
   width: 100%;
+  height: 100%;
 
   padding: 45px 12px;
+  border-radius: 20px;
 
   display: flex;
   flex-direction: column;
   gap: 25px;
+
+  background-color: white;
 `;
 
 const Title = styled.span`

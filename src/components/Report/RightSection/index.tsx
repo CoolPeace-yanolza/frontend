@@ -1,26 +1,26 @@
 import styled from '@emotion/styled';
 
 import TotalReport from './TotalReport';
+import Catchphrase from './Catchphrase';
 
 const RightSection = () => {
   return (
-    <Container>
+    <Section>
       <TotalReport />
-    </Container>
+      <Catchphrase />
+    </Section>
   );
 };
 
 export default RightSection;
 
-const Container = styled.section`
+const Section = styled.section`
   width: 250px;
   max-height: fit-content;
-
-  border-radius: 20px;
 
   display: flex;
   flex-direction: column;
   align-self: flex-start;
 
-  background-color: white;
+  gap: 30px;
 `;
