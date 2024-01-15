@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 
 import { SignUpInputValidation } from '@/types/signUp';
 import { InputNormal, InputPassword } from '@components/common/Inputs';
-import Button from '@components/common/Button';
+import Button from '@components/common/Auth/Button';
 
 const SignUpForm = () => {
   const [showPW, setShowPW] = useState(false);
