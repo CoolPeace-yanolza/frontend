@@ -58,6 +58,9 @@ const Container = styled.div`
   width: 100%;
 
   border-radius: 16px;
+
+  display: flex;
+  flex-direction: column;
 `;
 
 const Content = styled.div`
@@ -95,7 +98,7 @@ const InnerContainer = styled.div`
   position: relative;
 
   width: 67vw;
-  height: calc(65vw / 2);
+  height: calc(67vw / 2);
 
   border-radius: 16px;
   padding: 30px;
