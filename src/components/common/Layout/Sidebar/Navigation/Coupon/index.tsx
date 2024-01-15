@@ -98,11 +98,8 @@ const Container = styled(CustomNavLink)<SidebarStyleProps>`
   }};
 
   font-weight: ${props => props.theme.fontWeight.large};
-
   overflow: hidden;
-
-  ${props => (props.$issidebaropen ? 'cursor: default;' : 'cursor: pointer;')};
-
+  cursor: ${props => (props.$issidebaropen ? 'default' : 'pointer')};
   transition: all 0.3s;
 
   &:hover,
