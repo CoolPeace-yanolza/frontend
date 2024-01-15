@@ -19,7 +19,8 @@ const InputNormal = ({
     setText(event.target.value);
   };
 
-  const handleReset = () => {
+  const handleReset = (event: React.MouseEvent<HTMLButtonElement>) => {
+    event.preventDefault();
     setText('');
   };
 

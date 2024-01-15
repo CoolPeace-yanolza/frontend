@@ -23,11 +23,12 @@ const InputPassword = ({
     setText(event.target.value);
   };
 
-  const handleReset = () => {
+  const handleReset = (event: React.MouseEvent<HTMLButtonElement>) => {
+    event.preventDefault();
     setText('');
   };
 
-  const handleShowPW = (event: any) => {
+  const handleShowPW = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
     setShowPW(prev => !prev);
   };
