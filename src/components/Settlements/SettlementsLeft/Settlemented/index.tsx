@@ -1,10 +1,17 @@
 import styled from '@emotion/styled';
+import 'semantic-ui-css/semantic.min.css';
+import { Dropdown, DropdownProps } from 'semantic-ui-react';
 
 import SettlementsTable from './SettlementsTable';
 import SettlementsPagination from './SettlementsPagination';
-import { SetStateAction, useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useRecoilState } from 'recoil';
+import { settlementDataState } from '@recoil/atoms/settlemented';
 
 const Settlemented = () => {
+
+  const [sortedData, setSortedData] = useRecoilState(settlementDataState);
+  const [sortOrder, setSortOrder] = useState('couponDateDesc');
 
   const fakeData = [
     { '쿠폰 적용일': "2023.11.21", '쿠폰번호': 30, '관리 쿠폰명': "가을 선착순 쿠폰", '사용 건수': '100회', '쿠폰 할인 금액': '10원', '쿠폰 취소 금액':'0원', '정산 금액': '1000원', '정산 완료일': '2023.11.10'},
@@ -40,26 +47,67 @@ const Settlemented = () => {
     { '쿠폰 적용일': "2023.10.21", '쿠폰번호': 7, '관리 쿠폰명': "가을 선착순 쿠폰", '사용 건수': '46회', '쿠폰 할인 금액': '50원', '쿠폰 취소 금액':'0원', '정산 금액': '7000원', '정산 완료일': '2023.11.02'},
   ];
 
-   const sortedData = [...fakeData].sort((a, b) => new Date(a['쿠폰 적용일']).getTime() - new Date(b['쿠폰 적용일']).getTime());
+  const sortOptions = [
+    { key: 'amountDesc', text: '정산금액 많은 순', value: 'amountDesc' },
+    { key: 'dateDesc', text: '정산 완료일 최근 순', value: 'dateDesc' },
+    { key: 'couponDateDesc', text: '쿠폰 사용일 최근 순', value: 'couponDateDesc' },
+    { key: 'usageCountDesc', text: '사용건 많은 순', value: 'usageCountDesc' },
+  ];
 
-   const dataWithNumber = sortedData.map((data, index) => ({ ...data, NO: index + 1 }));
+  const handleSortChange = (_e: React.SyntheticEvent<HTMLElement>, data: DropdownProps) => {
+    setSortOrder(data.value as string);
+  };
 
-   const reversedData = [...dataWithNumber].reverse();
+  const defaultOption = sortOptions.find(option => option.value === 'couponDateDesc');
 
-   const itemsPerPage = 10; 
+  const sortedAndNumberedData = fakeData.map((data, index) => ({
+    ...data,
+    NO: index + 1,
+  })).sort((a, b) => new Date(a['쿠폰 적용일']).getTime() - new Date(b['쿠폰 적용일']).getTime());
+
+  const reversedData = [...sortedAndNumberedData].reverse();
+
+  const itemsPerPage = 10;
   const totalItems = reversedData.length;
   const totalPages = Math.ceil(totalItems / itemsPerPage);
 
   const [currentPage, setCurrentPage] = useState<number>(1);
 
-  const handlePageChange = (page: SetStateAction<number>) => {
+  const calculatePageStartNumber = (currentPage: number) => {
+    return totalItems - (currentPage - 1) * itemsPerPage;
+  };
+
+  const handlePageChange = (page: number) => {
     setCurrentPage(page);
   };
 
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
-  const currentData = reversedData.slice(startIndex, endIndex);
+  const currentData = sortedData.slice(startIndex, endIndex);
 
+  useEffect(() => {
+    const sortData = (sortType: string) => {
+      return [...sortedAndNumberedData].sort((a, b) => {
+        switch (sortType) {
+          case 'amountDesc':
+            return parseFloat(b['정산 금액']) - parseFloat(a['정산 금액']);
+          case 'dateDesc':
+            return new Date(b['정산 완료일']).getTime() - new Date(a['정산 완료일']).getTime();
+          case 'couponDateDesc':
+            return new Date(b['쿠폰 적용일']).getTime() - new Date(a['쿠폰 적용일']).getTime();
+          case 'usageCountDesc':
+            return parseInt(b['사용 건수']) - parseInt(a['사용 건수']);
+          default:
+            return 0;
+        }
+      });
+    };
+
+    const sorted = sortData(sortOrder);
+    console.log('Sorted Data:', sorted);
+    setSortedData(sorted);
+    console.log(setSortedData);
+  }, [sortOrder, setSortedData]);
 
   return (
     <Container>
@@ -68,24 +116,29 @@ const Settlemented = () => {
           전체 내역 {sortedData.length}개
         </TotalData>
         <OptionContainer>
-          <SortOption>
-            토글버튼
-          </SortOption>
+        <StyledDropdown
+            fluid
+            selection
+            defaultValue={defaultOption?.value}
+            options={sortOptions}
+            onChange={handleSortChange}
+        />
           <ExcelDownload>
             <button>엑셀 다운로드</button>
           </ExcelDownload>
         </OptionContainer>
       </SettlementedHeader>
       <DataLow>
-        <SettlementsTable data={currentData} />
+        <SettlementsTable
+          data={currentData}
+          pageStartNumber={calculatePageStartNumber(currentPage)}
+        />
         <SettlementsPagination
             currentPage={currentPage}
             totalPages={totalPages}
             onPageChange={handlePageChange}
             />
       </DataLow>
-      <Data>
-      </Data>
     </Container>
   );
 }
@@ -114,25 +167,45 @@ const TotalData = styled.div`
 `;
 
 const OptionContainer = styled.div`
-  margin-right: 26px;
+//   margin-right: 26px;
 
   display: flex;
   align-items: center;
 `;
 
-const SortOption = styled.div`
-  margin-right: 20px;
+const StyledDropdown = styled(Dropdown)`
+  &.ui.dropdown {
+    min-width: 140px;
+    font-color: white !important;
+    background-color: #1A2849;
+    border: 1.5px solid white;
+    border-radius: 14px;
 
-  font-size: 14px;
-  font-weight: bold;
+    .text {
+      color: white;
+      font-size: 11px;
+    }
+    
+    .menu {
+      font-size: 11px;
+      background-color: #1A2849;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 5px;
+      z-index: 1000;
 
-  color: white;
-
-  white-space: nowrap;
+      .item {
+        white-space: nowrap;
+      }
+    }
+  }
 `;
+
+
 
 const ExcelDownload = styled.div`
   width: 100%;
+
+  margin-left: 10px;
 
   white-space: nowrap;
 
@@ -148,8 +221,5 @@ const ExcelDownload = styled.div`
 `;
 
 const DataLow = styled.div`
-  width: 100%;
-`;
-const Data = styled.div`
   width: 100%;
 `;

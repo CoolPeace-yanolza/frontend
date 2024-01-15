@@ -3,7 +3,8 @@ import styled from '@emotion/styled';
 import { SettlementItem } from '../../../../../types/settlements';
 import settlementsFrame from '@assets/icons/settlements-data-frame.svg'; 
 
-const SettlementsTable = ({ data }: { data: SettlementItem[] }) => {
+const SettlementsTable = ({ data, pageStartNumber }: { data: SettlementItem[], pageStartNumber: number }) => {
+  
   const keys: (keyof SettlementItem)[] = [
     'NO',
     '쿠폰번호',
@@ -45,7 +46,9 @@ const SettlementsTable = ({ data }: { data: SettlementItem[] }) => {
           {data.map((row, index) => (
             <Row key={index} isLast={false}>
               {keys.map((key) => (
-                <DataElement key={key}>{row[key]}</DataElement>
+                 <DataElement key={key}>
+                  {key === 'NO' ? pageStartNumber - index : row[key]}
+               </DataElement>
               ))}
             </Row>
           ))}
