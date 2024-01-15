@@ -16,6 +16,7 @@ export type AuthInputPassword = {
   isInvalid: boolean;
 };
 
+// TODO : API 연결 후 타입 변경 예정
 export type LoginAPIButton = () => void;
 export type SignUpAPIButton = () => void;
 export type EmailValidCheckAPIButton = () => void;
