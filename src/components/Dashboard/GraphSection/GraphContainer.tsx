@@ -140,6 +140,7 @@ export default GraphContainer;
 
 const Container = styled.div`
   width: 100%;
+  min-width: 520px;
   height: 100%;
 
   display: flex;

@@ -35,6 +35,7 @@ const Container = styled.div`
 `;
 
 const LeftSection = styled.div`
+  min-width: 480px;
   height: 100%;
 
   flex: 1;
