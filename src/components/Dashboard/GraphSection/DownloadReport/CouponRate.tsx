@@ -1,6 +1,5 @@
 import styled from '@emotion/styled';
 
-import theme from '@styles/theme';
 import reportIcon from '/images/ic-dashboard-couponRate.png';
 import { CouponRateResult } from '@/types/dashboard';
 
@@ -35,7 +34,9 @@ const Container = styled.div`
 
   background-color: #fff;
 
-  box-shadow: ${theme.shadow.small};
+  box-shadow:
+    0px 17.525px 21.907px 0px rgba(0, 0, 0, 0.05),
+    -0.73px 0.73px 0.73px -1.46px rgba(255, 255, 255, 0.35) inset;
 `;
 
 const Icon = styled.img`

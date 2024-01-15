@@ -1,6 +1,5 @@
 import styled from '@emotion/styled';
 
-import theme from '@styles/theme';
 import { getMatchedImage } from '@utils/lib/dashboard';
 import { getMatchedComponent } from './StatusComponents';
 
@@ -106,5 +105,7 @@ const AlarmInnerContainer = styled.div`
   color: #202325;
   text-align: center;
 
-  box-shadow: ${theme.shadow.default};
+  box-shadow:
+    0px 17.525px 21.907px 0px rgba(0, 0, 0, 0.05),
+    -0.73px 0.73px 0.73px -1.46px rgba(255, 255, 255, 0.35) inset;
 `;

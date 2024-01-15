@@ -15,7 +15,6 @@ import {
 } from 'chart.js';
 import { Chart } from 'react-chartjs-2';
 
-import theme from '@styles/theme';
 import { GraphHeaderTag } from '@/types/dashboard';
 import graphOptions from './graphOptions';
 
@@ -41,18 +40,20 @@ export const barGraphData = {
   datasets: [
     {
       type: 'line' as const,
-      label: '전환율',
+      label: '전환율(%)',
       borderColor: '#FFADC8',
       backgroundColor: '#FFADC8',
       borderWidth: 2,
-      data: [900, 900, 900, 900, 800, 600, 800]
+      data: [10, 20, 10, 40, 30, 60, 10],
+      yAxisID: 'y2'
     },
     {
       type: 'bar' as const,
       label: '쿠폰 다운로드',
       data: [600, 500, 400, 500, 600, 800, 800],
       backgroundColor: '#3182F6',
-      borderRadius: 5
+      borderRadius: 5,
+      yAxisID: 'y1'
     },
 
     {
@@ -60,7 +61,8 @@ export const barGraphData = {
       label: '쿠폰 사용완료',
       data: [300, 400, 200, 200, 400, 600, 700],
       backgroundColor: '#FF3478',
-      borderRadius: 5
+      borderRadius: 5,
+      yAxisID: 'y1'
     }
   ]
 };
@@ -73,7 +75,8 @@ export const lineGraphData = {
       label: '쿠폰매출',
       data: [300, 400, 200, 200, 400, 600, 700],
       borderColor: 'rgb(63, 153, 201)',
-      backgroundColor: 'rgba(63, 153, 201, 0.5)'
+      backgroundColor: 'rgba(63, 153, 201, 0.5)',
+      yAxisID: 'y1'
     },
 
     {
@@ -81,7 +84,8 @@ export const lineGraphData = {
       label: '전체매출',
       data: [600, 500, 400, 500, 600, 800, 800],
       borderColor: 'rgb(255, 99, 132)',
-      backgroundColor: 'rgba(255, 99, 132, 0.5)'
+      backgroundColor: 'rgba(255, 99, 132, 0.5)',
+      yAxisID: 'y1'
     }
   ]
 };
@@ -225,6 +229,4 @@ const GraphInnerWrapper = styled.div`
   border-radius: 20px;
 
   background-color: white;
-
-  box-shadow: ${theme.shadow.small};
 `;

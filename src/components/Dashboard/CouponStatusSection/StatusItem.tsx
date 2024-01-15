@@ -1,6 +1,5 @@
 import styled from '@emotion/styled';
 
-import theme from '@styles/theme';
 import { StatusItemProps, StatusItemStyleProps } from '@/types/dashboard';
 
 const StatusItem = ({ title, result, index }: StatusItemProps) => {
@@ -49,5 +48,7 @@ const ResultContainer = styled.div<StatusItemStyleProps>`
   font-weight: 700;
   text-align: center;
 
-  box-shadow: ${theme.shadow.default};
+  box-shadow:
+    0px 17.525px 21.907px 0px rgba(0, 0, 0, 0.05),
+    -0.73px 0.73px 0.73px -1.46px rgba(255, 255, 255, 0.35) inset;
 `;

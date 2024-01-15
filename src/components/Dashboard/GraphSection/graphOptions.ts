@@ -1,4 +1,4 @@
-const graphOptions = {
+const graphOptions: any = {
   responsive: true,
   maintainAspectRatio: false,
   plugins: {
@@ -24,11 +24,25 @@ const graphOptions = {
         }
       }
     },
-    y: {
+    y1: {
+      position: 'left',
       beginAtZero: true,
       max: 1200,
       grid: {
         display: false
+      }
+    },
+    y2: {
+      position: 'right',
+      beginAtZero: true,
+      grid: {
+        display: false
+      },
+      max: 100,
+      ticks: {
+        callback: function (value: any) {
+          return ``;
+        }
       }
     }
   }

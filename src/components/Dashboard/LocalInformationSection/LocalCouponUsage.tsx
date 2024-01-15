@@ -4,7 +4,6 @@ import reloadIcon from '@assets/icons/ic-dashboard-reload.svg';
 import locationIcon from '@assets/icons/ic-dashboard-location.svg';
 import bigLocationIcon from '@assets/icons/ic-dashboard-bigLocation.svg';
 import gpsICon from '@assets/icons/ic-dashboard-gps.svg';
-import theme from '@styles/theme';
 
 const LocalCouponUsage = () => {
   return (
@@ -140,7 +139,9 @@ const CouponUsage = styled.div`
   font-size: 19px;
   font-weight: 700;
 
-  box-shadow: ${theme.shadow.default};
+  box-shadow:
+    0px 17.525px 21.907px 0px rgba(0, 0, 0, 0.05),
+    -0.73px 0.73px 0.73px -1.46px rgba(255, 255, 255, 0.35) inset;
 
   & > span {
     padding-bottom: 5px;
