@@ -32,3 +32,14 @@ export type StatusItemProps = {
 export type StatusItemStyleProps = {
   $index?: number;
 };
+
+// LocalInformationSection
+
+export type RankingBoxProps = {
+  children: React.ReactNode;
+  rank: number;
+};
+
+export type RankingBoxStyleProps = {
+  $rankingColor: number;
+};
