@@ -1,9 +1,9 @@
 import styled from '@emotion/styled';
 import { useState } from 'react';
+import theme from '@styles/theme';
 
 import searchIcon from '@assets/icons/ic-couponlist-search.svg';
 import centerIcon from '@assets/icons/ic-couponlist-period-center.svg';
-import theme from '@styles/theme';
 import { ResisterDateStyleProps } from '@/types/couponList';
 
 const CouponNav = () => {

@@ -1,12 +1,11 @@
 import styled from '@emotion/styled';
-import React from 'react';
+import theme from '@styles/theme';
 
 import bannerIcon from '@assets/icons/ic-couponlist-speaker.svg';
-import theme from '@styles/theme';
 
 const CouponBanner = () => {
   return (
-    <BanerContainer>
+    <BannerContainer>
       <TabBanner>
         <img
           src={bannerIcon}
@@ -19,13 +18,13 @@ const CouponBanner = () => {
           </TabBannerContent>
         </div>
       </TabBanner>
-    </BanerContainer>
+    </BannerContainer>
   );
 };
 
 export default CouponBanner;
 
-const BanerContainer = styled.div`
+const BannerContainer = styled.div`
   margin: 20px 50px;
 `;
 
