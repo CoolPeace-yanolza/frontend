@@ -4,28 +4,29 @@ import arrowIcon from '@assets/icons/ic-dashboard-arrow.svg';
 import RankingBox from './RankingBox';
 
 const LocalTop3Coupons = () => {
-  //HACK: API RESPONSE 순회해보기!
+  //HACK: API 응답 예시
   const DummyData = {
     first_coupon_title: '재방문고객 20%할인',
     second_coupon_title: '첫방문고객 15000',
     third_coupon_title: '모든고객 10000'
   };
 
-  // (keyof typeof DummyData)[] => DummyData의 키로만 이루어진 배열
-  const dataKeys = Object.keys(DummyData) as (keyof typeof DummyData)[];
-
   return (
     <Container>
       <InnerContainer>
         <RankingSection>
-          {dataKeys.map((item, index) => (
-            <RankingBox
-              key={DummyData[item]}
-              rank={index + 1}
-            >
-              {DummyData[item]}
-            </RankingBox>
-          ))}
+          <RankingBox
+            rank={1}
+            children={DummyData.first_coupon_title}
+          />
+          <RankingBox
+            rank={2}
+            children={DummyData.second_coupon_title}
+          />
+          <RankingBox
+            rank={3}
+            children={DummyData.third_coupon_title}
+          />
         </RankingSection>
         <InformationSection>
           <InformationHeader>우리 지역 쿠폰</InformationHeader>
