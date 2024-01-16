@@ -1,15 +1,15 @@
 import styled from '@emotion/styled';
 
-import statusImage01 from '/images/ic-dailyReport-status01.png';
-import statusImage02 from '/images/ic-dailyReport-status02.png';
-import statusImage03 from '/images/ic-dailyReport-status03.png';
-import statusImage04 from '/images/ic-dailyReport-status04.png';
+import reportImage01 from '/images/ic-dailyReport-status01.png';
+import reportImage02 from '/images/ic-dailyReport-status02.png';
+import reportImage03 from '/images/ic-dailyReport-status03.png';
+import reportImage04 from '/images/ic-dailyReport-status04.png';
 
-export const StatusComponent01 = () => (
+const ReportCondition01 = () => (
   <Container>
     <ImageContainer>
       <img
-        src={statusImage01}
+        src={reportImage01}
         alt="쿠폰만료임박"
       />
     </ImageContainer>
@@ -28,11 +28,11 @@ export const StatusComponent01 = () => (
   </Container>
 );
 
-export const StatusComponent02 = () => (
+const ReportCondition02 = () => (
   <Container>
     <ImageContainer>
       <img
-        src={statusImage02}
+        src={reportImage02}
         alt="노출쿠폰부재"
       />
     </ImageContainer>
@@ -53,11 +53,11 @@ export const StatusComponent02 = () => (
   </Container>
 );
 
-export const StatusComponent03 = () => (
+const ReportCondition03 = () => (
   <Container>
     <ImageContainer>
       <img
-        src={statusImage03}
+        src={reportImage03}
         alt="등록쿠폰부재"
       />
     </ImageContainer>
@@ -78,11 +78,11 @@ export const StatusComponent03 = () => (
   </Container>
 );
 
-export const StatusComponent04 = () => (
+const ReportCondition04 = () => (
   <Container>
     <ImageContainer>
       <img
-        src={statusImage04}
+        src={reportImage04}
         alt="쿠폰사용상태"
       />
     </ImageContainer>
@@ -102,6 +102,21 @@ export const StatusComponent04 = () => (
     </AlarmContainer>
   </Container>
 );
+
+const GetMatchedReport = (condition: number) => {
+  switch (condition) {
+    case 1:
+      return <ReportCondition01 />;
+    case 2:
+      return <ReportCondition02 />;
+    case 3:
+      return <ReportCondition03 />;
+    case 4:
+      return <ReportCondition04 />;
+  }
+};
+
+export default GetMatchedReport;
 
 const Container = styled.div`
   width: 100%;

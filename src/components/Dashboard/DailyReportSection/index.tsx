@@ -1,12 +1,6 @@
 import styled from '@emotion/styled';
 
-import {
-  StatusComponent01,
-  StatusComponent02,
-  StatusComponent03,
-  StatusComponent04
-} from './StatusComponents';
-
+import GetMatchedReport from './GetMatchedReport';
 // DATA 예시
 // {
 // 	"condition" : "등록된 쿠폰이 없음",
@@ -22,25 +16,12 @@ import {
 // --> condition_code : 1 ~ 4; 추가되도록 요청
 // condition_code로 조건에 맞는 화면 렌더링
 
-const getMatchedComponent = (condition: number) => {
-  switch (condition) {
-    case 1:
-      return <StatusComponent01 />;
-    case 2:
-      return <StatusComponent02 />;
-    case 3:
-      return <StatusComponent03 />;
-    case 4:
-      return <StatusComponent04 />;
-  }
-};
-
 const DailyReportSection = () => {
   return (
     <Container>
       <Title>우리 숙소 일간 리포트</Title>
       <Description>사장님! 쿠폰 상태를 확인해보세요</Description>
-      {getMatchedComponent(3)}
+      {GetMatchedReport(4)}
     </Container>
   );
 };
