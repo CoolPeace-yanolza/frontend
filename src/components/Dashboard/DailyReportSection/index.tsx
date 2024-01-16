@@ -39,8 +39,8 @@ const DailyReportSection = () => {
   return (
     <Container>
       <Title>우리 숙소 일간 리포트</Title>
-      <Discription>사장님! 쿠폰 상태를 확인해보세요</Discription>
-      {getMatchedComponent(1)}
+      <Description>사장님! 쿠폰 상태를 확인해보세요</Description>
+      {getMatchedComponent(3)}
     </Container>
   );
 };
@@ -66,7 +66,7 @@ const Title = styled.div`
   font-weight: 700;
 `;
 
-const Discription = styled.div`
+const Description = styled.div`
   padding: 10px 0px;
 
   color: #6c7072;

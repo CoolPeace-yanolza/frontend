@@ -7,11 +7,11 @@ const CouponRate = ({ result }: CouponRateResult) => {
   return (
     <Container>
       <Title>쿠폰 예약율을 한눈에!</Title>
-      <Discription>
+      <Description>
         쿠폰을 다운받은 고객들의
         <br />
         예약 전환율을 분석해드릴게요
-      </Discription>
+      </Description>
       <ResultContainer>현재 10명 중 {result}명이 예약 했어요!</ResultContainer>
       <Icon src={reportIcon}></Icon>
     </Container>
@@ -53,7 +53,7 @@ const Title = styled.div`
   font-weight: 700;
 `;
 
-const Discription = styled.p`
+const Description = styled.p`
   color: #415574;
   font-size: 13px;
   font-weight: 700;

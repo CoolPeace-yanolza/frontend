@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 import reloadIcon from '@assets/icons/ic-dashboard-reload.svg';
 import locationIcon from '@assets/icons/ic-dashboard-location.svg';
 import bigLocationIcon from '@assets/icons/ic-dashboard-bigLocation.svg';
-import gpsICon from '@assets/icons/ic-dashboard-gps.svg';
+import gpsIcon from '@assets/icons/ic-dashboard-gps.svg';
 
 const LocalCouponUsage = () => {
   return (
@@ -29,7 +29,7 @@ const LocalCouponUsage = () => {
       <InnerContainer>
         <InnerContainerHeader>
           <GpsIcon
-            src={gpsICon}
+            src={gpsIcon}
             alt="gps-icon"
           />
           주변 숙소에서는 어떤 쿠폰을 등록하고 있을까요?

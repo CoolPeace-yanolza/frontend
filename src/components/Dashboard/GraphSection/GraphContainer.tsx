@@ -100,10 +100,10 @@ const GraphContainer = () => {
     <Container>
       <Header>
         <Title>월별 차트</Title>
-        <HeaderDiscription>
+        <HeaderDescription>
           프로모션 적용 이후 예약 현황을 알려드립니다.{' '}
           <span>({getUpdatedDate()} 업데이트)</span>
-        </HeaderDiscription>
+        </HeaderDescription>
       </Header>
       <GraphWrapper>
         <GraphHeader>
@@ -160,7 +160,7 @@ const Title = styled.span`
   line-height: 100%;
 `;
 
-const HeaderDiscription = styled.div`
+const HeaderDescription = styled.div`
   padding: 0px 10px 3px;
 
   color: #5e5e5e;

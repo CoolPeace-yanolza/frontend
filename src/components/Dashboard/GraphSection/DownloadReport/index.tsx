@@ -14,10 +14,10 @@ const DownloadReport = () => {
           <TitleIcon src={titleIcon} />
           다운로드 리포트
         </Title>
-        <HeaderDiscription>
+        <HeaderDescription>
           <ReloadIcon src={reloadIcon} />
           매월 1일 00시 00분에 업데이트
-        </HeaderDiscription>
+        </HeaderDescription>
       </Header>
       <InnerContainer>
         <CouponCounterSection>
@@ -62,7 +62,7 @@ const Title = styled.span`
   font-weight: 700;
 `;
 
-const HeaderDiscription = styled.div`
+const HeaderDescription = styled.div`
   padding: 12px 7px 10px;
 
   display: flex;
