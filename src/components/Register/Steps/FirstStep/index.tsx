@@ -14,7 +14,14 @@ const FirstStep = () => {
   const [currentInput, setCurrentInput] = useState(0);
   const [isLimit, setIsLimit] = useState(false);
 
-  const handleInput = (e: React.FormEvent<HTMLInputElement>) => {};
+  const handleInput = (e: React.FormEvent<HTMLInputElement>) => {
+    const inputValue = e.currentTarget.value;
+    const filteredValue = inputValue.replace(/[^0-9]/g, '');
+
+    if (inputValue !== filteredValue) {
+      e.currentTarget.value = filteredValue;
+    }
+  };
 
   return (
     <>
