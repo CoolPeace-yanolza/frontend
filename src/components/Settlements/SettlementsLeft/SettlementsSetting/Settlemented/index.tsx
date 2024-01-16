@@ -3,6 +3,7 @@ import 'semantic-ui-css/semantic.min.css';
 import { Dropdown, DropdownProps } from 'semantic-ui-react';
 import { useState, useEffect } from 'react';
 import { useRecoilValue, useRecoilState, useSetRecoilState } from 'recoil';
+import * as XLSX from 'xlsx';
 
 import SettlementsTable from './SettlementsTable';
 import SettlementsPagination from './SettlementsPagination';
@@ -95,6 +96,16 @@ const Settlemented = () => {
     setSortedData(sorted);
   }, [sortOrder]);
 
+  const handleDownloadExcel = () => {
+    const workBook = XLSX.utils.book_new();
+    const workSheet = XLSX.utils.json_to_sheet(sortedData);
+
+    XLSX.utils.book_append_sheet(workBook, workSheet, "Sheet1");
+  
+    XLSX.writeFile(workBook, "download.xlsx");
+  };
+  
+
   return (
     <Container>
       <SettlementedHeader>
@@ -103,14 +114,14 @@ const Settlemented = () => {
         </TotalData>
         <OptionContainer>
         <StyledDropdown
-            fluid
-            selection
-            defaultValue={defaultOption?.value}
-            options={sortOptions}
-            onChange={handleSortChange}
+          fluid
+          selection
+          defaultValue={defaultOption?.value}
+          options={sortOptions}
+          onChange={handleSortChange}
         />
           <ExcelDownload>
-            <button>엑셀 다운로드</button>
+            <button onClick={handleDownloadExcel}>엑셀 다운로드</button>
           </ExcelDownload>
         </OptionContainer>
       </SettlementedHeader>
@@ -120,10 +131,10 @@ const Settlemented = () => {
           pageStartNumber={calculatePageStartNumber(currentPage)}
         />
         <SettlementsPagination
-            currentPage={currentPage}
-            totalPages={totalPages}
-            onPageChange={handlePageChange}
-            />
+          currentPage={currentPage}
+          totalPages={totalPages}
+          onPageChange={handlePageChange}
+        />
       </DataLow>
     </Container>
   );
@@ -153,8 +164,6 @@ const TotalData = styled.div`
 `;
 
 const OptionContainer = styled.div`
-//   margin-right: 26px;
-
   display: flex;
   align-items: center;
 `;
