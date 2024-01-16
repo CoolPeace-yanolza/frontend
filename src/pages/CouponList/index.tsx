@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+
 import { CouponHeader, CouponNav, CouponMain } from '@components/CouponList';
 
 const CouponList = () => {

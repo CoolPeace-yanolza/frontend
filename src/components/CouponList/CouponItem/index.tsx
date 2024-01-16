@@ -1,8 +1,10 @@
 import { useState } from 'react';
-import toggleOnIcon from '@assets/icons/CouponList/ic_toggleOn.svg';
-import toggleOffIcon from '@assets/icons/CouponList/ic_toggleOff.svg';
 import styled from '@emotion/styled';
+
+import toggleOnIcon from '@assets/icons/ic-couponlist-toggleOn.svg';
+import toggleOffIcon from '@assets/icons/ic-couponlist-toggleOff.svg';
 import { ToggleStyleProps } from '@/types/couponList';
+import theme from '@styles/theme';
 
 const CouponExpose = () => {
   const [isToggle, setIsToggle] = useState(true);
@@ -129,7 +131,7 @@ const ToggleWrap = styled.button<ToggleStyleProps>`
   align-items: center;
   justify-content: space-between;
 
-  background-color: ${props => props.theme.colors.white};
+  background-color: ${theme.colors.white};
   cursor: pointer;
 `;
 
@@ -138,7 +140,7 @@ const ToggleOn = styled.div`
 
   font-size: 10px;
   font-weight: 700;
-  color: ${props => props.theme.colors.pink500};
+  color: ${theme.colors.pink500};
 `;
 
 const ToggleOff = styled.div`
@@ -176,7 +178,7 @@ const CountWrap = styled.div`
   justify-content: center;
   align-items: center;
 
-  background-color: ${props => props.theme.colors.white};
+  background-color: ${theme.colors.white};
 `;
 
 const CountText = styled.div`
@@ -196,6 +198,7 @@ const CountNumber = styled.div`
   font-weight: 700;
 `;
 
+// HACK: ContentContainer 로직 추가하기
 const ContentContainer = styled.div``;
 
 const ContentWrap = styled.div`

@@ -1,5 +1,4 @@
 import styled from '@emotion/styled';
-import React from 'react';
 import expiredIcon from '@assets/icons/CouponList/ic_expose_expired.svg';
 
 const CouponExpired = () => {

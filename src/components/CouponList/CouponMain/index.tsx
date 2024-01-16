@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+
 import CouponExpose from '../CouponItem';
 
 const CouponMain = () => {

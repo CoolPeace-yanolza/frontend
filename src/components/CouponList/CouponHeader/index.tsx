@@ -1,5 +1,6 @@
 import styled from '@emotion/styled';
 import { useNavigate } from 'react-router-dom';
+import theme from '@styles/theme';
 
 const CouponHeader = () => {
   const navigate = useNavigate();
@@ -66,7 +67,7 @@ const CouponRegisterButton = styled.div`
   align-items: center;
 
   font-size: 17px;
-  color: ${props => props.theme.colors.white};
+  color: ${theme.colors.white};
   background: #ff3478;
   cursor: pointer;
 `;

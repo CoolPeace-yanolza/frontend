@@ -1,8 +1,11 @@
 import styled from '@emotion/styled';
 import { useState } from 'react';
-import searchIcon from '@assets/icons/CouponList/ic_search.svg';
-import centerIcon from '@assets/icons/CouponList/ic_period_center.svg';
-import bannerIcon from '@assets/icons/CouponList/ic_speaker.svg';
+
+import searchIcon from '@assets/icons/ic-couponlist-search.svg';
+import bannerIcon from '@assets/icons/ic-couponlist-speaker.svg';
+import centerIcon from '@assets/icons/ic-couponlist-period-center.svg';
+import theme from '@styles/theme';
+import { ResisterDateStyleProps } from '@/types/couponList';
 
 const CouponNav = () => {
   const [isClick, setIsClick] = useState<string>('1년');
@@ -116,7 +119,7 @@ const TabBanner = styled.div`
   border-radius: 12px;
   background: #1a2849;
 
-  color: ${props => props.theme.colors.white};
+  color: ${theme.colors.white};
   font-size: 17px;
   gap: 10px;
 `;
@@ -219,7 +222,7 @@ const SearchButton = styled.button`
   justify-content: center;
   align-items: center;
 
-  color: ${props => props.theme.colors.white};
+  color: ${theme.colors.white};
   background-color: #1a2849;
   cursor: pointer;
 `;
@@ -272,7 +275,7 @@ const ResisterPeriodTitle = styled.div`
   margin: 0px 5px;
 `;
 
-const ResisterPeriod = styled.div<{ isClick: boolean }>`
+const ResisterPeriod = styled.div<ResisterDateStyleProps>`
   margin: 0px 5px;
 
   font-size: 12px;
