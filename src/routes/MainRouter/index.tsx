@@ -1,8 +1,11 @@
 // import CouponList from '@pages/CouponList';
 import { Route, Routes } from 'react-router-dom';
+
 import { Layout } from '@components/common';
+import Login from '@pages/Login';
+import SignUp from '@pages/SignUp';
 import Dashboard from '@pages/Dashboard.tsx';
-import Report from '@pages/Report.tsx';
+import Report from '@pages/Report';
 import CouponList from '@pages/CouponList';
 
 const MainRouter = () => {
@@ -10,15 +13,11 @@ const MainRouter = () => {
     <Routes>
       <Route
         path="/login"
-        element={
-          <p style={{ fontSize: '1rem' }}>🧃 로그인 페이지 입주 예정 🧃</p>
-        }
+        element={<Login />}
       />
       <Route
         path="/signup"
-        element={
-          <p style={{ fontSize: '1rem' }}>🧃 회원가입 페이지 입주 예정 🧃</p>
-        }
+        element={<SignUp />}
       />
       <Route element={<Layout />}>
         <Route

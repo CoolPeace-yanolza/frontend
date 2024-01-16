@@ -23,11 +23,9 @@ const CouponMain = () => {
 export default CouponMain;
 
 const MainContainer = styled.div`
-  width: 100%;
-
   margin-left: 50px;
-  gap: 36px;
 
   display: flex;
   flex-flow: row wrap;
+  gap: 36px;
 `;

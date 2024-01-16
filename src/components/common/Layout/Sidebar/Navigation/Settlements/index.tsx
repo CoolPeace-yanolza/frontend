@@ -1,13 +1,14 @@
-import { NavLink } from 'react-router-dom';
 import styled from '@emotion/styled';
 
 import settlement from '@assets/icons/ic-sidebar-settlement.svg';
-import { SidebarOpen } from '@/types/sidebar';
+import CustomNavLink from '../CustomNavLink';
+import { SidebarOpen } from '@/types/layout';
 
 const Settlements = ({ isSidebarOpen }: { isSidebarOpen: boolean }) => {
   return (
     <Container
       to="/settlements"
+      end
       $isSidebarOpen={isSidebarOpen}
     >
       <Contents $isSidebarOpen={isSidebarOpen}>
@@ -24,7 +25,7 @@ const Settlements = ({ isSidebarOpen }: { isSidebarOpen: boolean }) => {
 
 export default Settlements;
 
-const Container = styled(NavLink)<SidebarOpen>`
+const Container = styled(CustomNavLink)<SidebarOpen>`
   width: 100%;
   height: ${props => (props.$isSidebarOpen ? '60px' : '80px')};
 

@@ -14,6 +14,4 @@ const CouponList = () => {
 
 export default CouponList;
 
-const CouponListContainer = styled.div`
-  width: 100%;
-`;
+const CouponListContainer = styled.div``;

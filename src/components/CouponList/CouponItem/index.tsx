@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import toggleOnIcon from '@assets/icons/CouponList/ic_toggleOn.svg';
 import toggleOffIcon from '@assets/icons/CouponList/ic_toggleOff.svg';
 import styled from '@emotion/styled';
+import { ToggleStyleProps } from '@/types/couponList';
 
 const CouponExpose = () => {
   const [isToggle, setIsToggle] = useState(true);
@@ -14,29 +15,28 @@ const CouponExpose = () => {
       <CouponHeaderContainer>
         <CouponHeader>
           <CouponTitle>2024 신년행사</CouponTitle>
-          {isToggle ? (
-            <ToggleWrap
-              isToggle={isToggle}
-              onClick={handleToggle}
-            >
-              <ToggleOn>ON</ToggleOn>
-              <ToggleOnImg
-                src={toggleOnIcon}
-                alt="toggleOnIcon"
-              />
-            </ToggleWrap>
-          ) : (
-            <ToggleWrap
-              isToggle={isToggle}
-              onClick={handleToggle}
-            >
-              <ToggleOffImg
-                src={toggleOffIcon}
-                alt="toggleOffIcon"
-              />
-              <ToggleOff>OFF</ToggleOff>
-            </ToggleWrap>
-          )}
+          <ToggleWrap
+            isToggle={isToggle}
+            onClick={handleToggle}
+          >
+            {isToggle ? (
+              <>
+                <ToggleOn>ON</ToggleOn>
+                <ToggleOnImg
+                  src={toggleOnIcon}
+                  alt="토글 On 이미지 "
+                />
+              </>
+            ) : (
+              <>
+                <ToggleOffImg
+                  src={toggleOffIcon}
+                  alt="toggle off icon"
+                />
+                <ToggleOff>OFF</ToggleOff>
+              </>
+            )}
+          </ToggleWrap>
         </CouponHeader>
         <CouponCustomer>모든 고객 10% 할인</CouponCustomer>
       </CouponHeaderContainer>
@@ -117,7 +117,7 @@ const CouponCustomer = styled.div`
   font-weight: 700;
 `;
 
-const ToggleWrap = styled.button<{ isToggle: boolean }>`
+const ToggleWrap = styled.button<ToggleStyleProps>`
   width: 50px;
   height: 22.93;
 
@@ -136,7 +136,6 @@ const ToggleWrap = styled.button<{ isToggle: boolean }>`
 const ToggleOn = styled.div`
   margin: 2px 5px 1px 1px;
 
-  font-family: Pretendard;
   font-size: 10px;
   font-weight: 700;
   color: ${props => props.theme.colors.pink500};
@@ -145,7 +144,6 @@ const ToggleOn = styled.div`
 const ToggleOff = styled.div`
   margin-top: 2px;
 
-  font-family: Pretendard;
   font-size: 10px;
   font-weight: 700;
   color: #404446;
@@ -201,9 +199,10 @@ const CountNumber = styled.div`
 const ContentContainer = styled.div``;
 
 const ContentWrap = styled.div`
+  margin: 8px;
+
   display: flex;
   align-items: center;
-  margin: 8px;
 `;
 
 const ContentTitle = styled.div`

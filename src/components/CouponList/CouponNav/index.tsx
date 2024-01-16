@@ -181,6 +181,8 @@ const TabCount = styled.div`
 `;
 
 const SearchWrap = styled.form`
+  position: relative;
+
   display: flex;
   flex-wrap: wrap;
 `;
@@ -201,6 +203,7 @@ const SearchInput = styled.input`
 
 const SearchImg = styled.img`
   position: absolute;
+
   margin-top: 7px;
   margin-left: 20px;
 `;
