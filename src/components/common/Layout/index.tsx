@@ -4,6 +4,7 @@ import { useLocation } from 'react-router-dom';
 
 import Sidebar from './Sidebar';
 import Header from './Header';
+import { LayoutStyleProps } from '@/types/layout';
 import theme from '@styles/theme';
 
 const Layout = () => {
@@ -27,12 +28,15 @@ export default Layout;
 const Container = styled.div`
   position: relative;
 
+  width: 100vw;
   min-width: 100vw;
+  height: 100vh;
   max-height: 100vh;
 
   display: flex;
 
   background-color: ${theme.colors.background};
+  overflow: hidden;
 `;
 
 const Section = styled.section`
@@ -47,9 +51,10 @@ const Section = styled.section`
 `;
 
 //HACK: 타입 분리 예정!
-const OutletLayout = styled.div<{ $pathname: string }>`
+const OutletLayout = styled.div<LayoutStyleProps>`
   width: 100%;
-  min-height: 100vh;
+  height: 100vh;
+  max-height: 100vh;
 
   margin-top: 16px;
   border-radius: 20px;
@@ -64,5 +69,5 @@ const OutletLayout = styled.div<{ $pathname: string }>`
     }
   }};
 
-  overflow-y: auto;
+  overflow: scroll;
 `;
