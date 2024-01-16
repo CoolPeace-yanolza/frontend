@@ -1,5 +1,4 @@
 import styled from '@emotion/styled';
-import React from 'react';
 import waitIcon from '@assets/icons/CouponList/ic_expose_wait.svg';
 import centerIcon from '@assets/icons/CouponList/ic_center.svg';
 

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import toggleOnIcon from '@assets/icons/CouponList/ic_toggleOn.svg';
 import toggleOffIcon from '@assets/icons/CouponList/ic_toggleOff.svg';
 import styled from '@emotion/styled';

@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import React, { useState } from 'react';
+import { useState } from 'react';
 import searchIcon from '@assets/icons/CouponList/ic_search.svg';
 import centerIcon from '@assets/icons/CouponList/ic_period_center.svg';
 import bannerIcon from '@assets/icons/CouponList/ic_speaker.svg';
