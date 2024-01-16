@@ -20,7 +20,7 @@ export type InputButtonProps = {
 // InputAccordion
 export type InputAccordionProps = {
   title: string;
-  content: JSX.Element;
+  children: ReactNode;
 };
 
 export type ButtonStyleProps = {
