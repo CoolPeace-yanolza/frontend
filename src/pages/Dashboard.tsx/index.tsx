@@ -34,6 +34,7 @@ const Container = styled.div`
 `;
 
 const LeftSection = styled.div`
+  min-width: 1016px;
   height: 100%;
 
   display: flex;
@@ -42,7 +43,7 @@ const LeftSection = styled.div`
 `;
 
 const RightSection = styled.div`
-  width: 250px;
+  min-width: 250px;
   height: 100%;
 
   display: flex;
