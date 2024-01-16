@@ -11,8 +11,8 @@ const CouponMain = () => {
     <MainContainer>
       <CouponExpose />
       <CouponStop />
-      <CouponExpired />
       <CouponWait />
+      <CouponExpired />
     </MainContainer>
   );
 };
