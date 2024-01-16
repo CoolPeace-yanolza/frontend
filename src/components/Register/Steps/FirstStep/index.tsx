@@ -12,7 +12,7 @@ import { LimitWrapperStyleProps } from '@/types/register';
 
 const FirstStep = () => {
   const [currentInput, setCurrentInput] = useState(0);
-  const [isLimit, setIsLimit] = useState(false);
+  const [isLimited, setIsLimited] = useState(false);
 
   const handleInput = (e: React.FormEvent<HTMLInputElement>) => {
     const inputValue = e.currentTarget.value;
@@ -92,11 +92,11 @@ const FirstStep = () => {
             <InputCheckBox
               id="discountLimit"
               text="최대 할인 한도 설정하기"
-              onChecked={setIsLimit}
+              onCheck={setIsLimited}
             />
           </ContentWrapper>
         </InputWrapper>
-        <LimitWrapper $isLimit={isLimit}>
+        <LimitWrapper $isLimited={isLimited}>
           <InputWrapper
             whichInput={2}
             currentInput={currentInput}
@@ -149,5 +149,5 @@ const ContentWrapper = styled.div`
 `;
 
 const LimitWrapper = styled.div<LimitWrapperStyleProps>`
-  display: ${props => (props.$isLimit ? 'block' : 'none')};
+  display: ${props => (props.$isLimited ? 'block' : 'none')};
 `;

@@ -10,12 +10,12 @@ import {
 import checked from '@assets/icons/ic-register-checked.svg';
 import unchecked from '@assets/icons/ic-register-unchecked.svg';
 
-const InputCheckBox = ({ id, text, onChecked }: InputCheckBoxProps) => {
+const InputCheckBox = ({ id, text, onCheck }: InputCheckBoxProps) => {
   const [isChecked, setIsChecked] = useState(false);
 
   const handleCheckBox = () => {
-    if (onChecked) {
-      onChecked(prev => !prev);
+    if (onCheck) {
+      onCheck(prev => !prev);
     }
     setIsChecked(prev => !prev);
   };

@@ -42,7 +42,7 @@ export type InputFieldStyleProps = {
 export type InputCheckBoxProps = {
   id: string;
   text: string;
-  onChecked?: React.Dispatch<React.SetStateAction<boolean>>;
+  onCheck?: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 export type LabelStyleProps = {
@@ -100,5 +100,5 @@ export type StepTitleProps = {
 
 // FirstStep
 export type LimitWrapperStyleProps = {
-  $isLimit: boolean;
+  $isLimited: boolean;
 };
