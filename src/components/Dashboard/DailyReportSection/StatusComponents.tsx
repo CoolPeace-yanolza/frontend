@@ -10,7 +10,7 @@ export const StatusComponent01 = () => (
     <ImageContainer>
       <img
         src={statusImage01}
-        alt="status-image01"
+        alt="쿠폰만료임박"
       />
     </ImageContainer>
     <AlarmContainer>
@@ -33,7 +33,7 @@ export const StatusComponent02 = () => (
     <ImageContainer>
       <img
         src={statusImage02}
-        alt="status-image02"
+        alt="노출쿠폰부재"
       />
     </ImageContainer>
     <AlarmContainer>
@@ -58,7 +58,7 @@ export const StatusComponent03 = () => (
     <ImageContainer>
       <img
         src={statusImage03}
-        alt="status-image03"
+        alt="등록쿠폰부재"
       />
     </ImageContainer>
     <AlarmContainer>
@@ -83,7 +83,7 @@ export const StatusComponent04 = () => (
     <ImageContainer>
       <img
         src={statusImage04}
-        alt="status-image04"
+        alt="쿠폰사용상태"
       />
     </ImageContainer>
     <AlarmContainer>

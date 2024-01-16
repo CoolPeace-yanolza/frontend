@@ -36,7 +36,7 @@ const LocalTop3Coupons = () => {
           <InformationSubText>
             <ArrowIcon
               src={arrowIcon}
-              alt="arrow-icon"
+              alt="화살표"
             />
             우리 숙소 주변의
             <br />

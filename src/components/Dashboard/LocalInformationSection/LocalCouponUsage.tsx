@@ -14,7 +14,7 @@ const LocalCouponUsage = () => {
           ｜
           <LocationIcon
             src={locationIcon}
-            alt="location-icon"
+            alt="장소"
           />
           종로구 기준
         </Location>
@@ -22,7 +22,7 @@ const LocalCouponUsage = () => {
       <UpdateAlarm>
         <ReloadIcon
           src={reloadIcon}
-          alt="reload-icon"
+          alt="새로고침"
         />
         매월 1일 00시 00분에 업데이트
       </UpdateAlarm>
@@ -30,7 +30,7 @@ const LocalCouponUsage = () => {
         <InnerContainerHeader>
           <GpsIcon
             src={gpsIcon}
-            alt="gps-icon"
+            alt="GPS"
           />
           주변 숙소에서는 어떤 쿠폰을 등록하고 있을까요?
         </InnerContainerHeader>
@@ -39,7 +39,7 @@ const LocalCouponUsage = () => {
           평균 {8}종 이상의 쿠폰을 사용하고 있어요!
           <BigLocationIcon
             src={bigLocationIcon}
-            alt="big-location-icon"
+            alt="지역"
           />
         </CouponUsage>
       </InnerContainer>
