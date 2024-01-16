@@ -9,11 +9,16 @@ const InputButton = ({
   name,
   buttonName,
   value,
+  currentInput,
   onButtonClick
 }: InputButtonProps) => {
   const handleToggle = () => {
     if (value && onButtonClick) {
-      onButtonClick(value);
+      if (currentInput) {
+        value === currentInput ? onButtonClick(0) : onButtonClick(value);
+      } else {
+        onButtonClick(value);
+      }
     }
   };
 
