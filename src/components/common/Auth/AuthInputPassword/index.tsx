@@ -1,7 +1,7 @@
 import { ChangeEvent, useState } from 'react';
 import styled from '@emotion/styled';
 
-import { AuthInputPassword } from '@/types/auth';
+import { AuthInput } from '@/types/auth';
 import eyeOn from '@assets/icons/ic-login-eye-on.svg';
 import eyeOff from '@assets/icons/ic-login-eye-off.svg';
 import closeIcon from '@assets/icons/ic-login-close.svg';
@@ -9,15 +9,13 @@ import checkInvalid from '@assets/icons/ic-signup-check-invalid.svg';
 import checkValid from '@assets/icons/ic-signup-check-valid.svg';
 
 const AuthInputPassword = ({
-  type,
   id,
   placeholder,
   usedFor,
-  showPW,
-  setShowPW,
   isInvalid
-}: AuthInputPassword) => {
+}: AuthInput) => {
   const [text, setText] = useState<string>('');
+  const [showPW, setShowPW] = useState(false);
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     setText(event.target.value);
@@ -36,7 +34,7 @@ const AuthInputPassword = ({
   return (
     <Container>
       <Input
-        type={type}
+        type={showPW ? 'text' : 'password'}
         id={id}
         placeholder={placeholder}
         value={text}

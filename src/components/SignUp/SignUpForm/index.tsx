@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import styled from '@emotion/styled';
 
 import { SignUpInputValidation } from '@/types/signUp';
@@ -9,10 +8,6 @@ import {
 } from '@components/common/Auth';
 
 const SignUpForm = () => {
-  const [showPW, setShowPW] = useState(false);
-  const [showPWConfirm, setShowPWConfirm] = useState(false);
-
-  // TODO: react-hook-form 사용해서 유효성 검사 예정
   const isInvalid = true;
   const isEmailValidationVisible = false;
 
@@ -59,12 +54,9 @@ const SignUpForm = () => {
       <InputLabelWrapper>
         <Label htmlFor="user_password">비밀번호</Label>
         <AuthInputPassword
-          type={showPW ? 'text' : 'password'}
           id="user_password"
           placeholder="8-20자, 영문/숫자/특수문자 조합"
           usedFor="signup"
-          showPW={showPW}
-          setShowPW={setShowPW}
           isInvalid={isInvalid}
         />
         {isInvalid && (
@@ -76,12 +68,9 @@ const SignUpForm = () => {
       <InputLabelWrapper>
         <Label htmlFor="user_password_confirm">비밀번호 확인</Label>
         <AuthInputPassword
-          type={showPWConfirm ? 'text' : 'password'}
           id="user_password_confirm"
           placeholder="다시 한번 입력해주세요."
           usedFor="signup"
-          showPW={showPWConfirm}
-          setShowPW={setShowPWConfirm}
           isInvalid={isInvalid}
         />
         {isInvalid && (

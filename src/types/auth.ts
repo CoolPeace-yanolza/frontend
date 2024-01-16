@@ -1,14 +1,12 @@
-export type AuthInputNormal = {
-  type: string;
+export type AuthInput = {
   id: string;
   placeholder: string;
   usedFor: string;
   isInvalid: boolean;
 };
 
-export type AuthInputPassword = AuthInputNormal & {
-  showPW: boolean;
-  setShowPW: React.Dispatch<React.SetStateAction<boolean>>;
+export type AuthInputNormal = AuthInput & {
+  type: string;
 };
 
 // TODO : API 연결 후 타입 변경 예정

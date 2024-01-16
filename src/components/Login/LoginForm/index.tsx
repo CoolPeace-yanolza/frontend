@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from '@emotion/styled';
 
@@ -13,7 +12,6 @@ const LoginForm = () => {
   const navigate = useNavigate();
   // HACK: 유효성 검사 기능 구현 후 유효성 메세지 노출 여부 결정
   const isInvalid = true;
-  const [showPW, setShowPW] = useState(false);
 
   const movetoSignUp = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
@@ -30,12 +28,9 @@ const LoginForm = () => {
           isInvalid={isInvalid}
         />
         <AuthInputPassword
-          type={showPW ? 'text' : 'password'}
           id="user_password"
           placeholder="8-20자, 영문/숫자/특수문자 조합"
           usedFor="login"
-          showPW={showPW}
-          setShowPW={setShowPW}
           isInvalid={isInvalid}
         />
       </Inputs>
