@@ -36,20 +36,16 @@ const AuthInputNormal = ({
         onChange={handleChange}
       />
       <Buttons>
-        {usedFor === 'login' ? (
-          text.length > 0 && (
-            <Button onClick={handleReset}>
-              <Icon
-                src={closeIcon}
-                alt="지우기 버튼"
-              />
-            </Button>
-          )
-        ) : isInvalid ? (
-          <Icon src={checkInvalid} />
-        ) : (
-          <Icon src={checkValid} />
+        {usedFor === 'login' && text.length > 0 && (
+          <Button onClick={handleReset}>
+            <Icon
+              src={closeIcon}
+              alt="지우기 버튼"
+            />
+          </Button>
         )}
+        {usedFor === 'signup' &&
+          (isInvalid ? <Icon src={checkInvalid} /> : <Icon src={checkValid} />)}
       </Buttons>
     </Container>
   );

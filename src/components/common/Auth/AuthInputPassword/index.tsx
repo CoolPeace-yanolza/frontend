@@ -43,33 +43,22 @@ const AuthInputPassword = ({
       <Buttons>
         {text.length > 0 && (
           <Button onClick={handleShowPW}>
-            {showPW ? (
-              <Icon
-                src={eyeOn}
-                alt="비밀번호 보기 버튼"
-              />
-            ) : (
-              <Icon
-                src={eyeOff}
-                alt="비밀번호 숨김 버튼"
-              />
-            )}
+            <Icon
+              src={showPW ? eyeOn : eyeOff}
+              alt={showPW ? '비밀번호 보기 버튼' : '비밀번호 숨김 버튼'}
+            />
           </Button>
         )}
-        {usedFor === 'login' ? (
-          text.length > 0 && (
-            <Button onClick={handleReset}>
-              <Icon
-                src={closeIcon}
-                alt="지우기 버튼"
-              />
-            </Button>
-          )
-        ) : isInvalid ? (
-          <Icon src={checkInvalid} />
-        ) : (
-          <Icon src={checkValid} />
+        {usedFor === 'login' && text.length > 0 && (
+          <Button onClick={handleReset}>
+            <Icon
+              src={closeIcon}
+              alt="지우기 버튼"
+            />
+          </Button>
         )}
+        {usedFor === 'signup' &&
+          (isInvalid ? <Icon src={checkInvalid} /> : <Icon src={checkValid} />)}
       </Buttons>
     </Container>
   );
