@@ -16,8 +16,7 @@ export const StatusComponent01 = () => (
     <AlarmContainer>
       <AlarmInnerContainer>
         <AlarmHeaderText>
-          <span style={{ color: '#FF3478' }}>곧 만료되는 쿠폰</span> 이
-          있습니다.
+          <AlarmColoredText>곧 만료되는 쿠폰</AlarmColoredText> 이 있습니다.
         </AlarmHeaderText>
         <AlarmSubText>
           새 쿠폰을 등록하여
@@ -42,7 +41,7 @@ export const StatusComponent02 = () => (
         <AlarmHeaderText>
           현재 내 숙소에서
           <br />
-          <span style={{ color: '#FF3478' }}>노출 중인 쿠폰이 없습니다.</span>
+          <AlarmColoredText>노출 중인 쿠폰이 없습니다.</AlarmColoredText>
         </AlarmHeaderText>
         <AlarmSubText>
           새 쿠폰을 등록하여
@@ -67,7 +66,7 @@ export const StatusComponent03 = () => (
         <AlarmHeaderText>
           현재 내 숙소에서
           <br />
-          <span style={{ color: '#FF3478' }}>등록된 쿠폰이 없습니다.</span>
+          <AlarmColoredText>등록된 쿠폰이 없습니다.</AlarmColoredText>
         </AlarmHeaderText>
         <AlarmSubText>
           새 쿠폰을 등록하여
@@ -90,7 +89,7 @@ export const StatusComponent04 = () => (
     <AlarmContainer>
       <AlarmInnerContainer>
         <AlarmHeaderText>
-          지금 <span style={{ color: '#FF3478' }}>숙소 쿠폰 사용 상태</span> 를
+          지금 <AlarmColoredText>숙소 쿠폰 사용 상태</AlarmColoredText> 를
           <br />
           확인해보세요.
         </AlarmHeaderText>
@@ -168,4 +167,8 @@ const AlarmSubText = styled.div`
   font-size: 14px;
   font-weight: 500;
   line-height: 1.4;
+`;
+
+const AlarmColoredText = styled.span`
+  color: #ff3478;
 `;

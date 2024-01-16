@@ -150,7 +150,6 @@ const Header = styled.div`
   padding: 24.33px 0;
 
   display: flex;
-  flex-direction: row;
   align-items: flex-end;
 `;
 
@@ -195,7 +194,6 @@ const GraphHeader = styled.div`
   border-bottom: 1px solid #dde1e6;
 
   display: flex;
-  flex-direction: row;
 `;
 
 const GraphHeaderTag = styled.span<GraphHeaderTag>`
