@@ -124,6 +124,8 @@ const TapItemWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+
+  cursor: pointer;
 `;
 
 const TabName = styled.div`
@@ -146,7 +148,6 @@ const TabCount = styled.div<CategoryTabProps>`
   font-size: 20px;
   font-weight: 700;
   background-color: #f3f3f3;
-  cursor: pointer;
 
   color: ${props => (props.categoryTab ? theme.colors.white : '#404040')};
   background: ${props => (props.categoryTab ? '#404446' : '#F2F4F5')};

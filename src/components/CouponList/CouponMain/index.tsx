@@ -1,21 +1,18 @@
 import styled from '@emotion/styled';
-
-import CouponExpose from '../CouponItem';
+import {
+  CouponExpired,
+  CouponExpose,
+  CouponStop,
+  CouponWait
+} from '../CouponItem';
 
 const CouponMain = () => {
   return (
     <MainContainer>
       <CouponExpose />
-      <CouponExpose />
-      <CouponExpose />
-      <CouponExpose />
-      <CouponExpose />
-      <CouponExpose />
-      <CouponExpose />
-      <CouponExpose />
-      <CouponExpose />
-      <CouponExpose />
-      <CouponExpose />
+      <CouponStop />
+      <CouponExpired />
+      <CouponWait />
     </MainContainer>
   );
 };
