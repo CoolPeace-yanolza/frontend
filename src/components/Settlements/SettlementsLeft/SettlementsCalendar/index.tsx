@@ -80,11 +80,13 @@ const CalendarText = styled.div`
 `;
 
 const StyledButton = styled.button`
-  padding: 5px 10px;
+  padding: 7px 14px;
 
   background-color: #3182F6;
   color: white;
-  font-weight: 700;
+
+  font-weight: 600;
+  font-size: 12px;
 
   border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 8px;

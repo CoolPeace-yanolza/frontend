@@ -8,6 +8,7 @@ import { useState, useEffect } from 'react';
 import { useRecoilState } from 'recoil';
 import { settlementDataState } from '@recoil/atoms/settlemented';
 
+
 const Settlemented = () => {
 
   const [sortedData, setSortedData] = useRecoilState(settlementDataState);
@@ -176,22 +177,33 @@ const OptionContainer = styled.div`
 const StyledDropdown = styled(Dropdown)`
   &.ui.dropdown {
     min-width: 140px;
-    font-color: white !important;
-    background-color: #1A2849;
+
     border: 1.5px solid white;
     border-radius: 14px;
+
+    font-color: white !important;
+    background-color: rgba(255, 255, 255, 0.1);
 
     .text {
       color: white;
       font-size: 11px;
     }
+
+    .icon {
+        color: white;
+    }
+
+    .menu .item.selected {
+        background-color: rgba(255, 255, 255, 0.1);
+        color: #fff;
+      }
     
     .menu {
       font-size: 11px;
-      background-color: #1A2849;
-      border: 1px solid rgba(255, 255, 255, 0.1);
+      background-color: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
       border-radius: 5px;
-      z-index: 1000;
+      margin-bottom: 2px;
 
       .item {
         white-space: nowrap;
