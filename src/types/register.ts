@@ -103,3 +103,8 @@ export type StepTitleProps = {
 export type LimitWrapperStyleProps = {
   $isLimited: boolean;
 };
+
+// RoomList
+export type RoomListProps = {
+  list: string[];
+};
