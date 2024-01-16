@@ -3,7 +3,7 @@ import { Route, Routes } from 'react-router-dom';
 import { Layout } from '@components/common';
 import Login from '@pages/Login';
 import SignUp from '@pages/SignUp';
-import Dashboard from '@pages/Dashboard.tsx';
+import Dashboard from '@pages/Dashboard';
 import Report from '@pages/Report';
 
 const MainRouter = () => {
