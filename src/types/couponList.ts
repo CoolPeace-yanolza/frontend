@@ -3,5 +3,9 @@ export interface ToggleStyleProps {
 }
 
 export interface ResisterDateStyleProps {
-  isClick: boolean;
+  resisterDateClick: boolean;
+}
+
+export interface CategoryTabProps {
+  categoryTab: boolean;
 }

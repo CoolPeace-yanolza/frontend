@@ -4,33 +4,39 @@ import theme from '@styles/theme';
 
 import searchIcon from '@assets/icons/ic-couponlist-search.svg';
 import centerIcon from '@assets/icons/ic-couponlist-period-center.svg';
-import { ResisterDateStyleProps } from '@/types/couponList';
+import { CategoryTabProps, ResisterDateStyleProps } from '@/types/couponList';
 
 const CouponNav = () => {
-  const [isClick, setIsClick] = useState<string>('1년');
+  const [resisterDateClick, setResisterDateClick] = useState<string>('1년');
+  const [categoryTab, setCategoryTab] = useState<string>('전체');
 
   const handleDateClick = (period: string) => {
-    setIsClick(period);
+    setResisterDateClick(period);
   };
+
+  const handleCategoryTab = (tab: string) => {
+    setCategoryTab(tab);
+  };
+
   return (
     <TabContainer>
       <TabNavContainer>
         <TabWrap>
-          <TapItemWrapper>
+          <TapItemWrapper onClick={() => handleCategoryTab('전체')}>
             <TabName>전체</TabName>
-            <TabCount>8</TabCount>
+            <TabCount categoryTab={categoryTab === '전체'}>8</TabCount>
           </TapItemWrapper>
-          <TapItemWrapper>
+          <TapItemWrapper onClick={() => handleCategoryTab('노출 ON')}>
             <TabName>노출 ON</TabName>
-            <TabCount>2</TabCount>
+            <TabCount categoryTab={categoryTab === '노출 ON'}>2</TabCount>
           </TapItemWrapper>
-          <TapItemWrapper>
+          <TapItemWrapper onClick={() => handleCategoryTab('노출 OFF')}>
             <TabName>노출 OFF</TabName>
-            <TabCount>2</TabCount>
+            <TabCount categoryTab={categoryTab === '노출 OFF'}>2</TabCount>
           </TapItemWrapper>
-          <TapItemWrapper>
-            <TabName>기간 만료</TabName>
-            <TabCount>4</TabCount>
+          <TapItemWrapper onClick={() => handleCategoryTab('만료')}>
+            <TabName>만료</TabName>
+            <TabCount categoryTab={categoryTab === '만료'}>4</TabCount>
           </TapItemWrapper>
         </TabWrap>
         <SearchWrap>
@@ -58,7 +64,7 @@ const CouponNav = () => {
         <ResisterPeriodWrap>
           <ResisterPeriodTitle>등록일 기준 최근</ResisterPeriodTitle>
           <ResisterPeriod
-            isClick={isClick === '1년'}
+            resisterDateClick={resisterDateClick === '1년'}
             onClick={() => handleDateClick('1년')}
           >
             1년
@@ -68,7 +74,7 @@ const CouponNav = () => {
             alt="centerIcon"
           />
           <ResisterPeriod
-            isClick={isClick === '6개월'}
+            resisterDateClick={resisterDateClick === '6개월'}
             onClick={() => handleDateClick('6개월')}
           >
             6개월
@@ -78,7 +84,7 @@ const CouponNav = () => {
             alt="centerIcon"
           />
           <ResisterPeriod
-            isClick={isClick === '3개월'}
+            resisterDateClick={resisterDateClick === '3개월'}
             onClick={() => handleDateClick('3개월')}
           >
             3개월
@@ -121,12 +127,12 @@ const TapItemWrapper = styled.div`
 `;
 
 const TabName = styled.div`
-  color: #404040;
   font-size: 20px;
   font-weight: 700;
+  color: #404446;
 `;
 
-const TabCount = styled.div`
+const TabCount = styled.div<CategoryTabProps>`
   width: 70px;
   height: 40px;
 
@@ -137,11 +143,13 @@ const TabCount = styled.div`
   align-items: center;
   justify-content: center;
 
-  color: #404040;
   font-size: 20px;
   font-weight: 700;
   background-color: #f3f3f3;
   cursor: pointer;
+
+  color: ${props => (props.categoryTab ? theme.colors.white : '#404040')};
+  background: ${props => (props.categoryTab ? '#404446' : '#F2F4F5')};
 `;
 
 const SearchWrap = styled.form`
@@ -241,6 +249,6 @@ const ResisterPeriod = styled.div<ResisterDateStyleProps>`
 
   font-size: 12px;
   cursor: pointer;
-  color: ${props => (props.isClick ? '#404040' : '#A4A4A4')};
-  font-weight: ${props => (props.isClick ? '700' : '400')};
+  color: ${props => (props.resisterDateClick ? '#404040' : '#A4A4A4')};
+  font-weight: ${props => (props.resisterDateClick ? '700' : '400')};
 `;
