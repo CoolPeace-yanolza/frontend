@@ -4,20 +4,13 @@ import styled from '@emotion/styled';
 import theme from '@styles/theme';
 import {
   InputCheckBoxProps,
-  InputCheckBoxContainerStyleProps,
   LabelStyleProps,
   CheckIconStyleProps
 } from '@/types/register';
 import checked from '@assets/icons/ic-register-checked.svg';
 import unchecked from '@assets/icons/ic-register-unchecked.svg';
 
-const InputCheckBox = ({
-  id,
-  whichInput,
-  currentInput,
-  text,
-  onChecked
-}: InputCheckBoxProps) => {
+const InputCheckBox = ({ id, text, onChecked }: InputCheckBoxProps) => {
   const [isChecked, setIsChecked] = useState(false);
 
   const handleCheckBox = () => {
@@ -28,7 +21,7 @@ const InputCheckBox = ({
   };
 
   return (
-    <Container $isSelected={whichInput === currentInput}>
+    <Container>
       <CheckBox
         type="checkbox"
         id={id}
@@ -47,8 +40,8 @@ const InputCheckBox = ({
 
 export default InputCheckBox;
 
-const Container = styled.div<InputCheckBoxContainerStyleProps>`
-  display: ${props => (props.$isSelected ? 'flex' : 'none')};
+const Container = styled.div`
+  display: flex;
   align-items: center;
 `;
 

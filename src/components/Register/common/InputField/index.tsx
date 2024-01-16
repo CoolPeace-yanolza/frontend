@@ -1,25 +1,15 @@
 import styled from '@emotion/styled';
 import theme from '@styles/theme';
 
-import {
-  InputFieldProps,
-  InputFieldStyleProps,
-  InputFieldContainerStyleProps
-} from '@/types/register';
+import { InputFieldProps, InputFieldStyleProps } from '@/types/register';
 
-const InputField = ({
-  placeholder,
-  text,
-  whichInput,
-  currentInput,
-  onInputChange
-}: InputFieldProps) => {
+const InputField = ({ placeholder, text, onInputChange }: InputFieldProps) => {
   const handleInput = (e: React.FormEvent<HTMLInputElement>) => {
     onInputChange(e);
   };
 
   return (
-    <Container $isSelected={whichInput === currentInput}>
+    <Container>
       <Input
         placeholder={placeholder}
         {...(text !== '원' && { maxLength: 2 })}
@@ -33,10 +23,10 @@ const InputField = ({
 
 export default InputField;
 
-const Container = styled.div<InputFieldContainerStyleProps>`
+const Container = styled.div`
   position: relative;
 
-  display: ${props => (props.$isSelected ? 'block' : 'none')};
+  margin-right: 10px;
 `;
 
 const Input = styled.input<InputFieldStyleProps>`

@@ -5,7 +5,8 @@ import {
   InputContainer,
   InputButton,
   InputField,
-  InputCheckBox
+  InputCheckBox,
+  InputWrapper
 } from '@components/Register/common';
 import { LimitWrapperStyleProps } from '@/types/register';
 
@@ -61,40 +62,45 @@ const FirstStep = () => {
             onButtonClick={setCurrentInput}
           />
         </ButtonWrapper>
-        <ContentWrapper>
+        <InputWrapper
+          whichInput={1}
+          currentInput={currentInput}
+        >
           <InputField
             placeholder="ex) 5000"
             text="원"
-            whichInput={1}
-            currentInput={currentInput}
             onInputChange={handleInput}
           />
-          <InnerContentWrapper>
+        </InputWrapper>
+        <InputWrapper
+          whichInput={2}
+          currentInput={currentInput}
+        >
+          <ContentWrapper>
             <InputField
               placeholder="ex) 50"
               text="% 할인"
-              whichInput={2}
-              currentInput={currentInput}
               onInputChange={handleInput}
             />
             <InputCheckBox
               id="discountLimit"
-              whichInput={2}
-              currentInput={currentInput}
               text="최대 할인 한도 설정하기"
               onChecked={setIsLimit}
             />
-          </InnerContentWrapper>
-          <LimitWrapper $isLimit={isLimit}>
+          </ContentWrapper>
+        </InputWrapper>
+        <LimitWrapper $isLimit={isLimit}>
+          <InputWrapper
+            whichInput={2}
+            currentInput={currentInput}
+          >
             <InputField
               placeholder="ex) 5000"
               text="원"
-              whichInput={2}
-              currentInput={currentInput}
               onInputChange={handleInput}
             />
-          </LimitWrapper>
-        </ContentWrapper>
+          </InputWrapper>
+        </LimitWrapper>
       </InputContainer>
     </>
   );
@@ -132,14 +138,6 @@ const ButtonWrapper = styled.div`
 `;
 
 const ContentWrapper = styled.div`
-  width: 100%;
-
-  margin-top: 9px;
-
-  display: inline-block;
-`;
-
-const InnerContentWrapper = styled.div`
   display: flex;
 `;
 

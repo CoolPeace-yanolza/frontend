@@ -31,8 +31,6 @@ export type ButtonStyleProps = {
 export type InputFieldProps = {
   placeholder: string;
   text: string;
-  whichInput: number;
-  currentInput: number;
   onInputChange: (e: React.FormEvent<HTMLInputElement>) => void;
 };
 
@@ -40,21 +38,11 @@ export type InputFieldStyleProps = {
   $text: string;
 };
 
-export type InputFieldContainerStyleProps = {
-  $isSelected: boolean;
-};
-
 // InputCheckBox
 export type InputCheckBoxProps = {
   id: string;
-  whichInput: number;
-  currentInput: number;
   text: string;
   onChecked?: React.Dispatch<React.SetStateAction<boolean>>;
-};
-
-export type InputCheckBoxContainerStyleProps = {
-  $isSelected: boolean;
 };
 
 export type LabelStyleProps = {
