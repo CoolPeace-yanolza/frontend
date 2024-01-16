@@ -1,11 +1,13 @@
-import { useState } from 'react';
 import styled from '@emotion/styled';
+import { useState } from 'react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 
 import CalendarIcon from '@assets/icons/calendar-number-outline.svg';
+import Settlemented from './Settlemented';
+import SettlementsHeader from './SettlementsHeader';
 
-const SettlementsCalender = () => {
+const SettlementsSetting = () => {
   const [startDate, setStartDate] = useState<Date | null>(null);
   const [endDate, setEndDate] = useState<Date | null>(null);
 
@@ -23,32 +25,48 @@ const SettlementsCalender = () => {
 
   return (
     <Container>
-       <Calendar
-        src={CalendarIcon}
-        alt="캘린더" />
-      <CalendarText>기간 설정</CalendarText>
-      <StyledDatePicker
-        selected={startDate}
-        onChange={handleStartDateChange}
-        dateFormat="yyyy/MM"
-        showMonthYearPicker
-        placeholderText=""
-      />
-      <StyledDatePicker
-        selected={endDate}
-        onChange={handleEndDateChange}
-        dateFormat="yyyy/MM"
-        showMonthYearPicker
-        placeholderText=""
-      />
-      <StyledButton onClick={handleButtonClick}>조회하기</StyledButton>
+      <SettlementsHeader/>
+        <CalendarContainer>
+            <Calendar
+                src={CalendarIcon}
+                alt="캘린더" />
+            <CalendarText>기간 설정</CalendarText>
+            <StyledDatePicker
+                selected={startDate}
+                onChange={handleStartDateChange}
+                dateFormat="yyyy/MM"
+                showMonthYearPicker
+                placeholderText=""
+            />
+            <StyledDatePicker
+                selected={endDate}
+                onChange={handleEndDateChange}
+                dateFormat="yyyy/MM"
+                showMonthYearPicker
+                placeholderText=""
+            />
+            <StyledButton onClick={handleButtonClick}>조회하기</StyledButton>
+        </CalendarContainer>
+    <BreakLine>
+            <hr />
+    </BreakLine>
+    <Settlemented />
     </Container>
   )
 }
 
-export default SettlementsCalender;
+export default SettlementsSetting;
 
-const Container = styled.nav`
+const Container = styled.div`
+  width: 100%;
+  height: 100%;
+`;
+
+const BreakLine = styled.div`
+  margin: 0 40px;
+`;
+
+const CalendarContainer = styled.nav`
   margin-right: 43px;
 
   display: flex;

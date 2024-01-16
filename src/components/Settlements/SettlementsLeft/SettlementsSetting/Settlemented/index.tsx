@@ -1,13 +1,12 @@
 import styled from '@emotion/styled';
 import 'semantic-ui-css/semantic.min.css';
 import { Dropdown, DropdownProps } from 'semantic-ui-react';
+import { useState, useEffect } from 'react';
+import { useRecoilState } from 'recoil';
 
 import SettlementsTable from './SettlementsTable';
 import SettlementsPagination from './SettlementsPagination';
-import { useState, useEffect } from 'react';
-import { useRecoilState } from 'recoil';
 import { settlementDataState } from '@recoil/atoms/settlemented';
-
 
 const Settlemented = () => {
 
@@ -211,8 +210,6 @@ const StyledDropdown = styled(Dropdown)`
     }
   }
 `;
-
-
 
 const ExcelDownload = styled.div`
   width: 100%;

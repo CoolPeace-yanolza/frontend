@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 
-import { SettlementItem } from '../../../../../types/settlements';
+import { SettlementItem } from '../../../../../../types/settlements';
 import settlementsFrame from '@assets/icons/settlements-data-frame.svg'; 
 
 const SettlementsTable = ({ data, pageStartNumber }: { data: SettlementItem[], pageStartNumber: number }) => {
