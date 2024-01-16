@@ -6,7 +6,4 @@ export {
   renderTotalAmount
 } from './lib/report';
 export { getUpdatedDate } from './lib/calculation';
-export {
-  getStatusToLocaleString,
-  getMatchedStatusItemTitle
-} from './lib/dashboard';
+export { getStatusToLocaleString } from './lib/dashboard';
