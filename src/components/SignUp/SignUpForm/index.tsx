@@ -39,7 +39,7 @@ const SignUpForm = () => {
           <AuthButton
             size="small"
             variant="disabled"
-            text="회원가입"
+            text="중복확인"
             buttonFunc={() => {
               // TODO : 회원가입 API 요청 로직
             }}
