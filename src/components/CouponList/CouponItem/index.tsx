@@ -13,7 +13,7 @@ const CouponExpose = () => {
     setIsToggle(!isToggle);
   };
   return (
-    <CouponContainer>
+    <CouponContainer isToggle={isToggle}>
       <CouponHeaderContainer>
         <CouponHeader>
           <CouponTitle>2024 신년행사</CouponTitle>
@@ -82,12 +82,13 @@ const CouponExpose = () => {
 
 export default CouponExpose;
 
-const CouponContainer = styled.div`
+const CouponContainer = styled.div<ToggleStyleProps>`
   width: 290px;
   height: 203px;
 
   border-radius: 8px;
-  background: #ffebf1;
+
+  background: ${props => (props.isToggle ? '#ffebf1' : '#ECF0FA')};
   box-shadow: 0px 1px 4px 1px rgba(0, 0, 0, 0.25);
 `;
 
