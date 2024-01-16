@@ -1,6 +1,6 @@
 import { NavLink as ReactRouterDomLink, NavLinkProps } from 'react-router-dom';
 
-import { CustomNavLinkProps } from '@/types/layout';
+import { CustomNavLink } from '@/types/layout';
 
 const CustomNavLink = ({
   children,
@@ -9,7 +9,7 @@ const CustomNavLink = ({
   $isToggleOpen,
   $userPath,
   ...props
-}: CustomNavLinkProps & NavLinkProps) => {
+}: CustomNavLink & NavLinkProps) => {
   return (
     <ReactRouterDomLink
       to={to}
