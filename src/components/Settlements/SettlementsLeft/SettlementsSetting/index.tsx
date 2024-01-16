@@ -2,25 +2,42 @@ import styled from '@emotion/styled';
 import { useState } from 'react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
+import { useSetRecoilState } from 'recoil';
 
 import CalendarIcon from '@assets/icons/calendar-number-outline.svg';
 import Settlemented from './Settlemented';
 import SettlementsHeader from './SettlementsHeader';
+import { settlementsDateState } from '@recoil/atoms/settlemented';
 
 const SettlementsSetting = () => {
   const [startDate, setStartDate] = useState<Date | null>(null);
   const [endDate, setEndDate] = useState<Date | null>(null);
 
-  const handleStartDateChange = (date: Date | null) => {
-    setStartDate(date); 
-  };
+  const setSettlementsDate = useSetRecoilState(settlementsDateState);
 
+  const handleStartDateChange = (date: Date | null) => {
+    if (date) {
+      date.setDate(1);
+      date.setHours(0, 0, 0, 0); 
+    }
+    setStartDate(date);
+  };
+  
   const handleEndDateChange = (date: Date | null) => {
-    setEndDate(date); 
+    if (date) {
+      date.setMonth(date.getMonth() + 1);
+      date.setDate(0); 
+      date.setHours(23, 59, 59, 999);
+    }
+    setEndDate(date);
   };
 
   const handleButtonClick = () => {
     console.log('조회하기 버튼이 클릭되었습니다.');
+    if (startDate && endDate) {
+        setSettlementsDate({ startDate, endDate });
+        console.log(settlementsDateState);
+    }
   };
 
   return (

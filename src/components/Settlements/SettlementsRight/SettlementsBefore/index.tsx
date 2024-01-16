@@ -18,8 +18,7 @@ const SettlementsBefore = () => {
   };
 
   const isBeforeDueDate = currentDate.getDate() < 10;
-
-
+  
   return (
     <Container>
     <InnerContainer>
