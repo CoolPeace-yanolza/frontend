@@ -54,6 +54,18 @@ export type CheckIconStyleProps = {
   $src: string;
 };
 
+// InputRadio
+export type InputRadioProps = {
+  id: string;
+  name: string;
+  text: string;
+  children?: ReactNode;
+};
+
+export type InputRadioStyleProps = {
+  $src: string;
+};
+
 // InputWrapper
 export type InputWrapperProps = {
   whichInput: number;
