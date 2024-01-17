@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import styled from '@emotion/styled';
 import theme from '@styles/theme';
 
@@ -9,10 +9,33 @@ import { ToggleStyleProps } from '@/types/couponList';
 
 const CouponExpose = () => {
   const [isToggle, setIsToggle] = useState(true);
+  const [isRoomList, setIsRoomList] = useState(false);
+  const roomListRef = useRef<HTMLDivElement>(null);
 
   const handleToggle = () => {
     setIsToggle(!isToggle);
   };
+
+  const handleRoomList = () => {
+    setIsRoomList(!isRoomList);
+  };
+
+  useEffect(() => {
+    const handleClickListOutside = (e: MouseEvent) => {
+      if (
+        roomListRef.current &&
+        !roomListRef.current.contains(e.target as Node)
+      ) {
+        setIsRoomList(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickListOutside);
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickListOutside);
+    };
+  });
+
   return (
     <CouponContainer isToggle={isToggle}>
       <CouponHeaderContainer>
@@ -63,25 +86,28 @@ const CouponExpose = () => {
           </ContentWrap>
           <ContentWrap>
             <ContentTitle>객실</ContentTitle>
-            <ContentRoom>
+            <ContentRoom onClick={handleRoomList}>
               <div>일부 객실</div>
               <img
                 src={rightIcon}
                 alt="오른쪽 화살표"
               />
             </ContentRoom>
-            <RoomList>
-              <RoomListTitle>쿠폰 적용 객실</RoomListTitle>
-              <RoomListItem>
-                <ul>
-                  <li>스탠다드 더블</li>
-                  <li>스탠다드 트윈</li>
-                  <li>프리미엄 스위트 더블 디럭스</li>
-                  <li>프리미엄 스위트 더블 디럭스</li>
-                  <li>프리미엄 스위트 더블 디럭스</li>
-                </ul>
-              </RoomListItem>
-            </RoomList>
+            {isRoomList && (
+              <RoomList ref={roomListRef}>
+                <RoomListTitle>쿠폰 적용 객실</RoomListTitle>
+                <RoomListItem>
+                  <ul>
+                    <li>스탠다드 더블</li>
+                    <li>스탠다드 트윈</li>
+                    <li>프리미엄 스위트 더블 디럭스</li>
+                    <li>프리미엄 스위트 더블 디럭스</li>
+                    <li>프리미엄 스위트 더블 디럭스</li>
+                  </ul>
+                </RoomListItem>
+              </RoomList>
+            )}
+
             <ContentValue></ContentValue>
           </ContentWrap>
         </ContentContainer>
@@ -268,13 +294,25 @@ const RoomList = styled.div`
   right: 0;
   z-index: 1;
 
-  height: 188px;
-
   margin-top: 150px;
   border-radius: 18px;
   text-align: center;
 
   background: #415574;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-bottom: 10px solid #415574;
+  }
 `;
 
 const RoomListTitle = styled.div`
@@ -291,14 +329,24 @@ const RoomListTitle = styled.div`
 `;
 
 const RoomListItem = styled.div`
+  max-height: 125px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow-y: auto; // 세로 스크롤만 허용
+
   color: ${theme.colors.white};
   font-size: 14px;
   font-weight: 400;
-  line-height: 30px;
+  line-height: 36px;
 
   li {
     overflow: hidden;
     overflow-y: scroll;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 130px;
   }
 `;
 
