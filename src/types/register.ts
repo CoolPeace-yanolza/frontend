@@ -120,3 +120,10 @@ export type LimitWrapperStyleProps = {
 export type RoomListProps = {
   list: string[];
 };
+
+// RadioProps
+export type RadioProps = {
+  id: string;
+  name: string;
+  text: string;
+};
