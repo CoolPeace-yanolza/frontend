@@ -15,8 +15,8 @@ const RightSection = () => {
 export default RightSection;
 
 const Section = styled.section`
-  width: 250px;
-  max-height: fit-content;
+  min-width: 250px;
+  height: 100%;
 
   display: flex;
   flex-direction: column;
