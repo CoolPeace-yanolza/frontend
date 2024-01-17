@@ -7,9 +7,19 @@ import {
   AuthInputNormal,
   AuthInputPassword
 } from '@components/common/Auth';
+import { LoginData } from '@/types/auth';
+import { postLogin } from 'src/api';
+import { setCookies } from '@utils/lib/cookies';
 
 const LoginForm = () => {
   const navigate = useNavigate();
+
+  // HACK : 추후 useState로 입력 데이터 관리할 예쩡
+  const formData: LoginData = {
+    email: 'mary0393@naver.com',
+    password: 'qqqq1111!'
+  };
+
   // HACK: 유효성 검사 기능 구현 후 유효성 메세지 노출 여부 결정
   const isInvalid = true;
 
@@ -17,6 +27,21 @@ const LoginForm = () => {
     event.preventDefault();
     navigate('/signup');
   };
+
+  const handleLoginSubmit = async (
+    event: React.FormEvent<HTMLButtonElement>
+  ) => {
+    event.preventDefault();
+    const response = await postLogin(formData);
+    setCookies(
+      response.name,
+      response.email,
+      response.access_token,
+      response.refresh_token,
+      response.expires_in
+    );
+  };
+
   return (
     <form>
       <Inputs $isInvalid={isInvalid}>
@@ -44,9 +69,7 @@ const LoginForm = () => {
           size="large"
           variant="navy"
           text="로그인"
-          buttonFunc={() => {
-            // TODO : 로그인 API 요청
-          }}
+          buttonFunc={handleLoginSubmit}
         />
         <AuthButton
           size="large"
