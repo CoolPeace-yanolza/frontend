@@ -4,6 +4,7 @@ import theme from '@styles/theme';
 
 import toggleOnIcon from '@assets/icons/ic-couponlist-toggleOn.svg';
 import toggleOffIcon from '@assets/icons/ic-couponlist-toggleOff.svg';
+import rightIcon from '@assets/icons/ic-couponlist-right.svg';
 import { ToggleStyleProps } from '@/types/couponList';
 
 const CouponExpose = () => {
@@ -62,7 +63,26 @@ const CouponExpose = () => {
           </ContentWrap>
           <ContentWrap>
             <ContentTitle>객실</ContentTitle>
-            <ContentValue>전체</ContentValue>
+            <ContentRoom>
+              <div>일부 객실</div>
+              <img
+                src={rightIcon}
+                alt="오른쪽 화살표"
+              />
+            </ContentRoom>
+            <RoomList>
+              <RoomListTitle>쿠폰 적용 객실</RoomListTitle>
+              <RoomListItem>
+                <ul>
+                  <li>스탠다드 더블</li>
+                  <li>스탠다드 트윈</li>
+                  <li>프리미엄 스위트 더블 디럭스</li>
+                  <li>프리미엄 스위트 더블 디럭스</li>
+                  <li>프리미엄 스위트 더블 디럭스</li>
+                </ul>
+              </RoomListItem>
+            </RoomList>
+            <ContentValue></ContentValue>
           </ContentWrap>
         </ContentContainer>
       </CouponMain>
@@ -83,6 +103,8 @@ const CouponExpose = () => {
 export default CouponExpose;
 
 const CouponContainer = styled.div<ToggleStyleProps>`
+  position: relative;
+
   width: 290px;
   height: 203px;
 
@@ -216,6 +238,68 @@ const ContentTitle = styled.div`
   font-size: 11px;
   font-style: normal;
   font-weight: 600;
+`;
+const ContentRoom = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+
+  img {
+    margin-bottom: 3px;
+  }
+  div {
+    margin-right: 3px;
+    border-bottom: 1px solid #757676;
+
+    color: #757676;
+    font-size: 11px;
+    font-style: normal;
+    font-weight: 600;
+  }
+`;
+
+const RoomList = styled.div`
+  width: 188px;
+  height: 204px;
+
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 1;
+
+  height: 188px;
+
+  margin-top: 150px;
+  border-radius: 18px;
+  text-align: center;
+
+  background: #415574;
+`;
+
+const RoomListTitle = styled.div`
+  text-align: center;
+
+  border-bottom: 1px solid #cdcfd0;
+  margin: 10px;
+  padding: 10px;
+
+  font-size: 15px;
+  font-weight: 700;
+  font-style: normal;
+  color: ${theme.colors.white};
+`;
+
+const RoomListItem = styled.div`
+  color: ${theme.colors.white};
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 30px;
+
+  li {
+    overflow: hidden;
+    overflow-y: scroll;
+  }
 `;
 
 const ContentValue = styled.div`
