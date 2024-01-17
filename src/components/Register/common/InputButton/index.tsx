@@ -51,10 +51,6 @@ const Input = styled.input`
 
     background-color: ${theme.colors.hover};
   }
-
-  &:checked + label + div {
-    display: block;
-  }
 `;
 
 const Button = styled.label`
@@ -72,8 +68,4 @@ const Button = styled.label`
   font-size: 15px;
 
   cursor: pointer;
-
-  &:has(input:checked) {
-    background-color: ${theme.colors.hover};
-  }
 `;
