@@ -1,4 +1,11 @@
-import { ReactNode } from 'react';
+import { ReactNode, RefObject } from 'react';
+
+// Backdrop
+export type BackdropProps = {
+  backdropRef: RefObject<HTMLDivElement>;
+  onBackdropClick: (e: React.MouseEvent<HTMLDivElement>) => void;
+  children: ReactNode;
+};
 
 // InputContainer
 export type InputContainerProps = {
