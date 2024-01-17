@@ -1,25 +1,26 @@
 import styled from '@emotion/styled';
 
-import { SignUpDisabledButton, SignUpInputValidation } from '@/types/signUp';
+import { SignUpInputValidation } from '@/types/signUp';
+import {
+  AuthButton,
+  AuthInputNormal,
+  AuthInputPassword
+} from '@components/common/Auth';
 
 const SignUpForm = () => {
-  // TODO: react-hook-form 사용해서 유효성 검사 예정
-  const isInvalid = false;
+  const isInvalid = true;
   const isEmailValidationVisible = false;
-
-  // 2가지 버튼 disabled 처리하기 위한 state
-  const isEmailValidationDisabled = true;
-  const isSubmitValidationDisabled = true;
 
   return (
     <Form>
       <InputLabelWrapper>
         <Label htmlFor="user_name">이름</Label>
-        <Input
+        <AuthInputNormal
           type="text"
           id="user_name"
           placeholder="이름 입력"
-          required
+          usedFor="signup"
+          isInvalid={isInvalid}
         />
         {isInvalid && (
           <ValidationText $isInvalid={isInvalid}>
@@ -34,11 +35,15 @@ const SignUpForm = () => {
             type="email"
             id="user_email"
             placeholder="이메일 입력"
-            required
           />
-          <EmailValidationButton $isDisabled={isEmailValidationDisabled}>
-            중복확인
-          </EmailValidationButton>
+          <AuthButton
+            size="small"
+            variant="disabled"
+            text="중복확인"
+            buttonFunc={() => {
+              // TODO : 회원가입 API 요청 로직
+            }}
+          />
         </EmailInputWrapper>
         {isEmailValidationVisible && (
           <ValidationText $isInvalid={!isInvalid}>
@@ -48,11 +53,11 @@ const SignUpForm = () => {
       </InputLabelWrapper>
       <InputLabelWrapper>
         <Label htmlFor="user_password">비밀번호</Label>
-        <Input
-          type="password"
+        <AuthInputPassword
           id="user_password"
           placeholder="8-20자, 영문/숫자/특수문자 조합"
-          required
+          usedFor="signup"
+          isInvalid={isInvalid}
         />
         {isInvalid && (
           <ValidationText $isInvalid={isInvalid}>
@@ -62,11 +67,11 @@ const SignUpForm = () => {
       </InputLabelWrapper>
       <InputLabelWrapper>
         <Label htmlFor="user_password_confirm">비밀번호 확인</Label>
-        <Input
-          type="password"
+        <AuthInputPassword
           id="user_password_confirm"
           placeholder="다시 한번 입력해주세요."
-          required
+          usedFor="signup"
+          isInvalid={isInvalid}
         />
         {isInvalid && (
           <ValidationText $isInvalid={isInvalid}>
@@ -74,34 +79,17 @@ const SignUpForm = () => {
           </ValidationText>
         )}
       </InputLabelWrapper>
-      <SubmitButton $isDisabled={isSubmitValidationDisabled}>
-        회원가입
-      </SubmitButton>
+      <AuthButton
+        size="large"
+        variant="navy"
+        text="회원가입"
+        buttonFunc={() => {}}
+      />
     </Form>
   );
 };
 
 export default SignUpForm;
-
-const SubmitButton = styled.button<SignUpDisabledButton>`
-  min-width: 524px;
-  height: 78px;
-
-  border: none;
-  border-radius: 16px;
-  padding: 23px auto;
-
-  color: #fff;
-  font-size: 22px;
-  font-weight: 700;
-  line-height: 32px;
-
-  background: ${props => (props.$isDisabled ? '#C1C1C1' : '#1A2849')};
-
-  &:hover {
-    cursor: pointer;
-  }
-`;
 
 const Form = styled.form`
   margin-top: 26px;
@@ -161,10 +149,6 @@ const EmailInputWrapper = styled.div`
 
 const EmailInput = styled(Input)`
   width: 358px;
-`;
-
-const EmailValidationButton = styled(SubmitButton)`
-  min-width: 152px;
 `;
 
 const ValidationText = styled.p<SignUpInputValidation>`

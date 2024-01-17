@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 import {
   GraphSection,
   CouponStatusSection,
-  CouponRecommendSection,
+  LocalInformationSection,
   DailyReportSection
 } from '@components/Dashboard';
 
@@ -12,7 +12,7 @@ const Dashboard = () => {
     <Container>
       <LeftSection>
         <GraphSection />
-        <CouponRecommendSection />
+        <LocalInformationSection />
       </LeftSection>
       <RightSection>
         <CouponStatusSection />
@@ -34,17 +34,18 @@ const Container = styled.div`
 `;
 
 const LeftSection = styled.div`
-  height: 100%;
-
-  display: flex;
-  flex-direction: column;
-  flex: 8;
-`;
-
-const RightSection = styled.div`
+  min-width: 1016px;
   height: 100%;
 
   display: flex;
   flex-direction: column;
   flex: 2;
+`;
+
+const RightSection = styled.div`
+  min-width: 250px;
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
 `;

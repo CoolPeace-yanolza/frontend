@@ -58,17 +58,18 @@ const Container = styled.div`
   width: 100%;
   height: 100%;
 
-  padding: 45px 12px;
+  padding: 30px 15px;
   border-radius: 20px;
 
   display: flex;
   flex-direction: column;
-  gap: 25px;
 
   background-color: white;
 `;
 
 const Title = styled.span`
+  padding: 16px 0;
+
   font-size: 17px;
   font-weight: 700;
 `;
@@ -76,7 +77,6 @@ const Title = styled.span`
 const ContentsWrapper = styled.div`
   width: 100%;
 
-  margin-top: 20px;
   border-radius: 16px;
 
   display: flex;
@@ -113,7 +113,7 @@ const Amount = styled.span<AmountStyleProps>`
   justify-content: center;
   align-items: center;
 
-  color: ${props => (props.$isfirstamount ? '#FF3478' : '#022c79')};
+  color: ${props => (props.$isfirstamount ? '#022c79' : '#FF3478')};
   background-color: white;
   font-size: 20px;
   font-weight: 700;

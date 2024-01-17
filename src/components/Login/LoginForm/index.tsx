@@ -1,21 +1,37 @@
+import { useNavigate } from 'react-router-dom';
 import styled from '@emotion/styled';
 
-import { ButtonText, InputValidation } from '@/types/login';
+import { InputValidation } from '@/types/login';
+import {
+  AuthButton,
+  AuthInputNormal,
+  AuthInputPassword
+} from '@components/common/Auth';
 
 const LoginForm = () => {
+  const navigate = useNavigate();
   // HACK: 유효성 검사 기능 구현 후 유효성 메세지 노출 여부 결정
   const isInvalid = true;
 
+  const movetoSignUp = (event: React.MouseEvent<HTMLButtonElement>) => {
+    event.preventDefault();
+    navigate('/signup');
+  };
   return (
     <form>
       <Inputs $isInvalid={isInvalid}>
-        <Input
+        <AuthInputNormal
           type="email"
+          id="user_email"
           placeholder="이메일 입력"
+          usedFor="login"
+          isInvalid={isInvalid}
         />
-        <Input
-          type="password"
-          placeholder="비밀번호 입력"
+        <AuthInputPassword
+          id="user_password"
+          placeholder="8-20자, 영문/숫자/특수문자 조합"
+          usedFor="login"
+          isInvalid={isInvalid}
         />
       </Inputs>
       {isInvalid && (
@@ -24,8 +40,20 @@ const LoginForm = () => {
         </ValidationText>
       )}
       <Buttons $isInvalid={isInvalid}>
-        <Button $text="login">로그인</Button>
-        <Button $text="signUp">회원가입</Button>
+        <AuthButton
+          size="large"
+          variant="navy"
+          text="로그인"
+          buttonFunc={() => {
+            // TODO : 로그인 API 요청
+          }}
+        />
+        <AuthButton
+          size="large"
+          variant="pink"
+          text="회원가입"
+          buttonFunc={movetoSignUp}
+        />
       </Buttons>
     </form>
   );
@@ -39,35 +67,6 @@ const Inputs = styled.div<InputValidation>`
   display: flex;
   flex-direction: column;
   gap: 19px;
-`;
-
-const Input = styled.input`
-  width: 524px;
-  height: 79px;
-
-  border-radius: 16px;
-  border: 2px solid #757676;
-  padding: 23px 20px;
-
-  display: flex;
-  align-items: center;
-
-  color: #1a2849;
-  font-size: 18px;
-  font-weight: 500;
-  line-height: 32px;
-
-  &::placeholder {
-    color: #979c9e;
-    font-size: 18px;
-    font-weight: 500;
-    line-height: 32px;
-  }
-
-  &:focus {
-    outline: 2px solid #1a2849;
-    border-color: #1a2849;
-  }
 `;
 
 const ValidationText = styled.p`
@@ -89,26 +88,4 @@ const Buttons = styled.div<InputValidation>`
   gap: 13px;
 
   ${props => props.$isInvalid && 'margin-top: 23px'};
-`;
-
-const Button = styled.button<ButtonText>`
-  min-width: 524px;
-
-  border: none;
-  border-radius: 16px;
-  padding: 23px 0;
-
-  color: #fff;
-  font-size: 22px;
-  font-weight: 700;
-  line-height: 32px;
-
-  background: ${props =>
-    props.$text === 'login'
-      ? '#1A2849'
-      : 'linear-gradient(91deg, #FF3478 1.39%, #FF83AD 98.63%)'};
-
-  &:hover {
-    cursor: pointer;
-  }
 `;
