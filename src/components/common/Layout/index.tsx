@@ -29,7 +29,6 @@ const Container = styled.div`
 
   width: 100vw;
   min-width: 100vw;
-  height: 100vh;
   max-height: 100vh;
 
   display: flex;
@@ -68,5 +67,5 @@ const OutletLayout = styled.div<{ $pathname: string }>`
     }
   }};
 
-  overflow: scroll;
+  overflow-y: auto;
 `;
