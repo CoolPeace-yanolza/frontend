@@ -169,44 +169,50 @@ const OptionContainer = styled.div`
 `;
 
 const StyledDropdown = styled(Dropdown)`
-
   &.ui.dropdown {
-    min-width: 140px;
+    min-width: 160px;
     backdrop-filter: blur(50px);
-
     border-radius: 14px;
-
     font-color: white !important;
     background-color: rgba(255, 255, 255, 0.1);
-
     .text {
       color: white;
       font-size: 11px;
+      max-height: 30px;
     }
-
     .icon {
-        color: white;
+      color: white;
     }
-
     .menu .item.selected {
-        background-color: rgba(255, 255, 255, 0.1);
-        color: #fff;
-      }
-    
+      background-color: rgba(255, 255, 255, 0.1);
+      color: #fff;
+    }
     .menu {
       font-size: 11px;
       background-color: rgba(255, 255, 255, 0.1) !important;
       border: 1px solid rgba(255, 255, 255, 0.2) !important;
       border-radius: 0px 0px 5px 5px;
       margin-bottom: 2px;
-
       .item {
         white-space: nowrap;
-        border-bottom: none !important; 
+        border-bottom: none !important;
+        border-top: none !important;
       }
     }
   }
+  &.ui.selection.active.dropdown {
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    box-shadow: 0 2px 3px 0 rgba(34, 36, 38, 0.15) !important;
+  }
+
+  &.ui.selection.visible.dropdown>.text:not(.default) {
+    font-weight: 400;
+    color: white;
+}
 `;
+
+
 
 const ExcelDownload = styled.div`
   width: 100%;
