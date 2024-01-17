@@ -169,10 +169,11 @@ const OptionContainer = styled.div`
 `;
 
 const StyledDropdown = styled(Dropdown)`
+
   &.ui.dropdown {
     min-width: 140px;
+    backdrop-filter: blur(50px);
 
-    border: 1.5px solid white;
     border-radius: 14px;
 
     font-color: white !important;
@@ -194,13 +195,14 @@ const StyledDropdown = styled(Dropdown)`
     
     .menu {
       font-size: 11px;
-      background-color: rgba(255, 255, 255, 0.1);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      border-radius: 5px;
+      background-color: rgba(255, 255, 255, 0.1) !important;
+      border: 1px solid rgba(255, 255, 255, 0.2) !important;
+      border-radius: 0px 0px 5px 5px;
       margin-bottom: 2px;
 
       .item {
         white-space: nowrap;
+        border-bottom: none !important; 
       }
     }
   }
