@@ -18,7 +18,7 @@ const SettlementsBefore = () => {
   };
 
   const isBeforeDueDate = currentDate.getDate() < 10;
-  
+
   return (
     <Container>
     <InnerContainer>
@@ -199,5 +199,8 @@ const Icon = styled.img`
 `;
 
 const ReceiptIcon = styled.img`
+  max-width: 200px;
+  
   margin-top: 40px;
+  margin-left: auto;
 `;

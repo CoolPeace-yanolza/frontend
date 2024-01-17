@@ -89,20 +89,17 @@ const PaginationContainer = styled.div`
   .pagination-previous,
   .pagination-next {
     padding: 8px 12px;
-
-    border: 1px solid #ccc;
-    border-radius: 4px;
     
-    color: #FFFFFF;
+    color: #FFFFFF !important;
     text-decoration: none;
 
     &:hover {
-      background-color: #f0f0f0;
+      cursor: pointer;
     }
+  }
 
-    &.active {
-      font-weight: bold;
-      background-color: #e0e0e0;
-    }
+  .pagination-previous a,
+  .pagination-next a {
+    color: white !important;
   }
 `;

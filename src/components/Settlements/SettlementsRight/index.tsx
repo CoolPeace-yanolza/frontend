@@ -25,7 +25,6 @@ const Container = styled.div`
   position: relative;
 
   width: 20%;
-  height: 100%;
 
   background-color: #1A2849;
   border-top-right-radius: 1.25rem;
