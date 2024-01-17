@@ -91,5 +91,5 @@ const ContentWrapper = styled.div`
 `;
 
 const Content = styled.div`
-  padding: 24px 0px 6px;
+  padding-top: 20px;
 `;
