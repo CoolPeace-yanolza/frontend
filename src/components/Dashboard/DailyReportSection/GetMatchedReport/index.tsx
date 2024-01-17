@@ -5,6 +5,7 @@ import reportImage02 from '/images/ic-dailyReport-status02.png';
 import reportImage03 from '/images/ic-dailyReport-status03.png';
 import reportImage04 from '/images/ic-dailyReport-status04.png';
 
+//HACK: 더 효율적인 구조로 개선시도하기
 const ReportCondition01 = () => (
   <Container>
     <ImageContainer>
