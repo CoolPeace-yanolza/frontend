@@ -4,6 +4,7 @@ import { useLocation } from 'react-router-dom';
 
 import Sidebar from './Sidebar';
 import Header from './Header';
+import theme from '@styles/theme';
 
 const Layout = () => {
   const location = useLocation();
@@ -26,12 +27,15 @@ export default Layout;
 const Container = styled.div`
   position: relative;
 
+  width: 100vw;
   min-width: 100vw;
+  height: 100vh;
   max-height: 100vh;
 
   display: flex;
 
-  background-color: ${props => props.theme.colors.background};
+  background-color: ${theme.colors.background};
+  overflow: hidden;
 `;
 
 const Section = styled.section`
@@ -48,7 +52,8 @@ const Section = styled.section`
 //HACK: 타입 분리 예정!
 const OutletLayout = styled.div<{ $pathname: string }>`
   width: 100%;
-  height: 100%;
+  height: 100vh;
+  max-height: 100vh;
 
   margin-top: 16px;
   border-radius: 20px;
@@ -59,9 +64,9 @@ const OutletLayout = styled.div<{ $pathname: string }>`
     } else if (props.$pathname === '/coupons/report') {
       return 'transparent';
     } else {
-      return props.theme.colors.white;
+      return theme.colors.white;
     }
   }};
 
-  overflow-y: auto;
+  overflow: scroll;
 `;

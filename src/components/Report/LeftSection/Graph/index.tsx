@@ -64,7 +64,7 @@ const Container = styled.div`
 `;
 
 const Content = styled.div`
-  padding: 20px 0;
+  padding: 25px 0;
 
   display: flex;
   align-items: flex-end;
@@ -97,8 +97,8 @@ const Update = styled.span`
 const InnerContainer = styled.div`
   position: relative;
 
-  width: 67vw;
-  height: calc(67vw / 2);
+  width: 100%;
+  min-height: 500px;
 
   border-radius: 16px;
   padding: 30px;

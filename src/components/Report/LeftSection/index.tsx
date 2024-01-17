@@ -118,15 +118,15 @@ const LeftSection = () => {
 export default LeftSection;
 
 const Container = styled.section`
-  height: fit-content;
+  min-width: 1016px;
+  height: 100%;
 
   border-radius: 20px;
   padding: 20px 30px;
 
   display: flex;
   flex-direction: column;
-  gap: 20px;
-  flex: 7;
+  flex: 2;
 
   background-color: white;
 `;
