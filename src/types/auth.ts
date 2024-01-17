@@ -29,3 +29,8 @@ export type AuthButton = {
 };
 
 export type AuthButtonStyleProps = { $size: string; $variant: string };
+
+export type LoginData = {
+  email: string;
+  password: string;
+};
