@@ -7,6 +7,7 @@ import coupon from '@assets/icons/ic-sidebar-coupon.svg';
 import CouponNav from './CouponNav';
 import CustomNavLink from '../CustomNavLink';
 import { Opens, SidebarOpen, SidebarStyleProps } from '@/types/layout';
+import theme from '@styles/theme';
 
 const Coupon = ({ isSidebarOpen }: { isSidebarOpen: boolean }) => {
   const [isToggleOpen, setIsToggleOpen] = useState(true);
@@ -79,19 +80,19 @@ const Container = styled(CustomNavLink)<SidebarStyleProps>`
 
   color: ${props => {
     if (props.$userPath === 'coupons') {
-      return props.theme.colors.white;
+      return theme.colors.white;
     } else if (props.$isToggleOpen) {
-      return props.theme.colors.white;
+      return theme.colors.white;
     } else {
-      return props.theme.colors.black;
+      return theme.colors.black;
     }
   }};
 
   background-color: ${props => {
     if (props.$userPath === 'coupons') {
-      return props.theme.colors.hover;
+      return theme.colors.hover;
     } else if (props.$isSidebarOpen) {
-      return props.$isToggleOpen ? props.theme.colors.ink100 : 'transparent';
+      return props.$isToggleOpen ? theme.colors.ink100 : 'transparent';
     } else {
       return 'transparent';
     }
@@ -104,8 +105,8 @@ const Container = styled(CustomNavLink)<SidebarStyleProps>`
 
   &:hover,
   &.active {
-    color: ${props => props.theme.colors.white};
-    background-color: ${props => props.theme.colors.hover};
+    color: ${theme.colors.white};
+    background-color: ${theme.colors.hover};
   }
 `;
 
