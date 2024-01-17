@@ -123,6 +123,19 @@ export type LimitWrapperStyleProps = {
   $isLimited: boolean;
 };
 
+// RoomModal
+export type RoomModalProps = {
+  onButtonClick: React.Dispatch<React.SetStateAction<boolean>>;
+};
+
+export type RoomModalStyleProps = {
+  $src: string;
+};
+
+export type RoomModalButtonStyleProps = {
+  $length: number;
+};
+
 // RoomList
 export type RoomListProps = {
   list: string[];
