@@ -22,4 +22,9 @@ const Container = styled.nav<SidebarOpen>`
   flex-direction: column;
 
   font-size: ${props => (props.$isSidebarOpen ? '14px' : '12px')};
+
+  @media screen and (max-width: 1200px) {
+    margin-top: ${props => (props.$isSidebarOpen ? '0' : '30px')};
+    padding: 10px;
+  }
 `;
