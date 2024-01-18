@@ -1,3 +1,4 @@
+import ReactDOM from 'react-dom';
 import { useState } from 'react';
 import styled from '@emotion/styled';
 
@@ -7,25 +8,29 @@ import {
   InputCheckBox,
   InputWrapper
 } from '@components/Register/common';
+import RoomModal from './RoomModal';
+import RoomSelectButton from './RoomSelectButton';
 import RoomList from './RoomList';
 
 const SecondStep = () => {
   const [roomType, setRoomType] = useState(0);
   const [toAllRoom, setToAllRoom] = useState(0);
-
-  const list = [
-    '디럭스',
-    '스탠다드 더블',
-    'VIP 더블',
-    '프리미엄 더블',
-    '패밀리 더블',
-    '패밀리 더블온돌',
-    '스탠다드',
-    '스탠다드 트윈'
-  ];
+  const [isOpen, setIsOpen] = useState(false);
+  const [selectedRooms, setSelectedRooms] = useState<string[]>([]);
 
   return (
     <>
+      {isOpen &&
+        ReactDOM.createPortal(
+          <RoomModal
+            value={2}
+            setToAllRoom={setToAllRoom}
+            selectedRooms={selectedRooms}
+            setSelectedRooms={setSelectedRooms}
+            onButtonClick={setIsOpen}
+          />,
+          document.getElementById('modal-root') as HTMLElement
+        )}
       <InputContainer title="쿠폰을 적용할 유형을 선택해주세요.">
         <ButtonWrapper>
           <InputButton
@@ -66,21 +71,22 @@ const SecondStep = () => {
             value={1}
             onButtonClick={setToAllRoom}
           />
-          <InputButton
+          <RoomSelectButton
             type="radio"
             id="false"
             name="toAllRoom"
             buttonName="선택 객실"
-            value={2}
-            onButtonClick={setToAllRoom}
+            selectedRooms={selectedRooms.length}
+            onButtonClick={setIsOpen}
           />
         </ButtonWrapper>
         <InputWrapper
           whichInput={2}
           currentInput={toAllRoom}
+          isOpen={isOpen}
         >
           <ContentWrapper>
-            <RoomList list={list} />
+            <RoomList list={selectedRooms} />
           </ContentWrapper>
         </InputWrapper>
       </InputContainer>

@@ -5,8 +5,11 @@ import { InputWrapperProps, WrapperStyleProps } from '@/types/register';
 const InputWrapper = ({
   whichInput,
   currentInput,
+  isOpen,
   children
 }: InputWrapperProps) => {
+  if (isOpen) return;
+
   return (
     <Wrapper $isSelected={whichInput === currentInput}>{children}</Wrapper>
   );

@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+import { useRef } from 'react';
 import styled from '@emotion/styled';
 
 import { Backdrop } from '@components/common';
@@ -28,21 +28,33 @@ const list = [
   }
 ];
 
-const RoomModal = ({ onButtonClick }: RoomModalProps) => {
+const RoomModal = ({
+  value,
+  setToAllRoom,
+  selectedRooms,
+  setSelectedRooms,
+  onButtonClick
+}: RoomModalProps) => {
   const backdropRef = useRef<HTMLDivElement>(null);
-  const [selectedRooms, setSelectedRooms] = useState<string[]>([]);
 
   const handleClose = () => {
+    setSelectedRooms([]);
+    setToAllRoom(0);
     onButtonClick(false);
   };
 
   const handleApply = () => {
+    if (selectedRooms.length) {
+      setToAllRoom(value);
+    } else {
+      setToAllRoom(0);
+    }
     onButtonClick(false);
   };
 
   const handleBackdropClick = (e: React.MouseEvent<HTMLDivElement>) => {
     if (e.target === backdropRef.current) {
-      onButtonClick(false);
+      handleApply();
     }
   };
 

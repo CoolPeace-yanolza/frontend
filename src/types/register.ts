@@ -77,6 +77,7 @@ export type InputRadioStyleProps = {
 export type InputWrapperProps = {
   whichInput: number;
   currentInput: number;
+  isOpen?: boolean;
   children: ReactNode;
 };
 
@@ -125,6 +126,10 @@ export type LimitWrapperStyleProps = {
 
 // RoomModal
 export type RoomModalProps = {
+  value: number;
+  setToAllRoom: React.Dispatch<React.SetStateAction<number>>;
+  selectedRooms: string[];
+  setSelectedRooms: React.Dispatch<React.SetStateAction<string[]>>;
   onButtonClick: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
@@ -142,6 +147,7 @@ export type RoomSelectButtonProps = {
   id: string;
   name: string;
   buttonName: string;
+  selectedRooms: number;
   onButtonClick: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
