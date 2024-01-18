@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import { useState } from 'react';
-import theme from '@styles/theme';
 
+import theme from '@styles/theme';
 import searchIcon from '@assets/icons/ic-couponlist-search.svg';
 import centerIcon from '@assets/icons/ic-couponlist-period-center.svg';
 import { CategoryTabProps, ResisterDateStyleProps } from '@/types/couponList';

@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+
 import theme from '@styles/theme';
 
 const CouponExpired = () => {
@@ -90,11 +91,13 @@ const CouponStatus = styled.div`
   width: 50px;
   height: 22.927px;
 
+  border-radius: 22.927px;
+
   display: flex;
   align-items: center;
   justify-content: center;
+
   font-size: 10px;
-  border-radius: 22.927px;
   color: #757676;
   background: ${theme.colors.white};
 `;
