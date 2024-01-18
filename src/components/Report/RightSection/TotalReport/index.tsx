@@ -1,3 +1,4 @@
+import { keyframes } from '@emotion/react';
 import styled from '@emotion/styled';
 
 import { renderTotalAmount, renderTotalText } from '@utils/index';
@@ -54,6 +55,11 @@ const TotalReport = () => {
 
 export default TotalReport;
 
+const rising = keyframes`
+  0%{ opacity: 0; transform: translateY(50px);}
+  100%{opacity: 1; transform: translateY(0);}
+`;
+
 const Container = styled.div`
   width: 100%;
   height: 100%;
@@ -65,6 +71,7 @@ const Container = styled.div`
   flex-direction: column;
 
   background-color: white;
+  animation: ${rising} 1s;
 `;
 
 const Title = styled.span`
