@@ -200,6 +200,12 @@ const StyledDropdown = styled(Dropdown)`
       }
     }
   }
+
+  &.ui.selection.dropdown {
+    min-height: 20px;
+    // max-height: 30px;
+  }
+
   &.ui.selection.active.dropdown {
     color: white;
     border: 1px solid rgba(255, 255, 255, 0.2) !important;
@@ -228,7 +234,8 @@ const ExcelDownload = styled.div`
     border: none;
     text-decoration: underline;
     cursor: pointer;
-    background: none; 
+    background: none;
+    text-underline-offset : 8px;
   }
 `;
 

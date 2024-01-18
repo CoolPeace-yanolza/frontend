@@ -88,8 +88,6 @@ const KeyElement = styled.div`
 `;
 
 const Row = styled.div<{ isLast: boolean }>`
-  // margin-bottom: 10px;
-
   display: flex;
   justify-content: space-between;
 
@@ -103,16 +101,17 @@ const Row = styled.div<{ isLast: boolean }>`
 const FrameContainer = styled.div`
   width: 100%;
 
-  padding-left: 10px;
-  padding-right: 10px;
-
   box-sizing: border-box;
 
   text-align: center;
 `;
 
 const Frame = styled.div`
+  width: 99%;
   height: 500px;
+
+  margin-left: auto;
+  margin-right: auto;
 
   background: url(${settlementsFrame});
 `;
@@ -123,8 +122,6 @@ const DataElement = styled.div`
 
   padding-top: 18px;
 
-  // display: flex;
-  // align-items: center;
   justify-content: center;
 
   overflow: hidden;
