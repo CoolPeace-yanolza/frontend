@@ -29,8 +29,6 @@ const Container = styled.div`
 
   border-radius: 16px;
 
-  flex: 3;
-
   background-color: #fafafb;
 `;
 
