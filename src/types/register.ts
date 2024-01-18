@@ -136,6 +136,15 @@ export type RoomModalButtonStyleProps = {
   $length: number;
 };
 
+// RoomSelectButton
+export type RoomSelectButtonProps = {
+  type: string;
+  id: string;
+  name: string;
+  buttonName: string;
+  onButtonClick: React.Dispatch<React.SetStateAction<boolean>>;
+};
+
 // RoomList
 export type RoomListProps = {
   list: string[];
