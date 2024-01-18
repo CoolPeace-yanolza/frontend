@@ -2,7 +2,6 @@ import { useState } from 'react';
 import styled from '@emotion/styled';
 
 import theme from '@styles/theme';
-
 import toggleOnIcon from '@assets/icons/ic-couponlist-toggleOn.svg';
 import toggleOffIcon from '@assets/icons/ic-couponlist-toggleOff.svg';
 import { ToggleStyleProps } from '@/types/couponList';
