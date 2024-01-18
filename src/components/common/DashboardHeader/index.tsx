@@ -85,11 +85,10 @@ const Button = styled.button`
   background: linear-gradient(91deg, #ff3478 1.39%, #ff83ad 98.63%);
   color: white;
   font-size: 17px;
+  font-weight: 700;
   cursor: pointer;
-  transition: all 0.5s;
 
   &:hover {
-    color: black;
-    background: #e9eef6;
+    background: #b22655;
   }
 `;

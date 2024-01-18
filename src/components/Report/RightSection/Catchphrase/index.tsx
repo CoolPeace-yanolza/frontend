@@ -29,14 +29,15 @@ const Catchphrase = () => {
 
 export default Catchphrase;
 
-const rising = keyframes`
-  0%{ opacity: 0; transform: translateY(50px);}
-  100%{opacity: 1; transform: translateY(0);}
-`;
-
 const rocketRising = keyframes`
-  0%{ opacity: 0; transform: translate(-100px, 50px);}
-  100%{opacity: 1; transform: translate(0, 0);}
+  0% {
+    opacity: 0;
+    transform: translateX(-300px) translateY(50px) rotate(90deg);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0) translateY(0) rotate(0deg);
+  }
 `;
 
 const Container = styled.div`
@@ -73,7 +74,6 @@ const Text = styled.span`
   font-size: 13px;
   font-weight: 700;
   line-height: 145%;
-  animation: ${rising} 1s;
 
   & > span {
     display: inline;
