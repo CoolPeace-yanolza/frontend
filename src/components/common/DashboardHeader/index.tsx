@@ -41,6 +41,7 @@ const Container = styled.div`
 
   display: flex;
   justify-content: space-between;
+  align-items: flex-end;
 `;
 
 const MenuContainer = styled.div`
@@ -49,7 +50,7 @@ const MenuContainer = styled.div`
 
 const DashboardNavigation = styled.div<NavigationPath>`
   margin-right: 45px;
-  padding: 16px 0;
+  padding: 10px 0;
   border-bottom: ${props =>
     props.$pathname === '/' ? '3px solid #001d6c' : 'none'};
 
@@ -81,9 +82,14 @@ const Button = styled.button`
   justify-content: center;
   align-items: center;
 
-  background: linear-gradient(273deg, #ff0a5c 43.78%, #ff4281 99.72%);
+  background: linear-gradient(91deg, #ff3478 1.39%, #ff83ad 98.63%);
   color: white;
   font-size: 17px;
-
   cursor: pointer;
+  transition: all 0.5s;
+
+  &:hover {
+    color: black;
+    background: #e9eef6;
+  }
 `;
