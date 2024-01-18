@@ -11,7 +11,7 @@ export interface CategoryTabProps {
 }
 
 // api 데이터 타입
-export interface CouponLitResponse {
+export interface CouponListResponse {
   content: [
     {
       title: string;

@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
-import theme from '@styles/theme';
 
+import theme from '@styles/theme';
 import bannerIcon from '@assets/icons/ic-couponlist-speaker.svg';
 
 const CouponBanner = () => {

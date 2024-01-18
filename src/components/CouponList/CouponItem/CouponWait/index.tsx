@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
-import theme from '@styles/theme';
 
+import theme from '@styles/theme';
 import centerIcon from '@assets/icons/ic-couponlist-center.svg';
 
 const CouponWait = () => {

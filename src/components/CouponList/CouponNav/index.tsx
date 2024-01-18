@@ -7,8 +7,8 @@ import centerIcon from '@assets/icons/ic-couponlist-period-center.svg';
 import { CategoryTabProps, ResisterDateStyleProps } from '@/types/couponList';
 
 const CouponNav = () => {
-  const [resisterDateClick, setResisterDateClick] = useState<string>('1년');
-  const [categoryTab, setCategoryTab] = useState<string>('전체');
+  const [resisterDateClick, setResisterDateClick] = useState('1년');
+  const [categoryTab, setCategoryTab] = useState('전체');
 
   const handleDateClick = (period: string) => {
     setResisterDateClick(period);
