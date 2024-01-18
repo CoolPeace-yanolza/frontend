@@ -5,14 +5,14 @@ import {
   CouponStop,
   CouponWait
 } from '../CouponItem';
-import { CouponLitResponse } from '@/types/couponList';
+// import { CouponLitResponse } from '@/types/couponList';
 
 const CouponMain = () => {
-  // HACK: 쿠폰 데이터 상태저장
+  // HACK: 쿠폰 데이터 상태저장 (추가 예정)
   // const [coupons, setCoupons] = useState<CouponLitResponse[]>([]);
 
   return (
-    // HACK: 받아온 쿠폰 데이터 종류에 따라 컴포넌트 분리
+    // HACK: 받아온 쿠폰 데이터 종류에 따라 컴포넌트 분리 (추가 예정)
     <MainContainer>
       {/* {coupons.map((coupon, index) => {
         switch (coupon.coupon_status) {

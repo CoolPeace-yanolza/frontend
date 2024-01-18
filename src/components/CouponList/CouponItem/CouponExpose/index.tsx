@@ -5,6 +5,7 @@ import theme from '@styles/theme';
 import toggleOnIcon from '@assets/icons/ic-couponlist-toggleOn.svg';
 import toggleOffIcon from '@assets/icons/ic-couponlist-toggleOff.svg';
 import rightIcon from '@assets/icons/ic-couponlist-right.svg';
+import deleteIcon from '@assets/icons/ic-couponlist-delete.svg';
 import { ToggleStyleProps } from '@/types/couponList';
 
 const CouponExpose = () => {
@@ -95,7 +96,14 @@ const CouponExpose = () => {
             </ContentRoom>
             {isRoomList && (
               <RoomList ref={roomListRef}>
-                <RoomListTitle>쿠폰 적용 객실</RoomListTitle>
+                <RoomListTitleWrap>
+                  <RoomListTitle>쿠폰 적용 객실</RoomListTitle>
+                  <img
+                    onClick={handleRoomList}
+                    src={deleteIcon}
+                    alt="리스트 닫기 아이콘"
+                  />
+                </RoomListTitleWrap>
                 <RoomListItem>
                   <ul>
                     <li>스탠다드 더블</li>
@@ -286,13 +294,13 @@ const ContentRoom = styled.div`
 `;
 
 const RoomList = styled.div`
-  width: 188px;
-  height: 204px;
-
   position: absolute;
   top: 0;
   right: 0;
   z-index: 1;
+
+  width: 188px;
+  height: 204px;
 
   margin-top: 150px;
   border-radius: 18px;
@@ -315,12 +323,22 @@ const RoomList = styled.div`
   }
 `;
 
-const RoomListTitle = styled.div`
-  text-align: center;
+const RoomListTitleWrap = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 
-  border-bottom: 1px solid #cdcfd0;
   margin: 10px;
-  padding: 10px;
+  padding: 8px;
+  border-bottom: 1px solid #cdcfd0;
+
+  img {
+    cursor: pointer;
+  }
+`;
+
+const RoomListTitle = styled.div`
+  margin-left: 35px;
 
   font-size: 15px;
   font-weight: 700;
@@ -330,6 +348,7 @@ const RoomListTitle = styled.div`
 
 const RoomListItem = styled.div`
   max-height: 125px;
+
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -341,12 +360,13 @@ const RoomListItem = styled.div`
   line-height: 36px;
 
   li {
+    max-width: 130px;
+
     overflow: hidden;
     overflow-y: scroll;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    max-width: 130px;
   }
 `;
 
