@@ -40,8 +40,10 @@ const Container = styled.div`
 `;
 
 const Section = styled.section`
+  --sidebar-width: 100px;
+
   width: 100%;
-  min-width: calc(100vh - 100px);
+  min-width: calc(100vh - var(--sidebar-width));
   height: 100vh;
 
   margin-left: 100px;
