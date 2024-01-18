@@ -29,4 +29,9 @@ const UserIcon = styled.img`
   border-radius: 50%;
 
   cursor: pointer;
+
+  @media screen and (max-width: 1200px) {
+    width: 24px;
+    height: 24px;
+  }
 `;

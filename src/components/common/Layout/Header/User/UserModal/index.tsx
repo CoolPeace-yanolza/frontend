@@ -33,6 +33,13 @@ const Modal = styled.div<UserModalStyleProps>`
 
   background-color: #e3e5e5;
   transition: all 0.5s;
+
+  @media screen and (max-width: 1200px) {
+    right: 35px;
+    top: 45px;
+
+    width: ${props => (props.$isOpen ? '300px' : 0)};
+  }
 `;
 
 const UserInformation = styled.div`
