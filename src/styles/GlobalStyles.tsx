@@ -8,7 +8,7 @@ const GlobalStyles = () => {
 export default GlobalStyles;
 
 const resetCSS = css`
-  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@500;600;700&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800;900&display=swap');
 
   html,
   body,
