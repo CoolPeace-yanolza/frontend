@@ -11,8 +11,8 @@ declare module '@emotion/react' {
     settlements: {};
 
     response: {
-      tablet: '@media screen and (max-width: 900px)';
-      mobile: '@media screen and (max-width: 345px)';
+      tablet: string;
+      mobile: string;
     };
 
     colors: {
