@@ -1,5 +1,10 @@
 import { ReactNode } from 'react';
 
+// DisplayStep
+export type DisplayStepProps = {
+  currentStep: number;
+};
+
 // InputContainer
 export type InputContainerProps = {
   title: string;
