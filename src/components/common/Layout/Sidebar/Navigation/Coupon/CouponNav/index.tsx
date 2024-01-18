@@ -92,7 +92,7 @@ const Link = styled(NavLink)`
     background-color: rgba(255, 255, 255, 0.3);
   }
 
-  @media screen and (max-width: 1200px) {
+  ${theme.response.tablet} {
     width: 85%;
   }
 `;

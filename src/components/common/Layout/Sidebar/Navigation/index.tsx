@@ -3,6 +3,7 @@ import styled from '@emotion/styled';
 import Coupon from './Coupon';
 import Settlements from './Settlements';
 import { SidebarOpen } from '@/types/layout';
+import theme from '@styles/theme';
 
 const Navigation = ({ isSidebarOpen }: { isSidebarOpen: boolean }) => {
   return (
@@ -23,7 +24,7 @@ const Container = styled.nav<SidebarOpen>`
 
   font-size: ${props => (props.$isSidebarOpen ? '14px' : '12px')};
 
-  @media screen and (max-width: 1200px) {
+  ${theme.response.tablet} {
     margin-top: ${props => (props.$isSidebarOpen ? '0' : '30px')};
     padding: 10px;
   }

@@ -43,7 +43,7 @@ const Container = styled.div<SidebarOpen>`
   z-index: 100;
   transition: all 0.3s;
 
-  @media screen and (max-width: 1200px) {
+  ${theme.response.tablet} {
     width: ${props => (props.$isSidebarOpen ? '100%' : 'auto')};
     height: ${props => (props.$isSidebarOpen ? 'fit-content' : '93px')};
     min-height: ${props => (props.$isSidebarOpen ? 'fit-content' : '93px')};

@@ -3,6 +3,7 @@ import styled from '@emotion/styled';
 
 import user from '@assets/icons/ic-header-user.svg';
 import UserModal from './UserModal';
+import theme from '@styles/theme';
 
 const User = () => {
   const [isUserModalOpen, setIsUserModalOpen] = useState(false);
@@ -30,7 +31,7 @@ const UserIcon = styled.img`
 
   cursor: pointer;
 
-  @media screen and (max-width: 1200px) {
+  ${theme.response.tablet} {
     width: 24px;
     height: 24px;
   }

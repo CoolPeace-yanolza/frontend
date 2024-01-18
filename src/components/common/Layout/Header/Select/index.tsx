@@ -93,7 +93,7 @@ const Accommodations = styled.select`
     display: none;
   }
 
-  @media screen and (max-width: 1200px) {
+  ${theme.response.tablet} {
     width: 150px;
     height: 30px;
 

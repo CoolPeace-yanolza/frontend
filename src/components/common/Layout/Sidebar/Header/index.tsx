@@ -3,6 +3,7 @@ import styled from '@emotion/styled';
 import hamburger from '@assets/icons/ic-sidebar-hamburger.svg';
 import logo from '@assets/icons/ic-logo.svg';
 import { SidebarHeader, SidebarOpen } from '@/types/layout';
+import theme from '@styles/theme';
 
 const Header = ({ isSidebarOpen, setIsSidebarOpen }: SidebarHeader) => {
   return (
@@ -35,7 +36,7 @@ const Container = styled.div<SidebarOpen>`
   justify-content: space-between;
   align-items: center;
 
-  @media screen and (max-width: 1200px) {
+  ${theme.response.tablet} {
     margin-left: 5px;
   }
 `;
@@ -56,7 +57,7 @@ const Hamburger = styled.button`
     background-color: #e9eef6;
   }
 
-  @media screen and (max-width: 1200px) {
+  ${theme.response.tablet} {
     width: 50px;
     height: 50px;
 
@@ -69,7 +70,7 @@ const HamburgerIcon = styled.img`
   width: 30px;
   height: 20px;
 
-  @media screen and (max-width: 1200px) {
+  ${theme.response.tablet} {
     width: 21px;
     height: 14px;
   }

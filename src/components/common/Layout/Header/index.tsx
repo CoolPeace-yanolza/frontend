@@ -46,7 +46,7 @@ const Container = styled.header`
 
   background-color: ${theme.colors.white};
 
-  @media screen and (max-width: 1200px) {
+  ${theme.response.tablet} {
     height: 65px;
 
     border-bottom: 1px solid #e6e6e6;
@@ -58,7 +58,7 @@ const LogoLink = styled(NavLink)`
   width: 140px;
   height: 30px;
 
-  @media screen and (max-width: 1200px) {
+  ${theme.response.tablet} {
     display: none;
   }
 `;
@@ -67,7 +67,7 @@ const LogoIcon = styled.img`
   width: 100%;
   height: 100%;
 
-  @media screen and (max-width: 1200px) {
+  ${theme.response.tablet} {
     display: none;
   }
 `;
@@ -76,7 +76,7 @@ const Buttons = styled.div`
   display: flex;
   align-items: center;
 
-  @media screen and (max-width: 1200px) {
+  ${theme.response.tablet} {
     width: 100%;
 
     justify-content: space-between;

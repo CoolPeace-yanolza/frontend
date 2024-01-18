@@ -52,7 +52,7 @@ const Section = styled.section`
   display: flex;
   flex-direction: column;
 
-  @media screen and (max-width: 1200px) {
+  ${theme.response.tablet} {
     min-width: 0;
 
     margin-left: 0;
@@ -80,7 +80,7 @@ const OutletLayout = styled.div<LayoutStyleProps>`
 
   overflow: scroll;
 
-  @media screen and (max-width: 1200px) {
+  ${theme.response.tablet} {
     width: 100vw;
 
     margin-top: 0;
