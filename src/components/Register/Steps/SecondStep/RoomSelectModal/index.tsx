@@ -5,8 +5,8 @@ import { Backdrop } from '@components/common';
 import {
   RoomType,
   RoomsType,
-  RoomModalProps,
-  RoomModalStyleProps
+  RoomSelectModalProps,
+  RoomSelectModalStyleProps
 } from '@/types/register';
 import close from '@assets/icons/ic-register-close.svg';
 import sort from '@assets/icons/ic-register-sort.svg';
@@ -49,13 +49,13 @@ const list = [
   }
 ];
 
-const RoomModal = ({
+const RoomSelectModal = ({
   value,
   setToAllRoom,
   rooms,
   setRooms,
   onButtonClick
-}: RoomModalProps) => {
+}: RoomSelectModalProps) => {
   const [selectedRooms, setSelectedRooms] = useState([...rooms]);
   const [sortedRooms, setSortedRooms] = useState([...list]);
   const [isSortedByName, setIsSortedByName] = useState(false);
@@ -195,7 +195,7 @@ const RoomModal = ({
   );
 };
 
-export default RoomModal;
+export default RoomSelectModal;
 
 const Container = styled.div`
   width: 378px;
@@ -220,7 +220,7 @@ const Header = styled.div`
   font-size: 18px;
 `;
 
-const CloseButton = styled.button<RoomModalStyleProps>`
+const CloseButton = styled.button<RoomSelectModalStyleProps>`
   width: 35px;
   height: 35px;
 
@@ -254,7 +254,7 @@ const FilterCell = styled.div`
   align-items: center;
 `;
 
-const SelectAll = styled.input<RoomModalStyleProps>`
+const SelectAll = styled.input<RoomSelectModalStyleProps>`
   display: none;
 
   &:checked + div {
@@ -262,7 +262,7 @@ const SelectAll = styled.input<RoomModalStyleProps>`
   }
 `;
 
-const FilterCheckIcon = styled.div<RoomModalStyleProps>`
+const FilterCheckIcon = styled.div<RoomSelectModalStyleProps>`
   width: 21px;
   height: 21px;
 
@@ -319,7 +319,7 @@ const ListCell = styled.div`
   align-items: center;
 `;
 
-const SelectOne = styled.input<RoomModalStyleProps>`
+const SelectOne = styled.input<RoomSelectModalStyleProps>`
   display: none;
 
   &:checked + div {
@@ -327,7 +327,7 @@ const SelectOne = styled.input<RoomModalStyleProps>`
   }
 `;
 
-const ListCheckIcon = styled.div<RoomModalStyleProps>`
+const ListCheckIcon = styled.div<RoomSelectModalStyleProps>`
   width: 21px;
   height: 21px;
 

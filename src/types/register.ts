@@ -132,8 +132,8 @@ export type RoomType = {
 
 export type RoomsType = RoomType[];
 
-// RoomModal
-export type RoomModalProps = {
+// RoomSelectModal
+export type RoomSelectModalProps = {
   value: number;
   setToAllRoom: React.Dispatch<React.SetStateAction<number>>;
   rooms: RoomsType;
@@ -141,7 +141,7 @@ export type RoomModalProps = {
   onButtonClick: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-export type RoomModalStyleProps = {
+export type RoomSelectModalStyleProps = {
   $src: string;
 };
 

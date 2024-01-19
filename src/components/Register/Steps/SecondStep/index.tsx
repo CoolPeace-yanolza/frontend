@@ -8,7 +8,7 @@ import {
   InputCheckBox,
   InputWrapper
 } from '@components/Register/common';
-import RoomModal from './RoomModal';
+import RoomSelectModal from './RoomSelectModal';
 import RoomSelectButton from './RoomSelectButton';
 import RoomList from './RoomList';
 import { RoomsType } from '@/types/register';
@@ -23,7 +23,7 @@ const SecondStep = () => {
     <>
       {isOpen &&
         ReactDOM.createPortal(
-          <RoomModal
+          <RoomSelectModal
             value={2}
             setToAllRoom={setToAllRoom}
             rooms={rooms}
