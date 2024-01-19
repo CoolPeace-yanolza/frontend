@@ -1,13 +1,13 @@
 // import CouponList from '@pages/CouponList';
 import { Route, Routes } from 'react-router-dom';
 
-import { Layout } from '@components/common';
 import Login from '@pages/Login';
 import SignUp from '@pages/SignUp';
 import Dashboard from '@pages/Dashboard';
 import Report from '@pages/Report';
 import CouponList from '@pages/CouponList';
 import Register from '@pages/Register';
+import { PrivateRouter } from '..';
 
 const MainRouter = () => {
   return (
@@ -20,7 +20,7 @@ const MainRouter = () => {
         path="/signup"
         element={<SignUp />}
       />
-      <Route element={<Layout />}>
+      <Route element={<PrivateRouter />}>
         <Route
           path="/"
           element={<Dashboard />}
