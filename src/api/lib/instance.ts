@@ -1,6 +1,7 @@
-import { getCookies, setCookies } from '@utils/lib/cookies';
 import axios from 'axios';
-import postRefreshToken from './postRefreshToken';
+
+import { getCookies, setCookies } from '@utils/lib/cookies';
+import { postRefreshToken } from '..';
 
 const instance = axios.create({
   baseURL: import.meta.env.VITE_SERVER_URL,

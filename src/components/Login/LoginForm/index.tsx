@@ -16,8 +16,8 @@ const LoginForm = () => {
 
   // HACK : 추후 useState로 입력 데이터 관리할 예쩡
   const formData: LoginData = {
-    email: 'mary0393@naver.com',
-    password: 'qqqq1111!'
+    email: 'juhwanTest@gmail.com',
+    password: 'juhwanTest'
   };
 
   // HACK: 유효성 검사 기능 구현 후 유효성 메세지 노출 여부 결정
