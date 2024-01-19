@@ -33,13 +33,10 @@ const LoginForm = () => {
   ) => {
     event.preventDefault();
     const response = await postLogin(formData);
-    setCookies(
-      response.name,
-      response.email,
-      response.access_token,
-      response.refresh_token,
-      response.expires_in
-    );
+    setCookies('userName', response.name, response.expires_in);
+    setCookies('userEmail', response.email, response.expires_in);
+    setCookies('accessToken', response.access_token, response.expires_in);
+    setCookies('refreshToken', response.refresh_token, response.expires_in);
   };
 
   return (
