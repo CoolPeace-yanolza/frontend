@@ -18,14 +18,6 @@ import { LoadingApp } from '@components/Loading';
 
 const queryClient = new QueryClient();
 
-/* HACK: logError 논의 필요
-
-  const logError = (error: Error, info: { componentStack: string }) => {
-    // Do something with the error, e.g. log to an external API
-  };
-  
- */
-
 const App = () => {
   const { reset } = useQueryErrorResetBoundary();
 
@@ -37,12 +29,6 @@ const App = () => {
           <ErrorBoundary
             onReset={reset}
             FallbackComponent={ErrorApp}
-
-            /* HACK: logError 논의 필요
-
-              onError={logError}
-
-            */
           >
             <Suspense fallback={<LoadingApp />}>
               <BrowserRouter>
