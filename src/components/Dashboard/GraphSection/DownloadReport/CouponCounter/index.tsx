@@ -31,7 +31,9 @@ const Container = styled.div<CouponCounterStyleProps>`
 `;
 
 const Header = styled.div`
-  padding: 10px 20px 7px;
+  width: 100%;
+
+  padding: 10px 12px 7px;
 
   align-self: flex-start;
 

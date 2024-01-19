@@ -17,9 +17,10 @@ const Container = styled.div`
   position: relative;
   right: -20px;
 
-  width: 100%;
+  min-width: 100%;
+  width: auto;
 
-  padding: 5px 20px;
+  padding: 5px 0px 5px 20px;
   border: 2px solid #f2f4f5;
   border-radius: 16px;
 
