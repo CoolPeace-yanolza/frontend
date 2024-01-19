@@ -29,3 +29,18 @@ export type AuthButton = {
 };
 
 export type AuthButtonStyleProps = { $size: string; $variant: string };
+
+export type LoginData = {
+  email: string;
+  password: string;
+};
+
+export type SetCookies = (
+  userName: string,
+  userEmail: string,
+  accessToken: string,
+  refreshToken: string,
+  expiresIn: number
+) => void;
+
+export type GetCookies = (name: string) => string | undefined;
