@@ -78,5 +78,6 @@ const Logout = styled.button<UserModalStyleProps>`
   background-color: transparent;
   font-size: ${props => (props.$isOpen ? '15px' : 0)};
   font-weight: 700;
+  white-space: nowrap;
   transition: all 0.5s;
 `;
