@@ -3,10 +3,13 @@ import styled from '@emotion/styled';
 
 import { UserModal, UserModalStyleProps } from '@/types/layout';
 import { useOutsideClick } from '@hooks/index';
+import { getCookies } from '@utils/lib/cookies';
 import theme from '@styles/theme';
 
 const UserModal = ({ isOpen, setIsUserModalOpen }: UserModal) => {
-  // HACK: cookie에서 사용자 정보 가져오기
+  const userName = getCookies('userName');
+  const userEmail = getCookies('userEmail');
+
   const modalRef = useRef<HTMLDivElement>(null);
 
   useOutsideClick(modalRef, setIsUserModalOpen);
@@ -17,8 +20,8 @@ const UserModal = ({ isOpen, setIsUserModalOpen }: UserModal) => {
       ref={modalRef}
     >
       <UserInformation>
-        <Name $isOpen={isOpen}>김사장님</Name>
-        <Email $isOpen={isOpen}>yanolja123@yanolja.com</Email>
+        <Name $isOpen={isOpen}>{userName}</Name>
+        <Email $isOpen={isOpen}>{userEmail}</Email>
       </UserInformation>
       <Logout $isOpen={isOpen}>로그아웃</Logout>
     </Modal>
