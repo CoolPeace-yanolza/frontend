@@ -40,7 +40,10 @@ const Container = styled.div`
 `;
 
 const Section = styled.section`
+  --sidebar-width: 100px;
+
   width: 100%;
+  min-width: calc(100vh - var(--sidebar-width));
   height: 100vh;
 
   margin-left: 100px;
@@ -48,9 +51,15 @@ const Section = styled.section`
 
   display: flex;
   flex-direction: column;
+
+  ${theme.response.tablet} {
+    min-width: 0;
+
+    margin-left: 0;
+    padding: 0;
+  }
 `;
 
-//HACK: 타입 분리 예정!
 const OutletLayout = styled.div<LayoutStyleProps>`
   width: 100%;
   height: 100vh;
@@ -70,4 +79,14 @@ const OutletLayout = styled.div<LayoutStyleProps>`
   }};
 
   overflow: scroll;
+
+  ${theme.response.tablet} {
+    width: 100vw;
+
+    margin-top: 0;
+    border-radius: 0;
+
+    overflow-x: hidden;
+    overflow-y: scroll;
+  }
 `;

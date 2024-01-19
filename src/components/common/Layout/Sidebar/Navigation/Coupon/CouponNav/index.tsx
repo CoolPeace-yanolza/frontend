@@ -91,6 +91,10 @@ const Link = styled(NavLink)`
     color: ${theme.colors.white};
     background-color: rgba(255, 255, 255, 0.3);
   }
+
+  ${theme.response.tablet} {
+    width: 85%;
+  }
 `;
 
 const Icon = styled.img`
