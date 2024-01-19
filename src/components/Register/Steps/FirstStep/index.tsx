@@ -14,15 +14,6 @@ const FirstStep = () => {
   const [currentInput, setCurrentInput] = useState(0);
   const [isLimited, setIsLimited] = useState(false);
 
-  const handleInput = (e: React.FormEvent<HTMLInputElement>) => {
-    const inputValue = e.currentTarget.value;
-    const filteredValue = inputValue.replace(/[^0-9]/g, '');
-
-    if (inputValue !== filteredValue) {
-      e.currentTarget.value = filteredValue;
-    }
-  };
-
   return (
     <>
       <InputContainer title="쿠폰의 이름을 입력해주세요.">
@@ -76,7 +67,6 @@ const FirstStep = () => {
           <InputField
             placeholder="ex) 5000"
             text="원"
-            onInputChange={handleInput}
           />
         </InputWrapper>
         <InputWrapper
@@ -87,7 +77,6 @@ const FirstStep = () => {
             <InputField
               placeholder="ex) 50"
               text="% 할인"
-              onInputChange={handleInput}
             />
             <InputCheckBox
               id="discountLimit"
@@ -104,7 +93,6 @@ const FirstStep = () => {
             <InputField
               placeholder="ex) 5000"
               text="원"
-              onInputChange={handleInput}
             />
           </InputWrapper>
         </LimitWrapper>

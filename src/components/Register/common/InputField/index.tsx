@@ -2,10 +2,11 @@ import styled from '@emotion/styled';
 import theme from '@styles/theme';
 
 import { InputFieldProps, InputFieldStyleProps } from '@/types/register';
+import { inputFilter } from '@utils/index';
 
-const InputField = ({ placeholder, text, onInputChange }: InputFieldProps) => {
+const InputField = ({ placeholder, text }: InputFieldProps) => {
   const handleInput = (e: React.FormEvent<HTMLInputElement>) => {
-    onInputChange(e);
+    inputFilter(e);
   };
 
   return (

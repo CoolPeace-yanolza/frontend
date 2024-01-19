@@ -9,15 +9,6 @@ import {
 import RadioGroup from './RadioGroup';
 
 const ThirdStep = () => {
-  const handleInput = (e: React.FormEvent<HTMLInputElement>) => {
-    const inputValue = e.currentTarget.value;
-    const filteredValue = inputValue.replace(/[^0-9]/g, '');
-
-    if (inputValue !== filteredValue) {
-      e.currentTarget.value = filteredValue;
-    }
-  };
-
   return (
     <>
       <InputAccordion title="결제금액에 따라 달라요.">
@@ -25,7 +16,6 @@ const ThirdStep = () => {
           <InputField
             placeholder="ex) 5000"
             text="원"
-            onInputChange={handleInput}
           />
           <Text>이상 예약 시 사용 가능</Text>
         </ContentWrapper>
