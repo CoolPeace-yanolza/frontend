@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import styled from '@emotion/styled';
 
 import theme from '@styles/theme';
@@ -7,6 +7,7 @@ import toggleOffIcon from '@assets/icons/ic-couponlist-toggleOff.svg';
 import rightIcon from '@assets/icons/ic-couponlist-right.svg';
 import deleteIcon from '@assets/icons/ic-couponlist-delete.svg';
 import { ToggleStyleProps } from '@/types/couponList';
+import { useOutsideClick } from '@hooks/index';
 
 const CouponExpose = () => {
   const [isToggle, setIsToggle] = useState(true);
@@ -21,21 +22,7 @@ const CouponExpose = () => {
     setIsRoomList(!isRoomList);
   };
 
-  useEffect(() => {
-    const handleClickListOutside = (e: MouseEvent) => {
-      if (
-        roomListRef.current &&
-        !roomListRef.current.contains(e.target as Node)
-      ) {
-        setIsRoomList(false);
-      }
-    };
-    document.addEventListener('mousedown', handleClickListOutside);
-
-    return () => {
-      document.removeEventListener('mousedown', handleClickListOutside);
-    };
-  });
+  useOutsideClick(roomListRef, setIsRoomList);
 
   return (
     <CouponContainer $isToggle={isToggle}>

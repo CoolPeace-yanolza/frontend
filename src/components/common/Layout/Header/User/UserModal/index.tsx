@@ -2,7 +2,7 @@ import { useRef } from 'react';
 import styled from '@emotion/styled';
 
 import { UserModal, UserModalStyleProps } from '@/types/layout';
-import useOutsideClick from '@hooks/lib/useOutsideClick';
+import { useOutsideClick } from '@hooks/index';
 import theme from '@styles/theme';
 
 const UserModal = ({ isOpen, setIsUserModalOpen }: UserModal) => {
