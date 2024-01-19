@@ -1,9 +1,9 @@
-import { Suspense } from 'react';
+import React, { Suspense } from 'react';
 import { useQueryErrorResetBoundary } from '@tanstack/react-query';
 import { ErrorBoundary } from 'react-error-boundary';
 import styled from '@emotion/styled';
 
-import TotalReport from './TotalReport';
+const TotalReport = React.lazy(() => import('./TotalReport'));
 import Catchphrase from './Catchphrase';
 import Loading from './TotalReport/index.loading';
 import ErrorFallback from './TotalReport/index.error';
