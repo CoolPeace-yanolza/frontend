@@ -4,6 +4,7 @@ import styled from '@emotion/styled';
 import { Backdrop } from '@components/common';
 import { RoomModalProps, RoomModalStyleProps } from '@/types/register';
 import close from '@assets/icons/ic-register-close.svg';
+import sort from '@assets/icons/ic-register-sort.svg';
 import filterChecked from '@assets/icons/ic-register-filter-checked.svg';
 import filterUnchecked from '@assets/icons/ic-register-filter-unchecked.svg';
 import listChecked from '@assets/icons/ic-register-checked.svg';
@@ -102,8 +103,18 @@ const RoomModal = ({
               <FilterCheckIcon $src={filterUnchecked} />
             </label>
           </FilterCell>
-          <FilterCell>객실명</FilterCell>
-          <FilterCell>객실 금액</FilterCell>
+          <FilterCell>
+            <SortButton>
+              객실명
+              <SortIcon src={sort} />
+            </SortButton>
+          </FilterCell>
+          <FilterCell>
+            <SortButton>
+              객실 금액
+              <SortIcon src={sort} />
+            </SortButton>
+          </FilterCell>
         </Filter>
         <ContentWrapper>
           {list.map((room, index) => {
@@ -122,7 +133,11 @@ const RoomModal = ({
                     <ListCheckIcon $src={listUnchecked} />
                   </label>
                 </ListCell>
-                <ListCell>{room.roomType}</ListCell>
+                <ListCell>
+                  {room.roomType.length < 8
+                    ? room.roomType
+                    : room.roomType.slice(0, 7) + '...'}
+                </ListCell>
                 <ListCell>{room.price.toLocaleString()}원</ListCell>
               </List>
             );
@@ -147,7 +162,7 @@ export default RoomModal;
 
 const Container = styled.div`
   width: 378px;
-  height: 744px;
+  height: 712px;
 
   background-color: #fff;
   border-radius: 20px;
@@ -159,7 +174,7 @@ const Container = styled.div`
 const Header = styled.div`
   height: 63px;
 
-  padding: 0px 20px;
+  padding: 5px 20px 0px 25px;
 
   display: flex;
   justify-content: space-between;
@@ -169,12 +184,13 @@ const Header = styled.div`
 `;
 
 const CloseButton = styled.button<RoomModalStyleProps>`
-  width: 43px;
-  height: 43px;
+  width: 35px;
+  height: 35px;
 
+  padding: 0px;
   border: none;
 
-  background: url(${props => props.$src});
+  background: url(${props => props.$src}) center / contain;
 
   cursor: pointer;
 `;
@@ -216,8 +232,30 @@ const FilterCheckIcon = styled.div<RoomModalStyleProps>`
   background: url(${props => props.$src}) no-repeat;
 `;
 
+const SortButton = styled.button`
+  border: none;
+
+  display: flex;
+  align-items: center;
+
+  color: #fff;
+  font-family: 'Noto Sans KR';
+  font-size: 15px;
+
+  background: transparent;
+`;
+
+const SortIcon = styled.img`
+  width: 20px;
+  height: 20px;
+
+  margin-left: 10px;
+`;
+
 const ContentWrapper = styled.div`
-  height: 512px;
+  height: 480px;
+
+  padding: 10px 0px;
 
   display: flex;
   flex-direction: column;
@@ -230,10 +268,9 @@ const ContentWrapper = styled.div`
 `;
 
 const List = styled.div`
-  height: 42px;
-
   display: grid;
   grid-template-columns: 1fr 2fr 2fr;
+  grid-template-rows: 46px;
 `;
 
 const ListCell = styled.div`
@@ -261,7 +298,7 @@ const ListCheckIcon = styled.div<RoomModalStyleProps>`
 `;
 
 const Footer = styled.div`
-  height: 106px;
+  height: 100px;
 
   display: flex;
   justify-content: center;
