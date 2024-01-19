@@ -16,8 +16,8 @@ const LoginForm = () => {
 
   // HACK : 추후 useState로 입력 데이터 관리할 예쩡
   const formData: LoginData = {
-    email: 'mary0393@naver.com',
-    password: 'qqqq1111!'
+    email: 'juhwanTest@gmail.com',
+    password: 'juhwanTest'
   };
 
   // HACK: 유효성 검사 기능 구현 후 유효성 메세지 노출 여부 결정
@@ -33,13 +33,10 @@ const LoginForm = () => {
   ) => {
     event.preventDefault();
     const response = await postLogin(formData);
-    setCookies(
-      response.name,
-      response.email,
-      response.access_token,
-      response.refresh_token,
-      response.expires_in
-    );
+    setCookies('userName', response.name, response.expires_in);
+    setCookies('userEmail', response.email, response.expires_in);
+    setCookies('accessToken', response.access_token, response.expires_in);
+    setCookies('refreshToken', response.refresh_token, response.expires_in);
   };
 
   return (
