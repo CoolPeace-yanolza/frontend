@@ -2,8 +2,9 @@ import { NavLink } from 'react-router-dom';
 import styled from '@emotion/styled';
 
 import logo from '@assets/icons/ic-logo.svg';
-import user from '@assets/icons/ic-header-user.svg';
 import Select from './Select';
+import User from './User';
+import theme from '@styles/theme';
 
 const Header = () => {
   return (
@@ -18,11 +19,9 @@ const Header = () => {
         />
       </LogoLink>
       <Buttons>
+        <div></div>
         <Select />
-        <UserIcon
-          src={user}
-          alt="사용자 프로필"
-        />
+        <User />
       </Buttons>
     </Container>
   );
@@ -31,37 +30,55 @@ const Header = () => {
 export default Header;
 
 const Container = styled.header`
+  position: sticky;
+  top: 0;
+  left: 0;
+
   width: 100%;
   height: 85px;
 
   border-radius: 20px;
   padding: 20px;
-  padding-left: 30px;
 
   display: flex;
-  align-items: center;
   justify-content: space-between;
+  align-items: center;
 
-  background-color: ${props => props.theme.colors.white};
+  background-color: ${theme.colors.white};
+
+  ${theme.response.tablet} {
+    height: 65px;
+
+    border-bottom: 1px solid #e6e6e6;
+    border-radius: 0;
+  }
 `;
 
 const LogoLink = styled(NavLink)`
   width: 140px;
   height: 30px;
+
+  ${theme.response.tablet} {
+    display: none;
+  }
 `;
 
 const LogoIcon = styled.img`
   width: 100%;
   height: 100%;
+
+  ${theme.response.tablet} {
+    display: none;
+  }
 `;
 
 const Buttons = styled.div`
   display: flex;
-`;
+  align-items: center;
 
-const UserIcon = styled.img`
-  width: 40px;
-  height: 40px;
+  ${theme.response.tablet} {
+    width: 100%;
 
-  border-radius: 50%;
+    justify-content: space-between;
+  }
 `;

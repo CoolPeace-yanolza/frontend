@@ -3,7 +3,8 @@ import styled from '@emotion/styled';
 
 import Header from './Header';
 import Navigation from './Navigation';
-import { SidebarOpen } from '@/types/sidebar';
+import { SidebarOpen } from '@/types/layout';
+import theme from '@styles/theme';
 
 const Sidebar = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -32,21 +33,30 @@ const Container = styled.div<SidebarOpen>`
   position: fixed;
 
   width: ${props => (props.$isSidebarOpen ? '250px' : '100px')};
-  min-height: 100vh;
+  min-height: 100%;
 
   padding: 20px 10px;
 
-  background-color: ${props => props.theme.colors.white};
-
+  background-color: ${theme.colors.white};
   overflow: hidden;
   // HACK: z-index 상수화 (const enum, as const 학습 후 적용)
   z-index: 100;
-
   transition: all 0.3s;
+
+  ${theme.response.tablet} {
+    width: ${props => (props.$isSidebarOpen ? '100%' : 'auto')};
+    height: ${props => (props.$isSidebarOpen ? 'fit-content' : '93px')};
+    min-height: ${props => (props.$isSidebarOpen ? 'fit-content' : '93px')};
+
+    padding: 0;
+
+    background-color: ${props =>
+      props.$isSidebarOpen ? 'white' : 'transparent'};
+  }
 `;
 
 const Menu = styled.div`
-  width: 230px;
+  width: 100%;
   height: 100%;
 
   display: flex;
@@ -62,6 +72,5 @@ const LeftoverScreen = styled.div`
   position: fixed;
 
   background-color: #4242427c;
-
   z-index: 90;
 `;

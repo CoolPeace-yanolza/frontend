@@ -12,11 +12,9 @@ const InputAccordion = ({ title, children }: InputAccordionProps) => {
 
   const handleToggle = () => {
     if (contentWrapperRef.current && contentRef.current) {
-      if (isOpen) {
-        contentWrapperRef.current.style.height = '0px';
-      } else {
-        contentWrapperRef.current.style.height = `${contentRef.current.clientHeight}px`;
-      }
+      contentWrapperRef.current.style.height = isOpen
+        ? '0px'
+        : `${contentRef.current.clientHeight}px`;
       setIsOpen(prev => !prev);
     }
   };

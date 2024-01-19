@@ -2,6 +2,19 @@ import { EmotionTheme } from '@emotion/react';
 
 declare module '@emotion/react' {
   export interface Theme extends EmotionTheme {
+    // theme 컨벤션 : 페이지 별 변수 지정 사용
+    login: {};
+    dashboard: {};
+    report: {};
+    coupons: {};
+    register: {};
+    settlements: {};
+
+    response: {
+      tablet: string;
+      mobile: string;
+    };
+
     colors: {
       background: string;
       hover: string;
