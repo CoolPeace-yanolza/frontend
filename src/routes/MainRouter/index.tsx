@@ -7,19 +7,21 @@ import Dashboard from '@pages/Dashboard';
 import Report from '@pages/Report';
 import CouponList from '@pages/CouponList';
 import Register from '@pages/Register';
-import { PrivateRouter } from '..';
+import { PrivateRouter, PublicRouter } from '..';
 
 const MainRouter = () => {
   return (
     <Routes>
-      <Route
-        path="/login"
-        element={<Login />}
-      />
-      <Route
-        path="/signup"
-        element={<SignUp />}
-      />
+      <Route element={<PublicRouter />}>
+        <Route
+          path="/login"
+          element={<Login />}
+        />
+        <Route
+          path="/signup"
+          element={<SignUp />}
+        />
+      </Route>
       <Route element={<PrivateRouter />}>
         <Route
           path="/"
