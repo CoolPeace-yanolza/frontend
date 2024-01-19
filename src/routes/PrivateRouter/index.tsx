@@ -1,9 +1,16 @@
-import { Layout } from '@components/common';
-import { getCookies } from '@utils/lib/cookies';
 import { Navigate } from 'react-router-dom';
 
+import { Layout } from '@components/common';
+import { getCookies } from '@utils/lib/cookies';
+
 const PrivateRouter = () => {
-  const isLoggedIn = !!getCookies('accessToken');
+  const accessToken = getCookies('accessToken');
+  const refreshToken = getCookies('refreshToken');
+  const userName = getCookies('userName');
+  const userEmail = getCookies('userEmail');
+
+  const isLoggedIn =
+    !!accessToken && !!refreshToken && !!userName && !!userEmail;
 
   if (!isLoggedIn) {
     // HACK : alert창은 추후 변경 예정입니다.
