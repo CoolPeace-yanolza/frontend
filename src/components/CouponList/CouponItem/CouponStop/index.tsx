@@ -13,12 +13,12 @@ const CouponStop = () => {
     setIsToggle(!isToggle);
   };
   return (
-    <CouponContainer isToggle={isToggle}>
+    <CouponContainer $isToggle={isToggle}>
       <CouponHeaderContainer>
         <CouponHeader>
           <CouponTitle>2024 신년행사</CouponTitle>
           <ToggleWrap
-            isToggle={isToggle}
+            $isToggle={isToggle}
             onClick={handleToggle}
           >
             {isToggle ? (
@@ -88,7 +88,7 @@ const CouponContainer = styled.div<ToggleStyleProps>`
 
   border-radius: 8px;
 
-  background: ${props => (props.isToggle ? '#ffebf1' : '#ECF0FA')};
+  background: ${props => (props.$isToggle ? '#ffebf1' : '#ECF0FA')};
   box-shadow: 0px 1px 4px 1px rgba(0, 0, 0, 0.25);
 `;
 
@@ -126,7 +126,7 @@ const ToggleWrap = styled.button<ToggleStyleProps>`
 
   border-radius: 22.93px;
   border: 1px solid;
-  border-color: ${props => (props.isToggle ? '#FF3478' : '#404446')};
+  border-color: ${props => (props.$isToggle ? '#FF3478' : '#404446')};
 
   display: flex;
   align-items: center;

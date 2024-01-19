@@ -1,13 +1,13 @@
 export interface ToggleStyleProps {
-  isToggle: boolean;
+  $isToggle: boolean;
 }
 
 export interface ResisterDateStyleProps {
-  resisterDateClick: boolean;
+  $resisterDateClick: boolean;
 }
 
-export interface CategoryTabProps {
-  categoryTab: boolean;
+export interface CategoryTabStyleProps {
+  $categoryTab: boolean;
 }
 
 // api 데이터 타입
