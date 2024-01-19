@@ -15,13 +15,10 @@ const Stepper = ({ steps, currentStep }: StepperProps) => {
         return (
           <Step key={index}>
             <Number
-              className={
-                step.isCompleted
-                  ? 'completed'
-                  : currentStep !== index
-                    ? 'disabled'
-                    : undefined
-              }
+              className={(() => {
+                if (step.isCompleted) return 'completed';
+                if (currentStep !== index) return 'disabled';
+              })()}
               src={checkMark}
             >
               <span>{index + 1}</span>
