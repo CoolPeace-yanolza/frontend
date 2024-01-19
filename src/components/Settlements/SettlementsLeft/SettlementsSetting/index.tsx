@@ -76,7 +76,7 @@ export default SettlementsSetting;
 
 const Container = styled.div`
   width: 100%;
-  min-width: 1110px;
+  // min-width: 1110px;
   height: 100%;
 `;
 

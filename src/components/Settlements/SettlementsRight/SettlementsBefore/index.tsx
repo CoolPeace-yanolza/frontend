@@ -203,4 +203,8 @@ const ReceiptIcon = styled.img`
   
   margin-top: 40px;
   margin-left: auto;
+
+  @media (max-width: 900px) {
+    display: none;
+  }
 `;

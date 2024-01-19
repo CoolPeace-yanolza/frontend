@@ -47,7 +47,9 @@ const SettlementsTable = ({ data, pageStartNumber }: { data: SettlementItem[], p
             <Row key={index} isLast={false}>
               {keys.map((key) => (
                  <DataElement key={key}>
-                  {key === 'NO' ? pageStartNumber - index : row[key]}
+                  <MobileDataElement>{key}:</MobileDataElement>
+                  <MobileData>{key === 'NO' ? pageStartNumber - index : row[key]}</MobileData>
+                  <WebData>{key === 'NO' ? pageStartNumber - index : row[key]}</WebData>
                </DataElement>
               ))}
             </Row>
@@ -65,6 +67,11 @@ const Container = styled.div`
 
   display: flex;
   flex-direction: column;
+  
+
+  @media (max-width: 900px) {
+    overflow-x: hidden;
+  }
 `;
 
 const Header = styled.div`
@@ -76,6 +83,11 @@ const Header = styled.div`
   border: 1px solid #000;
   border-radius: 10px;
   background-color: rgba(255, 255, 255, 0.05);
+
+  @media (max-width: 900px) {
+    display: none;
+  }
+  
 `;
 
 const KeyElement = styled.div`
@@ -87,16 +99,6 @@ const KeyElement = styled.div`
   color: white;
 `;
 
-const Row = styled.div<{ isLast: boolean }>`
-  display: flex;
-  justify-content: space-between;
-
-  border-bottom: ${(props) => (props.isLast ? 'none' : '1px solid #ccc')}; 
-
-  &:last-child {
-    border-bottom: none;
-  }
-`;
 
 const FrameContainer = styled.div`
   width: 100%;
@@ -114,6 +116,12 @@ const Frame = styled.div`
   margin-right: auto;
 
   background: url(${settlementsFrame});
+
+  @media (max-width: 900px) {
+    background: none;
+    background-color: white;
+    height: 100%;
+  }
 `;
 
 const DataElement = styled.div`
@@ -127,5 +135,55 @@ const DataElement = styled.div`
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
+
+  @media (max-width: 900px) {
+    white-space: none;
+    width: 100%;
+    height: 100%;
+    padding: 5px 0px;
+    display: flex;
+  }
+`;
+
+const MobileDataElement = styled.span` 
+  display: flex;
+  margin-left: auto;
+  @media (min-width: 900px) {
+    display: none;
+}
+`;
+
+const MobileData = styled.span`
+width: 55%;
+padding-left: 10%;
+display: flex;
+@media (min-width: 900px) {
+  display: none;
+}
+`;
+
+const WebData = styled.span`
+@media (max-width: 900px) {
+  display: none;
+}
+`;
+
+const Row = styled.div<{ isLast: boolean }>`
+  display: flex;
+  justify-content: space-between;
+
+  border-bottom: ${(props) => (props.isLast ? 'none' : '1px solid #ccc')}; 
+
+  &:last-child {
+    border-bottom: none;
+  }
+
+  @media (max-width: 900px) {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    text-overflow: ellipsis;
+
+  }
 `;
 

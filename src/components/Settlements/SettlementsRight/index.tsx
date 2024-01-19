@@ -7,14 +7,14 @@ import settlementsLogo from '@assets/icons/settlements-logo.svg';
 const SettlementsRight = () => {
   return (
     <Container>
-        <InnerContainer>
-          <SettlementsExpected />
-          <hr />
-          <StyledSettlementsBefore>
-            <SettlementsBefore />
-          </StyledSettlementsBefore>
-        </InnerContainer>
-          <Logo />
+      <InnerContainer>
+        <SettlementsExpected />
+        <hr />
+        <StyledSettlementsBefore>
+          <SettlementsBefore />
+        </StyledSettlementsBefore>
+      </InnerContainer>
+      <Logo />
     </Container>
   )
 }
@@ -30,6 +30,12 @@ const Container = styled.div`
   background-color: #1A2849;
   border-top-right-radius: 1.25rem;
   border-bottom-right-radius: 1.25rem;
+
+  @media (max-width: 900px) {
+    width: 100%;
+    min-width: 0;
+    border-radius: 0;
+  }
 `;
 
 const InnerContainer = styled.div`
@@ -50,9 +56,15 @@ const InnerContainer = styled.div`
 
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   }
+
+  @media (max-width: 900px) {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
 `;
 
-const StyledSettlementsBefore =  styled.div`
+const StyledSettlementsBefore = styled.div`
   position: relative;
   z-index: 1;
 `;
@@ -67,4 +79,12 @@ const Logo = styled.div`
   right: 0;
 
   background: url(${settlementsLogo});
+
+  @media (max-width: 900px) {
+    position: static;
+    width: 100%;
+    max-width: 165px;
+    height: auto;
+    margin-top: 20px; /* Adjust the margin as needed */
+  }
 `;

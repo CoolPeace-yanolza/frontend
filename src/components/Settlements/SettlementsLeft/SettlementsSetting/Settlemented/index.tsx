@@ -145,6 +145,8 @@ export default Settlemented;
 const Container = styled.nav`
   margin-right: 43px;
   margin-left: 43px;
+
+  
 `;
 
 const SettlementedHeader = styled.div`

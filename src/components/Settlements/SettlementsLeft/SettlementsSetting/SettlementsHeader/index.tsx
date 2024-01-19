@@ -64,6 +64,10 @@ export default SettlementsHeader;
 const Container = styled.nav`
     margin-left: 43px;
     margin-top: 96px;
+
+    @media (max-width: 900px) {
+        display: none;
+      }
 `;
 
 const Header = styled.nav`
