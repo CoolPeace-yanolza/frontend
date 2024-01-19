@@ -3,7 +3,8 @@ import styled from '@emotion/styled';
 
 import Header from './Header';
 import Navigation from './Navigation';
-import { SidebarOpen } from '@/types/sidebar';
+import { SidebarOpen } from '@/types/layout';
+import theme from '@styles/theme';
 
 const Sidebar = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -32,11 +33,11 @@ const Container = styled.div<SidebarOpen>`
   position: fixed;
 
   width: ${props => (props.$isSidebarOpen ? '250px' : '100px')};
-  min-height: 100vh;
+  min-height: 100%;
 
   padding: 20px 10px;
 
-  background-color: ${props => props.theme.colors.white};
+  background-color: ${theme.colors.white};
 
   overflow: hidden;
   // HACK: z-index 상수화 (const enum, as const 학습 후 적용)

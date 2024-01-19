@@ -1,13 +1,15 @@
-import { NavLink } from 'react-router-dom';
 import styled from '@emotion/styled';
 
 import settlement from '@assets/icons/ic-sidebar-settlement.svg';
-import { SidebarOpen } from '@/types/sidebar';
+import CustomNavLink from '../CustomNavLink';
+import { SidebarOpen } from '@/types/layout';
+import theme from '@styles/theme';
 
 const Settlements = ({ isSidebarOpen }: { isSidebarOpen: boolean }) => {
   return (
     <Container
       to="/settlements"
+      end
       $isSidebarOpen={isSidebarOpen}
     >
       <Contents $isSidebarOpen={isSidebarOpen}>
@@ -24,16 +26,16 @@ const Settlements = ({ isSidebarOpen }: { isSidebarOpen: boolean }) => {
 
 export default Settlements;
 
-const Container = styled(NavLink)<SidebarOpen>`
+const Container = styled(CustomNavLink)<SidebarOpen>`
   width: 100%;
   height: ${props => (props.$isSidebarOpen ? '60px' : '80px')};
 
   margin: 5px 0;
   border-radius: 11px;
 
-  color: ${props => props.theme.colors.black};
+  color: ${theme.colors.black};
 
-  font-weight: ${props => props.theme.fontWeight.large};
+  font-weight: ${theme.fontWeight.large};
 
   cursor: pointer;
 
@@ -41,8 +43,8 @@ const Container = styled(NavLink)<SidebarOpen>`
 
   &:hover,
   &.active {
-    color: ${props => props.theme.colors.white};
-    background-color: ${props => props.theme.colors.hover};
+    color: ${theme.colors.white};
+    background-color: ${theme.colors.hover};
   }
 
   &:link {
