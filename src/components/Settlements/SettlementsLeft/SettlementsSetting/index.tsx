@@ -51,7 +51,7 @@ const SettlementsSetting = () => {
             <StyledDatePicker
                 selected={startDate}
                 onChange={handleStartDateChange}
-                dateFormat="yyyy/MM/"
+                dateFormat="yyyy/MM"
                 showMonthYearPicker
                 placeholderText=""
             />

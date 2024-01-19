@@ -40,12 +40,15 @@ const InnerContainer = styled.div`
 
   background-color: rgba(255, 255, 255, 0.1); 
   border: 1px solid rgba(255, 255, 255, 0.1); 
-  backdrop-filter: blur(50px);
+  backdrop-filter: blur(20px);
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.2);
 
   hr {
     margin: 30px 15px;
 
-    border-top: 1px solid rgba(217, 217, 217, 0.2); 
+    border: 1px solid rgba(217, 217, 217, 0.2); 
+
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   }
 `;
 
