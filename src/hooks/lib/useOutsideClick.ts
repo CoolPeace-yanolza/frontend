@@ -2,11 +2,11 @@ import { RefObject, useEffect } from 'react';
 
 const useOutsideClick = <T extends HTMLElement>(
   ref: RefObject<T>,
-  setter: React.Dispatch<React.SetStateAction<boolean>>
+  setter: () => void
 ): void => {
   const handleClickOutside = (e: MouseEvent) => {
     if (ref.current && !ref.current.contains(e.target as Node)) {
-      setter(false);
+      setter();
     }
   };
 
@@ -33,7 +33,7 @@ const YourComponent = () => {
   const [isOpen, setIsOpen] = useState(false);
   const modalRef = useRef(null);
 
-  useOutsideClick(modalRef, setIsOpen);
+  useOutsideClick(modalRef, () => setIsOpen(boolean));
 
   // ...
 

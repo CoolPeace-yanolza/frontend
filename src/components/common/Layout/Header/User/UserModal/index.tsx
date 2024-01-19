@@ -7,12 +7,11 @@ import { getCookies } from '@utils/lib/cookies';
 import theme from '@styles/theme';
 
 const UserModal = ({ isOpen, setIsUserModalOpen }: UserModal) => {
+  const modalRef = useRef<HTMLDivElement>(null);
   const userName = getCookies('userName');
   const userEmail = getCookies('userEmail');
 
-  const modalRef = useRef<HTMLDivElement>(null);
-
-  useOutsideClick(modalRef, setIsUserModalOpen);
+  useOutsideClick(modalRef, () => setIsUserModalOpen(false));
 
   return (
     <Modal

@@ -22,7 +22,7 @@ const CouponExpose = () => {
     setIsRoomList(!isRoomList);
   };
 
-  useOutsideClick(roomListRef, setIsRoomList);
+  useOutsideClick(roomListRef, () => setIsRoomList(false));
 
   return (
     <CouponContainer $isToggle={isToggle}>
