@@ -8,7 +8,7 @@ const RoomSelectButton = ({
   id,
   name,
   buttonName,
-  selectedRooms,
+  rooms,
   onButtonClick
 }: RoomSelectButtonProps) => {
   const handleModal = () => {
@@ -21,7 +21,7 @@ const RoomSelectButton = ({
         id={id}
         type={type}
         name={name}
-        checked={selectedRooms ? true : false}
+        checked={rooms ? true : false}
       />
       <Button
         htmlFor={id}

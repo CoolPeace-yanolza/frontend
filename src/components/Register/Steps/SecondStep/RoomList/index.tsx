@@ -2,13 +2,17 @@ import styled from '@emotion/styled';
 
 import { RoomListProps } from '@/types/register';
 
-const RoomList = ({ list }: RoomListProps) => {
+const RoomList = ({ rooms }: RoomListProps) => {
   return (
-    <Container>
-      {list.map((room, index) => {
-        return <Room key={index}>{room}</Room>;
-      })}
-    </Container>
+    <>
+      {rooms.length > 0 && (
+        <Container>
+          {rooms.map((room, index) => (
+            <Room key={index}>{room}</Room>
+          ))}
+        </Container>
+      )}
+    </>
   );
 };
 

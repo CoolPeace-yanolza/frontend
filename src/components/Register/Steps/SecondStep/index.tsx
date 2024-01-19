@@ -16,7 +16,7 @@ const SecondStep = () => {
   const [roomType, setRoomType] = useState(0);
   const [toAllRoom, setToAllRoom] = useState(0);
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedRooms, setSelectedRooms] = useState<string[]>([]);
+  const [rooms, setRooms] = useState<string[]>([]);
 
   return (
     <>
@@ -25,8 +25,8 @@ const SecondStep = () => {
           <RoomModal
             value={2}
             setToAllRoom={setToAllRoom}
-            selectedRooms={selectedRooms}
-            setSelectedRooms={setSelectedRooms}
+            rooms={rooms}
+            setRooms={setRooms}
             onButtonClick={setIsOpen}
           />,
           document.getElementById('modal-root') as HTMLElement
@@ -76,17 +76,16 @@ const SecondStep = () => {
             id="false"
             name="toAllRoom"
             buttonName="선택 객실"
-            selectedRooms={selectedRooms.length}
+            rooms={rooms.length}
             onButtonClick={setIsOpen}
           />
         </ButtonWrapper>
         <InputWrapper
           whichInput={2}
           currentInput={toAllRoom}
-          isOpen={isOpen}
         >
           <ContentWrapper>
-            <RoomList list={selectedRooms} />
+            <RoomList rooms={rooms} />
           </ContentWrapper>
         </InputWrapper>
       </InputContainer>

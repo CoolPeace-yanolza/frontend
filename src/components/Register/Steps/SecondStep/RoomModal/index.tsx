@@ -1,12 +1,8 @@
-import { useRef } from 'react';
+import { useState, useRef } from 'react';
 import styled from '@emotion/styled';
 
 import { Backdrop } from '@components/common';
-import {
-  RoomModalProps,
-  RoomModalStyleProps,
-  RoomModalButtonStyleProps
-} from '@/types/register';
+import { RoomModalProps, RoomModalStyleProps } from '@/types/register';
 import close from '@assets/icons/ic-register-close.svg';
 import filterChecked from '@assets/icons/ic-register-filter-checked.svg';
 import filterUnchecked from '@assets/icons/ic-register-filter-unchecked.svg';
@@ -31,22 +27,17 @@ const list = [
 const RoomModal = ({
   value,
   setToAllRoom,
-  selectedRooms,
-  setSelectedRooms,
+  rooms,
+  setRooms,
   onButtonClick
 }: RoomModalProps) => {
+  const [selectedRooms, setSelectedRooms] = useState([...rooms]);
   const backdropRef = useRef<HTMLDivElement>(null);
 
-  const handleClose = () => {
-    setSelectedRooms([]);
-    setToAllRoom(0);
-    onButtonClick(false);
-  };
+  setToAllRoom(value);
 
-  const handleApply = () => {
-    if (selectedRooms.length) {
-      setToAllRoom(value);
-    } else {
+  const handleClose = () => {
+    if (!rooms) {
       setToAllRoom(0);
     }
     onButtonClick(false);
@@ -54,8 +45,13 @@ const RoomModal = ({
 
   const handleBackdropClick = (e: React.MouseEvent<HTMLDivElement>) => {
     if (e.target === backdropRef.current) {
-      handleApply();
+      handleClose();
     }
+  };
+
+  const handleApply = () => {
+    setRooms(selectedRooms);
+    onButtonClick(false);
   };
 
   const handleSelectAll = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -134,8 +130,10 @@ const RoomModal = ({
         </ContentWrapper>
         <Footer>
           <Button
-            $length={selectedRooms.length}
             onClick={handleApply}
+            disabled={
+              selectedRooms.length === list.length || !selectedRooms.length
+            }
           >
             {selectedRooms.length}개 적용하기
           </Button>
@@ -270,7 +268,7 @@ const Footer = styled.div`
   align-items: center;
 `;
 
-const Button = styled.button<RoomModalButtonStyleProps>`
+const Button = styled.button`
   width: 170px;
   height: 44px;
 
@@ -282,7 +280,11 @@ const Button = styled.button<RoomModalButtonStyleProps>`
   font-size: 18px;
   font-weight: 700;
 
-  background: ${props => (props.$length ? '#022C79' : '#cdcfd0')};
+  background: #022c79;
 
   cursor: pointer;
+
+  &:disabled {
+    background: #cdcfd0;
+  }
 `;
