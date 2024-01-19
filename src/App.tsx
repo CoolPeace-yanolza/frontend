@@ -11,7 +11,7 @@ import { ErrorBoundary } from 'react-error-boundary';
 import { Suspense } from 'react';
 
 import { MainRouter } from './routes';
-import GlobalStyle from '@styles/GlobalStyle';
+import GlobalStyles from '@styles/GlobalStyles';
 import theme from '@styles/theme';
 import { ErrorApp } from '@components/ErrorFallback';
 import { LoadingApp } from '@components/Loading';
@@ -33,7 +33,7 @@ const App = () => {
     <QueryClientProvider client={queryClient}>
       <RecoilRoot>
         <ThemeProvider theme={theme}>
-          <GlobalStyle />
+          <GlobalStyles />
           <ErrorBoundary
             onReset={reset}
             FallbackComponent={ErrorApp}
