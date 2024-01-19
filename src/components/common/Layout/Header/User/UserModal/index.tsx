@@ -1,13 +1,21 @@
+import { useRef } from 'react';
 import styled from '@emotion/styled';
 
 import { UserModal, UserModalStyleProps } from '@/types/layout';
+import useOutsideClick from '@hooks/lib/useOutsideClick';
 import theme from '@styles/theme';
 
-const UserModal = ({ isOpen }: UserModal) => {
+const UserModal = ({ isOpen, setIsUserModalOpen }: UserModal) => {
   // HACK: cookie에서 사용자 정보 가져오기
+  const modalRef = useRef<HTMLDivElement>(null);
+
+  useOutsideClick(modalRef, setIsUserModalOpen);
 
   return (
-    <Modal $isOpen={isOpen}>
+    <Modal
+      $isOpen={isOpen}
+      ref={modalRef}
+    >
       <UserInformation>
         <Name $isOpen={isOpen}>김사장님</Name>
         <Email $isOpen={isOpen}>yanolja123@yanolja.com</Email>
