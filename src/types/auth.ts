@@ -36,10 +36,8 @@ export type LoginData = {
 };
 
 export type SetCookies = (
-  userName: string,
-  userEmail: string,
-  accessToken: string,
-  refreshToken: string,
+  name: string,
+  value: string,
   expiresIn: number
 ) => void;
 
