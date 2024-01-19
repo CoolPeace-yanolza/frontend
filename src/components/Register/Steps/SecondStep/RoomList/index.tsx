@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
 
 import { RoomListProps } from '@/types/register';
+import { sliceName } from '@utils/index';
 
 const RoomList = ({ rooms }: RoomListProps) => {
   return (
@@ -8,7 +9,7 @@ const RoomList = ({ rooms }: RoomListProps) => {
       {rooms.length > 0 && (
         <Container>
           {rooms.map((room, index) => (
-            <Room key={index}>{room.roomType}</Room>
+            <Room key={index}>{sliceName(room.roomType)}</Room>
           ))}
         </Container>
       )}

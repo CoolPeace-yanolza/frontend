@@ -14,6 +14,7 @@ import filterChecked from '@assets/icons/ic-register-filter-checked.svg';
 import filterUnchecked from '@assets/icons/ic-register-filter-unchecked.svg';
 import listChecked from '@assets/icons/ic-register-checked.svg';
 import listUnchecked from '@assets/icons/ic-register-unchecked.svg';
+import { sliceName } from '@utils/index';
 
 const list = [
   {
@@ -172,11 +173,7 @@ const RoomModal = ({
                     <ListCheckIcon $src={listUnchecked} />
                   </label>
                 </ListCell>
-                <ListCell>
-                  {room.roomType.length < 8
-                    ? room.roomType
-                    : room.roomType.slice(0, 7) + '...'}
-                </ListCell>
+                <ListCell>{sliceName(room.roomType)}</ListCell>
                 <ListCell>{room.price.toLocaleString()}원</ListCell>
               </List>
             );
