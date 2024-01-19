@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
 
 import { UserModal, UserModalStyleProps } from '@/types/layout';
+import theme from '@styles/theme';
 
 const UserModal = ({ isOpen }: UserModal) => {
   // HACK: cookie에서 사용자 정보 가져오기
@@ -33,6 +34,13 @@ const Modal = styled.div<UserModalStyleProps>`
 
   background-color: #e3e5e5;
   transition: all 0.5s;
+
+  ${theme.response.tablet} {
+    right: 35px;
+    top: 45px;
+
+    width: ${props => (props.$isOpen ? '300px' : 0)};
+  }
 `;
 
 const UserInformation = styled.div`

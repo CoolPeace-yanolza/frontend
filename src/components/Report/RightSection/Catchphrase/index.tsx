@@ -1,3 +1,4 @@
+import { keyframes } from '@emotion/react';
 import styled from '@emotion/styled';
 
 import rocket from '@assets/icons/ic-catchphrase-rocket.svg';
@@ -14,7 +15,8 @@ const Catchphrase = () => {
         <Text>
           {'연도별 쿠폰 사용 현황을'}
           <br />
-          {'빠르게 확인해보세요!'}
+          <span>빠르게</span>
+          {' 확인해보세요!'}
         </Text>
         <RocketIcon
           src={rocket}
@@ -26,6 +28,17 @@ const Catchphrase = () => {
 };
 
 export default Catchphrase;
+
+const rocketRising = keyframes`
+  0% {
+    opacity: 0;
+    transform: translateX(-300px) translateY(50px) rotate(90deg);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0) translateY(0) rotate(0deg);
+  }
+`;
 
 const Container = styled.div`
   position: relative;
@@ -49,7 +62,7 @@ const Content = styled.div`
   gap: 16px;
 `;
 
-const Title = styled.span`
+const Title = styled.p`
   font-size: 17px;
   font-weight: 700;
 
@@ -60,8 +73,12 @@ const Text = styled.span`
   color: #415574;
   font-size: 13px;
   font-weight: 700;
-
   line-height: 145%;
+
+  & > span {
+    display: inline;
+    box-shadow: inset 0 -7px 0 #ffddf9;
+  }
 `;
 
 const RocketIcon = styled.img`
@@ -72,4 +89,6 @@ const RocketIcon = styled.img`
 
   width: 120px;
   max-height: 120px;
+
+  animation: ${rocketRising} 1s;
 `;

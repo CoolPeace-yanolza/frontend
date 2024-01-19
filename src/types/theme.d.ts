@@ -9,6 +9,12 @@ declare module '@emotion/react' {
     coupons: {};
     register: {};
     settlements: {};
+
+    response: {
+      tablet: string;
+      mobile: string;
+    };
+
     colors: {
       background: string;
       hover: string;

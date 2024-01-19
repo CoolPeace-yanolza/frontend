@@ -81,8 +81,6 @@ const Accommodations = styled.select`
   border-radius: 12px;
   padding: 10px 20px;
 
-  display: inline-block;
-
   font-weight: 500;
 
   color: rgba(60, 60, 67, 0.6);
@@ -93,6 +91,16 @@ const Accommodations = styled.select`
 
   &::-ms-expand {
     display: none;
+  }
+
+  ${theme.response.tablet} {
+    width: 150px;
+    height: 30px;
+
+    margin-right: 0;
+    padding: 0 20px;
+
+    font-size: 12px;
   }
 `;
 
