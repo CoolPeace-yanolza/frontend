@@ -4,6 +4,7 @@ import reloadIcon from '@assets/icons/ic-dashboard-reload.svg';
 import locationIcon from '@assets/icons/ic-dashboard-location.svg';
 import bigLocationIcon from '@assets/icons/ic-dashboard-bigLocation.svg';
 import gpsIcon from '@assets/icons/ic-dashboard-gps.svg';
+import '@components/Dashboard/dashboardKeyframes.css';
 
 const LocalCouponUsage = () => {
   return (
@@ -36,7 +37,9 @@ const LocalCouponUsage = () => {
         </InnerContainerHeader>
         <CouponUsage>
           <span>현재 내 숙소 주위의 사장님들이</span>
-          평균 {8}종 이상의 쿠폰을 사용하고 있어요!
+          <MainInformation>
+            평균 {8}종 이상의 쿠폰을 사용하고 있어요!
+          </MainInformation>
           <BigLocationIcon
             src={bigLocationIcon}
             alt="지역"
@@ -150,6 +153,14 @@ const CouponUsage = styled.div`
     font-size: 18px;
     font-weight: 700;
   }
+`;
+
+const MainInformation = styled.div`
+  color: #202325;
+  font-size: 19px;
+  font-weight: 700;
+
+  animation: fadeUp 0.5s;
 `;
 
 const LocationIcon = styled.img`
