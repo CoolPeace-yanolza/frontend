@@ -1,5 +1,3 @@
-import styled from '@emotion/styled';
-
 import {
   CouponHeader,
   CouponNav,
