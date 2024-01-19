@@ -56,40 +56,30 @@ const PaginationContainer = styled.div`
 
   .pagination-li {
     margin: 5px;
+    padding: 9.4px 0px;
+    border: 1px solid #FFFFFF;
+    border-radius: 4px;
     cursor: pointer;
   }
 
   .pagination-link {
     padding: 8px 12px;
-    border: 1px solid #FFFFFF;
-    border-radius: 4px;
+
     color: #FFFFFF;
     text-decoration: none;
-
-    &:hover {
-      background-color: #f0f0f0;
-    }
-
-    &.active {
-      font-weight: bold;
-      background-color: #e0e0e0;
-    }
   }
 
   .pagination-li.active {
     padding: 9.4px 0px;
-
-    font-weight: bold; 
-
-    border-width: 2px;
-    border: 1.5px solid #FFFFFF;
+    border: 3px solid #FFFFFF;
     border-radius: 4px;
+
+    font-weight: bold;
   }
 
   .pagination-previous,
   .pagination-next {
     padding: 8px 12px;
-    
     color: #FFFFFF !important;
     text-decoration: none;
 
