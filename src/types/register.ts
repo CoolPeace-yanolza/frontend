@@ -123,12 +123,22 @@ export type LimitWrapperStyleProps = {
   $isLimited: boolean;
 };
 
+// SecondStep
+export type RoomType = {
+  id: number;
+  roomNumber: number;
+  roomType: string;
+  price: number;
+};
+
+export type RoomsType = RoomType[];
+
 // RoomModal
 export type RoomModalProps = {
   value: number;
   setToAllRoom: React.Dispatch<React.SetStateAction<number>>;
-  rooms: string[];
-  setRooms: React.Dispatch<React.SetStateAction<string[]>>;
+  rooms: RoomsType;
+  setRooms: React.Dispatch<React.SetStateAction<RoomsType>>;
   onButtonClick: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
@@ -148,7 +158,7 @@ export type RoomSelectButtonProps = {
 
 // RoomList
 export type RoomListProps = {
-  rooms: string[];
+  rooms: RoomsType;
 };
 
 // RadioProps

@@ -2,7 +2,12 @@ import { useState, useRef } from 'react';
 import styled from '@emotion/styled';
 
 import { Backdrop } from '@components/common';
-import { RoomModalProps, RoomModalStyleProps } from '@/types/register';
+import {
+  RoomType,
+  RoomsType,
+  RoomModalProps,
+  RoomModalStyleProps
+} from '@/types/register';
 import close from '@assets/icons/ic-register-close.svg';
 import sort from '@assets/icons/ic-register-sort.svg';
 import filterChecked from '@assets/icons/ic-register-filter-checked.svg';
@@ -22,6 +27,24 @@ const list = [
     roomNumber: 102,
     roomType: '싱글베드룸',
     price: 20000
+  },
+  {
+    id: 13,
+    roomNumber: 102,
+    roomType: '디럭스',
+    price: 70000
+  },
+  {
+    id: 13,
+    roomNumber: 102,
+    roomType: '스탠다드 더블',
+    price: 85000
+  },
+  {
+    id: 13,
+    roomNumber: 102,
+    roomType: 'VIP 더블',
+    price: 100000
   }
 ];
 
@@ -33,6 +56,9 @@ const RoomModal = ({
   onButtonClick
 }: RoomModalProps) => {
   const [selectedRooms, setSelectedRooms] = useState([...rooms]);
+  const [sortedRooms, setSortedRooms] = useState([...list]);
+  const [isSortedByName, setIsSortedByName] = useState(false);
+  const [isSortedByPrice, setIsSortedByPrice] = useState(true);
   const backdropRef = useRef<HTMLDivElement>(null);
 
   setToAllRoom(value);
@@ -56,26 +82,39 @@ const RoomModal = ({
   };
 
   const handleSelectAll = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.checked) {
-      const entireList: string[] = [];
-      list.forEach(room => {
-        entireList.push(room.roomType);
-      });
-      setSelectedRooms(entireList);
-    } else {
-      setSelectedRooms([]);
-    }
+    setSelectedRooms(e.target.checked ? [...sortedRooms] : []);
   };
 
   const handleSelectOne = (
     e: React.ChangeEvent<HTMLInputElement>,
-    roomType: string
+    room: RoomType
   ) => {
     if (e.target.checked) {
-      setSelectedRooms(prev => [...prev, roomType]);
+      setSelectedRooms((prev: RoomsType) => [...prev, room]);
     } else {
-      setSelectedRooms(selectedRooms.filter(room => room !== roomType));
+      setSelectedRooms(selectedRooms.filter(element => element !== room));
     }
+  };
+
+  const handleSort = (
+    isSorted: boolean,
+    compareFunction: (a: RoomType, b: RoomType) => number
+  ) => {
+    const sortedList = isSorted
+      ? [...sortedRooms].reverse()
+      : sortedRooms.sort(compareFunction);
+
+    setIsSortedByName(prev => !prev);
+    setIsSortedByPrice(prev => !prev);
+    setSortedRooms(sortedList);
+  };
+
+  const handleSortByName = () => {
+    handleSort(isSortedByName, (a, b) => a.roomType.localeCompare(b.roomType));
+  };
+
+  const handleSortByPrice = () => {
+    handleSort(isSortedByPrice, (a, b) => a.price - b.price);
   };
 
   return (
@@ -96,7 +135,9 @@ const RoomModal = ({
             <label>
               <SelectAll
                 type="checkbox"
-                checked={selectedRooms.length === list.length ? true : false}
+                checked={
+                  selectedRooms.length === sortedRooms.length ? true : false
+                }
                 $src={filterChecked}
                 onChange={handleSelectAll}
               />
@@ -104,31 +145,29 @@ const RoomModal = ({
             </label>
           </FilterCell>
           <FilterCell>
-            <SortButton>
+            <SortButton onClick={handleSortByName}>
               객실명
               <SortIcon src={sort} />
             </SortButton>
           </FilterCell>
           <FilterCell>
-            <SortButton>
+            <SortButton onClick={handleSortByPrice}>
               객실 금액
               <SortIcon src={sort} />
             </SortButton>
           </FilterCell>
         </Filter>
         <ContentWrapper>
-          {list.map((room, index) => {
+          {sortedRooms.map((room, index) => {
             return (
               <List key={index}>
                 <ListCell>
                   <label>
                     <SelectOne
                       type="checkbox"
-                      checked={
-                        selectedRooms.includes(room.roomType) ? true : false
-                      }
+                      checked={selectedRooms.includes(room) ? true : false}
                       $src={listChecked}
-                      onChange={e => handleSelectOne(e, room.roomType)}
+                      onChange={e => handleSelectOne(e, room)}
                     />
                     <ListCheckIcon $src={listUnchecked} />
                   </label>
@@ -147,7 +186,8 @@ const RoomModal = ({
           <Button
             onClick={handleApply}
             disabled={
-              selectedRooms.length === list.length || !selectedRooms.length
+              selectedRooms.length === sortedRooms.length ||
+              !selectedRooms.length
             }
           >
             {selectedRooms.length}개 적용하기

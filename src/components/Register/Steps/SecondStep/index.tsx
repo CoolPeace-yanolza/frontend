@@ -11,12 +11,13 @@ import {
 import RoomModal from './RoomModal';
 import RoomSelectButton from './RoomSelectButton';
 import RoomList from './RoomList';
+import { RoomsType } from '@/types/register';
 
 const SecondStep = () => {
   const [roomType, setRoomType] = useState(0);
   const [toAllRoom, setToAllRoom] = useState(0);
   const [isOpen, setIsOpen] = useState(false);
-  const [rooms, setRooms] = useState<string[]>([]);
+  const [rooms, setRooms] = useState<RoomsType>([]);
 
   return (
     <>

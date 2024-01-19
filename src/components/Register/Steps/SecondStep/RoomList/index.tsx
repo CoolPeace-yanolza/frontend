@@ -8,7 +8,7 @@ const RoomList = ({ rooms }: RoomListProps) => {
       {rooms.length > 0 && (
         <Container>
           {rooms.map((room, index) => (
-            <Room key={index}>{room}</Room>
+            <Room key={index}>{room.roomType}</Room>
           ))}
         </Container>
       )}
