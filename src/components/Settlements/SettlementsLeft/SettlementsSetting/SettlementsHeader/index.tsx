@@ -89,4 +89,6 @@ const InformationContainer = styled.div`
 
 const InformationIcon = styled.img`
   margin-bottom: 5px;
+
+  cursor: pointer;
 `;
