@@ -139,7 +139,7 @@ const UpdatedText = styled.div`
   color: #CDCFD0;
 
   @media (max-width: 478px) {
-    font-size: 7px;
+    font-size: 9px;
   }
 `;
 
@@ -176,7 +176,7 @@ const DueDateText = styled.div`
   color: black;
 
   @media (max-width: 478px) {
-    font-size: 8px;
+    font-size: 11px;
   }
 `;
 
@@ -214,7 +214,7 @@ const CouponText = styled.div`
   color: white;
 
   @media (max-width: 478px) {
-    font-size: 10px;
+    font-size: 12px;
   }
 `;
 
@@ -223,7 +223,7 @@ const CouponDay = styled.div`
   color: white;
 
   @media (max-width: 478px) {
-    font-size: 9px;
+    font-size: 10px;
   }
 `;
 

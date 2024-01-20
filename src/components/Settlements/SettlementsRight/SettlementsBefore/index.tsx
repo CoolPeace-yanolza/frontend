@@ -93,7 +93,6 @@ const Container = styled.div`
   @media (max-width: 900px) {
     margin-left: 15px;
     margin-right: 0px;
-    margin-top: 4px;
   }
 `;
 
@@ -148,7 +147,7 @@ const UpdatedText = styled.div`
   color: #CDCFD0;
 
   @media (max-width: 478px) {
-    font-size: 7px;
+    font-size: 9px;
   }
 `;
 
@@ -185,7 +184,7 @@ const DueDateText = styled.div`
   color: black;
   
   @media (max-width: 478px) {
-    font-size: 8px;
+    font-size: 11px;
   }
 `;
 
@@ -197,6 +196,10 @@ const DueDateInnerContainer = styled.div`
 
   justify-content: space-between;
   align-items: center;
+
+  @media (max-width: 530px) {
+    flex-direction: column;
+  }
 `;
 
 const DueDateDay = styled.div`
@@ -204,9 +207,12 @@ const DueDateDay = styled.div`
   font-weight: regular;
   color: black;
 
+  @media (max-width: 530px) {
+    width: 100%;
+  }
+
   @media (max-width: 478px) {
-    width: 40%;
-    font-size: 7px;
+    font-size: 10px;
   }
 `;
 
@@ -217,6 +223,12 @@ const DueDateMoney = styled.div`
 
   font-size: 16px;
   font-weight: bold;
+
+  @media (max-width: 530px) {
+    margin-top: 8px;
+
+    width: 100%;
+  }
 
   @media (max-width: 478px) {
     font-size: 10px;
@@ -235,7 +247,7 @@ const MoneyText = styled.div`
   color: white;
 
   @media (max-width: 478px) {
-    font-size: 10px;
+    font-size: 12px;
   }
 `;
 

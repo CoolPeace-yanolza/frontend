@@ -47,7 +47,7 @@ const SettlementsTable = ({ data, pageStartNumber }: SettlementsTableProps) => {
             <Row key={index} isLast={false}>
               {keys.map((key) => (
                  <DataElement key={key}>
-                  <MobileDataElement>{key}:</MobileDataElement>
+                  <MobileDataElement>{key}</MobileDataElement>
                   <MobileData>{key === 'NO' ? pageStartNumber - index : row[key]}</MobileData>
                   <WebData>{key === 'NO' ? pageStartNumber - index : row[key]}</WebData>
                </DataElement>
@@ -137,29 +137,43 @@ const DataElement = styled.div`
   text-overflow: ellipsis;
 
   @media (max-width: 900px) {
-    white-space: none;
+    padding: 5px 0px;
+
     width: 100%;
     height: 100%;
-    padding: 5px 0px;
+
     display: flex;
+
+    white-space: none;
+  }
+
+  @media (max-width: 500px) {
+    font-size: 12px;
   }
 `;
 
 const MobileDataElement = styled.span` 
-  display: flex;
   margin-left: auto;
+
+  display: flex;
+
+  font-weight: 700;
+
   @media (min-width: 900px) {
     display: none;
-}
+  }
 `;
 
 const MobileData = styled.span`
-width: 55%;
-padding-left: 10%;
-display: flex;
-@media (min-width: 900px) {
-  display: none;
-}
+  padding-left: 10%;
+
+  width: 55%;
+
+  display: flex;
+
+  @media (min-width: 900px) {
+    display: none;
+  }
 `;
 
 const WebData = styled.span`
@@ -179,11 +193,12 @@ const Row = styled.div<{ isLast: boolean }>`
   }
 
   @media (max-width: 900px) {
+    padding: 20px 0px;
+
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
     text-overflow: ellipsis;
-
   }
 `;
 
