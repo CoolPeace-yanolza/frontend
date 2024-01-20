@@ -1,13 +1,41 @@
 import styled from '@emotion/styled';
 
 import { CouponLitResponse } from '@/types/couponList';
+import { useEffect, useState } from 'react';
+import {
+  CouponExpired,
+  CouponExpose,
+  CouponStop,
+  CouponWait
+} from '../CouponItem';
+import { useRecoilValue } from 'recoil';
+import { headerAccommodationState } from '@recoil/index';
+import { getCouponList } from 'src/api/lib/getCouponList';
 
 const CouponMain = () => {
-  const [coupons, setCoupons] = useState<CouponLitResponse[]>([]);
+  const [coupons, setCoupons] = useState<CouponLitResponse | null>(null);
+  const headerAccommodation = useRecoilValue(headerAccommodationState);
+
+  // recolie 함수에서 숙소 ID 가져오는 부분
+  const fetchCoupons = async () => {
+    try {
+      const couponData = await getCouponList(
+        headerAccommodation.accommodationId
+      );
+      setCoupons(couponData);
+    } catch (error) {
+      console.log('쿠폰 정보 가져오기 에러 ', error);
+    }
+  };
+
+  useEffect(() => {
+    fetchCoupons();
+  }, [headerAccommodation.accommodationId]);
 
   return (
     // HACK: 받아온 쿠폰 데이터 종류에 따라 컴포넌트 분리 (추가 예정)
     <MainContainer>
+      <CouponExpose couponInfo={coupons} />
       {/* {coupons.map((coupon, index) => {
         switch (coupon.coupon_status) {
           case '노출 중':
