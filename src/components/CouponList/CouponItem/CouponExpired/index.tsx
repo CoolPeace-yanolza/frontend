@@ -281,11 +281,9 @@ const ContentRoom = styled.div`
   justify-content: center;
   cursor: pointer;
 
-  img {
-    margin-bottom: 3px;
-  }
   div {
     margin-right: 3px;
+    padding: 2px 0px;
     border-bottom: 1px solid #757676;
 
     color: #757676;
