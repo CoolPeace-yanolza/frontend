@@ -1,4 +1,17 @@
 const theme = {
+  // theme 컨벤션 : 페이지 별 변수 지정 사용
+  login: {},
+  dashboard: {},
+  report: {},
+  coupons: {},
+  register: {},
+  settlements: {},
+
+  response: {
+    tablet: '@media screen and (max-width: 900px)',
+    mobile: '@media screen and (max-width: 345px)'
+  },
+
   colors: {
     background: '#F2F3F5',
     hover: '#1A2849',

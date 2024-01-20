@@ -7,12 +7,7 @@ import {
   StepTitle,
   Preview
 } from '@components/Register';
-import {
-  FirstStep,
-  SecondStep,
-  ThirdStep,
-  FourthStep
-} from '@components/Register/Steps';
+import DisplayStep from './DisplayStep';
 
 const Register = () => {
   const [currentStep, setCurrentStep] = useState(0);
@@ -39,21 +34,6 @@ const Register = () => {
     }
   ];
 
-  const displayStep = (currentStep: number) => {
-    switch (currentStep) {
-      case 0:
-        return <FirstStep />;
-      case 1:
-        return <SecondStep />;
-      case 2:
-        return <ThirdStep />;
-      case 3:
-        return <FourthStep />;
-      default:
-        throw new Error(`Unsupported step: ${currentStep}`);
-    }
-  };
-
   return (
     <Background>
       <RegisterContainer>
@@ -72,7 +52,7 @@ const Register = () => {
                   steps={steps}
                   currentStep={currentStep}
                 />
-                {displayStep(currentStep)}
+                <DisplayStep currentStep={currentStep} />
               </LeftSection>
               <RightSection>
                 <Preview />

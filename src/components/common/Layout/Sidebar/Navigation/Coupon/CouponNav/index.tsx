@@ -4,6 +4,7 @@ import { NavLink } from 'react-router-dom';
 import home from '@assets/icons/ic-sidebar-home.svg';
 import coupons from '@assets/icons/ic-sidebar-coupons.svg';
 import couponRegister from '@assets/icons/ic-sidebar-coupon-register.svg';
+import theme from '@styles/theme';
 
 const CouponNav = () => {
   return (
@@ -54,7 +55,7 @@ const Container = styled.nav`
   font-size: 14px;
 
   &:hover {
-    color: ${props => props.theme.colors.white};
+    color: ${theme.colors.white};
   }
 
   &:last-child {
@@ -74,7 +75,7 @@ const Link = styled(NavLink)`
   justify-content: flex-start;
   align-items: center;
 
-  color: ${props => props.theme.colors.white};
+  color: ${theme.colors.white};
 
   font-size: 14px;
   font-weight: 400;
@@ -87,8 +88,12 @@ const Link = styled(NavLink)`
 
   &:hover,
   &.active {
-    color: ${props => props.theme.colors.white};
+    color: ${theme.colors.white};
     background-color: rgba(255, 255, 255, 0.3);
+  }
+
+  ${theme.response.tablet} {
+    width: 85%;
   }
 `;
 

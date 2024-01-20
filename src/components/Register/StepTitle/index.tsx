@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
-import theme from '@styles/theme';
 
+import theme from '@styles/theme';
 import { StepTitleProps } from '@/types/register';
 
 const StepTitle = ({ steps, currentStep }: StepTitleProps) => {

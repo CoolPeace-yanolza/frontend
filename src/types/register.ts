@@ -7,6 +7,11 @@ export type BackdropProps = {
   children: ReactNode;
 };
 
+// DisplayStep
+export type DisplayStepProps = {
+  currentStep: number;
+};
+
 // InputContainer
 export type InputContainerProps = {
   title: string;
