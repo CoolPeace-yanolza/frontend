@@ -25,7 +25,7 @@ const CouponStatusSection = () => {
         <Title>이번 달 똑똑현황</Title>
       </Header>
       <InnerContainer>
-        <StatusItem
+        {/* <StatusItem
           title="쿠폰 사용 총 매출"
           result={getStatusToLocaleString(statusDummyData.total_sales) + '원'}
           index={1}
@@ -39,7 +39,7 @@ const CouponStatusSection = () => {
           result={
             getStatusToLocaleString(statusDummyData.settlement_amount) + '원'
           }
-        />
+        /> */}
       </InnerContainer>
     </Container>
   );
