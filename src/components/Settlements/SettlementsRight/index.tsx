@@ -80,8 +80,6 @@ const InnerContainer = styled.div`
 `;
 
 const StyledSettlementsExpected = styled.div`
-  height: 50%;
-
   @media (max-width: 900px) {
     width: 50%;
     height: 300px;
