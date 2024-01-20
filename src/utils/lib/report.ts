@@ -3,9 +3,9 @@ export const renderCouponText = (informationText: string) => {
     case 'coupon_total_sales':
       return '쿠폰 사용 총 매출';
     case 'coupon_use_sales':
-      return '쿠폰 사용 총 횟수';
-    case 'coupon_total_used_count':
       return '쿠폰 사용 금액';
+    case 'coupon_total_used_count':
+      return '쿠폰 사용 총 횟수';
     default:
       throw new Error();
   }
@@ -14,11 +14,11 @@ export const renderCouponText = (informationText: string) => {
 export const renderCouponAmount = (informationText: string[]) => {
   switch (informationText[0]) {
     case 'coupon_total_sales':
-      return `${Number(informationText[1]).toLocaleString()} 원`;
+      return `${informationText[1].toLocaleString()} 원`;
     case 'coupon_use_sales':
-      return `${Number(informationText[1]).toLocaleString()} 회`;
+      return `${informationText[1].toLocaleString()} 원`;
     case 'coupon_total_used_count':
-      return `${Number(informationText[1]).toLocaleString()} 원`;
+      return `${informationText[1].toLocaleString()} 회`;
     default:
       throw new Error();
   }

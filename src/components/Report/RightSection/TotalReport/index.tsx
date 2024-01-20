@@ -2,7 +2,7 @@ import { useRecoilValue } from 'recoil';
 import styled from '@emotion/styled';
 
 import { headerAccommodationState } from '@recoil/index';
-import { useGetTotalReport } from '@hooks/queries/useGetTotalReport';
+import useGetTotalReport from '@hooks/queries/useGetTotalReport';
 import { renderTotalAmount, renderTotalText } from '@utils/index';
 import { AmountStyleProps } from '@/types/report';
 
