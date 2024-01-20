@@ -146,7 +146,10 @@ const Container = styled.nav`
   margin-right: 43px;
   margin-left: 43px;
 
-  
+  @media (max-width: 900px) {
+    margin-left: 20px;
+    margin-right: 20px;
+  }
 `;
 
 const SettlementedHeader = styled.div`
@@ -159,9 +162,11 @@ const SettlementedHeader = styled.div`
 `;
 
 const TotalData = styled.div`
+  margin-top: auto;
+  margin-bottom: auto;
+
   font-size: 14px;
   font-weight: bold;
-
   color: white;
 `;
 
@@ -171,12 +176,20 @@ const OptionContainer = styled.div`
 `;
 
 const StyledDropdown = styled(Dropdown)`
+  @media (max-width: 900px) {
+    border: none;
+  }
+
   &.ui.dropdown {
     min-width: 160px;
     backdrop-filter: blur(50px);
     border-radius: 14px;
     font-color: white !important;
     background-color: rgba(255, 255, 255, 0.1);
+
+    @media (max-width: 900px) {
+    }
+
     .text {
       color: white;
       font-size: 11px;
@@ -195,6 +208,7 @@ const StyledDropdown = styled(Dropdown)`
       border: 1px solid rgba(255, 255, 255, 0.2) !important;
       border-radius: 0px 0px 5px 5px;
       margin-bottom: 2px;
+
       .item {
         white-space: nowrap;
         border-bottom: none !important;
@@ -205,7 +219,6 @@ const StyledDropdown = styled(Dropdown)`
 
   &.ui.selection.dropdown {
     min-height: 20px;
-    // max-height: 30px;
   }
 
   &.ui.selection.active.dropdown {

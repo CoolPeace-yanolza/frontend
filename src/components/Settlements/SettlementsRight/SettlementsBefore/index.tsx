@@ -95,10 +95,6 @@ const Container = styled.div`
     margin-right: 0px;
     margin-top: 4px;
   }
-  
-  @media (max-width: 478px) {
-    margin-top: 18px;
-  }
 `;
 
 const InnerContainer = styled.div`

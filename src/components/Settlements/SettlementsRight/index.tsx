@@ -68,7 +68,7 @@ const InnerContainer = styled.div`
   }
 
   @media (max-width: 900px) {
-    margin: 20px 43px;
+    margin: 20px;
     display: flex;
     flex-direction: row;
     align-items: center;

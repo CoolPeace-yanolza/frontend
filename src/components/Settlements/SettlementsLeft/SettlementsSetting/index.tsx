@@ -94,13 +94,13 @@ const BreakLine = styled.div`
 `;
 
 const CalendarContainer = styled.nav`
-  margin-right: 43px;
-
   display: flex;
   justify-content: flex-end;
   align-items: center;
 
   @media (max-width: 900px) {
+    margin: 10px 20px;
+
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -111,8 +111,7 @@ const CalendarInnerContainer = styled.div`
   display: flex;
 
   @media (max-width: 900px) {
-    margin-right: auto;
-    margin-left: 43px;
+    width: 100%;
   }
 `;
 
@@ -160,12 +159,24 @@ const StyledButton = styled.button`
   &:hover {
     opacity: 1;
   }
+
+  @media (max-width: 900px) {
+    margin-left: auto;
+  }
 `;
 
 const StyledDatePickerContainer = styled.div`
+  margin-top: 15px;
+  margin-right: 43px;
+
   display: flex;
 
   @media (max-width: 900px) {
     margin-left: auto;
+    margin-right: 0px;
+  }
+
+  @media (max-width: 500px) {
+    width: 100%;
   }
 `;
