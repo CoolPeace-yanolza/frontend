@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { useEffect, useState } from 'react';
+import { useRecoilValue } from 'recoil';
 
 import {
   CouponExpired,
@@ -7,8 +7,12 @@ import {
   CouponStop,
   CouponWait
 } from '../CouponItem';
+import couponListState from '@recoil/atoms/couponListState';
 
 const CouponMain = () => {
+  const coupons = useRecoilValue(couponListState);
+  console.log('recoil로 관리되는 쿠폰 리스트 ', coupons);
+
   return (
     <MainContainer>
       {coupons?.content.map((coupon, index) => {

@@ -1,15 +1,14 @@
 import styled from '@emotion/styled';
 import { useEffect, useState } from 'react';
-import { useRecoilValue } from 'recoil';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
 
 import theme from '@styles/theme';
 import searchIcon from '@assets/icons/ic-couponlist-search.svg';
 import centerIcon from '@assets/icons/ic-couponlist-period-center.svg';
-import { headerAccommodationState } from '@recoil/index';
+import { couponListState, headerAccommodationState } from '@recoil/index';
 import { getCouponList } from 'src/api';
 import {
   CategoryTabStyleProps,
-  CouponLitResponse,
   ResisterDateStyleProps
 } from '@/types/couponList';
 
@@ -17,8 +16,9 @@ const CouponNav = () => {
   const [resisterDateClick, setResisterDateClick] = useState<string>('1년');
   const [categoryTab, setCategoryTab] = useState<string>('전체');
   const [searchText, setSearchText] = useState<string>('');
-  const [coupons, setCoupons] = useState<CouponLitResponse | null>(null);
   const headerAccommodation = useRecoilValue(headerAccommodationState);
+  const setGlobalCoupons = useSetRecoilState(couponListState);
+  const coupons = useRecoilValue(couponListState);
 
   const handleDateClick = (period: string) => {
     setResisterDateClick(period);
@@ -34,6 +34,7 @@ const CouponNav = () => {
 
   const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setSearchText('');
     fetchCoupons();
   };
 
@@ -46,7 +47,7 @@ const CouponNav = () => {
         categoryTab !== '전체' ? categoryTab : undefined,
         searchText
       );
-      setCoupons(couponData);
+      setGlobalCoupons(couponData);
       console.log('api 응답데이터 couponDate', couponData);
 
       console.log(

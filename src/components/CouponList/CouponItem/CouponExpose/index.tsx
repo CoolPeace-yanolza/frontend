@@ -6,15 +6,8 @@ import toggleOnIcon from '@assets/icons/ic-couponlist-toggleOn.svg';
 import toggleOffIcon from '@assets/icons/ic-couponlist-toggleOff.svg';
 import rightIcon from '@assets/icons/ic-couponlist-right.svg';
 import deleteIcon from '@assets/icons/ic-couponlist-delete.svg';
-import {
-  CouponInformationResponse,
-  ToggleStyleProps
-} from '@/types/couponList';
+import { CouponListProps, ToggleStyleProps } from '@/types/couponList';
 import { useOutsideClick } from '@hooks/index';
-
-export interface CouponListProps {
-  couponInfo: CouponInformationResponse;
-}
 
 const CouponExpose = ({ couponInfo }: CouponListProps) => {
   const [isToggle, setIsToggle] = useState(true);

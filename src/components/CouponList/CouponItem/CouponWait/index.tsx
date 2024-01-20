@@ -1,12 +1,12 @@
 import styled from '@emotion/styled';
+import { useRef, useState } from 'react';
 
 import theme from '@styles/theme';
 import centerIcon from '@assets/icons/ic-couponlist-center.svg';
 import rightIcon from '@assets/icons/ic-couponlist-right.svg';
 import deleteIcon from '@assets/icons/ic-couponlist-delete.svg';
-import { CouponListProps } from '../CouponExpose';
-import { useRef, useState } from 'react';
 import { useOutsideClick } from '@hooks/index';
+import { CouponListProps } from '@/types/couponList';
 
 const CouponWait = ({ couponInfo }: CouponListProps) => {
   const [isShowRoomList, setIsShowRoomList] = useState(false);

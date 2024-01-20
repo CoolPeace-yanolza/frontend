@@ -10,7 +10,7 @@ export interface CategoryTabStyleProps {
   $categoryTab: boolean;
 }
 
-// api 쿠폰 정보 응답 데이터
+// api 쿠폰 리스트정보 응답 데이터
 export interface CouponLitResponse {
   content: CouponInformationResponse[];
   category: {
@@ -51,6 +51,7 @@ export interface CouponInformationResponse {
   created_date: string;
 }
 
+// 쿠폰 1개에 대한 타입
 export interface CouponListProps {
   couponInfo: CouponInformationResponse;
 }
