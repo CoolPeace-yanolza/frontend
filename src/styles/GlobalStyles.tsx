@@ -1,13 +1,15 @@
 import { css, Global } from '@emotion/react';
 import theme from './theme';
 
-const GlobalStyle = () => {
+const GlobalStyles = () => {
   return <Global styles={resetCSS} />;
 };
 
-export default GlobalStyle;
+export default GlobalStyles;
 
 const resetCSS = css`
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800;900&display=swap');
+
   html,
   body,
   div,
@@ -141,6 +143,7 @@ const resetCSS = css`
   #root {
     color: ${theme.colors.black};
     background: ${theme.colors.background};
+    font-family: 'Noto Sans KR';
   }
 
   *,

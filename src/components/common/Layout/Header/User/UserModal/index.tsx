@@ -1,15 +1,26 @@
+import { useRef } from 'react';
 import styled from '@emotion/styled';
 
 import { UserModal, UserModalStyleProps } from '@/types/layout';
+import { useOutsideClick } from '@hooks/index';
+import { getCookies } from '@utils/lib/cookies';
+import theme from '@styles/theme';
 
-const UserModal = ({ isOpen }: UserModal) => {
-  // HACK: cookie에서 사용자 정보 가져오기
+const UserModal = ({ isOpen, setIsUserModalOpen }: UserModal) => {
+  const modalRef = useRef<HTMLDivElement>(null);
+  const userName = getCookies('userName');
+  const userEmail = getCookies('userEmail');
+
+  useOutsideClick(modalRef, () => setIsUserModalOpen(false));
 
   return (
-    <Modal $isOpen={isOpen}>
+    <Modal
+      $isOpen={isOpen}
+      ref={modalRef}
+    >
       <UserInformation>
-        <Name $isOpen={isOpen}>김사장님</Name>
-        <Email $isOpen={isOpen}>yanolja123@yanolja.com</Email>
+        <Name $isOpen={isOpen}>{userName}</Name>
+        <Email $isOpen={isOpen}>{userEmail}</Email>
       </UserInformation>
       <Logout $isOpen={isOpen}>로그아웃</Logout>
     </Modal>
@@ -33,6 +44,13 @@ const Modal = styled.div<UserModalStyleProps>`
 
   background-color: #e3e5e5;
   transition: all 0.5s;
+
+  ${theme.response.tablet} {
+    right: 35px;
+    top: 45px;
+
+    width: ${props => (props.$isOpen ? '300px' : 0)};
+  }
 `;
 
 const UserInformation = styled.div`
@@ -70,5 +88,6 @@ const Logout = styled.button<UserModalStyleProps>`
   background-color: transparent;
   font-size: ${props => (props.$isOpen ? '15px' : 0)};
   font-weight: 700;
+  white-space: nowrap;
   transition: all 0.5s;
 `;
