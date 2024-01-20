@@ -44,10 +44,13 @@ const SettlementsSetting = () => {
     <Container>
       <SettlementsHeader/>
         <CalendarContainer>
+          <CalendarInnerContainer>
             <Calendar
                 src={CalendarIcon}
                 alt="캘린더" />
             <CalendarText>기간 설정</CalendarText>
+            </CalendarInnerContainer>
+            <StyledDatePickerContainer>
             <StyledDatePicker
                 selected={startDate}
                 onChange={handleStartDateChange}
@@ -63,6 +66,7 @@ const SettlementsSetting = () => {
                 placeholderText=""
             />
             <StyledButton onClick={handleButtonClick}>조회하기</StyledButton>
+            </StyledDatePickerContainer>
         </CalendarContainer>
     <BreakLine>
             <hr />
@@ -76,7 +80,6 @@ export default SettlementsSetting;
 
 const Container = styled.div`
   width: 100%;
-  // min-width: 1110px;
   height: 100%;
 `;
 
@@ -96,6 +99,21 @@ const CalendarContainer = styled.nav`
   display: flex;
   justify-content: flex-end;
   align-items: center;
+
+  @media (max-width: 900px) {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+`;
+
+const CalendarInnerContainer = styled.div`
+  display: flex;
+
+  @media (max-width: 900px) {
+    margin-right: auto;
+    margin-left: 43px;
+  }
 `;
 
 const Calendar = styled.img`
@@ -111,6 +129,9 @@ const StyledDatePicker = styled(DatePicker)`
   padding: 5px; 
   margin-right: 10px;
   width: 100px;
+
+  @media (max-width: 900px) {
+  }
 `;
 
 const CalendarText = styled.div`
@@ -119,6 +140,8 @@ const CalendarText = styled.div`
   color: white;
 
   margin-right: 10px;
+  margin-top: auto;
+  margin-bottom: auto;
 `;
 
 const StyledButton = styled.button`
@@ -136,5 +159,13 @@ const StyledButton = styled.button`
   
   &:hover {
     opacity: 1;
+  }
+`;
+
+const StyledDatePickerContainer = styled.div`
+  display: flex;
+
+  @media (max-width: 900px) {
+    margin-left: auto;
   }
 `;

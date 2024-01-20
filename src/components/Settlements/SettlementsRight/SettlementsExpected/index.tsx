@@ -81,9 +81,11 @@ export default SettlementsExpected;
 
 const Container = styled.div`
   display: flex;
+  margin: 150px 15px 30px 15px;
+  align-items: center;
 
   @media (max-width: 900px) {
-    width: 50%;
+    margin: 0px;
   }
 `;
 
@@ -92,12 +94,10 @@ const InnerContainer = styled.div`
 `;
 
 const ExpectedContainer = styled.div`
-  margin-top: 96px;
 `;
 
 const TextContainer = styled.div`
   display: flex;
-  // white-space: nowrap;
 `;
 
 const ExpectedMonth = styled.p`
@@ -107,6 +107,14 @@ const ExpectedMonth = styled.p`
 
   & > span {
     font-size: 18px;
+  }
+
+  @media (max-width: 478px) {
+    font-size: 17px;
+
+    & > span {
+      font-size: 14px;
+    }
   }
 `;
 
@@ -129,6 +137,10 @@ const UpdatedText = styled.div`
   font-size: 11px;
   font-weight: normal;
   color: #CDCFD0;
+
+  @media (max-width: 478px) {
+    font-size: 7px;
+  }
 `;
 
 const UpdatedContainer = styled.div`
@@ -162,6 +174,10 @@ const DueDateText = styled.div`
   font-size: 14px;
   font-weight: bold;
   color: black;
+
+  @media (max-width: 478px) {
+    font-size: 8px;
+  }
 `;
 
 const DueDateDay = styled.div`
@@ -173,6 +189,10 @@ const DueDateDay = styled.div`
   font-size: 16px;
   font-weight: bold;
   color: #3182F6;
+
+  @media (max-width: 478px) {
+    font-size: 10px;
+  }
 `;
 
 const WrapperBottom = styled.div`
@@ -192,11 +212,19 @@ const CouponText = styled.div`
   font-size: 14px;
   font-weight: bold;
   color: white;
+
+  @media (max-width: 478px) {
+    font-size: 10px;
+  }
 `;
 
 const CouponDay = styled.div`
   font-size: 12px;
   color: white;
+
+  @media (max-width: 478px) {
+    font-size: 9px;
+  }
 `;
 
 const Icon = styled.img`

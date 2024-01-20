@@ -23,9 +23,12 @@ const SettlementsBefore = () => {
     <Container>
     <InnerContainer>
       <ExpectedContainer>
+        <SettlementedMonth>
+        {`${currentDate.getMonth() + 1}월`}
       <ExpectedText>
-      {`${currentDate.getMonth() + 1}월 정산 금액`}
+      정산 금액
       </ExpectedText>
+      </SettlementedMonth>
       <CommonContainer>
       <Icon
         src={SyncIcon}
@@ -82,10 +85,20 @@ const SettlementsBefore = () => {
 export default SettlementsBefore;
 
 const Container = styled.div`
-  margin: 15px;
+  margin: 0px 15px;
 
   display: flex;
   flex-direction: column;
+
+  @media (max-width: 900px) {
+    margin-left: 15px;
+    margin-right: 0px;
+    margin-top: 4px;
+  }
+  
+  @media (max-width: 478px) {
+    margin-top: 18px;
+  }
 `;
 
 const InnerContainer = styled.div`
@@ -94,12 +107,32 @@ const InnerContainer = styled.div`
 
 const ExpectedContainer = styled.div`
   margin-top: 30px;
+
+  @media (max-width: 900px) {
+    margin: 0px;
+  }
 `;
 
-const ExpectedText = styled.div`
-  font-size: 18px;
+const SettlementedMonth = styled.p`
+  font-size: 22px;
   font-weight: bold;
   color: white;
+
+  & > span {
+    font-size: 18px;
+  }
+
+  @media (max-width: 478px) {
+    font-size: 17px;
+
+    & > span {
+      font-size: 14px;
+    }
+  }
+`;
+
+const ExpectedText = styled.span`
+  margin-left: 5px;
 `;
 
 const CommonContainer = styled.div`
@@ -117,6 +150,10 @@ const UpdatedText = styled.div`
   font-size: 11px;
   font-weight: normal;
   color: #CDCFD0;
+
+  @media (max-width: 478px) {
+    font-size: 7px;
+  }
 `;
 
 const UpdatedContainer = styled.div`
@@ -150,6 +187,10 @@ const DueDateText = styled.div`
   font-size: 14px;
   font-weight: bold;
   color: black;
+  
+  @media (max-width: 478px) {
+    font-size: 8px;
+  }
 `;
 
 const DueDateInnerContainer = styled.div`
@@ -166,6 +207,11 @@ const DueDateDay = styled.div`
   font-size: 12px;
   font-weight: regular;
   color: black;
+
+  @media (max-width: 478px) {
+    width: 40%;
+    font-size: 7px;
+  }
 `;
 
 const DueDateMoney = styled.div`
@@ -175,10 +221,14 @@ const DueDateMoney = styled.div`
 
   font-size: 16px;
   font-weight: bold;
+
+  @media (max-width: 478px) {
+    font-size: 10px;
+  }
 `;
 
 const MoneyContainer = styled.div`
-  margin: 20px 15px;
+  margin: 15px;
 `;
 
 const MoneyText = styled.div`
@@ -187,11 +237,19 @@ const MoneyText = styled.div`
   font-size: 14px;
   font-weight: bold;
   color: white;
+
+  @media (max-width: 478px) {
+    font-size: 10px;
+  }
 `;
 
 const MoneyDay = styled.div`
   font-size: 12px;
   color: white;
+
+  @media (max-width: 478px) {
+    font-size: 9px;
+  }
 `;
 
 const Icon = styled.img`

@@ -8,7 +8,9 @@ const SettlementsRight = () => {
   return (
     <Container>
       <InnerContainer>
+        <StyledSettlementsExpected>
         <SettlementsExpected />
+        </StyledSettlementsExpected>
         <hr />
         <StyledSettlementsBefore>
           <SettlementsBefore />
@@ -41,6 +43,10 @@ const Container = styled.div`
 const InnerContainer = styled.div`
   height: 100%;
 
+  flex-direction: column; 
+  align-items: center; 
+  justify-content: center;
+
   position: relative;
   z-index: 10;
 
@@ -50,7 +56,7 @@ const InnerContainer = styled.div`
   box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.2);
 
   hr {
-    margin: 30px 15px;
+    margin: 0px 15px;
 
     border: 1px solid rgba(217, 217, 217, 0.2); 
 
@@ -62,7 +68,7 @@ const InnerContainer = styled.div`
   }
 
   @media (max-width: 900px) {
-    margin: 0px 43px;
+    margin: 20px 43px;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -73,12 +79,21 @@ const InnerContainer = styled.div`
   }
 `;
 
+const StyledSettlementsExpected = styled.div`
+  height: 50%;
+
+  @media (max-width: 900px) {
+    width: 50%;
+    height: 300px;
+  }
+`;
 const StyledSettlementsBefore = styled.div`
   position: relative;
   z-index: 1;
 
   @media (max-width: 900px) {
     width: 50%;
+    height: 300px;
   }
 `;
 
