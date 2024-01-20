@@ -2,13 +2,14 @@ import styled from '@emotion/styled';
 
 import theme from '@styles/theme';
 import centerIcon from '@assets/icons/ic-couponlist-center.svg';
+import { CouponListProps } from '../CouponExpose';
 
-const CouponWait = () => {
+const CouponWait = ({ couponInfo }: CouponListProps) => {
   return (
     <CouponContainer>
       <CouponHeaderContainer>
         <CouponHeader>
-          <CouponTitle>2024 신년행사</CouponTitle>
+          <CouponTitle>{couponInfo.title}</CouponTitle>
           <CouponStatus>노출대기</CouponStatus>
         </CouponHeader>
         <CouponCustomer>모든 고객 10% 할인</CouponCustomer>

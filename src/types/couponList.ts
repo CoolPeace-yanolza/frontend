@@ -50,3 +50,7 @@ export interface CouponInformationResponse {
   register_room_numbers: string[];
   created_date: string;
 }
+
+export interface CouponListProps {
+  couponInfo: CouponInformationResponse;
+}

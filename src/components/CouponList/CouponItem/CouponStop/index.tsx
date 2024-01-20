@@ -5,8 +5,9 @@ import theme from '@styles/theme';
 import toggleOnIcon from '@assets/icons/ic-couponlist-toggleOn.svg';
 import toggleOffIcon from '@assets/icons/ic-couponlist-toggleOff.svg';
 import { ToggleStyleProps } from '@/types/couponList';
+import { CouponListProps } from '../CouponExpose';
 
-const CouponStop = () => {
+const CouponStop = ({ couponInfo }: CouponListProps) => {
   const [isToggle, setIsToggle] = useState(false);
 
   const handleToggle = () => {
@@ -16,7 +17,7 @@ const CouponStop = () => {
     <CouponContainer $isToggle={isToggle}>
       <CouponHeaderContainer>
         <CouponHeader>
-          <CouponTitle>2024 신년행사</CouponTitle>
+          <CouponTitle>{couponInfo.title}</CouponTitle>
           <ToggleWrap
             $isToggle={isToggle}
             onClick={handleToggle}

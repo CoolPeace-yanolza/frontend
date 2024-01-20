@@ -1,13 +1,14 @@
 import styled from '@emotion/styled';
 
 import theme from '@styles/theme';
+import { CouponListProps } from '../CouponExpose';
 
-const CouponExpired = () => {
+const CouponExpired = ({ couponInfo }: CouponListProps) => {
   return (
     <CouponContainer>
       <CouponHeaderContainer>
         <CouponHeader>
-          <CouponTitle>2024 신년행사</CouponTitle>
+          <CouponTitle>{couponInfo.title}</CouponTitle>
           <CouponStatus>기간만료</CouponStatus>
         </CouponHeader>
         <CouponCustomer>모든 고객 10% 할인</CouponCustomer>

@@ -12,9 +12,10 @@ import {
 } from '@/types/couponList';
 import { useOutsideClick } from '@hooks/index';
 
-interface CouponListProps {
-  couponInfo: CouponInformationResponse[];
+export interface CouponListProps {
+  couponInfo: CouponInformationResponse;
 }
+
 const CouponExpose = ({ couponInfo }: CouponListProps) => {
   const [isToggle, setIsToggle] = useState(true);
   const [isRoomList, setIsRoomList] = useState(false);
@@ -34,7 +35,7 @@ const CouponExpose = ({ couponInfo }: CouponListProps) => {
     <CouponContainer $isToggle={isToggle}>
       <CouponHeaderContainer>
         <CouponHeader>
-          <CouponTitle>{couponInfo[0].title}</CouponTitle>
+          <CouponTitle>{couponInfo.title}</CouponTitle>
           <ToggleWrap
             $isToggle={isToggle}
             onClick={handleToggle}
