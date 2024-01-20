@@ -13,15 +13,15 @@ const Graph = ({ graphData }: { graphData: ReportGraphProps }) => {
       {
         label: '전체 매출',
         data: graphData.map(data => parseInt(data.total_sales)),
-        backgroundColor: '#022c79e0',
-        borderColor: '#022c79',
+        backgroundColor: '#3182F6',
+        borderColor: '#3182F6',
         borderWidth: 1,
         borderRadius: 5
       },
       {
         label: '쿠폰 적용 매출',
         data: graphData.map(data => parseInt(data.coupon_total_sales)),
-        backgroundColor: '#ff3478e0',
+        backgroundColor: '#FF3478',
         borderColor: '#FF3478',
         borderWidth: 1,
         borderRadius: 5

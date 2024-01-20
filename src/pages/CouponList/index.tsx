@@ -1,5 +1,3 @@
-import styled from '@emotion/styled';
-
 import {
   CouponHeader,
   CouponNav,
@@ -9,15 +7,13 @@ import {
 
 const CouponList = () => {
   return (
-    <CouponListContainer>
+    <div>
       <CouponHeader />
       <CouponBanner />
       <CouponNav />
       <CouponMain />
-    </CouponListContainer>
+    </div>
   );
 };
 
 export default CouponList;
-
-const CouponListContainer = styled.div``;
