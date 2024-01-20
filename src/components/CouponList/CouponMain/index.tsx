@@ -1,16 +1,9 @@
 import styled from '@emotion/styled';
 
-import {
-  CouponExpired,
-  CouponExpose,
-  CouponStop,
-  CouponWait
-} from '../CouponItem';
-// import { CouponLitResponse } from '@/types/couponList';
+import { CouponLitResponse } from '@/types/couponList';
 
 const CouponMain = () => {
-  // HACK: 쿠폰 데이터 상태저장 (추가 예정)
-  // const [coupons, setCoupons] = useState<CouponLitResponse[]>([]);
+  const [coupons, setCoupons] = useState<CouponLitResponse[]>([]);
 
   return (
     // HACK: 받아온 쿠폰 데이터 종류에 따라 컴포넌트 분리 (추가 예정)
@@ -47,11 +40,6 @@ const CouponMain = () => {
             );
         }
       })} */}
-
-      <CouponExpose />
-      <CouponStop />
-      <CouponExpired />
-      <CouponWait />
     </MainContainer>
   );
 };
