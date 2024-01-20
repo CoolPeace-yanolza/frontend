@@ -9,3 +9,16 @@ export interface SettlementItem {
     '정산 금액': string;
     '정산 완료일': string;
 };
+
+export type SettlementsTableProps = { data: SettlementItem[], pageStartNumber: number };
+
+export interface SettlementsPaginationProps {
+    currentPage: number;
+    totalPages: number;
+    onPageChange: (page: number) => void;
+};
+
+export interface SettlementsPopupProps {
+    isOpen: boolean;
+    onClose: () => void;
+};
