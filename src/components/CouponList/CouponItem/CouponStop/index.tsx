@@ -41,25 +41,27 @@ const CouponStop = ({ couponInfo }: CouponListProps) => {
             )}
           </ToggleWrap>
         </CouponHeader>
-        <CouponCustomer>모든 고객 10% 할인</CouponCustomer>
+        <CouponCustomer>{couponInfo.coupon_concat_title}</CouponCustomer>
       </CouponHeaderContainer>
       <CouponMain>
         <CountWrap>
           <CountText>다운로드</CountText>
-          <CountNumber>50</CountNumber>
+          <CountNumber>{couponInfo.download_count}</CountNumber>
         </CountWrap>
         <CountWrap>
           <CountText>사용완료</CountText>
-          <CountNumber>50</CountNumber>
+          <CountNumber>{couponInfo.use_count}</CountNumber>
         </CountWrap>
         <ContentContainer>
           <ContentWrap>
             <ContentTitle>가격</ContentTitle>
-            <ContentValue>99,999,999원 이상</ContentValue>
+            <ContentValue>
+              {couponInfo.minimum_reservation_price}원 이상
+            </ContentValue>
           </ContentWrap>
           <ContentWrap>
             <ContentTitle>일정</ContentTitle>
-            <ContentValue>2박 이상, 일~목</ContentValue>
+            <ContentValue>{couponInfo.coupon_room_type}</ContentValue>
           </ContentWrap>
           <ContentWrap>
             <ContentTitle>객실</ContentTitle>
@@ -70,11 +72,13 @@ const CouponStop = ({ couponInfo }: CouponListProps) => {
       <DateContainer>
         <ExposeDateWrap>
           <ExposeDateTitle>노출기간</ExposeDateTitle>
-          <ExposeValue>2024.01.31 ~ 2024.02.10</ExposeValue>
+          <ExposeValue>
+            {couponInfo.exposure_start_date} ~ {couponInfo.exposure_end_date}
+          </ExposeValue>
         </ExposeDateWrap>
         <ExposeDateWrap>
           <RegisterDateTitle>등록일</RegisterDateTitle>
-          <RegisterDateValue>2024.12.01</RegisterDateValue>
+          <RegisterDateValue>{couponInfo.created_date}</RegisterDateValue>
         </ExposeDateWrap>
       </DateContainer>
     </CouponContainer>
