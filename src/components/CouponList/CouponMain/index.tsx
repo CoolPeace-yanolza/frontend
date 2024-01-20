@@ -16,7 +16,7 @@ const CouponMain = () => {
   const [coupons, setCoupons] = useState<CouponLitResponse | null>(null);
   const headerAccommodation = useRecoilValue(headerAccommodationState);
 
-  // recoil 함수에서 숙소 ID 가져오기
+  // recoil 숙소 ID 가져오기
   const fetchCoupons = async () => {
     try {
       const couponData = await getCouponList(
@@ -34,7 +34,6 @@ const CouponMain = () => {
   }, [headerAccommodation.accommodationId]);
 
   return (
-    // HACK: 받아온 쿠폰 데이터 종류에 따라 컴포넌트 분리 (추가 예정)
     <MainContainer>
       {coupons?.content.map((coupon, index) => {
         switch (coupon.coupon_status) {

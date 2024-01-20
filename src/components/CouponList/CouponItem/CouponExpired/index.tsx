@@ -1,9 +1,22 @@
 import styled from '@emotion/styled';
 
 import theme from '@styles/theme';
+import rightIcon from '@assets/icons/ic-couponlist-right.svg';
+import deleteIcon from '@assets/icons/ic-couponlist-delete.svg';
 import { CouponListProps } from '../CouponExpose';
+import { useRef, useState } from 'react';
+import { useOutsideClick } from '@hooks/index';
 
 const CouponExpired = ({ couponInfo }: CouponListProps) => {
+  const [isShowRoomList, setIsShowRoomList] = useState(false);
+  const roomListRef = useRef<HTMLDivElement>(null);
+
+  const handleRoomList = () => {
+    setIsShowRoomList(!isShowRoomList);
+  };
+
+  useOutsideClick(roomListRef, () => setIsShowRoomList(false));
+
   return (
     <CouponContainer>
       <CouponHeaderContainer>
@@ -25,7 +38,9 @@ const CouponExpired = ({ couponInfo }: CouponListProps) => {
         <div>
           <ContentWrap>
             <ContentTitle>가격</ContentTitle>
-            <ContentValue>{couponInfo.minimum_reservation_price}</ContentValue>
+            <ContentValue>
+              {couponInfo.minimum_reservation_price}원 이상
+            </ContentValue>
           </ContentWrap>
           <ContentWrap>
             <ContentTitle>일정</ContentTitle>
@@ -33,7 +48,38 @@ const CouponExpired = ({ couponInfo }: CouponListProps) => {
           </ContentWrap>
           <ContentWrap>
             <ContentTitle>객실</ContentTitle>
-            <ContentValue>전체</ContentValue>
+            {couponInfo.register_room_numbers.length === 0 ? (
+              <ContentValue>전체</ContentValue>
+            ) : (
+              <>
+                <ContentRoom onClick={handleRoomList}>
+                  <div>일부 객실</div>
+                  <img
+                    src={rightIcon}
+                    alt="오른쪽 화살표"
+                  />
+                </ContentRoom>
+                {isShowRoomList && (
+                  <RoomList ref={roomListRef}>
+                    <RoomListTitleWrap>
+                      <RoomListTitle>쿠폰 적용 객실</RoomListTitle>
+                      <img
+                        onClick={handleRoomList}
+                        src={deleteIcon}
+                        alt="리스트 닫기 아이콘"
+                      />
+                    </RoomListTitleWrap>
+                    <RoomListItem>
+                      {couponInfo.register_room_numbers.map((room, index) => (
+                        <ul>
+                          <li key={index}>{room}</li>
+                        </ul>
+                      ))}
+                    </RoomListItem>
+                  </RoomList>
+                )}
+              </>
+            )}
           </ContentWrap>
         </div>
       </CouponMain>
@@ -227,4 +273,101 @@ const Delete = styled.div`
   color: #757676;
   font-size: 11px;
   cursor: pointer;
+`;
+
+const ContentRoom = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+
+  img {
+    margin-bottom: 3px;
+  }
+  div {
+    margin-right: 3px;
+    border-bottom: 1px solid #757676;
+
+    color: #757676;
+    font-size: 11px;
+    font-style: normal;
+    font-weight: 600;
+  }
+`;
+
+const RoomList = styled.div`
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 1;
+
+  width: 188px;
+  height: 204px;
+
+  margin-top: 150px;
+  border-radius: 18px;
+  text-align: center;
+
+  background: #415574;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-bottom: 10px solid #415574;
+  }
+`;
+
+const RoomListTitleWrap = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  margin: 10px;
+  padding: 8px;
+  border-bottom: 1px solid #cdcfd0;
+
+  img {
+    cursor: pointer;
+  }
+`;
+
+const RoomListTitle = styled.div`
+  margin-left: 35px;
+
+  font-size: 15px;
+  font-weight: 700;
+  font-style: normal;
+  color: ${theme.colors.white};
+`;
+
+const RoomListItem = styled.div`
+  max-height: 125px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow-y: auto; // 세로 스크롤만 허용
+
+  color: ${theme.colors.white};
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 36px;
+
+  li {
+    max-width: 130px;
+
+    overflow: hidden;
+    overflow-y: scroll;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
 `;

@@ -18,7 +18,7 @@ export interface CouponListProps {
 
 const CouponExpose = ({ couponInfo }: CouponListProps) => {
   const [isToggle, setIsToggle] = useState(true);
-  const [isRoomList, setIsRoomList] = useState(false);
+  const [isShowRoomList, setIsShowRoomList] = useState(false);
   const roomListRef = useRef<HTMLDivElement>(null);
 
   const handleToggle = () => {
@@ -26,10 +26,10 @@ const CouponExpose = ({ couponInfo }: CouponListProps) => {
   };
 
   const handleRoomList = () => {
-    setIsRoomList(!isRoomList);
+    setIsShowRoomList(!isShowRoomList);
   };
 
-  useOutsideClick(roomListRef, () => setIsRoomList(false));
+  useOutsideClick(roomListRef, () => setIsShowRoomList(false));
 
   return (
     <CouponContainer $isToggle={isToggle}>
@@ -70,7 +70,7 @@ const CouponExpose = ({ couponInfo }: CouponListProps) => {
           <CountText>사용완료</CountText>
           <CountNumber>{couponInfo.use_count}</CountNumber>
         </CountWrap>
-        <ContentContainer>
+        <div>
           <ContentWrap>
             <ContentTitle>가격</ContentTitle>
             <ContentValue>
@@ -83,35 +83,40 @@ const CouponExpose = ({ couponInfo }: CouponListProps) => {
           </ContentWrap>
           <ContentWrap>
             <ContentTitle>객실</ContentTitle>
-            <ContentRoom onClick={handleRoomList}>
-              <div>일부 객실</div>
-              <img
-                src={rightIcon}
-                alt="오른쪽 화살표"
-              />
-            </ContentRoom>
-            {isRoomList && (
-              <RoomList ref={roomListRef}>
-                <RoomListTitleWrap>
-                  <RoomListTitle>쿠폰 적용 객실</RoomListTitle>
+            {couponInfo.register_room_numbers.length === 0 ? (
+              <ContentValue>전체</ContentValue>
+            ) : (
+              <>
+                <ContentRoom onClick={handleRoomList}>
+                  <div>일부 객실</div>
                   <img
-                    onClick={handleRoomList}
-                    src={deleteIcon}
-                    alt="리스트 닫기 아이콘"
+                    src={rightIcon}
+                    alt="오른쪽 화살표"
                   />
-                </RoomListTitleWrap>
-                <RoomListItem>
-                  {couponInfo.register_room_numbers.map((room, index) => (
-                    <ul>
-                      <li key={index}>{room}</li>
-                    </ul>
-                  ))}
-                </RoomListItem>
-              </RoomList>
+                </ContentRoom>
+                {isShowRoomList && (
+                  <RoomList ref={roomListRef}>
+                    <RoomListTitleWrap>
+                      <RoomListTitle>쿠폰 적용 객실</RoomListTitle>
+                      <img
+                        onClick={handleRoomList}
+                        src={deleteIcon}
+                        alt="리스트 닫기 아이콘"
+                      />
+                    </RoomListTitleWrap>
+                    <RoomListItem>
+                      {couponInfo.register_room_numbers.map((room, index) => (
+                        <ul>
+                          <li key={index}>{room}</li>
+                        </ul>
+                      ))}
+                    </RoomListItem>
+                  </RoomList>
+                )}
+              </>
             )}
-            <ContentValue></ContentValue>
           </ContentWrap>
-        </ContentContainer>
+        </div>
       </CouponMain>
       <DateContainer>
         <ExposeDateWrap>
@@ -249,9 +254,6 @@ const CountNumber = styled.div`
   font-style: normal;
   font-weight: 700;
 `;
-
-// HACK: ContentContainer 로직 추가하기
-const ContentContainer = styled.div``;
 
 const ContentWrap = styled.div`
   margin: 8px;
