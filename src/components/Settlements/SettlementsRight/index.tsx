@@ -55,6 +55,10 @@ const InnerContainer = styled.div`
     border: 1px solid rgba(217, 217, 217, 0.2); 
 
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+    @media (max-width: 900px) {
+      display: none;
+    }
   }
 
   @media (max-width: 900px) {
@@ -67,6 +71,10 @@ const InnerContainer = styled.div`
 const StyledSettlementsBefore = styled.div`
   position: relative;
   z-index: 1;
+
+  @media (max-width: 900px) {
+    width: 50%:
+  }
 `;
 
 const Logo = styled.div`
