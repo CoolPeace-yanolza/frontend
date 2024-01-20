@@ -80,7 +80,6 @@ const Text = styled.span`
 `;
 
 const Amount = styled.span<AmountStyleProps>`
-  width: 100%;
   height: 100px;
 
   border-radius: 16px;
