@@ -2,11 +2,7 @@ import React, { useEffect } from 'react';
 import ReactPaginate from 'react-paginate';
 import styled from '@emotion/styled';
 
-interface SettlementsPaginationProps {
-  currentPage: number;
-  totalPages: number;
-  onPageChange: (page: number) => void;
-}
+import { SettlementsPaginationProps } from '@/types/settlements';
 
 const SettlementsPagination: React.FC<SettlementsPaginationProps> = ({
   currentPage,

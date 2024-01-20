@@ -62,45 +62,45 @@ const SettlementsHeader = () => {
 export default SettlementsHeader;
 
 const Container = styled.nav`
-    margin-left: 43px;
-    margin-top: 96px;
+  margin-left: 43px;
+  margin-top: 96px;
 
-    @media (max-width: 900px) {
-        display: none;
-      }
+  @media (max-width: 900px) {
+    display: none;
+  }
 `;
 
 const Header = styled.nav`
-    margin-bottom: 30px;
+  margin-bottom: 30px;
 
-    display: flex;
+  display: flex;
 
-    align-items: center;
+  align-items: center;
 `;
 
 const SettlementsAdminIcon = styled.img`
-    width: 44px;
-    height: 34.57px;
+  width: 44px;
+  height: 34.57px;
 
-    margin-right: 10px;
+  margin-right: 10px;
 `;
 
 const HeaderText = styled.div`
-    font-size: 32px;
-    font-weight: bold;
-    color: white;
+  font-size: 32px;
+  font-weight: bold;
+  color: white;
 `;
 
 const Middle = styled.div`
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 `;
 
 const MiddleText = styled.div`
-    margin-right: 5px;
+  margin-right: 5px;
 
-    font-size: 18px;
-    color: white;
+  font-size: 18px;
+  color: white;
 `;
 
 const InformationContainer = styled.div`
@@ -109,20 +109,21 @@ const InformationContainer = styled.div`
 `;
 
 const InformationIcon = styled.img`
-    margin-bottom: 5px;
+  margin-bottom: 5px;
 `;
 
 const PopupContainer = styled.div`
   position: fixed;
   top: 53%;
   left: 48%;
-  transform: translate(-50%, -50%);
-  background-color: white;
+
   padding: 20px;
   border-radius: 6px;
+
+  transform: translate(-50%, -50%);
+  background-color: white;
   box-shadow: 0px 2px 64px rgba(0, 0, 0, 0.1);
   z-index: 999;
-  
 `;
 
 const PopupHeader = styled.div`
@@ -171,11 +172,14 @@ const PopupContentHeader = styled.div`
 
 const PopupContentMiddle = styled.div`
   margin-top: 20px;
+
   p {
-    font-size: 14px;
     margin-bottom: 10px;
+
+    font-size: 14px;
     font-weight: normal;
   }
+  
   strong {
     font-weight: 900;
   }
