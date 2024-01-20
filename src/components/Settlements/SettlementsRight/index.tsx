@@ -42,7 +42,7 @@ const InnerContainer = styled.div`
   height: 100%;
 
   position: relative;
-  z-index: 999;
+  z-index: 10;
 
   background-color: rgba(255, 255, 255, 0.1); 
   border: 1px solid rgba(255, 255, 255, 0.1); 
@@ -62,9 +62,14 @@ const InnerContainer = styled.div`
   }
 
   @media (max-width: 900px) {
+    margin: 0px 43px;
     display: flex;
     flex-direction: row;
     align-items: center;
+    background-color: transparent;
+    border: none;
+    backdrop-filter: none;
+    box-shadow: none;
   }
 `;
 
@@ -73,7 +78,7 @@ const StyledSettlementsBefore = styled.div`
   z-index: 1;
 
   @media (max-width: 900px) {
-    width: 50%:
+    width: 50%;
   }
 `;
 
@@ -93,6 +98,6 @@ const Logo = styled.div`
     width: 100%;
     max-width: 165px;
     height: auto;
-    margin-top: 20px; /* Adjust the margin as needed */
+    margin-top: 20px;
   }
 `;

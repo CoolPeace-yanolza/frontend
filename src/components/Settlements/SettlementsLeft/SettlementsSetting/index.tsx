@@ -82,6 +82,12 @@ const Container = styled.div`
 
 const BreakLine = styled.div`
   margin: 0 40px;
+
+  hr {
+    @media (max-width: 900px) {
+      display: none;
+    }
+  }
 `;
 
 const CalendarContainer = styled.nav`

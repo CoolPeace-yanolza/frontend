@@ -22,5 +22,6 @@ const Container = styled.div`
   @media (max-width: 900px) {
     width: 100%;
     min-width: 0;
+    background: #1A2849;
   }
 `;

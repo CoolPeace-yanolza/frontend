@@ -80,8 +80,6 @@ const SettlementsExpected = () => {
 export default SettlementsExpected;
 
 const Container = styled.div`
-  margin: 15px;
-
   display: flex;
 
   @media (max-width: 900px) {
