@@ -111,8 +111,8 @@ const CouponNav = () => {
       </TabNavContainer>
       <TabBottomContainer>
         <TabBottomWrap>
-          <SecondTabName>전체</SecondTabName>
-          <SecondTabCount>20개</SecondTabCount>
+          <SecondTabName>{categoryTab}</SecondTabName>
+          <SecondTabCount>{coupons?.content.length}개</SecondTabCount>
           <CouponDescription>
             모든 쿠폰은 다운로드 후 14일까지 사용 가능하며, 등록 후 1년이 경과한
             쿠폰은 조회되지 않습니다.
