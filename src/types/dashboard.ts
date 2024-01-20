@@ -6,6 +6,16 @@ type HeaderTagStyleProps = {
 
 export type GraphHeaderTag = Pick<HeaderTagStyleProps, '$active'>;
 
+export type MonthReportsResults = {
+  statistics_year: number;
+  statistics_month: number;
+  coupon_total_sales: number;
+  download_count: number;
+  used_count: number;
+  settlement_amount: number;
+  conversion_rate: number;
+};
+
 // DownloadReport
 
 type CouponCounterType = 'download' | 'used';
@@ -31,6 +41,13 @@ export type StatusItemProps = {
 
 export type StatusItemStyleProps = {
   $index?: number;
+};
+
+export type CouponStatusResults = {
+  coupon_total_sales: number;
+  used_count: number;
+  settlement_amount: number;
+  download_count: number;
 };
 
 // LocalInformationSection

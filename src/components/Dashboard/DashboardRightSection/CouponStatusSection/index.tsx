@@ -1,23 +1,12 @@
 import styled from '@emotion/styled';
 
 import StatusItem from './StatusItem';
+import { useGetMonthStatus } from '@hooks/queries/useGetMonthStatus';
 import { getStatusToLocaleString } from '@utils/index';
 
-//HACK : 데이터 형식 예시
-// {
-// 	"total_sales" : "460000",
-// 	"used_count" : "19",
-//   "settlemnet_amount" : "20000"
-// }
-//
-// 데이터를 배열로 받게될 경우 하위 컴포넌트 내에서 map함수로 처리 예정 \
-
 const CouponStatusSection = () => {
-  const statusDummyData = {
-    total_sales: '460000',
-    used_count: '19',
-    settlement_amount: '20000'
-  };
+  //HACK: 임시, 헤더API 연동 후 accommodation_id 전달 예정
+  const { data } = useGetMonthStatus(2);
 
   return (
     <Container>
@@ -25,21 +14,19 @@ const CouponStatusSection = () => {
         <Title>이번 달 똑똑현황</Title>
       </Header>
       <InnerContainer>
-        {/* <StatusItem
+        <StatusItem
           title="쿠폰 사용 총 매출"
-          result={getStatusToLocaleString(statusDummyData.total_sales) + '원'}
+          result={getStatusToLocaleString(data.coupon_total_sales) + '원'}
           index={1}
         />
         <StatusItem
           title="쿠폰 적용 예약 건수"
-          result={getStatusToLocaleString(statusDummyData.used_count) + '개'}
+          result={getStatusToLocaleString(data.used_count) + '개'}
         />
         <StatusItem
           title="쿠폰 정산 금액"
-          result={
-            getStatusToLocaleString(statusDummyData.settlement_amount) + '원'
-          }
-        /> */}
+          result={getStatusToLocaleString(data.settlement_amount) + '원'}
+        />
       </InnerContainer>
     </Container>
   );
