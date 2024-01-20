@@ -28,14 +28,21 @@ const Container = styled.div`
   background-color: white;
 `;
 
-const Title = styled(Skeleton)`
+const BaseSkeleton = styled(Skeleton)`
+  width: 100%;
+
+  border-radius: 16px;
+
+  background-color: #f2f4f5;
+`;
+
+const Title = styled(BaseSkeleton)`
   width: 60%;
 
   margin: 10px 0 20px 0;
   padding: 5px 0;
-  border-radius: 12px;
 
-  background-color: #f2f4f5;
+  border-radius: 12px;
 `;
 
 const ContentsWrapper = styled.div`
@@ -48,15 +55,10 @@ const ContentsWrapper = styled.div`
   gap: 10px;
 `;
 
-const Contents = styled(Skeleton)`
-  width: 100%;
+const Contents = styled(BaseSkeleton)`
   height: 100px;
-
-  border-radius: 16px;
   padding: 10px;
 
   display: flex;
   flex-direction: column;
-
-  background-color: #f2f4f5;
 `;
