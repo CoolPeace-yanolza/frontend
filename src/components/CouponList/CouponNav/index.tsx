@@ -6,12 +6,15 @@ import searchIcon from '@assets/icons/ic-couponlist-search.svg';
 import centerIcon from '@assets/icons/ic-couponlist-period-center.svg';
 import {
   CategoryTabStyleProps,
+  CouponLitResponse,
   ResisterDateStyleProps
 } from '@/types/couponList';
 
 const CouponNav = () => {
   const [resisterDateClick, setResisterDateClick] = useState<string>('1년');
   const [categoryTab, setCategoryTab] = useState<string>('전체');
+  const [searchText, setSearchText] = useState<string>('');
+  const [coupons, setCoupons] = useState<CouponLitResponse | null>(null);
 
   const handleDateClick = (period: string) => {
     setResisterDateClick(period);
@@ -19,6 +22,11 @@ const CouponNav = () => {
 
   const handleCategoryTab = (tab: string) => {
     setCategoryTab(tab);
+  };
+
+  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    e.preventDefault();
+    setSearchText(e.target.value);
   };
 
   return (
@@ -37,16 +45,20 @@ const CouponNav = () => {
             <TabName>노출 OFF</TabName>
             <TabCount $categoryTab={categoryTab === '노출 OFF'}>2</TabCount>
           </TapItemWrapper>
-          <TapItemWrapper onClick={() => handleCategoryTab('만료')}>
+          <TapItemWrapper onClick={() => handleCategoryTab('노출 기간 만료')}>
             <TabName>만료</TabName>
-            <TabCount $categoryTab={categoryTab === '만료'}>4</TabCount>
+            <TabCount $categoryTab={categoryTab === '노출 기간 만료'}>
+              4
+            </TabCount>
           </TapItemWrapper>
         </TabWrap>
-        <SearchWrap>
+        <SearchWrap onSubmit={handleSearch}>
           <SearchInput
             id="search"
             type="text"
+            value={searchText}
             placeholder="관리 쿠폰명을 입력하세요."
+            onChange={handleSearchChange}
           ></SearchInput>
           <SearchImg
             src={searchIcon}

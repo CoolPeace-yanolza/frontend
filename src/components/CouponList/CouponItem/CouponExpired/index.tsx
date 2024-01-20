@@ -70,11 +70,11 @@ const CouponExpired = ({ couponInfo }: CouponListProps) => {
                       />
                     </RoomListTitleWrap>
                     <RoomListItem>
-                      {couponInfo.register_room_numbers.map((room, index) => (
-                        <ul>
+                      <ul>
+                        {couponInfo.register_room_numbers.map((room, index) => (
                           <li key={index}>{room}</li>
-                        </ul>
-                      ))}
+                        ))}
+                      </ul>
                     </RoomListItem>
                   </RoomList>
                 )}

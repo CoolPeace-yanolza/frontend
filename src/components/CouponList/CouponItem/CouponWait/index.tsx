@@ -71,11 +71,11 @@ const CouponWait = ({ couponInfo }: CouponListProps) => {
                       />
                     </RoomListTitleWrap>
                     <RoomListItem>
-                      {couponInfo.register_room_numbers.map((room, index) => (
-                        <ul>
+                      <ul>
+                        {couponInfo.register_room_numbers.map((room, index) => (
                           <li key={index}>{room}</li>
-                        </ul>
-                      ))}
+                        ))}
+                      </ul>
                     </RoomListItem>
                   </RoomList>
                 )}
@@ -295,7 +295,7 @@ const ContentRoom = styled.div`
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  
+
   div {
     margin-right: 3px;
     padding: 2px 0px;
