@@ -1,17 +1,17 @@
 import styled from '@emotion/styled';
-import { FormEvent, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useRecoilValue } from 'recoil';
 
 import theme from '@styles/theme';
 import searchIcon from '@assets/icons/ic-couponlist-search.svg';
 import centerIcon from '@assets/icons/ic-couponlist-period-center.svg';
+import { headerAccommodationState } from '@recoil/index';
+import { getCouponList } from 'src/api';
 import {
   CategoryTabStyleProps,
   CouponLitResponse,
   ResisterDateStyleProps
 } from '@/types/couponList';
-import { useRecoilValue } from 'recoil';
-import { headerAccommodationState } from '@recoil/index';
-import { getCouponList } from 'src/api';
 
 const CouponNav = () => {
   const [resisterDateClick, setResisterDateClick] = useState<string>('1년');

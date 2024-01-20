@@ -8,9 +8,9 @@ const getCouponList = async (
   title?: string
 ) => {
   const params = {
-    date: date || '1년', // 기본값
-    status: status || '전체',
-    title: title || '' // 빈 문자일 경우 검색하지 않음
+    date: date,
+    status: status,
+    title: title
   };
 
   const result = await instance.get(`/v1/coupons/${accommodationId}`, {

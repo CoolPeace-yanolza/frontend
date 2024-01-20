@@ -1,38 +1,14 @@
 import styled from '@emotion/styled';
-
-import { CouponLitResponse } from '@/types/couponList';
 import { useEffect, useState } from 'react';
+
 import {
   CouponExpired,
   CouponExpose,
   CouponStop,
   CouponWait
 } from '../CouponItem';
-import { useRecoilValue } from 'recoil';
-import { headerAccommodationState } from '@recoil/index';
-import { getCouponList } from 'src/api';
 
 const CouponMain = () => {
-  const [coupons, setCoupons] = useState<CouponLitResponse | null>(null);
-  const headerAccommodation = useRecoilValue(headerAccommodationState);
-
-  // recoil 숙소 ID 가져오기
-  const fetchCoupons = async () => {
-    try {
-      const couponData = await getCouponList(
-        headerAccommodation.accommodationId
-      );
-      setCoupons(couponData);
-      // console.log(couponData);
-    } catch (error) {
-      console.log('쿠폰 정보 가져오기 에러 ', error);
-    }
-  };
-
-  useEffect(() => {
-    fetchCoupons();
-  }, [headerAccommodation.accommodationId]);
-
   return (
     <MainContainer>
       {coupons?.content.map((coupon, index) => {
