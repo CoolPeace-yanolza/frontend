@@ -48,16 +48,15 @@ const CouponNav = () => {
         searchText
       );
       setGlobalCoupons(couponData);
-      console.log('api 응답데이터 couponDate', couponData);
 
       console.log(
-        '검색어, 등록일, 카테고리 : ',
+        '검색어, 등록일, 카테고리:',
         searchText,
         resisterDateClick,
         categoryTab
       );
     } catch (error) {
-      console.log('쿠폰 정보가져오는 api 에러 ', error);
+      console.log('쿠폰 조회 api 에러 ', error);
     }
   };
 
