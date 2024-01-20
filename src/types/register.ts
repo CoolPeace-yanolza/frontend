@@ -84,6 +84,11 @@ export type InputWrapperProps = {
   children: ReactNode;
 };
 
+// ErrorMessage
+export type ErrorMessageProps = {
+  children: ReactNode;
+};
+
 export type WrapperStyleProps = {
   $isSelected: boolean;
 };
