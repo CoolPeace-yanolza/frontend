@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { useState } from 'react';
+import { FormEvent, useEffect, useState } from 'react';
 
 import theme from '@styles/theme';
 import searchIcon from '@assets/icons/ic-couponlist-search.svg';
@@ -9,12 +9,16 @@ import {
   CouponLitResponse,
   ResisterDateStyleProps
 } from '@/types/couponList';
+import { useRecoilValue } from 'recoil';
+import { headerAccommodationState } from '@recoil/index';
+import { getCouponList } from 'src/api';
 
 const CouponNav = () => {
   const [resisterDateClick, setResisterDateClick] = useState<string>('1년');
   const [categoryTab, setCategoryTab] = useState<string>('전체');
   const [searchText, setSearchText] = useState<string>('');
   const [coupons, setCoupons] = useState<CouponLitResponse | null>(null);
+  const headerAccommodation = useRecoilValue(headerAccommodationState);
 
   const handleDateClick = (period: string) => {
     setResisterDateClick(period);
@@ -25,9 +29,40 @@ const CouponNav = () => {
   };
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    e.preventDefault();
     setSearchText(e.target.value);
   };
+
+  const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    fetchCoupons();
+  };
+
+  // recoil 숙소 ID 가져오기
+  const fetchCoupons = async () => {
+    try {
+      const couponData = await getCouponList(
+        headerAccommodation.accommodationId,
+        resisterDateClick !== '1년' ? resisterDateClick : undefined,
+        categoryTab !== '전체' ? categoryTab : undefined,
+        searchText
+      );
+      setCoupons(couponData);
+      console.log('api 응답데이터 couponDate', couponData);
+
+      console.log(
+        '검색어, 등록일, 카테고리 : ',
+        searchText,
+        resisterDateClick,
+        categoryTab
+      );
+    } catch (error) {
+      console.log('쿠폰 정보가져오는 api 에러 ', error);
+    }
+  };
+
+  useEffect(() => {
+    fetchCoupons();
+  }, [headerAccommodation.accommodationId, categoryTab, resisterDateClick]);
 
   return (
     <TabContainer>
@@ -35,20 +70,26 @@ const CouponNav = () => {
         <TabWrap>
           <TapItemWrapper onClick={() => handleCategoryTab('전체')}>
             <TabName>전체</TabName>
-            <TabCount $categoryTab={categoryTab === '전체'}>8</TabCount>
+            <TabCount $categoryTab={categoryTab === '전체'}>
+              {coupons?.category.all}
+            </TabCount>
           </TapItemWrapper>
           <TapItemWrapper onClick={() => handleCategoryTab('노출 ON')}>
             <TabName>노출 ON</TabName>
-            <TabCount $categoryTab={categoryTab === '노출 ON'}>2</TabCount>
+            <TabCount $categoryTab={categoryTab === '노출 ON'}>
+              {coupons?.category.exposure_on}
+            </TabCount>
           </TapItemWrapper>
           <TapItemWrapper onClick={() => handleCategoryTab('노출 OFF')}>
             <TabName>노출 OFF</TabName>
-            <TabCount $categoryTab={categoryTab === '노출 OFF'}>2</TabCount>
+            <TabCount $categoryTab={categoryTab === '노출 OFF'}>
+              {coupons?.category.exposure_off}
+            </TabCount>
           </TapItemWrapper>
-          <TapItemWrapper onClick={() => handleCategoryTab('노출 기간 만료')}>
+          <TapItemWrapper onClick={() => handleCategoryTab('만료')}>
             <TabName>만료</TabName>
-            <TabCount $categoryTab={categoryTab === '노출 기간 만료'}>
-              4
+            <TabCount $categoryTab={categoryTab === '만료'}>
+              {coupons?.category.expiration}
             </TabCount>
           </TapItemWrapper>
         </TabWrap>

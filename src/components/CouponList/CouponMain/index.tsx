@@ -23,7 +23,7 @@ const CouponMain = () => {
         headerAccommodation.accommodationId
       );
       setCoupons(couponData);
-      console.log(couponData);
+      // console.log(couponData);
     } catch (error) {
       console.log('쿠폰 정보 가져오기 에러 ', error);
     }
