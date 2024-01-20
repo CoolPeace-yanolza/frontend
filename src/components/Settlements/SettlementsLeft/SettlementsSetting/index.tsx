@@ -33,10 +33,8 @@ const SettlementsSetting = () => {
   };
 
   const handleButtonClick = () => {
-    console.log('조회하기 버튼이 클릭되었습니다.');
     if (startDate && endDate) {
         setSettlementsDate({ startDate, endDate });
-        console.log(settlementsDateState);
     }
   };
 
