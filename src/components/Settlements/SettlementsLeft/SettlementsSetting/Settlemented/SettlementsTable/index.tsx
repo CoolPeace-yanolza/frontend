@@ -27,7 +27,7 @@ const SettlementsTable = ({ data, pageStartNumber }: SettlementsTableProps) => {
         </Header>
         <FrameContainer>
           <Frame>
-            <div>데이터가 없습니다.</div>
+            <NoDataText>데이터가 없습니다.</NoDataText>
           </Frame>
         </FrameContainer>
       </Container>
@@ -108,12 +108,14 @@ const FrameContainer = styled.div`
   text-align: center;
 `;
 
-const Frame = styled.div`
+const Frame = styled.div<{ hasData?: boolean }>`
   width: 99%;
   height: 500px;
 
   margin-left: auto;
   margin-right: auto;
+
+  position: relative; 
 
   background: url(${settlementsFrame});
 
@@ -121,6 +123,25 @@ const Frame = styled.div`
     background: none;
     background-color: white;
     height: 100%;
+  }
+`;
+
+const NoDataText = styled.div`
+  font-size: 15px;
+  
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  @media (max-width: 900px) {
+    margin: 10px 0px;
+
+    position: static; 
+    transform: none; 
+    
+    background-color: #1A2849;
+    color: white;
   }
 `;
 
