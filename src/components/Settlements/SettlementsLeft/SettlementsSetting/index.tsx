@@ -121,11 +121,15 @@ const Calendar = styled.img`
 `;
 
 const StyledDatePicker = styled(DatePicker)`
+  margin-right: 10px;
+  padding: 5px;
+
+  width: 100px;
+
   border: none;
   border-radius: 8px; 
-  padding: 5px; 
-  margin-right: 10px;
-  width: 100px;
+
+  font-size: 14px;
 
   @media (max-width: 900px) {
   }
