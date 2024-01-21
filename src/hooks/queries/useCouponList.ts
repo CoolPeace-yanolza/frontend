@@ -1,17 +1,17 @@
 import { useMutation } from '@tanstack/react-query';
 
 // 쿠폰 수정
-const useCouponUpdate = () => {
+export const useCouponUpdate = () => {
   return useMutation<Error, CouponUpdateListCredential>(couponUpdateApi);
 };
 
 // 쿠폰 삭제
-const useCouponDelete = () => {
+export const useCouponDelete = () => {
   return useMutation<Error>(couponDeleteApi);
 };
 
 // 토글
-const useToggleChange = () => {
+export const useToggleChange = () => {
   return useMutation<Error, CouponStatusCredential>(toggleChangeApi);
 };
 
