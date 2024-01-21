@@ -1,12 +1,16 @@
 import styled from '@emotion/styled';
+import { useRecoilValue } from 'recoil';
 
 import StatusItem from './StatusItem';
 import { useGetMonthStatus } from '@hooks/queries/useGetMonthStatus';
 import { getStatusToLocaleString } from '@utils/index';
+import { headerAccommodationState } from '@recoil/index';
+
+import Loading from './index.loading';
 
 const CouponStatusSection = () => {
-  //HACK: 임시, 헤더API 연동 후 accommodation_id 전달 예정
-  const { data } = useGetMonthStatus(2);
+  const headerSelectState = useRecoilValue(headerAccommodationState);
+  const { data } = useGetMonthStatus(headerSelectState.id);
 
   return (
     <Container>

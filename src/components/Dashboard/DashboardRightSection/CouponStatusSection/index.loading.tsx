@@ -1,12 +1,14 @@
 import styled from '@emotion/styled';
+import Skeleton from 'react-loading-skeleton';
+import 'react-loading-skeleton/dist/skeleton.css';
 
 const Loading = () => {
   return (
     <Container>
-      <Header>
-        <Title>로딩중!</Title>
-      </Header>
-      <InnerContainer />
+      <Header />
+      <InnerContainer>
+        <LoadingContent count={3} />
+      </InnerContainer>
     </Container>
   );
 };
@@ -14,39 +16,51 @@ const Loading = () => {
 export default Loading;
 
 const Container = styled.div`
+  width: 100%;
   height: 55%;
-  min-height: 481px;
+  max-height: 481px;
 
-  padding: 29px 15px;
   border-radius: 20px;
+  padding: 30px 10px;
 
   display: flex;
   flex-direction: column;
-  align-items: center;
+  justify-content: center;
+  gap: 20px;
 
   background-color: white;
 `;
 
-const Header = styled.div`
+const BaseSkeleton = styled(Skeleton)`
   width: 100%;
+
+  border-radius: 12px;
+
+  background-color: #f2f4f5;
 `;
 
-const Title = styled.div`
-  padding: 16px 0;
+const Header = styled(BaseSkeleton)`
+  width: 130px;
+  height: 40px;
 
-  font-size: 17px;
-  font-weight: 700;
+  border-radius: 12px;
+`;
+
+const LoadingContent = styled(BaseSkeleton)`
+  width: 100%;
+  height: 112px;
+
+  border-radius: 16px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 `;
 
 const InnerContainer = styled.div`
   width: 100%;
   height: 100%;
 
-  padding: 0px 5px;
-
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 15px;
 `;
