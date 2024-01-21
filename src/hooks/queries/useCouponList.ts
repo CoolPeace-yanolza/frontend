@@ -1,21 +1,32 @@
+import {
+  CouponDeleteCredential,
+  CouponToggleCredential,
+  CouponUpdateCredential
+} from '@/types/couponList';
 import { useMutation } from '@tanstack/react-query';
+import {
+  couponDeleteApi,
+  couponToggleApi,
+  couponUpdateApi
+} from 'src/api/lib/getCouponList';
 
 // 쿠폰 수정
 export const useCouponUpdate = () => {
-  return useMutation<Error, CouponUpdateListCredential>(couponUpdateApi);
+  return useMutation<void, Error, CouponUpdateCredential>({
+    mutationFn: couponUpdateApi
+  });
 };
 
 // 쿠폰 삭제
 export const useCouponDelete = () => {
-  return useMutation<Error>(couponDeleteApi);
+  return useMutation<void, Error, CouponDeleteCredential>({
+    mutationFn: couponDeleteApi
+  });
 };
 
 // 토글
 export const useToggleChange = () => {
-  return useMutation<Error, CouponStatusCredential>(toggleChangeApi);
+  return useMutation<void, Error, CouponToggleCredential>({
+    mutationFn: couponToggleApi
+  });
 };
-
-// 토글 api  요청 타입
-export interface CouponStatusCredential {
-  coupon_status: string;
-}
