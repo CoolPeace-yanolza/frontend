@@ -2,6 +2,7 @@ import styled from '@emotion/styled';
 import { useState } from 'react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
+import { ko } from 'date-fns/locale';
 import { useSetRecoilState } from 'recoil';
 
 import CalendarIcon from '@assets/icons/calendar-number-outline.svg';
@@ -55,6 +56,7 @@ const SettlementsSetting = () => {
                 dateFormat="yyyy/MM"
                 showMonthYearPicker
                 placeholderText=""
+                locale={ko}
             />
             <StyledDatePicker
                 selected={endDate}
@@ -62,6 +64,7 @@ const SettlementsSetting = () => {
                 dateFormat="yyyy/MM"
                 showMonthYearPicker
                 placeholderText=""
+                locale={ko}
             />
             <StyledButton onClick={handleButtonClick}>조회하기</StyledButton>
             </StyledDatePickerContainer>
