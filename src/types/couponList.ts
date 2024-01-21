@@ -11,7 +11,7 @@ export interface CategoryTabStyleProps {
 }
 
 // api 쿠폰 리스트정보 응답 데이터
-export interface CouponLitResponse {
+export interface CouponListResponse {
   content: CouponInformationResponse[];
   category: {
     all: number;
@@ -54,4 +54,12 @@ export interface CouponInformationResponse {
 // 쿠폰 1개에 대한 타입
 export interface CouponListProps {
   couponInfo: CouponInformationResponse;
+}
+
+// 쿠폰 요청  타입
+export interface GetCouponListCredential {
+  accommodationId: number;
+  date?: string;
+  status?: string;
+  title?: string;
 }

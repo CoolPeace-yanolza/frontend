@@ -1,22 +1,26 @@
+import {
+  CouponListResponse,
+  GetCouponListCredential
+} from '@/types/couponList';
 import { instance } from '..';
 
 // 쿠폰 정보 가져오는 api
-const getCouponList = async (
-  accommodationId: number,
-  date?: string,
-  status?: string,
-  title?: string
-) => {
+const getCouponList = async ({
+  accommodationId,
+  date,
+  status,
+  title
+}: GetCouponListCredential): Promise<CouponListResponse> => {
   const params = {
-    date: date,
-    status: status,
-    title: title
+    date,
+    status,
+    title
   };
 
-  const result = await instance.get(`/v1/coupons/${accommodationId}`, {
+  const response = await instance.get(`/v1/coupons/${accommodationId}`, {
     params
   });
-  return result.data;
+  return response.data;
 };
 
 export default getCouponList;

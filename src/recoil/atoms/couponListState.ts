@@ -1,7 +1,8 @@
-import { CouponLitResponse } from '@/types/couponList';
 import { atom } from 'recoil';
 
-const couponListState = atom<CouponLitResponse | null>({
+import { CouponListResponse } from '@/types/couponList';
+
+const couponListState = atom<CouponListResponse | null>({
   key: 'couponListState',
   default: null
 });
