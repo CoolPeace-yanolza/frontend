@@ -6,8 +6,6 @@ import { useGetMonthStatus } from '@hooks/queries/useGetMonthStatus';
 import { getStatusToLocaleString } from '@utils/index';
 import { headerAccommodationState } from '@recoil/index';
 
-import Loading from './index.loading';
-
 const CouponStatusSection = () => {
   const headerSelectState = useRecoilValue(headerAccommodationState);
   const { data } = useGetMonthStatus(headerSelectState.id);

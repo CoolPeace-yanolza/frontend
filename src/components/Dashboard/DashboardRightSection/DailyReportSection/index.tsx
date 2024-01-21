@@ -1,12 +1,13 @@
 import styled from '@emotion/styled';
+import { useRecoilValue } from 'recoil';
 
 import GetMatchedReport from './GetMatchedReport';
 import { useGetDailyReport } from '@hooks/queries/useGetDailyReport';
+import { headerAccommodationState } from '@recoil/index';
 
 const DailyReportSection = () => {
-  //HACK: 추후 헤더 API연동 후 수정 예정 (accommodation_id 인자로 전달하기)
-  //HACK: 2 = 임시 accommodation_id
-  const { data } = useGetDailyReport(2);
+  const headerSelectState = useRecoilValue(headerAccommodationState);
+  const { data } = useGetDailyReport(headerSelectState.id);
 
   return (
     <Container>
