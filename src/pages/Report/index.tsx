@@ -1,12 +1,25 @@
+import { Suspense } from 'react';
+import { useQueryErrorResetBoundary } from '@tanstack/react-query';
+import { ErrorBoundary } from 'react-error-boundary';
 import styled from '@emotion/styled';
 
 import { LeftSection, RightSection } from '@components/Report';
+import ErrorFallback from '@components/Report/LeftSection/index.error';
+import Loading from '@components/Report/LeftSection/index.loading';
 
 const Report = () => {
+  const { reset } = useQueryErrorResetBoundary();
+
   return (
-    // HACK: 로딩 화면 구현 (Suspense) // 로딩 감싸는 기준 정하기
     <Container>
-      <LeftSection />
+      <ErrorBoundary
+        onReset={reset}
+        fallbackRender={ErrorFallback}
+      >
+        <Suspense fallback={<Loading />}>
+          <LeftSection />
+        </Suspense>
+      </ErrorBoundary>
       <RightSection />
     </Container>
   );

@@ -3,44 +3,28 @@ import theme from '@styles/theme';
 
 import { useRecoilState } from 'recoil';
 import { headerAccommodationState } from '@recoil/index';
+import useGetHeaderAccommodation from '@hooks/queries/useGetHeaderAccommodation';
+import { useEffect } from 'react';
 
 const Select = () => {
-  /* HACK: 예시 데이터, 리액트 쿼리를 활용하여 넘겨 selectList 배열을 받음
-
-    const { data: selectList } = useFetchAccommodation();
-
-  */
-
-  const selectList = [
-    {
-      accommodationId: 1,
-      accommodationName: '영덕 아이스 풀빌라'
-    },
-    {
-      accommodationId: 2,
-      accommodationName: '영덕 아이스 풀빌라2'
-    },
-    {
-      accommodationId: 3,
-      accommodationName: '영덕 아이스 풀빌라3'
-    },
-    {
-      accommodationId: 4,
-      accommodationName: '영덕 아이스 풀빌라4'
-    }
-  ];
+  const { data: selectList } = useGetHeaderAccommodation();
 
   const [headerAccommodation, setHeaderAccommodation] = useRecoilState(
     headerAccommodationState
   );
 
-  const handleSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const accommodationId = Number(e.target.value);
+  useEffect(() => {
+    setHeaderAccommodation(selectList[0]);
+  }, []);
 
-    setHeaderAccommodation({
-      accommodationId,
-      accommodationName: `${e.target.children[accommodationId - 1].textContent}`
-    });
+  const handleSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const selectId = Number(e.target.value);
+
+    const selectAccommodation = selectList.find(
+      select => select.id === selectId
+    );
+
+    selectAccommodation ? setHeaderAccommodation(selectAccommodation) : null;
   };
 
   return (
@@ -48,14 +32,14 @@ const Select = () => {
       <Accommodations
         name="Accommodations"
         onChange={handleSelect}
-        value={headerAccommodation.accommodationId}
+        value={headerAccommodation.id}
       >
         {selectList.map(item => (
           <Accommodation
-            value={item.accommodationId}
-            key={item.accommodationId}
+            value={item.id}
+            key={item.id}
           >
-            {item.accommodationName}
+            {item.name}
           </Accommodation>
         ))}
       </Accommodations>
