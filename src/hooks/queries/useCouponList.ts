@@ -1,14 +1,28 @@
 import {
   CouponDeleteCredential,
+  CouponListResponse,
   CouponToggleCredential,
   CouponUpdateCredential
 } from '@/types/couponList';
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useSuspenseQuery } from '@tanstack/react-query';
 import {
   couponDeleteApi,
   couponToggleApi,
-  couponUpdateApi
+  couponUpdateApi,
+  getCouponList
 } from 'src/api/lib/getCouponList';
+
+// 쿠폰 조회
+export const useGetCouponList = (
+  accommodationId: number,
+  date?: string,
+  status?: string,
+  title?: string
+) =>
+  useSuspenseQuery<CouponListResponse, Error>({
+    queryKey: ['CouponList', accommodationId, status, date, title],
+    queryFn: () => getCouponList(accommodationId, date, status, title)
+  });
 
 // 쿠폰 수정
 export const useCouponUpdate = () => {

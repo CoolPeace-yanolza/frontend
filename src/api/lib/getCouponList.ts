@@ -7,7 +7,7 @@ import {
 import { instance } from '..';
 
 // 쿠폰 정보 가져오는 api
-const getCouponList = async (
+export const getCouponList = async (
   accommodationId: number,
   date?: string,
   status?: string,
@@ -23,8 +23,6 @@ const getCouponList = async (
   });
   return response.data;
 };
-
-export default getCouponList;
 
 // 쿠폰 수정 api
 export const couponUpdateApi = async (credential: CouponUpdateCredential) => {
