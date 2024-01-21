@@ -38,8 +38,9 @@ const AuthInputNormal = ({
             />
           </Button>
         )}
-        {usedFor === 'signup' &&
-          (isInvalid ? <Icon src={checkInvalid} /> : <Icon src={checkValid} />)}
+        {usedFor === 'signup' && (
+          <Icon src={isInvalid ? checkInvalid : checkValid} />
+        )}
       </Buttons>
     </Container>
   );
