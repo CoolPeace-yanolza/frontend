@@ -1,4 +1,3 @@
-// import CouponList from '@pages/CouponList';
 import { Route, Routes } from 'react-router-dom';
 
 import { Layout } from '@components/common';
