@@ -1,10 +1,11 @@
-import { ChangeEvent, useState } from 'react';
 import styled from '@emotion/styled';
+import { useFormContext } from 'react-hook-form';
 
 import { AuthInputNormal } from '@/types/auth';
 import closeIcon from '@assets/icons/ic-login-close.svg';
 import checkInvalid from '@assets/icons/ic-signup-check-invalid.svg';
 import checkValid from '@assets/icons/ic-signup-check-valid.svg';
+import { fieldOptions } from '@utils/lib/login';
 
 const AuthInputNormal = ({
   type,
@@ -13,18 +14,9 @@ const AuthInputNormal = ({
   usedFor,
   isInvalid
 }: AuthInputNormal) => {
-  const [text, setText] = useState<string>('');
-
-  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setText(event.target.value);
-  };
-
-  const handleReset = (event: React.MouseEvent<HTMLButtonElement>) => {
-    event.preventDefault();
-    setText('');
-  };
-
-  // TODO : react-hook-form 적용 후 유효성 검사 로직 예정
+  const { register, watch, resetField } = useFormContext();
+  const inputValue = watch(id);
+  const handleReset = () => resetField(id);
 
   return (
     <Container>
@@ -32,12 +24,14 @@ const AuthInputNormal = ({
         type={type}
         id={id}
         placeholder={placeholder}
-        value={text}
-        onChange={handleChange}
+        {...register(id, fieldOptions(id))}
       />
       <Buttons>
-        {usedFor === 'login' && text.length > 0 && (
-          <Button onClick={handleReset}>
+        {usedFor === 'login' && !!inputValue && (
+          <Button
+            type="button"
+            onClick={handleReset}
+          >
             <Icon
               src={closeIcon}
               alt="지우기 버튼"
