@@ -2,6 +2,7 @@ import styled from '@emotion/styled';
 import { Bar } from 'react-chartjs-2';
 
 import { ReportGraphProps } from '@/types/report';
+import SelectYear from './SelectYear';
 
 const Graph = ({ graphData }: { graphData: ReportGraphProps }) => {
   // HACK: Notice 업데이트 정책 변경
@@ -35,19 +36,22 @@ const Graph = ({ graphData }: { graphData: ReportGraphProps }) => {
 
   return (
     <Container>
-      <Content>
-        <Title>누적 리포트</Title>
-        <Notice>
-          프로모션 적용 이후 예약 현황을 알려드립니다.
-          <Update>(23.12.29 업데이트)</Update>
-        </Notice>
-      </Content>
-      <InnerContainer>
+      <HeaderContainer>
+        <Content>
+          <Title>누적 리포트</Title>
+          <Notice>
+            프로모션 적용 이후 예약 현황을 알려드립니다.
+            <Update>(23.12.29 업데이트)</Update>
+          </Notice>
+        </Content>
+        <SelectYear />
+      </HeaderContainer>
+      <GraphContainer>
         <BarGraph
           data={chartData}
           options={options}
         />
-      </InnerContainer>
+      </GraphContainer>
     </Container>
   );
 };
@@ -63,9 +67,15 @@ const Container = styled.div`
   flex-direction: column;
 `;
 
-const Content = styled.div`
+const HeaderContainer = styled.div`
   padding: 25px 0;
 
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+const Content = styled.div`
   display: flex;
   align-items: flex-end;
 `;
@@ -94,7 +104,7 @@ const Update = styled.span`
   margin-left: 10px;
 `;
 
-const InnerContainer = styled.div`
+const GraphContainer = styled.div`
   position: relative;
 
   width: 100%;
