@@ -39,6 +39,8 @@ const Header = styled.div`
 
   font-size: 13.005px;
   font-weight: 700;
+
+  white-space: nowrap;
 `;
 
 const ResultContainer = styled.div<CouponCounterStyleProps>`

@@ -59,4 +59,6 @@ const RankingBadge = styled.div<RankingBoxStyleProps>`
 
 const RankingContent = styled.div`
   margin-top: 8px;
+
+  white-space: nowrap;
 `;
