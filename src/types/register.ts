@@ -191,3 +191,16 @@ export type registerInputAtom = {
   startDate: string;
   endDate: string;
 };
+
+// registerValidState
+export type registerValidAtom = {
+  isTitleValid: boolean;
+  isCustomerTypeValid: boolean;
+  isDiscountTypeValid: boolean;
+  isThousands: boolean;
+  isRoomTypeValid: boolean;
+  isAllRoomValid: boolean;
+  isRoomsValid: boolean;
+  isStartDateValid: boolean;
+  isEndDateValid: boolean;
+};
