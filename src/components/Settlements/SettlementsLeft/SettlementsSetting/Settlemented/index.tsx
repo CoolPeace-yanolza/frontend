@@ -240,10 +240,12 @@ const ExcelDownload = styled.div`
 
   margin-left: 10px;
 
+
+
   white-space: nowrap;
 
   button {
-    font-size: 14px;
+    font-size: 12px;
     font-weight: bold;
     color: white;
     border: none;
