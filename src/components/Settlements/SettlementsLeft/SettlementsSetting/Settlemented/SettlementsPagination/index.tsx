@@ -53,9 +53,14 @@ const PaginationContainer = styled.div`
   .pagination-li {
     margin: 5px;
     padding: 9.4px 0px;
+
     border: 1px solid #FFFFFF;
     border-radius: 4px;
     cursor: pointer;
+
+    @media (max-width: 900px) {
+      font-size: 12px;
+    }
   }
 
   .pagination-link {
