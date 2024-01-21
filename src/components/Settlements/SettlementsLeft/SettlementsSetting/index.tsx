@@ -109,6 +109,8 @@ const CalendarContainer = styled.nav`
 `;
 
 const CalendarInnerContainer = styled.div`
+  margin-top: 10px;
+
   display: flex;
 
   @media (max-width: 900px) {
@@ -175,6 +177,7 @@ const StyledDatePickerContainer = styled.div`
   margin-right: 43px;
 
   display: flex;
+  align-items: center;
 
   @media (max-width: 900px) {
     margin-left: auto;

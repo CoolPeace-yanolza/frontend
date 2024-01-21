@@ -159,6 +159,11 @@ const SettlementedHeader = styled.div`
 
   display: flex;
   justify-content: space-between;
+
+  @media (max-width: 498px) {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 `;
 
 const TotalData = styled.div`
@@ -168,11 +173,22 @@ const TotalData = styled.div`
   font-size: 14px;
   font-weight: bold;
   color: white;
+
+  @media (max-width: 498px) {
+    order: 2;
+    margin-top: 10px;
+  }
 `;
 
 const OptionContainer = styled.div`
   display: flex;
   align-items: center;
+
+  @media (max-width: 498px) {
+    order: 1;
+    margin-bottom: 10px;
+    justify-content: space-between; 
+  }
 `;
 
 const StyledDropdown = styled(Dropdown)`
@@ -188,6 +204,10 @@ const StyledDropdown = styled(Dropdown)`
     background-color: rgba(255, 255, 255, 0.1);
 
     @media (max-width: 900px) {
+    }
+
+    @media (max-width: 498px) {
+      max-width: 160px;
     }
 
     .text {
@@ -236,11 +256,9 @@ const StyledDropdown = styled(Dropdown)`
 
 
 const ExcelDownload = styled.div`
-  width: 100%;
-
   margin-left: 10px;
 
-
+  width: 100%;
 
   white-space: nowrap;
 
@@ -248,6 +266,7 @@ const ExcelDownload = styled.div`
     font-size: 12px;
     font-weight: bold;
     color: white;
+
     border: none;
     text-decoration: underline;
     cursor: pointer;
