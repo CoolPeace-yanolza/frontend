@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import { useFormContext } from 'react-hook-form';
 
-import { AuthInputNormal } from '@/types/auth';
+import { AuthInputNormal, AuthInputStyleProps } from '@/types/auth';
 import closeIcon from '@assets/icons/ic-login-close.svg';
 import checkInvalid from '@assets/icons/ic-signup-check-invalid.svg';
 import checkValid from '@assets/icons/ic-signup-check-valid.svg';
@@ -19,11 +19,16 @@ const AuthInputNormal = ({
   const handleReset = () => resetField(id);
 
   return (
-    <Container>
+    <Container
+      $usedFor={usedFor}
+      $type={type}
+    >
       <Input
         type={type}
         id={id}
         placeholder={placeholder}
+        $usedFor={usedFor}
+        $type={type}
         {...register(id, fieldOptions(id))}
       />
       <Buttons>
@@ -38,7 +43,7 @@ const AuthInputNormal = ({
             />
           </Button>
         )}
-        {usedFor === 'signup' && (
+        {usedFor === 'signup' && type !== 'email' && (
           <Icon src={isInvalid ? checkInvalid : checkValid} />
         )}
       </Buttons>
@@ -48,18 +53,20 @@ const AuthInputNormal = ({
 
 export default AuthInputNormal;
 
-const Container = styled.div`
+const Container = styled.div<AuthInputStyleProps>`
   position: relative;
 
-  width: 524px;
+  width: ${props =>
+    props.$usedFor === 'signup' && props.$type === 'email' ? '358px' : '524px'};
   height: 79px;
 
   display: flex;
   align-items: center;
 `;
 
-const Input = styled.input`
-  width: 524px;
+const Input = styled.input<AuthInputStyleProps>`
+  width: ${props =>
+    props.$usedFor === 'signup' && props.$type === 'email' ? '358px' : '524px'};
   height: 79px;
 
   border-radius: 16px;

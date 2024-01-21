@@ -1,3 +1,8 @@
+export type AuthInputStyleProps = {
+  $usedFor: string;
+  $type: string;
+};
+
 export type AuthInput = {
   id: string;
   placeholder: string;

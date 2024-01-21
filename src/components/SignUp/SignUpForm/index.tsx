@@ -35,17 +35,19 @@ const SignUpForm = () => {
         <InputLabelWrapper>
           <Label htmlFor="user_email">이메일</Label>
           <EmailInputWrapper>
-            <EmailInput
+            <AuthInputNormal
               type="email"
               id="user_email"
               placeholder="이메일 입력"
+              usedFor="signup"
+              isInvalid={isInvalid}
             />
             <AuthButton
               size="small"
               variant="disabled"
               text="중복확인"
               buttonFunc={() => {
-                // TODO : 회원가입 API 요청 로직
+                // TODO : 이메일 중복확인 API 요청 로직
               }}
             />
           </EmailInputWrapper>
@@ -87,7 +89,9 @@ const SignUpForm = () => {
           size="large"
           variant="navy"
           text="회원가입"
-          buttonFunc={() => {}}
+          buttonFunc={() => {
+            // TODO : 회원가입 API 요청 로직
+          }}
         />
       </Form>
     </FormProvider>
@@ -118,42 +122,9 @@ const Label = styled.label`
   line-height: 32px;
 `;
 
-const Input = styled.input`
-  width: 524px;
-  height: 79px;
-
-  border-radius: 16px;
-  border: 2px solid #757676;
-  padding: 23px 20px;
-
-  display: flex;
-  align-items: center;
-
-  color: #1a2849;
-  font-size: 18px;
-  font-weight: 500;
-  line-height: 32px;
-
-  &::placeholder {
-    color: #979c9e;
-    font-size: 18px;
-    font-weight: 500;
-    line-height: 32px;
-  }
-
-  &:focus {
-    outline: 2px solid #1a2849;
-    border-color: #1a2849;
-  }
-`;
-
 const EmailInputWrapper = styled.div`
   display: flex;
   justify-content: space-between;
-`;
-
-const EmailInput = styled(Input)`
-  width: 358px;
 `;
 
 const ValidationText = styled.p<SignUpInputValidation>`
