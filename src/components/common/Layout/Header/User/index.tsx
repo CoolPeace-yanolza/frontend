@@ -15,7 +15,10 @@ const User = () => {
         alt="사용자 프로필"
         onClick={() => setIsUserModalOpen(prev => !prev)}
       />
-      <UserModal isOpen={isUserModalOpen} />
+      <UserModal
+        isOpen={isUserModalOpen}
+        setIsUserModalOpen={setIsUserModalOpen}
+      />
     </>
   );
 };

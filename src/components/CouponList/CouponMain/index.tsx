@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import { useRecoilValue } from 'recoil';
 
 import {
   CouponExpired,
@@ -6,39 +7,38 @@ import {
   CouponStop,
   CouponWait
 } from '../CouponItem';
-// import { CouponLitResponse } from '@/types/couponList';
+import couponListState from '@recoil/atoms/couponListState';
 
 const CouponMain = () => {
-  // HACK: 쿠폰 데이터 상태저장 (추가 예정)
-  // const [coupons, setCoupons] = useState<CouponLitResponse[]>([]);
+  const coupons = useRecoilValue(couponListState);
+  console.log('recoil로 관리되는 쿠폰 리스트 ', coupons);
 
   return (
-    // HACK: 받아온 쿠폰 데이터 종류에 따라 컴포넌트 분리 (추가 예정)
     <MainContainer>
-      {/* {coupons.map((coupon, index) => {
+      {coupons?.content.map((coupon, index) => {
         switch (coupon.coupon_status) {
-          case '노출 중':
+          case '노출 ON':
             return (
               <CouponExpose
                 key={index}
                 couponInfo={coupon}
               />
             );
-          case '노출 중지':
+          case '노출 OFF':
             return (
               <CouponStop
                 key={index}
                 couponInfo={coupon}
               />
             );
-          case '노출 대기':
+          case '노출 대기중':
             return (
               <CouponWait
                 key={index}
                 couponInfo={coupon}
               />
             );
-          case '만료':
+          case '노출 기간 만료':
             return (
               <CouponExpired
                 key={index}
@@ -46,12 +46,7 @@ const CouponMain = () => {
               />
             );
         }
-      })} */}
-
-      <CouponExpose />
-      <CouponStop />
-      <CouponExpired />
-      <CouponWait />
+      })}
     </MainContainer>
   );
 };

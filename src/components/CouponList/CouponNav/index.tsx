@@ -1,9 +1,12 @@
 import styled from '@emotion/styled';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
 
 import theme from '@styles/theme';
 import searchIcon from '@assets/icons/ic-couponlist-search.svg';
 import centerIcon from '@assets/icons/ic-couponlist-period-center.svg';
+import { couponListState, headerAccommodationState } from '@recoil/index';
+import { getCouponList } from 'src/api';
 import {
   CategoryTabStyleProps,
   ResisterDateStyleProps
@@ -12,6 +15,10 @@ import {
 const CouponNav = () => {
   const [resisterDateClick, setResisterDateClick] = useState<string>('1년');
   const [categoryTab, setCategoryTab] = useState<string>('전체');
+  const [searchText, setSearchText] = useState<string>('');
+  const headerAccommodation = useRecoilValue(headerAccommodationState);
+  const setGlobalCoupons = useSetRecoilState(couponListState);
+  const coupons = useRecoilValue(couponListState);
 
   const handleDateClick = (period: string) => {
     setResisterDateClick(period);
@@ -21,32 +28,78 @@ const CouponNav = () => {
     setCategoryTab(tab);
   };
 
+  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchText(e.target.value);
+  };
+
+  const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setSearchText('');
+    fetchCoupons();
+  };
+
+  // recoil 숙소 ID 가져오기
+  const fetchCoupons = async () => {
+    try {
+      const couponData = await getCouponList(
+        headerAccommodation.accommodationId,
+        resisterDateClick !== '1년' ? resisterDateClick : undefined,
+        categoryTab !== '전체' ? categoryTab : undefined,
+        searchText
+      );
+      setGlobalCoupons(couponData);
+
+      console.log(
+        '검색어, 등록일, 카테고리:',
+        searchText,
+        resisterDateClick,
+        categoryTab
+      );
+    } catch (error) {
+      console.log('쿠폰 조회 api 에러 ', error);
+    }
+  };
+
+  useEffect(() => {
+    fetchCoupons();
+  }, [headerAccommodation.accommodationId, categoryTab, resisterDateClick]);
+
   return (
     <TabContainer>
       <TabNavContainer>
         <TabWrap>
           <TapItemWrapper onClick={() => handleCategoryTab('전체')}>
             <TabName>전체</TabName>
-            <TabCount $categoryTab={categoryTab === '전체'}>8</TabCount>
+            <TabCount $categoryTab={categoryTab === '전체'}>
+              {coupons?.category.all}
+            </TabCount>
           </TapItemWrapper>
           <TapItemWrapper onClick={() => handleCategoryTab('노출 ON')}>
             <TabName>노출 ON</TabName>
-            <TabCount $categoryTab={categoryTab === '노출 ON'}>2</TabCount>
+            <TabCount $categoryTab={categoryTab === '노출 ON'}>
+              {coupons?.category.exposure_on}
+            </TabCount>
           </TapItemWrapper>
           <TapItemWrapper onClick={() => handleCategoryTab('노출 OFF')}>
             <TabName>노출 OFF</TabName>
-            <TabCount $categoryTab={categoryTab === '노출 OFF'}>2</TabCount>
+            <TabCount $categoryTab={categoryTab === '노출 OFF'}>
+              {coupons?.category.exposure_off}
+            </TabCount>
           </TapItemWrapper>
           <TapItemWrapper onClick={() => handleCategoryTab('만료')}>
             <TabName>만료</TabName>
-            <TabCount $categoryTab={categoryTab === '만료'}>4</TabCount>
+            <TabCount $categoryTab={categoryTab === '만료'}>
+              {coupons?.category.expiration}
+            </TabCount>
           </TapItemWrapper>
         </TabWrap>
-        <SearchWrap>
+        <SearchWrap onSubmit={handleSearch}>
           <SearchInput
             id="search"
             type="text"
+            value={searchText}
             placeholder="관리 쿠폰명을 입력하세요."
+            onChange={handleSearchChange}
           ></SearchInput>
           <SearchImg
             src={searchIcon}
@@ -57,8 +110,8 @@ const CouponNav = () => {
       </TabNavContainer>
       <TabBottomContainer>
         <TabBottomWrap>
-          <SecondTabName>전체</SecondTabName>
-          <SecondTabCount>20개</SecondTabCount>
+          <SecondTabName>{categoryTab}</SecondTabName>
+          <SecondTabCount>{coupons?.content.length}개</SecondTabCount>
           <CouponDescription>
             모든 쿠폰은 다운로드 후 14일까지 사용 가능하며, 등록 후 1년이 경과한
             쿠폰은 조회되지 않습니다.
