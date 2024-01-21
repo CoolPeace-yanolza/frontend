@@ -8,9 +8,7 @@ import { AmountStyleProps } from '@/types/report';
 
 const TotalReport = () => {
   const headerSelectState = useRecoilValue(headerAccommodationState);
-  const { data: TotalReportResult } = useGetTotalReport(
-    headerSelectState.accommodationId
-  );
+  const { data: TotalReportResult } = useGetTotalReport(headerSelectState.id);
   const TotalReportArray = Object.entries(TotalReportResult);
 
   return (
