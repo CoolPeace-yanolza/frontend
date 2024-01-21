@@ -1,5 +1,6 @@
-import { ChangeEvent, useState } from 'react';
+import { useState } from 'react';
 import styled from '@emotion/styled';
+import { useFormContext } from 'react-hook-form';
 
 import { AuthInput } from '@/types/auth';
 import eyeOn from '@assets/icons/ic-login-eye-on.svg';
@@ -7,6 +8,7 @@ import eyeOff from '@assets/icons/ic-login-eye-off.svg';
 import closeIcon from '@assets/icons/ic-login-close.svg';
 import checkInvalid from '@assets/icons/ic-signup-check-invalid.svg';
 import checkValid from '@assets/icons/ic-signup-check-valid.svg';
+import { fieldOptions } from '@utils/lib/login';
 
 const AuthInputPassword = ({
   id,
@@ -14,17 +16,11 @@ const AuthInputPassword = ({
   usedFor,
   isInvalid
 }: AuthInput) => {
-  const [text, setText] = useState<string>('');
+  const { register, watch, resetField } = useFormContext();
+  const inputValue = watch(id);
+  const handleReset = () => resetField(id);
+
   const [showPW, setShowPW] = useState(false);
-
-  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setText(event.target.value);
-  };
-
-  const handleReset = (event: React.MouseEvent<HTMLButtonElement>) => {
-    event.preventDefault();
-    setText('');
-  };
 
   const handleShowPW = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
@@ -37,11 +33,10 @@ const AuthInputPassword = ({
         type={showPW ? 'text' : 'password'}
         id={id}
         placeholder={placeholder}
-        value={text}
-        onChange={handleChange}
+        {...register(id, fieldOptions(id))}
       />
       <Buttons>
-        {text.length > 0 && (
+        {!!inputValue && (
           <Button onClick={handleShowPW}>
             <Icon
               src={showPW ? eyeOn : eyeOff}
@@ -49,7 +44,7 @@ const AuthInputPassword = ({
             />
           </Button>
         )}
-        {usedFor === 'login' && text.length > 0 && (
+        {usedFor === 'login' && !!inputValue && (
           <Button onClick={handleReset}>
             <Icon
               src={closeIcon}
