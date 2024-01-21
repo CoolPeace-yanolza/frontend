@@ -45,7 +45,7 @@ const SecondStep = () => {
             id="stay"
             name="roomType"
             buttonName="숙박"
-            value={1}
+            state={1}
             currentInput={roomType}
             onButtonClick={setRoomType}
           />
@@ -69,7 +69,7 @@ const SecondStep = () => {
             id="true"
             name="toAllRoom"
             buttonName="모든 객실"
-            value={1}
+            state={1}
             onButtonClick={setToAllRoom}
           />
           <RoomSelectButton

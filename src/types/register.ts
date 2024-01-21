@@ -24,7 +24,7 @@ export type InputButtonProps = {
   id: string;
   name: string;
   buttonName: string;
-  value?: number;
+  state?: number;
   currentInput?: number;
   onButtonClick?: React.Dispatch<React.SetStateAction<number>>;
 };

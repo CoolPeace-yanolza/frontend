@@ -48,7 +48,7 @@ const FirstStep = () => {
             id="price"
             name="discountType"
             buttonName="정액 할인"
-            value={1}
+            state={1}
             onButtonClick={setCurrentInput}
           />
           <InputButton
@@ -56,7 +56,7 @@ const FirstStep = () => {
             id="rate"
             name="discountType"
             buttonName="정률 할인"
-            value={2}
+            state={2}
             onButtonClick={setCurrentInput}
           />
         </ButtonWrapper>
