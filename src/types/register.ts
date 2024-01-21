@@ -176,3 +176,18 @@ export type RadioProps = {
   name: string;
   text: string;
 };
+
+// registerInputState
+export type registerInputAtom = {
+  title: string;
+  customerType: string;
+  discountType: string;
+  discountValue: undefined | number;
+  roomType: string;
+  isAllRoom: undefined | boolean;
+  rooms?: number[];
+  minimumPrice?: undefined | number;
+  day?: string;
+  startDate: string;
+  endDate: string;
+};
