@@ -9,12 +9,8 @@ import Graph from './Graph';
 
 const LeftSection = () => {
   const headerSelectState = useRecoilValue(headerAccommodationState);
-  // HACK: recoil로 쿼리 정보 가져오기, 이슈 #67 에서 작업중
-  const { data: yearReportData } = useGetYearReport(
-    headerSelectState.accommodationId
-  );
+  const { data: yearReportData } = useGetYearReport(headerSelectState.id);
   const { coupon_sales_list: graphProps, ...yearReportProps } = yearReportData;
-  // HACK: 배열 순서 변경 필요, 이슈 #67 에서 작업중
   const yearReport = Object.entries(yearReportProps);
 
   return (

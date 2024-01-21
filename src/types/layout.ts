@@ -1,6 +1,20 @@
 // Layout
 export type LayoutStyleProps = { $pathname: string };
 
+// Header
+
+export type HeaderAccommodation = {
+  id: number;
+  name: string;
+  sido_id: number;
+  sido: string;
+  sigungu_id: number;
+  sigungu: string;
+  address: string;
+};
+
+export type HeaderAccommodationResult = HeaderAccommodation[];
+
 // Sidebar
 export type SidebarHeader = {
   isSidebarOpen: boolean;
