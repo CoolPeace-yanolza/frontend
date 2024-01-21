@@ -56,10 +56,10 @@ export interface CouponListProps {
   couponInfo: CouponInformationResponse;
 }
 
-// 쿠폰 요청  타입
-export interface GetCouponListCredential {
-  accommodationId: number;
-  date?: string;
-  status?: string;
-  title?: string;
-}
+// HACK : 쿠폰 요청  타입
+// export interface GetCouponListCredential {
+//   accommodationId: number;
+//   date?: string;
+//   status?: string;
+//   title?: string;
+// }
