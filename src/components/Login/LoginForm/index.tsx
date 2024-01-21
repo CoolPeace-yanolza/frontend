@@ -1,5 +1,6 @@
 import { useLocation, useNavigate } from 'react-router-dom';
 import styled from '@emotion/styled';
+import { FormProvider, useForm } from 'react-hook-form';
 
 import { InputValidation } from '@/types/login';
 import {
@@ -12,6 +13,7 @@ import { postLogin } from 'src/api';
 import { setCookies } from '@utils/lib/cookies';
 
 const LoginForm = () => {
+  const methods = useForm();
   const navigate = useNavigate();
   const { state } = useLocation();
 
@@ -47,42 +49,44 @@ const LoginForm = () => {
   };
 
   return (
-    <form>
-      <Inputs $isInvalid={isInvalid}>
-        <AuthInputNormal
-          type="email"
-          id="user_email"
-          placeholder="이메일 입력"
-          usedFor="login"
-          isInvalid={isInvalid}
-        />
-        <AuthInputPassword
-          id="user_password"
-          placeholder="8-20자, 영문/숫자/특수문자 조합"
-          usedFor="login"
-          isInvalid={isInvalid}
-        />
-      </Inputs>
-      {isInvalid && (
-        <ValidationText>
-          <ValidationBoldText>아이디</ValidationBoldText>를 입력해 주세요
-        </ValidationText>
-      )}
-      <Buttons $isInvalid={isInvalid}>
-        <AuthButton
-          size="large"
-          variant="navy"
-          text="로그인"
-          buttonFunc={handleLoginSubmit}
-        />
-        <AuthButton
-          size="large"
-          variant="pink"
-          text="회원가입"
-          buttonFunc={movetoSignUp}
-        />
-      </Buttons>
-    </form>
+    <FormProvider {...methods}>
+      <form>
+        <Inputs $isInvalid={isInvalid}>
+          <AuthInputNormal
+            type="email"
+            id="user_email"
+            placeholder="이메일 입력"
+            usedFor="login"
+            isInvalid={isInvalid}
+          />
+          <AuthInputPassword
+            id="user_password"
+            placeholder="8-20자, 영문/숫자/특수문자 조합"
+            usedFor="login"
+            isInvalid={isInvalid}
+          />
+        </Inputs>
+        {isInvalid && (
+          <ValidationText>
+            <ValidationBoldText>아이디</ValidationBoldText>를 입력해 주세요
+          </ValidationText>
+        )}
+        <Buttons $isInvalid={isInvalid}>
+          <AuthButton
+            size="large"
+            variant="navy"
+            text="로그인"
+            buttonFunc={handleLoginSubmit}
+          />
+          <AuthButton
+            size="large"
+            variant="pink"
+            text="회원가입"
+            buttonFunc={movetoSignUp}
+          />
+        </Buttons>
+      </form>
+    </FormProvider>
   );
 };
 
