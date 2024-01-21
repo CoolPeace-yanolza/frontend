@@ -7,6 +7,7 @@ import Dashboard from '@pages/Dashboard';
 import Report from '@pages/Report';
 import CouponList from '@pages/CouponList';
 import Register from '@pages/Register';
+import Settlements  from '@pages/Settlements';
 
 const MainRouter = () => {
   return (
@@ -34,19 +35,7 @@ const MainRouter = () => {
         />
         <Route
           path="/settlements"
-          element={
-            <div
-              style={{
-                height: '100%',
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-                fontSize: '1.5rem'
-              }}
-            >
-              🧃 정산관리 페이지 입주 예정 🧃
-            </div>
-          }
+          element={<Settlements />}
         />
         <Route
           path="/coupons/report"
