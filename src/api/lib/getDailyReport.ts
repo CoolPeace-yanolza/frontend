@@ -1,12 +1,9 @@
 import { instance } from '..';
+import { DailyReportResult } from '@/types/dashboard';
 
-const getDailyReport = async (id: number) => {
-  try {
-    const response = await instance.get(`v1/dashboards/${id}/reports/daily`);
-    return response.data;
-  } catch (err) {
-    console.error(err);
-  }
+const getDailyReport = async (id: number): Promise<DailyReportResult> => {
+  const response = await instance.get(`v1/dashboards/${id}/reports/daily`);
+  return response.data;
 };
 
 export default getDailyReport;

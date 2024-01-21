@@ -3,10 +3,12 @@ import { useQueryErrorResetBoundary } from '@tanstack/react-query';
 import { ErrorBoundary } from 'react-error-boundary';
 import styled from '@emotion/styled';
 
-import DailyReportSection from './DailyReportSection';
 const CouponStatusSection = React.lazy(() => import('./CouponStatusSection'));
+const DailyReportSection = React.lazy(() => import('./DailyReportSection'));
 import StatusErrorFallback from './CouponStatusSection/index.error';
 import StatusSectionLoading from './CouponStatusSection/index.loading';
+import DailyReportErrorFallback from './DailyReportSection/index.error';
+import DailyReportLoading from './DailyReportSection/index.loading';
 
 const DashboardRightSection = () => {
   const { reset } = useQueryErrorResetBoundary();
@@ -21,7 +23,14 @@ const DashboardRightSection = () => {
           <CouponStatusSection />
         </Suspense>
       </ErrorBoundary>
-      <DailyReportSection />
+      <ErrorBoundary
+        onReset={reset}
+        fallbackRender={DailyReportErrorFallback}
+      >
+        <Suspense fallback={<DailyReportLoading />}>
+          <DailyReportSection />
+        </Suspense>
+      </ErrorBoundary>
     </Container>
   );
 };

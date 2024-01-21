@@ -60,3 +60,11 @@ export type RankingBoxProps = {
 export type RankingBoxStyleProps = {
   $rankingColor: number;
 };
+
+// DailyReport
+
+export type DailyReportResult = {
+  condition_num: number;
+  condition: string;
+  coupon_titles: string[];
+};
