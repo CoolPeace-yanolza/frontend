@@ -126,15 +126,16 @@ const Settlemented = () => {
         </OptionContainer>
       </SettlementedHeader>
       <DataLow>
-        <SettlementsTable
-          data={currentData}
-          pageStartNumber={calculatePageStartNumber(currentPage)}
-        />
-        <SettlementsPagination
-          currentPage={currentPage}
-          totalPages={totalPages}
-          onPageChange={handlePageChange}
-        />
+          <SettlementsTable
+            data={currentData}
+            pageStartNumber={calculatePageStartNumber(currentPage)}
+          />
+          <SettlementsPagination
+            currentPage={currentPage}
+            totalPages={totalPages}
+            onPageChange={handlePageChange}
+            totalItems={totalItems}
+          />
       </DataLow>
     </Container>
   );

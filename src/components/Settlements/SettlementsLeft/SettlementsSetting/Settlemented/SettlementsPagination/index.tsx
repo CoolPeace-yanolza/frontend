@@ -7,7 +7,8 @@ import { SettlementsPaginationProps } from '@/types/settlements';
 const SettlementsPagination: React.FC<SettlementsPaginationProps> = ({
   currentPage,
   totalPages,
-  onPageChange
+  onPageChange,
+  totalItems
 }) => {
   useEffect(() => {
     onPageChange(currentPage);
@@ -15,22 +16,24 @@ const SettlementsPagination: React.FC<SettlementsPaginationProps> = ({
 
   return (
     <PaginationContainer>
-      <ReactPaginate
-        previousLabel={'<'}
-        nextLabel={'>'}
-        breakLabel={'...'}
-        breakClassName={'hidden'}
-        pageCount={totalPages}
-        marginPagesDisplayed={2}
-        pageRangeDisplayed={5}
-        onPageChange={(selectedItem) => onPageChange(selectedItem.selected + 1)}
-        containerClassName={'pagination'}
-        activeClassName={'active'}
-        pageClassName={'pagination-li'}
-        pageLinkClassName={'pagination-link'}
-        previousClassName={'pagination-previous'}
-        nextClassName={'pagination-next'}
-      />
+      {totalItems > 0 && (
+        <ReactPaginate
+          previousLabel={'<'}
+          nextLabel={'>'}
+          breakLabel={'...'}
+          breakClassName={'hidden'}
+          pageCount={totalPages}
+          marginPagesDisplayed={2}
+          pageRangeDisplayed={5}
+          onPageChange={(selectedItem) => onPageChange(selectedItem.selected + 1)}
+          containerClassName={'pagination'}
+          activeClassName={'active'}
+          pageClassName={'pagination-li'}
+          pageLinkClassName={'pagination-link'}
+          previousClassName={'pagination-previous'}
+          nextClassName={'pagination-next'}
+        />
+      )}
     </PaginationContainer>
   );
 };

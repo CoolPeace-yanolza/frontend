@@ -16,6 +16,7 @@ export interface SettlementsPaginationProps {
     currentPage: number;
     totalPages: number;
     onPageChange: (page: number) => void;
+    totalItems: number;
 };
 
 export interface SettlementsPopupProps {
