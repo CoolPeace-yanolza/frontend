@@ -61,6 +61,12 @@ export type RankingBoxStyleProps = {
   $rankingColor: number;
 };
 
+export type CouponRankingResult = {
+  first_coupon_title: string;
+  second_coupon_title: string;
+  third_coupon_title: string;
+};
+
 // DailyReport
 
 export type DailyReportResult = {

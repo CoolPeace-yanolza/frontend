@@ -20,16 +20,17 @@ const Container = styled.div`
   min-width: 100%;
   width: auto;
 
-  padding: 5px 0px 5px 20px;
+  padding: 8px 0px 8px 12px;
   border: 2px solid #f2f4f5;
   border-radius: 16px;
 
   display: flex;
   flex-direction: column;
   justify-content: center;
+  gap: 3px;
 
   color: #303437;
-  font-size: 17px;
+  font-size: 15px;
   font-weight: 700;
 
   background-color: #fff;
@@ -58,7 +59,5 @@ const RankingBadge = styled.div<RankingBoxStyleProps>`
 `;
 
 const RankingContent = styled.div`
-  margin-top: 8px;
-
   white-space: nowrap;
 `;
