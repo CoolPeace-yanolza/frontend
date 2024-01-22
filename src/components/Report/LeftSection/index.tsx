@@ -1,15 +1,19 @@
 import { useRecoilValue } from 'recoil';
 import styled from '@emotion/styled';
 
-import { headerAccommodationState } from '@recoil/index';
+import { headerAccommodationState, selectedYearState } from '@recoil/index';
 import { useGetYearReport } from '@hooks/index';
 import { DashboardHeader } from '@components/common';
 import YearReport from './YearReport';
 import Graph from './Graph';
 
 const LeftSection = () => {
-  const headerSelectState = useRecoilValue(headerAccommodationState);
-  const { data: yearReportData } = useGetYearReport(headerSelectState.id);
+  const selectedAccommodation = useRecoilValue(headerAccommodationState);
+  const selectedYear = useRecoilValue(selectedYearState);
+  const { data: yearReportData } = useGetYearReport(
+    selectedAccommodation.id,
+    selectedYear.year
+  );
   const { coupon_sales_list: graphProps, ...yearReportProps } = yearReportData;
   const yearReport = Object.entries(yearReportProps);
 
