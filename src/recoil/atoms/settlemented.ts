@@ -35,20 +35,25 @@ export const fakeData = [
     { '쿠폰 적용일': "2023.10.21", '쿠폰번호': 7, '관리 쿠폰명': "가을 선착순 쿠폰", '사용 건수': '46회', '쿠폰 할인 금액': '50원', '쿠폰 취소 금액':'0원', '정산 금액': '7000원', '정산 완료일': '2023.11.02'},
   ];
 
-  export const settlementDataState = atom<SettlementItem[]>({
-    key: 'settlementData',
-    default: fakeData.map((data, index) => ({
-      ...data,
-      NO: index + 1,
-    })).sort((a, b) => new Date(a['쿠폰 적용일']).getTime() - new Date(b['쿠폰 적용일']).getTime())
-  });
+  // export const settlementDataState = atom<SettlementItem[]>({
+  //   key: 'settlementData',
+  //   default: fakeData.map((data, index) => ({
+  //     ...data,
+  //     NO: index + 1,
+  //   })).sort((a, b) => new Date(a['쿠폰 적용일']).getTime() - new Date(b['쿠폰 적용일']).getTime())
+  // });
   
-  export const settlementsDateState = atom({
-    key: 'settlementsDateState',
-    default: { startDate: new Date(), endDate: new Date() },
-  });
+  // export const settlementsDateState = atom({
+  //   key: 'settlementsDateState',
+  //   default: { startDate: new Date(), endDate: new Date() },
+  // });
 
   export const settlementDataState2 = atom<SettlementedItem[]>({
     key: 'settlementData',
     default: []
+  });
+
+  export const settlementsDateState = atom<{startDate: Date | null, endDate: Date | null}>({
+    key: 'settlementsDate',
+    default: { startDate: null, endDate: null }
   });

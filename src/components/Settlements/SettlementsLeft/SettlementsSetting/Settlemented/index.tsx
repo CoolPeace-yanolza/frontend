@@ -7,7 +7,7 @@ import * as XLSX from 'xlsx';
 
 import SettlementsTable from './SettlementsTable';
 import SettlementsPagination from './SettlementsPagination';
-import { settlementDataState2 } from '@recoil/atoms/settlemented';
+import { settlementsDateState, settlementDataState2 } from '@recoil/atoms/settlemented';
 
 import getSettlements from 'src/api/lib/getSettlements';
 import { SettlementedList, SettlementedItem } from '@/types/settlements';
@@ -15,7 +15,7 @@ import headerAccommodationState from '@recoil/atoms/headerAccommodationState';
 
 const Settlemented = () => {
 
-  // const { startDate, endDate } = useRecoilValue(settlementsDateState);
+  const { startDate, endDate } = useRecoilValue(settlementsDateState);
   // const setSettlementData = useSetRecoilState(settlementDataState2);
 
   const [sortedData, setSortedData] = useRecoilState(settlementDataState2);
@@ -62,8 +62,8 @@ const Settlemented = () => {
     try {
       const settlementParams = {
         accommodationId: accommodation.id,
-        start: '2000-01-01',
-        end: '2024-12-31',
+        start: startDate ? startDate.toISOString().split('T')[0] : '2000-01-01',
+        end: endDate ? endDate.toISOString().split('T')[0] : '2024-12-31',
         order: orderBy,
         page: page - 1,
         pageSize: itemsPerPage,
@@ -103,7 +103,7 @@ const Settlemented = () => {
 
   useEffect(() => {
     fetchSettlemented(currentPage);
-  }, [accommodation.id, sortOrder, orderBy, currentPage]);
+  }, [accommodation.id, sortOrder, orderBy, currentPage, startDate, endDate]);
 
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
