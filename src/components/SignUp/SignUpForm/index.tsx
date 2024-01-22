@@ -13,9 +13,7 @@ const SignUpForm = () => {
     mode: 'all'
   });
   const { getFieldState, formState } = methods;
-  const { errors } = formState;
-
-  const isInvalid = true;
+  const { errors, isValid } = formState;
 
   const isEmailTouched = getFieldState('user_email', formState).isTouched;
   const isEmailValid = isEmailTouched ? !errors?.user_email : false;
@@ -99,9 +97,9 @@ const SignUpForm = () => {
         </InputLabelWrapper>
         <AuthButton
           size="large"
-          variant="navy"
+          variant={isValid ? 'navy' : 'disabled'}
           text="회원가입"
-          disabled={false}
+          disabled={!isValid}
           buttonFunc={() => {
             // TODO : 회원가입 API 요청 로직
           }}
