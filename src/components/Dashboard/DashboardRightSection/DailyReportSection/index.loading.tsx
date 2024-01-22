@@ -30,6 +30,7 @@ const Container = styled.div`
 
   display: flex;
   flex-direction: column;
+  justify-content: center;
   gap: 5px;
 
   background-color: white;
@@ -56,12 +57,14 @@ const Header = styled.div`
 
 const Title = styled(BaseSkeleton)`
   width: 60%;
-  height: 40px;
+
+  flex: 1;
 `;
 
 const Description = styled(BaseSkeleton)`
   width: 100%;
-  height: 15px;
+
+  flex: 1;
 `;
 
 const InnerContainer = styled.div`
@@ -71,7 +74,7 @@ const InnerContainer = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  flex: 1;
+  flex: 6;
 `;
 
 const SubContentLoading = styled(BaseSkeleton)`

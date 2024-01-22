@@ -27,10 +27,18 @@ const Container = styled.div`
 
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
 
   background-color: white;
 `;
 
-const ErrorMessage = styled.span``;
+const ErrorMessage = styled.span`
+  text-align: center;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.4;
+`;
 
 const RetryButton = styled.button``;

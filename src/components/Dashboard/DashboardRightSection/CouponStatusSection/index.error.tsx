@@ -6,7 +6,10 @@ const ErrorFallback = ({ error, resetErrorBoundary }: FallbackProps) => {
 
   return (
     <Container>
-      <ErrorMessage>이번 달 똑똑 현황 에러 발생</ErrorMessage>
+      <ErrorMessage>
+        이번 달 똑똑 현황
+        <br /> 에러 발생
+      </ErrorMessage>
       <RetryButton onClick={resetErrorBoundary}>다시 시도</RetryButton>
     </Container>
   );
@@ -25,11 +28,15 @@ const Container = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 10px;
+  gap: 30px;
 
   background-color: white;
 `;
 
-const ErrorMessage = styled.span``;
+const ErrorMessage = styled.span`
+  text-align: center;
+  font-size: 18px;
+  font-weight: 700;
+`;
 
 const RetryButton = styled.button``;
