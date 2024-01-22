@@ -2,27 +2,23 @@ import styled from '@emotion/styled';
 import 'semantic-ui-css/semantic.min.css';
 import { Dropdown, DropdownProps } from 'semantic-ui-react';
 import { useState, useEffect } from 'react';
-import { useRecoilValue, useRecoilState, useSetRecoilState } from 'recoil';
+import { useRecoilValue, useRecoilState } from 'recoil';
 import * as XLSX from 'xlsx';
 
 import SettlementsTable from './SettlementsTable';
 import SettlementsPagination from './SettlementsPagination';
-import { settlementsDateState, settlementDataState2 } from '@recoil/atoms/settlemented';
-
 import getSettlements from 'src/api/lib/getSettlements';
-import { SettlementedList, SettlementedItem } from '@/types/settlements';
+import { SettlementedItem } from '@/types/settlements';
+import { settlementsDateState, settlementDataState } from '@recoil/atoms/settlemented';
 import headerAccommodationState from '@recoil/atoms/headerAccommodationState';
 
 const Settlemented = () => {
 
   const { startDate, endDate } = useRecoilValue(settlementsDateState);
-  // const setSettlementData = useSetRecoilState(settlementDataState2);
-
-  const [sortedData, setSortedData] = useRecoilState(settlementDataState2);
+  const [sortedData, setSortedData] = useRecoilState(settlementDataState);
   const [sortOrder, setSortOrder] = useState('couponDateDesc');
   const [orderBy, setOrderBy] = useState('COUPON_USE_DATE');
   const [currentData, setCurrentData] = useState<SettlementedItem[]>([]);
-
   const [currentPage, setCurrentPage] = useState<number>(1);
 
   const accommodation = useRecoilValue(headerAccommodationState);
@@ -63,7 +59,7 @@ const Settlemented = () => {
       const settlementParams = {
         accommodationId: accommodation.id,
         start: startDate ? startDate.toISOString().split('T')[0] : '2000-01-01',
-        end: endDate ? endDate.toISOString().split('T')[0] : '2024-12-31',
+        end: endDate ? endDate.toISOString().split('T')[0] : new Date().toISOString().split('T')[0],
         order: orderBy,
         page: page - 1,
         pageSize: itemsPerPage,
@@ -83,16 +79,8 @@ const Settlemented = () => {
         NO: (page - 1) * itemsPerPage + index + 1,
       }));
   
-      // if (orderBy === 'COUPON_USE_DATE') {
-      //   newSettlementData.sort((a: SettlementedItem, b: SettlementedItem) => new Date(b.coupon_use_date).getTime() - new Date(a.coupon_use_date).getTime());
-      // }
-  
-      console.log('Fetching data for page:', page, 'and page size:', itemsPerPage);
-  
       setSortedData(newSettlementData);
       setCurrentData(newSettlementData); 
-      
-      
       setTotalItems(response.total_settlement_count);
       setTotalPages(response.total_page_count);
     } catch (error) {
@@ -100,7 +88,6 @@ const Settlemented = () => {
     }
   };
   
-
   useEffect(() => {
     fetchSettlemented(currentPage);
   }, [accommodation.id, sortOrder, orderBy, currentPage, startDate, endDate]);
@@ -113,32 +100,9 @@ const Settlemented = () => {
   const [totalItems, setTotalItems] = useState<number>(0);
   const [totalPages, setTotalPages] = useState<number>(0);
 
-  const startIndex = (currentPage - 1) * itemsPerPage;
-
   const calculatePageStartNumber = (currentPage: number) => {
     return totalItems - (currentPage - 1) * itemsPerPage;
   };
-
-  // useEffect(() => {
-  //   if (startDate && endDate) {
-  //     const filteredData = sortedAndNumberedData.filter((data) => {
-  //       const couponDate = new Date(data['쿠폰 적용일']);
-  //       return couponDate >= startDate && couponDate <= endDate;
-  //     });
-
-  //     const sorted = sortData(sortOrder, filteredData);
-  //     setSettlementData(sorted);
-  //     setCurrentPage(1);
-  //   } else {
-  //     const sorted = sortData(sortOrder, sortedAndNumberedData);
-  //     setSettlementData(sorted);
-  //   }
-  // }, [startDate, endDate, sortOrder]);
-
-  // useEffect(() => {
-  //   const sorted = sortData(sortOrder, sortedData);
-  //   setSortedData(sorted);
-  // }, [sortOrder]);
 
   const handleDownloadExcel = () => {
     const workBook = XLSX.utils.book_new();
@@ -153,7 +117,7 @@ const Settlemented = () => {
     <Container>
       <SettlementedHeader>
         <TotalData>
-          전체 내역 {sortedData.length}개
+          전체 내역 {totalItems}개
         </TotalData>
         <OptionContainer>
         <StyledDropdown
