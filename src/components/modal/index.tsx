@@ -10,7 +10,7 @@ export interface ModalProps {
 
 const Modal = ({ modalText, subText, onConfirmClick }: ModalProps) => {
   const [isShowModal, setIsShowModal] = useState(true);
-  const [isShowSubText, setIsSubText] = useState(true);
+  const [isShowSubText] = useState(true);
 
   const handleModalClose = () => {
     setIsShowModal(false);
