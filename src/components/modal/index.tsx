@@ -10,7 +10,6 @@ export interface ModalProps {
 
 const Modal = ({ modalText, subText, onConfirmClick }: ModalProps) => {
   const [isShowModal, setIsShowModal] = useState(true);
-  const [isShowSubText] = useState(true);
 
   const handleModalClose = () => {
     setIsShowModal(false);
@@ -25,7 +24,9 @@ const Modal = ({ modalText, subText, onConfirmClick }: ModalProps) => {
     <ModalContainer>
       <ModalWrap>
         <ModalText>{modalText}</ModalText>
-        {isShowSubText && <ModalSubText>{subText}</ModalSubText>}
+        {subText && (
+          <ModalSubText>삭제한 쿠폰은 복구할 수 없습니다.</ModalSubText>
+        )}
         <ButtonWrap>
           <ConfirmButton onClick={handleConfirmClick}>확인</ConfirmButton>
           <CancelButton onClick={handleModalClose}>취소</CancelButton>

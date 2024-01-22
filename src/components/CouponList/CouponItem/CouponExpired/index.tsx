@@ -22,6 +22,7 @@ const CouponExpired = ({ couponInfo }: CouponListProps) => {
       <CouponHeaderContainer>
         <CouponHeader>
           <CouponTitle>{couponInfo.title}</CouponTitle>
+
           <CouponStatus>기간만료</CouponStatus>
         </CouponHeader>
         <CouponCustomer>{couponInfo.coupon_concat_title}</CouponCustomer>
