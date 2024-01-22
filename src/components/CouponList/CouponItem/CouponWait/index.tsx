@@ -1,11 +1,12 @@
 import styled from '@emotion/styled';
 import { useRef, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import theme from '@styles/theme';
 import centerIcon from '@assets/icons/ic-couponlist-center.svg';
 import rightIcon from '@assets/icons/ic-couponlist-right.svg';
 import deleteIcon from '@assets/icons/ic-couponlist-delete.svg';
-import { useOutsideClick } from '@hooks/index';
+import { useCouponDelete, useOutsideClick } from '@hooks/index';
 import { CouponListProps } from '@/types/couponList';
 import Modal from '@components/modal';
 import CouponCondition from '@utils/lib/couponCondition';
@@ -14,10 +15,13 @@ const CouponWait = ({ couponInfo }: CouponListProps) => {
   const [isShowRoomList, setIsShowRoomList] = useState(false);
   const [isShowModal, setIsShowModal] = useState(false);
   const roomListRef = useRef<HTMLDivElement>(null);
+  const [modalType, setModalType] = useState('');
+  const navigate = useNavigate();
   const [modalContent, setModalContent] = useState({
     modalText: '',
     subText: false
   });
+  const { mutateAsync } = useCouponDelete();
 
   useOutsideClick(roomListRef, () => setIsShowRoomList(false));
 
@@ -27,6 +31,7 @@ const CouponWait = ({ couponInfo }: CouponListProps) => {
 
   const handleUpdateClick = () => {
     setIsShowModal(true);
+    setModalType('update');
     setModalContent({
       modalText: `"${couponInfo.title}"을 수정하시겠습니까?`,
       subText: false
@@ -35,16 +40,24 @@ const CouponWait = ({ couponInfo }: CouponListProps) => {
 
   const handleDeleteClick = () => {
     setIsShowModal(true);
+    setModalType('delete');
     setModalContent({
       modalText: `"${couponInfo.title}"을 삭제하시겠습니까?`,
       subText: true
     });
   };
 
+  // 모달 확인 버튼에 대한 동작
   const handleModalConfirm = () => {
     setIsShowModal(false);
+    if (modalType === 'delete') {
+      mutateAsync({ coupon_number: couponInfo.coupon_number });
+    } else if (modalType === 'update') {
+      navigate(`/coupons/register/?couponNumber=${couponInfo.coupon_number}`);
+    }
   };
 
+  // 모달 취소 버튼에 대한 동작
   const handleModalClose = () => {
     setIsShowModal(false);
   };
