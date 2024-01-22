@@ -23,10 +23,13 @@ export type InputButtonProps = {
   type: string;
   id: string;
   name: string;
+  value: string;
+  isChecked: boolean;
   buttonName: string;
   state?: number;
   currentInput?: number;
   onButtonClick?: React.Dispatch<React.SetStateAction<number>>;
+  onButtonChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 };
 
 // InputAccordion

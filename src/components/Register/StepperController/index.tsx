@@ -24,6 +24,8 @@ const StepperController = ({
 
     if (currentStep === 0) {
       !input.title && setIsValid(prev => ({ ...prev, isTitleValid: false }));
+      !input.customerType &&
+        setIsValid(prev => ({ ...prev, isCustomerTypeValid: false }));
     }
   };
 

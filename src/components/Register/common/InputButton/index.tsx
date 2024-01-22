@@ -7,10 +7,13 @@ const InputButton = ({
   type,
   id,
   name,
+  value,
+  isChecked,
   buttonName,
   state,
   currentInput,
-  onButtonClick
+  onButtonClick,
+  onButtonChange
 }: InputButtonProps) => {
   const handleToggle = () => {
     if (state && onButtonClick) {
@@ -22,12 +25,19 @@ const InputButton = ({
     }
   };
 
+  const handleButtonChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    onButtonChange(e);
+  };
+
   return (
     <>
       <Input
-        id={id}
         type={type}
+        id={id}
         name={name}
+        value={value}
+        defaultChecked={isChecked}
+        onChange={handleButtonChange}
       />
       <Button
         htmlFor={id}

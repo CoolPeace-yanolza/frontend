@@ -28,6 +28,14 @@ const FirstStep = () => {
     }));
   };
 
+  const handleCustomerTypeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setInput({ ...input, customerType: e.target.value });
+    setIsValid(prev => ({
+      ...prev,
+      isCustomerTypeValid: true
+    }));
+  };
+
   return (
     <>
       <InputContainer title="쿠폰의 이름을 입력해주세요.">
@@ -46,21 +54,33 @@ const FirstStep = () => {
             type="radio"
             id="all"
             name="customerType"
+            value="모든 고객"
+            isChecked={input.customerType === '모든 고객'}
             buttonName="모든 고객"
+            onButtonChange={handleCustomerTypeChange}
           />
           <InputButton
             type="radio"
             id="first"
             name="customerType"
+            value="첫방문 고객"
+            isChecked={input.customerType === '첫방문 고객'}
             buttonName="첫방문 고객"
+            onButtonChange={handleCustomerTypeChange}
           />
           <InputButton
             type="radio"
             id="revisit"
             name="customerType"
+            value="재방문 고객"
+            isChecked={input.customerType === '재방문 고객'}
             buttonName="재방문 고객"
+            onButtonChange={handleCustomerTypeChange}
           />
         </ButtonWrapper>
+        {!isValid.isCustomerTypeValid && (
+          <ErrorMessage>쿠폰 제공 대상 설정은 필수입니다.</ErrorMessage>
+        )}
       </InputContainer>
       <InputContainer title="어떤 쿠폰을 제공하시겠어요?">
         <ButtonWrapper>
