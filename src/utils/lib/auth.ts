@@ -26,8 +26,14 @@ export const getInputOptions = (inputName: string, password?: string) => {
     case 'user_password':
       return {
         required: '비밀번호를 입력해주세요.',
-        minLength: 8,
-        maxLength: 20,
+        minLength: {
+          value: 8,
+          message: '비밀번호는 최소 8자 이상 입력해주세요.'
+        },
+        maxLength: {
+          value: 20,
+          message: '비밀번호는 최대 20자까지 입력해주세요.'
+        },
         pattern: {
           value: passwordRegex,
           message: '8~20자의 영문, 숫자, 특수문자를 모두 포함하여 입력해주세요.'
@@ -36,9 +42,21 @@ export const getInputOptions = (inputName: string, password?: string) => {
     case 'user_password_confirm':
       return {
         required: '비밀번호를 입력해주세요.',
+        minLength: {
+          value: 8,
+          message: '비밀번호는 최소 8자 이상 입력해주세요.'
+        },
+        maxLength: {
+          value: 20,
+          message: '비밀번호는 최대 20자까지 입력해주세요.'
+        },
+        pattern: {
+          value: passwordRegex,
+          message: '8~20자의 영문, 숫자, 특수문자를 모두 포함하여 입력해주세요.'
+        },
         validate: {
           matchPassword: (value: string) => {
-            return password !== value ? '비밀번호가 일치하지 않습니다.' : true;
+            return password === value || '비밀번호가 일치하지 않습니다';
           }
         }
       };

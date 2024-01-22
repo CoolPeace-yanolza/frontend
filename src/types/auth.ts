@@ -7,7 +7,7 @@ export type AuthInput = {
   id: string;
   placeholder: string;
   usedFor: string;
-  isInvalid: boolean;
+  isError?: boolean;
 };
 
 export type AuthInputNormal = AuthInput & {

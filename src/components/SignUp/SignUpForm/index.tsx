@@ -9,7 +9,12 @@ import {
 } from '@components/common/Auth';
 
 const SignUpForm = () => {
-  const methods = useForm();
+  const methods = useForm({
+    mode: 'all'
+  });
+  const {
+    formState: { errors }
+  } = methods;
 
   const isInvalid = true;
   const isEmailValidationVisible = false;
@@ -24,11 +29,11 @@ const SignUpForm = () => {
             id="user_name"
             placeholder="이름 입력"
             usedFor="signup"
-            isInvalid={isInvalid}
+            isError={!!errors?.user_name}
           />
-          {isInvalid && (
-            <ValidationText $isInvalid={isInvalid}>
-              이름을 입력해 주세요.
+          {errors.user_name && (
+            <ValidationText>
+              {errors?.user_name?.message?.toString()}
             </ValidationText>
           )}
         </InputLabelWrapper>
@@ -40,7 +45,7 @@ const SignUpForm = () => {
               id="user_email"
               placeholder="이메일 입력"
               usedFor="signup"
-              isInvalid={isInvalid}
+              isError={!!errors?.user_email}
             />
             <AuthButton
               size="small"
@@ -51,9 +56,14 @@ const SignUpForm = () => {
               }}
             />
           </EmailInputWrapper>
-          {isEmailValidationVisible && (
-            <ValidationText $isInvalid={!isInvalid}>
-              사용 가능한 아이디입니다.
+          {errors.user_email && (
+            <ValidationText>
+              {errors?.user_email?.message?.toString()}
+            </ValidationText>
+          )}
+          {!errors.user_email && isEmailValidationVisible && (
+            <ValidationText $isValid={!isInvalid}>
+              백엔드 응답에 따라 나타날 유효성 메세지
             </ValidationText>
           )}
         </InputLabelWrapper>
@@ -63,11 +73,11 @@ const SignUpForm = () => {
             id="user_password"
             placeholder="8-20자, 영문/숫자/특수문자 조합"
             usedFor="signup"
-            isInvalid={isInvalid}
+            isError={!!errors?.user_password}
           />
-          {isInvalid && (
-            <ValidationText $isInvalid={isInvalid}>
-              비밀번호 형식이 아닙니다.
+          {errors.user_password && (
+            <ValidationText>
+              {errors?.user_password?.message?.toString()}
             </ValidationText>
           )}
         </InputLabelWrapper>
@@ -77,11 +87,11 @@ const SignUpForm = () => {
             id="user_password_confirm"
             placeholder="다시 한번 입력해주세요."
             usedFor="signup"
-            isInvalid={isInvalid}
+            isError={!!errors?.user_password_confirm}
           />
-          {isInvalid && (
-            <ValidationText $isInvalid={isInvalid}>
-              비밀번호가 일치하지 않습니다.
+          {errors.user_password_confirm && (
+            <ValidationText>
+              {errors?.user_password_confirm?.message?.toString()}
             </ValidationText>
           )}
         </InputLabelWrapper>
@@ -131,7 +141,7 @@ const ValidationText = styled.p<SignUpInputValidation>`
   margin-top: 2px;
   margin-left: 12px;
 
-  color: ${props => (props.$isInvalid ? '#DA1E28' : '#1a2849')};
+  color: ${props => (props.$isValid ? '#1a2849' : '#DA1E28')};
   font-size: 15px;
   font-weight: 700;
   line-height: 32px;
