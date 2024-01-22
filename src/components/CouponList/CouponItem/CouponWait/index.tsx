@@ -7,11 +7,16 @@ import rightIcon from '@assets/icons/ic-couponlist-right.svg';
 import deleteIcon from '@assets/icons/ic-couponlist-delete.svg';
 import { useOutsideClick } from '@hooks/index';
 import { CouponListProps } from '@/types/couponList';
+import Modal from '@components/modal';
 
 const CouponWait = ({ couponInfo }: CouponListProps) => {
   const [isShowRoomList, setIsShowRoomList] = useState(false);
   const [isShowModal, setIsShowModal] = useState(false);
   const roomListRef = useRef<HTMLDivElement>(null);
+  const [modalContent, setModalContent] = useState({
+    modalText: '',
+    subText: false
+  });
 
   useOutsideClick(roomListRef, () => setIsShowRoomList(false));
 
@@ -21,10 +26,22 @@ const CouponWait = ({ couponInfo }: CouponListProps) => {
 
   const handleUpdateClick = () => {
     setIsShowModal(true);
+    setModalContent({
+      modalText: `"${couponInfo.title}"을 수정하시겠습니까?`,
+      subText: false
+    });
   };
 
   const handleDeleteClick = () => {
     setIsShowModal(true);
+    setModalContent({
+      modalText: `"${couponInfo.title}"을 삭제하시겠습니까?`,
+      subText: true
+    });
+  };
+
+  const handleModalConfirm = () => {
+    setIsShowModal(false);
   };
 
   return (
@@ -113,7 +130,13 @@ const CouponWait = ({ couponInfo }: CouponListProps) => {
         />
         <DeleteButton onClick={handleDeleteClick}>삭제</DeleteButton>
       </CouponModifiedWrap>
-      {isShowModal && <Modal></Modal>}
+      {isShowModal && (
+        <Modal
+          modalText={modalContent.modalText}
+          subText={modalContent.subText}
+          onConfirmClick={handleModalConfirm}
+        />
+      )}
     </CouponContainer>
   );
 };

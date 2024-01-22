@@ -9,18 +9,15 @@ export interface ModalProps {
 }
 
 const Modal = ({ modalText, subText, onConfirmClick }: ModalProps) => {
-  const [isShowModal, setIsShowModal] = useState(true);
+  const handleConfirmClick = () => {
+    onConfirmClick();
+  };
 
   const handleModalClose = () => {
-    setIsShowModal(false);
+    onConfirmClick();
   };
 
-  const handleConfirmClick = () => {
-    onConfirmClick;
-    handleModalClose();
-  };
-
-  return isShowModal ? (
+  return (
     <ModalContainer>
       <ModalWrap>
         <ModalText>{modalText}</ModalText>
@@ -33,7 +30,7 @@ const Modal = ({ modalText, subText, onConfirmClick }: ModalProps) => {
         </ButtonWrap>
       </ModalWrap>
     </ModalContainer>
-  ) : null;
+  );
 };
 
 export default Modal;
