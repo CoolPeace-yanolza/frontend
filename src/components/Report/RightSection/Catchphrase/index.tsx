@@ -9,15 +9,14 @@ const Catchphrase = () => {
     <Container>
       <Content>
         <Title>
-          {'나의 누적 쿠폰'}
-
-          {'사용량은?'}
+          <span>나의 누적 쿠폰</span>
+          <span>사용량은?</span>
         </Title>
         <Text>
-          {'연도별 쿠폰 사용 현황을'}
-
-          <span>빠르게</span>
-          {' 확인해보세요!'}
+          <span>연도별 쿠폰 사용 현황을</span>
+          <span>
+            <span>빠르게</span>확인해보세요!
+          </span>
         </Text>
         <RocketIcon
           src={rocket}
@@ -74,35 +73,50 @@ const Content = styled.div`
   ${theme.response.tablet} {
     padding: 15px 30px;
 
-    flex-direction: column;
     gap: 2px;
   }
 `;
 
 const Title = styled.p`
+  display: flex;
+  flex-direction: column;
+
   font-size: 17px;
   font-weight: 700;
-
   line-height: 144%;
 
   ${theme.response.tablet} {
     font-size: 14px;
+
+    display: flex;
+    flex-direction: row;
+    gap: 3px;
   }
 `;
 
-const Text = styled.span`
+const Text = styled.p`
+  display: flex;
+  flex-direction: column;
+
   color: #415574;
   font-size: 13px;
   font-weight: 700;
   line-height: 145%;
 
-  & > span {
+  & > span > span {
+    margin-right: 3px;
+
     display: inline;
+
     box-shadow: inset 0 -7px 0 #ffddf9;
   }
 
   ${theme.response.tablet} {
     margin-left: 2px;
+
+    display: flex;
+    flex-direction: row;
+    gap: 3px;
 
     font-size: 13px;
   }
