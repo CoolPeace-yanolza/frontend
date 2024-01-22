@@ -7,14 +7,14 @@ import toggleOffIcon from '@assets/icons/ic-couponlist-toggleOff.svg';
 import rightIcon from '@assets/icons/ic-couponlist-right.svg';
 import deleteIcon from '@assets/icons/ic-couponlist-delete.svg';
 import { CouponListProps, ToggleStyleProps } from '@/types/couponList';
-import { useOutsideClick } from '@hooks/index';
+import { useOutsideClick, useToggleChange } from '@hooks/index';
 import CouponCondition from '@utils/lib/couponCondition';
 
 const CouponStop = ({ couponInfo }: CouponListProps) => {
   const [isToggle, setIsToggle] = useState(false);
   const [isShowRoomList, setIsShowRoomList] = useState(false);
   const roomListRef = useRef<HTMLDivElement>(null);
-
+  const { mutateAsync } = useToggleChange();
   useOutsideClick(roomListRef, () => setIsShowRoomList(false));
 
   const handleRoomList = () => {
@@ -23,6 +23,10 @@ const CouponStop = ({ couponInfo }: CouponListProps) => {
 
   const handleToggle = () => {
     setIsToggle(!isToggle);
+    mutateAsync({
+      coupon_number: couponInfo.coupon_number,
+      coupon_status: '노출 ON'
+    });
   };
 
   return (

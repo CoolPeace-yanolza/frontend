@@ -52,7 +52,11 @@ export const useCouponDelete = () => {
 
 // 토글
 export const useToggleChange = () => {
+  const queryClient = useQueryClient();
   return useMutation<void, Error, CouponToggleCredential>({
-    mutationFn: couponToggleApi
+    mutationFn: couponToggleApi,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['CouponList'] });
+    }
   });
 };
