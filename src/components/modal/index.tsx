@@ -1,6 +1,5 @@
 import styled from '@emotion/styled';
 import theme from '@styles/theme';
-import { useState } from 'react';
 
 export interface ModalProps {
   modalText: string;
