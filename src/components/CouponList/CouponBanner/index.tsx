@@ -10,8 +10,8 @@ const CouponBanner = () => {
   const headerAccommodation = useRecoilValue(headerAccommodationState);
   const sigunguData = headerAccommodation.sigungu;
   const { data } = useGetCouponRanking(headerAccommodation.id);
-  console.log(sigunguData, data.first_coupon_title);
 
+  console.log(headerAccommodation.sigungu, data);
   return (
     <BannerContainer>
       <TabBanner>
@@ -22,9 +22,8 @@ const CouponBanner = () => {
         <div>
           <TabBannerTitle>이번 달 우리 지역 인기 쿠폰</TabBannerTitle>
           <TabBannerContent>
-            {sigunguData}구에서 가장 많이 사용된 쿠폰은?
-            {data.first_coupon_title}
-            할인쿠폰 이에요!
+            {sigunguData}에서 가장 많이 사용된 쿠폰은?
+            <span>{data.first_coupon_title}쿠폰</span>이에요!
           </TabBannerContent>
         </div>
       </TabBanner>
@@ -56,9 +55,16 @@ const TabBanner = styled.div`
 const TabBannerTitle = styled.div`
   font-size: 12px;
   font-style: normal;
+  font-weight: 500;
   margin-bottom: 6px;
 `;
 const TabBannerContent = styled.div`
   font-size: 17px;
   font-style: normal;
+  font-weight: 500;
+
+  span {
+    margin: 0px 5px;
+    border-bottom: 1px solid;
+  }
 `;

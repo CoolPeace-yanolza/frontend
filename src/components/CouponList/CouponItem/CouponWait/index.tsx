@@ -10,13 +10,22 @@ import { CouponListProps } from '@/types/couponList';
 
 const CouponWait = ({ couponInfo }: CouponListProps) => {
   const [isShowRoomList, setIsShowRoomList] = useState(false);
+  const [isShowModal, setIsShowModal] = useState(false);
   const roomListRef = useRef<HTMLDivElement>(null);
+
+  useOutsideClick(roomListRef, () => setIsShowRoomList(false));
 
   const handleRoomList = () => {
     setIsShowRoomList(!isShowRoomList);
   };
 
-  useOutsideClick(roomListRef, () => setIsShowRoomList(false));
+  const handleUpdateClick = () => {
+    setIsShowModal(true);
+  };
+
+  const handleDeleteClick = () => {
+    setIsShowModal(true);
+  };
 
   return (
     <CouponContainer>
@@ -97,13 +106,14 @@ const CouponWait = ({ couponInfo }: CouponListProps) => {
         </ExposeDateWrap>
       </DateContainer>
       <CouponModifiedWrap>
-        <div>수정</div>
+        <UpdateButton onClick={handleUpdateClick}>수정</UpdateButton>
         <img
           src={centerIcon}
           alt="분리 선 이미지"
         />
-        <div>삭제</div>
+        <DeleteButton onClick={handleDeleteClick}>삭제</DeleteButton>
       </CouponModifiedWrap>
+      {isShowModal && <Modal></Modal>}
     </CouponContainer>
   );
 };
@@ -284,10 +294,14 @@ const CouponModifiedWrap = styled.div`
 
   color: #757676;
   font-size: 11px;
+`;
 
-  div {
-    cursor: pointer;
-  }
+const UpdateButton = styled.div`
+  cursor: pointer;
+`;
+
+const DeleteButton = styled.div`
+  cursor: pointer;
 `;
 
 const ContentRoom = styled.div`
