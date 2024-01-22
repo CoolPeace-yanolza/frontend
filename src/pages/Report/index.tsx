@@ -6,6 +6,7 @@ import styled from '@emotion/styled';
 import { LeftSection, RightSection } from '@components/Report';
 import ErrorFallback from '@components/Report/LeftSection/index.error';
 import Loading from '@components/Report/LeftSection/index.loading';
+import theme from '@styles/theme';
 
 const Report = () => {
   const { reset } = useQueryErrorResetBoundary();
@@ -32,4 +33,10 @@ const Container = styled.div`
 
   display: flex;
   gap: 25px;
+
+  background-color: white;
+
+  ${theme.response.tablet} {
+    flex-direction: column-reverse;
+  }
 `;

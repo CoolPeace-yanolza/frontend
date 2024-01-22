@@ -2,6 +2,7 @@ import styled from '@emotion/styled';
 import { useNavigate, useLocation } from 'react-router-dom';
 
 import { NavigationPath } from '@/types/dashboardHeader';
+import theme from '@styles/theme';
 
 const DashboardHeader = () => {
   const navigate = useNavigate();
@@ -42,6 +43,10 @@ const Container = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
+
+  ${theme.response.tablet} {
+    display: none;
+  }
 `;
 
 const MenuContainer = styled.div`

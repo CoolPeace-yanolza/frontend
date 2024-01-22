@@ -2,6 +2,7 @@ import { keyframes } from '@emotion/react';
 import styled from '@emotion/styled';
 
 import rocket from '@assets/icons/ic-catchphrase-rocket.svg';
+import theme from '@styles/theme';
 
 const Catchphrase = () => {
   return (
@@ -9,12 +10,12 @@ const Catchphrase = () => {
       <Content>
         <Title>
           {'나의 누적 쿠폰'}
-          <br />
+
           {'사용량은?'}
         </Title>
         <Text>
           {'연도별 쿠폰 사용 현황을'}
-          <br />
+
           <span>빠르게</span>
           {' 확인해보세요!'}
         </Text>
@@ -50,6 +51,15 @@ const Container = styled.div`
 
   background-color: white;
   box-shadow: 2px 2px 3px 0px rgba(0, 0, 0, 0.25);
+
+  ${theme.response.tablet} {
+    width: 90%;
+    height: auto;
+
+    border-radius: 10px 30px 0px 30px;
+
+    box-shadow: 1px 1px 1.5px 0px rgba(0, 0, 0, 0.25);
+  }
 `;
 
 const Content = styled.div`
@@ -60,6 +70,13 @@ const Content = styled.div`
   display: flex;
   flex-direction: column;
   gap: 16px;
+
+  ${theme.response.tablet} {
+    padding: 15px 30px;
+
+    flex-direction: column;
+    gap: 2px;
+  }
 `;
 
 const Title = styled.p`
@@ -67,6 +84,10 @@ const Title = styled.p`
   font-weight: 700;
 
   line-height: 144%;
+
+  ${theme.response.tablet} {
+    font-size: 14px;
+  }
 `;
 
 const Text = styled.span`
@@ -79,16 +100,27 @@ const Text = styled.span`
     display: inline;
     box-shadow: inset 0 -7px 0 #ffddf9;
   }
+
+  ${theme.response.tablet} {
+    margin-left: 2px;
+
+    font-size: 13px;
+  }
 `;
 
 const RocketIcon = styled.img`
   position: absolute;
 
   right: 0;
-  bottom: -50px;
+  bottom: -20px;
 
   width: 120px;
   max-height: 120px;
 
   animation: ${rocketRising} 1s;
+
+  ${theme.response.tablet} {
+    width: 65px;
+    max-height: 65px;
+  }
 `;
