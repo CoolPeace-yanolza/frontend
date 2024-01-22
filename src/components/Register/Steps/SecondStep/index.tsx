@@ -48,6 +48,14 @@ const SecondStep = () => {
     setInput(prev => ({ ...prev, severalNights: !prev.severalNights }));
   };
 
+  const handleIsAllRoomChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setInput({ ...input, isAllRoom: e.target.value });
+    setIsValid(prev => ({
+      ...prev,
+      isAllRoomValid: true
+    }));
+  };
+
   return (
     <>
       {isOpen &&
@@ -81,7 +89,7 @@ const SecondStep = () => {
             buttonName="숙박"
             state={1}
             currentInput={roomType}
-            onButtonClick={setRoomType}
+            setState={setRoomType}
             onButtonChange={handleRoomTypeChange}
           />
         </ButtonWrapper>
@@ -107,17 +115,22 @@ const SecondStep = () => {
             type="radio"
             id="true"
             name="toAllRoom"
+            value="true"
+            isChecked={input.customerType === 'true'}
             buttonName="모든 객실"
             state={1}
-            onButtonClick={setToAllRoom}
+            setState={setToAllRoom}
+            onButtonChange={handleIsAllRoomChange}
           />
           <RoomSelectButton
             type="radio"
             id="false"
             name="toAllRoom"
+            value="false"
             buttonName="선택 객실"
             rooms={rooms.length}
-            onButtonClick={setIsOpen}
+            setState={setIsOpen}
+            onButtonChange={handleIsAllRoomChange}
           />
         </ButtonWrapper>
         <InputWrapper
@@ -128,6 +141,9 @@ const SecondStep = () => {
             <RoomList rooms={rooms} />
           </ContentWrapper>
         </InputWrapper>
+        {!isValid.isAllRoomValid && (
+          <ErrorMessage>쿠폰 적용 객실 선택은 필수입니다.</ErrorMessage>
+        )}
       </InputContainer>
     </>
   );

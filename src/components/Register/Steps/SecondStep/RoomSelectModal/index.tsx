@@ -1,4 +1,5 @@
 import { useState, useRef } from 'react';
+import { useRecoilState } from 'recoil';
 import styled from '@emotion/styled';
 
 import { Backdrop } from '@components/common';
@@ -15,6 +16,7 @@ import filterUnchecked from '@assets/icons/ic-register-filter-unchecked.svg';
 import listChecked from '@assets/icons/ic-register-checked.svg';
 import listUnchecked from '@assets/icons/ic-register-unchecked.svg';
 import { sliceName } from '@utils/index';
+import { registerInputState } from '@recoil/index';
 
 const list = [
   {
@@ -56,6 +58,8 @@ const RoomSelectModal = ({
   setRooms,
   onButtonClick
 }: RoomSelectModalProps) => {
+  const [input, setInput] = useRecoilState(registerInputState);
+
   const [selectedRooms, setSelectedRooms] = useState([...rooms]);
   const [sortedRooms, setSortedRooms] = useState([...list]);
   const [isSortedByName, setIsSortedByName] = useState(false);
@@ -65,8 +69,13 @@ const RoomSelectModal = ({
   setToAllRoom(value);
 
   const handleClose = () => {
-    if (!rooms) {
+    if (!rooms.length) {
       setToAllRoom(0);
+      setInput({ ...input, isAllRoom: '' });
+
+      const falseRadioButton =
+        document.querySelector<HTMLInputElement>('#false')!;
+      falseRadioButton.checked = false;
     }
     onButtonClick(false);
   };

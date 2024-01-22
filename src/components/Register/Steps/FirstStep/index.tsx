@@ -86,8 +86,6 @@ const FirstStep = () => {
   const handleMaximumDiscountChange = (
     e: React.ChangeEvent<HTMLInputElement>
   ) => {
-    console.log(`maximumDiscount: ${input.maximumDiscount}`);
-    console.log(`isMaximumDiscountValid: ${isValid.isMaximumDiscountValid}`);
     setInput({ ...input, maximumDiscount: e.target.value });
     setIsValid(prev => ({
       ...prev,
@@ -153,7 +151,7 @@ const FirstStep = () => {
             isChecked={input.customerType === '정액 할인'}
             buttonName="정액 할인"
             state={1}
-            onButtonClick={setCurrentInput}
+            setState={setCurrentInput}
             onButtonChange={handleDiscountTypeChange}
           />
           <InputButton
@@ -164,7 +162,7 @@ const FirstStep = () => {
             isChecked={input.customerType === '정률 할인'}
             buttonName="정률 할인"
             state={2}
-            onButtonClick={setCurrentInput}
+            setState={setCurrentInput}
             onButtonChange={handleDiscountTypeChange}
           />
         </ButtonWrapper>

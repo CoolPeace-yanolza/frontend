@@ -12,21 +12,23 @@ const InputButton = ({
   buttonName,
   state,
   currentInput,
-  onButtonClick,
+  setState,
   onButtonChange
 }: InputButtonProps) => {
   const handleToggle = () => {
-    if (state && onButtonClick) {
+    if (state && setState) {
       if (currentInput) {
-        state === currentInput ? onButtonClick(0) : onButtonClick(state);
+        state === currentInput ? setState(0) : setState(state);
       } else {
-        onButtonClick(state);
+        setState(state);
       }
     }
   };
 
   const handleButtonChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    onButtonChange(e);
+    if (onButtonChange) {
+      onButtonChange(e);
+    }
   };
 
   return (

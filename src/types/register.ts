@@ -28,8 +28,9 @@ export type InputButtonProps = {
   buttonName: string;
   state?: number;
   currentInput?: number;
-  onButtonClick?: React.Dispatch<React.SetStateAction<number>>;
-  onButtonChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  setState?: React.Dispatch<React.SetStateAction<number>>;
+  // onButtonClick?: React.Dispatch<React.SetStateAction<number>>;
+  onButtonChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 };
 
 // InputAccordion
@@ -164,9 +165,11 @@ export type RoomSelectButtonProps = {
   type: string;
   id: string;
   name: string;
+  value: string;
   buttonName: string;
   rooms: number;
-  onButtonClick: React.Dispatch<React.SetStateAction<boolean>>;
+  setState: React.Dispatch<React.SetStateAction<boolean>>;
+  onButtonChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 };
 
 // RoomList
@@ -192,7 +195,7 @@ export type registerInputAtom = {
   maximumDiscount: string;
   roomType: string[];
   severalNights: boolean;
-  isAllRoom: undefined | boolean;
+  isAllRoom: string;
   rooms?: number[];
   minimumPrice?: undefined | number;
   day?: string;

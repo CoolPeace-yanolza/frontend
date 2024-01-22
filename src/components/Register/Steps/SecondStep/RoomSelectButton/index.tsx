@@ -7,21 +7,29 @@ const RoomSelectButton = ({
   type,
   id,
   name,
+  value,
   buttonName,
   rooms,
-  onButtonClick
+  setState,
+  onButtonChange
 }: RoomSelectButtonProps) => {
   const handleModal = () => {
-    onButtonClick(true);
+    setState(true);
+  };
+
+  const handleButtonChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    onButtonChange(e);
   };
 
   return (
     <>
       <Input
-        id={id}
         type={type}
+        id={id}
         name={name}
-        checked={rooms ? true : false}
+        value={value}
+        defaultChecked={rooms ? true : false}
+        onChange={handleButtonChange}
       />
       <Button
         htmlFor={id}
