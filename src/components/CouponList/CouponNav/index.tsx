@@ -63,7 +63,7 @@ const CouponNav = () => {
   // };
 
   const { data: coupons } = useGetCouponList(
-    headerAccommodation.accommodationId,
+    headerAccommodation.id,
     resisterDateClick !== '1년' ? resisterDateClick : undefined,
     categoryTab !== '전체' ? categoryTab : undefined,
     searchAPI
@@ -79,12 +79,7 @@ const CouponNav = () => {
 
   useEffect(() => {
     setGlobalCoupons(coupons);
-  }, [
-    headerAccommodation.accommodationId,
-    resisterDateClick,
-    categoryTab,
-    searchAPI
-  ]);
+  }, [headerAccommodation.id, resisterDateClick, categoryTab, searchAPI]);
 
   return (
     <TabContainer>

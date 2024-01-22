@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import styled from '@emotion/styled';
 
 import { InputValidation } from '@/types/login';
@@ -13,6 +13,7 @@ import { setCookies } from '@utils/lib/cookies';
 
 const LoginForm = () => {
   const navigate = useNavigate();
+  const { state } = useLocation();
 
   // HACK : 추후 useState로 입력 데이터 관리할 예쩡
   const formData: LoginData = {
@@ -37,6 +38,12 @@ const LoginForm = () => {
     setCookies('userEmail', response.email, response.expires_in);
     setCookies('accessToken', response.access_token, response.expires_in);
     setCookies('refreshToken', response.refresh_token, response.expires_in);
+
+    if (state) {
+      navigate(state);
+    } else {
+      navigate('/');
+    }
   };
 
   return (
