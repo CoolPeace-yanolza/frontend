@@ -18,9 +18,12 @@ export const getCouponList = async (
     status,
     title
   };
-  const response = await instance.get(`/v1/coupons/${accommodationId}`, {
-    params
-  });
+  const response = await instance.get(
+    `/v1/accommodations/${accommodationId}/coupons`,
+    {
+      params
+    }
+  );
   return response.data;
 };
 
