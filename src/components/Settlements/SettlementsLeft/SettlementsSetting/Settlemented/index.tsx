@@ -7,10 +7,11 @@ import * as XLSX from 'xlsx';
 
 import SettlementsTable from './SettlementsTable';
 import SettlementsPagination from './SettlementsPagination';
-import { settlementsDateState, settlementDataState, settlementDataState2 } from '@recoil/atoms/settlemented';
+import { settlementDataState2 } from '@recoil/atoms/settlemented';
 
 import getSettlements from 'src/api/lib/getSettlements';
 import { SettlementedList, SettlementedItem } from '@/types/settlements';
+import headerAccommodationState from '@recoil/atoms/headerAccommodationState';
 
 const Settlemented = () => {
 
@@ -19,6 +20,9 @@ const Settlemented = () => {
 
   const [sortedData, setSortedData] = useRecoilState(settlementDataState2);
   const [sortOrder, setSortOrder] = useState('couponDateDesc');
+  const [orderBy, setOrderBy] = useState('COUPON_USE_DATE');
+
+  const accommodation = useRecoilValue(headerAccommodationState);
 
   const sortOptions = [
     { key: 'amountDesc', text: '정산금액 많은 순', value: 'amountDesc' },
@@ -27,19 +31,37 @@ const Settlemented = () => {
     { key: 'usageCountDesc', text: '사용건 많은 순', value: 'usageCountDesc' },
   ];
 
-  const handleSortChange = (_e: React.SyntheticEvent<HTMLElement>, data: DropdownProps) => {
-    setSortOrder(data.value as string);
-  };
-
   const defaultOption = sortOptions.find(option => option.value === 'couponDateDesc');
 
-  const fetchDataFromApi = async () => {
+  const handleSortChange = (_e: React.SyntheticEvent<HTMLElement>, data: DropdownProps) => {
+    setSortOrder(data.value as string);
+    switch (data.value) {
+      case 'amountDesc':
+        setOrderBy('SUM_PRICE');
+        break;
+      case 'dateDesc':
+        setOrderBy('COMPLETE_AT');
+        break;
+      case 'couponDateDesc':
+        setOrderBy('COUPON_USE_DATE');
+        break;
+      case 'usageCountDesc':
+        setOrderBy('COUPON_COUNT');
+        break;
+      default:
+        break;
+    }
+  };
+
+  const fetchSettlemented = async () => {
   try {
     const settlementParams = {
-      accommodationId: 1,
+      accommodationId: accommodation.id,
+      // page: 2,
+      // pageSize: 10,
       start: '2000-01-01',
       end: '2024-12-31',
-      order: 'COUPON_USE_DATE',
+      order: orderBy,
     };
 
     const settlementsData: SettlementedList = await getSettlements(
@@ -50,7 +72,6 @@ const Settlemented = () => {
     );
 
     console.log('settlementsData:', settlementsData);
-    // console.log(settlementParams.pageSize);
 
     const sortedAndNumberedData =  settlementsData.map((data: SettlementedItem, index: number) => ({
       ...data,
@@ -66,13 +87,8 @@ const Settlemented = () => {
 };
 
   useEffect(() => {
-    fetchDataFromApi();
-  }, []); 
-
-  // const sortedAndNumberedData = fakeData.map((data, index) => ({
-  //   ...data,
-  //   NO: index + 1,
-  // })).sort((a, b) => new Date(a['쿠폰 적용일']).getTime() - new Date(b['쿠폰 적용일']).getTime());
+    fetchSettlemented();
+  }, [accommodation.id, sortOrder, orderBy]);
 
   const itemsPerPage = 10;
   const totalItems = sortedData.length;
@@ -92,23 +108,6 @@ const Settlemented = () => {
   const endIndex = startIndex + itemsPerPage;
   const currentData = sortedData.slice(startIndex, endIndex);
 
-  const sortData = (sortType: string, data: SettlementedItem[]) => {
-    return [...data].sort((a, b) => {
-      switch (sortType) {
-        case 'amountDesc':
-          return b.discount_price - a.discount_price;
-        case 'dateDesc':
-          return new Date(b.complete_at).getTime() - new Date(a.complete_at).getTime();
-        case 'couponDateDesc':
-          return new Date(b.coupon_use_date).getTime() - new Date(a.coupon_use_date).getTime();
-        case 'usageCountDesc':
-          return b.coupon_count - a.coupon_count;
-        default:
-          return 0;
-      }
-    });
-  };
-
   // useEffect(() => {
   //   if (startDate && endDate) {
   //     const filteredData = sortedAndNumberedData.filter((data) => {
@@ -125,10 +124,10 @@ const Settlemented = () => {
   //   }
   // }, [startDate, endDate, sortOrder]);
 
-  useEffect(() => {
-    const sorted = sortData(sortOrder, sortedData);
-    setSortedData(sorted);
-  }, [sortOrder]);
+  // useEffect(() => {
+  //   const sorted = sortData(sortOrder, sortedData);
+  //   setSortedData(sorted);
+  // }, [sortOrder]);
 
   const handleDownloadExcel = () => {
     const workBook = XLSX.utils.book_new();
@@ -139,7 +138,6 @@ const Settlemented = () => {
     XLSX.writeFile(workBook, "download.xlsx");
   };
   
-
   return (
     <Container>
       <SettlementedHeader>
