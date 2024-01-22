@@ -3,8 +3,8 @@ const emailRegex =
   /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
 const passwordRegex = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,20}$/g;
 
-export const fieldOptions = (fieldName: string, password?: string) => {
-  switch (fieldName) {
+export const getInputOptions = (inputName: string, password?: string) => {
+  switch (inputName) {
     case 'user_name':
       return {
         required: '이름을 입력해주세요.',

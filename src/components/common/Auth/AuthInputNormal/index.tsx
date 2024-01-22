@@ -5,7 +5,7 @@ import { AuthInputNormal, AuthInputStyleProps } from '@/types/auth';
 import closeIcon from '@assets/icons/ic-login-close.svg';
 import checkInvalid from '@assets/icons/ic-signup-check-invalid.svg';
 import checkValid from '@assets/icons/ic-signup-check-valid.svg';
-import { fieldOptions } from '@utils/lib/auth';
+import { getInputOptions } from '@utils/lib/auth';
 
 const AuthInputNormal = ({
   type,
@@ -29,7 +29,7 @@ const AuthInputNormal = ({
         placeholder={placeholder}
         $usedFor={usedFor}
         $type={type}
-        {...register(id, fieldOptions(id))}
+        {...register(id, getInputOptions(id))}
       />
       <Buttons>
         {usedFor === 'login' && !!inputValue && (

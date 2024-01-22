@@ -8,7 +8,7 @@ import eyeOff from '@assets/icons/ic-login-eye-off.svg';
 import closeIcon from '@assets/icons/ic-login-close.svg';
 import checkInvalid from '@assets/icons/ic-signup-check-invalid.svg';
 import checkValid from '@assets/icons/ic-signup-check-valid.svg';
-import { fieldOptions } from '@utils/lib/auth';
+import { getInputOptions } from '@utils/lib/auth';
 
 const AuthInputPassword = ({
   id,
@@ -33,7 +33,7 @@ const AuthInputPassword = ({
         type={showPW ? 'text' : 'password'}
         id={id}
         placeholder={placeholder}
-        {...register(id, fieldOptions(id))}
+        {...register(id, getInputOptions(id))}
       />
       <Buttons>
         {!!inputValue && (
