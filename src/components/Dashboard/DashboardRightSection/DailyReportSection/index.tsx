@@ -1,27 +1,19 @@
 import styled from '@emotion/styled';
+import { useRecoilValue } from 'recoil';
 
 import GetMatchedReport from './GetMatchedReport';
-// DATA 예시
-// {
-// 	"condition" : "등록된 쿠폰이 없음",
-//   "coupon_titles" : {}
-// }
-
-// {
-// 	"condition" : "노출중인 쿠폰이 없음",
-//   "coupon_titles" : {}
-// }
-
-// TODO : 백엔드 요청사항
-// --> condition_code : 1 ~ 4; 추가되도록 요청
-// condition_code로 조건에 맞는 화면 렌더링
+import { useGetDailyReport } from '@hooks/queries/useGetDailyReport';
+import { headerAccommodationState } from '@recoil/index';
 
 const DailyReportSection = () => {
+  const headerSelectState = useRecoilValue(headerAccommodationState);
+  const { data } = useGetDailyReport(headerSelectState.id);
+
   return (
     <Container>
       <Title>우리 숙소 일간 리포트</Title>
       <Description>사장님! 쿠폰 상태를 확인해보세요</Description>
-      {GetMatchedReport(4)}
+      {GetMatchedReport(data.condition_num)}
     </Container>
   );
 };
