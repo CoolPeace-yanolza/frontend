@@ -68,7 +68,7 @@ const Settlemented = () => {
         page: page - 1,
         pageSize: itemsPerPage,
       };
-
+  
       const response = await getSettlements(
         settlementParams.accommodationId,
         settlementParams.start,
@@ -77,14 +77,18 @@ const Settlemented = () => {
         settlementParams.page, 
         settlementParams.pageSize
       );
-
+  
       const newSettlementData = response.settlement_responses.map((data: SettlementedItem, index: number) => ({
         ...data,
         NO: (page - 1) * itemsPerPage + index + 1,
-      })).sort((a: SettlementedItem, b: SettlementedItem) => new Date(b.coupon_use_date).getTime() - new Date(a.coupon_use_date).getTime());
-
+      }));
+  
+      // if (orderBy === 'COUPON_USE_DATE') {
+      //   newSettlementData.sort((a: SettlementedItem, b: SettlementedItem) => new Date(b.coupon_use_date).getTime() - new Date(a.coupon_use_date).getTime());
+      // }
+  
       console.log('Fetching data for page:', page, 'and page size:', itemsPerPage);
-
+  
       setSortedData(newSettlementData);
       setCurrentData(newSettlementData); 
       
@@ -95,6 +99,7 @@ const Settlemented = () => {
       console.error('Error fetching settlements data:', error);
     }
   };
+  
 
   useEffect(() => {
     fetchSettlemented(currentPage);
