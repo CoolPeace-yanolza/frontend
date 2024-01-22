@@ -1,15 +1,14 @@
 import styled from '@emotion/styled';
+import { useRecoilValue } from 'recoil';
 
 import arrowIcon from '@assets/icons/ic-dashboard-arrow.svg';
 import RankingBox from './RankingBox';
+import { useGetCouponRanking } from '@hooks/queries/useGetCouponRanking';
+import { headerAccommodationState } from '@recoil/index';
 
 const LocalTop3Coupons = () => {
-  //HACK: API 응답 예시
-  const DummyData = {
-    first_coupon_title: '재방문고객 20%할인',
-    second_coupon_title: '첫방문고객 15000',
-    third_coupon_title: '모든고객 10000'
-  };
+  const headerSelectState = useRecoilValue(headerAccommodationState);
+  const { data } = useGetCouponRanking(headerSelectState.id);
 
   return (
     <Container>
@@ -17,15 +16,15 @@ const LocalTop3Coupons = () => {
         <RankingSection>
           <RankingBox
             rank={1}
-            children={DummyData.first_coupon_title}
+            children={data.first_coupon_title}
           />
           <RankingBox
             rank={2}
-            children={DummyData.second_coupon_title}
+            children={data.second_coupon_title}
           />
           <RankingBox
             rank={3}
-            children={DummyData.third_coupon_title}
+            children={data.third_coupon_title}
           />
         </RankingSection>
         <InformationSection>
