@@ -32,6 +32,7 @@ const Container = styled.div`
   width: 100%;
 
   display: flex;
+  gap: 10px;
 
   background-color: white;
 
