@@ -8,6 +8,7 @@ import rightIcon from '@assets/icons/ic-couponlist-right.svg';
 import deleteIcon from '@assets/icons/ic-couponlist-delete.svg';
 import { CouponListProps, ToggleStyleProps } from '@/types/couponList';
 import { useOutsideClick } from '@hooks/index';
+import CouponCondition from '@utils/lib/couponCondition';
 
 const CouponStop = ({ couponInfo }: CouponListProps) => {
   const [isToggle, setIsToggle] = useState(false);
@@ -72,7 +73,12 @@ const CouponStop = ({ couponInfo }: CouponListProps) => {
           </ContentWrap>
           <ContentWrap>
             <ContentTitle>일정</ContentTitle>
-            <ContentValue>{couponInfo.coupon_room_type}</ContentValue>
+            <ContentValue>
+              {couponInfo.coupon_room_type},
+              <span>
+                {CouponCondition(couponInfo.coupon_use_condition_days)}
+              </span>
+            </ContentValue>
           </ContentWrap>
           <ContentWrap>
             <ContentTitle>객실</ContentTitle>
@@ -269,6 +275,10 @@ const ContentValue = styled.div`
   font-size: 11px;
   font-style: normal;
   font-weight: 400;
+
+  span {
+    margin-left: 3px;
+  }
 `;
 
 const DateContainer = styled.div`
