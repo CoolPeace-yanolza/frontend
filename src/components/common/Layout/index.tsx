@@ -37,6 +37,10 @@ const Container = styled.div`
 
   background-color: ${theme.colors.background};
   overflow: hidden;
+
+  ${theme.response.tablet} {
+    background-color: white;
+  }
 `;
 
 const Section = styled.section`

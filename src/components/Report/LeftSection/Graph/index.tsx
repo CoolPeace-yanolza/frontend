@@ -18,7 +18,8 @@ const Graph = ({ graphData }: { graphData: ReportGraphProps }) => {
         backgroundColor: '#3182F6',
         borderColor: '#3182F6',
         borderWidth: 1,
-        borderRadius: 5
+        borderRadius: 10,
+        barPercentage: 0.8
       },
       {
         label: '쿠폰 적용 매출',
@@ -26,7 +27,8 @@ const Graph = ({ graphData }: { graphData: ReportGraphProps }) => {
         backgroundColor: '#FF3478',
         borderColor: '#FF3478',
         borderWidth: 1,
-        borderRadius: 5
+        borderRadius: 10,
+        barPercentage: 0.8
       }
     ]
   };

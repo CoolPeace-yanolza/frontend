@@ -38,6 +38,7 @@ const Container = styled.section`
 
   display: flex;
   flex-direction: column;
+  justify-self: center;
   flex: 2;
 
   background-color: white;
