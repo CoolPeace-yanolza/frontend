@@ -161,6 +161,8 @@ const CouponUsage = styled.div`
 `;
 
 const MainInformation = styled.div`
+  padding-top: 1px;
+
   color: #202325;
   font-size: 19px;
   font-weight: 700;

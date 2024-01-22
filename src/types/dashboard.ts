@@ -9,6 +9,7 @@ export type GraphHeaderTag = Pick<HeaderTagStyleProps, '$active'>;
 export type MonthReportsResults = {
   statistics_year: number;
   statistics_month: number;
+  total_sales: number;
   coupon_total_sales: number;
   download_count: number;
   used_count: number;

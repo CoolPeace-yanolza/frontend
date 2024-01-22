@@ -1,12 +1,10 @@
 import { instance } from '..';
 
-const getMonthReports = async (id: number) => {
-  try {
-    const response = await instance.get(`v1/dashboards/${id}/reports/month`);
-    return response.data;
-  } catch (err) {
-    console.error(err);
-  }
+import { MonthReportsResults } from '@/types/dashboard';
+
+const getMonthReports = async (id: number): Promise<MonthReportsResults[]> => {
+  const response = await instance.get(`v1/dashboards/${id}/reports/month`);
+  return response.data;
 };
 
 export default getMonthReports;
