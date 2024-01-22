@@ -101,6 +101,10 @@ const ConfirmButton = styled.button`
   color: ${theme.colors.white};
   background: #1a2849;
   cursor: pointer;
+
+  &:hover {
+    background: #5f6980;
+  }
 `;
 const CancelButton = styled.button`
   width: 158px;
@@ -112,4 +116,8 @@ const CancelButton = styled.button`
   color: ${theme.colors.white};
   background: #b1b1b1;
   cursor: pointer;
+
+  &:hover {
+    background: #404446;
+  }
 `;

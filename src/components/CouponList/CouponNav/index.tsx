@@ -40,40 +40,10 @@ const CouponNav = () => {
     setSearchText('');
   };
 
-  // recoil 숙소 ID 가져오기
-  // const fetchCoupons = async () => {
-  //   try {
-  //     const couponData = await getCouponList(
-  //       headerAccommodation.accommodationId,
-  //       resisterDateClick !== '1년' ? resisterDateClick : undefined,
-  //       categoryTab !== '전체' ? categoryTab : undefined,
-  //       searchText
-  //     );
-  //     setGlobalCoupons(couponData);
-
-  //     console.log(
-  //       '검색어, 등록일, 카테고리:',
-  //       searchText,
-  //       resisterDateClick,
-  //       categoryTab
-  //     );
-  //   } catch (error) {
-  //     console.log('쿠폰 조회 api 에러 ', error);
-  //   }
-  // };
-
   const { data: coupons } = useGetCouponList(
     headerAccommodation.id,
     resisterDateClick !== '1년' ? resisterDateClick : undefined,
     categoryTab !== '전체' ? categoryTab : undefined,
-    searchAPI
-  );
-
-  console.log(
-    '검색어, 등록일, 카테고리:',
-    searchText,
-    resisterDateClick,
-    categoryTab,
     searchAPI
   );
 

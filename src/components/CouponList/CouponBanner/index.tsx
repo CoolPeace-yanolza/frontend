@@ -11,7 +11,6 @@ const CouponBanner = () => {
   const sigunguData = headerAccommodation.sigungu;
   const { data } = useGetCouponRanking(headerAccommodation.id);
 
-  console.log(headerAccommodation.sigungu, data);
   return (
     <BannerContainer>
       <TabBanner>
