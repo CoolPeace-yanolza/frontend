@@ -7,3 +7,6 @@ export {
   couponDeleteApi,
   couponToggleApi
 } from './lib/getCouponList';
+export { default as getTotalReport } from './lib/getTotalReport';
+export { default as getYearReport } from './lib/getYearReport';
+export { default as getHeaderAccommodation } from './lib/getHeaderAccommodation';
