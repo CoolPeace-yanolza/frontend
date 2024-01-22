@@ -6,16 +6,26 @@ import rightIcon from '@assets/icons/ic-couponlist-right.svg';
 import deleteIcon from '@assets/icons/ic-couponlist-delete.svg';
 import { useOutsideClick } from '@hooks/index';
 import { CouponListProps } from '@/types/couponList';
+import Modal from '@components/modal';
 
 const CouponExpired = ({ couponInfo }: CouponListProps) => {
   const [isShowRoomList, setIsShowRoomList] = useState(false);
   const roomListRef = useRef<HTMLDivElement>(null);
+  const [isShowModal, setIsShowModal] = useState(false);
+
+  useOutsideClick(roomListRef, () => setIsShowRoomList(false));
 
   const handleRoomList = () => {
     setIsShowRoomList(!isShowRoomList);
   };
 
-  useOutsideClick(roomListRef, () => setIsShowRoomList(false));
+  const handleDeleteClick = () => {
+    setIsShowModal(true);
+  };
+
+  const handleModalConfirm = () => {
+    setIsShowModal(false);
+  };
 
   return (
     <CouponContainer>
@@ -96,7 +106,14 @@ const CouponExpired = ({ couponInfo }: CouponListProps) => {
           <RegisterDateValue>{couponInfo.created_date}</RegisterDateValue>
         </ExposeDateWrap>
       </DateContainer>
-      <Delete>삭제</Delete>
+      <Delete onClick={handleDeleteClick}>삭제</Delete>
+      {isShowModal && (
+        <Modal
+          modalText={`"${couponInfo.title}"을 삭제하시겠습니까?`}
+          subText={true}
+          onConfirmClick={handleModalConfirm}
+        />
+      )}
     </CouponContainer>
   );
 };
