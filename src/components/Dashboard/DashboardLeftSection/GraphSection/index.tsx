@@ -7,7 +7,9 @@ import { DashboardHeader } from '@components/common';
 const GraphContainer = React.lazy(() => import('./GraphContainer'));
 import GraphContainerErrorFallback from './GraphContainer/index.error';
 import GraphContainerLoading from './GraphContainer/index.loading';
-import DownloadReport from './DownloadReport';
+const DownloadReport = React.lazy(() => import('./DownloadReport'));
+import DownloadReportErrorFallback from './DownloadReport/index.error';
+import DownloadReportLoading from './DownloadReport/index.loading';
 
 const GraphSection = () => {
   const { reset } = useQueryErrorResetBoundary();
@@ -27,7 +29,14 @@ const GraphSection = () => {
           </ErrorBoundary>
         </LeftSection>
         <RightSection>
-          <DownloadReport />
+          <ErrorBoundary
+            onReset={reset}
+            fallbackRender={DownloadReportErrorFallback}
+          >
+            <Suspense fallback={<DownloadReportLoading />}>
+              <DownloadReport />
+            </Suspense>
+          </ErrorBoundary>
         </RightSection>
       </InnerContainer>
     </Container>

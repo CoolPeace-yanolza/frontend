@@ -1,12 +1,18 @@
 import styled from '@emotion/styled';
+import { useRecoilValue } from 'recoil';
 
 import CouponCounter from './CouponCounter';
 import CouponRate from './CouponRate';
 import titleIcon from '@assets/icons/ic-dashboard-downloadReport.svg';
 import reloadIcon from '@assets/icons/ic-dashboard-reload.svg';
+import { headerAccommodationState } from '@recoil/index';
+import { useGetMonthReports } from '@hooks/queries/useGetMonthReports';
 
-//HACK : 해당 컴포넌트에서 서버상태값 전달
 const DownloadReport = () => {
+  const headerSelectedState = useRecoilValue(headerAccommodationState);
+  const { data } = useGetMonthReports(headerSelectedState.id);
+  const lastestData = data[data.length - 1];
+
   return (
     <Container>
       <Header>
@@ -23,15 +29,15 @@ const DownloadReport = () => {
         <CouponCounterSection>
           <CouponCounter
             type="download"
-            result={400}
+            result={lastestData.download_count}
           />
           <CouponCounter
             type="used"
-            result={200}
+            result={lastestData.used_count}
           />
         </CouponCounterSection>
         <CouponRateSection>
-          <CouponRate result={10} />
+          <CouponRate result={lastestData.conversion_rate * 0.1} />
         </CouponRateSection>
       </InnerContainer>
     </Container>
