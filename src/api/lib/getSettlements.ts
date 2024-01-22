@@ -5,7 +5,9 @@ const getSettlements = async (
   accommodationId: number,
   start?: string,
   end?: string,
-  order?: string
+  order?: string,
+  page?: number,
+  pageSize?: number 
 ): Promise<SettlementedList> => {
     
   // 유효성 확인 및 기본값 설정
@@ -18,6 +20,8 @@ const getSettlements = async (
     ...(validStart && { start: validStart }),
     ...(validEnd && { end: validEnd }),
     ...(validOrder && { order: validOrder }),
+    ...(page && { page: page }), 
+    ...(pageSize && { pageSize: pageSize }) 
   };
 
   try {
@@ -27,7 +31,6 @@ const getSettlements = async (
 
     console.log(response);
     console.log(response.data);
-    console.log('Total data count:', response.data.total);
 
 
     return response.data;

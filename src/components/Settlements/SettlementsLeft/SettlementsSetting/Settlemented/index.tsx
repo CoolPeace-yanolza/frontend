@@ -21,6 +21,7 @@ const Settlemented = () => {
   const [sortedData, setSortedData] = useRecoilState(settlementDataState2);
   const [sortOrder, setSortOrder] = useState('couponDateDesc');
   const [orderBy, setOrderBy] = useState('COUPON_USE_DATE');
+  const [currentData, setCurrentData] = useState<SettlementedItem[]>([]);
 
   const [currentPage, setCurrentPage] = useState<number>(1);
 
@@ -64,7 +65,7 @@ const Settlemented = () => {
         start: '2000-01-01',
         end: '2024-12-31',
         order: orderBy,
-        page: page,
+        page: page - 1,
         pageSize: itemsPerPage,
       };
 
@@ -85,6 +86,8 @@ const Settlemented = () => {
       console.log('Fetching data for page:', page, 'and page size:', itemsPerPage);
 
       setSortedData(newSettlementData);
+      setCurrentData(newSettlementData); 
+      
       
       setTotalItems(response.total_settlement_count);
       setTotalPages(response.total_page_count);
@@ -106,8 +109,6 @@ const Settlemented = () => {
   const [totalPages, setTotalPages] = useState<number>(0);
 
   const startIndex = (currentPage - 1) * itemsPerPage;
-  const endIndex = startIndex + itemsPerPage;
-  const currentData = sortedData.slice(startIndex, endIndex);
 
   const calculatePageStartNumber = (currentPage: number) => {
     return totalItems - (currentPage - 1) * itemsPerPage;
