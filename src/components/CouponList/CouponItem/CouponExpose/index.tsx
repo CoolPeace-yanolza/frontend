@@ -18,7 +18,11 @@ const CouponExpose = ({ couponInfo }: CouponListProps) => {
 
   const handleToggle = () => {
     setIsToggle(!isToggle);
-    mutateAsync({
+    toggleUpdate();
+  };
+
+  const toggleUpdate = async () => {
+    await mutateAsync({
       coupon_number: couponInfo.coupon_number,
       coupon_status: '노출 OFF'
     });

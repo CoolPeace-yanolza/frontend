@@ -24,33 +24,33 @@ const CouponMain = () => {
 
   return (
     <MainContainer>
-      {coupons?.content.map((coupon, index) => {
+      {coupons?.content?.map(coupon => {
         switch (coupon.coupon_status) {
           case '노출 ON':
             return (
               <CouponExpose
-                key={index}
+                key={coupon.coupon_number}
                 couponInfo={coupon}
               />
             );
           case '노출 OFF':
             return (
               <CouponStop
-                key={index}
+                key={coupon.coupon_number}
                 couponInfo={coupon}
               />
             );
           case '노출 대기중':
             return (
               <CouponWait
-                key={index}
+                key={coupon.coupon_number}
                 couponInfo={coupon}
               />
             );
           case '노출 기간 만료':
             return (
               <CouponExpired
-                key={index}
+                key={coupon.coupon_number}
                 couponInfo={coupon}
               />
             );
