@@ -13,18 +13,22 @@ import { postLogin } from 'src/api';
 import { setCookies } from '@utils/lib/cookies';
 
 const LoginForm = () => {
-  const methods = useForm();
   const navigate = useNavigate();
   const { state } = useLocation();
 
-  // HACK : 추후 useState로 입력 데이터 관리할 예쩡
+  const methods = useForm({
+    mode: 'onBlur'
+  });
+  const {
+    formState: { errors, isValid }
+  } = methods;
+  const isError = !!errors?.user_id || !!errors?.user_password ? true : false;
+
+  // HACK : 추후 react-hook-form으로 입력 데이터 관리 예정
   const formData: LoginData = {
     email: 'juhwanTest@gmail.com',
     password: 'juhwanTest'
   };
-
-  // HACK: 유효성 검사 기능 구현 후 유효성 메세지 노출 여부 결정
-  const isInvalid = true;
 
   const movetoSignUp = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
@@ -51,31 +55,37 @@ const LoginForm = () => {
   return (
     <FormProvider {...methods}>
       <form>
-        <Inputs $isInvalid={isInvalid}>
+        <Inputs $isValid={!isError}>
           <AuthInputNormal
             type="email"
-            id="user_email"
+            id="user_id"
             placeholder="이메일 입력"
             usedFor="login"
-            isInvalid={isInvalid}
+            isError={!!errors?.user_id}
           />
           <AuthInputPassword
             id="user_password"
-            placeholder="8-20자, 영문/숫자/특수문자 조합"
+            placeholder="비밀번호 입력"
             usedFor="login"
-            isInvalid={isInvalid}
+            isError={!!errors?.user_password}
           />
         </Inputs>
-        {isInvalid && (
+        {errors.user_id && (
           <ValidationText>
-            <ValidationBoldText>아이디</ValidationBoldText>를 입력해 주세요
+            {errors?.user_id?.message?.toString()}
           </ValidationText>
         )}
-        <Buttons $isInvalid={isInvalid}>
+        {!errors.user_id && errors.user_password && (
+          <ValidationText>
+            {errors?.user_password?.message?.toString()}
+          </ValidationText>
+        )}
+        <Buttons $isValid={!isError}>
           <AuthButton
             size="large"
             variant="navy"
             text="로그인"
+            disabled={!isValid}
             buttonFunc={handleLoginSubmit}
           />
           <AuthButton
@@ -93,7 +103,7 @@ const LoginForm = () => {
 export default LoginForm;
 
 const Inputs = styled.div<InputValidation>`
-  margin-bottom: ${props => (props.$isInvalid ? '10px' : '65px')};
+  margin-bottom: ${props => (props.$isValid ? '65px' : '10px')};
 
   display: flex;
   flex-direction: column;
@@ -105,12 +115,8 @@ const ValidationText = styled.p`
 
   color: #da1e28;
   font-size: 15px;
-  font-weight: 500;
-  line-height: 32px;
-`;
-
-const ValidationBoldText = styled.span`
   font-weight: 700;
+  line-height: 32px;
 `;
 
 const Buttons = styled.div<InputValidation>`
@@ -118,5 +124,5 @@ const Buttons = styled.div<InputValidation>`
   flex-direction: column;
   gap: 13px;
 
-  ${props => props.$isInvalid && 'margin-top: 23px'};
+  margin-top: ${props => (props.$isValid ? 0 : '23px')};
 `;
