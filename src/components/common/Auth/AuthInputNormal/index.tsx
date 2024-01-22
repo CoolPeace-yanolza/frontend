@@ -12,11 +12,15 @@ const AuthInputNormal = ({
   id,
   placeholder,
   usedFor,
-  isInvalid
+  isError
 }: AuthInputNormal) => {
-  const { register, watch, resetField } = useFormContext();
+  const { register, watch, resetField, getFieldState, formState } =
+    useFormContext();
   const inputValue = watch(id);
   const handleReset = () => resetField(id);
+
+  const isInputTouched = getFieldState(id, formState).isTouched;
+  const isValid = isInputTouched ? !isError : false;
 
   return (
     <Container
@@ -44,7 +48,7 @@ const AuthInputNormal = ({
           </Button>
         )}
         {usedFor === 'signup' && type !== 'email' && (
-          <Icon src={isInvalid ? checkInvalid : checkValid} />
+          <Icon src={isValid ? checkValid : checkInvalid} />
         )}
       </Buttons>
     </Container>
