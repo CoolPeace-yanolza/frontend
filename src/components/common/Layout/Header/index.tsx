@@ -45,7 +45,7 @@ const Container = styled.header`
   align-items: center;
 
   background-color: ${theme.colors.white};
-  z-index: 90;
+  z-index: 80;
 
   ${theme.response.tablet} {
     height: 65px;
