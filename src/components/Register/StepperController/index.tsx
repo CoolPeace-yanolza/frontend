@@ -1,11 +1,16 @@
+import { useRecoilValue, useSetRecoilState } from 'recoil';
 import styled from '@emotion/styled';
 
 import { StepperControllerProps } from '@/types/register';
+import { registerInputState, registerValidState } from '@recoil/index';
 
 const StepperController = ({
   currentStep,
   onButtonClick
 }: StepperControllerProps) => {
+  const input = useRecoilValue(registerInputState);
+  const setIsValid = useSetRecoilState(registerValidState);
+
   const handlePreviousButton = () => {
     if (currentStep > 0) {
       onButtonClick(prev => prev - 1);
@@ -15,6 +20,10 @@ const StepperController = ({
   const handleNextButton = () => {
     if (currentStep < 3) {
       onButtonClick(prev => prev + 1);
+    }
+
+    if (currentStep === 0) {
+      !input.title && setIsValid(prev => ({ ...prev, isTitleValid: false }));
     }
   };
 

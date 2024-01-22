@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useRecoilState } from 'recoil';
 import styled from '@emotion/styled';
 
 import {
@@ -6,18 +7,38 @@ import {
   InputButton,
   InputField,
   InputCheckBox,
-  InputWrapper
+  InputWrapper,
+  ErrorMessage
 } from '@components/Register/common';
 import { LimitWrapperStyleProps } from '@/types/register';
+import { registerInputState, registerValidState } from '@recoil/index';
 
 const FirstStep = () => {
+  const [input, setInput] = useRecoilState(registerInputState);
+  const [isValid, setIsValid] = useRecoilState(registerValidState);
+
   const [currentInput, setCurrentInput] = useState(0);
   const [isLimited, setIsLimited] = useState(false);
+
+  const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setInput({ ...input, title: e.target.value });
+    setIsValid(prev => ({
+      ...prev,
+      isTitleValid: true
+    }));
+  };
 
   return (
     <>
       <InputContainer title="쿠폰의 이름을 입력해주세요.">
-        <Input placeholder="20자 내외로 입력하세요. ex) 크리스마스 이벤트 1" />
+        <Input
+          maxLength={20}
+          placeholder="20자 내외로 입력하세요. ex) 크리스마스 이벤트 1"
+          onChange={handleTitleChange}
+        />
+        {!isValid.isTitleValid && (
+          <ErrorMessage>쿠폰명 입력은 필수입니다.</ErrorMessage>
+        )}
       </InputContainer>
       <InputContainer title="누구에게 쿠폰을 제공하시겠어요?">
         <ButtonWrapper>
