@@ -8,7 +8,6 @@ import {
   CouponWait
 } from '../CouponItem';
 import couponListState from '@recoil/atoms/couponListState';
-import Modal from '@components/modal';
 
 const CouponMain = () => {
   const coupons = useRecoilValue(couponListState);
@@ -16,7 +15,6 @@ const CouponMain = () => {
 
   return (
     <MainContainer>
-      <Modal />
       {coupons?.content.map((coupon, index) => {
         switch (coupon.coupon_status) {
           case '노출 ON':
