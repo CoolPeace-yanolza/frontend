@@ -1,5 +1,8 @@
 import styled from '@emotion/styled';
+import { useRecoilValue } from 'recoil';
 
+import { useGetLocalCouponUsage } from '@hooks/queries/useGetLocalCouponUsage';
+import { headerAccommodationState } from '@recoil/index';
 import reloadIcon from '@assets/icons/ic-dashboard-reload.svg';
 import locationIcon from '@assets/icons/ic-dashboard-location.svg';
 import bigLocationIcon from '@assets/icons/ic-dashboard-bigLocation.svg';
@@ -7,6 +10,8 @@ import gpsIcon from '@assets/icons/ic-dashboard-gps.svg';
 import '@components/Dashboard/dashboardKeyframes.css';
 
 const LocalCouponUsage = () => {
+  const headerSelectedState = useRecoilValue(headerAccommodationState);
+  const { data } = useGetLocalCouponUsage(headerSelectedState.id);
   return (
     <Container>
       <Header>
@@ -17,7 +22,7 @@ const LocalCouponUsage = () => {
             src={locationIcon}
             alt="장소"
           />
-          종로구 기준
+          {data.address} 기준
         </Location>
       </Header>
       <UpdateAlarm>
@@ -38,7 +43,7 @@ const LocalCouponUsage = () => {
         <CouponUsage>
           <span>현재 내 숙소 주위의 사장님들이</span>
           <MainInformation>
-            평균 {8}종 이상의 쿠폰을 사용하고 있어요!
+            평균 {data.coupon_avg}종 이상의 쿠폰을 사용하고 있어요!
           </MainInformation>
           <BigLocationIcon
             src={bigLocationIcon}

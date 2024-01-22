@@ -67,6 +67,11 @@ export type CouponRankingResult = {
   third_coupon_title: string;
 };
 
+export type LocalCouponUsageResult = {
+  address: string;
+  coupon_avg: string;
+};
+
 // DailyReport
 
 export type DailyReportResult = {
