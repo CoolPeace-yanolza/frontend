@@ -2,6 +2,7 @@ import styled from '@emotion/styled';
 
 import { renderCouponAmount, renderCouponText } from '@utils/index';
 import { YearReportProps } from '@/types/report';
+import theme from '@styles/theme';
 
 const YearReport = ({ yearReport }: { yearReport: YearReportProps }) => {
   return (
@@ -27,6 +28,14 @@ const Container = styled.div`
   border-radius: 16px;
 
   background-color: #fafafb;
+
+  ${theme.response.tablet} {
+    margin-top: 15px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
 `;
 
 const InnerContainer = styled.div`
@@ -35,6 +44,12 @@ const InnerContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  ${theme.response.tablet} {
+    width: 100%;
+
+    padding: 0;
+  }
 `;
 
 const Contents = styled.div`
@@ -52,6 +67,15 @@ const Contents = styled.div`
   flex: 0.3;
 
   background-color: #f2f4f5;
+
+  ${theme.response.tablet} {
+    min-width: 33%;
+    min-height: 50px;
+
+    padding: 8px 6px;
+
+    background-color: #fafafb;
+  }
 `;
 
 const Text = styled.span`
@@ -59,6 +83,10 @@ const Text = styled.span`
   font-weight: 700;
 
   align-self: flex-start;
+
+  ${theme.response.tablet} {
+    font-size: 10px;
+  }
 `;
 
 const Amount = styled.span`
@@ -75,4 +103,12 @@ const Amount = styled.span`
   background-color: white;
   font-size: 20px;
   font-weight: 700;
+
+  ${theme.response.tablet} {
+    height: 20px;
+
+    border-radius: 7px;
+
+    font-size: 10px;
+  }
 `;

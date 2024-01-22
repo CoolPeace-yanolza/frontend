@@ -6,6 +6,7 @@ import { useGetYearReport } from '@hooks/index';
 import { DashboardHeader } from '@components/common';
 import YearReport from './YearReport';
 import Graph from './Graph';
+import theme from '@styles/theme';
 
 const LeftSection = () => {
   const headerSelectState = useRecoilValue(headerAccommodationState);
@@ -36,4 +37,16 @@ const Container = styled.section`
   flex: 2;
 
   background-color: white;
+
+  ${theme.response.tablet} {
+    min-width: auto;
+
+    margin: 10px 15px 20px 15px;
+    padding: 12px 15px;
+
+    justify-content: center;
+    align-items: center;
+
+    background-color: #fafafb;
+  }
 `;
