@@ -4,9 +4,13 @@ import theme from '@styles/theme';
 import { InputFieldProps, InputFieldStyleProps } from '@/types/register';
 import { inputFilter } from '@utils/index';
 
-const InputField = ({ placeholder, text }: InputFieldProps) => {
+const InputField = ({ placeholder, text, onInputChange }: InputFieldProps) => {
   const handleInput = (e: React.FormEvent<HTMLInputElement>) => {
     inputFilter(e);
+  };
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    onInputChange(e);
   };
 
   return (
@@ -16,6 +20,7 @@ const InputField = ({ placeholder, text }: InputFieldProps) => {
         {...(text !== '원' && { maxLength: 2 })}
         $text={text}
         onInput={handleInput}
+        onChange={handleInputChange}
       />
       <Text $text={text}>{text}</Text>
     </Container>

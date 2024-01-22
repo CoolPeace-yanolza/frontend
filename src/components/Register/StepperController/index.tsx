@@ -26,6 +26,31 @@ const StepperController = ({
       !input.title && setIsValid(prev => ({ ...prev, isTitleValid: false }));
       !input.customerType &&
         setIsValid(prev => ({ ...prev, isCustomerTypeValid: false }));
+      !input.discountType &&
+        setIsValid(prev => ({ ...prev, isDiscountTypeValid: false }));
+      if (input.discountType === '정액 할인') {
+        if (input.discountFlat === '' || Number(input.discountFlat) === 0) {
+          setIsValid(prev => ({ ...prev, isDiscountFlatValid: false }));
+        } else if (Number(input.discountFlat) % 1000) {
+          setIsValid(prev => ({ ...prev, isThousands: false }));
+        }
+      } else if (input.discountType === '정률 할인') {
+        if (
+          input.discountFlatRate === '' ||
+          Number(input.discountFlatRate) === 0
+        ) {
+          setIsValid(prev => ({ ...prev, isDiscountFlatRateValid: false }));
+        } else if (input.hasLimit) {
+          if (
+            input.maximumDiscount === '' ||
+            Number(input.maximumDiscount) === 0
+          ) {
+            setIsValid(prev => ({ ...prev, isMaximumDiscountValid: false }));
+          } else if (Number(input.maximumDiscount) % 1000) {
+            setIsValid(prev => ({ ...prev, isThousands: false }));
+          }
+        }
+      }
     }
   };
 

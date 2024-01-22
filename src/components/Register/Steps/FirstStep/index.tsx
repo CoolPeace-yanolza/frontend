@@ -36,6 +36,67 @@ const FirstStep = () => {
     }));
   };
 
+  const handleDiscountTypeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setInput({ ...input, discountType: e.target.value });
+    setIsValid(prev => ({
+      ...prev,
+      isDiscountTypeValid: true,
+      isDiscountFlatValid: true,
+      isDiscountFlatRateValid: true,
+      isMaximumDiscountValid: true,
+      isThousands: true
+    }));
+  };
+
+  const handleDiscountFlatChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setInput({ ...input, discountFlat: e.target.value });
+    setIsValid(prev => ({
+      ...prev,
+      isDiscountFlatValid: true,
+      isThousands: true
+    }));
+  };
+
+  const handleDiscountFlatRateChange = (
+    e: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    setInput({ ...input, discountFlatRate: e.target.value });
+    setIsValid(prev => ({
+      ...prev,
+      isDiscountFlatRateValid: true,
+      isMaximumDiscountValid: true,
+      isThousands: true
+    }));
+  };
+
+  const handleLabelChange = () => {
+    setIsLimited(prev => !prev);
+    setInput(prev => ({
+      ...prev,
+      hasLimit: !isLimited
+    }));
+    setIsValid(prev => ({
+      ...prev,
+      isDiscountFlatRateValid: true,
+      isMaximumDiscountValid: true,
+      isThousands: true
+    }));
+  };
+
+  const handleMaximumDiscountChange = (
+    e: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    console.log(`maximumDiscount: ${input.maximumDiscount}`);
+    console.log(`isMaximumDiscountValid: ${isValid.isMaximumDiscountValid}`);
+    setInput({ ...input, maximumDiscount: e.target.value });
+    setIsValid(prev => ({
+      ...prev,
+      isDiscountFlatRateValid: true,
+      isMaximumDiscountValid: true,
+      isThousands: true
+    }));
+  };
+
   return (
     <>
       <InputContainer title="쿠폰의 이름을 입력해주세요.">
@@ -88,17 +149,23 @@ const FirstStep = () => {
             type="radio"
             id="price"
             name="discountType"
+            value="정액 할인"
+            isChecked={input.customerType === '정액 할인'}
             buttonName="정액 할인"
             state={1}
             onButtonClick={setCurrentInput}
+            onButtonChange={handleDiscountTypeChange}
           />
           <InputButton
             type="radio"
             id="rate"
             name="discountType"
+            value="정률 할인"
+            isChecked={input.customerType === '정률 할인'}
             buttonName="정률 할인"
             state={2}
             onButtonClick={setCurrentInput}
+            onButtonChange={handleDiscountTypeChange}
           />
         </ButtonWrapper>
         <InputWrapper
@@ -108,6 +175,7 @@ const FirstStep = () => {
           <InputField
             placeholder="ex) 5000"
             text="원"
+            onInputChange={handleDiscountFlatChange}
           />
         </InputWrapper>
         <InputWrapper
@@ -118,11 +186,12 @@ const FirstStep = () => {
             <InputField
               placeholder="ex) 50"
               text="% 할인"
+              onInputChange={handleDiscountFlatRateChange}
             />
             <InputCheckBox
               id="discountLimit"
               text="최대 할인 한도 설정하기"
-              onCheck={setIsLimited}
+              onCheck={handleLabelChange}
             />
           </ContentWrapper>
         </InputWrapper>
@@ -134,9 +203,21 @@ const FirstStep = () => {
             <InputField
               placeholder="ex) 5000"
               text="원"
+              onInputChange={handleMaximumDiscountChange}
             />
           </InputWrapper>
         </LimitWrapper>
+        {!isValid.isDiscountTypeValid && (
+          <ErrorMessage>쿠폰 할인 설정은 필수입니다.</ErrorMessage>
+        )}
+        {(!isValid.isDiscountFlatValid ||
+          !isValid.isDiscountFlatRateValid ||
+          !isValid.isMaximumDiscountValid) && (
+          <ErrorMessage>숫자로 입력해주세요.</ErrorMessage>
+        )}
+        {!isValid.isThousands && (
+          <ErrorMessage>1,000 원 단위로 입력 가능합니다.</ErrorMessage>
+        )}
       </InputContainer>
     </>
   );

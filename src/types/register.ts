@@ -47,6 +47,7 @@ export type ButtonStyleProps = {
 export type InputFieldProps = {
   placeholder: string;
   text: string;
+  onInputChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 };
 
 export type InputFieldStyleProps = {
@@ -57,7 +58,7 @@ export type InputFieldStyleProps = {
 export type InputCheckBoxProps = {
   id: string;
   text: string;
-  onCheck?: React.Dispatch<React.SetStateAction<boolean>>;
+  onCheck?: () => void;
 };
 
 export type LabelStyleProps = {
@@ -185,7 +186,10 @@ export type registerInputAtom = {
   title: string;
   customerType: string;
   discountType: string;
-  discountValue: undefined | number;
+  discountFlat: string;
+  discountFlatRate: string;
+  hasLimit: boolean;
+  maximumDiscount: string;
   roomType: string;
   isAllRoom: undefined | boolean;
   rooms?: number[];
@@ -200,7 +204,10 @@ export type registerValidAtom = {
   isTitleValid: boolean;
   isCustomerTypeValid: boolean;
   isDiscountTypeValid: boolean;
+  isDiscountFlatValid: boolean;
+  isDiscountFlatRateValid: boolean;
   isThousands: boolean;
+  isMaximumDiscountValid: boolean;
   isRoomTypeValid: boolean;
   isAllRoomValid: boolean;
   isRoomsValid: boolean;

@@ -15,7 +15,7 @@ const InputCheckBox = ({ id, text, onCheck }: InputCheckBoxProps) => {
 
   const handleCheckBox = () => {
     if (onCheck) {
-      onCheck(prev => !prev);
+      onCheck();
     }
     setIsChecked(prev => !prev);
   };
