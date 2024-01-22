@@ -1,9 +1,7 @@
 import { FallbackProps } from 'react-error-boundary';
 import styled from '@emotion/styled';
 
-const ErrorFallback = ({ error, resetErrorBoundary }: FallbackProps) => {
-  console.log(error);
-
+const ErrorFallback = ({ resetErrorBoundary }: FallbackProps) => {
   return (
     <Container>
       <ErrorMessage>
