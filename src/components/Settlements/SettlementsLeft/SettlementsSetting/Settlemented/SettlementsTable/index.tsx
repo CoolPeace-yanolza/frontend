@@ -12,7 +12,6 @@ const SettlementsTable = ({ data, pageStartNumber }: SettlementsTableProps) => {
     'coupon_count': '사용 건수',
     'discount_price': '쿠폰 할인 금액',
     'cancel_price': '쿠폰 취소 금액',
-    'supply_price': '지원 금액',
     'sum_price': '정산 금액',
     'coupon_use_date': '쿠폰 적용일',
     'complete_at': '정산 완료일'
@@ -25,7 +24,6 @@ const SettlementsTable = ({ data, pageStartNumber }: SettlementsTableProps) => {
     'coupon_count',
     'discount_price',
     'cancel_price',
-    'supply_price',
     'sum_price',
     'coupon_use_date',
     'complete_at'

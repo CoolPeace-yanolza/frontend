@@ -28,9 +28,13 @@ export interface SettlementList {
     settlement_list: SettlementedItem[];
 }
 
-export type SettlementedList = SettlementedItem[];
-
-export interface SettlementedItem {
+export interface SettlementedList {
+    total_settlement_count: number;
+    total_page_count: number;
+    settlement_responses: SettlementedItem[];
+  }
+  
+  export interface SettlementedItem {
     NO: number;
     coupon_use_date: string;
     coupon_number: string;
@@ -38,10 +42,9 @@ export interface SettlementedItem {
     coupon_count: number;
     discount_price: number;
     cancel_price: number;
-    supply_price: number;
     sum_price: number;
     complete_at: string;
-}
+  }
 
 export interface SettlementParams {
     accommodationId: string;

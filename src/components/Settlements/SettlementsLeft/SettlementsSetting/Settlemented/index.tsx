@@ -16,13 +16,17 @@ import headerAccommodationState from '@recoil/atoms/headerAccommodationState';
 const Settlemented = () => {
 
   // const { startDate, endDate } = useRecoilValue(settlementsDateState);
-  const setSettlementData = useSetRecoilState(settlementDataState2);
+  // const setSettlementData = useSetRecoilState(settlementDataState2);
 
   const [sortedData, setSortedData] = useRecoilState(settlementDataState2);
   const [sortOrder, setSortOrder] = useState('couponDateDesc');
   const [orderBy, setOrderBy] = useState('COUPON_USE_DATE');
 
+  const [currentPage, setCurrentPage] = useState<number>(1);
+
   const accommodation = useRecoilValue(headerAccommodationState);
+
+  const itemsPerPage = 10;
 
   const sortOptions = [
     { key: 'amountDesc', text: '정산금액 많은 순', value: 'amountDesc' },
@@ -53,60 +57,61 @@ const Settlemented = () => {
     }
   };
 
-  const fetchSettlemented = async () => {
-  try {
-    const settlementParams = {
-      accommodationId: accommodation.id,
-      // page: 2,
-      // pageSize: 10,
-      start: '2000-01-01',
-      end: '2024-12-31',
-      order: orderBy,
-    };
+  const fetchSettlemented = async (page: number) => {
+    try {
+      const settlementParams = {
+        accommodationId: accommodation.id,
+        start: '2000-01-01',
+        end: '2024-12-31',
+        order: orderBy,
+        page: page,
+        pageSize: itemsPerPage,
+      };
 
-    const settlementsData: SettlementedList = await getSettlements(
-      settlementParams.accommodationId,
-      settlementParams.start,
-      settlementParams.end,
-      settlementParams.order
-    );
+      const response = await getSettlements(
+        settlementParams.accommodationId,
+        settlementParams.start,
+        settlementParams.end,
+        settlementParams.order,
+        settlementParams.page, 
+        settlementParams.pageSize
+      );
 
-    console.log('settlementsData:', settlementsData);
+      const newSettlementData = response.settlement_responses.map((data: SettlementedItem, index: number) => ({
+        ...data,
+        NO: (page - 1) * itemsPerPage + index + 1,
+      })).sort((a: SettlementedItem, b: SettlementedItem) => new Date(b.coupon_use_date).getTime() - new Date(a.coupon_use_date).getTime());
 
-    const sortedAndNumberedData =  settlementsData.map((data: SettlementedItem, index: number) => ({
-      ...data,
-      NO: index + 1,
-    })).sort((a: SettlementedItem, b: SettlementedItem) => new Date(b.coupon_use_date).getTime() - new Date(a.coupon_use_date).getTime());
-    
-    setSettlementData(sortedAndNumberedData);
-    setSortedData(sortedAndNumberedData);
-    
-  } catch (error) {
-    console.error('Error fetching settlements data:', error);
-  }
-};
+      console.log('Fetching data for page:', page, 'and page size:', itemsPerPage);
+
+      setSortedData(newSettlementData);
+      
+      setTotalItems(response.total_settlement_count);
+      setTotalPages(response.total_page_count);
+    } catch (error) {
+      console.error('Error fetching settlements data:', error);
+    }
+  };
 
   useEffect(() => {
-    fetchSettlemented();
-  }, [accommodation.id, sortOrder, orderBy]);
-
-  const itemsPerPage = 10;
-  const totalItems = sortedData.length;
-  const totalPages = Math.ceil(totalItems / itemsPerPage);
-
-  const [currentPage, setCurrentPage] = useState<number>(1);
-
-  const calculatePageStartNumber = (currentPage: number) => {
-    return totalItems - (currentPage - 1) * itemsPerPage;
-  };
+    fetchSettlemented(currentPage);
+  }, [accommodation.id, sortOrder, orderBy, currentPage]);
 
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
+    fetchSettlemented(page);
   };
+
+  const [totalItems, setTotalItems] = useState<number>(0);
+  const [totalPages, setTotalPages] = useState<number>(0);
 
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
   const currentData = sortedData.slice(startIndex, endIndex);
+
+  const calculatePageStartNumber = (currentPage: number) => {
+    return totalItems - (currentPage - 1) * itemsPerPage;
+  };
 
   // useEffect(() => {
   //   if (startDate && endDate) {

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import ReactPaginate from 'react-paginate';
 import styled from '@emotion/styled';
 
@@ -10,9 +10,17 @@ const SettlementsPagination: React.FC<SettlementsPaginationProps> = ({
   onPageChange,
   totalItems
 }) => {
+  const [internalCurrentPage, setInternalCurrentPage] = useState<number>(currentPage);
+
   useEffect(() => {
-    onPageChange(currentPage);
-  }, [currentPage, onPageChange]);
+    setInternalCurrentPage(currentPage);
+  }, [currentPage]);
+
+  const handlePageClick = (selectedItem: { selected: number }) => {
+    const selectedPage = selectedItem.selected + 1;
+    setInternalCurrentPage(selectedPage);
+    onPageChange(selectedPage);
+  };
 
   return (
     <PaginationContainer>
@@ -25,7 +33,8 @@ const SettlementsPagination: React.FC<SettlementsPaginationProps> = ({
           pageCount={totalPages}
           marginPagesDisplayed={2}
           pageRangeDisplayed={5}
-          onPageChange={(selectedItem) => onPageChange(selectedItem.selected + 1)}
+          forcePage={internalCurrentPage - 1}
+          onPageChange={handlePageClick}
           containerClassName={'pagination'}
           activeClassName={'active'}
           pageClassName={'pagination-li'}
