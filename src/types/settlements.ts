@@ -10,7 +10,7 @@ export interface SettlementItem {
     '정산 완료일': string;
 };
 
-export type SettlementsTableProps = { data: SettlementItem[], pageStartNumber: number };
+export type SettlementsTableProps = { data: SettlementedItem[], pageStartNumber: number };
 
 export interface SettlementsPaginationProps {
     currentPage: number;
@@ -23,3 +23,31 @@ export interface SettlementsPopupProps {
     isOpen: boolean;
     onClose: () => void;
 };
+
+export interface SettlementList {
+    settlement_list: SettlementedItem[];
+}
+
+export type SettlementedList = SettlementedItem[];
+
+export interface SettlementedItem {
+    NO: number;
+    coupon_use_date: string;
+    coupon_number: string;
+    coupon_name: string;
+    coupon_count: number;
+    discount_price: number;
+    cancel_price: number;
+    supply_price: number;
+    sum_price: number;
+    complete_at: string;
+}
+
+export interface SettlementParams {
+    accommodationId: string;
+    page: number;
+    pageSize: number;
+    start: string;
+    end: string;
+    order: string;
+  }

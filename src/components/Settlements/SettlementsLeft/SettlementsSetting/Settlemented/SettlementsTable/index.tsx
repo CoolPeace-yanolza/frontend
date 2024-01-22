@@ -1,28 +1,42 @@
 import styled from '@emotion/styled';
 
-import { SettlementItem, SettlementsTableProps } from '@/types/settlements';
+import { SettlementedItem, SettlementsTableProps } from '@/types/settlements';
 import settlementsFrame from '@assets/icons/settlements-data-frame.svg'; 
 
 const SettlementsTable = ({ data, pageStartNumber }: SettlementsTableProps) => {
   
-  const keys: (keyof SettlementItem)[] = [
+  const keyToLabelMap = {
+    'NO': 'NO',
+    'coupon_number': '쿠폰번호',
+    'coupon_name': '관리 쿠폰명',
+    'coupon_count': '사용 건수',
+    'discount_price': '쿠폰 할인 금액',
+    'cancel_price': '쿠폰 취소 금액',
+    'supply_price': '지원 금액',
+    'sum_price': '정산 금액',
+    'coupon_use_date': '쿠폰 적용일',
+    'complete_at': '정산 완료일'
+  };
+  
+  const keys: (keyof SettlementedItem)[] = [
     'NO',
-    '쿠폰번호',
-    '관리 쿠폰명',
-    '사용 건수',
-    '쿠폰 할인 금액',
-    '쿠폰 취소 금액',
-    '정산 금액',
-    '쿠폰 적용일',
-    '정산 완료일'
+    'coupon_number',
+    'coupon_name',
+    'coupon_count',
+    'discount_price',
+    'cancel_price',
+    'supply_price',
+    'sum_price',
+    'coupon_use_date',
+    'complete_at'
   ];
-
+  
   if (!data || data.length === 0) {
     return (
       <Container>
         <Header>
           {keys.map((key, index) => (
-            <KeyElement key={index}>{key}</KeyElement>
+            <KeyElement key={index}>{keyToLabelMap[key]}</KeyElement>
           ))}
         </Header>
         <FrameContainer>
@@ -38,7 +52,7 @@ const SettlementsTable = ({ data, pageStartNumber }: SettlementsTableProps) => {
     <Container>
       <Header>
         {keys.map((key, index) => (
-          <KeyElement key={index}>{key}</KeyElement>
+          <KeyElement key={index}>{keyToLabelMap[key]}</KeyElement>
         ))}
       </Header>
       <FrameContainer>

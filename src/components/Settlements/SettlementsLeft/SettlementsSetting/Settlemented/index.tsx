@@ -7,14 +7,17 @@ import * as XLSX from 'xlsx';
 
 import SettlementsTable from './SettlementsTable';
 import SettlementsPagination from './SettlementsPagination';
-import { settlementsDateState, settlementDataState, fakeData } from '@recoil/atoms/settlemented';
+import { settlementsDateState, settlementDataState, settlementDataState2 } from '@recoil/atoms/settlemented';
+
+import getSettlements from 'src/api/lib/getSettlements';
+import { SettlementedList, SettlementedItem } from '@/types/settlements';
 
 const Settlemented = () => {
 
-  const { startDate, endDate } = useRecoilValue(settlementsDateState);
-  const setSettlementData = useSetRecoilState(settlementDataState);
+  // const { startDate, endDate } = useRecoilValue(settlementsDateState);
+  const setSettlementData = useSetRecoilState(settlementDataState2);
 
-  const [sortedData, setSortedData] = useRecoilState(settlementDataState);
+  const [sortedData, setSortedData] = useRecoilState(settlementDataState2);
   const [sortOrder, setSortOrder] = useState('couponDateDesc');
 
   const sortOptions = [
@@ -30,10 +33,46 @@ const Settlemented = () => {
 
   const defaultOption = sortOptions.find(option => option.value === 'couponDateDesc');
 
-  const sortedAndNumberedData = fakeData.map((data, index) => ({
-    ...data,
-    NO: index + 1,
-  })).sort((a, b) => new Date(a['쿠폰 적용일']).getTime() - new Date(b['쿠폰 적용일']).getTime());
+  const fetchDataFromApi = async () => {
+  try {
+    const settlementParams = {
+      accommodationId: 1,
+      start: '2000-01-01',
+      end: '2024-12-31',
+      order: 'COUPON_USE_DATE',
+    };
+
+    const settlementsData: SettlementedList = await getSettlements(
+      settlementParams.accommodationId,
+      settlementParams.start,
+      settlementParams.end,
+      settlementParams.order
+    );
+
+    console.log('settlementsData:', settlementsData);
+    // console.log(settlementParams.pageSize);
+
+    const sortedAndNumberedData =  settlementsData.map((data: SettlementedItem, index: number) => ({
+      ...data,
+      NO: index + 1,
+    })).sort((a: SettlementedItem, b: SettlementedItem) => new Date(b.coupon_use_date).getTime() - new Date(a.coupon_use_date).getTime());
+    
+    setSettlementData(sortedAndNumberedData);
+    setSortedData(sortedAndNumberedData);
+    
+  } catch (error) {
+    console.error('Error fetching settlements data:', error);
+  }
+};
+
+  useEffect(() => {
+    fetchDataFromApi();
+  }, []); 
+
+  // const sortedAndNumberedData = fakeData.map((data, index) => ({
+  //   ...data,
+  //   NO: index + 1,
+  // })).sort((a, b) => new Date(a['쿠폰 적용일']).getTime() - new Date(b['쿠폰 적용일']).getTime());
 
   const itemsPerPage = 10;
   const totalItems = sortedData.length;
@@ -53,43 +92,38 @@ const Settlemented = () => {
   const endIndex = startIndex + itemsPerPage;
   const currentData = sortedData.slice(startIndex, endIndex);
 
-  const sortData = (sortType: string, data: any[]) => {
+  const sortData = (sortType: string, data: SettlementedItem[]) => {
     return [...data].sort((a, b) => {
       switch (sortType) {
         case 'amountDesc':
-          return parseFloat(b['정산 금액']) - parseFloat(a['정산 금액']);
+          return b.discount_price - a.discount_price;
         case 'dateDesc':
-          return new Date(b['정산 완료일']).getTime() - new Date(a['정산 완료일']).getTime();
+          return new Date(b.complete_at).getTime() - new Date(a.complete_at).getTime();
         case 'couponDateDesc':
-          return new Date(b['쿠폰 적용일']).getTime() - new Date(a['쿠폰 적용일']).getTime();
+          return new Date(b.coupon_use_date).getTime() - new Date(a.coupon_use_date).getTime();
         case 'usageCountDesc':
-          return parseInt(b['사용 건수']) - parseInt(a['사용 건수']);
+          return b.coupon_count - a.coupon_count;
         default:
           return 0;
       }
     });
   };
 
-  useEffect(() => {
-    const sorted = sortData(sortOrder, sortedAndNumberedData);
-    setSettlementData(sorted);
-  }, []);
+  // useEffect(() => {
+  //   if (startDate && endDate) {
+  //     const filteredData = sortedAndNumberedData.filter((data) => {
+  //       const couponDate = new Date(data['쿠폰 적용일']);
+  //       return couponDate >= startDate && couponDate <= endDate;
+  //     });
 
-  useEffect(() => {
-    if (startDate && endDate) {
-      const filteredData = sortedAndNumberedData.filter((data) => {
-        const couponDate = new Date(data['쿠폰 적용일']);
-        return couponDate >= startDate && couponDate <= endDate;
-      });
-
-      const sorted = sortData(sortOrder, filteredData);
-      setSettlementData(sorted);
-      setCurrentPage(1);
-    } else {
-      const sorted = sortData(sortOrder, sortedAndNumberedData);
-      setSettlementData(sorted);
-    }
-  }, [startDate, endDate, sortOrder]);
+  //     const sorted = sortData(sortOrder, filteredData);
+  //     setSettlementData(sorted);
+  //     setCurrentPage(1);
+  //   } else {
+  //     const sorted = sortData(sortOrder, sortedAndNumberedData);
+  //     setSettlementData(sorted);
+  //   }
+  // }, [startDate, endDate, sortOrder]);
 
   useEffect(() => {
     const sorted = sortData(sortOrder, sortedData);

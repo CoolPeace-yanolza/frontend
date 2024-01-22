@@ -1,5 +1,5 @@
 import { atom } from 'recoil';
-import { SettlementItem } from '@/types/settlements';
+import { SettlementItem, SettlementedItem } from '@/types/settlements';
 
 export const fakeData = [
     { '쿠폰 적용일': "2023.11.21", '쿠폰번호': 30, '관리 쿠폰명': "가을 선착순 쿠폰", '사용 건수': '100회', '쿠폰 할인 금액': '10원', '쿠폰 취소 금액':'0원', '정산 금액': '1000원', '정산 완료일': '2023.11.10'},
@@ -46,4 +46,9 @@ export const fakeData = [
   export const settlementsDateState = atom({
     key: 'settlementsDateState',
     default: { startDate: new Date(), endDate: new Date() },
+  });
+
+  export const settlementDataState2 = atom<SettlementedItem[]>({
+    key: 'settlementData',
+    default: []
   });
