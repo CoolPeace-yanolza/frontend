@@ -45,6 +45,10 @@ const CouponWait = ({ couponInfo }: CouponListProps) => {
     setIsShowModal(false);
   };
 
+  const handleModalClose = () => {
+    setIsShowModal(false);
+  };
+
   return (
     <CouponContainer>
       <CouponHeaderContainer>
@@ -141,6 +145,7 @@ const CouponWait = ({ couponInfo }: CouponListProps) => {
           modalText={modalContent.modalText}
           subText={modalContent.subText}
           onConfirmClick={handleModalConfirm}
+          onCloseClick={handleModalClose}
         />
       )}
     </CouponContainer>
@@ -327,6 +332,10 @@ const CouponModifiedWrap = styled.div`
 
   color: #757676;
   font-size: 11px;
+
+  img {
+    margin-top: 2px;
+  }
 `;
 
 const UpdateButton = styled.div`

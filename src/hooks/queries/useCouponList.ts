@@ -4,7 +4,11 @@ import {
   CouponToggleCredential,
   CouponUpdateCredential
 } from '@/types/couponList';
-import { useMutation, useSuspenseQuery } from '@tanstack/react-query';
+import {
+  useMutation,
+  useQueryClient,
+  useSuspenseQuery
+} from '@tanstack/react-query';
 import {
   couponDeleteApi,
   couponToggleApi,
@@ -26,15 +30,23 @@ export const useGetCouponList = (
 
 // 쿠폰 수정
 export const useCouponUpdate = () => {
+  const queryClient = useQueryClient();
   return useMutation<void, Error, CouponUpdateCredential>({
-    mutationFn: couponUpdateApi
+    mutationFn: couponUpdateApi,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['CouponList'] });
+    }
   });
 };
 
 // 쿠폰 삭제
 export const useCouponDelete = () => {
+  const queryClient = useQueryClient();
   return useMutation<void, Error, CouponDeleteCredential>({
-    mutationFn: couponDeleteApi
+    mutationFn: couponDeleteApi,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['CouponList'] });
+    }
   });
 };
 

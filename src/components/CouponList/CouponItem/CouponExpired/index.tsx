@@ -4,7 +4,7 @@ import { useRef, useState } from 'react';
 import theme from '@styles/theme';
 import rightIcon from '@assets/icons/ic-couponlist-right.svg';
 import deleteIcon from '@assets/icons/ic-couponlist-delete.svg';
-import { useOutsideClick } from '@hooks/index';
+import { useCouponDelete, useOutsideClick } from '@hooks/index';
 import { CouponListProps } from '@/types/couponList';
 import Modal from '@components/modal';
 import CouponCondition from '@utils/lib/couponCondition';
@@ -13,6 +13,7 @@ const CouponExpired = ({ couponInfo }: CouponListProps) => {
   const [isShowRoomList, setIsShowRoomList] = useState(false);
   const roomListRef = useRef<HTMLDivElement>(null);
   const [isShowModal, setIsShowModal] = useState(false);
+  const { mutateAsync } = useCouponDelete();
 
   useOutsideClick(roomListRef, () => setIsShowRoomList(false));
 
@@ -25,6 +26,11 @@ const CouponExpired = ({ couponInfo }: CouponListProps) => {
   };
 
   const handleModalConfirm = () => {
+    mutateAsync({ coupon_number: couponInfo.coupon_number });
+    setIsShowModal(false);
+  };
+
+  const handleModalClose = () => {
     setIsShowModal(false);
   };
 
@@ -33,7 +39,6 @@ const CouponExpired = ({ couponInfo }: CouponListProps) => {
       <CouponHeaderContainer>
         <CouponHeader>
           <CouponTitle>{couponInfo.title}</CouponTitle>
-
           <CouponStatus>기간만료</CouponStatus>
         </CouponHeader>
         <CouponCustomer>{couponInfo.coupon_concat_title}</CouponCustomer>
@@ -118,6 +123,7 @@ const CouponExpired = ({ couponInfo }: CouponListProps) => {
           modalText={`"${couponInfo.title}"을 삭제하시겠습니까?`}
           subText={true}
           onConfirmClick={handleModalConfirm}
+          onCloseClick={handleModalClose}
         />
       )}
     </CouponContainer>

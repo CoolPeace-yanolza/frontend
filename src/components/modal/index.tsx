@@ -6,15 +6,21 @@ export interface ModalProps {
   modalText: string;
   subText: boolean;
   onConfirmClick(): void;
+  onCloseClick(): void;
 }
 
-const Modal = ({ modalText, subText, onConfirmClick }: ModalProps) => {
+const Modal = ({
+  modalText,
+  subText,
+  onConfirmClick,
+  onCloseClick
+}: ModalProps) => {
   const handleConfirmClick = () => {
     onConfirmClick();
   };
 
   const handleModalClose = () => {
-    onConfirmClick();
+    onCloseClick();
   };
 
   return (

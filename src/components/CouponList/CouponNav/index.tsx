@@ -49,7 +49,13 @@ const CouponNav = () => {
 
   useEffect(() => {
     setGlobalCoupons(coupons);
-  }, [headerAccommodation.id, resisterDateClick, categoryTab, searchAPI]);
+  }, [
+    headerAccommodation.id,
+    resisterDateClick,
+    categoryTab,
+    searchAPI,
+    coupons
+  ]);
 
   return (
     <TabContainer>
