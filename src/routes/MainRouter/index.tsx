@@ -1,7 +1,6 @@
-// import CouponList from '@pages/CouponList';
 import { Route, Routes } from 'react-router-dom';
 
-import { Layout } from '@components/common';
+import { PrivateRouter, PublicRouter } from '..';
 import Login from '@pages/Login';
 import SignUp from '@pages/SignUp';
 import Dashboard from '@pages/Dashboard';
@@ -13,15 +12,17 @@ import Settlements  from '@pages/Settlements';
 const MainRouter = () => {
   return (
     <Routes>
-      <Route
-        path="/login"
-        element={<Login />}
-      />
-      <Route
-        path="/signup"
-        element={<SignUp />}
-      />
-      <Route element={<Layout />}>
+      <Route element={<PublicRouter />}>
+        <Route
+          path="/login"
+          element={<Login />}
+        />
+        <Route
+          path="/signup"
+          element={<SignUp />}
+        />
+      </Route>
+      <Route element={<PrivateRouter />}>
         <Route
           path="/"
           element={<Dashboard />}

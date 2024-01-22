@@ -42,7 +42,7 @@ const CouponNav = () => {
   const fetchCoupons = async () => {
     try {
       const couponData = await getCouponList(
-        headerAccommodation.accommodationId,
+        headerAccommodation.id,
         resisterDateClick !== '1년' ? resisterDateClick : undefined,
         categoryTab !== '전체' ? categoryTab : undefined,
         searchText
@@ -62,7 +62,7 @@ const CouponNav = () => {
 
   useEffect(() => {
     fetchCoupons();
-  }, [headerAccommodation.accommodationId, categoryTab, resisterDateClick]);
+  }, [headerAccommodation.id, categoryTab, resisterDateClick]);
 
   return (
     <TabContainer>
