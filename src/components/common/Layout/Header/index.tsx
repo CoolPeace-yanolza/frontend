@@ -19,7 +19,7 @@ const Header = () => {
         />
       </LogoLink>
       <Buttons>
-        <div></div>
+        <MobileDiv></MobileDiv>
         <Select />
         <User />
       </Buttons>
@@ -45,6 +45,7 @@ const Container = styled.header`
   align-items: center;
 
   background-color: ${theme.colors.white};
+  z-index: 80;
 
   ${theme.response.tablet} {
     height: 65px;
@@ -72,12 +73,24 @@ const LogoIcon = styled.img`
 `;
 
 const Buttons = styled.div`
+  min-width: 300px;
+
   display: flex;
+  justify-content: space-between;
   align-items: center;
 
   ${theme.response.tablet} {
     width: 100%;
+  }
+`;
 
-    justify-content: space-between;
+const MobileDiv = styled.div`
+  display: none;
+
+  ${theme.response.tablet} {
+    width: 50px;
+    height: 50px;
+
+    display: block;
   }
 `;

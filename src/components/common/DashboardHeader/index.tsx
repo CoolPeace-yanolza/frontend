@@ -28,7 +28,13 @@ const DashboardHeader = () => {
           누적 리포트
         </ReportPageNavigation>
       </MenuContainer>
-      <Button>쿠폰 등록하기</Button>
+      <Button
+        onClick={() => {
+          navigate('/coupons/register');
+        }}
+      >
+        쿠폰 등록하기
+      </Button>
     </Container>
   );
 };
