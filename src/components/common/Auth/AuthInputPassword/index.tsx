@@ -8,7 +8,7 @@ import eyeOff from '@assets/icons/ic-login-eye-off.svg';
 import closeIcon from '@assets/icons/ic-login-close.svg';
 import checkInvalid from '@assets/icons/ic-signup-check-invalid.svg';
 import checkValid from '@assets/icons/ic-signup-check-valid.svg';
-import { getInputOptions } from '@utils/lib/auth';
+import { getInputOptions } from '@utils/index';
 
 const AuthInputPassword = ({
   id,
