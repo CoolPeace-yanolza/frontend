@@ -2,6 +2,7 @@ import styled from '@emotion/styled';
 
 import reportIcon from '/images/ic-dashboard-couponRate.png';
 import { CouponRateResult } from '@/types/dashboard';
+import '@components/Dashboard/dashboardKeyframes.css';
 
 const CouponRate = ({ result }: CouponRateResult) => {
   return (
@@ -76,4 +77,6 @@ const ResultContainer = styled.div`
   color: #303437;
   font-size: 14px;
   font-weight: 700;
+
+  animation: fadeUp 0.5s;
 `;
