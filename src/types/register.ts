@@ -190,7 +190,8 @@ export type registerInputAtom = {
   discountFlatRate: string;
   hasLimit: boolean;
   maximumDiscount: string;
-  roomType: string;
+  roomType: string[];
+  severalNights: boolean;
   isAllRoom: undefined | boolean;
   rooms?: number[];
   minimumPrice?: undefined | number;
