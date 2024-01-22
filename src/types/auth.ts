@@ -26,6 +26,7 @@ export type AuthButton = {
   size: string;
   variant: string;
   text: string;
+  disabled: boolean;
   buttonFunc:
     | LoginAPIButton
     | SignUpAPIButton

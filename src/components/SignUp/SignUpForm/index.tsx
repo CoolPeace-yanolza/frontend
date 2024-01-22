@@ -12,12 +12,13 @@ const SignUpForm = () => {
   const methods = useForm({
     mode: 'all'
   });
-  const {
-    formState: { errors }
-  } = methods;
+  const { getFieldState, formState } = methods;
+  const { errors } = formState;
 
   const isInvalid = true;
-  const isEmailValidationVisible = false;
+
+  const isEmailTouched = getFieldState('user_email', formState).isTouched;
+  const isEmailValid = isEmailTouched ? !errors?.user_email : false;
 
   return (
     <FormProvider {...methods}>
@@ -49,8 +50,9 @@ const SignUpForm = () => {
             />
             <AuthButton
               size="small"
-              variant="disabled"
+              variant={isEmailValid ? 'navy' : 'disabled'}
               text="중복확인"
+              disabled={!isEmailValid}
               buttonFunc={() => {
                 // TODO : 이메일 중복확인 API 요청 로직
               }}
@@ -61,8 +63,8 @@ const SignUpForm = () => {
               {errors?.user_email?.message?.toString()}
             </ValidationText>
           )}
-          {!errors.user_email && isEmailValidationVisible && (
-            <ValidationText $isValid={!isInvalid}>
+          {!errors.user_email && isEmailValid && (
+            <ValidationText $isValid={isEmailValid}>
               백엔드 응답에 따라 나타날 유효성 메세지
             </ValidationText>
           )}
@@ -99,6 +101,7 @@ const SignUpForm = () => {
           size="large"
           variant="navy"
           text="회원가입"
+          disabled={false}
           buttonFunc={() => {
             // TODO : 회원가입 API 요청 로직
           }}

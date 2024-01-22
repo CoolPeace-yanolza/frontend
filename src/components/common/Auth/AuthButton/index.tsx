@@ -2,12 +2,19 @@ import styled from '@emotion/styled';
 
 import { AuthButton, AuthButtonStyleProps } from '@/types/auth';
 
-const AuthButton = ({ size, variant, text, buttonFunc }: AuthButton) => {
+const AuthButton = ({
+  size,
+  variant,
+  text,
+  disabled,
+  buttonFunc
+}: AuthButton) => {
   return (
     <SubmitButton
       $size={size}
       $variant={variant}
       onClick={buttonFunc}
+      disabled={disabled}
     >
       {text}
     </SubmitButton>
