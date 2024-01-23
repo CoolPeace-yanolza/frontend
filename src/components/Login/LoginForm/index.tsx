@@ -1,6 +1,11 @@
 import { useLocation, useNavigate } from 'react-router-dom';
 import styled from '@emotion/styled';
-import { FormProvider, useForm } from 'react-hook-form';
+import {
+  FormProvider,
+  useForm,
+  SubmitHandler,
+  FieldValues
+} from 'react-hook-form';
 
 import { InputValidation } from '@/types/login';
 import {
@@ -20,25 +25,22 @@ const LoginForm = () => {
     mode: 'onBlur'
   });
   const {
-    formState: { errors, isValid }
+    formState: { errors, isValid },
+    handleSubmit
   } = methods;
   const isError = !!errors?.user_id || !!errors?.user_password ? true : false;
-
-  // HACK : 추후 react-hook-form으로 입력 데이터 관리 예정
-  const formData: LoginData = {
-    email: 'juhwanTest@gmail.com',
-    password: 'juhwanTest'
-  };
 
   const movetoSignUp = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
     navigate('/signup');
   };
 
-  const handleLoginSubmit = async (
-    event: React.FormEvent<HTMLButtonElement>
-  ) => {
-    event.preventDefault();
+  const onSubmit: SubmitHandler<FieldValues> = async data => {
+    const formData: LoginData = {
+      email: data.user_id,
+      password: data.user_password
+    };
+
     const response = await postLogin(formData);
     setCookies('userName', response.name, response.expires_in);
     setCookies('userEmail', response.email, response.expires_in);
@@ -54,7 +56,7 @@ const LoginForm = () => {
 
   return (
     <FormProvider {...methods}>
-      <form>
+      <form onSubmit={handleSubmit(onSubmit)}>
         <Inputs $isValid={!isError}>
           <AuthInputNormal
             type="email"
@@ -86,7 +88,7 @@ const LoginForm = () => {
             variant="navy"
             text="로그인"
             disabled={!isValid}
-            buttonFunc={handleLoginSubmit}
+            buttonFunc={handleSubmit(onSubmit)}
           />
           <AuthButton
             size="large"
