@@ -18,6 +18,8 @@ const Container = styled.div`
   min-width: 1110px;
   height: 100%;
 
+  border-bottom-left-radius: 1.25rem;
+
   background: linear-gradient(45deg, rgba(17, 31, 63, 1), rgba(26, 40, 73, 0.75));
 
   ${theme.response.tablet} {
