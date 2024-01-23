@@ -59,15 +59,6 @@ const SettlementsSetting = () => {
                 placeholderText=""
                 locale={ko}
             />
-            <DatePicker
-            selected={startDate}
-            onChange={handleStartDateChange}
-            dateFormat="yyyy/MM"
-            // showMonthYearPicker
-            placeholderText=""
-            locale={ko} 
-            />
-
             <StyledDatePicker
                 selected={endDate}
                 onChange={handleEndDateChange}
