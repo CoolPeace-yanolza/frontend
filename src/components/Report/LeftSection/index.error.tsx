@@ -14,6 +14,7 @@ const ErrorFallback = ({ resetErrorBoundary }: FallbackProps) => {
 export default ErrorFallback;
 
 const Container = styled.div`
+  width: 100%;
   min-width: 1016px;
   height: 880px;
 
