@@ -1,5 +1,6 @@
 import { FallbackProps } from 'react-error-boundary';
 import styled from '@emotion/styled';
+
 import theme from '@styles/theme';
 import errorIcon from '@assets/icons/ic-error.svg';
 import reloadIcon from '@assets/icons/ic-reload.svg';
