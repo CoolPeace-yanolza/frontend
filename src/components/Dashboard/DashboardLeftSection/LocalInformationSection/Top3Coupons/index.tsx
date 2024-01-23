@@ -3,7 +3,7 @@ import { useRecoilValue } from 'recoil';
 
 import arrowIcon from '@assets/icons/ic-dashboard-arrow.svg';
 import RankingBox from './RankingBox';
-import { useGetCouponRanking } from '@hooks/queries/useGetCouponRanking';
+import { useGetCouponRanking } from '@hooks/index';
 import { headerAccommodationState } from '@recoil/index';
 
 const LocalTop3Coupons = () => {

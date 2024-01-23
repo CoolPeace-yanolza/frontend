@@ -1,19 +1,42 @@
 import styled from '@emotion/styled';
+import React, { Suspense } from 'react';
+import { ErrorBoundary } from 'react-error-boundary';
+import { useQueryErrorResetBoundary } from '@tanstack/react-query';
 
 import { DashboardHeader } from '@components/common';
-import GraphContainer from './GraphContainer';
-import DownloadReport from './DownloadReport';
+const GraphContainer = React.lazy(() => import('./GraphContainer'));
+import GraphContainerErrorFallback from './GraphContainer/index.error';
+import GraphContainerLoading from './GraphContainer/index.loading';
+const DownloadReport = React.lazy(() => import('./DownloadReport'));
+import DownloadReportErrorFallback from './DownloadReport/index.error';
+import DownloadReportLoading from './DownloadReport/index.loading';
 
 const GraphSection = () => {
+  const { reset } = useQueryErrorResetBoundary();
+
   return (
     <Container>
       <DashboardHeader />
       <InnerContainer>
         <LeftSection>
-          <GraphContainer />
+          <ErrorBoundary
+            onReset={reset}
+            fallbackRender={GraphContainerErrorFallback}
+          >
+            <Suspense fallback={<GraphContainerLoading />}>
+              <GraphContainer />
+            </Suspense>
+          </ErrorBoundary>
         </LeftSection>
         <RightSection>
-          <DownloadReport />
+          <ErrorBoundary
+            onReset={reset}
+            fallbackRender={DownloadReportErrorFallback}
+          >
+            <Suspense fallback={<DownloadReportLoading />}>
+              <DownloadReport />
+            </Suspense>
+          </ErrorBoundary>
         </RightSection>
       </InnerContainer>
     </Container>
