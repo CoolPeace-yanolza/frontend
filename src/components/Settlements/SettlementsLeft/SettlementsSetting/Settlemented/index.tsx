@@ -56,25 +56,29 @@ const Settlemented = () => {
     }
   };
 
+  const getSettlementData = async (page: number, pageSize: number) => {
+    const settlementParams = {
+      accommodationId: accommodation.id,
+      start: startDate ? startDate.toISOString().split('T')[0] : '2000-01-01',
+      end: endDate ? endDate.toISOString().split('T')[0] : new Date().toISOString().split('T')[0],
+      order: orderBy,
+      page: page - 1,
+      pageSize: pageSize,
+    };
+  
+    return await getSettlements(
+      settlementParams.accommodationId,
+      settlementParams.start,
+      settlementParams.end,
+      settlementParams.order,
+      settlementParams.page, 
+      settlementParams.pageSize
+    );
+  };
+
   const fetchSettlemented = async (page: number) => {
     try {
-      const settlementParams = {
-        accommodationId: accommodation.id,
-        start: startDate ? startDate.toISOString().split('T')[0] : '2000-01-01',
-        end: endDate ? endDate.toISOString().split('T')[0] : new Date().toISOString().split('T')[0],
-        order: orderBy,
-        page: page - 1,
-        pageSize: itemsPerPage,
-      };
-  
-      const response = await getSettlements(
-        settlementParams.accommodationId,
-        settlementParams.start,
-        settlementParams.end,
-        settlementParams.order,
-        settlementParams.page, 
-        settlementParams.pageSize
-      );
+      const response = await getSettlementData(page, itemsPerPage);
   
       const newSettlementData = response.settlement_responses.map((data: SettlementedItem, index: number) => ({
         ...data,
@@ -106,26 +110,26 @@ const Settlemented = () => {
     return totalItems - (currentPage - 1) * itemsPerPage;
   };
 
-  const handleDownloadExcel = () => {
-    const workBook = XLSX.utils.book_new();
-    const workSheet = XLSX.utils.json_to_sheet(sortedData);
-
-    XLSX.utils.book_append_sheet(workBook, workSheet, "Sheet1");
-  
-    XLSX.writeFile(workBook, "download.xlsx");
-  };
-
-
+  const handleDownloadExcel = async () => {
+    try {
+      const response = await getSettlementData(1, totalItems);
     
-const fetchSettlementSummary = async () => {
-  const summary = await getSettlemented(accommodation.id);
-  console.log('Settlement summary:', summary);
-};
-
-useEffect(() => {
-  fetchSettlementSummary(); 
-}, [accommodation.id]);  
+      const allData = response.settlement_responses.map((data: SettlementedItem, index: number) => ({
+        ...data,
+        NO: index + 1,
+      }));
   
+      const workBook = XLSX.utils.book_new();
+      const workSheet = XLSX.utils.json_to_sheet(allData);
+  
+      XLSX.utils.book_append_sheet(workBook, workSheet, "Sheet1");
+    
+      XLSX.writeFile(workBook, "SettlementedDownload.xlsx");
+    } catch (error) {
+      console.error('Error fetching all settlements data for download:', error);
+    }
+  };
+    
   return (
     <Container>
       <SettlementedHeader>
@@ -268,7 +272,7 @@ const StyledDropdown = styled(Dropdown)`
 
   &.ui.selection.active.dropdown {
     border: 1px solid rgba(255, 255, 255, 0.2) !important;
-    
+
     color: white;
     box-shadow: 0 2px 3px 0 rgba(34, 36, 38, 0.15) !important;
   }
@@ -289,11 +293,12 @@ const ExcelDownload = styled.div`
   white-space: nowrap;
 
   button {
+    border: none;
+
     font-size: 12px;
     font-weight: bold;
     color: white;
 
-    border: none;
     text-decoration: underline;
     cursor: pointer;
     background: none;

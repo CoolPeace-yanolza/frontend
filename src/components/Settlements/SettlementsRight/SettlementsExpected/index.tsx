@@ -1,9 +1,18 @@
 import styled from '@emotion/styled';
+import { useRecoilValue } from 'recoil';
 
+import headerAccommodationState from '@recoil/atoms/headerAccommodationState';
 import SyncIcon from '@assets/icons/sync-outline.svg';
 import theme from '@styles/theme';
+import getSettlemented from 'src/api/lib/getSettlemented';
+import { useEffect, useState } from 'react';
 
 const SettlementsExpected = () => {
+
+  const [summary, setSummary] = useState<{ this_month_settlement_amount: number } | null>(null);
+
+  const accommodation = useRecoilValue(headerAccommodationState);
+
   const currentDate = new Date();
 
   const nextMonth = new Date(currentDate);
@@ -17,6 +26,16 @@ const SettlementsExpected = () => {
   };
 
   const firstDayOfMonth = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1);
+
+  const fetchSettlementSummary = async () => {
+    const summary = await getSettlemented(accommodation.id);
+    setSummary(summary);
+    console.log('Settlement summary:', summary);
+  };
+
+  useEffect(() => {
+    fetchSettlementSummary(); 
+  }, [accommodation.id]);  
 
   return (
     <Container>
@@ -67,7 +86,7 @@ const SettlementsExpected = () => {
                   </UpdatedText>
                 </CommonContainer>
                 <DueDateDay>
-                  50000원
+                {summary ? summary.this_month_settlement_amount : '데이터 로딩 중...'} 
                 </DueDateDay>
               </WrapperBottom>
             </UpdatedWrapper>

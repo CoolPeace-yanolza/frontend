@@ -1,10 +1,19 @@
 import styled from '@emotion/styled';
+import { useRecoilValue } from 'recoil';
 
+import headerAccommodationState from '@recoil/atoms/headerAccommodationState';
 import SyncIcon from '@assets/icons/sync-outline.svg';
 import receiptIcon from '@assets/icons/receipt-sharp.svg';
 import theme from '@styles/theme'; 
+import getSettlemented from 'src/api/lib/getSettlemented';
+import { useEffect, useState } from 'react';
+
 
 const SettlementsBefore = () => {
+
+  const [summary, setSummary] = useState<{ last_month_settlement_amount: number } | null>(null);
+
+  const accommodation = useRecoilValue(headerAccommodationState);
 
   const currentDate = new Date();
   const lastMonth = new Date(currentDate);
@@ -19,6 +28,16 @@ const SettlementsBefore = () => {
   };
 
   const isBeforeDueDate = currentDate.getDate() < 10;
+
+  const fetchSettlementSummary = async () => {
+    const summary = await getSettlemented(accommodation.id);
+    setSummary(summary);
+    console.log('Settlement summary:', summary);
+  };
+
+  useEffect(() => {
+    fetchSettlementSummary(); 
+  }, [accommodation.id]);  
 
   return (
     <Container>
@@ -68,7 +87,7 @@ const SettlementsBefore = () => {
                 }
               </DueDateDay>
               <DueDateMoney>
-                50,000원
+                {summary ? summary.last_month_settlement_amount : '데이터 로딩 중...'} 
               </DueDateMoney>
             </DueDateInnerContainer>
           </WrapperTop>

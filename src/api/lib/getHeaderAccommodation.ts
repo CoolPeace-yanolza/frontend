@@ -7,7 +7,7 @@ const getHeaderAccommodation = async (): Promise<HeaderAccommodationResult> => {
   const response: AxiosResponse<HeaderAccommodationResult, Error> =
     await instance.get(`/v1/accommodation`);
 
-  return response.data;
+  return response.data.accommodation_responses;
 };
 
 export default getHeaderAccommodation;
