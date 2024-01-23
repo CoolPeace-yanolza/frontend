@@ -8,7 +8,7 @@ import {
   FieldValues
 } from 'react-hook-form';
 
-import { InputValidation } from '@/types/login';
+import { InputValidation, LoginFormProps } from '@/types/login';
 import {
   AuthButton,
   AuthInputNormal,
@@ -18,7 +18,7 @@ import { LoginData } from '@/types/auth';
 import { postLogin } from 'src/api';
 import { setCookies } from '@utils/lib/cookies';
 
-const LoginForm = () => {
+const LoginForm = ({ handleModalOpen }: LoginFormProps) => {
   const navigate = useNavigate();
   const { state } = useLocation();
 
@@ -55,10 +55,9 @@ const LoginForm = () => {
       }
     } catch (error) {
       if (error instanceof AxiosError) {
-        console.log(error);
-        // TODO : 에러코드에 따라 모달 표시 예정
-        // error.response?.data.code;
-        // error.response?.data.message;
+        if (error.response?.status === 404) {
+          handleModalOpen(error.response?.data.message);
+        }
       }
     }
   };
