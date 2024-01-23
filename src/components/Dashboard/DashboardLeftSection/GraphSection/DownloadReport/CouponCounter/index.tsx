@@ -31,12 +31,16 @@ const Container = styled.div<CouponCounterStyleProps>`
 `;
 
 const Header = styled.div`
-  padding: 10px 20px 7px;
+  width: 100%;
+
+  padding: 10px 12px 7px;
 
   align-self: flex-start;
 
   font-size: 13.005px;
   font-weight: 700;
+
+  white-space: nowrap;
 `;
 
 const ResultContainer = styled.div<CouponCounterStyleProps>`

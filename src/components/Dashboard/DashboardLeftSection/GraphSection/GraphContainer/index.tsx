@@ -75,8 +75,9 @@ export const lineGraphData = {
       fill: true,
       label: '쿠폰매출',
       data: [300, 400, 200, 200, 400, 600, 700],
-      borderColor: 'rgb(63, 153, 201)',
-      backgroundColor: 'rgba(63, 153, 201, 0.5)',
+      borderWidth: 1,
+      borderColor: '#3182F6',
+      backgroundColor: '#A7CBFF',
       yAxisID: 'y1'
     },
 
@@ -84,8 +85,9 @@ export const lineGraphData = {
       fill: true,
       label: '전체매출',
       data: [600, 500, 400, 500, 600, 800, 800],
-      borderColor: 'rgb(255, 99, 132)',
-      backgroundColor: 'rgba(255, 99, 132, 0.5)',
+      borderWidth: 1,
+      borderColor: '#FF3478',
+      backgroundColor: '#FFC1D6',
       yAxisID: 'y1'
     }
   ]

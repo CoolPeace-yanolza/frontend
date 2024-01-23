@@ -33,17 +33,13 @@ const graphOptions: any = {
       }
     },
     y2: {
+      display: false,
       position: 'right',
       beginAtZero: true,
       grid: {
         display: false
       },
-      max: 100,
-      ticks: {
-        callback: function () {
-          return ``;
-        }
-      }
+      max: 100
     }
   }
 };
