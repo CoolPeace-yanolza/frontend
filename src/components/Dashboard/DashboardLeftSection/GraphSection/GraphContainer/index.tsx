@@ -20,7 +20,7 @@ import { GraphHeaderTag } from '@/types/dashboard';
 import graphOptions from './graphOptions';
 import { getUpdatedDate } from '@utils/index';
 import { headerAccommodationState } from '@recoil/index';
-import { useGetMonthReports } from '@hooks/queries/useGetMonthReports';
+import { useGetMonthReports } from '@hooks/index';
 
 ChartJS.register(
   LinearScale,

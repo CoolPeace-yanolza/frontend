@@ -6,7 +6,7 @@ import CouponRate from './CouponRate';
 import titleIcon from '@assets/icons/ic-dashboard-downloadReport.svg';
 import reloadIcon from '@assets/icons/ic-dashboard-reload.svg';
 import { headerAccommodationState } from '@recoil/index';
-import { useGetMonthReports } from '@hooks/queries/useGetMonthReports';
+import { useGetMonthReports } from '@hooks/index';
 
 const DownloadReport = () => {
   const headerSelectedState = useRecoilValue(headerAccommodationState);

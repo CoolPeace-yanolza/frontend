@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import { useRecoilValue } from 'recoil';
 
-import { useGetLocalCouponUsage } from '@hooks/queries/useGetLocalCouponUsage';
+import { useGetLocalCouponUsage } from '@hooks/index';
 import { headerAccommodationState } from '@recoil/index';
 import reloadIcon from '@assets/icons/ic-dashboard-reload.svg';
 import locationIcon from '@assets/icons/ic-dashboard-location.svg';
