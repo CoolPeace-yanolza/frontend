@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import styled from '@emotion/styled';
 import { FormProvider, useForm } from 'react-hook-form';
 
@@ -7,16 +8,49 @@ import {
   AuthInputNormal,
   AuthInputPassword
 } from '@components/Auth';
+import { getEmailValid } from 'src/api';
 
 const SignUpForm = () => {
   const methods = useForm({
     mode: 'all'
   });
-  const { getFieldState, formState } = methods;
+  const { watch, getValues, getFieldState, formState } = methods;
   const { errors, isValid } = formState;
 
+  const emailValue: string = getValues('user_email');
   const isEmailTouched = getFieldState('user_email', formState).isTouched;
-  const isEmailValid = isEmailTouched ? !errors?.user_email : false;
+  const isEmailValueValid = isEmailTouched ? !errors?.user_email : false;
+
+  const emailValidInitialValue = {
+    message: '',
+    type: ''
+  };
+
+  const [emailValidMessage, setEmailValidMessage] = useState(
+    emailValidInitialValue
+  );
+
+  const checkEmailValid = async (event: React.FormEvent<HTMLButtonElement>) => {
+    event.preventDefault();
+
+    const response = await getEmailValid(emailValue);
+
+    if (response?.status === 200) {
+      setEmailValidMessage({
+        message: '사용 가능한 아이디입니다.',
+        type: 'success'
+      });
+    } else if (response?.status === 400) {
+      setEmailValidMessage({
+        message: '이미 사용 중인 아이디입니다.',
+        type: 'failure'
+      });
+    }
+  };
+
+  useEffect(() => {
+    setEmailValidMessage(emailValidInitialValue);
+  }, [watch('user_email')]);
 
   return (
     <FormProvider {...methods}>
@@ -48,22 +82,22 @@ const SignUpForm = () => {
             />
             <AuthButton
               size="small"
-              variant={isEmailValid ? 'navy' : 'disabled'}
+              variant={isEmailValueValid ? 'navy' : 'disabled'}
               text="중복확인"
-              disabled={!isEmailValid}
-              buttonFunc={() => {
-                // TODO : 이메일 중복확인 API 요청 로직
-              }}
+              disabled={!isEmailValueValid}
+              buttonFunc={checkEmailValid}
             />
           </EmailInputWrapper>
+          {/* 입력항목 자체 유효성 검사에 따라 나타날 유효성 메세지 */}
           {errors.user_email && (
             <ValidationText>
               {errors?.user_email?.message?.toString()}
             </ValidationText>
           )}
-          {!errors.user_email && isEmailValid && (
-            <ValidationText $isValid={isEmailValid}>
-              백엔드 응답에 따라 나타날 유효성 메세지
+          {/* API 응답에 따라 나타날 유효성 메세지 */}
+          {!errors.user_email && isEmailValueValid && !!emailValue && (
+            <ValidationText $isValid={emailValidMessage.type === 'success'}>
+              {emailValidMessage.message}
             </ValidationText>
           )}
         </InputLabelWrapper>

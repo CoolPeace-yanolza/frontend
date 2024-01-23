@@ -2,12 +2,12 @@ import { AxiosError } from 'axios';
 
 import { instance } from '..';
 
-const getEmailAvailability = async (email: string) => {
+const getEmailValid = async (email: string) => {
   try {
     const response = await instance.get(
-      `/v1/member/check/email?email=${email}`
+      `/v1/member/register/check/email?email=${email}`
     );
-    return response.data;
+    return response;
   } catch (error) {
     if (error instanceof AxiosError) {
       return error.response;
@@ -15,4 +15,4 @@ const getEmailAvailability = async (email: string) => {
   }
 };
 
-export default getEmailAvailability;
+export default getEmailValid;

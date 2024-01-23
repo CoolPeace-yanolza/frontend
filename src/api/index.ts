@@ -15,4 +15,4 @@ export { default as getDailyReport } from './lib/getDailyReport';
 export { default as getCouponRanking } from './lib/getCouponRanking';
 export { default as getLocalCouponUsage } from './lib/getLocalCouponUsage';
 export { default as getMonthStatus } from './lib/getMonthStatus';
-export { default as getEmailAvailability } from './lib/getEmailAvailability';
+export { default as getEmailValid } from './lib/getEmailValid';
