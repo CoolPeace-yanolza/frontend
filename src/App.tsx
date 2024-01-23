@@ -13,8 +13,8 @@ import { Suspense } from 'react';
 import { MainRouter } from './routes';
 import GlobalStyles from '@styles/GlobalStyles';
 import theme from '@styles/theme';
-import { ErrorApp } from '@components/ErrorFallback';
-import { LoadingApp } from '@components/Loading';
+import ErrorFallback from './App.error';
+import Loading from './App.loading';
 
 const queryClient = new QueryClient();
 
@@ -28,9 +28,9 @@ const App = () => {
           <GlobalStyles />
           <ErrorBoundary
             onReset={reset}
-            FallbackComponent={ErrorApp}
+            FallbackComponent={ErrorFallback}
           >
-            <Suspense fallback={<LoadingApp />}>
+            <Suspense fallback={<Loading />}>
               <BrowserRouter>
                 <MainRouter />
               </BrowserRouter>

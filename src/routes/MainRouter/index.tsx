@@ -7,7 +7,7 @@ import Dashboard from '@pages/Dashboard';
 import Report from '@pages/Report';
 import CouponList from '@pages/CouponList';
 import Register from '@pages/Register';
-import Settlements  from '@pages/Settlements';
+import Settlements from '@pages/Settlements';
 
 const MainRouter = () => {
   return (

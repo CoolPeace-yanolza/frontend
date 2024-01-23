@@ -4,18 +4,37 @@ import { useRef, useState } from 'react';
 import theme from '@styles/theme';
 import rightIcon from '@assets/icons/ic-couponlist-right.svg';
 import deleteIcon from '@assets/icons/ic-couponlist-delete.svg';
-import { useOutsideClick } from '@hooks/index';
+import { useCouponDelete, useOutsideClick } from '@hooks/index';
 import { CouponListProps } from '@/types/couponList';
+import Modal from '@components/modal';
+import CouponCondition from '@utils/lib/couponCondition';
 
 const CouponExpired = ({ couponInfo }: CouponListProps) => {
   const [isShowRoomList, setIsShowRoomList] = useState(false);
   const roomListRef = useRef<HTMLDivElement>(null);
+  const [isShowModal, setIsShowModal] = useState(false);
+  const { mutateAsync } = useCouponDelete();
+
+  useOutsideClick(roomListRef, () => setIsShowRoomList(false));
 
   const handleRoomList = () => {
     setIsShowRoomList(!isShowRoomList);
   };
 
-  useOutsideClick(roomListRef, () => setIsShowRoomList(false));
+  const handleDeleteClick = () => {
+    setIsShowModal(true);
+  };
+
+  // 모달 확인 버튼에 대한 동작
+  const handleModalConfirm = () => {
+    mutateAsync({ coupon_number: couponInfo.coupon_number });
+    setIsShowModal(false);
+  };
+
+  // 모달 취소 버튼에 대한 동작
+  const handleModalClose = () => {
+    setIsShowModal(false);
+  };
 
   return (
     <CouponContainer>
@@ -44,7 +63,12 @@ const CouponExpired = ({ couponInfo }: CouponListProps) => {
           </ContentWrap>
           <ContentWrap>
             <ContentTitle>일정</ContentTitle>
-            <ContentValue>{couponInfo.coupon_room_type}</ContentValue>
+            <ContentValue>
+              {couponInfo.coupon_room_type},
+              <span>
+                {CouponCondition(couponInfo.coupon_use_condition_days)}
+              </span>
+            </ContentValue>
           </ContentWrap>
           <ContentWrap>
             <ContentTitle>객실</ContentTitle>
@@ -95,7 +119,15 @@ const CouponExpired = ({ couponInfo }: CouponListProps) => {
           <RegisterDateValue>{couponInfo.created_date}</RegisterDateValue>
         </ExposeDateWrap>
       </DateContainer>
-      <Delete>삭제</Delete>
+      <Delete onClick={handleDeleteClick}>삭제</Delete>
+      {isShowModal && (
+        <Modal
+          modalText={`"${couponInfo.title}"을 삭제하시겠습니까?`}
+          subText={true}
+          onConfirmClick={handleModalConfirm}
+          onCloseClick={handleModalClose}
+        />
+      )}
     </CouponContainer>
   );
 };
@@ -217,6 +249,10 @@ const ContentValue = styled.div`
   font-size: 11px;
   font-style: normal;
   font-weight: 400;
+
+  span {
+    margin-left: 3px;
+  }
 `;
 
 const DateContainer = styled.div`

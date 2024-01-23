@@ -13,7 +13,11 @@ export type HeaderAccommodation = {
   address: string;
 };
 
-export type HeaderAccommodationResult = HeaderAccommodation[];
+export type HeaderAccommodationResult = {
+  accommodation_responses: HeaderAccommodation[];
+};
+
+export type HeaderAccommodationData = HeaderAccommodation[];
 
 // Sidebar
 export type SidebarHeader = {

@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 import { useRecoilValue } from 'recoil';
 
 import StatusItem from './StatusItem';
-import { useGetMonthStatus } from '@hooks/queries/useGetMonthStatus';
+import { useGetMonthStatus } from '@hooks/index';
 import { getStatusToLocaleString } from '@utils/index';
 import { headerAccommodationState } from '@recoil/index';
 

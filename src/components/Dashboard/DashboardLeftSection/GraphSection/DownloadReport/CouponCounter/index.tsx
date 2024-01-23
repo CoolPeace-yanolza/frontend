@@ -1,13 +1,16 @@
 import styled from '@emotion/styled';
 
 import { CouponCounterProps, CouponCounterStyleProps } from '@/types/dashboard';
+import { getStatusToLocaleString } from '@utils/index';
 import theme from '@styles/theme';
 
 const CouponCounter = ({ type, result }: CouponCounterProps) => {
   return (
     <Container $type={type}>
       <Header>{type === 'download' ? '｜다운로드 수' : '｜사용완료 수'}</Header>
-      <ResultContainer $type={type}>{result}장</ResultContainer>
+      <ResultContainer $type={type}>
+        {getStatusToLocaleString(result)}장
+      </ResultContainer>
     </Container>
   );
 };
@@ -37,7 +40,7 @@ const Header = styled.div`
 
   align-self: flex-start;
 
-  font-size: 13.005px;
+  font-size: 13px;
   font-weight: 700;
 
   white-space: nowrap;
@@ -56,7 +59,7 @@ const ResultContainer = styled.div<CouponCounterStyleProps>`
   background-color: ${props =>
     props.$type === 'download' ? '#F7F8FC' : '#ffffff4d'};
 
-  font-size: 19px;
+  font-size: 18px;
   font-weight: 700;
 
   box-shadow: ${theme.shadow.medium};

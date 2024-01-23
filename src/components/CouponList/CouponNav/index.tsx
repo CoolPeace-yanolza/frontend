@@ -6,11 +6,11 @@ import theme from '@styles/theme';
 import searchIcon from '@assets/icons/ic-couponlist-search.svg';
 import centerIcon from '@assets/icons/ic-couponlist-period-center.svg';
 import { couponListState, headerAccommodationState } from '@recoil/index';
-import { getCouponList } from 'src/api';
 import {
   CategoryTabStyleProps,
   ResisterDateStyleProps
 } from '@/types/couponList';
+import { useGetCouponList } from '@hooks/queries/useCouponList';
 
 const CouponNav = () => {
   const [resisterDateClick, setResisterDateClick] = useState<string>('1년');
@@ -18,14 +18,16 @@ const CouponNav = () => {
   const [searchText, setSearchText] = useState<string>('');
   const headerAccommodation = useRecoilValue(headerAccommodationState);
   const setGlobalCoupons = useSetRecoilState(couponListState);
-  const coupons = useRecoilValue(couponListState);
+  const [searchAPI, setSearchAPI] = useState<string>('');
 
   const handleDateClick = (period: string) => {
     setResisterDateClick(period);
+    setSearchAPI('');
   };
 
   const handleCategoryTab = (tab: string) => {
     setCategoryTab(tab);
+    setSearchAPI('');
   };
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -34,35 +36,26 @@ const CouponNav = () => {
 
   const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setSearchAPI(searchText);
     setSearchText('');
-    fetchCoupons();
   };
 
-  // recoil 숙소 ID 가져오기
-  const fetchCoupons = async () => {
-    try {
-      const couponData = await getCouponList(
-        headerAccommodation.id,
-        resisterDateClick !== '1년' ? resisterDateClick : undefined,
-        categoryTab !== '전체' ? categoryTab : undefined,
-        searchText
-      );
-      setGlobalCoupons(couponData);
-
-      console.log(
-        '검색어, 등록일, 카테고리:',
-        searchText,
-        resisterDateClick,
-        categoryTab
-      );
-    } catch (error) {
-      console.log('쿠폰 조회 api 에러 ', error);
-    }
-  };
+  const { data: coupons } = useGetCouponList(
+    headerAccommodation.id,
+    resisterDateClick !== '1년' ? resisterDateClick : undefined,
+    categoryTab !== '전체' ? categoryTab : undefined,
+    searchAPI
+  );
 
   useEffect(() => {
-    fetchCoupons();
-  }, [headerAccommodation.id, categoryTab, resisterDateClick]);
+    setGlobalCoupons(coupons);
+  }, [
+    headerAccommodation.id,
+    resisterDateClick,
+    categoryTab,
+    searchAPI,
+    coupons
+  ]);
 
   return (
     <TabContainer>
@@ -71,7 +64,7 @@ const CouponNav = () => {
           <TapItemWrapper onClick={() => handleCategoryTab('전체')}>
             <TabName>전체</TabName>
             <TabCount $categoryTab={categoryTab === '전체'}>
-              {coupons?.category.all}
+              {coupons.category.all}
             </TabCount>
           </TapItemWrapper>
           <TapItemWrapper onClick={() => handleCategoryTab('노출 ON')}>

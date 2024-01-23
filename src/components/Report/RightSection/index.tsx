@@ -3,17 +3,20 @@ import { useQueryErrorResetBoundary } from '@tanstack/react-query';
 import { ErrorBoundary } from 'react-error-boundary';
 import styled from '@emotion/styled';
 
-const TotalReport = React.lazy(() => import('./TotalReport'));
+import { MobileDashboardHeader } from '@components/common';
 import Catchphrase from './Catchphrase';
 import Loading from './TotalReport/index.loading';
 import ErrorFallback from './TotalReport/index.error';
 import theme from '@styles/theme';
+
+const TotalReport = React.lazy(() => import('./TotalReport'));
 
 const RightSection = () => {
   const { reset } = useQueryErrorResetBoundary();
 
   return (
     <Section>
+      <MobileDashboardHeader />
       <ErrorBoundary
         onReset={reset}
         fallbackRender={ErrorFallback}
