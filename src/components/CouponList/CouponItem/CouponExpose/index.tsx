@@ -7,15 +7,25 @@ import toggleOffIcon from '@assets/icons/ic-couponlist-toggleOff.svg';
 import rightIcon from '@assets/icons/ic-couponlist-right.svg';
 import deleteIcon from '@assets/icons/ic-couponlist-delete.svg';
 import { CouponListProps, ToggleStyleProps } from '@/types/couponList';
-import { useOutsideClick } from '@hooks/index';
+import { useOutsideClick, useToggleChange } from '@hooks/index';
+import { CouponCondition } from '@utils/lib/couponCondition';
 
 const CouponExpose = ({ couponInfo }: CouponListProps) => {
   const [isToggle, setIsToggle] = useState(true);
   const [isShowRoomList, setIsShowRoomList] = useState(false);
   const roomListRef = useRef<HTMLDivElement>(null);
+  const { mutateAsync } = useToggleChange();
 
   const handleToggle = () => {
     setIsToggle(!isToggle);
+    toggleUpdate();
+  };
+
+  const toggleUpdate = async () => {
+    await mutateAsync({
+      coupon_number: couponInfo.coupon_number,
+      coupon_status: '노출 OFF'
+    });
   };
 
   const handleRoomList = () => {
@@ -72,7 +82,12 @@ const CouponExpose = ({ couponInfo }: CouponListProps) => {
           </ContentWrap>
           <ContentWrap>
             <ContentTitle>일정</ContentTitle>
-            <ContentValue>{couponInfo.coupon_room_type}</ContentValue>
+            <ContentValue>
+              {couponInfo.coupon_room_type},
+              <span>
+                {CouponCondition(couponInfo.coupon_use_condition_days)}
+              </span>
+            </ContentValue>
           </ContentWrap>
           <ContentWrap>
             <ContentTitle>객실</ContentTitle>
@@ -363,6 +378,10 @@ const ContentValue = styled.div`
   font-size: 11px;
   font-style: normal;
   font-weight: 400;
+
+  span {
+    margin-left: 3px;
+  }
 `;
 
 const DateContainer = styled.div`

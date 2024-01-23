@@ -1,22 +1,66 @@
 import styled from '@emotion/styled';
 import { useRef, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import theme from '@styles/theme';
 import centerIcon from '@assets/icons/ic-couponlist-center.svg';
 import rightIcon from '@assets/icons/ic-couponlist-right.svg';
 import deleteIcon from '@assets/icons/ic-couponlist-delete.svg';
-import { useOutsideClick } from '@hooks/index';
+import { useCouponDelete, useOutsideClick } from '@hooks/index';
 import { CouponListProps } from '@/types/couponList';
+import Modal from '@components/modal';
+import CouponCondition from '@utils/lib/couponCondition';
 
 const CouponWait = ({ couponInfo }: CouponListProps) => {
   const [isShowRoomList, setIsShowRoomList] = useState(false);
+  const [isShowModal, setIsShowModal] = useState(false);
   const roomListRef = useRef<HTMLDivElement>(null);
+  const [modalType, setModalType] = useState('');
+  const navigate = useNavigate();
+  const [modalContent, setModalContent] = useState({
+    modalText: '',
+    subText: false
+  });
+  const { mutateAsync } = useCouponDelete();
+
+  useOutsideClick(roomListRef, () => setIsShowRoomList(false));
 
   const handleRoomList = () => {
     setIsShowRoomList(!isShowRoomList);
   };
 
-  useOutsideClick(roomListRef, () => setIsShowRoomList(false));
+  const handleUpdateClick = () => {
+    setIsShowModal(true);
+    setModalType('update');
+    setModalContent({
+      modalText: `"${couponInfo.title}"을 수정하시겠습니까?`,
+      subText: false
+    });
+  };
+
+  const handleDeleteClick = () => {
+    setIsShowModal(true);
+    setModalType('delete');
+    setModalContent({
+      modalText: `"${couponInfo.title}"을 삭제하시겠습니까?`,
+      subText: true
+    });
+  };
+
+  // 모달 확인 버튼에 대한 동작
+  const handleModalConfirm = () => {
+    setIsShowModal(false);
+    if (modalType === 'delete') {
+      mutateAsync({ coupon_number: couponInfo.coupon_number });
+    } else if (modalType === 'update') {
+      navigate(`/coupons/register/?couponNumber=${couponInfo.coupon_number}`);
+    }
+  };
+
+  // 모달 취소 버튼에 대한 동작
+  const handleModalClose = () => {
+    setIsShowModal(false);
+  };
 
   return (
     <CouponContainer>
@@ -45,7 +89,12 @@ const CouponWait = ({ couponInfo }: CouponListProps) => {
           </ContentWrap>
           <ContentWrap>
             <ContentTitle>일정</ContentTitle>
-            <ContentValue>{couponInfo.coupon_room_type}</ContentValue>
+            <ContentValue>
+              {couponInfo.coupon_room_type},
+              <span>
+                {CouponCondition(couponInfo.coupon_use_condition_days)}
+              </span>
+            </ContentValue>
           </ContentWrap>
           <ContentWrap>
             <ContentTitle>객실</ContentTitle>
@@ -97,13 +146,21 @@ const CouponWait = ({ couponInfo }: CouponListProps) => {
         </ExposeDateWrap>
       </DateContainer>
       <CouponModifiedWrap>
-        <div>수정</div>
+        <UpdateButton onClick={handleUpdateClick}>수정</UpdateButton>
         <img
           src={centerIcon}
           alt="분리 선 이미지"
         />
-        <div>삭제</div>
+        <DeleteButton onClick={handleDeleteClick}>삭제</DeleteButton>
       </CouponModifiedWrap>
+      {isShowModal && (
+        <Modal
+          modalText={modalContent.modalText}
+          subText={modalContent.subText}
+          onConfirmClick={handleModalConfirm}
+          onCloseClick={handleModalClose}
+        />
+      )}
     </CouponContainer>
   );
 };
@@ -223,6 +280,10 @@ const ContentValue = styled.div`
   font-size: 11px;
   font-style: normal;
   font-weight: 400;
+
+  span {
+    margin-left: 3px;
+  }
 `;
 
 const DateContainer = styled.div`
@@ -285,9 +346,17 @@ const CouponModifiedWrap = styled.div`
   color: #757676;
   font-size: 11px;
 
-  div {
-    cursor: pointer;
+  img {
+    margin-top: 2px;
   }
+`;
+
+const UpdateButton = styled.div`
+  cursor: pointer;
+`;
+
+const DeleteButton = styled.div`
+  cursor: pointer;
 `;
 
 const ContentRoom = styled.div`
