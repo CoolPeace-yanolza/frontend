@@ -177,7 +177,7 @@ export type RoomListProps = {
   rooms: RoomsType;
 };
 
-// RadioProps
+// Radio
 export type RadioProps = {
   id: string;
   name: string;
@@ -234,6 +234,7 @@ export type registerValidAtom = {
   isEndDateValid: boolean;
 };
 
+// previewState
 export type previewAtom = {
   customer: string;
   discount: string;
