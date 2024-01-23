@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
 import { useRecoilValue } from 'recoil';
 
+import theme from '@styles/theme';
 import GetMatchedReport from './GetMatchedReport';
 import { useGetDailyReport } from '@hooks/index';
 import { headerAccommodationState } from '@recoil/index';
@@ -32,11 +33,25 @@ const Container = styled.div`
   flex-direction: column;
 
   background-color: white;
+
+  ${theme.response.tablet} {
+    height: auto;
+    min-height: auto;
+
+    margin: 5px 10px;
+    padding: 15px;
+
+    background-color: #fafafb;
+  }
 `;
 
 const Title = styled.div`
   font-size: 17px;
   font-weight: 700;
+
+  ${theme.response.tablet} {
+    font-size: 15px;
+  }
 `;
 
 const Description = styled.div`
@@ -45,4 +60,8 @@ const Description = styled.div`
   color: #6c7072;
   font-size: 13.005px;
   font-weight: 700;
+
+  ${theme.response.tablet} {
+    font-size: 10px;
+  }
 `;
