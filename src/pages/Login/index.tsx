@@ -11,6 +11,7 @@ const Login = () => {
   };
   const [modalContent, setModalContent] = useState(initialValue);
   const [isModalOpen, setIsModalOpen] = useState(false);
+
   const handleModalClose = () => setIsModalOpen(prev => !prev);
   const handleModalOpen = (text: string) => {
     setModalContent(prev => ({ ...prev, text }));
@@ -18,23 +19,21 @@ const Login = () => {
   };
 
   return (
-    <>
-      <WhiteBackground>
-        <Container>
-          <Content>
-            <LoginTitle />
-            <LoginForm handleModalOpen={handleModalOpen} />
-          </Content>
-        </Container>
-        <Footer />
-        {isModalOpen && (
-          <ErrorModal
-            modalContent={modalContent}
-            ButtonFunc={handleModalClose}
-          />
-        )}
-      </WhiteBackground>
-    </>
+    <WhiteBackground>
+      <Container>
+        <Content>
+          <LoginTitle />
+          <LoginForm handleModalOpen={handleModalOpen} />
+        </Content>
+      </Container>
+      <Footer />
+      {isModalOpen && (
+        <ErrorModal
+          modalContent={modalContent}
+          ButtonFunc={handleModalClose}
+        />
+      )}
+    </WhiteBackground>
   );
 };
 
