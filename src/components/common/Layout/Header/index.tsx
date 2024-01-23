@@ -50,7 +50,6 @@ const Container = styled.header`
   ${theme.response.tablet} {
     height: 65px;
 
-    border-bottom: 1px solid #e6e6e6;
     border-radius: 0;
   }
 `;

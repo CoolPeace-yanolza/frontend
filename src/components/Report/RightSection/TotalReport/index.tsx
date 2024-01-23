@@ -5,6 +5,7 @@ import { headerAccommodationState } from '@recoil/index';
 import useGetTotalReport from '@hooks/queries/useGetTotalReport';
 import { renderTotalAmount, renderTotalText } from '@utils/index';
 import { AmountStyleProps } from '@/types/report';
+import theme from '@styles/theme';
 
 const TotalReport = () => {
   const headerSelectState = useRecoilValue(headerAccommodationState);
@@ -39,6 +40,11 @@ const Container = styled.div`
   flex-direction: column;
 
   background-color: white;
+
+  ${theme.response.tablet} {
+    padding: 15px 15px;
+    border-radius: 0;
+  }
 `;
 
 const Title = styled.span`
@@ -46,6 +52,13 @@ const Title = styled.span`
 
   font-size: 17px;
   font-weight: 700;
+
+  ${theme.response.tablet} {
+    padding: 5px 0 10px 0;
+    border-radius: 0;
+
+    font-size: 15px;
+  }
 `;
 
 const ContentsWrapper = styled.div`
@@ -56,6 +69,15 @@ const ContentsWrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: 10px;
+
+  ${theme.response.tablet} {
+    margin: 10px 0;
+
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
 `;
 
 const Contents = styled.div`
@@ -70,11 +92,26 @@ const Contents = styled.div`
   gap: 10px;
 
   background-color: #fafafb;
+
+  ${theme.response.tablet} {
+    width: 48%;
+    height: 65px;
+
+    border-radius: 7px;
+    padding: 10px;
+
+    justify-content: center;
+    align-items: center;
+  }
 `;
 
 const Text = styled.span`
   font-size: 13px;
   font-weight: 700;
+
+  ${theme.response.tablet} {
+    font-size: 10px;
+  }
 `;
 
 const Amount = styled.span<AmountStyleProps>`
@@ -90,4 +127,13 @@ const Amount = styled.span<AmountStyleProps>`
   background-color: white;
   font-size: 20px;
   font-weight: 700;
+
+  ${theme.response.tablet} {
+    width: 100%;
+
+    border-radius: 9px;
+    padding: 5px 10px;
+
+    font-size: 15px;
+  }
 `;
