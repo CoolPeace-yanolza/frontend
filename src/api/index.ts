@@ -5,3 +5,8 @@ export { default as getTotalReport } from './lib/getTotalReport';
 export { default as getYearReport } from './lib/getYearReport';
 export { default as getCouponList } from './lib/getCouponList';
 export { default as getHeaderAccommodation } from './lib/getHeaderAccommodation';
+export { default as getMonthReports } from './lib/getMonthReports';
+export { default as getDailyReport } from './lib/getDailyReport';
+export { default as getCouponRanking } from './lib/getCouponRanking';
+export { default as getLocalCouponUsage } from './lib/getLocalCouponUsage';
+export { default as getMonthStatus } from './lib/getMonthStatus';
