@@ -12,7 +12,7 @@ import { settlementsDateState } from '@recoil/atoms/settlemented';
 
 const SettlementsSetting = () => {
   const [startDate, setStartDate] = useState<Date | null>(null);
-  const [endDate, setEndDate] = useState<Date | null>(new Date());
+  const [endDate, setEndDate] = useState<Date | null>(null);
 
   const setSettlementsDate = useSetRecoilState(settlementsDateState);
 
