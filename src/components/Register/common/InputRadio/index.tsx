@@ -7,7 +7,7 @@ import unselected from '@assets/icons/ic-register-unselected.svg';
 
 const InputRadio = ({ id, name, text, children }: InputRadioProps) => {
   return (
-    <RadioWrapper>
+    <div>
       <Radio
         type="radio"
         id={id}
@@ -26,13 +26,11 @@ const InputRadio = ({ id, name, text, children }: InputRadioProps) => {
       {children && (
         <ChildrenWrapper className="children">{children}</ChildrenWrapper>
       )}
-    </RadioWrapper>
+    </div>
   );
 };
 
 export default InputRadio;
-
-const RadioWrapper = styled.div``;
 
 const Radio = styled.input<InputRadioStyleProps>`
   display: none;
