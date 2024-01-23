@@ -3,6 +3,7 @@ import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
 
 import { DashboardHeader } from '@components/common';
+import theme from '@styles/theme';
 
 const Loading = () => {
   return (
@@ -37,6 +38,16 @@ const Container = styled.div`
   flex: 2;
 
   background-color: white;
+
+  ${theme.response.tablet} {
+    min-width: auto;
+
+    margin: 10px 15px 20px 15px;
+    padding: 12px 15px;
+
+    justify-content: center;
+    align-items: center;
+  }
 `;
 
 const BaseSkeleton = styled(Skeleton)`
@@ -45,6 +56,10 @@ const BaseSkeleton = styled(Skeleton)`
   border-radius: 16px;
 
   background-color: #f2f4f5;
+
+  ${theme.response.tablet} {
+    border-radius: 10px;
+  }
 `;
 
 const Graph = styled.div`
@@ -54,11 +69,19 @@ const Graph = styled.div`
 
   display: flex;
   flex-direction: column;
+
+  ${theme.response.tablet} {
+    border-radius: 10px;
+  }
 `;
 
 const HeaderContainer = styled(BaseSkeleton)`
   margin: 12px 0;
   padding: 18px 0;
+
+  ${theme.response.tablet} {
+    padding: 10px;
+  }
 `;
 
 const ChartContainer = styled.div`
@@ -67,12 +90,24 @@ const ChartContainer = styled.div`
   padding: 30px;
 
   background-color: #f2f4f5;
+
+  ${theme.response.tablet} {
+    height: calc(100vw / 2);
+    min-height: calc(100vw / 2);
+
+    border-radius: 10px;
+    padding: 0;
+  }
 `;
 
 const Chart = styled(BaseSkeleton)`
   height: 100%;
 
   background-color: white;
+
+  ${theme.response.tablet} {
+    padding: 10px 15px;
+  }
 `;
 
 const Report = styled.div`
@@ -88,6 +123,11 @@ const Report = styled.div`
   align-items: center;
 
   background-color: #fafafb;
+
+  ${theme.response.tablet} {
+    margin-top: 15px;
+    padding: 15px 20px;
+  }
 `;
 
 const Content = styled(BaseSkeleton)`
@@ -95,4 +135,14 @@ const Content = styled(BaseSkeleton)`
   height: 130px;
 
   border-radius: 18.5px;
+
+  ${theme.response.tablet} {
+    width: calc(50vw / 3);
+    height: 50px;
+
+    border-radius: 15;
+    padding: 8px 6px;
+
+    background-color: #fafafb;
+  }
 `;

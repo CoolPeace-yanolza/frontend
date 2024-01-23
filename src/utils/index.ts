@@ -3,7 +3,8 @@ export {
   renderCouponText,
   renderCouponAmount,
   renderTotalText,
-  renderTotalAmount
+  renderTotalAmount,
+  initYearSelectList
 } from './lib/report';
 export { getUpdatedDate } from './lib/calculation';
 export { getStatusToLocaleString } from './lib/dashboard';

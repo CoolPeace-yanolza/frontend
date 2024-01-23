@@ -35,6 +35,7 @@ const Container = styled.div<SidebarOpen>`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  z-index: 100;
 
   ${theme.response.tablet} {
     margin-left: 5px;

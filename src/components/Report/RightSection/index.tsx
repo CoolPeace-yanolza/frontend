@@ -7,6 +7,7 @@ const TotalReport = React.lazy(() => import('./TotalReport'));
 import Catchphrase from './Catchphrase';
 import Loading from './TotalReport/index.loading';
 import ErrorFallback from './TotalReport/index.error';
+import theme from '@styles/theme';
 
 const RightSection = () => {
   const { reset } = useQueryErrorResetBoundary();
@@ -36,4 +37,11 @@ const Section = styled.section`
   flex-direction: column;
   align-self: flex-start;
   gap: 30px;
+
+  ${theme.response.tablet} {
+    width: 100%;
+
+    align-items: center;
+    gap: 0;
+  }
 `;
