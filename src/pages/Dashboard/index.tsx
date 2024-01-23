@@ -29,5 +29,6 @@ const Container = styled.div`
     height: auto;
 
     flex-direction: column-reverse;
+    gap: 5px;
   }
 `;
