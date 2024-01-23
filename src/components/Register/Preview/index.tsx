@@ -1,5 +1,6 @@
 import styled from '@emotion/styled';
 
+import theme from '@styles/theme';
 import search from '@assets/icons/ic-register-search.svg';
 import side from '@assets/icons/ic-register-side.svg';
 
@@ -17,6 +18,22 @@ const Preview = () => {
         <Subtitle>고객님들께 제공 될 쿠폰 이미지를 확인해보세요!</Subtitle>
       </Header>
       <Coupon>
+        <TopSection>
+          <Customer>쿠폰 제공 대상</Customer>
+          <Discount>할인 내용</Discount>
+          <MinimumPrice>최소 예약 금액</MinimumPrice>
+        </TopSection>
+        <BottomSection>
+          <LeftSection>
+            <span>적용 유형</span>
+            <span> / </span>
+            <span>적용 객실</span>
+            <Day>할인 적용 요일</Day>
+          </LeftSection>
+          <RightSection>
+            <span>노출 기간</span>
+          </RightSection>
+        </BottomSection>
         <SideImage
           src={side}
           alt="쿠폰 사이드 이미지"
@@ -90,11 +107,64 @@ const Coupon = styled.div`
   height: 189px;
 
   margin: 8% auto;
+  padding: 30px 20px;
   border-radius: 13px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 
   box-shadow: 0px 3px 3px 0px rgba(0, 0, 0, 0.25);
 
   overflow: hidden;
+`;
+
+const TopSection = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+`;
+
+const Customer = styled.div`
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-position: under;
+`;
+
+const Discount = styled.div`
+  margin-top: 4px;
+
+  color: ${theme.colors.pink500};
+  font-size: 25px;
+  font-weight: 800;
+`;
+
+const MinimumPrice = styled.div`
+  color: #9fa1a2;
+  font-size: 13px;
+`;
+
+const BottomSection = styled.div`
+  margin-right: 20px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+`;
+
+const LeftSection = styled.div`
+  font-size: 13px;
+`;
+
+const Day = styled.div`
+  margin-top: 3px;
+`;
+
+const RightSection = styled.div`
+  color: #ff3478;
+  font-size: 11px;
+  font-weight: 700;
 `;
 
 const SideImage = styled.img`
