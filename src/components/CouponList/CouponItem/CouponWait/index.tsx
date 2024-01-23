@@ -90,7 +90,7 @@ const CouponWait = ({ couponInfo }: CouponListProps) => {
           <ContentWrap>
             <ContentTitle>일정</ContentTitle>
             <ContentValue>
-              {couponInfo.coupon_room_type},
+              {couponInfo.coupon_room_types[0]},
               <span>
                 {CouponCondition(couponInfo.coupon_use_condition_days)}
               </span>

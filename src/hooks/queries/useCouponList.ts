@@ -23,12 +23,11 @@ export const useGetCouponList = (
   accommodationId: number,
   date?: string,
   status?: string,
-  title?: string,
-  page?: number
+  title?: string
 ) =>
   useSuspenseQuery<CouponListResponse, Error>({
-    queryKey: ['CouponList', accommodationId, status, date, title, page],
-    queryFn: () => getCouponList(accommodationId, date, status, title, page)
+    queryKey: ['CouponList', accommodationId, status, date, title],
+    queryFn: () => getCouponList(accommodationId, date, status, title)
   });
 
 // 쿠폰 수정

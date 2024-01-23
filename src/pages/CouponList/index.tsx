@@ -4,16 +4,24 @@ import {
   CouponMain,
   CouponBanner
 } from '@components/CouponList';
+import styled from '@emotion/styled';
 
 const CouponList = () => {
   return (
-    <div>
+    <CouponListContainer>
       <CouponHeader />
       <CouponBanner />
       <CouponNav />
       <CouponMain />
-    </div>
+    </CouponListContainer>
   );
 };
 
 export default CouponList;
+
+const CouponListContainer = styled.div`
+  @media (max-width: 630px) {
+    min-height: 100vh;
+    background: #f2f3f5;
+  }
+`;

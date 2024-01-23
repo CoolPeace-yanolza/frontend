@@ -40,7 +40,8 @@ export interface CouponInformationResponse {
   discount_flat_rate: number | null;
   maximum_discount_price: number | null;
   customer_type: string;
-  coupon_room_type: string;
+  coupon_room_types: string[];
+  coupon_room_stay_more: boolean;
   minimum_reservation_price: number;
   coupon_use_condition_days: string;
   exposure_start_date: string;
