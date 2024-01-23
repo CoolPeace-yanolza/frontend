@@ -1,8 +1,13 @@
+export type AuthInputStyleProps = {
+  $usedFor: string;
+  $type: string;
+};
+
 export type AuthInput = {
   id: string;
   placeholder: string;
   usedFor: string;
-  isInvalid: boolean;
+  isError?: boolean;
 };
 
 export type AuthInputNormal = AuthInput & {
@@ -21,6 +26,7 @@ export type AuthButton = {
   size: string;
   variant: string;
   text: string;
+  disabled?: boolean;
   buttonFunc:
     | LoginAPIButton
     | SignUpAPIButton

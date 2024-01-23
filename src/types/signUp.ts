@@ -1,5 +1,5 @@
 export type SignUpFormStyleProps = {
-  $isInvalid: boolean;
+  $isValid?: boolean;
 };
 
-export type SignUpInputValidation = Pick<SignUpFormStyleProps, '$isInvalid'>;
+export type SignUpInputValidation = Pick<SignUpFormStyleProps, '$isValid'>;
