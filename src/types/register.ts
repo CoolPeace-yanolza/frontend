@@ -184,6 +184,21 @@ export type RadioProps = {
   text: string;
 };
 
+// Calendar
+export type CalendarProps = {
+  startDate: Date | null | undefined;
+  setStartDate: React.Dispatch<React.SetStateAction<Date | null | undefined>>;
+  endDate: Date | null | undefined;
+  setEndDate: React.Dispatch<React.SetStateAction<Date | null | undefined>>;
+  setSelected: React.Dispatch<React.SetStateAction<boolean>>;
+};
+
+// CustomInput
+export type CustomInputProps = {
+  value?: string;
+  onClick: () => void;
+};
+
 // registerInputState
 export type registerInputAtom = {
   title: string;
