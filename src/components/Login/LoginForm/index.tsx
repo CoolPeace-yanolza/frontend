@@ -1,4 +1,5 @@
 import { useLocation, useNavigate } from 'react-router-dom';
+import { AxiosError } from 'axios';
 import styled from '@emotion/styled';
 import {
   FormProvider,
@@ -40,17 +41,25 @@ const LoginForm = () => {
       email: data.user_id,
       password: data.user_password
     };
+    try {
+      const response = await postLogin(formData);
+      setCookies('userName', response.name, response.expires_in);
+      setCookies('userEmail', response.email, response.expires_in);
+      setCookies('accessToken', response.access_token, response.expires_in);
+      setCookies('refreshToken', response.refresh_token, response.expires_in);
 
-    const response = await postLogin(formData);
-    setCookies('userName', response.name, response.expires_in);
-    setCookies('userEmail', response.email, response.expires_in);
-    setCookies('accessToken', response.access_token, response.expires_in);
-    setCookies('refreshToken', response.refresh_token, response.expires_in);
-
-    if (state) {
-      navigate(state);
-    } else {
-      navigate('/');
+      if (state) {
+        navigate(state);
+      } else {
+        navigate('/');
+      }
+    } catch (error) {
+      if (error instanceof AxiosError) {
+        console.log(error);
+        // TODO : 에러코드에 따라 모달 표시 예정
+        // error.response?.data.code;
+        // error.response?.data.message;
+      }
     }
   };
 
