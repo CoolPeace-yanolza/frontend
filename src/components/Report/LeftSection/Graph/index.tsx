@@ -4,9 +4,23 @@ import {
   Chart as ChartJS,
   CategoryScale,
   LinearScale,
-  BarElement
+  BarElement,
+  LineElement,
+  Legend,
+  Tooltip,
+  Filler,
+  BarController
 } from 'chart.js';
-ChartJS.register(CategoryScale, LinearScale, BarElement);
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  LineElement,
+  Legend,
+  Tooltip,
+  Filler,
+  BarController
+);
 
 import { ReportGraphProps } from '@/types/report';
 import SelectYear from './SelectYear';
@@ -41,7 +55,12 @@ const Graph = ({ graphData }: { graphData: ReportGraphProps }) => {
   };
 
   const options = {
-    maintainAspectRatio: false
+    maintainAspectRatio: false,
+    plugins: {
+      legend: {
+        onClick: () => undefined
+      }
+    }
   };
 
   return (
