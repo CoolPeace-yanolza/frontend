@@ -30,7 +30,7 @@ export default Report;
 
 const Container = styled.div`
   width: 100%;
-  height: 100%;
+  height: auto;
 
   display: flex;
   justify-content: space-between;
@@ -39,6 +39,10 @@ const Container = styled.div`
   background-color: #f2f3f5;
 
   ${theme.response.tablet} {
+    height: auto;
+
     flex-direction: column-reverse;
+
+    background-color: white;
   }
 `;
