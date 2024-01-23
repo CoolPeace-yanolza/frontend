@@ -34,6 +34,10 @@ export default CouponBanner;
 
 const BannerContainer = styled.div`
   margin: 20px 50px;
+
+  @media (max-width: 900px) {
+    display: none;
+  }
 `;
 
 const TabBanner = styled.div`

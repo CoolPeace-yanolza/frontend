@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
 
 import theme from '@styles/theme';
@@ -19,6 +19,8 @@ const CouponNav = () => {
   const headerAccommodation = useRecoilValue(headerAccommodationState);
   const setGlobalCoupons = useSetRecoilState(couponListState);
   const [searchAPI, setSearchAPI] = useState<string>('');
+  // const [page, setPage] = useState(1);
+  // const loadingRef = useRef(null);
 
   const handleDateClick = (period: string) => {
     setResisterDateClick(period);
@@ -148,6 +150,10 @@ export default CouponNav;
 
 const TabContainer = styled.div`
   margin: 14px 50px;
+
+  @media (max-width: 780px) {
+    margin: 14px 10px;
+  }
 `;
 
 const TabNavContainer = styled.div`
@@ -158,6 +164,13 @@ const TabNavContainer = styled.div`
   flex-wrap: wrap;
 
   border-bottom: 1px solid #dde1e6;
+
+  @media (max-width: 780px) {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
 `;
 
 const TabWrap = styled.div`
@@ -175,12 +188,20 @@ const TapItemWrapper = styled.div`
   align-items: center;
 
   cursor: pointer;
+
+  @media (max-width: 780px) {
+    margin-right: 1px;
+  }
 `;
 
 const TabName = styled.div`
   font-size: 20px;
   font-weight: 700;
   color: #404446;
+
+  @media (max-width: 780px) {
+    font-size: 11px;
+  }
 `;
 
 const TabCount = styled.div<CategoryTabStyleProps>`
@@ -200,6 +221,14 @@ const TabCount = styled.div<CategoryTabStyleProps>`
 
   color: ${props => (props.$categoryTab ? theme.colors.white : '#404040')};
   background: ${props => (props.$categoryTab ? '#404446' : '#F2F4F5')};
+
+  @media (max-width: 780px) {
+    font-size: 13px;
+    width: 41.019px;
+    height: 23.439px;
+
+    margin: 0px 4px;
+  }
 `;
 
 const SearchWrap = styled.form`
@@ -221,6 +250,16 @@ const SearchInput = styled.input`
   background: #f3f3f3;
   color: #646464;
   font-size: 14px;
+
+  @media (max-width: 780px) {
+    width: 248px;
+    height: 37.123px;
+
+    margin: 0px 13px 5px 0px;
+    padding-left: 33px;
+
+    font-size: 11px;
+  }
 `;
 
 const SearchImg = styled.img`
@@ -228,6 +267,13 @@ const SearchImg = styled.img`
 
   margin-top: 7px;
   margin-left: 20px;
+
+  @media (max-width: 780px) {
+    margin-top: 10px;
+    margin-left: 10px;
+    width: 18px;
+    height: 18px;
+  }
 `;
 
 const SearchButton = styled.button`
@@ -244,6 +290,10 @@ const SearchButton = styled.button`
   color: ${theme.colors.white};
   background-color: #1a2849;
   cursor: pointer;
+
+  @media (max-width: 780px) {
+    font-size: 14px;
+  }
 `;
 
 const TabBottomContainer = styled.div`
@@ -285,6 +335,10 @@ const CouponDescription = styled.div`
 const ResisterPeriodWrap = styled.div`
   display: flex;
   align-items: center;
+
+  @media (max-width: 1200px) {
+    display: none;
+  }
 `;
 
 const ResisterPeriodTitle = styled.div`

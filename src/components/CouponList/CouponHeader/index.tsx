@@ -34,6 +34,10 @@ const CouponHeaderContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  @media (max-width: 900px) {
+    display: none;
+  }
 `;
 
 const CouponHeaderWrapper = styled.div`

@@ -37,6 +37,8 @@ export interface CouponInformationResponse {
   coupon_concat_title: string;
   discount_type: string;
   discount_value: number;
+  discount_flat_rate: number | null;
+  maximum_discount_price: number | null;
   customer_type: string;
   coupon_room_type: string;
   minimum_reservation_price: number;
@@ -56,12 +58,15 @@ export interface CouponListProps {
   couponInfo: CouponInformationResponse;
 }
 
+// 쿠폰 수정
 export interface CouponUpdateCredential {
   coupon_number: string | undefined;
   accommodation_id: number;
   customer_type: string;
   discount_type: string;
   discount_value: number;
+  discount_flat_rate: number | null;
+  maximum_discount_price: number | null;
   coupon_room_type: string;
   register_all_room: false;
   register_rooms: string[];
@@ -71,6 +76,7 @@ export interface CouponUpdateCredential {
   exposure_end_date: string;
 }
 
+// 쿠폰 삭제
 export interface CouponDeleteCredential {
   coupon_number: string | undefined;
 }

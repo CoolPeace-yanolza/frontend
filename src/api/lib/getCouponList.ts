@@ -11,7 +11,8 @@ export const getCouponList = async (
   accommodationId: number,
   date?: string,
   status?: string,
-  title?: string
+  title?: string,
+  page?: number
 ): Promise<CouponListResponse> => {
   const params = {
     date,
@@ -19,7 +20,7 @@ export const getCouponList = async (
     title
   };
   const response = await instance.get(
-    `/v1/accommodations/${accommodationId}/coupons`,
+    `/v1/accommodations/${accommodationId}/coupons?page=${page}`,
     {
       params
     }
