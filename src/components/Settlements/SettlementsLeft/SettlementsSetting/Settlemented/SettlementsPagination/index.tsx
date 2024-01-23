@@ -3,6 +3,7 @@ import ReactPaginate from 'react-paginate';
 import styled from '@emotion/styled';
 
 import { SettlementsPaginationProps } from '@/types/settlements';
+import theme from '@styles/theme';
 
 const SettlementsPagination: React.FC<SettlementsPaginationProps> = ({
   currentPage,
@@ -70,7 +71,7 @@ const PaginationContainer = styled.div`
     border-radius: 4px;
     cursor: pointer;
 
-    @media (max-width: 900px) {
+    ${theme.response.tablet} {
       font-size: 12px;
     }
   }

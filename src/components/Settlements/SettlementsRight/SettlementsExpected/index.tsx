@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
 
 import SyncIcon from '@assets/icons/sync-outline.svg';
+import theme from '@styles/theme';
 
 const SettlementsExpected = () => {
   const currentDate = new Date();
@@ -84,7 +85,7 @@ const Container = styled.div`
   margin: 150px 15px 30px 15px;
   align-items: center;
 
-  @media (max-width: 900px) {
+  ${theme.response.tablet} {
     margin: 0px;
   }
 `;

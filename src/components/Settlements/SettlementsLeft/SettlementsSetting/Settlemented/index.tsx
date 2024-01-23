@@ -12,6 +12,7 @@ import { SettlementedItem } from '@/types/settlements';
 import { settlementsDateState, settlementDataState } from '@recoil/atoms/settlemented';
 import headerAccommodationState from '@recoil/atoms/headerAccommodationState';
 import getSettlemented from 'src/api/lib/getSettlemented';
+import theme from '@styles/theme';
 
 const Settlemented = () => {
 
@@ -166,7 +167,7 @@ const Container = styled.nav`
   margin-right: 43px;
   margin-left: 43px;
 
-  @media (max-width: 900px) {
+  ${theme.response.tablet} {
     margin-left: 20px;
     margin-right: 20px;
   }
@@ -212,7 +213,7 @@ const OptionContainer = styled.div`
 `;
 
 const StyledDropdown = styled(Dropdown)`
-  @media (max-width: 900px) {
+  ${theme.response.tablet} {
     border: none;
   }
 
@@ -223,36 +224,40 @@ const StyledDropdown = styled(Dropdown)`
     font-color: white !important;
     background-color: rgba(255, 255, 255, 0.1);
 
-    @media (max-width: 900px) {
-    }
-
     @media (max-width: 498px) {
       max-width: 160px;
     }
 
     .text {
-      color: white;
-      font-size: 11px;
       max-height: 30px;
+
+      font-size: 11px;
+      color: white;
     }
+
     .icon {
       color: white;
     }
+
     .menu .item.selected {
       background-color: rgba(255, 255, 255, 0.1);
       color: #fff;
     }
+
     .menu {
-      font-size: 11px;
-      background-color: rgba(255, 255, 255, 0.1) !important;
-      border: 1px solid rgba(255, 255, 255, 0.2) !important;
-      border-radius: 0px 0px 5px 5px;
       margin-bottom: 2px;
 
+      border: 1px solid rgba(255, 255, 255, 0.2) !important;
+      border-radius: 0px 0px 5px 5px;
+
+      font-size: 11px;
+      background-color: rgba(255, 255, 255, 0.1) !important;
+
       .item {
-        white-space: nowrap;
         border-bottom: none !important;
         border-top: none !important;
+
+        white-space: nowrap;
       }
     }
   }
@@ -262,8 +267,9 @@ const StyledDropdown = styled(Dropdown)`
   }
 
   &.ui.selection.active.dropdown {
-    color: white;
     border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    
+    color: white;
     box-shadow: 0 2px 3px 0 rgba(34, 36, 38, 0.15) !important;
   }
 

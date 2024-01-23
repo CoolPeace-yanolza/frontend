@@ -2,6 +2,7 @@ import styled from '@emotion/styled';
 
 import { SettlementedItem, SettlementsTableProps } from '@/types/settlements';
 import settlementsFrame from '@assets/icons/settlements-data-frame.svg'; 
+import theme from '@styles/theme';
 
 const SettlementsTable = ({ data, pageStartNumber }: SettlementsTableProps) => {
   
@@ -81,7 +82,7 @@ const Container = styled.div`
   flex-direction: column;
   
 
-  @media (max-width: 900px) {
+  ${theme.response.tablet} {
     overflow-x: hidden;
   }
 `;
@@ -96,7 +97,7 @@ const Header = styled.div`
   border-radius: 10px;
   background-color: rgba(255, 255, 255, 0.05);
 
-  @media (max-width: 900px) {
+  ${theme.response.tablet} {
     display: none;
   }
   
@@ -131,7 +132,7 @@ const Frame = styled.div<{ hasData?: boolean }>`
 
   background: url(${settlementsFrame});
 
-  @media (max-width: 900px) {
+  ${theme.response.tablet} {
     background: none;
     background-color: white;
     height: 100%;
@@ -146,7 +147,7 @@ const NoDataText = styled.div`
   left: 50%;
   transform: translate(-50%, -50%);
 
-  @media (max-width: 900px) {
+  ${theme.response.tablet} {
     margin: 10px 0px;
 
     position: static; 
@@ -169,7 +170,7 @@ const DataElement = styled.div`
   white-space: nowrap;
   text-overflow: ellipsis;
 
-  @media (max-width: 900px) {
+  ${theme.response.tablet} {
     padding: 5px 0px;
 
     width: 100%;
@@ -210,8 +211,8 @@ const MobileData = styled.span`
 `;
 
 const WebData = styled.span`
-@media (max-width: 900px) {
-  display: none;
+  ${theme.response.tablet} {
+    display: none;
 }
 `;
 
@@ -225,7 +226,7 @@ const Row = styled.div<{ isLast: boolean }>`
     border-bottom: none;
   }
 
-  @media (max-width: 900px) {
+  ${theme.response.tablet} {
     padding: 20px 0px;
 
     display: flex;

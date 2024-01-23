@@ -1,7 +1,8 @@
 import styled from '@emotion/styled';
 
 import SyncIcon from '@assets/icons/sync-outline.svg';
-import receiptIcon from '@assets/icons/receipt-sharp.svg'; 
+import receiptIcon from '@assets/icons/receipt-sharp.svg';
+import theme from '@styles/theme'; 
 
 const SettlementsBefore = () => {
 
@@ -90,7 +91,7 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
 
-  @media (max-width: 900px) {
+  ${theme.response.tablet} {
     margin-left: 15px;
     margin-right: 0px;
   }
@@ -103,7 +104,7 @@ const InnerContainer = styled.div`
 const ExpectedContainer = styled.div`
   margin-top: 30px;
 
-  @media (max-width: 900px) {
+  ${theme.response.tablet} {
     margin: 0px;
   }
 `;
@@ -155,18 +156,16 @@ const UpdatedContainer = styled.div`
   width: 100%;
 
   margin-top: 25px;
-
   border: 1.5px solid white;
   border-radius: 8px;
 `;
 
 const UpdatedInnerContainer = styled.div`
   margin-top: 20px;
-
-  background-color: white;
-
   border: 1px solid white;
   border-radius: 5px;
+
+  background-color: white;
 `;
 
 const UpdatedWrapper = styled.div`
@@ -270,7 +269,7 @@ const ReceiptIcon = styled.img`
   margin-top: 40px;
   margin-left: auto;
 
-  @media (max-width: 900px) {
+  ${theme.response.tablet} {
     display: none;
   }
 `;

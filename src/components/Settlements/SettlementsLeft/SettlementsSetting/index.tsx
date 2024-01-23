@@ -9,6 +9,7 @@ import CalendarIcon from '@assets/icons/calendar-number-outline.svg';
 import Settlemented from './Settlemented';
 import SettlementsHeader from './SettlementsHeader';
 import { settlementsDateState } from '@recoil/atoms/settlemented';
+import theme from '@styles/theme';
 
 const SettlementsSetting = () => {
   const [startDate, setStartDate] = useState<Date | null>(null);
@@ -88,7 +89,7 @@ const BreakLine = styled.div`
   margin: 0 40px;
 
   hr {
-    @media (max-width: 900px) {
+    ${theme.response.tablet} {
       display: none;
     }
   }
@@ -99,7 +100,7 @@ const CalendarContainer = styled.nav`
   justify-content: flex-end;
   align-items: center;
 
-  @media (max-width: 900px) {
+  ${theme.response.tablet} {
     margin: 10px 20px;
 
     display: flex;
@@ -113,7 +114,7 @@ const CalendarInnerContainer = styled.div`
 
   display: flex;
 
-  @media (max-width: 900px) {
+  ${theme.response.tablet} {
     width: 100%;
   }
 `;
@@ -135,9 +136,6 @@ const StyledDatePicker = styled(DatePicker)`
   border-radius: 8px; 
 
   font-size: 14px;
-
-  @media (max-width: 900px) {
-  }
 `;
 
 const CalendarText = styled.div`
@@ -167,7 +165,7 @@ const StyledButton = styled.button`
     opacity: 1;
   }
 
-  @media (max-width: 900px) {
+  ${theme.response.tablet} {
     margin-left: auto;
   }
 `;
@@ -179,7 +177,7 @@ const StyledDatePickerContainer = styled.div`
   display: flex;
   align-items: center;
 
-  @media (max-width: 900px) {
+  ${theme.response.tablet} {
     margin-left: auto;
     margin-right: 0px;
   }
