@@ -53,3 +53,11 @@ export const renderTotalAmount = (informationText: [string, number]) => {
       throw new Error();
   }
 };
+
+export const initYearSelectList = () => {
+  const now = new Date();
+  const year = now.getFullYear();
+  const yearList = [year, year - 1, year - 2, year - 3, year - 4];
+
+  return yearList;
+};

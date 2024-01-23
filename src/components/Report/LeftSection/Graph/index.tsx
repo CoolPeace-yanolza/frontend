@@ -3,6 +3,7 @@ import { Bar } from 'react-chartjs-2';
 
 import { ReportGraphProps } from '@/types/report';
 import SelectYear from './SelectYear';
+import theme from '@styles/theme';
 
 const Graph = ({ graphData }: { graphData: ReportGraphProps }) => {
   // HACK: Notice 업데이트 정책 변경
@@ -17,7 +18,8 @@ const Graph = ({ graphData }: { graphData: ReportGraphProps }) => {
         backgroundColor: '#3182F6',
         borderColor: '#3182F6',
         borderWidth: 1,
-        borderRadius: 5
+        borderRadius: 10,
+        barPercentage: 0.8
       },
       {
         label: '쿠폰 적용 매출',
@@ -25,7 +27,8 @@ const Graph = ({ graphData }: { graphData: ReportGraphProps }) => {
         backgroundColor: '#FF3478',
         borderColor: '#FF3478',
         borderWidth: 1,
-        borderRadius: 5
+        borderRadius: 10,
+        barPercentage: 0.8
       }
     ]
   };
@@ -65,6 +68,10 @@ const Container = styled.div`
 
   display: flex;
   flex-direction: column;
+
+  ${theme.response.tablet} {
+    border-radius: 10px;
+  }
 `;
 
 const HeaderContainer = styled.div`
@@ -73,6 +80,10 @@ const HeaderContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  ${theme.response.tablet} {
+    padding: 10px;
+  }
 `;
 
 const Content = styled.div`
@@ -86,6 +97,10 @@ const Title = styled.span`
   color: #181e29;
   font-size: 22px;
   font-weight: 700;
+
+  ${theme.response.tablet} {
+    font-size: 15px;
+  }
 `;
 
 const Notice = styled.p`
@@ -97,6 +112,10 @@ const Notice = styled.p`
     color: #8e8e8e;
     font-size: 10.5px;
     font-weight: 500;
+  }
+
+  ${theme.response.tablet} {
+    display: none;
   }
 `;
 
@@ -114,6 +133,13 @@ const GraphContainer = styled.div`
   padding: 30px;
 
   background-color: #fafafb;
+
+  ${theme.response.tablet} {
+    height: calc(100vw / 2);
+    min-height: calc(100vw / 2);
+
+    padding: 0;
+  }
 `;
 
 const BarGraph = styled(Bar)`
@@ -121,4 +147,8 @@ const BarGraph = styled(Bar)`
   padding: 10px 20px;
 
   background-color: white;
+
+  ${theme.response.tablet} {
+    padding: 10px 15px;
+  }
 `;
