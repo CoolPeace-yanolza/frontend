@@ -2,9 +2,7 @@ import { FallbackProps } from 'react-error-boundary';
 import styled from '@emotion/styled';
 import theme from '@styles/theme';
 
-const ErrorFallback = ({ error, resetErrorBoundary }: FallbackProps) => {
-  console.log(error);
-
+const ErrorFallback = ({ resetErrorBoundary }: FallbackProps) => {
   return (
     <Container>
       <span>누적 리포트 차트 에러 발생</span>

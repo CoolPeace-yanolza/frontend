@@ -3,9 +3,7 @@ import styled from '@emotion/styled';
 
 import theme from '@styles/theme';
 
-const ErrorFallback = ({ error, resetErrorBoundary }: FallbackProps) => {
-  console.log(error);
-
+const ErrorFallback = ({ resetErrorBoundary }: FallbackProps) => {
   return (
     <Container>
       <span>누적 똑똑 현황 에러 발생</span>
