@@ -3,10 +3,12 @@ import styled from '@emotion/styled';
 import { useQueryErrorResetBoundary } from '@tanstack/react-query';
 import { ErrorBoundary } from 'react-error-boundary';
 
-import LocalCouponUsage from './LocalCouponUsage';
 const LocalTop3Coupons = React.lazy(() => import('./Top3Coupons'));
 import Top3CouponErrorFallback from './Top3Coupons/index.error';
-import Top3CouponRanking from './Top3Coupons/index.loading';
+import Top3CouponRankingLoading from './Top3Coupons/index.loading';
+const LocalCouponUsage = React.lazy(() => import('./LocalCouponUsage'));
+import LocalUsageErrorFallback from './LocalCouponUsage/index.error';
+import LocalUsageLoading from './LocalCouponUsage/index.loading';
 
 const LocalInformationSection = () => {
   const { reset } = useQueryErrorResetBoundary();
@@ -14,14 +16,21 @@ const LocalInformationSection = () => {
   return (
     <Container>
       <LeftSection>
-        <LocalCouponUsage />
+        <ErrorBoundary
+          onReset={reset}
+          fallbackRender={LocalUsageErrorFallback}
+        >
+          <Suspense fallback={<LocalUsageLoading />}>
+            <LocalCouponUsage />
+          </Suspense>
+        </ErrorBoundary>
       </LeftSection>
       <RightSection>
         <ErrorBoundary
           onReset={reset}
           fallbackRender={Top3CouponErrorFallback}
         >
-          <Suspense fallback={<Top3CouponRanking />}>
+          <Suspense fallback={<Top3CouponRankingLoading />}>
             <LocalTop3Coupons />
           </Suspense>
         </ErrorBoundary>

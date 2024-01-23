@@ -1,38 +1,41 @@
 import styled from '@emotion/styled';
 import theme from '@styles/theme';
-import { useState } from 'react';
 
 export interface ModalProps {
   modalText: string;
   subText: boolean;
   onConfirmClick(): void;
+  onCloseClick(): void;
 }
 
-const Modal = ({ modalText, subText, onConfirmClick }: ModalProps) => {
-  const [isShowModal, setIsShowModal] = useState(true);
-  const [isShowSubText] = useState(true);
+const Modal = ({
+  modalText,
+  subText,
+  onConfirmClick,
+  onCloseClick
+}: ModalProps) => {
+  const handleConfirmClick = () => {
+    onConfirmClick();
+  };
 
   const handleModalClose = () => {
-    setIsShowModal(false);
+    onCloseClick();
   };
 
-  const handleConfirmClick = () => {
-    onConfirmClick;
-    handleModalClose();
-  };
-
-  return isShowModal ? (
+  return (
     <ModalContainer>
       <ModalWrap>
         <ModalText>{modalText}</ModalText>
-        {isShowSubText && <ModalSubText>{subText}</ModalSubText>}
+        {subText && (
+          <ModalSubText>삭제한 쿠폰은 복구할 수 없습니다.</ModalSubText>
+        )}
         <ButtonWrap>
           <ConfirmButton onClick={handleConfirmClick}>확인</ConfirmButton>
           <CancelButton onClick={handleModalClose}>취소</CancelButton>
         </ButtonWrap>
       </ModalWrap>
     </ModalContainer>
-  ) : null;
+  );
 };
 
 export default Modal;
@@ -103,6 +106,10 @@ const ConfirmButton = styled.button`
   color: ${theme.colors.white};
   background: #1a2849;
   cursor: pointer;
+
+  &:hover {
+    background: #5f6980;
+  }
 `;
 const CancelButton = styled.button`
   width: 158px;
@@ -114,4 +121,8 @@ const CancelButton = styled.button`
   color: ${theme.colors.white};
   background: #b1b1b1;
   cursor: pointer;
+
+  &:hover {
+    background: #404446;
+  }
 `;

@@ -9,6 +9,7 @@ export type GraphHeaderTag = Pick<HeaderTagStyleProps, '$active'>;
 export type MonthReportsResults = {
   statistics_year: number;
   statistics_month: number;
+  total_sales: number;
   coupon_total_sales: number;
   download_count: number;
   used_count: number;
@@ -65,6 +66,11 @@ export type CouponRankingResult = {
   first_coupon_title: string;
   second_coupon_title: string;
   third_coupon_title: string;
+};
+
+export type LocalCouponUsageResult = {
+  address: string;
+  coupon_avg: string;
 };
 
 // DailyReport

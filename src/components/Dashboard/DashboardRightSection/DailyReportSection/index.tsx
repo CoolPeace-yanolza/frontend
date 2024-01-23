@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 import { useRecoilValue } from 'recoil';
 
 import GetMatchedReport from './GetMatchedReport';
-import { useGetDailyReport } from '@hooks/queries/useGetDailyReport';
+import { useGetDailyReport } from '@hooks/index';
 import { headerAccommodationState } from '@recoil/index';
 
 const DailyReportSection = () => {

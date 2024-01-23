@@ -69,6 +69,10 @@ const CouponRegisterButton = styled.div`
 
   font-size: 17px;
   color: ${theme.colors.white};
-  background: #ff3478;
+  background: linear-gradient(91deg, #ff3478 1.39%, #ff83ad 98.63%);
   cursor: pointer;
+
+  &:hover {
+    background: #b22655;
+  }
 `;
