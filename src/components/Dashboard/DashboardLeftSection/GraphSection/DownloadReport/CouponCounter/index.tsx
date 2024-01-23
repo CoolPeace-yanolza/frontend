@@ -2,6 +2,7 @@ import styled from '@emotion/styled';
 
 import { CouponCounterProps, CouponCounterStyleProps } from '@/types/dashboard';
 import { getStatusToLocaleString } from '@utils/index';
+
 import theme from '@styles/theme';
 
 const CouponCounter = ({ type, result }: CouponCounterProps) => {
@@ -31,6 +32,16 @@ const Container = styled.div<CouponCounterStyleProps>`
     props.$type === 'download' ? '#fff' : '#022C79'};
 
   color: ${props => (props.$type === 'download' ? '#404446' : '#fff')};
+
+  ${theme.response.tablet} {
+    width: 100%;
+
+    padding: 10px 0px;
+    border-radius: 7px;
+
+    align-items: center;
+    justify-content: space-between;
+  }
 `;
 
 const Header = styled.div`
@@ -44,6 +55,14 @@ const Header = styled.div`
   font-weight: 700;
 
   white-space: nowrap;
+
+  ${theme.response.tablet} {
+    padding: 0px 10px 10px;
+
+    align-self: center;
+
+    font-size: 12px;
+  }
 `;
 
 const ResultContainer = styled.div<CouponCounterStyleProps>`
@@ -63,4 +82,17 @@ const ResultContainer = styled.div<CouponCounterStyleProps>`
   font-weight: 700;
 
   box-shadow: ${theme.shadow.medium};
+
+  ${theme.response.tablet} {
+    width: 80%;
+
+    padding: 10px 0px;
+    border-radius: 6px;
+
+    align-self: center;
+
+    font-size: 12px;
+
+    white-space: nowrap;
+  }
 `;

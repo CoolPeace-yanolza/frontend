@@ -89,4 +89,8 @@ const LeftSection = styled.div`
 const RightSection = styled.div`
   width: 350px;
   height: 100%;
+
+  ${theme.response.tablet} {
+    width: 100%;
+  }
 `;
