@@ -61,6 +61,7 @@ const Section = styled.div`
   height: 100vh;
 
   margin-left: var(--sidebar-width);
+  padding: 0 22px;
 
   display: flex;
   flex-direction: column;
