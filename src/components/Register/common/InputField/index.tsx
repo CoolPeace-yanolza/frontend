@@ -10,7 +10,9 @@ const InputField = ({ placeholder, text, onInputChange }: InputFieldProps) => {
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    onInputChange(e);
+    if (onInputChange) {
+      onInputChange(e);
+    }
   };
 
   return (
