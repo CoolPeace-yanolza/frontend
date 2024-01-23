@@ -7,15 +7,13 @@ const ErrorModal = ({ modalContent, ButtonFunc }: ErrorModalProps) => {
   return (
     <Backdrop>
       <Modal>
-        <>
-          <Icon
-            src={ErrorIcon}
-            alt="에러 아이콘"
-          />
-          <Text>{modalContent.text}</Text>
-          <ErrorText>{modalContent.errorText}</ErrorText>
-          <ConfirmButton onClick={ButtonFunc}>확인</ConfirmButton>
-        </>
+        <Icon
+          src={ErrorIcon}
+          alt="에러 아이콘"
+        />
+        <Text>{modalContent.text}</Text>
+        <ErrorText>{modalContent.errorText}</ErrorText>
+        <ConfirmButton onClick={ButtonFunc}>확인</ConfirmButton>
       </Modal>
     </Backdrop>
   );
