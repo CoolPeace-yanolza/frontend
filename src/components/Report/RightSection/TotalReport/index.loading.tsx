@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import theme from '@styles/theme';
 import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
 
@@ -7,7 +8,8 @@ const Loading = () => {
     <Container>
       <Title />
       <ContentsWrapper>
-        <Contents count={4} />
+        <ContentsTop count={2} />
+        <ContentsBottom count={2} />
       </ContentsWrapper>
     </Container>
   );
@@ -19,6 +21,7 @@ const Container = styled.div`
   width: 100%;
   height: 100%;
 
+  margin-left: 10px;
   padding: 30px 15px;
   border-radius: 20px;
 
@@ -26,6 +29,16 @@ const Container = styled.div`
   flex-direction: column;
 
   background-color: white;
+
+  ${theme.response.tablet} {
+    width: 90%;
+    max-height: 250px;
+
+    margin: 0;
+    padding: 20px 10px;
+
+    overflow: hidden;
+  }
 `;
 
 const BaseSkeleton = styled(Skeleton)`
@@ -43,6 +56,11 @@ const Title = styled(BaseSkeleton)`
   padding: 5px 0;
 
   border-radius: 12px;
+
+  ${theme.response.tablet} {
+    width: 30%;
+    border-radius: 7px;
+  }
 `;
 
 const ContentsWrapper = styled.div`
@@ -53,12 +71,37 @@ const ContentsWrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: 10px;
+
+  ${theme.response.tablet} {
+    border-radius: 10px;
+  }
 `;
 
-const Contents = styled(BaseSkeleton)`
+const ContentsTop = styled(BaseSkeleton)`
   height: 100px;
+
   padding: 10px;
 
   display: flex;
   flex-direction: column;
+  flex: 1;
+
+  ${theme.response.tablet} {
+    width: 100%;
+    height: 65px;
+  }
+`;
+
+const ContentsBottom = styled(BaseSkeleton)`
+  height: 100px;
+
+  padding: 10px;
+
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+
+  ${theme.response.tablet} {
+    display: none;
+  }
 `;

@@ -2,6 +2,7 @@ import styled from '@emotion/styled';
 import { useNavigate, useLocation } from 'react-router-dom';
 
 import { NavigationPath } from '@/types/dashboardHeader';
+import theme from '@styles/theme';
 
 const DashboardHeader = () => {
   const navigate = useNavigate();
@@ -27,7 +28,13 @@ const DashboardHeader = () => {
           누적 리포트
         </ReportPageNavigation>
       </MenuContainer>
-      <Button>쿠폰 등록하기</Button>
+      <Button
+        onClick={() => {
+          navigate('/coupons/register');
+        }}
+      >
+        쿠폰 등록하기
+      </Button>
     </Container>
   );
 };
@@ -42,6 +49,10 @@ const Container = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
+
+  ${theme.response.tablet} {
+    display: none;
+  }
 `;
 
 const MenuContainer = styled.div`
