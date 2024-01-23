@@ -1,14 +1,15 @@
+import { AxiosError } from 'axios';
+
 import { LoginData } from '@/types/auth';
 import { instance } from '..';
-import { AxiosError } from 'axios';
 
 const postLogin = async (loginData: LoginData) => {
   try {
     const response = await instance.post('/v1/member/login', loginData);
-    return response.data;
+    return response;
   } catch (error) {
     if (error instanceof AxiosError) {
-      throw error;
+      return error.response;
     }
   }
 };

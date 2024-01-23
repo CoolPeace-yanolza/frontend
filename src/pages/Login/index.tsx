@@ -17,7 +17,6 @@ const Login = () => {
     setIsModalOpen(true);
   };
 
-  console.log('isModalOpen : ', isModalOpen);
   return (
     <>
       <WhiteBackground>

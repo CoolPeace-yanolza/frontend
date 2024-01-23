@@ -1,5 +1,4 @@
 import { useLocation, useNavigate } from 'react-router-dom';
-import { AxiosError } from 'axios';
 import styled from '@emotion/styled';
 import {
   FormProvider,
@@ -22,9 +21,7 @@ const LoginForm = ({ handleModalOpen }: LoginFormProps) => {
   const navigate = useNavigate();
   const { state } = useLocation();
 
-  const methods = useForm({
-    mode: 'onBlur'
-  });
+  const methods = useForm({ mode: 'onBlur' });
   const {
     formState: { errors, isValid },
     handleSubmit
@@ -41,24 +38,30 @@ const LoginForm = ({ handleModalOpen }: LoginFormProps) => {
       email: data.user_id,
       password: data.user_password
     };
-    try {
-      const response = await postLogin(formData);
-      setCookies('userName', response.name, response.expires_in);
-      setCookies('userEmail', response.email, response.expires_in);
-      setCookies('accessToken', response.access_token, response.expires_in);
-      setCookies('refreshToken', response.refresh_token, response.expires_in);
+
+    const response = await postLogin(formData);
+
+    if (response?.status === 200) {
+      setCookies('userName', response.data.name, response.data.expires_in);
+      setCookies('userEmail', response.data.email, response.data.expires_in);
+      setCookies(
+        'accessToken',
+        response.data.access_token,
+        response.data.expires_in
+      );
+      setCookies(
+        'refreshToken',
+        response.data.refresh_token,
+        response.data.expires_in
+      );
 
       if (state) {
         navigate(state);
       } else {
         navigate('/');
       }
-    } catch (error) {
-      if (error instanceof AxiosError) {
-        if (error.response?.status === 404) {
-          handleModalOpen(error.response?.data.message);
-        }
-      }
+    } else if (response?.status === 404) {
+      handleModalOpen(response?.data.message);
     }
   };
 
