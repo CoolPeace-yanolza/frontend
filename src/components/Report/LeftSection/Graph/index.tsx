@@ -1,5 +1,12 @@
 import styled from '@emotion/styled';
-import { Bar } from 'react-chartjs-2';
+import { Chart } from 'react-chartjs-2';
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  BarElement
+} from 'chart.js';
+ChartJS.register(CategoryScale, LinearScale, BarElement);
 
 import { ReportGraphProps } from '@/types/report';
 import SelectYear from './SelectYear';
@@ -51,8 +58,9 @@ const Graph = ({ graphData }: { graphData: ReportGraphProps }) => {
       </HeaderContainer>
       <GraphContainer>
         <BarGraph
-          data={chartData}
           options={options}
+          type={'bar'}
+          data={chartData}
         />
       </GraphContainer>
     </Container>
@@ -142,7 +150,7 @@ const GraphContainer = styled.div`
   }
 `;
 
-const BarGraph = styled(Bar)`
+const BarGraph = styled(Chart)`
   border-radius: 16px;
   padding: 10px 20px;
 
