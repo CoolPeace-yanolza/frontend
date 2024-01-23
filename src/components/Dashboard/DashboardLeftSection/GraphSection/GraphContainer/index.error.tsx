@@ -16,11 +16,16 @@ const Container = styled.div`
   width: 100%;
   height: 100%;
 
+  border-radius: 16px;
+
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 30px;
+  align-self: center;
+
+  background-color: #fafafb;
 `;
 
 const Header = styled.div`
