@@ -1,23 +1,15 @@
-import { useRef } from 'react';
 import styled from '@emotion/styled';
 
 import { UserModal, UserModalStyleProps } from '@/types/layout';
-import { useOutsideClick } from '@hooks/index';
 import { getCookies } from '@utils/lib/cookies';
 import theme from '@styles/theme';
 
-const UserModal = ({ isOpen, setIsUserModalOpen }: UserModal) => {
-  const modalRef = useRef<HTMLDivElement>(null);
+const UserModal = ({ isOpen }: UserModal) => {
   const userName = getCookies('userName');
   const userEmail = getCookies('userEmail');
 
-  useOutsideClick(modalRef, () => setIsUserModalOpen(false));
-
   return (
-    <Modal
-      $isOpen={isOpen}
-      ref={modalRef}
-    >
+    <Modal $isOpen={isOpen}>
       <UserInformation>
         <Name $isOpen={isOpen}>{userName}</Name>
         <Email $isOpen={isOpen}>{userEmail}</Email>
