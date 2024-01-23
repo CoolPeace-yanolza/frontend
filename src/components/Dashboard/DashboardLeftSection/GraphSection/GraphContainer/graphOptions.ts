@@ -27,7 +27,7 @@ const graphOptions: any = {
     y1: {
       position: 'left',
       beginAtZero: true,
-      max: 1200,
+
       grid: {
         display: false
       }

@@ -14,10 +14,13 @@ import {
   BarController
 } from 'chart.js';
 import { Chart } from 'react-chartjs-2';
+import { useRecoilValue } from 'recoil';
 
 import { GraphHeaderTag } from '@/types/dashboard';
 import graphOptions from './graphOptions';
 import { getUpdatedDate } from '@utils/index';
+import { headerAccommodationState } from '@recoil/index';
+import { useGetMonthReports } from '@hooks/index';
 
 ChartJS.register(
   LinearScale,
@@ -34,69 +37,71 @@ ChartJS.register(
 
 //HACK: 그래프 데이터 렌더링에 대한 테스트파일입니다. 실제 기능 구현에서는 해당 파일 다소 변경될 것 같습니다.
 
-const labels = ['1월', '2월', '3월', '4월', '5월', '6월'];
-
-export const barGraphData = {
-  labels,
-  datasets: [
-    {
-      type: 'line' as const,
-      label: '전환율(%)',
-      borderColor: '#FFADC8',
-      backgroundColor: '#FFADC8',
-      borderWidth: 2,
-      data: [10, 20, 10, 40, 30, 60, 10],
-      yAxisID: 'y2'
-    },
-    {
-      type: 'bar' as const,
-      label: '쿠폰 다운로드',
-      data: [600, 500, 400, 500, 600, 800, 800],
-      backgroundColor: '#3182F6',
-      borderRadius: 5,
-      yAxisID: 'y1'
-    },
-
-    {
-      type: 'bar' as const,
-      label: '쿠폰 사용완료',
-      data: [300, 400, 200, 200, 400, 600, 700],
-      backgroundColor: '#FF3478',
-      borderRadius: 5,
-      yAxisID: 'y1'
-    }
-  ]
-};
-
-export const lineGraphData = {
-  labels,
-  datasets: [
-    {
-      fill: true,
-      label: '쿠폰매출',
-      data: [300, 400, 200, 200, 400, 600, 700],
-      borderWidth: 1,
-      borderColor: '#3182F6',
-      backgroundColor: '#A7CBFF',
-      yAxisID: 'y1'
-    },
-
-    {
-      fill: true,
-      label: '전체매출',
-      data: [600, 500, 400, 500, 600, 800, 800],
-      borderWidth: 1,
-      borderColor: '#FF3478',
-      backgroundColor: '#FFC1D6',
-      yAxisID: 'y1'
-    }
-  ]
-};
-
 //HACK 추후 utils에 적절한 폴더 생기면 옮길 예정
 
 const GraphContainer = () => {
+  const headerSelectedState = useRecoilValue(headerAccommodationState);
+  const { data } = useGetMonthReports(headerSelectedState.id);
   const [isIncomeGraph, setisIncomeGraph] = useState(true);
+
+  const barGraphData = {
+    labels: data.map(data => `${data.statistics_month}월`),
+    datasets: [
+      {
+        type: 'line' as const,
+        label: '전환율(%)',
+        borderColor: '#FFADC8',
+        backgroundColor: '#FFADC8',
+        borderWidth: 2,
+        data: data.map(data => data.conversion_rate),
+        yAxisID: 'y2'
+      },
+      {
+        type: 'bar' as const,
+        label: '쿠폰 다운로드',
+        data: data.map(data => data.download_count),
+        backgroundColor: '#3182F6',
+        borderRadius: 7,
+        yAxisID: 'y1',
+        barPercentage: 0.8
+      },
+
+      {
+        type: 'bar' as const,
+        label: '쿠폰 사용완료',
+        data: data.map(data => data.used_count),
+        backgroundColor: '#FF3478',
+        borderRadius: 7,
+        yAxisID: 'y1',
+        barPercentage: 0.8
+      }
+    ]
+  };
+
+  const lineGraphData = {
+    labels: data.map(data => `${data.statistics_month}월`),
+    datasets: [
+      {
+        fill: true,
+        label: '쿠폰매출',
+        data: data.map(data => data.coupon_total_sales),
+        borderWidth: 1,
+        borderColor: '#3182F6',
+        backgroundColor: '#A7CBFF',
+        yAxisID: 'y1'
+      },
+
+      {
+        fill: true,
+        label: '전체매출',
+        data: data.map(data => data.total_sales),
+        borderWidth: 1,
+        borderColor: '#FF3478',
+        backgroundColor: '#FFC1D6',
+        yAxisID: 'y1'
+      }
+    ]
+  };
 
   return (
     <Container>
