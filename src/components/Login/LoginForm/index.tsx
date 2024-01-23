@@ -7,7 +7,7 @@ import {
   AuthButton,
   AuthInputNormal,
   AuthInputPassword
-} from '@components/common/Auth';
+} from '@components/Auth';
 import { LoginData } from '@/types/auth';
 import { postLogin } from 'src/api';
 import { setCookies } from '@utils/lib/cookies';

@@ -6,7 +6,7 @@ import {
   AuthButton,
   AuthInputNormal,
   AuthInputPassword
-} from '@components/common/Auth';
+} from '@components/Auth';
 
 const SignUpForm = () => {
   const methods = useForm({
