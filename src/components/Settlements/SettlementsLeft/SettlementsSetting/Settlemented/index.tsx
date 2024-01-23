@@ -11,6 +11,7 @@ import getSettlements from 'src/api/lib/getSettlements';
 import { SettlementedItem } from '@/types/settlements';
 import { settlementsDateState, settlementDataState } from '@recoil/atoms/settlemented';
 import headerAccommodationState from '@recoil/atoms/headerAccommodationState';
+import getSettlemented from 'src/api/lib/getSettlemented';
 
 const Settlemented = () => {
 
@@ -112,6 +113,17 @@ const Settlemented = () => {
   
     XLSX.writeFile(workBook, "download.xlsx");
   };
+
+
+    
+const fetchSettlementSummary = async () => {
+  const summary = await getSettlemented(accommodation.id);
+  console.log('Settlement summary:', summary);
+};
+
+useEffect(() => {
+  fetchSettlementSummary(); 
+}, [accommodation.id]);  
   
   return (
     <Container>

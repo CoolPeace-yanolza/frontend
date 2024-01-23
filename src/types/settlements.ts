@@ -26,15 +26,15 @@ export interface SettlementsPopupProps {
 
 export interface SettlementList {
     settlement_list: SettlementedItem[];
-}
+};
 
 export interface SettlementedList {
     total_settlement_count: number;
     total_page_count: number;
     settlement_responses: SettlementedItem[];
-  }
+};
   
-  export interface SettlementedItem {
+export interface SettlementedItem {
     NO: number;
     coupon_use_date: string;
     coupon_number: string;
@@ -44,7 +44,7 @@ export interface SettlementedList {
     cancel_price: number;
     sum_price: number;
     complete_at: string;
-  }
+};
 
 export interface SettlementParams {
     accommodationId: string;
@@ -53,4 +53,9 @@ export interface SettlementParams {
     start: string;
     end: string;
     order: string;
-  }
+};
+
+export interface SettlementedBefore {
+    this_month_settlement_amount : number,
+  last_month_settlement_amount :number
+};
