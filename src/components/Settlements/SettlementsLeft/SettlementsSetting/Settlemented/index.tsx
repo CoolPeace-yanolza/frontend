@@ -236,7 +236,11 @@ const StyledDropdown = styled(Dropdown)`
       max-height: 30px;
 
       font-size: 11px;
-      color: white;
+      color: black;
+    }
+
+    & > .text {
+      color: white !important;
     }
 
     .icon {
@@ -255,7 +259,7 @@ const StyledDropdown = styled(Dropdown)`
       border-radius: 0px 0px 5px 5px;
 
       font-size: 11px;
-      background-color: rgba(255, 255, 255, 0.1) !important;
+      // background-color: rgba(255, 255, 255, 0.1) !important;
 
       .item {
         border-bottom: none !important;

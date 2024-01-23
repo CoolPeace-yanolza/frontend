@@ -16,7 +16,7 @@ export default SettlementsLeft;
 const Container = styled.div`
   width: 80%;
   min-width: 1110px;
-  height: 100%;
+  // height: 100%;
 
   border-bottom-left-radius: 1.25rem;
 
