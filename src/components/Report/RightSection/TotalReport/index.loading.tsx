@@ -32,10 +32,10 @@ const Container = styled.div`
 
   ${theme.response.tablet} {
     width: 90%;
-    max-height: 250px;
+    max-height: 220px;
 
     margin: 0;
-    padding: 20px 10px;
+    padding: 10px 10px;
 
     overflow: hidden;
   }
@@ -59,7 +59,10 @@ const Title = styled(BaseSkeleton)`
 
   ${theme.response.tablet} {
     width: 30%;
+
+    margin-bottom: 15px;
     border-radius: 7px;
+    padding-bottom: 5px;
   }
 `;
 
@@ -74,6 +77,8 @@ const ContentsWrapper = styled.div`
 
   ${theme.response.tablet} {
     border-radius: 10px;
+
+    gap: 5px;
   }
 `;
 
@@ -88,7 +93,7 @@ const ContentsTop = styled(BaseSkeleton)`
 
   ${theme.response.tablet} {
     width: 100%;
-    height: 65px;
+    height: 50px;
   }
 `;
 
