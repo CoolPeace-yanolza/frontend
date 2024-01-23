@@ -218,3 +218,14 @@ export type registerValidAtom = {
   isStartDateValid: boolean;
   isEndDateValid: boolean;
 };
+
+export type previewAtom = {
+  customer: string;
+  discount: string;
+  minimumPrice?: string;
+  roomType: string;
+  toAllRoom: string;
+  day: string;
+  startDate: string;
+  endDate: string;
+};
