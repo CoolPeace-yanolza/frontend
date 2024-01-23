@@ -197,7 +197,7 @@ export type registerInputAtom = {
   severalNights: boolean;
   isAllRoom: string;
   rooms?: number[];
-  minimumPrice?: undefined | number;
+  minimumPrice?: string;
   day?: string;
   startDate: string;
   endDate: string;
@@ -214,7 +214,7 @@ export type registerValidAtom = {
   isMaximumDiscountValid: boolean;
   isRoomTypeValid: boolean;
   isAllRoomValid: boolean;
-  isRoomsValid: boolean;
+  isMinimumPriceValid: boolean;
   isStartDateValid: boolean;
   isEndDateValid: boolean;
 };

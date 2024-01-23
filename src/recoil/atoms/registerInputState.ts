@@ -16,7 +16,7 @@ const registerInputState = atom<registerInputAtom>({
     severalNights: false,
     isAllRoom: '',
     rooms: [],
-    minimumPrice: undefined,
+    minimumPrice: '',
     day: '',
     startDate: '',
     endDate: ''
