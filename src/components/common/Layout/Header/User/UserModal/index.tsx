@@ -1,21 +1,79 @@
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import styled from '@emotion/styled';
 
+import { ErrorModal } from '@components/common';
+import { postLogout } from 'src/api';
+import { getCookies, deleteAllCookies } from '@utils/lib/cookies';
 import { UserModal, UserModalStyleProps } from '@/types/layout';
-import { getCookies } from '@utils/lib/cookies';
+import ERROR_MODAL_MESSAGE from 'src/constants/lib/ERROR_MODAL_MESSAGE';
 import theme from '@styles/theme';
 
 const UserModal = ({ isOpen }: UserModal) => {
+  const [isErrorModalOpen, setIsErrorModalOpen] = useState(false);
+  const navigate = useNavigate();
+
   const userName = getCookies('userName');
   const userEmail = getCookies('userEmail');
 
+  const ButtonFunc = () => setIsErrorModalOpen(false);
+
+  const handleLogout = async () => {
+    await postLogout();
+    deleteAllCookies();
+    navigate('/login');
+    /* HACK: 로그아웃 에러 response 가 있을 경우 사용
+
+      [ 대안 1 ]
+      const response = await postLogout();
+
+      if (response === undefined) {
+        setIsErrorModalOpen(true);
+      } else if (response?.status === 200) {
+        deleteAllCookies();
+        navigate('/login');
+      }
+
+      [ 대안 2 ]
+        try {
+          const response = await postLogout();
+          deleteAllCookies();
+          navigate('/login');
+        }catch (error) {
+          const modalContent = {
+            text: '로그아웃에 실패하였습니다.',
+            errorText: '잠시후 재시도 해주세요.'
+          };
+
+          const ButtonFunc = () => {};
+
+          ErrorModal({ modalContent, ButtonFunc });
+        } 
+
+     */
+  };
+
   return (
-    <Modal $isOpen={isOpen}>
-      <UserInformation>
-        <Name $isOpen={isOpen}>{userName}</Name>
-        <Email $isOpen={isOpen}>{userEmail}</Email>
-      </UserInformation>
-      <Logout $isOpen={isOpen}>로그아웃</Logout>
-    </Modal>
+    <>
+      <Modal $isOpen={isOpen}>
+        <UserInformation>
+          <Name $isOpen={isOpen}>{userName}</Name>
+          <Email $isOpen={isOpen}>{userEmail}</Email>
+        </UserInformation>
+        <Logout
+          $isOpen={isOpen}
+          onClick={handleLogout}
+        >
+          로그아웃
+        </Logout>
+      </Modal>
+      {isErrorModalOpen && (
+        <ErrorModal
+          modalContent={ERROR_MODAL_MESSAGE.USER_MODAL}
+          ButtonFunc={ButtonFunc}
+        />
+      )}
+    </>
   );
 };
 
