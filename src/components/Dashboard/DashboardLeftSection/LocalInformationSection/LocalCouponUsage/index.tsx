@@ -82,8 +82,6 @@ const Container = styled.div`
 
   display: flex;
   flex-direction: column;
-
-  color: #404446;
 `;
 
 const Header = styled.div`
@@ -138,6 +136,7 @@ const InnerContainer = styled.div`
 
   ${theme.response.tablet} {
     margin: 0px;
+    border-radius: 10px;
   }
 `;
 
@@ -222,7 +221,7 @@ const LocationIcon = styled.img`
 `;
 
 const ReloadIcon = styled.img`
-  padding: 0px 3px 2px 0px;
+  padding-right: 3px;
 `;
 
 const BigLocationIcon = styled.img`
@@ -280,7 +279,7 @@ const MobileUpdateAlarm = styled.span`
   padding: 5px 0px;
 
   align-self: flex-start;
-  display: flex;
+  display: none;
   align-items: center;
 
   color: #6c7072;
@@ -291,5 +290,9 @@ const MobileUpdateAlarm = styled.span`
     width: 14px;
 
     padding-bottom: 0px;
+  }
+
+  ${theme.response.tablet} {
+    display: flex;
   }
 `;

@@ -73,6 +73,7 @@ const InnerContainer = styled.div`
 
   ${theme.response.tablet} {
     flex-direction: column;
+    gap: 20px;
   }
 `;
 

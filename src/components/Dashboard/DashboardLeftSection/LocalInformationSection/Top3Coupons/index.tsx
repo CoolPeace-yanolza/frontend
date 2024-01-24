@@ -56,6 +56,10 @@ const Container = styled.div`
   border-radius: 16px;
 
   background-color: #fafafb;
+
+  ${theme.response.tablet} {
+    border-radius: 10px;
+  }
 `;
 
 const InnerContainer = styled.div`
@@ -104,6 +108,10 @@ const InformationSection = styled.div`
   font-weight: 700;
 
   background-color: #ecf0fa;
+
+  ${theme.response.tablet} {
+    padding-right: 20px;
+  }
 `;
 
 const InformationHeader = styled.div`

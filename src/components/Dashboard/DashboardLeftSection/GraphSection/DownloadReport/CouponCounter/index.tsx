@@ -57,11 +57,11 @@ const Header = styled.div`
   white-space: nowrap;
 
   ${theme.response.tablet} {
-    padding: 0px 10px 10px;
+    padding: 0px 10px 5px;
 
-    align-self: center;
+    text-align: center;
 
-    font-size: 12px;
+    font-size: 11px;
   }
 `;
 
@@ -84,14 +84,14 @@ const ResultContainer = styled.div<CouponCounterStyleProps>`
   box-shadow: ${theme.shadow.medium};
 
   ${theme.response.tablet} {
-    width: 80%;
+    width: 85%;
 
     padding: 10px 0px;
     border-radius: 6px;
 
     align-self: center;
 
-    font-size: 12px;
+    font-size: 11px;
 
     white-space: nowrap;
   }

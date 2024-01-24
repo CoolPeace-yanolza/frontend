@@ -76,7 +76,6 @@ const Header = styled.div`
 `;
 
 const Title = styled.span`
-  color: #484e59;
   font-size: 18px;
   font-weight: 700;
 `;
@@ -181,7 +180,6 @@ const MobileHeader = styled.div`
 `;
 
 const MobileTitle = styled.span`
-  color: #484e59;
   font-size: 15px;
   font-weight: 700;
 `;
