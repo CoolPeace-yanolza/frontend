@@ -1,7 +1,11 @@
 import { useRecoilValue, useSetRecoilState } from 'recoil';
 import styled from '@emotion/styled';
 
-import { StepperControllerProps } from '@/types/register';
+import theme from '@styles/theme';
+import {
+  StepperControllerProps,
+  PreviousButtonStyleProps
+} from '@/types/register';
 import { registerInputState, registerValidState } from '@recoil/index';
 
 const StepperController = ({
@@ -68,8 +72,15 @@ const StepperController = ({
 
   return (
     <InnerControllerContainer>
-      <ControllerButton onClick={handlePreviousButton}>이전</ControllerButton>
-      <ControllerButton onClick={handleNextButton}>다음</ControllerButton>
+      <PreviousButton
+        $currentStep={currentStep}
+        onClick={handlePreviousButton}
+      >
+        이전
+      </PreviousButton>
+      <NextButton onClick={handleNextButton}>
+        {currentStep === 3 ? '등록' : '다음'}
+      </NextButton>
     </InnerControllerContainer>
   );
 };
@@ -83,24 +94,44 @@ const InnerControllerContainer = styled.div`
   gap: 27px;
 `;
 
-const ControllerButton = styled.button`
-  width: 63px;
-  height: 41px;
+const PreviousButton = styled.button<PreviousButtonStyleProps>`
+  width: 111px;
+  height: 39px;
 
-  padding: 13px 16px;
+  border: 1px solid ${theme.colors.hover};
+  border-radius: 8px;
+
+  display: ${props => (!props.$currentStep ? 'none' : 'flex')};
+  justify-content: center;
+  align-items: center;
+
+  color: ${theme.colors.hover};
+  font-family: 'Noto Sans KR';
+  font-size: 15px;
+  font-weight: 700;
+
+  background: #fff;
+
+  cursor: pointer;
+`;
+
+const NextButton = styled.button`
+  width: 167px;
+  height: 39px;
+
+  border: none;
+  border-radius: 8px;
 
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 6px;
-  flex-shrink: 0;
-
-  border: none;
-  border-radius: 8px;
-  background: #1a2849;
-  cursor: pointer;
 
   color: #fff;
+  font-family: 'Noto Sans KR';
   font-size: 15px;
-  line-height: 25px;
+  font-weight: 700;
+
+  background: #cdcfd0;
+
+  cursor: pointer;
 `;

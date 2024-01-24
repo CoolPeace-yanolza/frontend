@@ -118,10 +118,14 @@ export type LineStyleProps = {
 };
 
 // StepperController
-export interface StepperControllerProps {
+export type StepperControllerProps = {
   currentStep: number;
   onButtonClick: React.Dispatch<React.SetStateAction<number>>;
-}
+};
+
+export type PreviousButtonStyleProps = {
+  $currentStep: number;
+};
 
 // StepTitle
 export type StepTitleProps = {
