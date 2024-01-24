@@ -1,13 +1,12 @@
 import styled from '@emotion/styled';
 import { useRecoilValue } from 'recoil';
+import { useEffect, useState } from 'react';
 
 import headerAccommodationState from '@recoil/atoms/headerAccommodationState';
 import SyncIcon from '@assets/icons/sync-outline.svg';
 import receiptIcon from '@assets/icons/receipt-sharp.svg';
 import theme from '@styles/theme'; 
 import getSettlemented from 'src/api/lib/getSettlemented';
-import { useEffect, useState } from 'react';
-
 
 const SettlementsBefore = () => {
 
@@ -87,7 +86,7 @@ const SettlementsBefore = () => {
                 }
               </DueDateDay>
               <DueDateMoney>
-                {summary ? summary.last_month_settlement_amount : '데이터 로딩 중...'} 
+              {summary ? (summary.last_month_settlement_amount === 0 ? '-' : new Intl.NumberFormat('ko-KR').format(summary.last_month_settlement_amount) + '원') : '데이터 로딩 중...'}
               </DueDateMoney>
             </DueDateInnerContainer>
           </WrapperTop>

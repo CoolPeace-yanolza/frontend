@@ -86,7 +86,7 @@ const SettlementsExpected = () => {
                   </UpdatedText>
                 </CommonContainer>
                 <DueDateDay>
-                {summary ? summary.this_month_settlement_amount : '데이터 로딩 중...'} 
+                {summary ? (summary.this_month_settlement_amount === 0 ? '-' : new Intl.NumberFormat('ko-KR').format(summary.this_month_settlement_amount) + '원') : '데이터 로딩 중...'}
                 </DueDateDay>
               </WrapperBottom>
             </UpdatedWrapper>
