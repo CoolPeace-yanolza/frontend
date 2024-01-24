@@ -29,7 +29,7 @@ const LoginForm = () => {
     formState: { errors, isValid },
     handleSubmit
   } = methods;
-  const isError = !!errors?.user_id || !!errors?.user_password ? true : false;
+  const isError = !!errors?.login_id || !!errors?.login_password ? true : false;
 
   const movetoSignUp = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
@@ -38,8 +38,8 @@ const LoginForm = () => {
 
   const onSubmit: SubmitHandler<FieldValues> = async data => {
     const formData: LoginData = {
-      email: data.user_id,
-      password: data.user_password
+      email: data.login_id,
+      password: data.login_password
     };
     try {
       const response = await postLogin(formData);
@@ -69,26 +69,26 @@ const LoginForm = () => {
         <Inputs $isValid={!isError}>
           <AuthInputNormal
             type="email"
-            id="user_id"
+            id="login_id"
             placeholder="이메일 입력"
             usedFor="login"
-            isError={!!errors?.user_id}
+            isError={!!errors?.login_id}
           />
           <AuthInputPassword
-            id="user_password"
+            id="login_password"
             placeholder="비밀번호 입력"
             usedFor="login"
-            isError={!!errors?.user_password}
+            isError={!!errors?.login_password}
           />
         </Inputs>
-        {errors.user_id && (
+        {errors.login_id && (
           <ValidationText>
-            {errors?.user_id?.message?.toString()}
+            {errors?.login_id?.message?.toString()}
           </ValidationText>
         )}
-        {!errors.user_id && errors.user_password && (
+        {!errors.login_id && errors.login_password && (
           <ValidationText>
-            {errors?.user_password?.message?.toString()}
+            {errors?.login_password?.message?.toString()}
           </ValidationText>
         )}
         <Buttons $isValid={!isError}>
