@@ -1,19 +1,38 @@
+import { useState } from 'react';
 import styled from '@emotion/styled';
 
-import { Footer } from '@components/common';
+import { ErrorModal, Footer } from '@components/common';
 import { LoginForm, LoginTitle } from '@components/Login';
 
 const Login = () => {
+  const initialValue = {
+    text: '이메일 또는 비밀번호를 잘못 입력했습니다.',
+    errorText: '입력하신 내용을 다시 확인해주세요.'
+  };
+  const [modalContent, setModalContent] = useState(initialValue);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleModalClose = () => setIsModalOpen(prev => !prev);
+  const handleModalOpen = (text: string) => {
+    setModalContent(prev => ({ ...prev, text }));
+    setIsModalOpen(true);
+  };
+
   return (
     <WhiteBackground>
       <Container>
         <Content>
           <LoginTitle />
-          <LoginForm />
+          <LoginForm handleModalOpen={handleModalOpen} />
         </Content>
       </Container>
       <Footer />
-      {/* HACK: 모달 제작 후 오류 메세지 표시 예정 */}
+      {isModalOpen && (
+        <ErrorModal
+          modalContent={modalContent}
+          ButtonFunc={handleModalClose}
+        />
+      )}
     </WhiteBackground>
   );
 };
