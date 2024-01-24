@@ -11,10 +11,12 @@ import {
 import couponListState from '@recoil/atoms/couponListState';
 import theme from '@styles/theme';
 import mobileRegister from '@assets/icons/ic-couponlist-mobileregister.svg';
+import categoryTabState from '@recoil/atoms/categoryTabState';
 
 const CouponMain = () => {
   const navigate = useNavigate();
   const coupons = useRecoilValue(couponListState);
+  const categoryTab = useRecoilValue(categoryTabState);
   console.log(coupons);
 
   const handleRegisterClick = () => {
@@ -24,7 +26,7 @@ const CouponMain = () => {
   return (
     <MainContainer>
       <TabBottomWrap>
-        <SecondTabName>{}</SecondTabName>
+        <SecondTabName>{categoryTab.categoryTab}</SecondTabName>
         <SecondTabCount>{coupons?.content.length}개</SecondTabCount>
         <CouponDescription>
           모든 쿠폰은 다운로드 후 14일까지 사용 가능하며, 등록 후 1년이 경과한

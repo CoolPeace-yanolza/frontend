@@ -11,6 +11,7 @@ import {
   ResisterDateStyleProps
 } from '@/types/couponList';
 import { useGetCouponList } from '@hooks/queries/useCouponList';
+import categoryTabState from '@recoil/atoms/categoryTabState';
 
 const CouponNav = () => {
   const [resisterDateClick, setResisterDateClick] = useState<string>('1년');
@@ -18,6 +19,7 @@ const CouponNav = () => {
   const [searchText, setSearchText] = useState<string>('');
   const headerAccommodation = useRecoilValue(headerAccommodationState);
   const setGlobalCoupons = useSetRecoilState(couponListState);
+  const setGlobalCategoryTab = useSetRecoilState(categoryTabState);
   const [searchAPI, setSearchAPI] = useState<string>('');
   // const [page, setPage] = useState(1);
   // const loadingRef = useRef(null);
@@ -29,6 +31,7 @@ const CouponNav = () => {
 
   const handleCategoryTab = (tab: string) => {
     setCategoryTab(tab);
+    setGlobalCategoryTab({ categoryTab: tab });
     setSearchAPI('');
   };
 
@@ -155,6 +158,7 @@ const TabContainer = styled.div`
     position: sticky;
     top: 0;
     z-index: 20;
+
     margin: 0px;
     background-color: ${theme.colors.white};
     box-shadow: 0 8px 10px -5px rgba(0, 0, 0, 0.2);
@@ -171,11 +175,12 @@ const TabNavContainer = styled.div`
   border-bottom: 1px solid #dde1e6;
 
   @media (max-width: 656px) {
+    border-bottom: none;
+
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    border-bottom: none;
   }
 `;
 
@@ -205,8 +210,9 @@ const TabName = styled.div`
   color: #404446;
 
   @media (max-width: 656px) {
-    font-size: 11px;
     white-space: nowrap;
+
+    font-size: 11px;
   }
 `;
 
@@ -229,11 +235,12 @@ const TabCount = styled.div<CategoryTabStyleProps>`
   background: ${props => (props.$categoryTab ? '#404446' : '#F2F4F5')};
 
   @media (max-width: 656px) {
-    font-size: 13px;
     width: 41.019px;
     height: 23.439px;
 
     margin: 0px 4px;
+
+    font-size: 13px;
   }
 `;
 
