@@ -42,14 +42,45 @@ const SettlementsSetting = () => {
   };
 
   const DatePickerCustom = createGlobalStyle`
+  .react-datepicker {
+    border: none;
+    border-radius: 1rem;
+  }
+
+  .react-datepicker__navigation-icon::before {
+    top: 10px;
+
+    border-color: white;
+  }
+
   .custom-header {
     .react-datepicker__current-month,
     .react-datepicker-time__header,
     .react-datepicker-year-header {
       color: white;
     }
+
     .react-datepicker__header {
+      padding: 12px 0px;
+      border-top-left-radius: 1rem;
+      border-top-right-radius: 1rem;
+
       background-color: #1A2849;
+
+    }
+
+    .react-datepicker__month-text--keyboard-selected {
+      background-color: #1A2849;
+      color: white !important;
+
+      font-weight: 700;
+    }
+
+    .react-datepicker__month .react-datepicker__month-text {
+      padding: 4px;
+
+      color: #1A2849;
+      font-weight: 600;
     }
   }
 `;
@@ -153,10 +184,6 @@ const StyledDatePicker = styled(DatePicker)`
   border-radius: 8px; 
 
   font-size: 14px;
-
-  .react-datepicker__header {
-    background-color: red;
-  }
 `;
 
 const CalendarText = styled.div`
