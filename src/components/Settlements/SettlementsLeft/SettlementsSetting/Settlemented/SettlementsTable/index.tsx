@@ -61,8 +61,24 @@ const SettlementsTable = ({ data, pageStartNumber }: SettlementsTableProps) => {
               {keys.map((key) => (
                  <DataElement key={key}>
                   <MobileDataElement>{key}</MobileDataElement>
-                  <MobileData>{key === 'NO' ? pageStartNumber - index : row[key]}</MobileData>
-                  <WebData>{key === 'NO' ? pageStartNumber - index : row[key]}</WebData>
+                  <MobileData>
+                  {key === 'NO' 
+                  ? pageStartNumber - index 
+                  : (key === 'coupon_count') 
+                    ? `${row[key].toLocaleString()}건` 
+                    : (key === 'discount_price' || key === 'cancel_price' || key === 'sum_price') 
+                      ? `${row[key].toLocaleString()}원` 
+                      : row[key]}
+                  </MobileData>
+                  <WebData>
+                  {key === 'NO' 
+                  ? pageStartNumber - index 
+                  : (key === 'coupon_count') 
+                    ? `${row[key].toLocaleString()}건` 
+                    : (key === 'discount_price' || key === 'cancel_price' || key === 'sum_price') 
+                      ? `${row[key].toLocaleString()}원` 
+                      : row[key]}
+                  </WebData>
                </DataElement>
               ))}
             </Row>
@@ -213,7 +229,7 @@ const MobileData = styled.span`
 const WebData = styled.span`
   ${theme.response.tablet} {
     display: none;
-}
+  }
 `;
 
 const Row = styled.div<{ isLast: boolean }>`
