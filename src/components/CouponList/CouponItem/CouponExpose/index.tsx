@@ -18,10 +18,6 @@ const CouponExpose = ({ couponInfo }: CouponListProps) => {
   const { mutateAsync } = useToggleChange();
   const { showToast } = useToast();
 
-  const handleRoomList = () => {
-    setIsShowRoomList(!isShowRoomList);
-  };
-
   const handleToggle = () => {
     setIsToggle(!isToggle);
     toggleUpdate();
@@ -34,10 +30,9 @@ const CouponExpose = ({ couponInfo }: CouponListProps) => {
         coupon_status: '노출 OFF'
       });
       console.log(couponInfo.coupon_number);
-
       showToast(
         <div>
-          {couponInfo.title} 노출이 중단되었습니다.
+          {couponInfo.title} 쿠폰의 노출이 중단되었습니다.
           <span onClick={retryToggleUpdate}>실행 취소</span>
         </div>,
         5000
@@ -53,6 +48,10 @@ const CouponExpose = ({ couponInfo }: CouponListProps) => {
       coupon_number: couponInfo.coupon_number,
       coupon_status: '노출 ON'
     });
+  };
+
+  const handleRoomList = () => {
+    setIsShowRoomList(!isShowRoomList);
   };
 
   useOutsideClick(roomListRef, () => setIsShowRoomList(false));

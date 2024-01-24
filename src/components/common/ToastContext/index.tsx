@@ -1,5 +1,5 @@
-// src/context/ToastContext.tsx
 import styled from '@emotion/styled';
+
 import theme from '@styles/theme';
 import {
   createContext,
@@ -52,7 +52,6 @@ const ToastContainer = styled.div`
   bottom: 50px;
   left: 50%;
   transform: translateX(-50%);
-  z-index: 70;
 
   padding: 15px 31px;
   border-radius: 5px;
