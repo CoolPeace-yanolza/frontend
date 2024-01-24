@@ -96,6 +96,11 @@ export type ErrorMessageProps = {
   children: ReactNode;
 };
 
+// Preview
+export type DayStyleProps = {
+  $hasValue: boolean;
+};
+
 // Stepper
 export type StepperProps = {
   steps: {

@@ -26,6 +26,12 @@ const ThirdStep = () => {
     setInput({ ...input, whenToUse: e.target.value });
     if (e.target.value !== '하루만') {
       setPreview({ ...preview, day: e.target.value + ' 체크인 시 적용 가능' });
+    } else {
+      if (!input.day) {
+        setPreview({ ...preview, day: '' });
+      } else {
+        setPreview({ ...preview, day: input.day + ' 체크인 시 적용 가능' });
+      }
     }
   };
 

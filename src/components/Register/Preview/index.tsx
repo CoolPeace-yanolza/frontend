@@ -2,6 +2,7 @@ import { useRecoilValue } from 'recoil';
 import styled from '@emotion/styled';
 
 import theme from '@styles/theme';
+import { DayStyleProps } from '@/types/register';
 import search from '@assets/icons/ic-register-search.svg';
 import side from '@assets/icons/ic-register-side.svg';
 import { previewState } from '@recoil/index';
@@ -46,7 +47,7 @@ const Preview = () => {
                 }
               })()}
             </span>
-            <Day>{preview.day}</Day>
+            <Day $hasValue={!!preview.day}>{preview.day}</Day>
           </LeftSection>
           <RightSection>
             <span>{preview.startDate}</span>
@@ -176,8 +177,10 @@ const LeftSection = styled.div`
   font-size: 13px;
 `;
 
-const Day = styled.div`
+const Day = styled.div<DayStyleProps>`
   margin-top: 3px;
+
+  display: ${props => (props.$hasValue ? 'block' : 'none')};
 `;
 
 const RightSection = styled.div`
