@@ -20,7 +20,7 @@ const CouponList = () => {
 export default CouponList;
 
 const CouponListContainer = styled.div`
-  @media (max-width: 630px) {
+  @media (max-width: 656px) {
     min-height: 100vh;
     background: #f2f3f5;
   }

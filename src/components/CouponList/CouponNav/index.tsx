@@ -149,9 +149,9 @@ const CouponNav = () => {
 export default CouponNav;
 
 const TabContainer = styled.div`
-  margin: 14px 50px;
+  margin: 14px 25px;
 
-  @media (max-width: 630px) {
+  @media (max-width: 656px) {
     position: sticky;
     top: 0;
     z-index: 20;
@@ -170,7 +170,7 @@ const TabNavContainer = styled.div`
 
   border-bottom: 1px solid #dde1e6;
 
-  @media (max-width: 630px) {
+  @media (max-width: 656px) {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -194,7 +194,7 @@ const TapItemWrapper = styled.div`
 
   cursor: pointer;
 
-  @media (max-width: 630px) {
+  @media (max-width: 656px) {
     margin-right: 1px;
   }
 `;
@@ -204,7 +204,7 @@ const TabName = styled.div`
   font-weight: 700;
   color: #404446;
 
-  @media (max-width: 630px) {
+  @media (max-width: 656px) {
     font-size: 11px;
     white-space: nowrap;
   }
@@ -228,7 +228,7 @@ const TabCount = styled.div<CategoryTabStyleProps>`
   color: ${props => (props.$categoryTab ? theme.colors.white : '#404040')};
   background: ${props => (props.$categoryTab ? '#404446' : '#F2F4F5')};
 
-  @media (max-width: 630px) {
+  @media (max-width: 656px) {
     font-size: 13px;
     width: 41.019px;
     height: 23.439px;
@@ -257,7 +257,7 @@ const SearchInput = styled.input`
   color: #646464;
   font-size: 14px;
 
-  @media (max-width: 630px) {
+  @media (max-width: 656px) {
     width: 248px;
     height: 37.123px;
 
@@ -274,7 +274,7 @@ const SearchImg = styled.img`
   margin-top: 7px;
   margin-left: 20px;
 
-  @media (max-width: 630px) {
+  @media (max-width: 656px) {
     margin-top: 10px;
     margin-left: 10px;
     width: 18px;
@@ -297,7 +297,7 @@ const SearchButton = styled.button`
   background-color: #1a2849;
   cursor: pointer;
 
-  @media (max-width: 630px) {
+  @media (max-width: 656px) {
     width: 70px;
     font-size: 14px;
   }
@@ -310,7 +310,7 @@ const TabBottomContainer = styled.div`
   align-items: center;
   justify-content: space-between;
 
-  @media (max-width: 630px) {
+  @media (max-width: 656px) {
     display: none;
   }
 `;
@@ -319,7 +319,7 @@ const TabBottomWrap = styled.div`
   display: flex;
   align-items: center;
 
-  @media (max-width: 630px) {
+  @media (max-width: 656px) {
     margin: 0px 28px;
   }
 `;
@@ -331,7 +331,7 @@ const SecondTabName = styled.div`
   font-size: 14px;
   font-weight: 700;
 
-  @media (max-width: 630px) {
+  @media (max-width: 656px) {
     font-size: 11px;
     font-weight: 700;
     white-space: nowrap;
@@ -345,7 +345,7 @@ const SecondTabCount = styled.div`
   font-size: 14px;
   font-weight: 700;
 
-  @media (max-width: 630px) {
+  @media (max-width: 656px) {
     leading-trim: both;
 
     text-edge: cap;
@@ -363,7 +363,7 @@ const CouponDescription = styled.div`
   font-style: normal;
   font-weight: 700;
 
-  @media (max-width: 630px) {
+  @media (max-width: 656px) {
     font-size: 10.5px;
     font-style: normal;
     font-weight: 400;

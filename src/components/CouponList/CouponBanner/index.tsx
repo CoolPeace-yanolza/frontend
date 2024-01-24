@@ -33,9 +33,9 @@ const CouponBanner = () => {
 export default CouponBanner;
 
 const BannerContainer = styled.div`
-  margin: 20px 50px;
+  margin: 20px 25px;
 
-  @media (max-width: 900px) {
+  @media (max-width: 656px) {
     display: none;
   }
 `;

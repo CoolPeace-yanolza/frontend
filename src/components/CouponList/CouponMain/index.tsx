@@ -1,5 +1,6 @@
 import styled from '@emotion/styled';
 import { useRecoilValue } from 'recoil';
+import { useNavigate } from 'react-router-dom';
 
 import {
   CouponExpired,
@@ -9,10 +10,15 @@ import {
 } from '../CouponItem';
 import couponListState from '@recoil/atoms/couponListState';
 import theme from '@styles/theme';
+import mobileRegister from '@assets/icons/ic-couponlist-mobileregister.svg';
 
 const CouponMain = () => {
+  const navigate = useNavigate();
   const coupons = useRecoilValue(couponListState);
   console.log(coupons);
+
+  const handleRegisterClick = () => {};
+  navigate('/coupons/register');
 
   return (
     <MainContainer>
@@ -56,6 +62,13 @@ const CouponMain = () => {
             );
         }
       })}
+      <MobileRegister onClick={handleRegisterClick}>
+        <img
+          src={mobileRegister}
+          alt="모바일 등록 버튼 이미지"
+        />
+        <p>쿠폰 등록하기</p>
+      </MobileRegister>
     </MainContainer>
   );
 };
@@ -63,12 +76,12 @@ const CouponMain = () => {
 export default CouponMain;
 
 const MainContainer = styled.div`
-  margin-left: 50px;
+  margin-left: 25px;
   margin-bottom: 30px;
 
   display: flex;
   flex-flow: row wrap;
-  gap: 36px;
+  gap: 25px;
 
   @media (max-width: 900px) {
     margin: 20px 20px 0px 20px;
@@ -84,7 +97,7 @@ const MainContainer = styled.div`
 const TabBottomWrap = styled.div`
   display: none;
 
-  @media (max-width: 630px) {
+  @media (max-width: 656px) {
     margin: 20px 28px -5px 28px;
     display: flex;
     align-items: center;
@@ -98,7 +111,7 @@ const SecondTabName = styled.div`
   font-size: 14px;
   font-weight: 700;
 
-  @media (max-width: 630px) {
+  @media (max-width: 656px) {
     font-size: 11px;
     font-weight: 700;
     white-space: nowrap;
@@ -112,7 +125,7 @@ const SecondTabCount = styled.div`
   font-size: 14px;
   font-weight: 700;
 
-  @media (max-width: 630px) {
+  @media (max-width: 656px) {
     leading-trim: both;
 
     text-edge: cap;
@@ -130,11 +143,34 @@ const CouponDescription = styled.div`
   font-style: normal;
   font-weight: 700;
 
-  @media (max-width: 630px) {
+  @media (max-width: 656px) {
     font-size: 10.5px;
     font-style: normal;
     font-weight: 400;
     line-height: 14px;
     width: 220px;
+  }
+`;
+
+const MobileRegister = styled.div`
+  display: none;
+
+  @media (max-width: 656px) {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    margin-left: 15px;
+    margin-bottom: 15px;
+    display: flex;
+    cursor: pointer;
+
+    p {
+      position: absolute;
+      color: ${theme.colors.white};
+      font-size: 14px;
+      font-weight: 600;
+      margin-left: 68px;
+      margin-top: 23px;
+    }
   }
 `;
