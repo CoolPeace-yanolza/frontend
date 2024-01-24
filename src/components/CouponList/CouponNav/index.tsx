@@ -21,8 +21,6 @@ const CouponNav = () => {
   const setGlobalCoupons = useSetRecoilState(couponListState);
   const setGlobalCategoryTab = useSetRecoilState(categoryTabState);
   const [searchAPI, setSearchAPI] = useState<string>('');
-  // const [page, setPage] = useState(1);
-  // const loadingRef = useRef(null);
 
   const handleDateClick = (period: string) => {
     setResisterDateClick(period);
@@ -157,7 +155,7 @@ const TabContainer = styled.div`
   @media (max-width: 656px) {
     position: sticky;
     top: 0;
-    z-index: 20;
+    z-index: 50;
 
     margin: 0px;
     background-color: ${theme.colors.white};

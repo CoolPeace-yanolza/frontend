@@ -1,8 +1,6 @@
 import { atom } from 'recoil';
 
-export interface CategoryTab {
-  categoryTab: string;
-}
+import { CategoryTab } from '@/types/couponList';
 
 const categoryTabState = atom<CategoryTab>({
   key: 'categoryTabState',

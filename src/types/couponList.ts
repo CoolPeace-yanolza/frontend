@@ -88,6 +88,10 @@ export interface CouponToggleCredential {
   coupon_status: string;
 }
 
+export interface CategoryTab {
+  categoryTab: string;
+}
+
 // HACK : 쿠폰 요청  타입
 // export interface GetCouponListCredential {
 //   accommodationId: number;

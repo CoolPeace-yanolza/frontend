@@ -303,7 +303,7 @@ const RoomList = styled.div`
   position: absolute;
   top: 0;
   right: 0;
-  z-index: 1;
+  z-index: 50;
 
   width: 188px;
   height: 204px;
