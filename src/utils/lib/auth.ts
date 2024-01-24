@@ -60,11 +60,11 @@ export const getInputOptions = (inputName: string, password?: string) => {
           }
         }
       };
-    case 'id':
+    case 'login_id':
       return {
         required: '아이디를 입력해주세요.'
       };
-    case 'password':
+    case 'login_password':
       return {
         required: '비밀번호를 입력해주세요.'
       };
