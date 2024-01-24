@@ -1,51 +1,55 @@
-import { ChangeEvent, useState } from 'react';
 import styled from '@emotion/styled';
+import { useFormContext } from 'react-hook-form';
 
-import { AuthInputNormal } from '@/types/auth';
+import { AuthInputNormal, AuthInputStyleProps } from '@/types/auth';
 import closeIcon from '@assets/icons/ic-login-close.svg';
 import checkInvalid from '@assets/icons/ic-signup-check-invalid.svg';
 import checkValid from '@assets/icons/ic-signup-check-valid.svg';
+import { getInputOptions } from '@utils/index';
 
 const AuthInputNormal = ({
   type,
   id,
   placeholder,
   usedFor,
-  isInvalid
+  isError
 }: AuthInputNormal) => {
-  const [text, setText] = useState<string>('');
+  const { register, watch, resetField, getFieldState, formState } =
+    useFormContext();
+  const inputValue = watch(id);
+  const handleReset = () => resetField(id);
 
-  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setText(event.target.value);
-  };
-
-  const handleReset = (event: React.MouseEvent<HTMLButtonElement>) => {
-    event.preventDefault();
-    setText('');
-  };
-
-  // TODO : react-hook-form 적용 후 유효성 검사 로직 예정
+  const isInputTouched = getFieldState(id, formState).isTouched;
+  const isValid = isInputTouched ? !isError : false;
 
   return (
-    <Container>
+    <Container
+      $usedFor={usedFor}
+      $type={type}
+    >
       <Input
         type={type}
         id={id}
         placeholder={placeholder}
-        value={text}
-        onChange={handleChange}
+        $usedFor={usedFor}
+        $type={type}
+        {...register(id, getInputOptions(id))}
       />
       <Buttons>
-        {usedFor === 'login' && text.length > 0 && (
-          <Button onClick={handleReset}>
+        {usedFor === 'login' && !!inputValue && (
+          <Button
+            type="button"
+            onClick={handleReset}
+          >
             <Icon
               src={closeIcon}
               alt="지우기 버튼"
             />
           </Button>
         )}
-        {usedFor === 'signup' &&
-          (isInvalid ? <Icon src={checkInvalid} /> : <Icon src={checkValid} />)}
+        {usedFor === 'signup' && type !== 'email' && (
+          <Icon src={isValid ? checkValid : checkInvalid} />
+        )}
       </Buttons>
     </Container>
   );
@@ -53,18 +57,20 @@ const AuthInputNormal = ({
 
 export default AuthInputNormal;
 
-const Container = styled.div`
+const Container = styled.div<AuthInputStyleProps>`
   position: relative;
 
-  width: 524px;
+  width: ${props =>
+    props.$usedFor === 'signup' && props.$type === 'email' ? '358px' : '524px'};
   height: 79px;
 
   display: flex;
   align-items: center;
 `;
 
-const Input = styled.input`
-  width: 524px;
+const Input = styled.input<AuthInputStyleProps>`
+  width: ${props =>
+    props.$usedFor === 'signup' && props.$type === 'email' ? '358px' : '524px'};
   height: 79px;
 
   border-radius: 16px;

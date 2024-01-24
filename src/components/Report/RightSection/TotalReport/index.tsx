@@ -31,7 +31,7 @@ export default TotalReport;
 
 const Container = styled.div`
   width: 100%;
-  height: 100%;
+  height: auto;
 
   padding: 30px 15px;
   border-radius: 20px;

@@ -46,7 +46,6 @@ export type CustomNavLink = {
 // User
 export type UserModal = {
   isOpen: boolean;
-  setIsUserModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 export type UserModalStyleProps = {

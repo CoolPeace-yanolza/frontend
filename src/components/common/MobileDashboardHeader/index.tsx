@@ -56,6 +56,7 @@ const Container = styled.div`
 
     font-size: 11px;
     font-weight: 700;
+    z-index: 100;
   }
 `;
 
