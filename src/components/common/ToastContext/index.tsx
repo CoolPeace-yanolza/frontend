@@ -10,7 +10,7 @@ import {
 } from 'react';
 
 interface ToastContextType {
-  showToast: (msg: string) => void;
+  showToast: (msg: ReactNode) => void;
 }
 
 const ToastContext = createContext<ToastContextType | undefined>(undefined);
@@ -30,10 +30,10 @@ export const useToast = () => {
 export const ToastProvider: FunctionComponent<ToastProviderProps> = ({
   children
 }) => {
-  const [message, setMessage] = useState<string>('');
+  const [message, setMessage] = useState<ReactNode>('');
   const [isVisible, setIsVisible] = useState<boolean>(false);
 
-  const showToast = (msg: string) => {
+  const showToast = (msg: ReactNode) => {
     setMessage(msg);
     setIsVisible(true);
     setTimeout(() => setIsVisible(false), 2000);
@@ -42,11 +42,7 @@ export const ToastProvider: FunctionComponent<ToastProviderProps> = ({
   return (
     <ToastContext.Provider value={{ showToast }}>
       {children}
-      {isVisible && (
-        <ToastContainer>
-          <p>{message}</p>
-        </ToastContainer>
-      )}
+      {isVisible && <ToastContainer>{message}</ToastContainer>}
     </ToastContext.Provider>
   );
 };
@@ -62,10 +58,8 @@ const ToastContainer = styled.div`
 
   background: #404446;
 
-  p {
-    padding: 15px 31px;
+  padding: 15px 31px;
 
-    font-size: 15px;
-    color: ${theme.colors.white};
-  }
+  font-size: 15px;
+  color: ${theme.colors.white};
 `;
