@@ -62,6 +62,7 @@ const Container = styled.div`
     padding: 10px;
 
     flex-direction: column;
+    gap: 20px;
   }
 `;
 
