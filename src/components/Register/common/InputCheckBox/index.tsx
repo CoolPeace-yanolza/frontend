@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import styled from '@emotion/styled';
 
 import theme from '@styles/theme';
@@ -10,14 +9,16 @@ import {
 import checked from '@assets/icons/ic-register-checked.svg';
 import unchecked from '@assets/icons/ic-register-unchecked.svg';
 
-const InputCheckBox = ({ id, text, onCheck }: InputCheckBoxProps) => {
-  const [isChecked, setIsChecked] = useState(false);
-
+const InputCheckBox = ({
+  id,
+  text,
+  isChecked,
+  onCheck
+}: InputCheckBoxProps) => {
   const handleCheckBox = () => {
     if (onCheck) {
       onCheck();
     }
-    setIsChecked(prev => !prev);
   };
 
   return (
@@ -25,6 +26,7 @@ const InputCheckBox = ({ id, text, onCheck }: InputCheckBoxProps) => {
       <CheckBox
         type="checkbox"
         id={id}
+        defaultChecked={isChecked}
         onChange={handleCheckBox}
       />
       <Label

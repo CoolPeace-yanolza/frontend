@@ -6,7 +6,7 @@ import { format } from 'date-fns';
 import styled from '@emotion/styled';
 
 import theme from '@styles/theme';
-import { CalendarProps, CustomInputProps } from '@/types/register';
+import { CustomInputProps } from '@/types/register';
 import notSelected from '@assets/icons/ic-register-calendar.svg';
 import selected from '@assets/icons/ic-register-calendar-selected.svg';
 import {
@@ -15,13 +15,7 @@ import {
   previewState
 } from '@recoil/index';
 
-const Calendar = ({
-  startDate,
-  setStartDate,
-  endDate,
-  setEndDate,
-  setSelected
-}: CalendarProps) => {
+const Calendar = () => {
   const [input, setInput] = useRecoilState(registerInputState);
   const setIsValid = useSetRecoilState(registerValidState);
   const [preview, setPreview] = useRecoilState(previewState);
@@ -32,9 +26,7 @@ const Calendar = ({
   const handleStartDateChange = (date: Date) => {
     const formattedDate = format(date, 'yyyy.MM.dd');
 
-    setStartDate(date);
-    setSelected(true);
-    setInput({ ...input, startDate: formattedDate });
+    setInput({ ...input, startDate: formattedDate, startDateObject: date });
     setPreview({ ...preview, startDate: formattedDate + ' ~ ' });
     setIsValid(prev => ({
       ...prev,
@@ -45,9 +37,7 @@ const Calendar = ({
   const handleEndDateChange = (date: Date) => {
     const formattedDate = format(date, 'yyyy.MM.dd');
 
-    setEndDate(date);
-    setSelected(true);
-    setInput({ ...input, endDate: formattedDate });
+    setInput({ ...input, endDate: formattedDate, endDateObject: date });
     setPreview({
       ...preview,
       startDate: preview.startDate === '노출 기간' ? '' : preview.startDate,
@@ -71,7 +61,7 @@ const Calendar = ({
       >
         <SelectedDate>{value}</SelectedDate>
         <img
-          src={startDate ? selected : notSelected}
+          src={input.startDate ? selected : notSelected}
           alt="달력 아이콘"
         />
       </CustomInput>
@@ -90,7 +80,7 @@ const Calendar = ({
       >
         <SelectedDate>{value}</SelectedDate>
         <img
-          src={endDate ? selected : notSelected}
+          src={input.endDate ? selected : notSelected}
           alt="달력 아이콘"
         />
       </CustomInput>
@@ -101,10 +91,10 @@ const Calendar = ({
     <>
       <DatePicker
         dateFormat="yyyy.MM.dd"
-        selected={startDate}
+        selected={input.startDateObject}
         selectsStart
-        startDate={tomorrow}
-        endDate={endDate}
+        startDate={input.startDateObject}
+        endDate={input.endDateObject}
         minDate={tomorrow}
         onChange={handleStartDateChange}
         customInput={<StartDateInput onClick={() => {}} />}
@@ -112,9 +102,10 @@ const Calendar = ({
       <Dash>-</Dash>
       <DatePicker
         dateFormat="yyyy.MM.dd"
-        selected={endDate}
+        selected={input.endDateObject}
         selectsEnd
-        startDate={startDate}
+        startDate={input.startDateObject}
+        endDate={input.endDateObject}
         minDate={tomorrow}
         onChange={handleEndDateChange}
         customInput={<EndDateInput onClick={() => {}} />}

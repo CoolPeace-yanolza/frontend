@@ -3,7 +3,14 @@ import styled from '@emotion/styled';
 import theme from '@styles/theme';
 import { RadioProps } from '@/types/register';
 
-const Radio = ({ id, name, value, text, onButtonChange }: RadioProps) => {
+const Radio = ({
+  id,
+  name,
+  value,
+  isChecked,
+  text,
+  onButtonChange
+}: RadioProps) => {
   const handleButtonChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (onButtonChange) {
       onButtonChange(e);
@@ -17,6 +24,7 @@ const Radio = ({ id, name, value, text, onButtonChange }: RadioProps) => {
         id={id}
         name={name}
         value={value}
+        defaultChecked={isChecked}
         onChange={handleButtonChange}
       />
       <Label htmlFor={id}>{text}</Label>

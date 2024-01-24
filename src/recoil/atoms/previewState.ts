@@ -1,6 +1,12 @@
 import { atom } from 'recoil';
+import { recoilPersist } from 'recoil-persist';
 
 import { previewAtom } from '@/types/register';
+
+const { persistAtom } = recoilPersist({
+  key: 'previewState',
+  storage: sessionStorage
+});
 
 const previewState = atom<previewAtom>({
   key: 'previewState',
@@ -13,7 +19,8 @@ const previewState = atom<previewAtom>({
     day: '할인 적용 요일',
     startDate: '노출 기간',
     endDate: ''
-  }
+  },
+  effects_UNSTABLE: [persistAtom]
 });
 
 export default previewState;

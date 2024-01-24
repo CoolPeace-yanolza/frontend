@@ -1,23 +1,24 @@
 import styled from '@emotion/styled';
 
-import { InputWrapperProps, WrapperStyleProps } from '@/types/register';
+import { InputWrapperProps } from '@/types/register';
 
 const InputWrapper = ({
-  whichInput,
-  currentInput,
+  state,
+  currentState,
+  isSelected,
   children
 }: InputWrapperProps) => {
-  return (
-    <Wrapper $isSelected={whichInput === currentInput}>{children}</Wrapper>
-  );
+  if ((state && currentState && state === currentState) || isSelected) {
+    return <Wrapper>{children}</Wrapper>;
+  }
 };
 
 export default InputWrapper;
 
-const Wrapper = styled.div<WrapperStyleProps>`
+const Wrapper = styled.div`
   width: 100%;
 
   margin-top: 9px;
 
-  display: ${props => (props.$isSelected ? 'inline-block' : 'none')};
+  display: inline-block;
 `;

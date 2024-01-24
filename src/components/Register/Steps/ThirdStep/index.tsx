@@ -23,9 +23,10 @@ const ThirdStep = () => {
   };
 
   const handleDayChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    console.log(e.target.value);
-    setInput({ ...input, day: e.target.value });
-    setPreview({ ...preview, day: e.target.value + ' 체크인 시 적용 가능' });
+    setInput({ ...input, whenToUse: e.target.value });
+    if (e.target.value !== '하루만') {
+      setPreview({ ...preview, day: e.target.value + ' 체크인 시 적용 가능' });
+    }
   };
 
   return (
@@ -34,6 +35,7 @@ const ThirdStep = () => {
         <ContentWrapper>
           <InputField
             placeholder="ex) 5000"
+            defaultValue={input.minimumPrice}
             text="원"
             onInputChange={handleMinimumPriceChange}
           />
@@ -45,7 +47,10 @@ const ThirdStep = () => {
           <InputRadio
             id="oneDay"
             name="specificDays"
+            value="하루만"
+            isChecked={input.whenToUse === '하루만'}
             text="하루만 (선택 요일부터 체크인)"
+            onButtonChange={handleDayChange}
           >
             <RadioGroup />
           </InputRadio>
@@ -53,6 +58,7 @@ const ThirdStep = () => {
             id="weekdays"
             name="specificDays"
             value="평일"
+            isChecked={input.whenToUse === '평일'}
             text="평일 (일~목 체크인)"
             onButtonChange={handleDayChange}
           />
@@ -60,6 +66,7 @@ const ThirdStep = () => {
             id="weekend"
             name="specificDays"
             value="주말"
+            isChecked={input.whenToUse === '주말'}
             text="주말 (금~토 체크인)"
             onButtonChange={handleDayChange}
           />

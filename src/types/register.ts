@@ -26,9 +26,6 @@ export type InputButtonProps = {
   value: string;
   isChecked: boolean;
   buttonName: string;
-  state?: number;
-  currentInput?: number;
-  setState?: React.Dispatch<React.SetStateAction<number>>;
   onButtonChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 };
 
@@ -46,6 +43,7 @@ export type ButtonStyleProps = {
 // InputField
 export type InputFieldProps = {
   placeholder: string;
+  defaultValue?: string;
   text: string;
   onInputChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 };
@@ -58,6 +56,7 @@ export type InputFieldStyleProps = {
 export type InputCheckBoxProps = {
   id: string;
   text: string;
+  isChecked: boolean;
   onCheck?: () => void;
 };
 
@@ -74,6 +73,7 @@ export type InputRadioProps = {
   id: string;
   name: string;
   value?: string;
+  isChecked: boolean;
   text: string;
   children?: ReactNode;
   onButtonChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
@@ -85,18 +85,15 @@ export type InputRadioStyleProps = {
 
 // InputWrapper
 export type InputWrapperProps = {
-  whichInput: number;
-  currentInput: number;
+  state?: string;
+  currentState?: string;
+  isSelected?: boolean;
   children: ReactNode;
 };
 
 // ErrorMessage
 export type ErrorMessageProps = {
   children: ReactNode;
-};
-
-export type WrapperStyleProps = {
-  $isSelected: boolean;
 };
 
 // Stepper
@@ -139,26 +136,20 @@ export type StepTitleProps = {
 
 // FirstStep
 export type LimitWrapperStyleProps = {
-  $isLimited: boolean;
+  $hasLimit: boolean;
 };
 
 // SecondStep
 export type RoomType = {
   id: number;
-  roomNumber: number;
+  roomNumber: string;
   roomType: string;
   price: number;
 };
 
-export type RoomsType = RoomType[];
-
 // RoomSelectModal
 export type RoomSelectModalProps = {
-  value: number;
-  setToAllRoom: React.Dispatch<React.SetStateAction<number>>;
-  rooms: RoomsType;
-  setRooms: React.Dispatch<React.SetStateAction<RoomsType>>;
-  onButtonClick: React.Dispatch<React.SetStateAction<boolean>>;
+  setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 export type RoomSelectModalStyleProps = {
@@ -171,15 +162,15 @@ export type RoomSelectButtonProps = {
   id: string;
   name: string;
   value: string;
+  isChecked: boolean;
   buttonName: string;
-  rooms: number;
-  setState: React.Dispatch<React.SetStateAction<boolean>>;
+  setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
   onButtonChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 };
 
 // RoomList
 export type RoomListProps = {
-  rooms: RoomsType;
+  rooms: RoomType[];
 };
 
 // Radio
@@ -187,6 +178,7 @@ export type RadioProps = {
   id: string;
   name: string;
   value: string;
+  isChecked: boolean;
   text: string;
   onButtonChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 };
@@ -194,15 +186,6 @@ export type RadioProps = {
 // FourthStep
 export type CalendarWrapperStyleProps = {
   $isSelected: boolean;
-};
-
-// Calendar
-export type CalendarProps = {
-  startDate: Date | null | undefined;
-  setStartDate: React.Dispatch<React.SetStateAction<Date | undefined>>;
-  endDate: Date | null | undefined;
-  setEndDate: React.Dispatch<React.SetStateAction<Date | undefined>>;
-  setSelected: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 // CustomInput
@@ -223,11 +206,14 @@ export type registerInputAtom = {
   roomType: string[];
   severalNights: boolean;
   isAllRoom: string;
-  rooms?: number[];
+  rooms: RoomType[];
   minimumPrice?: string;
+  whenToUse?: string;
   day?: string;
   startDate: string;
+  startDateObject: Date | undefined;
   endDate: string;
+  endDateObject: Date | undefined;
 };
 
 // registerValidState

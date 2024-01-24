@@ -13,7 +13,6 @@ import {
 import RoomSelectModal from './RoomSelectModal';
 import RoomSelectButton from './RoomSelectButton';
 import RoomList from './RoomList';
-import { RoomsType } from '@/types/register';
 import {
   registerInputState,
   registerValidState,
@@ -25,10 +24,7 @@ const SecondStep = () => {
   const [isValid, setIsValid] = useRecoilState(registerValidState);
   const [preview, setPreview] = useRecoilState(previewState);
 
-  const [roomType, setRoomType] = useState(0);
-  const [toAllRoom, setToAllRoom] = useState(0);
   const [isOpen, setIsOpen] = useState(false);
-  const [rooms, setRooms] = useState<RoomsType>([]);
 
   const handleRoomTypeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.checked) {
@@ -74,13 +70,7 @@ const SecondStep = () => {
     <>
       {isOpen &&
         ReactDOM.createPortal(
-          <RoomSelectModal
-            value={2}
-            setToAllRoom={setToAllRoom}
-            rooms={rooms}
-            setRooms={setRooms}
-            onButtonClick={setIsOpen}
-          />,
+          <RoomSelectModal setIsOpen={setIsOpen} />,
           document.getElementById('modal-root') as HTMLElement
         )}
       <InputContainer title="쿠폰을 적용할 유형을 선택해주세요.">
@@ -90,7 +80,7 @@ const SecondStep = () => {
             id="dayuse"
             name="roomType"
             value="대실"
-            isChecked={input.customerType === '대실'}
+            isChecked={input.roomType.includes('대실')}
             buttonName="대실"
             onButtonChange={handleRoomTypeChange}
           />
@@ -99,22 +89,17 @@ const SecondStep = () => {
             id="stay"
             name="roomType"
             value="숙박"
-            isChecked={input.customerType === '숙박'}
+            isChecked={input.roomType.includes('숙박')}
             buttonName="숙박"
-            state={1}
-            currentInput={roomType}
-            setState={setRoomType}
             onButtonChange={handleRoomTypeChange}
           />
         </ButtonWrapper>
-        <InputWrapper
-          whichInput={1}
-          currentInput={roomType}
-        >
+        <InputWrapper isSelected={input.roomType.includes('숙박')}>
           <ContentWrapper>
             <InputCheckBox
               id="severalNights"
               text="2박 이상 적용"
+              isChecked={input.severalNights}
               onCheck={handleLabelChange}
             />
           </ContentWrapper>
@@ -130,10 +115,8 @@ const SecondStep = () => {
             id="true"
             name="toAllRoom"
             value="true"
-            isChecked={input.customerType === 'true'}
+            isChecked={input.isAllRoom === 'true'}
             buttonName="모든 객실"
-            state={1}
-            setState={setToAllRoom}
             onButtonChange={handleIsAllRoomChange}
           />
           <RoomSelectButton
@@ -141,18 +124,18 @@ const SecondStep = () => {
             id="false"
             name="toAllRoom"
             value="false"
+            isChecked={input.isAllRoom === 'false'}
             buttonName="선택 객실"
-            rooms={rooms.length}
-            setState={setIsOpen}
+            setIsOpen={setIsOpen}
             onButtonChange={handleIsAllRoomChange}
           />
         </ButtonWrapper>
         <InputWrapper
-          whichInput={2}
-          currentInput={toAllRoom}
+          state="false"
+          currentState={input.isAllRoom}
         >
           <ContentWrapper>
-            <RoomList rooms={rooms} />
+            <RoomList rooms={input.rooms} />
           </ContentWrapper>
         </InputWrapper>
         {!isValid.isAllRoomValid && (

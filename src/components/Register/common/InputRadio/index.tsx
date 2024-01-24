@@ -9,6 +9,7 @@ const InputRadio = ({
   id,
   name,
   value,
+  isChecked,
   text,
   children,
   onButtonChange
@@ -26,6 +27,7 @@ const InputRadio = ({
         id={id}
         name={name}
         value={value}
+        defaultChecked={isChecked}
         $src={selected}
         onChange={handleButtonChange}
       />

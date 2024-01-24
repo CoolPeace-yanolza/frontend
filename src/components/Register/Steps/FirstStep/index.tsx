@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { useRecoilState } from 'recoil';
 import styled from '@emotion/styled';
 
@@ -21,9 +20,6 @@ const FirstStep = () => {
   const [input, setInput] = useRecoilState(registerInputState);
   const [isValid, setIsValid] = useRecoilState(registerValidState);
   const [preview, setPreview] = useRecoilState(previewState);
-
-  const [currentInput, setCurrentInput] = useState(0);
-  const [isLimited, setIsLimited] = useState(false);
 
   const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInput({ ...input, title: e.target.value });
@@ -84,10 +80,9 @@ const FirstStep = () => {
   };
 
   const handleLabelChange = () => {
-    setIsLimited(prev => !prev);
     setInput(prev => ({
       ...prev,
-      hasLimit: !isLimited
+      hasLimit: !input.hasLimit
     }));
     setIsValid(prev => ({
       ...prev,
@@ -115,6 +110,7 @@ const FirstStep = () => {
         <Input
           maxLength={20}
           placeholder="20자 내외로 입력하세요. ex) 크리스마스 이벤트 1"
+          defaultValue={input.title}
           onChange={handleTitleChange}
         />
         {!isValid.isTitleValid && (
@@ -162,10 +158,8 @@ const FirstStep = () => {
             id="price"
             name="discountType"
             value="정액 할인"
-            isChecked={input.customerType === '정액 할인'}
+            isChecked={input.discountType === '정액 할인'}
             buttonName="정액 할인"
-            state={1}
-            setState={setCurrentInput}
             onButtonChange={handleDiscountTypeChange}
           />
           <InputButton
@@ -173,47 +167,49 @@ const FirstStep = () => {
             id="rate"
             name="discountType"
             value="정률 할인"
-            isChecked={input.customerType === '정률 할인'}
+            isChecked={input.discountType === '정률 할인'}
             buttonName="정률 할인"
-            state={2}
-            setState={setCurrentInput}
             onButtonChange={handleDiscountTypeChange}
           />
         </ButtonWrapper>
         <InputWrapper
-          whichInput={1}
-          currentInput={currentInput}
+          state="정액 할인"
+          currentState={input.discountType}
         >
           <InputField
             placeholder="ex) 5000"
+            defaultValue={input.discountFlat}
             text="원"
             onInputChange={handleDiscountFlatChange}
           />
         </InputWrapper>
         <InputWrapper
-          whichInput={2}
-          currentInput={currentInput}
+          state="정률 할인"
+          currentState={input.discountType}
         >
           <ContentWrapper>
             <InputField
               placeholder="ex) 50"
+              defaultValue={input.discountFlatRate}
               text="% 할인"
               onInputChange={handleDiscountFlatRateChange}
             />
             <InputCheckBox
               id="discountLimit"
               text="최대 할인 한도 설정하기"
+              isChecked={input.hasLimit}
               onCheck={handleLabelChange}
             />
           </ContentWrapper>
         </InputWrapper>
-        <LimitWrapper $isLimited={isLimited}>
+        <LimitWrapper $hasLimit={input.hasLimit}>
           <InputWrapper
-            whichInput={2}
-            currentInput={currentInput}
+            state="정률 할인"
+            currentState={input.discountType}
           >
             <InputField
               placeholder="ex) 5000"
+              defaultValue={input.maximumDiscount}
               text="원"
               onInputChange={handleMaximumDiscountChange}
             />
@@ -271,5 +267,5 @@ const ContentWrapper = styled.div`
 `;
 
 const LimitWrapper = styled.div<LimitWrapperStyleProps>`
-  display: ${props => (props.$isLimited ? 'block' : 'none')};
+  display: ${props => (props.$hasLimit ? 'block' : 'none')};
 `;

@@ -9,7 +9,6 @@ const RadioGroup = () => {
   const [preview, setPreview] = useRecoilState(previewState);
 
   const handleDayChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    console.log(e.target.value);
     setInput({ ...input, day: e.target.value });
     setPreview({ ...preview, day: e.target.value + ' 체크인 시 적용 가능' });
   };
@@ -20,6 +19,7 @@ const RadioGroup = () => {
         id="monday"
         name="days"
         value="월요일"
+        isChecked={input.day === '월요일'}
         text="월"
         onButtonChange={handleDayChange}
       />
@@ -27,6 +27,7 @@ const RadioGroup = () => {
         id="tuesday"
         name="days"
         value="화요일"
+        isChecked={input.day === '화요일'}
         text="화"
         onButtonChange={handleDayChange}
       />
@@ -34,6 +35,7 @@ const RadioGroup = () => {
         id="wednesday"
         name="days"
         value="수요일"
+        isChecked={input.day === '수요일'}
         text="수"
         onButtonChange={handleDayChange}
       />
@@ -41,6 +43,7 @@ const RadioGroup = () => {
         id="thursday"
         name="days"
         value="목요일"
+        isChecked={input.day === '목요일'}
         text="목"
         onButtonChange={handleDayChange}
       />
@@ -48,6 +51,7 @@ const RadioGroup = () => {
         id="friday"
         name="days"
         value="금요일"
+        isChecked={input.day === '금요일'}
         text="금"
         onButtonChange={handleDayChange}
       />
@@ -55,6 +59,7 @@ const RadioGroup = () => {
         id="saturday"
         name="days"
         value="토요일"
+        isChecked={input.day === '토요일'}
         text="토"
         onButtonChange={handleDayChange}
       />
@@ -62,6 +67,7 @@ const RadioGroup = () => {
         id="sunday"
         name="days"
         value="일요일"
+        isChecked={input.day === '일요일'}
         text="일"
         onButtonChange={handleDayChange}
       />

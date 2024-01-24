@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { useRecoilValue } from 'recoil';
 import styled from '@emotion/styled';
 
@@ -6,14 +5,11 @@ import theme from '@styles/theme';
 import { InputContainer, ErrorMessage } from '@components/Register/common';
 import Calendar from './Calendar';
 import { CalendarWrapperStyleProps } from '@/types/register';
-import { registerValidState } from '@recoil/index';
+import { registerInputState, registerValidState } from '@recoil/index';
 
 const FourthStep = () => {
+  const input = useRecoilValue(registerInputState);
   const isValid = useRecoilValue(registerValidState);
-
-  const [startDate, setStartDate] = useState<Date>();
-  const [endDate, setEndDate] = useState<Date>();
-  const [selected, setSelected] = useState(false);
 
   return (
     <InputContainer title="쿠폰의 노출 기간을 선택해주세요.">
@@ -21,14 +17,10 @@ const FourthStep = () => {
         <Description>
           쿠폰의 유효기간은 다운로드 일자부터 14일 자정까지 입니다.
         </Description>
-        <CalendarWrapper $isSelected={selected}>
-          <Calendar
-            startDate={startDate}
-            setStartDate={setStartDate}
-            endDate={endDate}
-            setEndDate={setEndDate}
-            setSelected={setSelected}
-          />
+        <CalendarWrapper
+          $isSelected={input.startDate || input.endDate ? true : false}
+        >
+          <Calendar />
         </CalendarWrapper>
       </ContentContainer>
       {!isValid.isDateValid && (

@@ -8,13 +8,13 @@ const RoomSelectButton = ({
   id,
   name,
   value,
+  isChecked,
   buttonName,
-  rooms,
-  setState,
+  setIsOpen,
   onButtonChange
 }: RoomSelectButtonProps) => {
   const handleModal = () => {
-    setState(true);
+    setIsOpen(true);
   };
 
   const handleButtonChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -28,7 +28,7 @@ const RoomSelectButton = ({
         id={id}
         name={name}
         value={value}
-        defaultChecked={rooms ? true : false}
+        defaultChecked={isChecked}
         onChange={handleButtonChange}
       />
       <Button
