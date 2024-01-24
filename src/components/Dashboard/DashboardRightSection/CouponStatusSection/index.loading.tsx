@@ -2,12 +2,16 @@ import styled from '@emotion/styled';
 import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
 
+import theme from '@styles/theme';
+
 const Loading = () => {
   return (
     <Container>
       <Header />
       <InnerContainer>
-        <LoadingContent count={3} />
+        <LoadingContent />
+        <LoadingContent />
+        <LoadingContent />
       </InnerContainer>
     </Container>
   );
@@ -29,13 +33,20 @@ const Container = styled.div`
   gap: 20px;
 
   background-color: white;
+
+  ${theme.response.tablet} {
+    min-height: auto;
+    height: auto;
+
+    padding: 10px;
+
+    gap: 10px;
+  }
 `;
 
 const BaseSkeleton = styled(Skeleton)`
   width: 100%;
 
-  margin: none;
-  padding: none;
   border-radius: 12px;
 
   background-color: #f2f4f5;
@@ -48,6 +59,23 @@ const Header = styled(BaseSkeleton)`
   flex: 2;
 
   border-radius: 12px;
+
+  ${theme.response.tablet} {
+    border-radius: 8px;
+  }
+`;
+
+const InnerContainer = styled.div`
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  flex: 6;
+
+  ${theme.response.tablet} {
+    flex-direction: row;
+    justify-content: space-between;
+  }
 `;
 
 const LoadingContent = styled(BaseSkeleton)`
@@ -59,12 +87,14 @@ const LoadingContent = styled(BaseSkeleton)`
   display: flex;
   flex-direction: column;
   justify-content: center;
-`;
 
-const InnerContainer = styled.div`
-  width: 100%;
+  ${theme.response.tablet} {
+    width: 29vw;
+    height: 40px;
 
-  display: flex;
-  flex-direction: column;
-  flex: 6;
+    border-radius: 10px;
+
+    flex-direction: row;
+    justify-content: space-between;
+  }
 `;
