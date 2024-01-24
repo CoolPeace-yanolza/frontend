@@ -2,6 +2,8 @@ import styled from '@emotion/styled';
 import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
 
+import theme from '@styles/theme';
+
 const Loading = () => {
   return (
     <Container>
@@ -25,6 +27,16 @@ const Container = styled.div`
   justify-content: center;
 
   gap: 10px;
+
+  ${theme.response.tablet} {
+    gap: 0px;
+
+    border-radius: 10px;
+
+    padding: 10px;
+
+    background-color: #fafafb;
+  }
 `;
 
 const BaseSkeleton = styled(Skeleton)`
@@ -53,6 +65,10 @@ const TitleLoading = styled(BaseSkeleton)`
 
   margin: 0;
   padding: 0;
+
+  ${theme.response.tablet} {
+    height: 20px;
+  }
 `;
 
 const SubTitleLoading = styled(BaseSkeleton)`
@@ -64,8 +80,16 @@ const SubTitleLoading = styled(BaseSkeleton)`
 
   display: flex;
   align-items: center;
+
+  ${theme.response.tablet} {
+    height: 10px;
+  }
 `;
 
 const InnerContainer = styled(BaseSkeleton)`
   height: 180px;
+
+  ${theme.response.tablet} {
+    height: 120px;
+  }
 `;

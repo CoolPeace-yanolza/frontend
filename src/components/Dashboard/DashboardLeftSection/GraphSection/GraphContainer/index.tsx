@@ -36,10 +36,6 @@ ChartJS.register(
   BarController
 );
 
-//HACK: 그래프 데이터 렌더링에 대한 테스트파일입니다. 실제 기능 구현에서는 해당 파일 다소 변경될 것 같습니다.
-
-//HACK 추후 utils에 적절한 폴더 생기면 옮길 예정
-
 const GraphContainer = () => {
   const headerSelectedState = useRecoilValue(headerAccommodationState);
   const { data } = useGetMonthReports(headerSelectedState.id);
