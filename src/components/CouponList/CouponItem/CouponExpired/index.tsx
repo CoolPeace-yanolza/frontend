@@ -8,12 +8,14 @@ import { useCouponDelete, useOutsideClick } from '@hooks/index';
 import { CouponListProps } from '@/types/couponList';
 import Modal from '@components/modal';
 import CouponCondition from '@utils/lib/couponCondition';
+import { useToast } from '@components/common/ToastContext';
 
 const CouponExpired = ({ couponInfo }: CouponListProps) => {
   const [isShowRoomList, setIsShowRoomList] = useState(false);
   const roomListRef = useRef<HTMLDivElement>(null);
   const [isShowModal, setIsShowModal] = useState(false);
   const { mutateAsync } = useCouponDelete();
+  const { showToast } = useToast();
 
   useOutsideClick(roomListRef, () => setIsShowRoomList(false));
 
@@ -29,6 +31,8 @@ const CouponExpired = ({ couponInfo }: CouponListProps) => {
   const handleModalConfirm = () => {
     try {
       mutateAsync({ coupon_number: couponInfo.coupon_number });
+      setIsShowModal(false);
+      showToast('쿠폰이 삭제되었습니다');
     } catch (error) {
       console.log('쿠폰 삭제 실패', error);
     }
