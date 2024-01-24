@@ -60,13 +60,13 @@ export const getInputOptions = (inputName: string, password?: string) => {
           }
         }
       };
-    case 'user_id':
+    case 'id':
       return {
-        required: '아이디를 입력해주세요.',
-        pattern: {
-          value: emailRegex,
-          message: '이메일 형식에 맞게 입력해주세요.'
-        }
+        required: '아이디를 입력해주세요.'
+      };
+    case 'password':
+      return {
+        required: '비밀번호를 입력해주세요.'
       };
   }
 };
