@@ -4,6 +4,7 @@ import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { ko } from 'date-fns/locale';
 import { useSetRecoilState } from 'recoil';
+import { createGlobalStyle } from 'styled-components';
 
 import CalendarIcon from '@assets/icons/calendar-number-outline.svg';
 import Settlemented from './Settlemented';
@@ -40,6 +41,19 @@ const SettlementsSetting = () => {
     }
   };
 
+  const DatePickerCustom = createGlobalStyle`
+  .custom-header {
+    .react-datepicker__current-month,
+    .react-datepicker-time__header,
+    .react-datepicker-year-header {
+      color: white;
+    }
+    .react-datepicker__header {
+      background-color: #1A2849;
+    }
+  }
+`;
+
   return (
     <Container>
       <SettlementsHeader/>
@@ -51,6 +65,7 @@ const SettlementsSetting = () => {
             <CalendarText>기간 설정</CalendarText>
             </CalendarInnerContainer>
             <StyledDatePickerContainer>
+            <DatePickerCustom />
             <StyledDatePicker
                 selected={startDate}
                 onChange={handleStartDateChange}
@@ -58,6 +73,7 @@ const SettlementsSetting = () => {
                 showMonthYearPicker
                 placeholderText=""
                 locale={ko}
+                calendarClassName="custom-header"  
             />
             <StyledDatePicker
                 selected={endDate}
@@ -66,6 +82,7 @@ const SettlementsSetting = () => {
                 showMonthYearPicker
                 placeholderText=""
                 locale={ko}
+                calendarClassName="custom-header"  
             />
             <StyledButton onClick={handleButtonClick}>조회하기</StyledButton>
             </StyledDatePickerContainer>
@@ -136,6 +153,10 @@ const StyledDatePicker = styled(DatePicker)`
   border-radius: 8px; 
 
   font-size: 14px;
+
+  .react-datepicker__header {
+    background-color: red;
+  }
 `;
 
 const CalendarText = styled.div`
