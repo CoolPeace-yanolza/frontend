@@ -5,6 +5,7 @@ import arrowIcon from '@assets/icons/ic-dashboard-arrow.svg';
 import RankingBox from './RankingBox';
 import { useGetCouponRanking } from '@hooks/index';
 import { headerAccommodationState } from '@recoil/index';
+import theme from '@styles/theme';
 
 const LocalTop3Coupons = () => {
   const headerSelectState = useRecoilValue(headerAccommodationState);
@@ -55,6 +56,10 @@ const Container = styled.div`
   border-radius: 16px;
 
   background-color: #fafafb;
+
+  ${theme.response.tablet} {
+    border-radius: 10px;
+  }
 `;
 
 const InnerContainer = styled.div`
@@ -83,6 +88,10 @@ const RankingSection = styled.div`
   justify-content: center;
   gap: 10px;
   flex: 1;
+
+  ${theme.response.tablet} {
+    padding: 10px 0px;
+  }
 `;
 
 const InformationSection = styled.div`
@@ -99,6 +108,10 @@ const InformationSection = styled.div`
   font-weight: 700;
 
   background-color: #ecf0fa;
+
+  ${theme.response.tablet} {
+    padding-right: 20px;
+  }
 `;
 
 const InformationHeader = styled.div`
@@ -106,6 +119,10 @@ const InformationHeader = styled.div`
 
   color: #415574;
   font-size: 17px;
+
+  ${theme.response.tablet} {
+    font-size: 13px;
+  }
 `;
 
 const InformationLabel = styled.div`
@@ -125,6 +142,10 @@ const InformationLabel = styled.div`
   & > span {
     color: #4777f0;
   }
+
+  ${theme.response.tablet} {
+    font-size: 13px;
+  }
 `;
 
 const InformationSubText = styled.div`
@@ -134,6 +155,12 @@ const InformationSubText = styled.div`
   font-size: 13.005px;
   text-align: end;
   line-height: 1.4;
+
+  ${theme.response.tablet} {
+    padding: 10px 0px 0px 0px;
+
+    font-size: 10px;
+  }
 `;
 
 const ArrowIcon = styled.img`

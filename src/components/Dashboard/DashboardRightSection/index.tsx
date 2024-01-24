@@ -9,12 +9,14 @@ import StatusErrorFallback from './CouponStatusSection/index.error';
 import StatusSectionLoading from './CouponStatusSection/index.loading';
 import DailyReportErrorFallback from './DailyReportSection/index.error';
 import DailyReportLoading from './DailyReportSection/index.loading';
+import { MobileDashboardHeader } from '@components/common';
 
 const DashboardRightSection = () => {
   const { reset } = useQueryErrorResetBoundary();
 
   return (
     <Container>
+      <MobileDashboardHeader />
       <ErrorBoundary
         onReset={reset}
         fallbackRender={StatusErrorFallback}

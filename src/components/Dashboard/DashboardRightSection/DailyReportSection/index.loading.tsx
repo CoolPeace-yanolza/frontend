@@ -2,6 +2,8 @@ import styled from '@emotion/styled';
 import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
 
+import theme from '@styles/theme';
+
 const Loading = () => {
   return (
     <Container>
@@ -34,6 +36,18 @@ const Container = styled.div`
   gap: 5px;
 
   background-color: white;
+
+  ${theme.response.tablet} {
+    width: 100%;
+    min-height: auto;
+
+    margin: 0px;
+    padding: 20px;
+
+    gap: 0px;
+
+    background-color: transparent;
+  }
 `;
 
 const BaseSkeleton = styled(Skeleton)`
@@ -53,6 +67,12 @@ const Header = styled.div`
   flex-direction: column;
   flex: 1;
   gap: 10px;
+
+  ${theme.response.tablet} {
+    width: 200px;
+
+    flex: 0;
+  }
 `;
 
 const Title = styled(BaseSkeleton)`
@@ -75,6 +95,12 @@ const InnerContainer = styled.div`
   align-items: center;
   justify-content: center;
   flex: 6;
+
+  ${theme.response.tablet} {
+    min-height: auto;
+
+    flex: 0;
+  }
 `;
 
 const SubContentLoading = styled(BaseSkeleton)`
@@ -86,6 +112,10 @@ const SubContentLoading = styled(BaseSkeleton)`
 
   padding: none;
   margin: none;
+
+  ${theme.response.tablet} {
+    display: none;
+  }
 `;
 
 const MainContentLoading = styled(BaseSkeleton)`
@@ -94,4 +124,8 @@ const MainContentLoading = styled(BaseSkeleton)`
 
   padding: none;
   margin: none;
+
+  ${theme.response.tablet} {
+    width: 90vw;
+  }
 `;
