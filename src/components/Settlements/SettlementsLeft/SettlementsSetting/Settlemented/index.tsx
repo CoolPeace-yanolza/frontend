@@ -2,22 +2,20 @@ import styled from '@emotion/styled';
 import 'semantic-ui-css/semantic.min.css';
 import { Dropdown, DropdownProps } from 'semantic-ui-react';
 import { useState, useEffect } from 'react';
-import { useRecoilValue, useRecoilState } from 'recoil';
+import { useRecoilValue } from 'recoil';
 import * as XLSX from 'xlsx';
 
 import SettlementsTable from './SettlementsTable';
 import SettlementsPagination from './SettlementsPagination';
 import getSettlements from 'src/api/lib/getSettlements';
 import { SettlementedItem } from '@/types/settlements';
-import { settlementsDateState, settlementDataState } from '@recoil/atoms/settlemented';
+import { settlementsDateState } from '@recoil/atoms/settlemented';
 import headerAccommodationState from '@recoil/atoms/headerAccommodationState';
-import getSettlemented from 'src/api/lib/getSettlemented';
 import theme from '@styles/theme';
 
 const Settlemented = () => {
 
   const { startDate, endDate } = useRecoilValue(settlementsDateState);
-  const [sortedData, setSortedData] = useRecoilState(settlementDataState);
   const [sortOrder, setSortOrder] = useState('couponDateDesc');
   const [orderBy, setOrderBy] = useState('COUPON_USE_DATE');
   const [currentData, setCurrentData] = useState<SettlementedItem[]>([]);
@@ -84,8 +82,7 @@ const Settlemented = () => {
         ...data,
         NO: (page - 1) * itemsPerPage + index + 1,
       }));
-  
-      setSortedData(newSettlementData);
+
       setCurrentData(newSettlementData); 
       setTotalItems(response.total_settlement_count);
       setTotalPages(response.total_page_count);
