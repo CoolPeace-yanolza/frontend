@@ -30,13 +30,19 @@ export default Report;
 
 const Container = styled.div`
   width: 100%;
+  height: auto;
 
   display: flex;
-  gap: 10px;
+  justify-content: space-between;
+  gap: 25px;
 
-  background-color: white;
+  background-color: #f2f3f5;
 
   ${theme.response.tablet} {
+    height: auto;
+
     flex-direction: column-reverse;
+
+    background-color: white;
   }
 `;

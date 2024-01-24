@@ -1,25 +1,28 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import styled from '@emotion/styled';
 
 import user from '@assets/icons/ic-header-user.svg';
 import UserModal from './UserModal';
+import { useOutsideClick } from '@hooks/index';
 import theme from '@styles/theme';
 
 const User = () => {
+  const modalRef = useRef<HTMLDivElement>(null);
   const [isUserModalOpen, setIsUserModalOpen] = useState(false);
 
+  useOutsideClick(modalRef, () => setIsUserModalOpen(false));
+
   return (
-    <>
+    <div ref={modalRef}>
       <UserIcon
         src={user}
         alt="사용자 프로필"
-        onClick={() => setIsUserModalOpen(prev => !prev)}
+        onClick={() => {
+          setIsUserModalOpen(prev => !prev);
+        }}
       />
-      <UserModal
-        isOpen={isUserModalOpen}
-        setIsUserModalOpen={setIsUserModalOpen}
-      />
-    </>
+      <UserModal isOpen={isUserModalOpen} />
+    </div>
   );
 };
 

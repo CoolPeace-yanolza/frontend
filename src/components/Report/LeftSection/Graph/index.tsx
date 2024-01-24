@@ -1,14 +1,33 @@
 import styled from '@emotion/styled';
-import { Bar } from 'react-chartjs-2';
+import { Chart } from 'react-chartjs-2';
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  LineElement,
+  Legend,
+  Tooltip,
+  Filler,
+  BarController
+} from 'chart.js';
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  LineElement,
+  Legend,
+  Tooltip,
+  Filler,
+  BarController
+);
 
 import { ReportGraphProps } from '@/types/report';
 import SelectYear from './SelectYear';
 import theme from '@styles/theme';
+import reloadIcon from '@assets/icons/ic-dashboard-reload.svg';
 
 const Graph = ({ graphData }: { graphData: ReportGraphProps }) => {
-  // HACK: Notice 업데이트 정책 변경
-  // utils/calculation.ts 파일 사용하여 마지막 날짜 불러오기
-
   const chartData = {
     labels: graphData.map(data => `${data.statistics_month} 월`),
     datasets: [
@@ -34,7 +53,12 @@ const Graph = ({ graphData }: { graphData: ReportGraphProps }) => {
   };
 
   const options = {
-    maintainAspectRatio: false
+    maintainAspectRatio: false,
+    plugins: {
+      legend: {
+        onClick: () => undefined
+      }
+    }
   };
 
   return (
@@ -44,15 +68,17 @@ const Graph = ({ graphData }: { graphData: ReportGraphProps }) => {
           <Title>누적 리포트</Title>
           <Notice>
             프로모션 적용 이후 예약 현황을 알려드립니다.
-            <Update>(23.12.29 업데이트)</Update>
+            <ReloadIcon src={reloadIcon} />
+            <Update>매월 1일 00시 00분에 업데이트</Update>
           </Notice>
         </Content>
         <SelectYear />
       </HeaderContainer>
       <GraphContainer>
         <BarGraph
-          data={chartData}
           options={options}
+          type={'bar'}
+          data={chartData}
         />
       </GraphContainer>
     </Container>
@@ -60,6 +86,10 @@ const Graph = ({ graphData }: { graphData: ReportGraphProps }) => {
 };
 
 export default Graph;
+
+const ReloadIcon = styled.img`
+  margin-left: 10px;
+`;
 
 const Container = styled.div`
   width: 100%;
@@ -108,6 +138,9 @@ const Notice = styled.p`
   font-size: 12.5px;
   font-weight: 700;
 
+  display: flex;
+  align-items: flex-end;
+
   & > span {
     color: #8e8e8e;
     font-size: 10.5px;
@@ -120,7 +153,7 @@ const Notice = styled.p`
 `;
 
 const Update = styled.span`
-  margin-left: 10px;
+  margin-left: 3px;
 `;
 
 const GraphContainer = styled.div`
@@ -142,7 +175,7 @@ const GraphContainer = styled.div`
   }
 `;
 
-const BarGraph = styled(Bar)`
+const BarGraph = styled(Chart)`
   border-radius: 16px;
   padding: 10px 20px;
 
