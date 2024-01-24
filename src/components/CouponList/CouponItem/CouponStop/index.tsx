@@ -9,12 +9,15 @@ import deleteIcon from '@assets/icons/ic-couponlist-delete.svg';
 import { CouponListProps, ToggleStyleProps } from '@/types/couponList';
 import { useOutsideClick, useToggleChange } from '@hooks/index';
 import CouponCondition from '@utils/lib/couponCondition';
+import { useToast } from '@components/common/ToastContext';
 
 const CouponStop = ({ couponInfo }: CouponListProps) => {
   const [isToggle, setIsToggle] = useState(false);
   const [isShowRoomList, setIsShowRoomList] = useState(false);
   const roomListRef = useRef<HTMLDivElement>(null);
   const { mutateAsync } = useToggleChange();
+  const { showToast } = useToast();
+
   useOutsideClick(roomListRef, () => setIsShowRoomList(false));
 
   const handleRoomList = () => {
@@ -23,9 +26,33 @@ const CouponStop = ({ couponInfo }: CouponListProps) => {
 
   const handleToggle = () => {
     setIsToggle(!isToggle);
+    toggleUpdate();
+  };
+
+  const toggleUpdate = async () => {
+    try {
+      await mutateAsync({
+        coupon_number: couponInfo.coupon_number,
+        coupon_status: '노출 ON'
+      });
+      console.log(couponInfo.coupon_number);
+
+      showToast(
+        <div>
+          {couponInfo.title} 쿠폰이 노출되었습니다
+          <span onClick={retryToggleUpdate}>실행 취소</span>
+        </div>
+      );
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const retryToggleUpdate = () => {
+    setIsToggle(!isToggle);
     mutateAsync({
       coupon_number: couponInfo.coupon_number,
-      coupon_status: '노출 ON'
+      coupon_status: '노출 OFF'
     });
   };
 

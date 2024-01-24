@@ -54,12 +54,19 @@ const ToastContainer = styled.div`
   transform: translateX(-50%);
   z-index: 70;
 
+  padding: 15px 31px;
   border-radius: 5px;
 
   background: #404446;
-
-  padding: 15px 31px;
-
   font-size: 15px;
   color: ${theme.colors.white};
+
+  span {
+    margin-left: 59px;
+
+    color: #3182f6;
+    font-size: 15px;
+    text-decoration-line: underline;
+    cursor: pointer;
+  }
 `;
