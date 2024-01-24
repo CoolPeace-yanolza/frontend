@@ -27,7 +27,11 @@ const CouponExpired = ({ couponInfo }: CouponListProps) => {
 
   // 모달 확인 버튼에 대한 동작
   const handleModalConfirm = () => {
-    mutateAsync({ coupon_number: couponInfo.coupon_number });
+    try {
+      mutateAsync({ coupon_number: couponInfo.coupon_number });
+    } catch (error) {
+      console.log('쿠폰 삭제 실패', error);
+    }
     setIsShowModal(false);
   };
 
