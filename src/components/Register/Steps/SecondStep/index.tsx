@@ -27,24 +27,63 @@ const SecondStep = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const handleRoomTypeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.checked) {
-      setInput(prev => ({
-        ...prev,
-        roomType: [...prev.roomType, e.target.value]
-      }));
-      setPreview(prev => ({
-        ...prev,
-        roomType: [...prev.roomType, e.target.value]
-      }));
+    if (e.target.value === '대실') {
+      if (e.target.checked) {
+        setInput(prev => ({
+          ...prev,
+          roomType: ['대실', ...prev.roomType]
+        }));
+        setPreview(prev => ({
+          ...prev,
+          roomType: ['대실', ...prev.roomType]
+        }));
+      } else {
+        setInput(prev => ({
+          ...prev,
+          roomType: prev.roomType.filter(element => element !== '대실')
+        }));
+        setPreview(prev => ({
+          ...prev,
+          roomType: prev.roomType.filter(element => element !== '대실')
+        }));
+      }
     } else {
-      setInput(prev => ({
-        ...prev,
-        roomType: prev.roomType.filter(element => element !== e.target.value)
-      }));
-      setPreview(prev => ({
-        ...prev,
-        roomType: prev.roomType.filter(element => element !== e.target.value)
-      }));
+      if (e.target.checked) {
+        setInput(prev => ({
+          ...prev,
+          roomType: [...prev.roomType, '숙박']
+        }));
+        setPreview(prev => ({
+          ...prev,
+          roomType: [...prev.roomType, '숙박']
+        }));
+      } else {
+        if (input.roomType.includes('대실')) {
+          setInput(prev => ({
+            ...prev,
+            roomType: prev.roomType.slice(0, 1)
+          }));
+          setPreview(prev => ({
+            ...prev,
+            roomType: prev.roomType.slice(0, 1)
+          }));
+        } else {
+          setInput(prev => ({
+            ...prev,
+            roomType: []
+          }));
+          setPreview(prev => ({
+            ...prev,
+            roomType: []
+          }));
+        }
+        if (input.severalNights) {
+          setInput(prev => ({
+            ...prev,
+            severalNights: !prev.severalNights
+          }));
+        }
+      }
     }
 
     setIsValid(prev => ({
@@ -54,7 +93,27 @@ const SecondStep = () => {
   };
 
   const handleLabelChange = () => {
-    setInput(prev => ({ ...prev, severalNights: !prev.severalNights }));
+    if (input.severalNights) {
+      setInput(prev => ({
+        ...prev,
+        roomType: prev.roomType.filter(element => element !== '2박 이상'),
+        severalNights: !prev.severalNights
+      }));
+      setPreview(prev => ({
+        ...prev,
+        roomType: prev.roomType.filter(element => element !== '2박 이상')
+      }));
+    } else {
+      setInput(prev => ({
+        ...prev,
+        roomType: [...prev.roomType, '2박 이상'],
+        severalNights: !prev.severalNights
+      }));
+      setPreview(prev => ({
+        ...prev,
+        roomType: [...prev.roomType, '2박 이상']
+      }));
+    }
   };
 
   const handleIsAllRoomChange = (e: React.ChangeEvent<HTMLInputElement>) => {
