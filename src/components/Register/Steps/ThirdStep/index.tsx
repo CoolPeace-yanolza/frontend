@@ -1,3 +1,4 @@
+import { useRecoilState } from 'recoil';
 import styled from '@emotion/styled';
 
 import theme from '@styles/theme';
@@ -7,8 +8,26 @@ import {
   InputRadio
 } from '@components/Register/common';
 import RadioGroup from './RadioGroup';
+import { registerInputState, previewState } from '@recoil/index';
 
 const ThirdStep = () => {
+  const [input, setInput] = useRecoilState(registerInputState);
+  const [preview, setPreview] = useRecoilState(previewState);
+
+  const handleMinimumPriceChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setInput({ ...input, minimumPrice: e.target.value });
+    setPreview({
+      ...preview,
+      minimumPrice: Number(e.target.value).toLocaleString() + '원 이상 결제 시'
+    });
+  };
+
+  const handleDayChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    console.log(e.target.value);
+    setInput({ ...input, day: e.target.value });
+    setPreview({ ...preview, day: e.target.value + ' 체크인 시 적용 가능' });
+  };
+
   return (
     <>
       <InputAccordion title="결제금액에 따라 달라요.">
@@ -16,6 +35,7 @@ const ThirdStep = () => {
           <InputField
             placeholder="ex) 5000"
             text="원"
+            onInputChange={handleMinimumPriceChange}
           />
           <Text>이상 예약 시 사용 가능</Text>
         </ContentWrapper>
@@ -32,12 +52,16 @@ const ThirdStep = () => {
           <InputRadio
             id="weekdays"
             name="specificDays"
+            value="평일"
             text="평일 (일~목 체크인)"
+            onButtonChange={handleDayChange}
           />
           <InputRadio
             id="weekend"
             name="specificDays"
+            value="주말"
             text="주말 (금~토 체크인)"
+            onButtonChange={handleDayChange}
           />
         </RadioWrapper>
       </InputAccordion>

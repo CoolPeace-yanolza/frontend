@@ -9,7 +9,11 @@ import theme from '@styles/theme';
 import { CalendarProps, CustomInputProps } from '@/types/register';
 import notSelected from '@assets/icons/ic-register-calendar.svg';
 import selected from '@assets/icons/ic-register-calendar-selected.svg';
-import { registerInputState, registerValidState } from '@recoil/index';
+import {
+  registerInputState,
+  registerValidState,
+  previewState
+} from '@recoil/index';
 
 const Calendar = ({
   startDate,
@@ -20,14 +24,18 @@ const Calendar = ({
 }: CalendarProps) => {
   const [input, setInput] = useRecoilState(registerInputState);
   const setIsValid = useSetRecoilState(registerValidState);
+  const [preview, setPreview] = useRecoilState(previewState);
 
   const today = new Date();
   const tomorrow = new Date(today.setDate(today.getDate() + 1));
 
   const handleStartDateChange = (date: Date) => {
+    const formattedDate = format(date, 'yyyy.MM.dd');
+
     setStartDate(date);
     setSelected(true);
-    setInput({ ...input, startDate: format(date, 'yyyy.MM.dd') });
+    setInput({ ...input, startDate: formattedDate });
+    setPreview({ ...preview, startDate: formattedDate + ' ~ ' });
     setIsValid(prev => ({
       ...prev,
       isDateValid: true
@@ -35,9 +43,16 @@ const Calendar = ({
   };
 
   const handleEndDateChange = (date: Date) => {
+    const formattedDate = format(date, 'yyyy.MM.dd');
+
     setEndDate(date);
     setSelected(true);
-    setInput({ ...input, endDate: format(date, 'yyyy.MM.dd') });
+    setInput({ ...input, endDate: formattedDate });
+    setPreview({
+      ...preview,
+      startDate: preview.startDate === '노출 기간' ? '' : preview.startDate,
+      endDate: formattedDate
+    });
     setIsValid(prev => ({
       ...prev,
       isDateValid: true

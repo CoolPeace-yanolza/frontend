@@ -11,11 +11,16 @@ import {
   ErrorMessage
 } from '@components/Register/common';
 import { LimitWrapperStyleProps } from '@/types/register';
-import { registerInputState, registerValidState } from '@recoil/index';
+import {
+  registerInputState,
+  registerValidState,
+  previewState
+} from '@recoil/index';
 
 const FirstStep = () => {
   const [input, setInput] = useRecoilState(registerInputState);
   const [isValid, setIsValid] = useRecoilState(registerValidState);
+  const [preview, setPreview] = useRecoilState(previewState);
 
   const [currentInput, setCurrentInput] = useState(0);
   const [isLimited, setIsLimited] = useState(false);
@@ -30,6 +35,7 @@ const FirstStep = () => {
 
   const handleCustomerTypeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInput({ ...input, customerType: e.target.value });
+    setPreview({ ...preview, customer: e.target.value + ' 대상' });
     setIsValid(prev => ({
       ...prev,
       isCustomerTypeValid: true
@@ -50,6 +56,10 @@ const FirstStep = () => {
 
   const handleDiscountFlatChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInput({ ...input, discountFlat: e.target.value });
+    setPreview({
+      ...preview,
+      discount: Number(e.target.value).toLocaleString() + '원 할인'
+    });
     setIsValid(prev => ({
       ...prev,
       isDiscountFlatValid: true,
@@ -61,6 +71,10 @@ const FirstStep = () => {
     e: React.ChangeEvent<HTMLInputElement>
   ) => {
     setInput({ ...input, discountFlatRate: e.target.value });
+    setPreview({
+      ...preview,
+      discount: e.target.value + '% 할인'
+    });
     setIsValid(prev => ({
       ...prev,
       isDiscountFlatRateValid: true,

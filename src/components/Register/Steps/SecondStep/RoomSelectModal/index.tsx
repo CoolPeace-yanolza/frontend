@@ -16,7 +16,7 @@ import filterUnchecked from '@assets/icons/ic-register-filter-unchecked.svg';
 import listChecked from '@assets/icons/ic-register-checked.svg';
 import listUnchecked from '@assets/icons/ic-register-unchecked.svg';
 import { sliceName } from '@utils/index';
-import { registerInputState } from '@recoil/index';
+import { registerInputState, previewState } from '@recoil/index';
 
 const list = [
   {
@@ -59,6 +59,7 @@ const RoomSelectModal = ({
   onButtonClick
 }: RoomSelectModalProps) => {
   const [input, setInput] = useRecoilState(registerInputState);
+  const [preview, setPreview] = useRecoilState(previewState);
 
   const [selectedRooms, setSelectedRooms] = useState([...rooms]);
   const [sortedRooms, setSortedRooms] = useState([...list]);
@@ -76,6 +77,7 @@ const RoomSelectModal = ({
       const falseRadioButton =
         document.querySelector<HTMLInputElement>('#false')!;
       falseRadioButton.checked = false;
+      setPreview({ ...preview, toAllRoom: '적용 객실' });
     }
     onButtonClick(false);
   };

@@ -14,11 +14,16 @@ import RoomSelectModal from './RoomSelectModal';
 import RoomSelectButton from './RoomSelectButton';
 import RoomList from './RoomList';
 import { RoomsType } from '@/types/register';
-import { registerInputState, registerValidState } from '@recoil/index';
+import {
+  registerInputState,
+  registerValidState,
+  previewState
+} from '@recoil/index';
 
 const SecondStep = () => {
   const [input, setInput] = useRecoilState(registerInputState);
   const [isValid, setIsValid] = useRecoilState(registerValidState);
+  const [preview, setPreview] = useRecoilState(previewState);
 
   const [roomType, setRoomType] = useState(0);
   const [toAllRoom, setToAllRoom] = useState(0);
@@ -31,8 +36,16 @@ const SecondStep = () => {
         ...prev,
         roomType: [...prev.roomType, e.target.value]
       }));
+      setPreview(prev => ({
+        ...prev,
+        roomType: [...prev.roomType, e.target.value]
+      }));
     } else {
       setInput(prev => ({
+        ...prev,
+        roomType: prev.roomType.filter(element => element !== e.target.value)
+      }));
+      setPreview(prev => ({
         ...prev,
         roomType: prev.roomType.filter(element => element !== e.target.value)
       }));
@@ -50,6 +63,7 @@ const SecondStep = () => {
 
   const handleIsAllRoomChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInput({ ...input, isAllRoom: e.target.value });
+    setPreview({ ...preview, toAllRoom: e.target.value });
     setIsValid(prev => ({
       ...prev,
       isAllRoomValid: true

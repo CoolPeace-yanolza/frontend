@@ -1,10 +1,14 @@
+import { useRecoilValue } from 'recoil';
 import styled from '@emotion/styled';
 
 import theme from '@styles/theme';
 import search from '@assets/icons/ic-register-search.svg';
 import side from '@assets/icons/ic-register-side.svg';
+import { previewState } from '@recoil/index';
 
 const Preview = () => {
+  const preview = useRecoilValue(previewState);
+
   return (
     <PreviewContainer>
       <Header>
@@ -19,19 +23,34 @@ const Preview = () => {
       </Header>
       <Coupon>
         <TopSection>
-          <Customer>쿠폰 제공 대상</Customer>
-          <Discount>할인 내용</Discount>
-          <MinimumPrice>최소 예약 금액</MinimumPrice>
+          <Customer>{preview.customer}</Customer>
+          <Discount>{preview.discount}</Discount>
+          <MinimumPrice>{preview.minimumPrice}</MinimumPrice>
         </TopSection>
         <BottomSection>
           <LeftSection>
-            <span>적용 유형</span>
+            <span>
+              {preview.roomType.length
+                ? preview.roomType.join(', ')
+                : '적용 유형'}
+            </span>
             <span> / </span>
-            <span>적용 객실</span>
-            <Day>할인 적용 요일</Day>
+            <span>
+              {(() => {
+                if (preview.toAllRoom === 'true') {
+                  return '모든 객실';
+                } else if (preview.toAllRoom === 'false') {
+                  return '선택 객실';
+                } else {
+                  return preview.toAllRoom;
+                }
+              })()}
+            </span>
+            <Day>{preview.day}</Day>
           </LeftSection>
           <RightSection>
-            <span>노출 기간</span>
+            <span>{preview.startDate}</span>
+            <span>{preview.endDate}</span>
           </RightSection>
         </BottomSection>
         <SideImage

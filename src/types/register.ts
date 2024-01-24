@@ -29,7 +29,6 @@ export type InputButtonProps = {
   state?: number;
   currentInput?: number;
   setState?: React.Dispatch<React.SetStateAction<number>>;
-  // onButtonClick?: React.Dispatch<React.SetStateAction<number>>;
   onButtonChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 };
 
@@ -48,7 +47,7 @@ export type ButtonStyleProps = {
 export type InputFieldProps = {
   placeholder: string;
   text: string;
-  onInputChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onInputChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 };
 
 export type InputFieldStyleProps = {
@@ -74,8 +73,10 @@ export type CheckIconStyleProps = {
 export type InputRadioProps = {
   id: string;
   name: string;
+  value?: string;
   text: string;
   children?: ReactNode;
+  onButtonChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 };
 
 export type InputRadioStyleProps = {
@@ -181,7 +182,9 @@ export type RoomListProps = {
 export type RadioProps = {
   id: string;
   name: string;
+  value: string;
   text: string;
+  onButtonChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 };
 
 // Calendar
@@ -238,7 +241,7 @@ export type previewAtom = {
   customer: string;
   discount: string;
   minimumPrice?: string;
-  roomType: string;
+  roomType: string[];
   toAllRoom: string;
   day: string;
   startDate: string;
