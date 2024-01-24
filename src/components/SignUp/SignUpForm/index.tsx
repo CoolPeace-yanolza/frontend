@@ -1,20 +1,29 @@
 import { useEffect, useState } from 'react';
 import styled from '@emotion/styled';
-import { FormProvider, useForm } from 'react-hook-form';
+import {
+  FieldValues,
+  FormProvider,
+  SubmitHandler,
+  useForm
+} from 'react-hook-form';
 
-import { SignUpInputValidation } from '@/types/signUp';
+import {
+  SignUpData,
+  SignUpFormProps,
+  SignUpInputValidation
+} from '@/types/signUp';
 import {
   AuthButton,
   AuthInputNormal,
   AuthInputPassword
 } from '@components/Auth';
-import { getEmailValid } from 'src/api';
+import { getEmailValid, postSignUp } from 'src/api';
 
-const SignUpForm = () => {
+const SignUpForm = ({ handleModalOpen }: SignUpFormProps) => {
   const methods = useForm({
     mode: 'all'
   });
-  const { watch, getValues, getFieldState, formState } = methods;
+  const { watch, getValues, getFieldState, formState, handleSubmit } = methods;
   const { errors, isValid } = formState;
 
   const emailValue: string = getValues('user_email');
@@ -48,13 +57,29 @@ const SignUpForm = () => {
     }
   };
 
+  const onSubmit: SubmitHandler<FieldValues> = async data => {
+    const formData: SignUpData = {
+      email: data.user_email,
+      password: data.user_password,
+      name: data.user_name
+    };
+
+    const response = await postSignUp(formData);
+
+    if (response?.status === 201) {
+      // 회원가입 완료 페이지로 넘어가기
+    } else {
+      handleModalOpen();
+    }
+  };
+
   useEffect(() => {
     setEmailValidMessage(emailValidInitialValue);
   }, [watch('user_email')]);
 
   return (
     <FormProvider {...methods}>
-      <Form>
+      <Form onSubmit={handleSubmit(onSubmit)}>
         <InputLabelWrapper>
           <Label htmlFor="user_name">이름</Label>
           <AuthInputNormal
@@ -131,12 +156,14 @@ const SignUpForm = () => {
         </InputLabelWrapper>
         <AuthButton
           size="large"
-          variant={isValid ? 'navy' : 'disabled'}
+          variant={
+            isValid && emailValidMessage.type === 'success'
+              ? 'navy'
+              : 'disabled'
+          }
           text="회원가입"
-          disabled={!isValid}
-          buttonFunc={() => {
-            // TODO : 회원가입 API 요청 로직
-          }}
+          disabled={!isValid || emailValidMessage.type === 'failure'}
+          buttonFunc={handleSubmit(onSubmit)}
         />
       </Form>
     </FormProvider>

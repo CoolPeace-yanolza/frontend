@@ -1,4 +1,5 @@
 import { AxiosError } from 'axios';
+
 import { instance } from '..';
 import { SignUpData } from '@/types/signUp';
 

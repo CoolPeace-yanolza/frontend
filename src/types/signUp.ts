@@ -9,3 +9,7 @@ export type SignUpData = {
   password: string;
   name: string;
 };
+
+export type SignUpFormProps = {
+  handleModalOpen: () => void;
+};

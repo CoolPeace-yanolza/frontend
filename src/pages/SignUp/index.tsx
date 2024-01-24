@@ -1,10 +1,19 @@
+import { useState } from 'react';
 import styled from '@emotion/styled';
 
 import logo from '@assets/icons/ic-logo.svg';
-import { Footer } from '@components/common';
+import { ErrorModal, Footer } from '@components/common';
 import { SignUpForm, SignUpTitle } from '@components/SignUp';
 
 const SignUp = () => {
+  const modalContent = {
+    text: '회원가입에 실패했습니다.',
+    errorText: '다시 시도해주세요.'
+  };
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const handleModalClose = () => setIsModalOpen(false);
+  const handleModalOpen = () => setIsModalOpen(true);
+
   return (
     <WhiteBackground>
       <WithoutFooterSection>
@@ -17,11 +26,17 @@ const SignUp = () => {
         <Container>
           <Content>
             <SignUpTitle />
-            <SignUpForm />
+            <SignUpForm handleModalOpen={handleModalOpen} />
           </Content>
         </Container>
       </WithoutFooterSection>
       <Footer />
+      {isModalOpen && (
+        <ErrorModal
+          modalContent={modalContent}
+          ButtonFunc={handleModalClose}
+        />
+      )}
     </WhiteBackground>
   );
 };
