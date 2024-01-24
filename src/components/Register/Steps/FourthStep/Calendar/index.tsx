@@ -1,12 +1,15 @@
 import { forwardRef, ForwardedRef } from 'react';
+import { useRecoilState, useSetRecoilState } from 'recoil';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
+import { format } from 'date-fns';
 import styled from '@emotion/styled';
 
 import theme from '@styles/theme';
 import { CalendarProps, CustomInputProps } from '@/types/register';
 import notSelected from '@assets/icons/ic-register-calendar.svg';
 import selected from '@assets/icons/ic-register-calendar-selected.svg';
+import { registerInputState, registerValidState } from '@recoil/index';
 
 const Calendar = ({
   startDate,
@@ -15,17 +18,30 @@ const Calendar = ({
   setEndDate,
   setSelected
 }: CalendarProps) => {
+  const [input, setInput] = useRecoilState(registerInputState);
+  const setIsValid = useSetRecoilState(registerValidState);
+
   const today = new Date();
   const tomorrow = new Date(today.setDate(today.getDate() + 1));
 
-  const handleStartDateChange = (date: Date | null) => {
+  const handleStartDateChange = (date: Date) => {
     setStartDate(date);
     setSelected(true);
+    setInput({ ...input, startDate: format(date, 'yyyy.MM.dd') });
+    setIsValid(prev => ({
+      ...prev,
+      isDateValid: true
+    }));
   };
 
-  const handleEndDateChange = (date: Date | null) => {
+  const handleEndDateChange = (date: Date) => {
     setEndDate(date);
     setSelected(true);
+    setInput({ ...input, endDate: format(date, 'yyyy.MM.dd') });
+    setIsValid(prev => ({
+      ...prev,
+      isDateValid: true
+    }));
   };
 
   const StartDateInput = forwardRef(
@@ -73,6 +89,7 @@ const Calendar = ({
         selected={startDate}
         selectsStart
         startDate={tomorrow}
+        endDate={endDate}
         minDate={tomorrow}
         onChange={handleStartDateChange}
         customInput={<StartDateInput onClick={() => {}} />}
@@ -83,7 +100,7 @@ const Calendar = ({
         selected={endDate}
         selectsEnd
         startDate={startDate}
-        minDate={startDate}
+        minDate={tomorrow}
         onChange={handleEndDateChange}
         customInput={<EndDateInput onClick={() => {}} />}
       />

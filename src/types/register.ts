@@ -187,9 +187,9 @@ export type RadioProps = {
 // Calendar
 export type CalendarProps = {
   startDate: Date | null | undefined;
-  setStartDate: React.Dispatch<React.SetStateAction<Date | null | undefined>>;
+  setStartDate: React.Dispatch<React.SetStateAction<Date | undefined>>;
   endDate: Date | null | undefined;
-  setEndDate: React.Dispatch<React.SetStateAction<Date | null | undefined>>;
+  setEndDate: React.Dispatch<React.SetStateAction<Date | undefined>>;
   setSelected: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
@@ -230,8 +230,7 @@ export type registerValidAtom = {
   isRoomTypeValid: boolean;
   isAllRoomValid: boolean;
   isMinimumPriceValid: boolean;
-  isStartDateValid: boolean;
-  isEndDateValid: boolean;
+  isDateValid: boolean;
 };
 
 // previewState

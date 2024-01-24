@@ -1,13 +1,17 @@
 import { useState } from 'react';
+import { useRecoilValue } from 'recoil';
 import styled from '@emotion/styled';
 
 import theme from '@styles/theme';
-import { InputContainer } from '@components/Register/common';
+import { InputContainer, ErrorMessage } from '@components/Register/common';
 import Calendar from './Calendar';
+import { registerValidState } from '@recoil/index';
 
 const FourthStep = () => {
-  const [startDate, setStartDate] = useState<Date | null>();
-  const [endDate, setEndDate] = useState<Date | null>();
+  const isValid = useRecoilValue(registerValidState);
+
+  const [startDate, setStartDate] = useState<Date>();
+  const [endDate, setEndDate] = useState<Date>();
   const [selected, setSelected] = useState(false);
 
   return (
@@ -26,6 +30,9 @@ const FourthStep = () => {
           />
         </CalendarWrapper>
       </ContentContainer>
+      {!isValid.isDateValid && (
+        <ErrorMessage>쿠폰 노출 기간 설정은 필수입니다.</ErrorMessage>
+      )}
     </InputContainer>
   );
 };

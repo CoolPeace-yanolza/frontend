@@ -59,6 +59,11 @@ const StepperController = ({
       !input.isAllRoom &&
         setIsValid(prev => ({ ...prev, isAllRoomValid: false }));
     }
+
+    if (currentStep === 3) {
+      (!input.startDate || !input.endDate || input.startDate > input.endDate) &&
+        setIsValid(prev => ({ ...prev, isDateValid: false }));
+    }
   };
 
   return (
