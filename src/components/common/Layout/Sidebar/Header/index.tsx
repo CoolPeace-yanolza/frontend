@@ -8,7 +8,10 @@ import theme from '@styles/theme';
 const Header = ({ isSidebarOpen, setIsSidebarOpen }: SidebarHeader) => {
   return (
     <Container $isSidebarOpen={isSidebarOpen}>
-      <Hamburger onClick={() => setIsSidebarOpen(prev => !prev)}>
+      <Hamburger
+        $isSidebarOpen={isSidebarOpen}
+        onClick={() => setIsSidebarOpen(prev => !prev)}
+      >
         <HamburgerIcon
           src={hamburger}
           alt="메뉴"
@@ -35,14 +38,13 @@ const Container = styled.div<SidebarOpen>`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  z-index: 100;
 
   ${theme.response.tablet} {
     margin-left: 5px;
   }
 `;
 
-const Hamburger = styled.button`
+const Hamburger = styled.button<SidebarOpen>`
   width: 60px;
   height: 60px;
 
@@ -62,8 +64,9 @@ const Hamburger = styled.button`
     width: 50px;
     height: 50px;
 
-    margin: 8px 10px;
-    padding: 0 6px;
+    margin: 10px 5px 8px 5px;
+    ${props =>
+      props.$isSidebarOpen ? 'padding: 18px 0' : 'padding: 10px 0 0 0'};
   }
 `;
 

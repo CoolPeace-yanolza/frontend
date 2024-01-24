@@ -16,6 +16,7 @@ import {
 import { Chart } from 'react-chartjs-2';
 import { useRecoilValue } from 'recoil';
 
+import theme from '@styles/theme';
 import { GraphHeaderTag } from '@/types/dashboard';
 import graphOptions from './graphOptions';
 import { getUpdatedDate } from '@utils/index';
@@ -34,10 +35,6 @@ ChartJS.register(
   LineController,
   BarController
 );
-
-//HACK: 그래프 데이터 렌더링에 대한 테스트파일입니다. 실제 기능 구현에서는 해당 파일 다소 변경될 것 같습니다.
-
-//HACK 추후 utils에 적절한 폴더 생기면 옮길 예정
 
 const GraphContainer = () => {
   const headerSelectedState = useRecoilValue(headerAccommodationState);
@@ -113,6 +110,13 @@ const GraphContainer = () => {
         </HeaderDescription>
       </Header>
       <GraphWrapper>
+        <MobileHeader>
+          <MobileTitle>월별 차트</MobileTitle>
+          <MobileHeaderDescription>
+            프로모션 적용 이후 예약 현황을 알려드립니다.{' '}
+            <span>({getUpdatedDate()} 업데이트)</span>
+          </MobileHeaderDescription>
+        </MobileHeader>
         <GraphHeader>
           <GraphHeaderTag
             $active={isIncomeGraph}
@@ -158,6 +162,10 @@ const Header = styled.div`
 
   display: flex;
   align-items: flex-end;
+
+  ${theme.response.tablet} {
+    display: none;
+  }
 `;
 
 const Title = styled.span`
@@ -192,6 +200,11 @@ const GraphWrapper = styled.div`
   align-items: center;
 
   background-color: #fafafb;
+
+  ${theme.response.tablet} {
+    padding: 20px 10px;
+    border-radius: 10px;
+  }
 `;
 
 const GraphHeader = styled.div`
@@ -214,6 +227,12 @@ const GraphHeaderTag = styled.span<GraphHeaderTag>`
   font-weight: 700;
 
   cursor: pointer;
+
+  ${theme.response.tablet} {
+    margin-right: 5px;
+
+    font-size: 10px;
+  }
 `;
 
 const GraphInnerWrapper = styled.div`
@@ -224,4 +243,42 @@ const GraphInnerWrapper = styled.div`
   border-radius: 20px;
 
   background-color: white;
+
+  ${theme.response.tablet} {
+    height: calc(100vw / 2);
+    min-height: calc(100vw / 2);
+  }
+`;
+
+const MobileHeader = styled.div`
+  display: none;
+
+  ${theme.response.tablet} {
+    padding-bottom: 20px;
+
+    align-self: flex-start;
+    display: flex;
+    align-items: flex-end;
+    gap: 3px;
+  }
+`;
+
+const MobileTitle = styled.span`
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 100%;
+`;
+
+const MobileHeaderDescription = styled.div`
+  padding-bottom: 2px;
+
+  color: #5e5e5e;
+  font-size: 9px;
+  font-weight: 700;
+
+  & > span {
+    color: #8e8e8e;
+    font-size: 8px;
+    font-weight: 500;
+  }
 `;

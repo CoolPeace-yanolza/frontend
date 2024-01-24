@@ -2,6 +2,8 @@ import styled from '@emotion/styled';
 import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
 
+import theme from '@styles/theme';
+
 const Loading = () => {
   return (
     <Container>
@@ -22,6 +24,10 @@ const Container = styled.div`
   border-radius: 16px;
 
   background-color: #fafafb;
+
+  ${theme.response.tablet} {
+    height: 200px;
+  }
 `;
 
 const BaseSkeleton = styled(Skeleton)`
@@ -53,4 +59,8 @@ const RankingSectionLoading = styled(BaseSkeleton)`
   flex: 1;
 
   background-color: #f2f4f5;
+
+  ${theme.response.tablet} {
+    width: 40vw;
+  }
 `;
