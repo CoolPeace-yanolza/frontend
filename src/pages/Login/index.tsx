@@ -3,13 +3,10 @@ import styled from '@emotion/styled';
 
 import { ErrorModal, Footer } from '@components/common';
 import { LoginForm, LoginTitle } from '@components/Login';
+import ERROR_MODAL_MESSAGE from 'src/constants/lib/ERROR_MODAL_MESSAGE';
 
 const Login = () => {
-  const initialValue = {
-    text: '이메일 또는 비밀번호를 잘못 입력했습니다.',
-    errorText: '입력하신 내용을 다시 확인해주세요.'
-  };
-  const [modalContent, setModalContent] = useState(initialValue);
+  const [modalContent, setModalContent] = useState(ERROR_MODAL_MESSAGE.LOGIN);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleModalClose = () => setIsModalOpen(prev => !prev);

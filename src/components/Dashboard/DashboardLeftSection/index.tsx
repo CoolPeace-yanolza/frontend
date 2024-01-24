@@ -1,5 +1,6 @@
 import styled from '@emotion/styled';
 
+import theme from '@styles/theme';
 import GraphSection from './GraphSection';
 import LocalInformationSection from './LocalInformationSection';
 
@@ -21,4 +22,9 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   flex: 2;
+
+  ${theme.response.tablet} {
+    width: 100%;
+    min-width: 100%;
+  }
 `;

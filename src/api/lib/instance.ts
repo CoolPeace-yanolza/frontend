@@ -63,6 +63,10 @@ const onErrorResponse = async (error: AxiosResponseError<string>) => {
         // 리프레시 토큰도 만료되었을 때 = 재로그인 안내
       } else if (tokenResponse.status === 404) {
         console.log(tokenResponse.data.message);
+        // await postLogout();
+        // deleteAllCookies();
+        // navigate('/login');
+
         return Promise.reject(error);
       }
     }

@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
 import { useRecoilValue } from 'recoil';
 
+import theme from '@styles/theme';
 import StatusItem from './StatusItem';
 import { useGetMonthStatus } from '@hooks/index';
 import { getStatusToLocaleString } from '@utils/index';
@@ -23,7 +24,7 @@ const CouponStatusSection = () => {
         />
         <StatusItem
           title="쿠폰 적용 예약 건수"
-          result={getStatusToLocaleString(data.used_count) + '개'}
+          result={getStatusToLocaleString(data.used_count) + '건'}
         />
         <StatusItem
           title="쿠폰 정산 금액"
@@ -48,6 +49,13 @@ const Container = styled.div`
   align-items: center;
 
   background-color: white;
+
+  ${theme.response.tablet} {
+    height: auto;
+    min-height: auto;
+
+    padding: 9px;
+  }
 `;
 
 const Header = styled.div`
@@ -59,6 +67,12 @@ const Title = styled.div`
 
   font-size: 17px;
   font-weight: 700;
+
+  ${theme.response.tablet} {
+    padding-left: 10px;
+
+    font-size: 15px;
+  }
 `;
 
 const InnerContainer = styled.div`
@@ -72,4 +86,11 @@ const InnerContainer = styled.div`
   align-items: center;
   justify-content: center;
   gap: 15px;
+
+  ${theme.response.tablet} {
+    height: auto;
+
+    flex-direction: row;
+    justify-content: space-between;
+  }
 `;
