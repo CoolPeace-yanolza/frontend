@@ -58,7 +58,10 @@ const CouponExpired = ({ couponInfo }: CouponListProps) => {
           <ContentWrap>
             <ContentTitle>가격</ContentTitle>
             <ContentValue>
-              {couponInfo.minimum_reservation_price}원 이상
+              {new Intl.NumberFormat().format(
+                couponInfo.minimum_reservation_price as number
+              )}
+              원 이상
             </ContentValue>
           </ContentWrap>
           <ContentWrap>
