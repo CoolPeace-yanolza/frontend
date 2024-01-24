@@ -17,8 +17,9 @@ const CouponMain = () => {
   const coupons = useRecoilValue(couponListState);
   console.log(coupons);
 
-  const handleRegisterClick = () => {};
-  navigate('/coupons/register');
+  const handleRegisterClick = () => {
+    navigate('/coupons/register');
+  };
 
   return (
     <MainContainer>
