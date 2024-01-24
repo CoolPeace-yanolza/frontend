@@ -39,9 +39,10 @@ const CouponStop = ({ couponInfo }: CouponListProps) => {
 
       showToast(
         <div>
-          {couponInfo.title} 쿠폰이 노출되었습니다
+          {couponInfo.title} 쿠폰이 노출되었습니다.
           <span onClick={retryToggleUpdate}>실행 취소</span>
-        </div>
+        </div>,
+        5000
       );
     } catch (error) {
       console.log(error);

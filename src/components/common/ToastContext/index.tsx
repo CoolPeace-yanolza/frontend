@@ -10,7 +10,7 @@ import {
 } from 'react';
 
 interface ToastContextType {
-  showToast: (msg: ReactNode) => void;
+  showToast: (msg: ReactNode, duration?: number) => void;
 }
 
 const ToastContext = createContext<ToastContextType | undefined>(undefined);
@@ -33,10 +33,10 @@ export const ToastProvider: FunctionComponent<ToastProviderProps> = ({
   const [message, setMessage] = useState<ReactNode>('');
   const [isVisible, setIsVisible] = useState<boolean>(false);
 
-  const showToast = (msg: ReactNode) => {
+  const showToast = (msg: ReactNode, duration: number = 2000) => {
     setMessage(msg);
     setIsVisible(true);
-    setTimeout(() => setIsVisible(false), 2000);
+    setTimeout(() => setIsVisible(false), duration);
   };
 
   return (

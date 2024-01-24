@@ -39,7 +39,8 @@ const CouponExpose = ({ couponInfo }: CouponListProps) => {
         <div>
           {couponInfo.title} 노출이 중단되었습니다.
           <span onClick={retryToggleUpdate}>실행 취소</span>
-        </div>
+        </div>,
+        5000
       );
     } catch (error) {
       console.log(error);
