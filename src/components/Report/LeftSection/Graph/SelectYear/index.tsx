@@ -1,14 +1,20 @@
-import { useRecoilState } from 'recoil';
+import { useEffect } from 'react';
+import { useRecoilState, useRecoilValue } from 'recoil';
 import { Dropdown, DropdownProps } from 'semantic-ui-react';
 import styled from '@emotion/styled';
 
-import { selectedYearState } from '@recoil/index';
+import { headerAccommodationState, selectedYearState } from '@recoil/index';
 import { initYearSelectList } from '@utils/index';
 import theme from '@styles/theme';
 
 const SelectYear = () => {
   const selectYearReport = initYearSelectList();
   const [selectedYear, setSelectedYear] = useRecoilState(selectedYearState);
+  const headerAccommodation = useRecoilValue(headerAccommodationState);
+
+  useEffect(() => {
+    setSelectedYear({ year: selectYearReport[0] });
+  }, [headerAccommodation]);
 
   const handleSelect = (
     _e: React.SyntheticEvent<HTMLElement>,
