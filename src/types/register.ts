@@ -187,6 +187,11 @@ export type RadioProps = {
   onButtonChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 };
 
+// FourthStep
+export type CalendarWrapperStyleProps = {
+  $isSelected: boolean;
+};
+
 // Calendar
 export type CalendarProps = {
   startDate: Date | null | undefined;

@@ -5,6 +5,7 @@ import styled from '@emotion/styled';
 import theme from '@styles/theme';
 import { InputContainer, ErrorMessage } from '@components/Register/common';
 import Calendar from './Calendar';
+import { CalendarWrapperStyleProps } from '@/types/register';
 import { registerValidState } from '@recoil/index';
 
 const FourthStep = () => {
@@ -47,7 +48,7 @@ const Description = styled.div`
   font-size: 14px;
 `;
 
-const CalendarWrapper = styled.button<{ $isSelected: boolean }>`
+const CalendarWrapper = styled.button<CalendarWrapperStyleProps>`
   width: 336px;
   height: 45px;
 
