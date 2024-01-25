@@ -27,13 +27,18 @@ const CouponExpose = ({ couponInfo }: CouponListProps) => {
     try {
       await mutateAsync({
         coupon_number: couponInfo.coupon_number,
-        coupon_status: '노출 OFF'
+        coupon_status: isToggle ? '노출 OFF' : '노출 ON'
       });
       console.log(couponInfo.coupon_number);
+      console.log(isToggle);
+
+      const message = isToggle
+        ? `${couponInfo.title} 쿠폰의 노출이 중단되었습니다.`
+        : `${couponInfo.title} 쿠폰이 노출되었습니다.`;
       showToast(
         <div>
-          {couponInfo.title} 쿠폰의 노출이 중단되었습니다.
-          <span onClick={retryToggleUpdate}>실행 취소</span>
+          {message}
+          <span onClick={toggleUpdate}>실행 취소</span>
         </div>,
         5000
       );
@@ -42,13 +47,13 @@ const CouponExpose = ({ couponInfo }: CouponListProps) => {
     }
   };
 
-  const retryToggleUpdate = () => {
-    setIsToggle(!isToggle);
-    mutateAsync({
-      coupon_number: couponInfo.coupon_number,
-      coupon_status: '노출 ON'
-    });
-  };
+  // const retryToggleUpdate = () => {
+  //   setIsToggle(!isToggle);
+  //   mutateAsync({
+  //     coupon_number: couponInfo.coupon_number,
+  //     coupon_status: '노출 ON'
+  //   });
+  // };
 
   const handleRoomList = () => {
     setIsShowRoomList(!isShowRoomList);
