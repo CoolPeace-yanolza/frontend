@@ -81,7 +81,7 @@ const CouponExpose = ({ couponInfo }: CouponListProps) => {
           <CouponTitle>{couponInfo.title}</CouponTitle>
           <ToggleWrap
             $isToggle={isToggle}
-            onClick={() => debounce(() => handleToggle, 2000)}
+            onClick={handleToggle}
           >
             {isToggle ? (
               <>
