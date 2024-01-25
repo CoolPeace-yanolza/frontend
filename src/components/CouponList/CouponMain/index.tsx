@@ -12,10 +12,14 @@ import couponListState from '@recoil/atoms/couponListState';
 import theme from '@styles/theme';
 import mobileRegister from '@assets/icons/ic-couponlist-mobileregister.svg';
 import categoryTabState from '@recoil/atoms/categoryTabState';
+import { CouponListResponse } from '@/types/couponList';
 
-const CouponMain = () => {
+interface CouponMainProps {
+  coupons: CouponListResponse;
+}
+
+const CouponMain = ({ coupons }: CouponMainProps) => {
   const navigate = useNavigate();
-  const coupons = useRecoilValue(couponListState);
   const categoryTab = useRecoilValue(categoryTabState);
   console.log(coupons);
 

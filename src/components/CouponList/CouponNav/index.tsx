@@ -40,21 +40,16 @@ const CouponNav = ({
   categoryTab,
   onCategoryTabChange
 }: CouponNavProps) => {
-  const [searchText, setSearchText] = useState<string>('');
-  const headerAccommodation = useRecoilValue(headerAccommodationState);
-  const setGlobalCoupons = useSetRecoilState(couponListState);
   const setGlobalCategoryTab = useSetRecoilState(categoryTabState);
-  const [searchAPI, setSearchAPI] = useState<string>('');
 
   const handleDateClick = (period: string) => {
     onRegisterDateChange(period);
-    setSearchAPI('');
   };
 
   const handleCategoryTab = (tab: string) => {
     onCategoryTabChange(tab);
     setGlobalCategoryTab({ categoryTab: tab });
-    setSearchAPI('');
+    onSearchChange('');
   };
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -63,8 +58,6 @@ const CouponNav = ({
 
   const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setSearchAPI(searchText);
-    setSearchText('');
   };
 
   return (

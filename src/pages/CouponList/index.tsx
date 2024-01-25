@@ -64,7 +64,7 @@ const CouponList = () => {
             categoryTab={categoryTab}
             onCategoryTabChange={handleChangeCategory}
           />
-          <CouponMain />
+          <CouponMain coupons={coupons} />
         </>
       )}
     </CouponListContainer>
