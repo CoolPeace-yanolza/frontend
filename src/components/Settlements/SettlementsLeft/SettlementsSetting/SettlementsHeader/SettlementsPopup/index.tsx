@@ -3,6 +3,7 @@ import styled from '@emotion/styled';
 import { SettlementsPopupProps } from '@/types/settlements';
 
 const SettlementsPopup: React.FC<SettlementsPopupProps> = ({ isOpen, onClose }) => {
+  
   return (
     <PopupContainer isOpen={isOpen}>
       <PopupHeader>
@@ -28,21 +29,27 @@ const SettlementsPopup: React.FC<SettlementsPopupProps> = ({ isOpen, onClose }) 
   );
 };
 
-const PopupContainer = styled.div<{ isOpen: boolean }>`
-  display: ${({ isOpen }) => (isOpen ? 'block' : 'none')};
-  position: fixed;
-  top: 50%;
-  left: 50%;
+const PopupContainer = styled.div<{ isOpen: boolean; style?: React.CSSProperties }>`
+  position: absolute;
 
   padding: 20px;
+  margin-top: 22px;
+  margin-left: 10px;
   border-radius: 6px;
 
-  transform: translate(-50%, -50%);
+  width: 500px;
+
+  display: ${({ isOpen }) => (isOpen ? 'block' : 'none')};
+  top: 50%;
+  left: 100%;
+
+  transform: translateY(-50%);
   background-color: white;
   box-shadow: 0px 2px 64px rgba(0, 0, 0, 0.1);
 
   z-index: 90;
 `;
+
 
 const PopupHeader = styled.div`
   display: flex;

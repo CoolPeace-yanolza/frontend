@@ -86,6 +86,7 @@ const MiddleText = styled.div`
 const InformationContainer = styled.div`
   display: flex;
   align-items: center;
+  position: relative;
 `;
 
 const InformationIcon = styled.img`
