@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import ReactPaginate from 'react-paginate';
 import styled from '@emotion/styled';
 
-import { SettlementsPaginationProps } from '@/types/settlements';
+import { SettlementsPaginationProps, SelectedItem } from '@/types/settlements';
 import theme from '@styles/theme';
 
 const SettlementsPagination: React.FC<SettlementsPaginationProps> = ({
@@ -17,7 +17,7 @@ const SettlementsPagination: React.FC<SettlementsPaginationProps> = ({
     setInternalCurrentPage(currentPage);
   }, [currentPage]);
 
-  const handlePageClick = (selectedItem: { selected: number }) => {
+  const handlePageClick = (selectedItem: SelectedItem) => {
     const selectedPage = selectedItem.selected + 1;
     setInternalCurrentPage(selectedPage);
     onPageChange(selectedPage);
