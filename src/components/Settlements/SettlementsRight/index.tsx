@@ -1,11 +1,19 @@
 import styled from '@emotion/styled';
+import { ErrorBoundary } from 'react-error-boundary';
+import { useQueryErrorResetBoundary } from '@tanstack/react-query';
 
 import SettlementsBefore from "./SettlementsBefore"
 import SettlementsExpected from "./SettlementsExpected"
 import settlementsLogo from '@assets/icons/settlements-logo.svg'; 
 import theme from '@styles/theme';
+import Loading from './SettlementsBefore/index.loading'
+import ErrorFallback from './SettlementsBefore/index.error';
+import { Suspense } from 'react';
 
 const SettlementsRight = () => {
+
+  const { reset } = useQueryErrorResetBoundary();
+
   return (
     <Container>
       <InnerContainer>
@@ -14,7 +22,14 @@ const SettlementsRight = () => {
         </StyledSettlementsExpected>
         <hr />
         <StyledSettlementsBefore>
-          <SettlementsBefore />
+          <ErrorBoundary
+            onReset={reset}
+            fallbackRender={ErrorFallback}
+          >
+            <Suspense fallback={<Loading />}>
+              <SettlementsBefore />
+            </Suspense>
+          </ErrorBoundary>
         </StyledSettlementsBefore>
       </InnerContainer>
       <Logo />

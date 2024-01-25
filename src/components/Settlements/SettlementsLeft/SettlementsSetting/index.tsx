@@ -6,6 +6,7 @@ import { ko } from 'date-fns/locale';
 import { useSetRecoilState } from 'recoil';
 import { createGlobalStyle } from 'styled-components';
 import { ErrorBoundary } from 'react-error-boundary';
+import { useQueryErrorResetBoundary } from '@tanstack/react-query';
 
 import CalendarIcon from '@assets/icons/calendar-number-outline.svg';
 import Settlemented from './Settlemented';
@@ -14,7 +15,6 @@ import { settlementsDateState } from '@recoil/atoms/settlemented';
 import theme from '@styles/theme';
 import Loading from './Settlemented/index.loading';
 import ErrorFallback from './Settlemented/index.error';
-import { useQueryErrorResetBoundary } from '@tanstack/react-query';
 
 const SettlementsSetting = () => {
 

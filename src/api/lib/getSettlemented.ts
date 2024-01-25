@@ -1,9 +1,9 @@
 import { SettlementedBefore } from '@/types/settlements';
 import { instance } from '..';
 
-const getSettlemented = async (accommodationId: number): Promise<SettlementedBefore> => {
+const getSettlemented = async (accommodation_id: number): Promise<SettlementedBefore> => {
   try {
-    const response = await instance.get(`/v1/settlements/${accommodationId}/summary`);
+    const response = await instance.get(`/v1/settlements/${accommodation_id}/summary`);
 
     console.log(response);
     console.log(response.data);

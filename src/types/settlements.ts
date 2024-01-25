@@ -57,5 +57,5 @@ export interface SettlementParams {
 
 export interface SettlementedBefore {
     this_month_settlement_amount : number,
-  last_month_settlement_amount :number
+    last_month_settlement_amount :number
 };

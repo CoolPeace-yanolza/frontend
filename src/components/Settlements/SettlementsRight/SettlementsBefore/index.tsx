@@ -1,17 +1,15 @@
 import styled from '@emotion/styled';
 import { useRecoilValue } from 'recoil';
 import { useEffect, useState } from 'react';
+import { Suspense } from 'react';
+import { useGetSettlemented } from 'src/hooks/queries/useGetSettlemented';
 
 import headerAccommodationState from '@recoil/atoms/headerAccommodationState';
 import SyncIcon from '@assets/icons/sync-outline.svg';
 import receiptIcon from '@assets/icons/receipt-sharp.svg';
 import theme from '@styles/theme'; 
-import getSettlemented from 'src/api/lib/getSettlemented';
 
 const SettlementsBefore = () => {
-
-  const [summary, setSummary] = useState<{ last_month_settlement_amount: number } | null>(null);
-
   const accommodation = useRecoilValue(headerAccommodationState);
 
   const currentDate = new Date();
@@ -28,15 +26,7 @@ const SettlementsBefore = () => {
 
   const isBeforeDueDate = currentDate.getDate() < 10;
 
-  const fetchSettlementSummary = async () => {
-    const summary = await getSettlemented(accommodation.id);
-    setSummary(summary);
-    console.log('Settlement summary:', summary);
-  };
-
-  useEffect(() => {
-    fetchSettlementSummary(); 
-  }, [accommodation.id]);  
+  const { data: summary } = useGetSettlemented(accommodation.id);
 
   return (
     <Container>
