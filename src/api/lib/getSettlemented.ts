@@ -5,9 +5,6 @@ const getSettlemented = async (accommodation_id: number): Promise<SettlementedBe
   try {
     const response = await instance.get(`/v1/settlements/${accommodation_id}/summary`);
 
-    console.log(response);
-    console.log(response.data);
-
     return response.data;
   } catch (error) {
     console.error('Error fetching settlementedBefore:');
