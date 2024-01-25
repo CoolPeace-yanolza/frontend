@@ -56,7 +56,7 @@ const LoginForm = ({ handleModalOpen }: LoginFormProps) => {
       );
 
       if (state) {
-        navigate(state);
+        navigate(state.from);
       } else {
         navigate('/');
       }

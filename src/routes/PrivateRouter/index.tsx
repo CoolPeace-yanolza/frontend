@@ -1,12 +1,10 @@
-import { useEffect } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { Navigate, useLocation } from 'react-router-dom';
 
 import { Layout } from '@components/common';
 import { getCookies } from '@utils/lib/cookies';
 
 const PrivateRouter = () => {
-  const navigate = useNavigate();
-  const pathname = useLocation();
+  const location = useLocation();
 
   const accessToken = getCookies('accessToken');
   const refreshToken = getCookies('refreshToken');
@@ -16,13 +14,16 @@ const PrivateRouter = () => {
   const isLoggedIn =
     !!accessToken && !!refreshToken && !!userName && !!userEmail;
 
-  useEffect(() => {
-    if (!isLoggedIn) {
-      // HACK : alert창은 추후 변경 예정입니다.
-      alert('로그인이 필요한 기능입니다.');
-      navigate('/login', { state: pathname });
-    }
-  }, []);
+  if (!isLoggedIn) {
+    // HACK: #64 PR 머지된 후에 모달로 수정 예정 (portal 사용)
+    alert('로그인이 필요한 기능입니다.');
+    return (
+      <Navigate
+        to="/login"
+        state={{ from: location.pathname }}
+      />
+    );
+  }
 
   return <Layout />;
 };
