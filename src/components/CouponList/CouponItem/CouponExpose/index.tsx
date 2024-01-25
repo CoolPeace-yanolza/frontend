@@ -98,7 +98,10 @@ const CouponExpose = ({ couponInfo }: CouponListProps) => {
               <ContentValue>전체</ContentValue>
             ) : (
               <>
-                <ContentRoom onClick={handleRoomList}>
+                <ContentRoom
+                  ref={roomListRef}
+                  onClick={handleRoomList}
+                >
                   <div>일부 객실</div>
                   <img
                     src={rightIcon}
@@ -106,7 +109,7 @@ const CouponExpose = ({ couponInfo }: CouponListProps) => {
                   />
                 </ContentRoom>
                 {isShowRoomList && (
-                  <RoomList ref={roomListRef}>
+                  <RoomList>
                     <RoomListTitleWrap>
                       <RoomListTitle>쿠폰 적용 객실</RoomListTitle>
                       <img
