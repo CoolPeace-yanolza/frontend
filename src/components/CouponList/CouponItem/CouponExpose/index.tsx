@@ -30,6 +30,11 @@ const CouponExpose = ({ couponInfo }: CouponListProps) => {
     toggleUpdate();
   };
 
+  const filterTitle =
+    couponInfo.title.length > 10
+      ? `${couponInfo.title.substring(0, 10)}...`
+      : couponInfo.title;
+
   const toggleUpdate = async () => {
     try {
       await mutateAsync({
@@ -40,7 +45,7 @@ const CouponExpose = ({ couponInfo }: CouponListProps) => {
 
       showToast(
         <div>
-          {couponInfo.title} 쿠폰의 노출이 중단되었습니다.
+          {filterTitle} 쿠폰의 노출이 중단되었습니다.
           <span onClick={retryToggleUpdate}>실행 취소</span>
         </div>,
         2000

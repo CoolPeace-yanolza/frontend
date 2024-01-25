@@ -125,7 +125,7 @@ const SecondTabName = styled.div`
 `;
 
 const SecondTabCount = styled.div`
-  margin-right: 19px;
+  margin-right: 10px;
 
   color: #1a2849;
   font-size: 14px;
