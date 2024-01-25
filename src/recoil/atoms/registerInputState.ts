@@ -20,7 +20,7 @@ const registerInputState = atom<registerInputAtom>({
     maximumDiscount: '',
     roomType: [],
     severalNights: false,
-    isAllRoom: '',
+    toAllRooms: '',
     rooms: [],
     minimumPrice: '',
     whenToUse: '',

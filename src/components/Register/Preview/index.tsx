@@ -38,12 +38,12 @@ const Preview = () => {
             <span> / </span>
             <span>
               {(() => {
-                if (preview.toAllRoom === 'true') {
+                if (preview.toAllRooms === 'true') {
                   return '모든 객실';
-                } else if (preview.toAllRoom === 'false') {
+                } else if (preview.toAllRooms === 'false') {
                   return '선택 객실';
                 } else {
-                  return preview.toAllRoom;
+                  return preview.toAllRooms;
                 }
               })()}
             </span>

@@ -12,7 +12,7 @@ const registerValidState = atom<registerValidAtom>({
     isDiscountFlatRateValid: true,
     isThousands: true,
     isRoomTypeValid: true,
-    isAllRoomValid: true,
+    isToAllRoomsValid: true,
     isMinimumPriceValid: true,
     isDateValid: true,
     endDateAfterStartDate: true

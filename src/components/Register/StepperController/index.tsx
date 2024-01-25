@@ -51,8 +51,8 @@ const StepperController = ({
     if (currentStep === 1) {
       !input.roomType.length &&
         setIsValid(prev => ({ ...prev, isRoomTypeValid: false }));
-      !input.isAllRoom &&
-        setIsValid(prev => ({ ...prev, isAllRoomValid: false }));
+      !input.toAllRooms &&
+        setIsValid(prev => ({ ...prev, isToAllRoomsValid: false }));
     }
 
     if (currentStep === 3) {

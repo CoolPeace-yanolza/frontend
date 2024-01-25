@@ -116,12 +116,12 @@ const SecondStep = () => {
     }
   };
 
-  const handleIsAllRoomChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setInput({ ...input, isAllRoom: e.target.value });
-    setPreview({ ...preview, toAllRoom: e.target.value });
+  const handleToAllRoomsChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setInput({ ...input, toAllRooms: e.target.value });
+    setPreview({ ...preview, toAllRooms: e.target.value });
     setIsValid(prev => ({
       ...prev,
-      isAllRoomValid: true
+      isToAllRoomsValid: true
     }));
   };
 
@@ -172,32 +172,32 @@ const SecondStep = () => {
           <InputButton
             type="radio"
             id="true"
-            name="toAllRoom"
+            name="toAllRooms"
             value="true"
-            isChecked={input.isAllRoom === 'true'}
+            isChecked={input.toAllRooms === 'true'}
             buttonName="모든 객실"
-            onButtonChange={handleIsAllRoomChange}
+            onButtonChange={handleToAllRoomsChange}
           />
           <RoomSelectButton
             type="radio"
             id="false"
-            name="toAllRoom"
+            name="toAllRooms"
             value="false"
-            isChecked={input.isAllRoom === 'false'}
+            isChecked={input.toAllRooms === 'false'}
             buttonName="선택 객실"
             setIsOpen={setIsOpen}
-            onButtonChange={handleIsAllRoomChange}
+            onButtonChange={handleToAllRoomsChange}
           />
         </ButtonWrapper>
         <InputWrapper
           state="false"
-          currentState={input.isAllRoom}
+          currentState={input.toAllRooms}
         >
           <ContentWrapper>
             <RoomList rooms={input.rooms} />
           </ContentWrapper>
         </InputWrapper>
-        {!isValid.isAllRoomValid && (
+        {!isValid.isToAllRoomsValid && (
           <ErrorMessage>쿠폰 적용 객실 선택은 필수입니다.</ErrorMessage>
         )}
       </InputContainer>

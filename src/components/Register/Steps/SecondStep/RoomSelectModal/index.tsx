@@ -66,8 +66,8 @@ const RoomSelectModal = ({ setIsOpen }: RoomSelectModalProps) => {
         document.querySelector<HTMLInputElement>('#false')!;
       falseRadioButton.checked = false;
 
-      setInput({ ...input, isAllRoom: '' });
-      setPreview({ ...preview, toAllRoom: '적용 객실' });
+      setInput({ ...input, toAllRooms: '' });
+      setPreview({ ...preview, toAllRooms: '적용 객실' });
     }
     setIsOpen(false);
   };

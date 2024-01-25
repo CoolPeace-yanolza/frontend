@@ -15,7 +15,7 @@ const previewState = atom<previewAtom>({
     discount: '할인 내용',
     minimumPrice: '최소 예약 금액',
     roomType: [],
-    toAllRoom: '적용 객실',
+    toAllRooms: '적용 객실',
     day: '할인 적용 요일',
     startDate: '노출 기간',
     endDate: ''
