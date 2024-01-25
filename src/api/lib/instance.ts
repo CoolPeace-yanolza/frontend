@@ -60,9 +60,11 @@ const onErrorResponse = async (error: AxiosResponseError<string>) => {
         originalRequest.headers['Authorization'] = `Bearer ${newAccessToken}`;
         return instance(originalRequest);
 
-        // 리프레시 토큰도 만료되었을 때 = 재로그인 안내
+        // 리프레시 토큰도 만료되었을 때 (재로그인 안내)
       } else if (tokenResponse.status === 404) {
-        console.log(tokenResponse.data.message);
+        alert(
+          '안전한 서비스 이용을 위해 자동 로그아웃되었습니다.\n다시 로그인해주세요.'
+        );
         await postLogout();
         deleteAllCookies();
         window.location.replace('/login');
