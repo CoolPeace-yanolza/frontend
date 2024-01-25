@@ -8,6 +8,7 @@ import Report from '@pages/Report';
 import CouponList from '@pages/CouponList';
 import Register from '@pages/Register';
 import Settlements from '@pages/Settlements';
+import SignUpComplete from '@pages/SignUpComplete';
 
 const MainRouter = () => {
   return (
@@ -20,6 +21,10 @@ const MainRouter = () => {
         <Route
           path="/signup"
           element={<SignUp />}
+        />
+        <Route
+          path="/signup/complete"
+          element={<SignUpComplete />}
         />
       </Route>
       <Route element={<PrivateRouter />}>
