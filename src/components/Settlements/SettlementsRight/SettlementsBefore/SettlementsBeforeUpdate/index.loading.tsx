@@ -1,7 +1,8 @@
 import styled from '@emotion/styled';
-import theme from '@styles/theme';
 import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
+
+import theme from '@styles/theme';
 
 const Loading = () => {
   return (

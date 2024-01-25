@@ -1,8 +1,8 @@
 import styled from '@emotion/styled';
+import { useRecoilValue } from 'recoil';
 
 import { useGetSettlemented } from 'src/hooks/queries/useGetSettlemented';
 import headerAccommodationState from '@recoil/atoms/headerAccommodationState';
-import { useRecoilValue } from 'recoil';
 
 const SettlementsBeforeUpdate = () => {
 

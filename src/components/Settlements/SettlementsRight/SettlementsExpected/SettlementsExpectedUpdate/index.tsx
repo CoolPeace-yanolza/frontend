@@ -1,9 +1,10 @@
 import styled from '@emotion/styled';
-import SyncIcon from '@assets/icons/sync-outline.svg';
+import { useRecoilValue } from 'recoil';
 
+import SyncIcon from '@assets/icons/sync-outline.svg';
 import { useGetSettlemented } from 'src/hooks/queries/useGetSettlemented';
 import headerAccommodationState from '@recoil/atoms/headerAccommodationState';
-import { useRecoilValue } from 'recoil';
+
 
 const SettlementsExpectedUpdate = () => {
     const accommodation = useRecoilValue(headerAccommodationState);
