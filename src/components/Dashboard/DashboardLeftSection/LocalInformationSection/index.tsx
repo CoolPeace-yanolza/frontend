@@ -9,6 +9,7 @@ import Top3CouponRankingLoading from './Top3Coupons/index.loading';
 const LocalCouponUsage = React.lazy(() => import('./LocalCouponUsage'));
 import LocalUsageErrorFallback from './LocalCouponUsage/index.error';
 import LocalUsageLoading from './LocalCouponUsage/index.loading';
+import theme from '@styles/theme';
 
 const LocalInformationSection = () => {
   const { reset } = useQueryErrorResetBoundary();
@@ -55,15 +56,31 @@ const Container = styled.div`
   gap: 12px;
 
   background-color: white;
+
+  ${theme.response.tablet} {
+    margin-top: 0;
+    padding: 10px;
+
+    flex-direction: column;
+    gap: 20px;
+  }
 `;
 
 const LeftSection = styled.div`
   height: 100%;
 
   flex: 1;
+
+  ${theme.response.tablet} {
+    width: 100%;
+  }
 `;
 
 const RightSection = styled.div`
   width: 410px;
   height: 100%;
+
+  ${theme.response.tablet} {
+    width: 100%;
+  }
 `;

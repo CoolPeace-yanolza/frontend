@@ -1,5 +1,6 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import styled from '@emotion/styled';
+import { useLocation } from 'react-router-dom';
 
 import Header from './Header';
 import Navigation from './Navigation';
@@ -8,6 +9,18 @@ import theme from '@styles/theme';
 
 const Sidebar = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const location = useLocation();
+  const locationPathname = location.pathname;
+  const [prevLocation, setPrevLocation] = useState('');
+
+  // 링크 이동 시 사이드바 닫힘
+  useEffect(() => {
+    if (prevLocation !== locationPathname) setIsSidebarOpen(false);
+  }, [prevLocation, locationPathname]);
+
+  useEffect(() => {
+    setPrevLocation(locationPathname);
+  }, [locationPathname]);
 
   return (
     <>
@@ -39,14 +52,13 @@ const Container = styled.div<SidebarOpen>`
 
   background-color: ${theme.colors.white};
   overflow: hidden;
-  // HACK: z-index 상수화 (const enum, as const 학습 후 적용)
-  z-index: 100;
+  z-index: ${props => (props.$isSidebarOpen ? 100 : 90)};
   transition: all 0.3s;
 
   ${theme.response.tablet} {
     width: ${props => (props.$isSidebarOpen ? '100%' : 'auto')};
-    height: ${props => (props.$isSidebarOpen ? 'fit-content' : '93px')};
-    min-height: ${props => (props.$isSidebarOpen ? 'fit-content' : '93px')};
+    height: ${props => (props.$isSidebarOpen ? 'fit-content' : '60px')};
+    min-height: ${props => (props.$isSidebarOpen ? 'fit-content' : '60px')};
 
     padding: 0;
 

@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
 
 import { RankingBoxProps, RankingBoxStyleProps } from '@/types/dashboard';
+import theme from '@styles/theme';
 
 const RankingBox = ({ children, rank }: RankingBoxProps) => {
   return (
@@ -34,6 +35,10 @@ const Container = styled.div`
   font-weight: 700;
 
   background-color: #fff;
+
+  ${theme.response.tablet} {
+    font-size: 11px;
+  }
 `;
 
 const RankingBadge = styled.div<RankingBoxStyleProps>`
@@ -56,6 +61,10 @@ const RankingBadge = styled.div<RankingBoxStyleProps>`
       return '#00D39B';
     }
   }};
+
+  ${theme.response.tablet} {
+    font-size: 10px;
+  }
 `;
 
 const RankingContent = styled.div`
