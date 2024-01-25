@@ -52,12 +52,6 @@ const WhiteBackground = styled.div`
   justify-content: flex-start;
 
   background-color: #fff;
-
-  /* gap: 180px; */
-
-  @media screen and (max-width: 649px) {
-    /* gap: 85px; */
-  }
 `;
 
 const Logo = styled.div`
