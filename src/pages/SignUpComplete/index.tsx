@@ -1,9 +1,9 @@
+import { useNavigate } from 'react-router-dom';
 import styled from '@emotion/styled';
 
 import logo from '@assets/icons/ic-logo.svg';
 import firecracker from '@assets/icons/ic-signup-firecracker.svg';
 import { AuthButton } from '@components/Auth';
-import { useNavigate } from 'react-router-dom';
 
 const SignUpComplete = () => {
   const navigate = useNavigate();
