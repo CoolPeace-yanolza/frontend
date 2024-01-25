@@ -65,10 +65,17 @@ const Settlemented = () => {
       return today.toISOString().split('T')[0];
     }
   };
+  
+  let adjustedStartDate: string | null = null;
+  if (startDate !== null) {
+    const startDateObj = new Date(startDate);
+    startDateObj.setDate(startDateObj.getDate() + 1);
+    adjustedStartDate = startDateObj.toISOString().split('T')[0];
+  }
 
   const { data: settlements } = useGetSettlements(
     accommodation.id,
-    startDate ? startDate.toISOString().split('T')[0] : '2000-01-01',
+    adjustedStartDate ? adjustedStartDate : '2000-01-01',
     endDate ? endDate.toISOString().split('T')[0] : getCurrentEndDate(),
     orderBy,
     currentPage - 1,
@@ -81,7 +88,7 @@ const Settlemented = () => {
         ...data,
         NO: (currentPage - 1) * itemsPerPage + index + 1,
       }));
-
+      console.log(startDate);
       setCurrentData(newSettlementData);
       setTotalItems(settlements.total_settlement_count);
       setTotalPages(settlements.total_page_count);
@@ -109,7 +116,7 @@ const Settlemented = () => {
         0,
         totalItems
       );
-  
+
       const allData = response.settlement_responses.map((data: SettlementedItem, index: number) => ({
         ...data,
         NO: index + 1,
@@ -119,13 +126,13 @@ const Settlemented = () => {
       const workSheet = XLSX.utils.json_to_sheet(allData);
   
       XLSX.utils.book_append_sheet(workBook, workSheet, "Sheet1");
-  
       XLSX.writeFile(workBook, "SettlementedDownload.xlsx");
     } catch (error) {
       console.error('Error fetching all settlements data for download:', error);
     }
   };
-
+  
+  
   useEffect(() => {
     setCurrentPage(1);
   }, [accommodation]);
