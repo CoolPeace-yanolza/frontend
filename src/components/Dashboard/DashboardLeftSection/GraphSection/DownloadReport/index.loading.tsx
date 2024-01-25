@@ -2,6 +2,8 @@ import styled from '@emotion/styled';
 import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
 
+import theme from '@styles/theme';
+
 const Loading = () => {
   return (
     <Container>
@@ -28,6 +30,15 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   gap: 20px;
+
+  ${theme.response.tablet} {
+    padding: 10px;
+    border-radius: 10px;
+
+    gap: 10px;
+
+    background-color: #fafafb;
+  }
 `;
 
 const BaseSkeleton = styled(Skeleton)`
@@ -54,6 +65,10 @@ const InnerContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 15px;
+
+  ${theme.response.tablet} {
+    height: auto;
+  }
 `;
 
 const StatusLoadingWrapper = styled.div`
@@ -63,6 +78,10 @@ const StatusLoadingWrapper = styled.div`
   display: flex;
   justify-content: center;
   gap: 15px;
+
+  ${theme.response.tablet} {
+    display: none;
+  }
 `;
 
 const StatusItemLoading = styled(BaseSkeleton)`

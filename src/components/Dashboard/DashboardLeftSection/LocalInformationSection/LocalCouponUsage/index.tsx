@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
 import { useRecoilValue } from 'recoil';
 
+import theme from '@styles/theme';
 import { useGetLocalCouponUsage } from '@hooks/index';
 import { headerAccommodationState } from '@recoil/index';
 import reloadIcon from '@assets/icons/ic-dashboard-reload.svg';
@@ -33,6 +34,24 @@ const LocalCouponUsage = () => {
         매월 1일 00시 00분에 업데이트
       </UpdateAlarm>
       <InnerContainer>
+        <MobileHeader>
+          <MobileTitle>우리 지역 숙소의 쿠폰 현황</MobileTitle>
+          <MobileLocation>
+            ｜
+            <LocationIcon
+              src={locationIcon}
+              alt="장소"
+            />
+            {data.address} 기준
+          </MobileLocation>
+        </MobileHeader>
+        <MobileUpdateAlarm>
+          <ReloadIcon
+            src={reloadIcon}
+            alt="새로고침"
+          />
+          매월 1일 00시 00분에 업데이트
+        </MobileUpdateAlarm>
         <InnerContainerHeader>
           <GpsIcon
             src={gpsIcon}
@@ -63,13 +82,15 @@ const Container = styled.div`
 
   display: flex;
   flex-direction: column;
-
-  color: #404446;
 `;
 
 const Header = styled.div`
   display: flex;
   align-items: center;
+
+  ${theme.response.tablet} {
+    display: none;
+  }
 `;
 
 const Title = styled.div`
@@ -94,6 +115,10 @@ const UpdateAlarm = styled.span`
   color: #6c7072;
   font-size: 11px;
   font-weight: 400;
+
+  ${theme.response.tablet} {
+    display: none;
+  }
 `;
 
 const InnerContainer = styled.div`
@@ -108,6 +133,11 @@ const InnerContainer = styled.div`
   gap: 2px;
 
   background-color: #fafafb;
+
+  ${theme.response.tablet} {
+    margin: 0px;
+    border-radius: 10px;
+  }
 `;
 
 const InnerContainerHeader = styled.div`
@@ -126,6 +156,10 @@ const InnerContainerHeader = styled.div`
   font-weight: 700;
 
   box-shadow: 2px 2px 3px 0px rgba(0, 0, 0, 0.25);
+
+  ${theme.response.tablet} {
+    font-size: 11px;
+  }
 `;
 
 const CouponUsage = styled.div`
@@ -158,6 +192,14 @@ const CouponUsage = styled.div`
     font-size: 18px;
     font-weight: 700;
   }
+
+  ${theme.response.tablet} {
+    font-size: 11px;
+
+    & > span {
+      font-size: 11px;
+    }
+  }
 `;
 
 const MainInformation = styled.div`
@@ -168,6 +210,10 @@ const MainInformation = styled.div`
   font-weight: 700;
 
   animation: fadeUp 0.5s;
+
+  ${theme.response.tablet} {
+    font-size: 11px;
+  }
 `;
 
 const LocationIcon = styled.img`
@@ -175,7 +221,7 @@ const LocationIcon = styled.img`
 `;
 
 const ReloadIcon = styled.img`
-  padding: 0px 3px 2px 0px;
+  padding-right: 3px;
 `;
 
 const BigLocationIcon = styled.img`
@@ -187,8 +233,66 @@ const BigLocationIcon = styled.img`
   height: 130px;
 
   z-index: 10;
+
+  ${theme.response.tablet} {
+    right: 10px;
+    bottom: 0;
+
+    width: 65px;
+  }
 `;
 
 const GpsIcon = styled.img`
   padding: 1px 1px 1px 3px;
+`;
+
+const MobileHeader = styled.div`
+  align-self: flex-start;
+  display: none;
+  align-items: center;
+
+  ${theme.response.tablet} {
+    display: flex;
+  }
+`;
+
+const MobileTitle = styled.div`
+  font-size: 15px;
+  font-weight: 700;
+`;
+
+const MobileLocation = styled.div`
+  display: flex;
+  align-items: center;
+
+  font-size: 10px;
+  font-weight: 700;
+
+  & > img {
+    width: 15px;
+
+    padding: 0px;
+  }
+`;
+
+const MobileUpdateAlarm = styled.span`
+  padding: 5px 0px;
+
+  align-self: flex-start;
+  display: none;
+  align-items: center;
+
+  color: #6c7072;
+  font-size: 8px;
+  font-weight: 400;
+
+  & > img {
+    width: 14px;
+
+    padding-bottom: 0px;
+  }
+
+  ${theme.response.tablet} {
+    display: flex;
+  }
 `;

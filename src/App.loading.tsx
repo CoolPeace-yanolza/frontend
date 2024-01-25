@@ -82,6 +82,7 @@ const Header = styled(BaseSkeleton)`
   width: 100%;
   height: 85px;
 
+  margin-top: 25px;
   border-radius: 20px;
 
   display: flex;
@@ -91,14 +92,15 @@ const Header = styled(BaseSkeleton)`
   ${theme.response.tablet} {
     height: 65px;
 
+    margin-top: 15px;
     border-radius: 10px;
   }
 `;
 
 const OutletLayout = styled(BaseSkeleton)`
   width: 100%;
-  height: 85vh;
-  max-height: 85vh;
+  height: 83vh;
+  max-height: 83vh;
 
   margin-top: 16px;
   border-radius: 20px;
