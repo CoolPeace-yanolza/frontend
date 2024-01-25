@@ -53,7 +53,11 @@ const WhiteBackground = styled.div`
 
   background-color: #fff;
 
-  gap: 180px;
+  /* gap: 180px; */
+
+  @media screen and (max-width: 649px) {
+    /* gap: 85px; */
+  }
 `;
 
 const Logo = styled.div`
@@ -61,17 +65,35 @@ const Logo = styled.div`
 
   margin-top: 48px;
   margin-left: 57px;
+
+  @media screen and (max-width: 649px) {
+    height: 30px;
+
+    margin-top: 26px;
+    margin-left: 26px;
+  }
 `;
 
 const LogoIcon = styled.img`
   width: 172.8px;
   height: 100%;
+
+  @media screen and (max-width: 649px) {
+    width: 142px;
+  }
 `;
 
 const Content = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  margin: auto;
+
+  @media screen and (max-width: 649px) {
+    max-width: 295px;
+    width: 100%;
+  }
 `;
 
 const Image = styled.img`
@@ -79,6 +101,11 @@ const Image = styled.img`
   height: 151px;
 
   margin-bottom: 33px;
+
+  @media screen and (max-width: 649px) {
+    width: 130px;
+    height: 130px;
+  }
 `;
 
 const Title = styled.h1`
@@ -99,6 +126,12 @@ const Title = styled.h1`
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+
+  @media screen and (max-width: 649px) {
+    margin-bottom: 20px;
+
+    font-size: 24px;
+  }
 `;
 
 const Description = styled.p`
@@ -110,4 +143,11 @@ const Description = styled.p`
   font-size: 20px;
   font-weight: 500;
   line-height: 32px;
+
+  @media screen and (max-width: 649px) {
+    margin-bottom: 40px;
+
+    font-size: 15px;
+    line-height: 25px;
+  }
 `;
