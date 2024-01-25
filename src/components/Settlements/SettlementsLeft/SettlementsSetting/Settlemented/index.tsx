@@ -88,7 +88,6 @@ const Settlemented = () => {
         ...data,
         NO: (currentPage - 1) * itemsPerPage + index + 1,
       }));
-      console.log(startDate);
       setCurrentData(newSettlementData);
       setTotalItems(settlements.total_settlement_count);
       setTotalPages(settlements.total_page_count);
