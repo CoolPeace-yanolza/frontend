@@ -114,7 +114,7 @@ const Title = styled.h1`
   }
 `;
 
-const Description = styled.p`
+const Description = styled.div`
   margin-bottom: 74px;
 
   color: #090a0a;
