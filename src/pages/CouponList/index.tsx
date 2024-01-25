@@ -31,6 +31,7 @@ const CouponList = () => {
     }, 500),
     []
   );
+
   const handleChangeSearch = (value: string) => {
     setSearch(value);
     debounceOnChange(value);

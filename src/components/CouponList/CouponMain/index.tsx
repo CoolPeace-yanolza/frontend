@@ -8,7 +8,6 @@ import {
   CouponStop,
   CouponWait
 } from '../CouponItem';
-import couponListState from '@recoil/atoms/couponListState';
 import theme from '@styles/theme';
 import mobileRegister from '@assets/icons/ic-couponlist-mobileregister.svg';
 import categoryTabState from '@recoil/atoms/categoryTabState';

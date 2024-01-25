@@ -1,16 +1,13 @@
 import styled from '@emotion/styled';
-import { useEffect, useRef, useState } from 'react';
-import { useRecoilValue, useSetRecoilState } from 'recoil';
+import { useSetRecoilState } from 'recoil';
 
 import theme from '@styles/theme';
 import searchIcon from '@assets/icons/ic-couponlist-search.svg';
 import centerIcon from '@assets/icons/ic-couponlist-period-center.svg';
-import { couponListState, headerAccommodationState } from '@recoil/index';
 import {
   CategoryTabStyleProps,
   ResisterDateStyleProps
 } from '@/types/couponList';
-import { useGetCouponList } from '@hooks/queries/useCouponList';
 import categoryTabState from '@recoil/atoms/categoryTabState';
 
 interface CouponNavProps {
