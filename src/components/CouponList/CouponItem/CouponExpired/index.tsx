@@ -7,8 +7,9 @@ import deleteIcon from '@assets/icons/ic-couponlist-delete.svg';
 import { useCouponDelete, useOutsideClick } from '@hooks/index';
 import { CouponListProps } from '@/types/couponList';
 import Modal from '@components/modal';
-import CouponCondition from '@utils/lib/couponCondition';
+import CouponCondition, { couponCondition } from '@utils/lib/couponCondition';
 import { useToast } from '@components/common/ToastContext';
+import couponRoomType from '@utils/lib/couponRoomType';
 
 const CouponExpired = ({ couponInfo }: CouponListProps) => {
   const [isShowRoomList, setIsShowRoomList] = useState(false);
@@ -72,9 +73,9 @@ const CouponExpired = ({ couponInfo }: CouponListProps) => {
           <ContentWrap>
             <ContentTitle>일정</ContentTitle>
             <ContentValue>
-              {couponInfo.coupon_room_type},
+              {couponRoomType(couponInfo.coupon_room_types).join(', ')},
               <span>
-                {CouponCondition(couponInfo.coupon_use_condition_days)}
+                {couponCondition(couponInfo.coupon_use_condition_days)}
               </span>
             </ContentValue>
           </ContentWrap>

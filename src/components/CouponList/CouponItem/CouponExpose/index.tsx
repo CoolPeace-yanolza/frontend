@@ -8,8 +8,9 @@ import rightIcon from '@assets/icons/ic-couponlist-right.svg';
 import deleteIcon from '@assets/icons/ic-couponlist-delete.svg';
 import { CouponListProps, ToggleStyleProps } from '@/types/couponList';
 import { useOutsideClick, useToggleChange } from '@hooks/index';
-import { CouponCondition } from '@utils/lib/couponCondition';
+import couponCondition from '@utils/lib/couponCondition';
 import { useToast } from '@components/common/ToastContext';
+import couponRoomType from '@utils/lib/couponRoomType';
 
 const CouponExpose = ({ couponInfo }: CouponListProps) => {
   const [isToggle, setIsToggle] = useState(true);
@@ -120,9 +121,9 @@ const CouponExpose = ({ couponInfo }: CouponListProps) => {
           <ContentWrap>
             <ContentTitle>일정</ContentTitle>
             <ContentValue>
-              {couponInfo.coupon_room_type},
+              {couponRoomType(couponInfo.coupon_room_types).join(', ')},
               <span>
-                {CouponCondition(couponInfo.coupon_use_condition_days)}
+                {couponCondition(couponInfo.coupon_use_condition_days)}
               </span>
             </ContentValue>
           </ContentWrap>

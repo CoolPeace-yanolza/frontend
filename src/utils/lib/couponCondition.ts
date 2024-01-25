@@ -1,4 +1,4 @@
-export const CouponCondition = (conditionDays: string): string => {
+export const couponCondition = (conditionDays: string): string => {
   if (conditionDays.length === 1) {
     return `${conditionDays}요일`;
   } else if (conditionDays === '평일') {
@@ -9,4 +9,4 @@ export const CouponCondition = (conditionDays: string): string => {
   return conditionDays;
 };
 
-export default CouponCondition;
+export default couponCondition;
