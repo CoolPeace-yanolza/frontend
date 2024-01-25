@@ -1,4 +1,5 @@
 import { useSuspenseQuery } from '@tanstack/react-query';
+
 import { getSettlemented } from 'src/api';
 
 export const useGetSettlemented = (

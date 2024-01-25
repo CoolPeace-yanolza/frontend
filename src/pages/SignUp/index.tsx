@@ -1,10 +1,16 @@
+import { useState } from 'react';
 import styled from '@emotion/styled';
 
 import logo from '@assets/icons/ic-logo.svg';
-import { Footer } from '@components/common';
+import { ErrorModal, Footer } from '@components/common';
 import { SignUpForm, SignUpTitle } from '@components/SignUp';
+import { ERROR_MODAL_MESSAGE } from 'src/constants';
 
 const SignUp = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const handleModalClose = () => setIsModalOpen(false);
+  const handleModalOpen = () => setIsModalOpen(true);
+
   return (
     <WhiteBackground>
       <WithoutFooterSection>
@@ -17,11 +23,17 @@ const SignUp = () => {
         <Container>
           <Content>
             <SignUpTitle />
-            <SignUpForm />
+            <SignUpForm handleModalOpen={handleModalOpen} />
           </Content>
         </Container>
       </WithoutFooterSection>
       <Footer />
+      {isModalOpen && (
+        <ErrorModal
+          modalContent={ERROR_MODAL_MESSAGE.SIGNUP}
+          ButtonFunc={handleModalClose}
+        />
+      )}
     </WhiteBackground>
   );
 };

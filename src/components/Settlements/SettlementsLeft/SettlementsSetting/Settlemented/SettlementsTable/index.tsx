@@ -3,20 +3,9 @@ import styled from '@emotion/styled';
 import { SettlementedItem, SettlementsTableProps } from '@/types/settlements';
 import settlementsFrame from '@assets/icons/settlements-data-frame.svg'; 
 import theme from '@styles/theme';
+import keyToLabelMap from 'src/constants/lib/SETTLEMENTS_TABLE_KEY';
 
 const SettlementsTable = ({ data, pageStartNumber }: SettlementsTableProps) => {
-  
-  const keyToLabelMap = {
-    'NO': 'NO',
-    'coupon_number': '쿠폰번호',
-    'coupon_name': '관리 쿠폰명',
-    'coupon_count': '사용 건수',
-    'discount_price': '쿠폰 할인 금액',
-    'cancel_price': '쿠폰 취소 금액',
-    'sum_price': '정산 금액',
-    'coupon_use_date': '쿠폰 적용일',
-    'complete_at': '정산 완료일'
-  };
   
   const keys: (keyof SettlementedItem)[] = [
     'NO',
@@ -62,22 +51,16 @@ const SettlementsTable = ({ data, pageStartNumber }: SettlementsTableProps) => {
                  <DataElement key={key}>
                   <MobileDataElement>{key}</MobileDataElement>
                   <MobileData>
-                  {key === 'NO' 
-                  ? pageStartNumber - index 
-                  : (key === 'coupon_count') 
-                    ? `${row[key].toLocaleString()}건` 
-                    : (key === 'discount_price' || key === 'cancel_price' || key === 'sum_price') 
-                      ? `${row[key].toLocaleString()}원` 
-                      : row[key]}
+                    {key === 'NO' ? pageStartNumber - index : null}
+                    {key === 'coupon_count' ? `${row[key].toLocaleString()}건` : null}
+                    {(key === 'discount_price' || key === 'cancel_price' || key === 'sum_price') ? `${row[key].toLocaleString()}원` : null}
+                    {(key !== 'NO' && key !== 'coupon_count' && key !== 'discount_price' && key !== 'cancel_price' && key !== 'sum_price') ? row[key] : null}
                   </MobileData>
                   <WebData>
-                  {key === 'NO' 
-                  ? pageStartNumber - index 
-                  : (key === 'coupon_count') 
-                    ? `${row[key].toLocaleString()}건` 
-                    : (key === 'discount_price' || key === 'cancel_price' || key === 'sum_price') 
-                      ? `${row[key].toLocaleString()}원` 
-                      : row[key]}
+                    {key === 'NO' && pageStartNumber - index}
+                    {key === 'coupon_count' && `${row[key].toLocaleString()}건`}
+                    {(key === 'discount_price' || key === 'cancel_price' || key === 'sum_price') && `${row[key].toLocaleString()}원`}
+                    {(key !== 'NO' && key !== 'coupon_count' && key !== 'discount_price' && key !== 'cancel_price' && key !== 'sum_price') && row[key]}
                   </WebData>
                </DataElement>
               ))}
