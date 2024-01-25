@@ -55,6 +55,10 @@ const CouponStop = ({ couponInfo }: CouponListProps) => {
       coupon_number: couponInfo.coupon_number,
       coupon_status: '노출 OFF'
     });
+    showToast(
+      <div>{couponInfo.title} 쿠폰의 노출이 중단되었습니다.</div>,
+      5000
+    );
   };
 
   return (
