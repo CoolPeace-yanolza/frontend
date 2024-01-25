@@ -1,10 +1,19 @@
 import styled from '@emotion/styled';
+import { ErrorBoundary } from 'react-error-boundary';
+import { useQueryErrorResetBoundary } from '@tanstack/react-query';
 
 import SettlementsBefore from "./SettlementsBefore"
 import SettlementsExpected from "./SettlementsExpected"
 import settlementsLogo from '@assets/icons/settlements-logo.svg'; 
+import theme from '@styles/theme';
+import Loading from './SettlementsBefore/index.loading'
+import ErrorFallback from './SettlementsBefore/index.error';
+import { Suspense } from 'react';
 
 const SettlementsRight = () => {
+
+  const { reset } = useQueryErrorResetBoundary();
+
   return (
     <Container>
       <InnerContainer>
@@ -13,7 +22,14 @@ const SettlementsRight = () => {
         </StyledSettlementsExpected>
         <hr />
         <StyledSettlementsBefore>
-          <SettlementsBefore />
+          <ErrorBoundary
+            onReset={reset}
+            fallbackRender={ErrorFallback}
+          >
+            <Suspense fallback={<Loading />}>
+              <SettlementsBefore />
+            </Suspense>
+          </ErrorBoundary>
         </StyledSettlementsBefore>
       </InnerContainer>
       <Logo />
@@ -33,7 +49,7 @@ const Container = styled.div`
   border-top-right-radius: 1.25rem;
   border-bottom-right-radius: 1.25rem;
 
-  @media (max-width: 900px) {
+  ${theme.response.tablet} {
     width: 100%;
     min-width: 0;
     border-radius: 0;
@@ -41,55 +57,60 @@ const Container = styled.div`
 `;
 
 const InnerContainer = styled.div`
+  position: relative;
+
   height: 100%;
+
+  border: 1px solid rgba(255, 255, 255, 0.1); 
 
   flex-direction: column; 
   align-items: center; 
   justify-content: center;
 
-  position: relative;
   z-index: 10;
 
   background-color: rgba(255, 255, 255, 0.1); 
-  border: 1px solid rgba(255, 255, 255, 0.1); 
+
   backdrop-filter: blur(20px);
   box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.2);
 
   hr {
     margin: 0px 15px;
-
     border: 1px solid rgba(217, 217, 217, 0.2); 
 
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 
-    @media (max-width: 900px) {
+    ${theme.response.tablet} {
       display: none;
     }
   }
 
-  @media (max-width: 900px) {
+  ${theme.response.tablet} {
     margin: 20px;
+    border: none;
+
     display: flex;
     flex-direction: row;
     align-items: center;
+
     background-color: transparent;
-    border: none;
     backdrop-filter: none;
     box-shadow: none;
   }
 `;
 
 const StyledSettlementsExpected = styled.div`
-  @media (max-width: 900px) {
+  ${theme.response.tablet} {
     width: 50%;
     height: 300px;
   }
 `;
 const StyledSettlementsBefore = styled.div`
   position: relative;
-  z-index: 1;
 
-  @media (max-width: 900px) {
+  z-index: 10;
+
+  ${theme.response.tablet} {
     width: 50%;
     height: 300px;
   }
@@ -106,11 +127,13 @@ const Logo = styled.div`
 
   background: url(${settlementsLogo});
 
-  @media (max-width: 900px) {
+  ${theme.response.tablet} {
     position: static;
+
     width: 100%;
     max-width: 165px;
     height: auto;
+    
     margin-top: 20px;
   }
 `;

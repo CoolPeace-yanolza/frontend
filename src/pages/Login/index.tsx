@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 
 import { ErrorModal, Footer } from '@components/common';
 import { LoginForm, LoginTitle } from '@components/Login';
-import ERROR_MODAL_MESSAGE from 'src/constants/lib/ERROR_MODAL_MESSAGE';
+import { ERROR_MODAL_MESSAGE } from 'src/constants';
 
 const Login = () => {
   const [modalContent, setModalContent] = useState(ERROR_MODAL_MESSAGE.LOGIN);

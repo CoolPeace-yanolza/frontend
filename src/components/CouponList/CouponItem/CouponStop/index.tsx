@@ -8,13 +8,17 @@ import rightIcon from '@assets/icons/ic-couponlist-right.svg';
 import deleteIcon from '@assets/icons/ic-couponlist-delete.svg';
 import { CouponListProps, ToggleStyleProps } from '@/types/couponList';
 import { useOutsideClick, useToggleChange } from '@hooks/index';
-import CouponCondition from '@utils/lib/couponCondition';
+import { couponCondition } from '@utils/lib/couponCondition';
+import { useToast } from '@components/common/ToastContext';
+import couponRoomType from '@utils/lib/couponRoomType';
 
 const CouponStop = ({ couponInfo }: CouponListProps) => {
   const [isToggle, setIsToggle] = useState(false);
   const [isShowRoomList, setIsShowRoomList] = useState(false);
   const roomListRef = useRef<HTMLDivElement>(null);
   const { mutateAsync } = useToggleChange();
+  const { showToast } = useToast();
+
   useOutsideClick(roomListRef, () => setIsShowRoomList(false));
 
   const handleRoomList = () => {
@@ -23,10 +27,39 @@ const CouponStop = ({ couponInfo }: CouponListProps) => {
 
   const handleToggle = () => {
     setIsToggle(!isToggle);
+    toggleUpdate();
+  };
+
+  const toggleUpdate = async () => {
+    try {
+      await mutateAsync({
+        coupon_number: couponInfo.coupon_number,
+        coupon_status: '노출 ON'
+      });
+      console.log(couponInfo.coupon_number);
+
+      showToast(
+        <div>
+          {couponInfo.title} 쿠폰이 노출되었습니다.
+          <span onClick={retryToggleUpdate}>실행 취소</span>
+        </div>,
+        2000
+      );
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const retryToggleUpdate = () => {
+    setIsToggle(!isToggle);
     mutateAsync({
       coupon_number: couponInfo.coupon_number,
-      coupon_status: '노출 ON'
+      coupon_status: '노출 OFF'
     });
+    showToast(
+      <div>{couponInfo.title} 쿠폰의 노출이 중단되었습니다.</div>,
+      2000
+    );
   };
 
   return (
@@ -81,9 +114,9 @@ const CouponStop = ({ couponInfo }: CouponListProps) => {
           <ContentWrap>
             <ContentTitle>일정</ContentTitle>
             <ContentValue>
-              {couponInfo.coupon_room_types[0]},
+              {couponRoomType(couponInfo.coupon_room_types).join(', ')},
               <span>
-                {CouponCondition(couponInfo.coupon_use_condition_days)}
+                {couponCondition(couponInfo.coupon_use_condition_days)}
               </span>
             </ContentValue>
           </ContentWrap>
@@ -116,7 +149,11 @@ const CouponStop = ({ couponInfo }: CouponListProps) => {
                     <RoomListItem>
                       <ul>
                         {couponInfo.register_room_numbers.map((room, index) => (
-                          <li key={index}>{room}</li>
+                          <li key={index}>
+                            {room.length > 10
+                              ? `${room.substring(0, 10)}...`
+                              : room}
+                          </li>
                         ))}
                       </ul>
                     </RoomListItem>
@@ -265,7 +302,7 @@ const CountNumber = styled.div`
 `;
 
 const ContentWrap = styled.div`
-  margin: 8px;
+  margin: 8px 4px;
 
   display: flex;
   align-items: center;

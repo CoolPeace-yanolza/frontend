@@ -6,7 +6,7 @@ import { ErrorModal } from '@components/common';
 import { postLogout } from 'src/api';
 import { getCookies, deleteAllCookies } from '@utils/lib/cookies';
 import { UserModal, UserModalStyleProps } from '@/types/layout';
-import ERROR_MODAL_MESSAGE from 'src/constants/lib/ERROR_MODAL_MESSAGE';
+import { ERROR_MODAL_MESSAGE } from 'src/constants';
 import theme from '@styles/theme';
 
 const UserModal = ({ isOpen }: UserModal) => {
@@ -21,7 +21,7 @@ const UserModal = ({ isOpen }: UserModal) => {
   const handleLogout = async () => {
     await postLogout();
     deleteAllCookies();
-    navigate('/login');
+    navigate('/login'), { replace: true };
     /* HACK: 로그아웃 에러 response 가 있을 경우 사용
 
       [ 대안 1 ]

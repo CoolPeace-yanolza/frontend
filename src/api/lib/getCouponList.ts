@@ -60,8 +60,6 @@ export const couponDeleteApi = async (
 
 export const couponToggleApi = async (credential: CouponToggleCredential) => {
   const couponNumber = credential.coupon_number;
-
-  // 요청 전 1초 대기
   await new Promise(resolve => setTimeout(resolve, 500));
   const response = await instance.put(
     `/v1/coupons/${couponNumber}/expose`,
