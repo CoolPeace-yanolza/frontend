@@ -4,10 +4,13 @@ import { Dropdown, DropdownProps } from 'semantic-ui-react';
 import { useState, useEffect } from 'react';
 import { useRecoilValue } from 'recoil';
 import * as XLSX from 'xlsx';
+import { ErrorBoundary } from 'react-error-boundary';
+import { Suspense } from 'react';
 
 import SettlementsTable from './SettlementsTable';
 import SettlementsPagination from './SettlementsPagination';
-import getSettlements from 'src/api/lib/getSettlements';
+import { getSettlements } from 'src/api';
+import { useGetSettlements } from 'src/hooks/queries/useGetSettlements';
 import { SettlementedItem } from '@/types/settlements';
 import { settlementsDateState } from '@recoil/atoms/settlemented';
 import headerAccommodationState from '@recoil/atoms/headerAccommodationState';
@@ -54,50 +57,72 @@ const Settlemented = () => {
     }
   };
 
-  const getSettlementData = async (page: number, pageSize: number) => {
-    const settlementParams = {
-      accommodationId: accommodation.id,
-      start: startDate ? startDate.toISOString().split('T')[0] : '2000-01-01',
-      end: endDate ? endDate.toISOString().split('T')[0] : new Date().toISOString().split('T')[0],
-      order: orderBy,
-      page: page - 1,
-      pageSize: pageSize,
-    };
-  
-    return await getSettlements(
-      settlementParams.accommodationId,
-      settlementParams.start,
-      settlementParams.end,
-      settlementParams.order,
-      settlementParams.page, 
-      settlementParams.pageSize
-    );
-  };
+  const { data: settlements } = useGetSettlements(
+    accommodation.id,
+    startDate ? startDate.toISOString().split('T')[0] : '2000-01-01',
+    endDate ? endDate.toISOString().split('T')[0] : new Date().toISOString().split('T')[0],
+    orderBy,
+    currentPage - 1,
+    itemsPerPage
+  );
 
-  const fetchSettlemented = async (page: number) => {
-    try {
-      const response = await getSettlementData(page, itemsPerPage);
-  
-      const newSettlementData = response.settlement_responses.map((data: SettlementedItem, index: number) => ({
+  useEffect(() => {
+    if (settlements) {
+      const newSettlementData = settlements.settlement_responses.map((data: SettlementedItem, index: number) => ({
         ...data,
-        NO: (page - 1) * itemsPerPage + index + 1,
+        NO: (currentPage - 1) * itemsPerPage + index + 1,
       }));
 
-      setCurrentData(newSettlementData); 
-      setTotalItems(response.total_settlement_count);
-      setTotalPages(response.total_page_count);
-    } catch (error) {
-      console.error('Error fetching settlements data:', error);
+      setCurrentData(newSettlementData);
+      setTotalItems(settlements.total_settlement_count);
+      setTotalPages(settlements.total_page_count);
     }
-  };
+  }, [settlements]);
+
+  // const getSettlementData = async (page: number, pageSize: number) => {
+  //   const settlementParams = {
+  //     accommodationId: accommodation.id,
+  //     start: startDate ? startDate.toISOString().split('T')[0] : '2000-01-01',
+  //     end: endDate ? endDate.toISOString().split('T')[0] : new Date().toISOString().split('T')[0],
+  //     order: orderBy,
+  //     page: page - 1,
+  //     pageSize: pageSize,
+  //   };
   
-  useEffect(() => {
-    fetchSettlemented(currentPage);
-  }, [accommodation.id, sortOrder, orderBy, currentPage, startDate, endDate]);
+  //   return await getSettlements(
+  //     settlementParams.accommodationId,
+  //     settlementParams.start,
+  //     settlementParams.end,
+  //     settlementParams.order,
+  //     settlementParams.page, 
+  //     settlementParams.pageSize
+  //   );
+  // };
+
+  // const fetchSettlemented = async (page: number) => {
+  //   try {
+  //     const response = await getSettlementData(page, itemsPerPage);
+  
+  //     const newSettlementData = response.settlement_responses.map((data: SettlementedItem, index: number) => ({
+  //       ...data,
+  //       NO: (page - 1) * itemsPerPage + index + 1,
+  //     }));
+
+  //     setCurrentData(newSettlementData); 
+  //     setTotalItems(response.total_settlement_count);
+  //     setTotalPages(response.total_page_count);
+  //   } catch (error) {
+  //     console.error('Error fetching settlements data:', error);
+  //   }
+  // };
+  
+  // useEffect(() => {
+  //   fetchSettlemented(currentPage);
+  // }, [accommodation.id, sortOrder, orderBy, currentPage, startDate, endDate]);
 
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
-    fetchSettlemented(page);
+    // fetchSettlemented(page);
   };
 
   const [totalItems, setTotalItems] = useState<number>(0);
@@ -109,8 +134,15 @@ const Settlemented = () => {
 
   const handleDownloadExcel = async () => {
     try {
-      const response = await getSettlementData(1, totalItems);
-    
+      const response = await getSettlements(
+        accommodation.id,
+        startDate ? startDate.toISOString().split('T')[0] : '2000-01-01',
+        endDate ? endDate.toISOString().split('T')[0] : new Date().toISOString().split('T')[0],
+        orderBy,
+        0,
+        totalItems
+      );
+  
       const allData = response.settlement_responses.map((data: SettlementedItem, index: number) => ({
         ...data,
         NO: index + 1,
@@ -120,45 +152,49 @@ const Settlemented = () => {
       const workSheet = XLSX.utils.json_to_sheet(allData);
   
       XLSX.utils.book_append_sheet(workBook, workSheet, "Sheet1");
-    
+  
       XLSX.writeFile(workBook, "SettlementedDownload.xlsx");
     } catch (error) {
       console.error('Error fetching all settlements data for download:', error);
     }
   };
-    
+  
   return (
     <Container>
+    <ErrorBoundary fallbackRender={()=> <div>오류가 발생했습니다.</div>}>
       <SettlementedHeader>
         <TotalData>
           전체 내역 {totalItems}개
         </TotalData>
         <OptionContainer>
-        <StyledDropdown
-          fluid
-          selection
-          defaultValue={defaultOption?.value}
-          options={sortOptions}
-          onChange={handleSortChange}
-        />
+          <StyledDropdown
+            fluid
+            selection
+            defaultValue={defaultOption?.value}
+            options={sortOptions}
+            onChange={handleSortChange}
+          />
           <ExcelDownload>
             <button onClick={handleDownloadExcel}>엑셀 다운로드</button>
           </ExcelDownload>
         </OptionContainer>
       </SettlementedHeader>
       <DataLow>
+        <Suspense fallback={<div>데이터 로딩 중...</div>}>
           <SettlementsTable
             data={currentData}
             pageStartNumber={calculatePageStartNumber(currentPage)}
           />
-          <SettlementsPagination
-            currentPage={currentPage}
-            totalPages={totalPages}
-            onPageChange={handlePageChange}
-            totalItems={totalItems}
-          />
+        </Suspense>
+        <SettlementsPagination
+          currentPage={currentPage}
+          totalPages={totalPages}
+          onPageChange={handlePageChange}
+          totalItems={totalItems}
+        />
       </DataLow>
-    </Container>
+    </ErrorBoundary>
+  </Container>
   );
 }
 

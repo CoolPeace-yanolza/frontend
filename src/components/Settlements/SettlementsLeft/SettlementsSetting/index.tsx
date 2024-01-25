@@ -1,18 +1,25 @@
 import styled from '@emotion/styled';
-import { useState } from 'react';
+import { Suspense, useState } from 'react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { ko } from 'date-fns/locale';
 import { useSetRecoilState } from 'recoil';
 import { createGlobalStyle } from 'styled-components';
+import { ErrorBoundary } from 'react-error-boundary';
 
 import CalendarIcon from '@assets/icons/calendar-number-outline.svg';
 import Settlemented from './Settlemented';
 import SettlementsHeader from './SettlementsHeader';
 import { settlementsDateState } from '@recoil/atoms/settlemented';
 import theme from '@styles/theme';
+import Loading from './Settlemented/index.loading';
+import ErrorFallback from './Settlemented/index.error';
+import { useQueryErrorResetBoundary } from '@tanstack/react-query';
 
 const SettlementsSetting = () => {
+
+  const { reset } = useQueryErrorResetBoundary();
+
   const [startDate, setStartDate] = useState<Date | null>(null);
   const [endDate, setEndDate] = useState<Date | null>(null);
 
@@ -121,7 +128,14 @@ const SettlementsSetting = () => {
     <BreakLine>
             <hr />
     </BreakLine>
-    <Settlemented />
+    <ErrorBoundary
+     onReset={reset}
+     fallbackRender={ErrorFallback}
+    >
+    <Suspense fallback={<Loading />}>
+      <Settlemented />
+    </Suspense>
+    </ErrorBoundary>
     </Container>
   )
 }
