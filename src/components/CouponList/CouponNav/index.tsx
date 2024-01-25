@@ -13,9 +13,33 @@ import {
 import { useGetCouponList } from '@hooks/queries/useCouponList';
 import categoryTabState from '@recoil/atoms/categoryTabState';
 
-const CouponNav = () => {
-  const [resisterDateClick, setResisterDateClick] = useState<string>('1년');
-  const [categoryTab, setCategoryTab] = useState<string>('전체');
+interface CouponNavProps {
+  all: number;
+  expiration: number;
+  exposure_off: number;
+  exposure_on: number;
+  length: number;
+  search: string;
+  onSearchChange: (value: string) => void;
+  registerDateClick: string;
+  onRegisterDateChange: (value: string) => void;
+  categoryTab: string;
+  onCategoryTabChange: (value: string) => void;
+}
+
+const CouponNav = ({
+  all,
+  expiration,
+  exposure_on,
+  exposure_off,
+  length,
+  search,
+  onSearchChange,
+  registerDateClick,
+  onRegisterDateChange,
+  categoryTab,
+  onCategoryTabChange
+}: CouponNavProps) => {
   const [searchText, setSearchText] = useState<string>('');
   const headerAccommodation = useRecoilValue(headerAccommodationState);
   const setGlobalCoupons = useSetRecoilState(couponListState);
@@ -23,18 +47,18 @@ const CouponNav = () => {
   const [searchAPI, setSearchAPI] = useState<string>('');
 
   const handleDateClick = (period: string) => {
-    setResisterDateClick(period);
+    onRegisterDateChange(period);
     setSearchAPI('');
   };
 
   const handleCategoryTab = (tab: string) => {
-    setCategoryTab(tab);
+    onCategoryTabChange(tab);
     setGlobalCategoryTab({ categoryTab: tab });
     setSearchAPI('');
   };
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchText(e.target.value);
+    onSearchChange(e.target.value);
   };
 
   const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
@@ -43,49 +67,30 @@ const CouponNav = () => {
     setSearchText('');
   };
 
-  const { data: coupons } = useGetCouponList(
-    headerAccommodation.id,
-    resisterDateClick !== '1년' ? resisterDateClick : undefined,
-    categoryTab !== '전체' ? categoryTab : undefined,
-    searchAPI
-  );
-
-  useEffect(() => {
-    setGlobalCoupons(coupons);
-  }, [
-    headerAccommodation.id,
-    resisterDateClick,
-    categoryTab,
-    searchAPI,
-    coupons
-  ]);
-
   return (
     <TabContainer>
       <TabNavContainer>
         <TabWrap>
           <TapItemWrapper onClick={() => handleCategoryTab('전체')}>
             <TabName>전체</TabName>
-            <TabCount $categoryTab={categoryTab === '전체'}>
-              {coupons.category.all}
-            </TabCount>
+            <TabCount $categoryTab={categoryTab === '전체'}>{all}</TabCount>
           </TapItemWrapper>
           <TapItemWrapper onClick={() => handleCategoryTab('노출 ON')}>
             <TabName>노출 ON</TabName>
             <TabCount $categoryTab={categoryTab === '노출 ON'}>
-              {coupons?.category.exposure_on}
+              {exposure_on}
             </TabCount>
           </TapItemWrapper>
           <TapItemWrapper onClick={() => handleCategoryTab('노출 OFF')}>
             <TabName>노출 OFF</TabName>
             <TabCount $categoryTab={categoryTab === '노출 OFF'}>
-              {coupons?.category.exposure_off}
+              {exposure_off}
             </TabCount>
           </TapItemWrapper>
           <TapItemWrapper onClick={() => handleCategoryTab('만료')}>
             <TabName>만료</TabName>
             <TabCount $categoryTab={categoryTab === '만료'}>
-              {coupons?.category.expiration}
+              {expiration}
             </TabCount>
           </TapItemWrapper>
         </TabWrap>
@@ -93,7 +98,7 @@ const CouponNav = () => {
           <SearchInput
             id="search"
             type="text"
-            value={searchText}
+            value={search}
             placeholder="관리 쿠폰명을 입력하세요."
             onChange={handleSearchChange}
           ></SearchInput>
@@ -107,7 +112,7 @@ const CouponNav = () => {
       <TabBottomContainer>
         <TabBottomWrap>
           <SecondTabName>{categoryTab}</SecondTabName>
-          <SecondTabCount>{coupons?.content.length}개</SecondTabCount>
+          <SecondTabCount>{length}개</SecondTabCount>
           <CouponDescription>
             모든 쿠폰은 다운로드 후 14일까지 사용 가능하며, 등록 후 1년이 경과한
             쿠폰은 조회되지 않습니다.
@@ -116,7 +121,7 @@ const CouponNav = () => {
         <ResisterPeriodWrap>
           <ResisterPeriodTitle>등록일 기준 최근</ResisterPeriodTitle>
           <ResisterPeriod
-            $resisterDateClick={resisterDateClick === '1년'}
+            $resisterDateClick={registerDateClick === '1년'}
             onClick={() => handleDateClick('1년')}
           >
             1년
@@ -126,7 +131,7 @@ const CouponNav = () => {
             alt="centerIcon"
           />
           <ResisterPeriod
-            $resisterDateClick={resisterDateClick === '6개월'}
+            $resisterDateClick={registerDateClick === '6개월'}
             onClick={() => handleDateClick('6개월')}
           >
             6개월
@@ -136,7 +141,7 @@ const CouponNav = () => {
             alt="centerIcon"
           />
           <ResisterPeriod
-            $resisterDateClick={resisterDateClick === '3개월'}
+            $resisterDateClick={registerDateClick === '3개월'}
             onClick={() => handleDateClick('3개월')}
           >
             3개월
