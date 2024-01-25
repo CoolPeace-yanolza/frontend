@@ -58,7 +58,7 @@ const Settlemented = () => {
   const getCurrentEndDate = () => {
     const today = new Date();
     if (today.getDate() <= 10) {
-      return new Date(today.getFullYear(), today.getMonth() - 1, 31).toISOString().split('T')[0];
+      return new Date(today.getFullYear(), today.getMonth() - 2, 31).toISOString().split('T')[0];
     } else if (today.getDate() > 10 && today.getDate() <= 31) {
       return new Date(today.getFullYear(), today.getMonth() - 1, 31).toISOString().split('T')[0];
     } else {
