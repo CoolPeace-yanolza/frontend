@@ -1,8 +1,9 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import ReactPaginate from 'react-paginate';
 import styled from '@emotion/styled';
 
-import { SettlementsPaginationProps } from '@/types/settlements';
+import { SettlementsPaginationProps, SelectedItem } from '@/types/settlements';
+import theme from '@styles/theme';
 
 const SettlementsPagination: React.FC<SettlementsPaginationProps> = ({
   currentPage,
@@ -10,9 +11,17 @@ const SettlementsPagination: React.FC<SettlementsPaginationProps> = ({
   onPageChange,
   totalItems
 }) => {
+  const [internalCurrentPage, setInternalCurrentPage] = useState(currentPage);
+
   useEffect(() => {
-    onPageChange(currentPage);
-  }, [currentPage, onPageChange]);
+    setInternalCurrentPage(currentPage);
+  }, [currentPage]);
+
+  const handlePageClick = (selectedItem: SelectedItem) => {
+    const selectedPage = selectedItem.selected + 1;
+    setInternalCurrentPage(selectedPage);
+    onPageChange(selectedPage);
+  };
 
   return (
     <PaginationContainer>
@@ -25,7 +34,8 @@ const SettlementsPagination: React.FC<SettlementsPaginationProps> = ({
           pageCount={totalPages}
           marginPagesDisplayed={2}
           pageRangeDisplayed={5}
-          onPageChange={(selectedItem) => onPageChange(selectedItem.selected + 1)}
+          forcePage={internalCurrentPage - 1}
+          onPageChange={handlePageClick}
           containerClassName={'pagination'}
           activeClassName={'active'}
           pageClassName={'pagination-li'}
@@ -61,7 +71,7 @@ const PaginationContainer = styled.div`
     border-radius: 4px;
     cursor: pointer;
 
-    @media (max-width: 900px) {
+    ${theme.response.tablet} {
       font-size: 12px;
     }
   }

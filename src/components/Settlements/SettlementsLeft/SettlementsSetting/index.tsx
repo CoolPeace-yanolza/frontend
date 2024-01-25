@@ -1,16 +1,25 @@
 import styled from '@emotion/styled';
-import { useState } from 'react';
+import { Suspense, useState } from 'react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { ko } from 'date-fns/locale';
 import { useSetRecoilState } from 'recoil';
+import { createGlobalStyle } from 'styled-components';
+import { ErrorBoundary } from 'react-error-boundary';
+import { useQueryErrorResetBoundary } from '@tanstack/react-query';
 
 import CalendarIcon from '@assets/icons/calendar-number-outline.svg';
 import Settlemented from './Settlemented';
 import SettlementsHeader from './SettlementsHeader';
 import { settlementsDateState } from '@recoil/atoms/settlemented';
+import theme from '@styles/theme';
+import Loading from './Settlemented/index.loading';
+import ErrorFallback from './Settlemented/index.error';
 
 const SettlementsSetting = () => {
+
+  const { reset } = useQueryErrorResetBoundary();
+
   const [startDate, setStartDate] = useState<Date | null>(null);
   const [endDate, setEndDate] = useState<Date | null>(null);
 
@@ -39,6 +48,50 @@ const SettlementsSetting = () => {
     }
   };
 
+  const DatePickerCustom = createGlobalStyle`
+  .react-datepicker {
+    border: none;
+    border-radius: 1rem;
+  }
+
+  .react-datepicker__navigation-icon::before {
+    top: 10px;
+
+    border-color: white;
+  }
+
+  .custom-header {
+    .react-datepicker__current-month,
+    .react-datepicker-time__header,
+    .react-datepicker-year-header {
+      color: white;
+    }
+
+    .react-datepicker__header {
+      padding: 12px 0px;
+      border-top-left-radius: 1rem;
+      border-top-right-radius: 1rem;
+
+      background-color: #1A2849;
+
+    }
+
+    .react-datepicker__month-text--keyboard-selected {
+      background-color: #1A2849;
+      color: white !important;
+
+      font-weight: 700;
+    }
+
+    .react-datepicker__month .react-datepicker__month-text {
+      padding: 4px;
+
+      color: #1A2849;
+      font-weight: 600;
+    }
+  }
+`;
+
   return (
     <Container>
       <SettlementsHeader/>
@@ -50,6 +103,7 @@ const SettlementsSetting = () => {
             <CalendarText>기간 설정</CalendarText>
             </CalendarInnerContainer>
             <StyledDatePickerContainer>
+            <DatePickerCustom />
             <StyledDatePicker
                 selected={startDate}
                 onChange={handleStartDateChange}
@@ -57,6 +111,7 @@ const SettlementsSetting = () => {
                 showMonthYearPicker
                 placeholderText=""
                 locale={ko}
+                calendarClassName="custom-header"  
             />
             <StyledDatePicker
                 selected={endDate}
@@ -65,6 +120,7 @@ const SettlementsSetting = () => {
                 showMonthYearPicker
                 placeholderText=""
                 locale={ko}
+                calendarClassName="custom-header"  
             />
             <StyledButton onClick={handleButtonClick}>조회하기</StyledButton>
             </StyledDatePickerContainer>
@@ -72,7 +128,14 @@ const SettlementsSetting = () => {
     <BreakLine>
             <hr />
     </BreakLine>
-    <Settlemented />
+    <ErrorBoundary
+     onReset={reset}
+     fallbackRender={ErrorFallback}
+    >
+    <Suspense fallback={<Loading />}>
+      <Settlemented />
+    </Suspense>
+    </ErrorBoundary>
     </Container>
   )
 }
@@ -88,7 +151,7 @@ const BreakLine = styled.div`
   margin: 0 40px;
 
   hr {
-    @media (max-width: 900px) {
+    ${theme.response.tablet} {
       display: none;
     }
   }
@@ -99,7 +162,7 @@ const CalendarContainer = styled.nav`
   justify-content: flex-end;
   align-items: center;
 
-  @media (max-width: 900px) {
+  ${theme.response.tablet} {
     margin: 10px 20px;
 
     display: flex;
@@ -113,7 +176,7 @@ const CalendarInnerContainer = styled.div`
 
   display: flex;
 
-  @media (max-width: 900px) {
+  ${theme.response.tablet} {
     width: 100%;
   }
 `;
@@ -135,9 +198,6 @@ const StyledDatePicker = styled(DatePicker)`
   border-radius: 8px; 
 
   font-size: 14px;
-
-  @media (max-width: 900px) {
-  }
 `;
 
 const CalendarText = styled.div`
@@ -167,7 +227,7 @@ const StyledButton = styled.button`
     opacity: 1;
   }
 
-  @media (max-width: 900px) {
+  ${theme.response.tablet} {
     margin-left: auto;
   }
 `;
@@ -179,7 +239,7 @@ const StyledDatePickerContainer = styled.div`
   display: flex;
   align-items: center;
 
-  @media (max-width: 900px) {
+  ${theme.response.tablet} {
     margin-left: auto;
     margin-right: 0px;
   }

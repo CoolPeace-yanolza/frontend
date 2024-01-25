@@ -15,6 +15,7 @@ import GlobalStyles from '@styles/GlobalStyles';
 import theme from '@styles/theme';
 import ErrorFallback from './App.error';
 import Loading from './App.loading';
+import { ToastProvider } from '@components/common/ToastContext';
 
 const queryClient = new QueryClient();
 
@@ -32,7 +33,9 @@ const App = () => {
           >
             <Suspense fallback={<Loading />}>
               <BrowserRouter>
-                <MainRouter />
+                <ToastProvider>
+                  <MainRouter />
+                </ToastProvider>
               </BrowserRouter>
             </Suspense>
           </ErrorBoundary>
