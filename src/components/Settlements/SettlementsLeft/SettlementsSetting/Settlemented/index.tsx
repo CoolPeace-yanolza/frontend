@@ -125,6 +125,10 @@ const Settlemented = () => {
       console.error('Error fetching all settlements data for download:', error);
     }
   };
+
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [accommodation]);
   
   return (
     <Container>
