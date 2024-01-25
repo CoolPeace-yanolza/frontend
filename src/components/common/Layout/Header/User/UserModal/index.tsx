@@ -21,7 +21,7 @@ const UserModal = ({ isOpen }: UserModal) => {
   const handleLogout = async () => {
     await postLogout();
     deleteAllCookies();
-    navigate('/login');
+    navigate('/login'), { replace: true };
     /* HACK: 로그아웃 에러 response 가 있을 경우 사용
 
       [ 대안 1 ]
