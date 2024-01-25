@@ -1,9 +1,14 @@
 import styled from '@emotion/styled';
+import { useRecoilValue } from 'recoil';
+import { useGetSettlemented } from 'src/hooks/queries/useGetSettlemented';
 
+import headerAccommodationState from '@recoil/atoms/headerAccommodationState';
 import SyncIcon from '@assets/icons/sync-outline.svg';
-import receiptIcon from '@assets/icons/receipt-sharp.svg'; 
+import receiptIcon from '@assets/icons/receipt-sharp.svg';
+import theme from '@styles/theme'; 
 
 const SettlementsBefore = () => {
+  const accommodation = useRecoilValue(headerAccommodationState);
 
   const currentDate = new Date();
   const lastMonth = new Date(currentDate);
@@ -18,6 +23,8 @@ const SettlementsBefore = () => {
   };
 
   const isBeforeDueDate = currentDate.getDate() < 10;
+
+  const { data: summary } = useGetSettlemented(accommodation.id);
 
   return (
     <Container>
@@ -67,7 +74,7 @@ const SettlementsBefore = () => {
                 }
               </DueDateDay>
               <DueDateMoney>
-                50,000원
+              {summary ? (summary.last_month_settlement_amount === 0 ? '-' : new Intl.NumberFormat('ko-KR').format(summary.last_month_settlement_amount) + '원') : '데이터 로딩 중...'}
               </DueDateMoney>
             </DueDateInnerContainer>
           </WrapperTop>
@@ -90,7 +97,7 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
 
-  @media (max-width: 900px) {
+  ${theme.response.tablet} {
     margin-left: 15px;
     margin-right: 0px;
   }
@@ -103,7 +110,7 @@ const InnerContainer = styled.div`
 const ExpectedContainer = styled.div`
   margin-top: 30px;
 
-  @media (max-width: 900px) {
+  ${theme.response.tablet} {
     margin: 0px;
   }
 `;
@@ -155,18 +162,16 @@ const UpdatedContainer = styled.div`
   width: 100%;
 
   margin-top: 25px;
-
   border: 1.5px solid white;
   border-radius: 8px;
 `;
 
 const UpdatedInnerContainer = styled.div`
   margin-top: 20px;
-
-  background-color: white;
-
   border: 1px solid white;
   border-radius: 5px;
+
+  background-color: white;
 `;
 
 const UpdatedWrapper = styled.div`
@@ -270,7 +275,7 @@ const ReceiptIcon = styled.img`
   margin-top: 40px;
   margin-left: auto;
 
-  @media (max-width: 900px) {
+  ${theme.response.tablet} {
     display: none;
   }
 `;

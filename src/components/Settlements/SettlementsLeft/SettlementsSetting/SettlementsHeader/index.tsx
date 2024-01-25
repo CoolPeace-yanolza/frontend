@@ -4,6 +4,7 @@ import { useState } from 'react';
 import settlementsAdminIcon from '@assets/icons/settlements-admin.svg';
 import informationIcon from '@assets/icons/information-circle-outline.svg';
 import SettlementsPopup from './SettlementsPopup';
+import theme from '@styles/theme';
 
 const SettlementsHeader = () => {
   const [isPopupOpen, setIsPopupOpen] = useState(false)
@@ -44,7 +45,7 @@ const Container = styled.nav`
   margin-left: 43px;
   margin-top: 96px;
 
-  @media (max-width: 900px) {
+  ${theme.response.tablet} {
     display: none;
   }
 `;

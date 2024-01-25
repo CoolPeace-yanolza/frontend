@@ -18,3 +18,5 @@ export { default as getLocalCouponUsage } from './lib/getLocalCouponUsage';
 export { default as getMonthStatus } from './lib/getMonthStatus';
 export { default as getEmailValid } from './lib/getEmailValid';
 export { default as postSignUp } from './lib/postSignUp';
+export { default as getSettlements } from './lib/getSettlements';
+export { default as getSettlemented } from './lib/getSettlemented';
