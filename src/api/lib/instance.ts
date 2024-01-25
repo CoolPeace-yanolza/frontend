@@ -1,12 +1,15 @@
+import { useNavigate } from 'react-router-dom';
 import axios, {
   AxiosError,
   AxiosResponse,
   InternalAxiosRequestConfig
 } from 'axios';
 
-import { getCookies, setCookies } from '@utils/lib/cookies';
-import { postRefreshToken } from '..';
+import { deleteAllCookies, getCookies, setCookies } from '@utils/lib/cookies';
+import { postLogout, postRefreshToken } from '..';
 import { AxiosResponseError } from '@/types/axios';
+
+const navigate = useNavigate();
 
 const instance = axios.create({
   baseURL: import.meta.env.VITE_SERVER_URL,
@@ -63,11 +66,9 @@ const onErrorResponse = async (error: AxiosResponseError<string>) => {
         // 리프레시 토큰도 만료되었을 때 = 재로그인 안내
       } else if (tokenResponse.status === 404) {
         console.log(tokenResponse.data.message);
-        // await postLogout();
-        // deleteAllCookies();
-        // navigate('/login');
-
-        return Promise.reject(error);
+        await postLogout();
+        deleteAllCookies();
+        navigate('/login', { replace: true });
       }
     }
     console.log(error.response.data.code, error.response);
