@@ -12,4 +12,5 @@ export type SignUpData = {
 
 export type SignUpFormProps = {
   handleModalOpen: () => void;
+  setIsSignUpComplete: (value: boolean) => void;
 };

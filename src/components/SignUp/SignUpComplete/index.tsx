@@ -10,7 +10,7 @@ const SignUpComplete = () => {
   const moveToLogin = () => navigate('/login', { replace: true });
 
   return (
-    <WhiteBackground>
+    <>
       <Logo>
         <LogoIcon
           src={logo}
@@ -34,25 +34,11 @@ const SignUpComplete = () => {
           buttonFunc={moveToLogin}
         />
       </Content>
-    </WhiteBackground>
+    </>
   );
 };
 
 export default SignUpComplete;
-
-const WhiteBackground = styled.div`
-  position: relative;
-
-  width: 100%;
-  height: 100%;
-  min-height: 100vh;
-
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-
-  background-color: #fff;
-`;
 
 const Logo = styled.div`
   height: 36px;

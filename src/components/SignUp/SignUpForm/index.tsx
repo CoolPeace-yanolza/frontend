@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import styled from '@emotion/styled';
 import {
   FieldValues,
@@ -20,9 +19,10 @@ import {
 } from '@components/Auth';
 import { getEmailValid, postSignUp } from 'src/api';
 
-const SignUpForm = ({ handleModalOpen }: SignUpFormProps) => {
-  const navigate = useNavigate();
-
+const SignUpForm = ({
+  handleModalOpen,
+  setIsSignUpComplete
+}: SignUpFormProps) => {
   const methods = useForm({
     mode: 'all'
   });
@@ -70,7 +70,7 @@ const SignUpForm = ({ handleModalOpen }: SignUpFormProps) => {
     const response = await postSignUp(formData);
 
     if (response?.status === 201) {
-      navigate('/signup/complete', { replace: true });
+      setIsSignUpComplete(true);
     } else {
       handleModalOpen();
     }

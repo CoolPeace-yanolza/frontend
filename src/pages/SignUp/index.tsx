@@ -3,31 +3,41 @@ import styled from '@emotion/styled';
 
 import logo from '@assets/icons/ic-logo.svg';
 import { ErrorModal, Footer } from '@components/common';
-import { SignUpForm, SignUpTitle } from '@components/SignUp';
+import { SignUpComplete, SignUpForm, SignUpTitle } from '@components/SignUp';
 import { ERROR_MODAL_MESSAGE } from 'src/constants';
 
 const SignUp = () => {
+  const [isSignUpComplete, setIsSignUpComplete] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const handleModalClose = () => setIsModalOpen(false);
   const handleModalOpen = () => setIsModalOpen(true);
 
   return (
     <WhiteBackground>
-      <WithoutFooterSection>
-        <Logo>
-          <LogoIcon
-            src={logo}
-            alt="사장님 비서ya"
-          />
-        </Logo>
-        <Container>
-          <Content>
-            <SignUpTitle />
-            <SignUpForm handleModalOpen={handleModalOpen} />
-          </Content>
-        </Container>
-      </WithoutFooterSection>
-      <Footer />
+      {isSignUpComplete ? (
+        <SignUpComplete />
+      ) : (
+        <>
+          <WithoutFooterSection>
+            <Logo>
+              <LogoIcon
+                src={logo}
+                alt="사장님 비서ya"
+              />
+            </Logo>
+            <Container>
+              <Content>
+                <SignUpTitle />
+                <SignUpForm
+                  handleModalOpen={handleModalOpen}
+                  setIsSignUpComplete={setIsSignUpComplete}
+                />
+              </Content>
+            </Container>
+          </WithoutFooterSection>
+          <Footer />
+        </>
+      )}
       {isModalOpen && (
         <ErrorModal
           modalContent={ERROR_MODAL_MESSAGE.SIGNUP}
