@@ -67,7 +67,7 @@ const SignUpForm = ({ handleModalOpen }: SignUpFormProps) => {
     const response = await postSignUp(formData);
 
     if (response?.status === 201) {
-      // 회원가입 완료 페이지로 넘어가기
+      window.location.replace('/signup/complete');
     } else {
       handleModalOpen();
     }
