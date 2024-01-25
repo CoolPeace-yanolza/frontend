@@ -11,7 +11,6 @@ import { useOutsideClick, useToggleChange } from '@hooks/index';
 import couponCondition from '@utils/lib/couponCondition';
 import { useToast } from '@components/common/ToastContext';
 import couponRoomType from '@utils/lib/couponRoomType';
-import { debounce } from 'lodash';
 
 const CouponExpose = ({ couponInfo }: CouponListProps) => {
   const [isToggle, setIsToggle] = useState(true);
