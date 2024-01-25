@@ -4,12 +4,9 @@ import styled from '@emotion/styled';
 import logo from '@assets/icons/ic-logo.svg';
 import { ErrorModal, Footer } from '@components/common';
 import { SignUpForm, SignUpTitle } from '@components/SignUp';
+import ERROR_MODAL_MESSAGE from 'src/constants/lib/ERROR_MODAL_MESSAGE';
 
 const SignUp = () => {
-  const modalContent = {
-    text: '회원가입에 실패했습니다.',
-    errorText: '다시 시도해주세요.'
-  };
   const [isModalOpen, setIsModalOpen] = useState(false);
   const handleModalClose = () => setIsModalOpen(false);
   const handleModalOpen = () => setIsModalOpen(true);
@@ -33,7 +30,7 @@ const SignUp = () => {
       <Footer />
       {isModalOpen && (
         <ErrorModal
-          modalContent={modalContent}
+          modalContent={ERROR_MODAL_MESSAGE.SIGNUP}
           ButtonFunc={handleModalClose}
         />
       )}
