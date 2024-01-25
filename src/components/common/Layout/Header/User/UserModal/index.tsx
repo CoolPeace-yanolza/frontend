@@ -6,7 +6,7 @@ import { ErrorModal } from '@components/common';
 import { postLogout } from 'src/api';
 import { getCookies, deleteAllCookies } from '@utils/lib/cookies';
 import { UserModal, UserModalStyleProps } from '@/types/layout';
-import ERROR_MODAL_MESSAGE from 'src/constants/lib/ERROR_MODAL_MESSAGE';
+import { ERROR_MODAL_MESSAGE } from 'src/constants';
 import theme from '@styles/theme';
 
 const UserModal = ({ isOpen }: UserModal) => {

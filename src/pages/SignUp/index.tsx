@@ -4,7 +4,7 @@ import styled from '@emotion/styled';
 import logo from '@assets/icons/ic-logo.svg';
 import { ErrorModal, Footer } from '@components/common';
 import { SignUpForm, SignUpTitle } from '@components/SignUp';
-import ERROR_MODAL_MESSAGE from 'src/constants/lib/ERROR_MODAL_MESSAGE';
+import { ERROR_MODAL_MESSAGE } from 'src/constants';
 
 const SignUp = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
