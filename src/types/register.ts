@@ -32,6 +32,7 @@ export type InputButtonProps = {
 // InputAccordion
 export type InputAccordionProps = {
   title: string;
+  value: string | undefined;
   children: ReactNode;
 };
 

@@ -1,10 +1,10 @@
-import { useState, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import styled from '@emotion/styled';
 
 import { InputAccordionProps, ButtonStyleProps } from '@/types/register';
 import toggle from '@assets/icons/ic-register-toggle.svg';
 
-const InputAccordion = ({ title, children }: InputAccordionProps) => {
+const InputAccordion = ({ title, value, children }: InputAccordionProps) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const contentWrapperRef = useRef<HTMLDivElement>(null);
@@ -18,6 +18,15 @@ const InputAccordion = ({ title, children }: InputAccordionProps) => {
       setIsOpen(prev => !prev);
     }
   };
+
+  useEffect(() => {
+    if (value) {
+      if (contentWrapperRef.current && contentRef.current) {
+        contentWrapperRef.current.style.height = `${contentRef.current.clientHeight}px`;
+      }
+      setIsOpen(true);
+    }
+  }, []);
 
   return (
     <Container>
