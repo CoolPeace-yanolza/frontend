@@ -1,4 +1,3 @@
-import { useNavigate } from 'react-router-dom';
 import axios, {
   AxiosError,
   AxiosResponse,
@@ -8,8 +7,6 @@ import axios, {
 import { deleteAllCookies, getCookies, setCookies } from '@utils/lib/cookies';
 import { postLogout, postRefreshToken } from '..';
 import { AxiosResponseError } from '@/types/axios';
-
-const navigate = useNavigate();
 
 const instance = axios.create({
   baseURL: import.meta.env.VITE_SERVER_URL,
@@ -68,7 +65,7 @@ const onErrorResponse = async (error: AxiosResponseError<string>) => {
         console.log(tokenResponse.data.message);
         await postLogout();
         deleteAllCookies();
-        navigate('/login', { replace: true });
+        window.location.replace('/login');
       }
     }
     console.log(error.response.data.code, error.response);
