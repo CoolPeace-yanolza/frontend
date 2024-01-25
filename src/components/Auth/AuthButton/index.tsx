@@ -57,7 +57,7 @@ const SubmitButton = styled.button<AuthButtonStyleProps>`
   }
 
   @media screen and (max-width: 649px) {
-    width: ${props => (props.$size === 'small' ? '73px' : '100%')};
+    width: ${props => (props.$size === 'small' ? '27%' : '100%')};
     height: 55px;
 
     font-size: 15px;

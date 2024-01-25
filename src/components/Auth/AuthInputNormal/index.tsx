@@ -69,9 +69,7 @@ const Container = styled.div<AuthInputStyleProps>`
 
   @media screen and (max-width: 649px) {
     width: ${props =>
-      props.$usedFor === 'signup' && props.$type === 'email'
-        ? '219px'
-        : '100%'};
+      props.$usedFor === 'signup' && props.$type === 'email' ? '70%' : '100%'};
     height: 55px;
   }
 `;
