@@ -3,7 +3,7 @@ import theme from '@styles/theme';
 import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
 
-const SettlementsBeforeLoading = () => {
+const SettlementsExpectedLoading = () => {
   return (
     <Container>
       <Title />
@@ -15,7 +15,7 @@ const SettlementsBeforeLoading = () => {
   );
 };
 
-export default SettlementsBeforeLoading;
+export default SettlementsExpectedLoading;
 
 const Container = styled.div`
   width: 100%;

@@ -1,16 +1,13 @@
 import styled from '@emotion/styled';
 import { useRecoilValue } from 'recoil';
+import { useGetSettlemented } from 'src/hooks/queries/useGetSettlemented';
 
 import headerAccommodationState from '@recoil/atoms/headerAccommodationState';
 import SyncIcon from '@assets/icons/sync-outline.svg';
 import theme from '@styles/theme';
-import getSettlemented from 'src/api/lib/getSettlemented';
-import { useEffect, useState } from 'react';
 
 const SettlementsExpected = () => {
-
-  const [summary, setSummary] = useState<{ this_month_settlement_amount: number } | null>(null);
-
+  
   const accommodation = useRecoilValue(headerAccommodationState);
 
   const currentDate = new Date();
@@ -27,15 +24,7 @@ const SettlementsExpected = () => {
 
   const firstDayOfMonth = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1);
 
-  const fetchSettlementSummary = async () => {
-    const summary = await getSettlemented(accommodation.id);
-    setSummary(summary);
-    console.log('Settlement summary:', summary);
-  };
-
-  useEffect(() => {
-    fetchSettlementSummary(); 
-  }, [accommodation.id]);  
+  const { data: summary } = useGetSettlemented(accommodation.id);
 
   return (
     <Container>

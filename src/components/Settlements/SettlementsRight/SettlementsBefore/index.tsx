@@ -1,7 +1,5 @@
 import styled from '@emotion/styled';
 import { useRecoilValue } from 'recoil';
-import { useEffect, useState } from 'react';
-import { Suspense } from 'react';
 import { useGetSettlemented } from 'src/hooks/queries/useGetSettlemented';
 
 import headerAccommodationState from '@recoil/atoms/headerAccommodationState';

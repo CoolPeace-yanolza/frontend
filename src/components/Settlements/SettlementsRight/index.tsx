@@ -1,14 +1,16 @@
 import styled from '@emotion/styled';
 import { ErrorBoundary } from 'react-error-boundary';
 import { useQueryErrorResetBoundary } from '@tanstack/react-query';
+import { Suspense } from 'react';
 
 import SettlementsBefore from "./SettlementsBefore"
 import SettlementsExpected from "./SettlementsExpected"
 import settlementsLogo from '@assets/icons/settlements-logo.svg'; 
 import theme from '@styles/theme';
-import Loading from './SettlementsBefore/index.loading'
-import ErrorFallback from './SettlementsBefore/index.error';
-import { Suspense } from 'react';
+import SettlementsBeforeLoading from './SettlementsBefore/index.loading'
+import SettlementsBeforeErrorFallback from './SettlementsBefore/index.error';
+import SettlementsExpectedLoading from './SettlementsExpected/index.loading'
+import SettlementsExpectedErrorFallback from './SettlementsExpected/index.error';
 
 const SettlementsRight = () => {
 
@@ -18,15 +20,22 @@ const SettlementsRight = () => {
     <Container>
       <InnerContainer>
         <StyledSettlementsExpected>
-        <SettlementsExpected />
+          <ErrorBoundary
+              onReset={reset}
+              fallbackRender={SettlementsExpectedErrorFallback}
+            >
+          <Suspense fallback={<SettlementsExpectedLoading />}>
+            <SettlementsExpected />
+          </Suspense>
+          </ErrorBoundary>
         </StyledSettlementsExpected>
         <hr />
         <StyledSettlementsBefore>
           <ErrorBoundary
             onReset={reset}
-            fallbackRender={ErrorFallback}
+            fallbackRender={SettlementsBeforeErrorFallback}
           >
-            <Suspense fallback={<Loading />}>
+            <Suspense fallback={<SettlementsBeforeLoading />}>
               <SettlementsBefore />
             </Suspense>
           </ErrorBoundary>

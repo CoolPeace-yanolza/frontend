@@ -5,7 +5,7 @@ import theme from '@styles/theme';
 import errorIcon from '@assets/icons/ic-error.svg';
 import reloadIcon from '@assets/icons/ic-reload.svg';
 
-const SettlementsBeforeErrorFallback = ({ resetErrorBoundary }: FallbackProps) => {
+const SettlementsExpectedErrorFallback = ({ resetErrorBoundary }: FallbackProps) => {
   return (
     <Container>
       <ErrorIcon
@@ -24,7 +24,7 @@ const SettlementsBeforeErrorFallback = ({ resetErrorBoundary }: FallbackProps) =
   );
 };
 
-export default SettlementsBeforeErrorFallback;
+export default SettlementsExpectedErrorFallback;
 
 const Container = styled.div`
   width: 100%;
