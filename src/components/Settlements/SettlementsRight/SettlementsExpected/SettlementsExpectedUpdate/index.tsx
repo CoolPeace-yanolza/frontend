@@ -5,7 +5,7 @@ import { useGetSettlemented } from 'src/hooks/queries/useGetSettlemented';
 import headerAccommodationState from '@recoil/atoms/headerAccommodationState';
 import { useRecoilValue } from 'recoil';
 
-const SettlementsUpdate = () => {
+const SettlementsExpectedUpdate = () => {
     const accommodation = useRecoilValue(headerAccommodationState);
 
     const currentDate = new Date();
@@ -45,7 +45,7 @@ const SettlementsUpdate = () => {
   );
 };
 
-export default SettlementsUpdate;
+export default SettlementsExpectedUpdate;
 
 const UpdatedInnerContainer = styled.div`
   margin-top: 20px;
