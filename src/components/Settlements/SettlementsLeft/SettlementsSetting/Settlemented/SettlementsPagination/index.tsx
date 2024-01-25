@@ -11,7 +11,7 @@ const SettlementsPagination: React.FC<SettlementsPaginationProps> = ({
   onPageChange,
   totalItems
 }) => {
-  const [internalCurrentPage, setInternalCurrentPage] = useState<number>(currentPage);
+  const [internalCurrentPage, setInternalCurrentPage] = useState(currentPage);
 
   useEffect(() => {
     setInternalCurrentPage(currentPage);
