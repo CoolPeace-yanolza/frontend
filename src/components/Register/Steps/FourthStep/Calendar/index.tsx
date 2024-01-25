@@ -3,7 +3,9 @@ import { useRecoilState, useSetRecoilState } from 'recoil';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { format } from 'date-fns';
+import { ko } from 'date-fns/locale';
 import styled from '@emotion/styled';
+import { createGlobalStyle } from 'styled-components';
 
 import theme from '@styles/theme';
 import { CustomInputProps } from '@/types/register';
@@ -87,8 +89,10 @@ const Calendar = () => {
 
   return (
     <>
+      <CustomDatePicker />
       <DatePicker
         dateFormat="yyyy.MM.dd"
+        locale={ko}
         selected={input.startDate ? new Date(input.startDate) : null}
         selectsStart
         startDate={input.startDate ? new Date(input.startDate) : null}
@@ -100,6 +104,7 @@ const Calendar = () => {
       <Dash>-</Dash>
       <DatePicker
         dateFormat="yyyy.MM.dd"
+        locale={ko}
         selected={input.endDate ? new Date(input.endDate) : null}
         selectsEnd
         startDate={input.startDate ? new Date(input.startDate) : null}
@@ -113,6 +118,66 @@ const Calendar = () => {
 };
 
 export default Calendar;
+
+const CustomDatePicker = createGlobalStyle`
+  .react-datepicker-popper[data-placement^=bottom] .react-datepicker__triangle::before {
+    border-bottom-color: transparent;
+  }
+
+  .react-datepicker__triangle::before, .react-datepicker-popper[data-placement^=bottom] .react-datepicker__triangle::after {
+    border-bottom-color: ${theme.colors.hover};
+  }
+
+  .react-datepicker {
+    border: none;
+    border-radius: 19px;
+
+    box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.25);
+
+    font-family: 'Noto Sans KR';
+  }
+
+  .react-datepicker__header:not(.react-datepicker__header--has-time-select) {
+    border-top-right-radius: 20px;
+  }
+
+  .react-datepicker__header {
+    border: none;
+    border-top-left-radius: 20px;
+
+    background: ${theme.colors.hover}
+  }
+
+  .react-datepicker__navigation-icon {
+
+  }
+
+  .react-datepicker__current-month {
+    color: #fff;
+    font-size: 17px;
+    font-weight: 600;
+  }
+
+  .react-datepicker__day-name {
+    color: #fff;
+  }
+
+  .react-datepicker__day {
+    color: ${theme.colors.hover};
+    font-size: 11px;
+  }
+
+  .react-datepicker__day--disabled {
+    color: #ccc;
+  }
+
+  .react-datepicker__day--selected,
+  .react-datepicker__day--in-range {
+    color: #fff;
+
+    background: ${theme.colors.hover};
+  }
+`;
 
 const CustomInput = styled.button`
   width: 120px;
