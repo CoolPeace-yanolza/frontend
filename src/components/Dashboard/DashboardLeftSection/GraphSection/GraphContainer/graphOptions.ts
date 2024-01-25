@@ -3,7 +3,7 @@ const graphOptions: any = {
   maintainAspectRatio: false,
   plugins: {
     legend: {
-      display: true
+      display: false
     }
   },
 

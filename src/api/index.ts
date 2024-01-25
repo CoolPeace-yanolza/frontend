@@ -1,5 +1,6 @@
 export { default as instance } from './lib/instance';
 export { default as postLogin } from './lib/postLogin';
+export { default as postLogout } from './lib/postLogout';
 export { default as postRefreshToken } from './lib/postRefreshToken';
 export {
   getCouponList,
@@ -15,3 +16,7 @@ export { default as getDailyReport } from './lib/getDailyReport';
 export { default as getCouponRanking } from './lib/getCouponRanking';
 export { default as getLocalCouponUsage } from './lib/getLocalCouponUsage';
 export { default as getMonthStatus } from './lib/getMonthStatus';
+export { default as getEmailValid } from './lib/getEmailValid';
+export { default as postSignUp } from './lib/postSignUp';
+export { default as getSettlements } from './lib/getSettlements';
+export { default as getSettlemented } from './lib/getSettlemented';

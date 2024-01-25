@@ -4,8 +4,8 @@ import axios, {
   InternalAxiosRequestConfig
 } from 'axios';
 
-import { getCookies, setCookies } from '@utils/lib/cookies';
-import { postRefreshToken } from '..';
+import { deleteAllCookies, getCookies, setCookies } from '@utils/lib/cookies';
+import { postLogout, postRefreshToken } from '..';
 import { AxiosResponseError } from '@/types/axios';
 
 const instance = axios.create({
@@ -60,10 +60,14 @@ const onErrorResponse = async (error: AxiosResponseError<string>) => {
         originalRequest.headers['Authorization'] = `Bearer ${newAccessToken}`;
         return instance(originalRequest);
 
-        // 리프레시 토큰도 만료되었을 때 = 재로그인 안내
+        // 리프레시 토큰도 만료되었을 때 (재로그인 안내)
       } else if (tokenResponse.status === 404) {
-        console.log(tokenResponse.data.message);
-        return Promise.reject(error);
+        alert(
+          '안전한 서비스 이용을 위해 자동 로그아웃되었습니다.\n다시 로그인해주세요.'
+        );
+        await postLogout();
+        deleteAllCookies();
+        window.location.replace('/login');
       }
     }
     console.log(error.response.data.code, error.response);

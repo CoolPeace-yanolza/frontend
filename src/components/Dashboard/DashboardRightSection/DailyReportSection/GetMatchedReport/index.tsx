@@ -1,5 +1,6 @@
 import styled from '@emotion/styled';
 
+import theme from '@styles/theme';
 import reportImage01 from '/images/ic-dailyReport-status01.png';
 import reportImage02 from '/images/ic-dailyReport-status02.png';
 import reportImage03 from '/images/ic-dailyReport-status03.png';
@@ -122,6 +123,13 @@ export default GetMatchedReport;
 const Container = styled.div`
   width: 100%;
   height: auto;
+
+  display: flex;
+  flex-direction: column;
+
+  ${theme.response.tablet} {
+    flex-direction: row;
+  }
 `;
 
 const ImageContainer = styled.div`
@@ -131,6 +139,14 @@ const ImageContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+
+  ${theme.response.tablet} {
+    flex: 1;
+
+    & > img {
+      width: 130px;
+    }
+  }
 `;
 
 const AlarmContainer = styled.div`
@@ -146,6 +162,15 @@ const AlarmContainer = styled.div`
   align-items: center;
 
   background-color: #fafafb;
+
+  ${theme.response.tablet} {
+    height: 120px;
+    min-height: auto;
+
+    margin: 0;
+
+    flex: 2;
+  }
 `;
 
 const AlarmInnerContainer = styled.div`
@@ -175,6 +200,10 @@ const AlarmHeaderText = styled.div`
   font-size: 15px;
   font-weight: 700;
   line-height: 1.4;
+
+  ${theme.response.tablet} {
+    font-size: 11px;
+  }
 `;
 
 const AlarmSubText = styled.div`
@@ -183,6 +212,10 @@ const AlarmSubText = styled.div`
   font-size: 14px;
   font-weight: 500;
   line-height: 1.4;
+
+  ${theme.response.tablet} {
+    font-size: 10px;
+  }
 `;
 
 const AlarmColoredText = styled.span`

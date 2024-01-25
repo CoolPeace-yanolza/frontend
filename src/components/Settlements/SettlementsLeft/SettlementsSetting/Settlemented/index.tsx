@@ -2,20 +2,29 @@ import styled from '@emotion/styled';
 import 'semantic-ui-css/semantic.min.css';
 import { Dropdown, DropdownProps } from 'semantic-ui-react';
 import { useState, useEffect } from 'react';
-import { useRecoilValue, useRecoilState, useSetRecoilState } from 'recoil';
+import { useRecoilValue } from 'recoil';
 import * as XLSX from 'xlsx';
 
 import SettlementsTable from './SettlementsTable';
 import SettlementsPagination from './SettlementsPagination';
-import { settlementsDateState, settlementDataState, fakeData } from '@recoil/atoms/settlemented';
+import { getSettlements } from 'src/api';
+import { useGetSettlements } from 'src/hooks/queries/useGetSettlements';
+import { SettlementedItem } from '@/types/settlements';
+import { settlementsDateState } from '@recoil/atoms/settlemented';
+import headerAccommodationState from '@recoil/atoms/headerAccommodationState';
+import theme from '@styles/theme';
 
 const Settlemented = () => {
 
   const { startDate, endDate } = useRecoilValue(settlementsDateState);
-  const setSettlementData = useSetRecoilState(settlementDataState);
+  const [, setSortOrder] = useState('couponDateDesc');
+  const [orderBy, setOrderBy] = useState('COUPON_USE_DATE');
+  const [currentData, setCurrentData] = useState<SettlementedItem[]>([]);
+  const [currentPage, setCurrentPage] = useState<number>(1);
 
-  const [sortedData, setSortedData] = useRecoilState(settlementDataState);
-  const [sortOrder, setSortOrder] = useState('couponDateDesc');
+  const accommodation = useRecoilValue(headerAccommodationState);
+
+  const itemsPerPage = 10;
 
   const sortOptions = [
     { key: 'amountDesc', text: '정산금액 많은 순', value: 'amountDesc' },
@@ -24,102 +33,102 @@ const Settlemented = () => {
     { key: 'usageCountDesc', text: '사용건 많은 순', value: 'usageCountDesc' },
   ];
 
-  const handleSortChange = (_e: React.SyntheticEvent<HTMLElement>, data: DropdownProps) => {
-    setSortOrder(data.value as string);
-  };
-
   const defaultOption = sortOptions.find(option => option.value === 'couponDateDesc');
 
-  const sortedAndNumberedData = fakeData.map((data, index) => ({
-    ...data,
-    NO: index + 1,
-  })).sort((a, b) => new Date(a['쿠폰 적용일']).getTime() - new Date(b['쿠폰 적용일']).getTime());
-
-  const itemsPerPage = 10;
-  const totalItems = sortedData.length;
-  const totalPages = Math.ceil(totalItems / itemsPerPage);
-
-  const [currentPage, setCurrentPage] = useState<number>(1);
-
-  const calculatePageStartNumber = (currentPage: number) => {
-    return totalItems - (currentPage - 1) * itemsPerPage;
+  const handleSortChange = (_e: React.SyntheticEvent<HTMLElement>, data: DropdownProps) => {
+    setSortOrder(data.value as string);
+    switch (data.value) {
+      case 'amountDesc':
+        setOrderBy('SUM_PRICE');
+        break;
+      case 'dateDesc':
+        setOrderBy('COMPLETE_AT');
+        break;
+      case 'couponDateDesc':
+        setOrderBy('COUPON_USE_DATE');
+        break;
+      case 'usageCountDesc':
+        setOrderBy('COUPON_COUNT');
+        break;
+      default:
+        break;
+    }
   };
+
+  const { data: settlements } = useGetSettlements(
+    accommodation.id,
+    startDate ? startDate.toISOString().split('T')[0] : '2000-01-01',
+    endDate ? endDate.toISOString().split('T')[0] : new Date().toISOString().split('T')[0],
+    orderBy,
+    currentPage - 1,
+    itemsPerPage
+  );
+
+  useEffect(() => {
+    if (settlements) {
+      const newSettlementData = settlements.settlement_responses.map((data: SettlementedItem, index: number) => ({
+        ...data,
+        NO: (currentPage - 1) * itemsPerPage + index + 1,
+      }));
+
+      setCurrentData(newSettlementData);
+      setTotalItems(settlements.total_settlement_count);
+      setTotalPages(settlements.total_page_count);
+    }
+  }, [settlements]);
 
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
   };
 
-  const startIndex = (currentPage - 1) * itemsPerPage;
-  const endIndex = startIndex + itemsPerPage;
-  const currentData = sortedData.slice(startIndex, endIndex);
+  const [totalItems, setTotalItems] = useState<number>(0);
+  const [totalPages, setTotalPages] = useState<number>(0);
 
-  const sortData = (sortType: string, data: any[]) => {
-    return [...data].sort((a, b) => {
-      switch (sortType) {
-        case 'amountDesc':
-          return parseFloat(b['정산 금액']) - parseFloat(a['정산 금액']);
-        case 'dateDesc':
-          return new Date(b['정산 완료일']).getTime() - new Date(a['정산 완료일']).getTime();
-        case 'couponDateDesc':
-          return new Date(b['쿠폰 적용일']).getTime() - new Date(a['쿠폰 적용일']).getTime();
-        case 'usageCountDesc':
-          return parseInt(b['사용 건수']) - parseInt(a['사용 건수']);
-        default:
-          return 0;
-      }
-    });
+  const calculatePageStartNumber = (currentPage: number) => {
+    return totalItems - (currentPage - 1) * itemsPerPage;
   };
 
-  useEffect(() => {
-    const sorted = sortData(sortOrder, sortedAndNumberedData);
-    setSettlementData(sorted);
-  }, []);
-
-  useEffect(() => {
-    if (startDate && endDate) {
-      const filteredData = sortedAndNumberedData.filter((data) => {
-        const couponDate = new Date(data['쿠폰 적용일']);
-        return couponDate >= startDate && couponDate <= endDate;
-      });
-
-      const sorted = sortData(sortOrder, filteredData);
-      setSettlementData(sorted);
-      setCurrentPage(1);
-    } else {
-      const sorted = sortData(sortOrder, sortedAndNumberedData);
-      setSettlementData(sorted);
+  const handleDownloadExcel = async () => {
+    try {
+      const response = await getSettlements(
+        accommodation.id,
+        startDate ? startDate.toISOString().split('T')[0] : '2000-01-01',
+        endDate ? endDate.toISOString().split('T')[0] : new Date().toISOString().split('T')[0],
+        orderBy,
+        0,
+        totalItems
+      );
+  
+      const allData = response.settlement_responses.map((data: SettlementedItem, index: number) => ({
+        ...data,
+        NO: index + 1,
+      }));
+  
+      const workBook = XLSX.utils.book_new();
+      const workSheet = XLSX.utils.json_to_sheet(allData);
+  
+      XLSX.utils.book_append_sheet(workBook, workSheet, "Sheet1");
+  
+      XLSX.writeFile(workBook, "SettlementedDownload.xlsx");
+    } catch (error) {
+      console.error('Error fetching all settlements data for download:', error);
     }
-  }, [startDate, endDate, sortOrder]);
-
-  useEffect(() => {
-    const sorted = sortData(sortOrder, sortedData);
-    setSortedData(sorted);
-  }, [sortOrder]);
-
-  const handleDownloadExcel = () => {
-    const workBook = XLSX.utils.book_new();
-    const workSheet = XLSX.utils.json_to_sheet(sortedData);
-
-    XLSX.utils.book_append_sheet(workBook, workSheet, "Sheet1");
-  
-    XLSX.writeFile(workBook, "download.xlsx");
   };
   
-
   return (
     <Container>
       <SettlementedHeader>
         <TotalData>
-          전체 내역 {sortedData.length}개
+          전체 내역 {totalItems}개
         </TotalData>
         <OptionContainer>
-        <StyledDropdown
-          fluid
-          selection
-          defaultValue={defaultOption?.value}
-          options={sortOptions}
-          onChange={handleSortChange}
-        />
+          <StyledDropdown
+            fluid
+            selection
+            defaultValue={defaultOption?.value}
+            options={sortOptions}
+            onChange={handleSortChange}
+          />
           <ExcelDownload>
             <button onClick={handleDownloadExcel}>엑셀 다운로드</button>
           </ExcelDownload>
@@ -130,14 +139,14 @@ const Settlemented = () => {
             data={currentData}
             pageStartNumber={calculatePageStartNumber(currentPage)}
           />
-          <SettlementsPagination
-            currentPage={currentPage}
-            totalPages={totalPages}
-            onPageChange={handlePageChange}
-            totalItems={totalItems}
-          />
+        <SettlementsPagination
+          currentPage={currentPage}
+          totalPages={totalPages}
+          onPageChange={handlePageChange}
+          totalItems={totalItems}
+        />
       </DataLow>
-    </Container>
+  </Container>
   );
 }
 
@@ -147,7 +156,7 @@ const Container = styled.nav`
   margin-right: 43px;
   margin-left: 43px;
 
-  @media (max-width: 900px) {
+  ${theme.response.tablet} {
     margin-left: 20px;
     margin-right: 20px;
   }
@@ -193,7 +202,7 @@ const OptionContainer = styled.div`
 `;
 
 const StyledDropdown = styled(Dropdown)`
-  @media (max-width: 900px) {
+  ${theme.response.tablet} {
     border: none;
   }
 
@@ -204,36 +213,44 @@ const StyledDropdown = styled(Dropdown)`
     font-color: white !important;
     background-color: rgba(255, 255, 255, 0.1);
 
-    @media (max-width: 900px) {
-    }
-
     @media (max-width: 498px) {
       max-width: 160px;
     }
 
     .text {
-      color: white;
-      font-size: 11px;
       max-height: 30px;
+
+      font-size: 11px;
+      color: black;
     }
+
+    & > .text {
+      color: white !important;
+    }
+
     .icon {
       color: white;
     }
+
     .menu .item.selected {
       background-color: rgba(255, 255, 255, 0.1);
       color: #fff;
     }
+
     .menu {
-      font-size: 11px;
-      background-color: rgba(255, 255, 255, 0.1) !important;
-      border: 1px solid rgba(255, 255, 255, 0.2) !important;
-      border-radius: 0px 0px 5px 5px;
       margin-bottom: 2px;
 
+      border: 1px solid rgba(255, 255, 255, 0.2) !important;
+      border-radius: 0px 0px 5px 5px;
+
+      font-size: 11px;
+      // background-color: rgba(255, 255, 255, 0.1) !important;
+
       .item {
-        white-space: nowrap;
         border-bottom: none !important;
         border-top: none !important;
+
+        white-space: nowrap;
       }
     }
   }
@@ -243,8 +260,9 @@ const StyledDropdown = styled(Dropdown)`
   }
 
   &.ui.selection.active.dropdown {
-    color: white;
     border: 1px solid rgba(255, 255, 255, 0.2) !important;
+
+    color: white;
     box-shadow: 0 2px 3px 0 rgba(34, 36, 38, 0.15) !important;
   }
 
@@ -264,11 +282,12 @@ const ExcelDownload = styled.div`
   white-space: nowrap;
 
   button {
+    border: none;
+
     font-size: 12px;
     font-weight: bold;
     color: white;
 
-    border: none;
     text-decoration: underline;
     cursor: pointer;
     background: none;

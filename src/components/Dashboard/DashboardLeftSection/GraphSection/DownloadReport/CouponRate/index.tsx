@@ -3,6 +3,7 @@ import styled from '@emotion/styled';
 import reportIcon from '/images/ic-dashboard-couponRate.png';
 import { CouponRateResult } from '@/types/dashboard';
 import '@components/Dashboard/dashboardKeyframes.css';
+import theme from '@styles/theme';
 
 const CouponRate = ({ result }: CouponRateResult) => {
   return (
@@ -38,12 +39,23 @@ const Container = styled.div`
   box-shadow:
     0px 17.525px 21.907px 0px rgba(0, 0, 0, 0.05),
     -0.73px 0.73px 0.73px -1.46px rgba(255, 255, 255, 0.35) inset;
+
+  ${theme.response.tablet} {
+    height: 100%;
+
+    padding: 10px;
+    border-radius: 10px;
+  }
 `;
 
 const Icon = styled.img`
   position: absolute;
   top: 0;
   right: 20px;
+
+  ${theme.response.tablet} {
+    width: 80px;
+  }
 `;
 
 const Title = styled.div`
@@ -52,6 +64,10 @@ const Title = styled.div`
   color: #202325;
   font-size: 17px;
   font-weight: 700;
+
+  ${theme.response.tablet} {
+    font-size: 12px;
+  }
 `;
 
 const Description = styled.p`
@@ -59,6 +75,10 @@ const Description = styled.p`
   font-size: 13px;
   font-weight: 700;
   line-height: 1.4;
+
+  ${theme.response.tablet} {
+    font-size: 10px;
+  }
 `;
 
 const ResultContainer = styled.div`
@@ -79,4 +99,12 @@ const ResultContainer = styled.div`
   font-weight: 700;
 
   animation: fadeUp 0.5s;
+
+  ${theme.response.tablet} {
+    margin: 10px 0px;
+
+    font-size: 12px;
+
+    white-space: nowrap;
+  }
 `;

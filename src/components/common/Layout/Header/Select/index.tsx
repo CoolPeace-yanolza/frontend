@@ -68,6 +68,8 @@ const StyledDropdown = styled(Dropdown)`
   ${theme.response.tablet} {
     &.ui.dropdown {
       min-width: 180px;
+
+      margin-right: 15px;
       padding: 5px 15px;
 
       font-size: 12px;

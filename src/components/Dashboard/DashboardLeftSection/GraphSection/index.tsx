@@ -3,6 +3,7 @@ import React, { Suspense } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
 import { useQueryErrorResetBoundary } from '@tanstack/react-query';
 
+import theme from '@styles/theme';
 import { DashboardHeader } from '@components/common';
 const GraphContainer = React.lazy(() => import('./GraphContainer'));
 import GraphContainerErrorFallback from './GraphContainer/index.error';
@@ -56,6 +57,10 @@ const Container = styled.div`
   flex: 6;
 
   background-color: white;
+
+  ${theme.response.tablet} {
+    padding: 10px;
+  }
 `;
 
 const InnerContainer = styled.div`
@@ -65,15 +70,28 @@ const InnerContainer = styled.div`
   display: flex;
   justify-content: space-between;
   gap: 12px;
+
+  ${theme.response.tablet} {
+    flex-direction: column;
+    gap: 20px;
+  }
 `;
 
 const LeftSection = styled.div`
   height: 98%;
 
   flex: 1;
+
+  ${theme.response.tablet} {
+    width: 100%;
+  }
 `;
 
 const RightSection = styled.div`
   width: 350px;
   height: 100%;
+
+  ${theme.response.tablet} {
+    width: 100%;
+  }
 `;

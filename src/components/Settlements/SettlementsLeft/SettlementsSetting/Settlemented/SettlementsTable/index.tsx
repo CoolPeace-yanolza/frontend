@@ -1,28 +1,30 @@
 import styled from '@emotion/styled';
 
-import { SettlementItem, SettlementsTableProps } from '@/types/settlements';
+import { SettlementedItem, SettlementsTableProps } from '@/types/settlements';
 import settlementsFrame from '@assets/icons/settlements-data-frame.svg'; 
+import theme from '@styles/theme';
+import keyToLabelMap from 'src/constants/lib/SETTLEMENTS_TABLE_KEY';
 
 const SettlementsTable = ({ data, pageStartNumber }: SettlementsTableProps) => {
   
-  const keys: (keyof SettlementItem)[] = [
+  const keys: (keyof SettlementedItem)[] = [
     'NO',
-    '쿠폰번호',
-    '관리 쿠폰명',
-    '사용 건수',
-    '쿠폰 할인 금액',
-    '쿠폰 취소 금액',
-    '정산 금액',
-    '쿠폰 적용일',
-    '정산 완료일'
+    'coupon_number',
+    'coupon_name',
+    'coupon_count',
+    'discount_price',
+    'cancel_price',
+    'sum_price',
+    'coupon_use_date',
+    'complete_at'
   ];
-
+  
   if (!data || data.length === 0) {
     return (
       <Container>
         <Header>
           {keys.map((key, index) => (
-            <KeyElement key={index}>{key}</KeyElement>
+            <KeyElement key={index}>{keyToLabelMap[key]}</KeyElement>
           ))}
         </Header>
         <FrameContainer>
@@ -38,7 +40,7 @@ const SettlementsTable = ({ data, pageStartNumber }: SettlementsTableProps) => {
     <Container>
       <Header>
         {keys.map((key, index) => (
-          <KeyElement key={index}>{key}</KeyElement>
+          <KeyElement key={index}>{keyToLabelMap[key]}</KeyElement>
         ))}
       </Header>
       <FrameContainer>
@@ -48,8 +50,18 @@ const SettlementsTable = ({ data, pageStartNumber }: SettlementsTableProps) => {
               {keys.map((key) => (
                  <DataElement key={key}>
                   <MobileDataElement>{key}</MobileDataElement>
-                  <MobileData>{key === 'NO' ? pageStartNumber - index : row[key]}</MobileData>
-                  <WebData>{key === 'NO' ? pageStartNumber - index : row[key]}</WebData>
+                  <MobileData>
+                    {key === 'NO' ? pageStartNumber - index : null}
+                    {key === 'coupon_count' ? `${row[key].toLocaleString()}건` : null}
+                    {(key === 'discount_price' || key === 'cancel_price' || key === 'sum_price') ? `${row[key].toLocaleString()}원` : null}
+                    {(key !== 'NO' && key !== 'coupon_count' && key !== 'discount_price' && key !== 'cancel_price' && key !== 'sum_price') ? row[key] : null}
+                  </MobileData>
+                  <WebData>
+                    {key === 'NO' && pageStartNumber - index}
+                    {key === 'coupon_count' && `${row[key].toLocaleString()}건`}
+                    {(key === 'discount_price' || key === 'cancel_price' || key === 'sum_price') && `${row[key].toLocaleString()}원`}
+                    {(key !== 'NO' && key !== 'coupon_count' && key !== 'discount_price' && key !== 'cancel_price' && key !== 'sum_price') && row[key]}
+                  </WebData>
                </DataElement>
               ))}
             </Row>
@@ -69,7 +81,7 @@ const Container = styled.div`
   flex-direction: column;
   
 
-  @media (max-width: 900px) {
+  ${theme.response.tablet} {
     overflow-x: hidden;
   }
 `;
@@ -84,7 +96,7 @@ const Header = styled.div`
   border-radius: 10px;
   background-color: rgba(255, 255, 255, 0.05);
 
-  @media (max-width: 900px) {
+  ${theme.response.tablet} {
     display: none;
   }
   
@@ -119,7 +131,7 @@ const Frame = styled.div<{ hasData?: boolean }>`
 
   background: url(${settlementsFrame});
 
-  @media (max-width: 900px) {
+  ${theme.response.tablet} {
     background: none;
     background-color: white;
     height: 100%;
@@ -134,7 +146,7 @@ const NoDataText = styled.div`
   left: 50%;
   transform: translate(-50%, -50%);
 
-  @media (max-width: 900px) {
+  ${theme.response.tablet} {
     margin: 10px 0px;
 
     position: static; 
@@ -157,7 +169,7 @@ const DataElement = styled.div`
   white-space: nowrap;
   text-overflow: ellipsis;
 
-  @media (max-width: 900px) {
+  ${theme.response.tablet} {
     padding: 5px 0px;
 
     width: 100%;
@@ -198,9 +210,9 @@ const MobileData = styled.span`
 `;
 
 const WebData = styled.span`
-@media (max-width: 900px) {
-  display: none;
-}
+  ${theme.response.tablet} {
+    display: none;
+  }
 `;
 
 const Row = styled.div<{ isLast: boolean }>`
@@ -213,7 +225,7 @@ const Row = styled.div<{ isLast: boolean }>`
     border-bottom: none;
   }
 
-  @media (max-width: 900px) {
+  ${theme.response.tablet} {
     padding: 20px 0px;
 
     display: flex;

@@ -31,6 +31,7 @@
     "recoil-persist": "^5.1.0",
     "semantic-ui-css": "^2.5.0",
     "semantic-ui-react": "^2.1.5",
+    "styled-components": "^6.1.8",
     "xlsx": "^0.18.5"
   },
   "devDependencies": {

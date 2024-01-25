@@ -41,7 +41,7 @@ const PopupContainer = styled.div<{ isOpen: boolean }>`
   background-color: white;
   box-shadow: 0px 2px 64px rgba(0, 0, 0, 0.1);
 
-  z-index: 999;
+  z-index: 90;
 `;
 
 const PopupHeader = styled.div`

@@ -1,5 +1,4 @@
 import { useLocation, useNavigate } from 'react-router-dom';
-import { AxiosError } from 'axios';
 import styled from '@emotion/styled';
 import {
   FormProvider,
@@ -8,7 +7,7 @@ import {
   FieldValues
 } from 'react-hook-form';
 
-import { InputValidation } from '@/types/login';
+import { InputValidation, LoginFormProps } from '@/types/login';
 import {
   AuthButton,
   AuthInputNormal,
@@ -18,13 +17,11 @@ import { LoginData } from '@/types/auth';
 import { postLogin } from 'src/api';
 import { setCookies } from '@utils/lib/cookies';
 
-const LoginForm = () => {
+const LoginForm = ({ handleModalOpen }: LoginFormProps) => {
   const navigate = useNavigate();
   const { state } = useLocation();
 
-  const methods = useForm({
-    mode: 'onBlur'
-  });
+  const methods = useForm({ mode: 'onBlur' });
   const {
     formState: { errors, isValid },
     handleSubmit
@@ -41,25 +38,30 @@ const LoginForm = () => {
       email: data.login_id,
       password: data.login_password
     };
-    try {
-      const response = await postLogin(formData);
-      setCookies('userName', response.name, response.expires_in);
-      setCookies('userEmail', response.email, response.expires_in);
-      setCookies('accessToken', response.access_token, response.expires_in);
-      setCookies('refreshToken', response.refresh_token, response.expires_in);
+
+    const response = await postLogin(formData);
+
+    if (response?.status === 200) {
+      setCookies('userName', response.data.name, response.data.expires_in);
+      setCookies('userEmail', response.data.email, response.data.expires_in);
+      setCookies(
+        'accessToken',
+        response.data.access_token,
+        response.data.expires_in
+      );
+      setCookies(
+        'refreshToken',
+        response.data.refresh_token,
+        response.data.expires_in
+      );
 
       if (state) {
-        navigate(state);
+        navigate(state.from);
       } else {
         navigate('/');
       }
-    } catch (error) {
-      if (error instanceof AxiosError) {
-        console.log(error);
-        // TODO : 에러코드에 따라 모달 표시 예정
-        // error.response?.data.code;
-        // error.response?.data.message;
-      }
+    } else if (response?.status === 404) {
+      handleModalOpen(response?.data.message);
     }
   };
 
