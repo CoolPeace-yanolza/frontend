@@ -44,15 +44,6 @@ const StepperController = ({
           Number(input.discountFlatRate) === 0
         ) {
           setIsValid(prev => ({ ...prev, isDiscountFlatRateValid: false }));
-        } else if (input.hasLimit) {
-          if (
-            input.maximumDiscount === '' ||
-            Number(input.maximumDiscount) === 0
-          ) {
-            setIsValid(prev => ({ ...prev, isMaximumDiscountValid: false }));
-          } else if (Number(input.maximumDiscount) % 1000) {
-            setIsValid(prev => ({ ...prev, isThousands: false }));
-          }
         }
       }
     }

@@ -45,7 +45,6 @@ const FirstStep = () => {
       isDiscountTypeValid: true,
       isDiscountFlatValid: true,
       isDiscountFlatRateValid: true,
-      isMaximumDiscountValid: true,
       isThousands: true
     }));
   };
@@ -74,7 +73,6 @@ const FirstStep = () => {
     setIsValid(prev => ({
       ...prev,
       isDiscountFlatRateValid: true,
-      isMaximumDiscountValid: true,
       isThousands: true
     }));
   };
@@ -87,7 +85,6 @@ const FirstStep = () => {
     setIsValid(prev => ({
       ...prev,
       isDiscountFlatRateValid: true,
-      isMaximumDiscountValid: true,
       isThousands: true
     }));
   };
@@ -98,9 +95,7 @@ const FirstStep = () => {
     setInput({ ...input, maximumDiscount: e.target.value });
     setIsValid(prev => ({
       ...prev,
-      isDiscountFlatRateValid: true,
-      isMaximumDiscountValid: true,
-      isThousands: true
+      isDiscountFlatRateValid: true
     }));
   };
 
@@ -218,9 +213,7 @@ const FirstStep = () => {
         {!isValid.isDiscountTypeValid && (
           <ErrorMessage>쿠폰 할인 설정은 필수입니다.</ErrorMessage>
         )}
-        {(!isValid.isDiscountFlatValid ||
-          !isValid.isDiscountFlatRateValid ||
-          !isValid.isMaximumDiscountValid) && (
+        {(!isValid.isDiscountFlatValid || !isValid.isDiscountFlatRateValid) && (
           <ErrorMessage>숫자로 입력해주세요.</ErrorMessage>
         )}
         {!isValid.isThousands && (

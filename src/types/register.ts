@@ -228,7 +228,6 @@ export type registerValidAtom = {
   isDiscountFlatValid: boolean;
   isDiscountFlatRateValid: boolean;
   isThousands: boolean;
-  isMaximumDiscountValid: boolean;
   isRoomTypeValid: boolean;
   isAllRoomValid: boolean;
   isMinimumPriceValid: boolean;
