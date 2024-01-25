@@ -5,9 +5,9 @@ import { Suspense } from 'react';
 
 import SyncIcon from '@assets/icons/sync-outline.svg';
 import theme from '@styles/theme';
-import SettlementsUpdate from './SettlementsUpdate';
-import Loading from './SettlementsUpdate/index.loading';
-import ErrorFallback from './SettlementsUpdate/index.error';
+import SettlementsExpectedUpdate from './SettlementsExpectedUpdate';
+import Loading from './SettlementsExpectedUpdate/index.loading';
+import ErrorFallback from './SettlementsExpectedUpdate/index.error';
 
 const SettlementsExpected = () => {
 
@@ -60,7 +60,7 @@ const SettlementsExpected = () => {
               fallbackRender={ErrorFallback}
             >
           <Suspense fallback={<Loading />}>
-          <SettlementsUpdate />
+          <SettlementsExpectedUpdate />
           </Suspense>
           </ErrorBoundary>
         </UpdatedContainer>

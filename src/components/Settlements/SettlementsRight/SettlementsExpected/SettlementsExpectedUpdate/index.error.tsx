@@ -34,6 +34,8 @@ const Container = styled.div`
   border: 1px solid white;
   border-radius: 5px;
 
+  gap: 10px;
+
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -57,22 +59,30 @@ const ErrorIcon = styled.img`
   height: 35px;
 
   ${theme.response.tablet} {
-    width: 40px;
-    height: 40px;
+    width: 30px;
+    height: 30px;
   }
+
+  @media (max-width: 592px) {
+    width: 25px;
+    height: 25px;
+  } 
 `;
 
 const ErrorWord = styled.span`
   font-size: 14px;
   font-weight: 500;
 
-  ${theme.response.tablet} {
-    font-size: 13px;
+  @media (max-width: 592px) {
+    font-size: 10px;
+  }
+
+  @media (max-width: 526px) {
+    font-size: 8px;
   }
 `;
 
 const ReLoadButton = styled.button`
-  margin-top: 15px;
   margin-left: 3px;
   border: none;
 
@@ -81,7 +91,7 @@ const ReLoadButton = styled.button`
   align-items: center;
 
   background-color: transparent;
-  font-size: 12px;
+  font-size: 10px;
   text-align: center;
 
   transition: all 0.5s;
@@ -90,10 +100,12 @@ const ReLoadButton = styled.button`
     color: gray;
   }
 
-  ${theme.response.tablet} {
-    margin: 0;
+  @media (max-width: 592px) {
+    font-size: 8px;
+  }
 
-    font-size: 10px;
+  @media (max-width: 526px) {
+    font-size: 6px;
   }
 `;
 
@@ -101,10 +113,15 @@ const ReloadIcon = styled.img`
   width: 20px;
   height: 20px;
 
-  margin-right: 10px;
+  margin-right: 3px;
 
   ${theme.response.tablet} {
     width: 15px;
     height: 15px;
+  }
+
+  @media (max-width: 592px) {
+    width: 22px;
+    height: 12px;
   }
 `;
