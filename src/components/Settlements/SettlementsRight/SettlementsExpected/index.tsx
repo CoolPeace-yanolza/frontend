@@ -1,11 +1,11 @@
 import styled from '@emotion/styled';
 import { useRecoilValue } from 'recoil';
+import { useEffect, useState } from 'react';
 
 import headerAccommodationState from '@recoil/atoms/headerAccommodationState';
 import SyncIcon from '@assets/icons/sync-outline.svg';
 import theme from '@styles/theme';
 import getSettlemented from 'src/api/lib/getSettlemented';
-import { useEffect, useState } from 'react';
 
 const SettlementsExpected = () => {
 
@@ -30,7 +30,6 @@ const SettlementsExpected = () => {
   const fetchSettlementSummary = async () => {
     const summary = await getSettlemented(accommodation.id);
     setSummary(summary);
-    console.log('Settlement summary:', summary);
   };
 
   useEffect(() => {
