@@ -5,14 +5,14 @@ import theme from '@styles/theme';
 import errorIcon from '@assets/icons/ic-error.svg';
 import reloadIcon from '@assets/icons/ic-reload.svg';
 
-const SettlementsExpectedErrorFallback = ({ resetErrorBoundary }: FallbackProps) => {
+const ErrorFallback = ({ resetErrorBoundary }: FallbackProps) => {
   return (
     <Container>
       <ErrorIcon
         src={errorIcon}
         alt="에러 발생"
       />
-      <ErrorWord>정산 내역을 불러올 수 없습니다.</ErrorWord>
+      <ErrorWord>예상 정산 내역을 불러올 수 없습니다.</ErrorWord>
       <ReLoadButton onClick={resetErrorBoundary}>
         <ReloadIcon
           src={reloadIcon}
@@ -24,31 +24,27 @@ const SettlementsExpectedErrorFallback = ({ resetErrorBoundary }: FallbackProps)
   );
 };
 
-export default SettlementsExpectedErrorFallback;
+export default ErrorFallback;
 
 const Container = styled.div`
   width: 100%;
-  height: 580px;
+  height: 155.67px;
 
-  margin-left: 10px;
-  padding: 30px 15px;
-  border-radius: 20px;
+  margin-top: 20px;
+  border: 1px solid white;
+  border-radius: 5px;
 
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 20px;
 
   background-color: white;
 
-  ${theme.response.tablet} {
-    width: 90%;
-    max-height: 250px;
 
-    margin: 20px 0;
+  ${theme.response.tablet} {
     padding: 15px 15px;
-    border-radius: 10px;
+    border-radius: 5px;
 
     gap: 15px;
 
