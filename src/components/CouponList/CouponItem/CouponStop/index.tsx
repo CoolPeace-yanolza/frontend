@@ -43,7 +43,7 @@ const CouponStop = ({ couponInfo }: CouponListProps) => {
           {couponInfo.title} 쿠폰이 노출되었습니다.
           <span onClick={retryToggleUpdate}>실행 취소</span>
         </div>,
-        5000
+        2000
       );
     } catch (error) {
       console.log(error);
@@ -58,7 +58,7 @@ const CouponStop = ({ couponInfo }: CouponListProps) => {
     });
     showToast(
       <div>{couponInfo.title} 쿠폰의 노출이 중단되었습니다.</div>,
-      5000
+      2000
     );
   };
 
@@ -143,7 +143,11 @@ const CouponStop = ({ couponInfo }: CouponListProps) => {
                     <RoomListItem>
                       <ul>
                         {couponInfo.register_room_numbers.map((room, index) => (
-                          <li key={index}>{room}</li>
+                          <li key={index}>
+                            {room.length > 10
+                              ? `${room.substring(0, 10)}...`
+                              : room}
+                          </li>
                         ))}
                       </ul>
                     </RoomListItem>

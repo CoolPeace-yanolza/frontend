@@ -18,38 +18,45 @@ const CouponExpose = ({ couponInfo }: CouponListProps) => {
   const roomListRef = useRef<HTMLDivElement>(null);
   const { mutateAsync } = useToggleChange();
   const { showToast } = useToast();
-  const [isNewToggle, setIsNewToggle] = useState(true);
+
+  const handleRoomList = () => {
+    setIsShowRoomList(!isShowRoomList);
+  };
+
+  useOutsideClick(roomListRef, () => setIsShowRoomList(false));
 
   const handleToggle = () => {
     setIsToggle(!isToggle);
-    toggleUpdate(isNewToggle);
+    toggleUpdate();
   };
 
-  const toggleUpdate = async (isNewToggle: boolean) => {
-    const newStatus = isNewToggle ? '노출 OFF' : '노출 ON';
-    const message = isNewToggle
-      ? `${couponInfo.title} 쿠폰의 노출이 중단되었습니다.`
-      : `${couponInfo.title} 쿠폰이 노출되었습니다.`;
-
+  const toggleUpdate = async () => {
     try {
       await mutateAsync({
         coupon_number: couponInfo.coupon_number,
-        coupon_status: newStatus
+        coupon_status: '노출 OFF'
       });
+      console.log(couponInfo.coupon_number);
 
-      setIsNewToggle(!isNewToggle);
       showToast(
         <div>
-          {message}
-          {isNewToggle && (
-            <span onClick={() => toggleUpdate(!isNewToggle)}>실행 취소</span>
-          )}
+          {couponInfo.title} 쿠폰의 노출이 중단되었습니다.
+          <span onClick={retryToggleUpdate}>실행 취소</span>
         </div>,
         2000
       );
     } catch (error) {
       console.log(error);
     }
+  };
+
+  const retryToggleUpdate = () => {
+    setIsToggle(!isToggle);
+    mutateAsync({
+      coupon_number: couponInfo.coupon_number,
+      coupon_status: '노출 ON'
+    });
+    showToast(<div>{couponInfo.title} 쿠폰이 노출되었습니다.</div>, 2000);
   };
 
   // const retryToggleUpdate = async () => {
@@ -65,12 +72,6 @@ const CouponExpose = ({ couponInfo }: CouponListProps) => {
   //     console.log(error);
   //   }
   // };
-
-  const handleRoomList = () => {
-    setIsShowRoomList(!isShowRoomList);
-  };
-
-  useOutsideClick(roomListRef, () => setIsShowRoomList(false));
 
   return (
     <CouponContainer $isToggle={isToggle}>
@@ -153,7 +154,11 @@ const CouponExpose = ({ couponInfo }: CouponListProps) => {
                     <RoomListItem>
                       <ul>
                         {couponInfo.register_room_numbers.map((room, index) => (
-                          <li key={index}>{room}</li>
+                          <li key={index}>
+                            {room.length > 10
+                              ? `${room.substring(0, 10)}...`
+                              : room}
+                          </li>
                         ))}
                       </ul>
                     </RoomListItem>

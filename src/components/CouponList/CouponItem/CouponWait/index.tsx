@@ -123,7 +123,11 @@ const CouponWait = ({ couponInfo }: CouponListProps) => {
                     <RoomListItem>
                       <ul>
                         {couponInfo.register_room_numbers.map((room, index) => (
-                          <li key={index}>{room}</li>
+                          <li key={index}>
+                            {room.length > 10
+                              ? `${room.substring(0, 10)}...`
+                              : room}
+                          </li>
                         ))}
                       </ul>
                     </RoomListItem>

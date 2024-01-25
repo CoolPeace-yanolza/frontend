@@ -52,6 +52,7 @@ const ToastContainer = styled.div`
   bottom: 50px;
   left: 50%;
   transform: translateX(-50%);
+  white-space: nowrap;
 
   padding: 15px 31px;
   border-radius: 5px;
@@ -67,5 +68,13 @@ const ToastContainer = styled.div`
     font-size: 15px;
     text-decoration-line: underline;
     cursor: pointer;
+  }
+
+  @media (max-width: 900px) {
+    font-size: 10px;
+    span {
+      margin-left: 20px;
+      font-size: 10px;
+    }
   }
 `;
