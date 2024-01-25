@@ -43,10 +43,24 @@ const SettlementsSetting = () => {
   };
 
   const handleButtonClick = () => {
+    const currentDate = new Date();
+    const currentMonth = currentDate.getMonth();
+    const currentYear = currentDate.getFullYear();
+  
     if (startDate && endDate) {
-        setSettlementsDate({ startDate, endDate });
+      if (
+        (startDate.getFullYear() === currentYear && startDate.getMonth() === currentMonth) ||
+        endDate.getFullYear() > currentYear || 
+        (endDate.getFullYear() === currentYear && endDate.getMonth() >= currentMonth) ||
+        (startDate > endDate)
+      ) {
+        alert("조회할 기간을 다시 선택해주세요.");
+        return;
+      }
+      setSettlementsDate({ startDate, endDate });
     }
   };
+  
 
   const DatePickerCustom = createGlobalStyle`
   .react-datepicker {
