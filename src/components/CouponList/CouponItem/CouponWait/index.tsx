@@ -9,7 +9,8 @@ import deleteIcon from '@assets/icons/ic-couponlist-delete.svg';
 import { useCouponDelete, useOutsideClick } from '@hooks/index';
 import { CouponListProps } from '@/types/couponList';
 import Modal from '@components/modal';
-import CouponCondition from '@utils/lib/couponCondition';
+import { couponCondition } from '@utils/lib/couponCondition';
+import couponRoomType from '@utils/lib/couponRoomType';
 
 const CouponWait = ({ couponInfo }: CouponListProps) => {
   const [isShowRoomList, setIsShowRoomList] = useState(false);
@@ -90,9 +91,9 @@ const CouponWait = ({ couponInfo }: CouponListProps) => {
           <ContentWrap>
             <ContentTitle>일정</ContentTitle>
             <ContentValue>
-              {couponInfo.coupon_room_type},
+              {couponRoomType(couponInfo.coupon_room_types).join(', ')},
               <span>
-                {CouponCondition(couponInfo.coupon_use_condition_days)}
+                {couponCondition(couponInfo.coupon_use_condition_days)}
               </span>
             </ContentValue>
           </ContentWrap>
@@ -122,7 +123,11 @@ const CouponWait = ({ couponInfo }: CouponListProps) => {
                     <RoomListItem>
                       <ul>
                         {couponInfo.register_room_numbers.map((room, index) => (
-                          <li key={index}>{room}</li>
+                          <li key={index}>
+                            {room.length > 10
+                              ? `${room.substring(0, 10)}...`
+                              : room}
+                          </li>
                         ))}
                       </ul>
                     </RoomListItem>
@@ -260,7 +265,7 @@ const CountNumber = styled.div`
 `;
 
 const ContentWrap = styled.div`
-  margin: 8px;
+  margin: 8px 4px;
 
   display: flex;
   align-items: center;
