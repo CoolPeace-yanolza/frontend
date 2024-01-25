@@ -1,7 +1,6 @@
 import styled from '@emotion/styled';
 
 import logo from '@assets/icons/ic-logo.svg';
-import theme from '@styles/theme';
 
 const LoginTitle = () => {
   return (
