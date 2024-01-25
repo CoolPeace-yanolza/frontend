@@ -55,10 +55,21 @@ const Settlemented = () => {
     }
   };
 
+  const getCurrentEndDate = () => {
+    const today = new Date();
+    if (today.getDate() <= 10) {
+      return new Date(today.getFullYear(), today.getMonth() - 1, 31).toISOString().split('T')[0];
+    } else if (today.getDate() > 10 && today.getDate() <= 31) {
+      return new Date(today.getFullYear(), today.getMonth() - 1, 31).toISOString().split('T')[0];
+    } else {
+      return today.toISOString().split('T')[0];
+    }
+  };
+
   const { data: settlements } = useGetSettlements(
     accommodation.id,
     startDate ? startDate.toISOString().split('T')[0] : '2000-01-01',
-    endDate ? endDate.toISOString().split('T')[0] : new Date().toISOString().split('T')[0],
+    endDate ? endDate.toISOString().split('T')[0] : getCurrentEndDate(),
     orderBy,
     currentPage - 1,
     itemsPerPage
@@ -93,7 +104,7 @@ const Settlemented = () => {
       const response = await getSettlements(
         accommodation.id,
         startDate ? startDate.toISOString().split('T')[0] : '2000-01-01',
-        endDate ? endDate.toISOString().split('T')[0] : new Date().toISOString().split('T')[0],
+        endDate ? endDate.toISOString().split('T')[0] : getCurrentEndDate(),
         orderBy,
         0,
         totalItems
