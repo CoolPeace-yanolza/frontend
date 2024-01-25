@@ -30,10 +30,6 @@ const Calendar = () => {
 
     setInput({ ...input, startDate: formattedDate });
     setPreview({ ...preview, startDate: formattedDate + ' ~ ' });
-    setIsValid(prev => ({
-      ...prev,
-      isDateValid: true
-    }));
   };
 
   const handleEndDateChange = (date: Date) => {
@@ -45,9 +41,14 @@ const Calendar = () => {
       startDate: preview.startDate === '노출 기간' ? '' : preview.startDate,
       endDate: formattedDate
     });
+  };
+
+  const handleCustomInputClick = (onClick: () => void) => {
+    onClick();
     setIsValid(prev => ({
       ...prev,
-      isDateValid: true
+      isDateValid: true,
+      endDateAfterStartDate: true
     }));
   };
 
@@ -57,7 +58,7 @@ const Calendar = () => {
       ref: ForwardedRef<HTMLButtonElement>
     ) => (
       <CustomInput
-        onClick={onClick}
+        onClick={() => handleCustomInputClick(onClick)}
         ref={ref}
       >
         <SelectedDate>{value}</SelectedDate>
@@ -75,7 +76,7 @@ const Calendar = () => {
       ref: ForwardedRef<HTMLButtonElement>
     ) => (
       <CustomInput
-        onClick={onClick}
+        onClick={() => handleCustomInputClick(onClick)}
         ref={ref}
       >
         <SelectedDate>{value}</SelectedDate>

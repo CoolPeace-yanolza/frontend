@@ -26,6 +26,11 @@ const FourthStep = () => {
       {!isValid.isDateValid && (
         <ErrorMessage>쿠폰 노출 기간 설정은 필수입니다.</ErrorMessage>
       )}
+      {!isValid.endDateAfterStartDate && (
+        <ErrorMessage>
+          노출 종료일은 노출 시작일 이후 날짜여야 합니다.
+        </ErrorMessage>
+      )}
     </InputContainer>
   );
 };

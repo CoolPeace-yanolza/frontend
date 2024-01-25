@@ -233,6 +233,7 @@ export type registerValidAtom = {
   isAllRoomValid: boolean;
   isMinimumPriceValid: boolean;
   isDateValid: boolean;
+  endDateAfterStartDate: boolean;
 };
 
 // previewState

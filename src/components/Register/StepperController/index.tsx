@@ -65,8 +65,11 @@ const StepperController = ({
     }
 
     if (currentStep === 3) {
-      (!input.startDate || !input.endDate || input.startDate > input.endDate) &&
+      if (!input.startDate || !input.endDate) {
         setIsValid(prev => ({ ...prev, isDateValid: false }));
+      } else if (input.startDate > input.endDate) {
+        setIsValid(prev => ({ ...prev, endDateAfterStartDate: false }));
+      }
     }
   };
 
