@@ -296,7 +296,7 @@ const CountNumber = styled.div`
 `;
 
 const ContentWrap = styled.div`
-  margin: 8px;
+  margin: 8px 4px;
 
   display: flex;
   align-items: center;

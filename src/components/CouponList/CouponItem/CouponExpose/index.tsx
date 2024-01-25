@@ -11,6 +11,7 @@ import { useOutsideClick, useToggleChange } from '@hooks/index';
 import couponCondition from '@utils/lib/couponCondition';
 import { useToast } from '@components/common/ToastContext';
 import couponRoomType from '@utils/lib/couponRoomType';
+import { debounce } from 'lodash';
 
 const CouponExpose = ({ couponInfo }: CouponListProps) => {
   const [isToggle, setIsToggle] = useState(true);
@@ -80,7 +81,7 @@ const CouponExpose = ({ couponInfo }: CouponListProps) => {
           <CouponTitle>{couponInfo.title}</CouponTitle>
           <ToggleWrap
             $isToggle={isToggle}
-            onClick={handleToggle}
+            onClick={() => debounce(() => handleToggle, 2000)}
           >
             {isToggle ? (
               <>
@@ -307,7 +308,7 @@ const CountNumber = styled.div`
 `;
 
 const ContentWrap = styled.div`
-  margin: 8px;
+  margin: 8px 4px;
 
   display: flex;
   align-items: center;
