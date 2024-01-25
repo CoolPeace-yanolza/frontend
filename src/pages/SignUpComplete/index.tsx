@@ -3,9 +3,11 @@ import styled from '@emotion/styled';
 import logo from '@assets/icons/ic-logo.svg';
 import firecracker from '@assets/icons/ic-signup-firecracker.svg';
 import { AuthButton } from '@components/Auth';
+import { useNavigate } from 'react-router-dom';
 
 const SignUpComplete = () => {
-  const moveToLogin = () => window.location.replace('/login');
+  const navigate = useNavigate();
+  const moveToLogin = () => navigate('/login', { replace: true });
 
   return (
     <WhiteBackground>
