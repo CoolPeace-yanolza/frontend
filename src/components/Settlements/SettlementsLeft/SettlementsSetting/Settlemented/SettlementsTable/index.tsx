@@ -51,22 +51,16 @@ const SettlementsTable = ({ data, pageStartNumber }: SettlementsTableProps) => {
                  <DataElement key={key}>
                   <MobileDataElement>{key}</MobileDataElement>
                   <MobileData>
-                  {key === 'NO' 
-                  ? pageStartNumber - index 
-                  : (key === 'coupon_count') 
-                    ? `${row[key].toLocaleString()}건` 
-                    : (key === 'discount_price' || key === 'cancel_price' || key === 'sum_price') 
-                      ? `${row[key].toLocaleString()}원` 
-                      : row[key]}
+                    {key === 'NO' ? pageStartNumber - index : null}
+                    {key === 'coupon_count' ? `${row[key].toLocaleString()}건` : null}
+                    {(key === 'discount_price' || key === 'cancel_price' || key === 'sum_price') ? `${row[key].toLocaleString()}원` : null}
+                    {(key !== 'NO' && key !== 'coupon_count' && key !== 'discount_price' && key !== 'cancel_price' && key !== 'sum_price') ? row[key] : null}
                   </MobileData>
                   <WebData>
-                  {key === 'NO' 
-                  ? pageStartNumber - index 
-                  : (key === 'coupon_count') 
-                    ? `${row[key].toLocaleString()}건` 
-                    : (key === 'discount_price' || key === 'cancel_price' || key === 'sum_price') 
-                      ? `${row[key].toLocaleString()}원` 
-                      : row[key]}
+                    {key === 'NO' && pageStartNumber - index}
+                    {key === 'coupon_count' && `${row[key].toLocaleString()}건`}
+                    {(key === 'discount_price' || key === 'cancel_price' || key === 'sum_price') && `${row[key].toLocaleString()}원`}
+                    {(key !== 'NO' && key !== 'coupon_count' && key !== 'discount_price' && key !== 'cancel_price' && key !== 'sum_price') && row[key]}
                   </WebData>
                </DataElement>
               ))}
