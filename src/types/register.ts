@@ -110,6 +110,7 @@ export type StepperProps = {
     isCompleted: boolean;
   }[];
   currentStep: number;
+  isFilled: boolean;
 };
 
 export type NumberStyleProps = {
@@ -123,11 +124,16 @@ export type LineStyleProps = {
 // StepperController
 export type StepperControllerProps = {
   currentStep: number;
+  isFilled: boolean;
   onButtonClick: React.Dispatch<React.SetStateAction<number>>;
 };
 
 export type PreviousButtonStyleProps = {
   $currentStep: number;
+};
+
+export type NextButtonStyleProps = {
+  $isFilled: boolean;
 };
 
 // StepTitle

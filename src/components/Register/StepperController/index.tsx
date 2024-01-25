@@ -4,12 +4,14 @@ import styled from '@emotion/styled';
 import theme from '@styles/theme';
 import {
   StepperControllerProps,
-  PreviousButtonStyleProps
+  PreviousButtonStyleProps,
+  NextButtonStyleProps
 } from '@/types/register';
 import { registerInputState, registerValidState } from '@recoil/index';
 
 const StepperController = ({
   currentStep,
+  isFilled,
   onButtonClick
 }: StepperControllerProps) => {
   const input = useRecoilValue(registerInputState);
@@ -22,10 +24,6 @@ const StepperController = ({
   };
 
   const handleNextButton = () => {
-    if (currentStep < 3) {
-      onButtonClick(prev => prev + 1);
-    }
-
     if (currentStep === 0) {
       !input.title && setIsValid(prev => ({ ...prev, isTitleValid: false }));
       !input.customerType &&
@@ -62,6 +60,18 @@ const StepperController = ({
         setIsValid(prev => ({ ...prev, endDateAfterStartDate: false }));
       }
     }
+
+    if (currentStep < 3) {
+      if (
+        currentStep === 0 &&
+        input.discountType === '정액 할인' &&
+        Number(input.discountFlat) % 1000
+      ) {
+        return;
+      } else if (currentStep === 2 || isFilled) {
+        onButtonClick(prev => prev + 1);
+      }
+    }
   };
 
   return (
@@ -72,7 +82,10 @@ const StepperController = ({
       >
         이전
       </PreviousButton>
-      <NextButton onClick={handleNextButton}>
+      <NextButton
+        $isFilled={currentStep === 2 ? true : isFilled}
+        onClick={handleNextButton}
+      >
         {currentStep === 3 ? '등록' : '다음'}
       </NextButton>
     </InnerControllerContainer>
@@ -109,7 +122,7 @@ const PreviousButton = styled.button<PreviousButtonStyleProps>`
   cursor: pointer;
 `;
 
-const NextButton = styled.button`
+const NextButton = styled.button<NextButtonStyleProps>`
   width: 167px;
   height: 39px;
 
@@ -125,7 +138,8 @@ const NextButton = styled.button`
   font-size: 15px;
   font-weight: 700;
 
-  background: #cdcfd0;
+  background: ${props =>
+    props.$isFilled ? `${theme.colors.hover}` : '#cdcfd0'};
 
   cursor: pointer;
 `;
