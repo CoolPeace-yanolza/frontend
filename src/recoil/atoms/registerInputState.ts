@@ -26,9 +26,7 @@ const registerInputState = atom<registerInputAtom>({
     whenToUse: '',
     day: '',
     startDate: '',
-    startDateObject: undefined,
-    endDate: '',
-    endDateObject: undefined
+    endDate: ''
   },
   effects_UNSTABLE: [persistAtom]
 });

@@ -216,9 +216,7 @@ export type registerInputAtom = {
   whenToUse?: string;
   day?: string;
   startDate: string;
-  startDateObject: Date | undefined;
   endDate: string;
-  endDateObject: Date | undefined;
 };
 
 // registerValidState

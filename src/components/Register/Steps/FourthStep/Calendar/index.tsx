@@ -26,7 +26,7 @@ const Calendar = () => {
   const handleStartDateChange = (date: Date) => {
     const formattedDate = format(date, 'yyyy.MM.dd');
 
-    setInput({ ...input, startDate: formattedDate, startDateObject: date });
+    setInput({ ...input, startDate: formattedDate });
     setPreview({ ...preview, startDate: formattedDate + ' ~ ' });
     setIsValid(prev => ({
       ...prev,
@@ -37,7 +37,7 @@ const Calendar = () => {
   const handleEndDateChange = (date: Date) => {
     const formattedDate = format(date, 'yyyy.MM.dd');
 
-    setInput({ ...input, endDate: formattedDate, endDateObject: date });
+    setInput({ ...input, endDate: formattedDate });
     setPreview({
       ...preview,
       startDate: preview.startDate === '노출 기간' ? '' : preview.startDate,
@@ -55,7 +55,6 @@ const Calendar = () => {
       ref: ForwardedRef<HTMLButtonElement>
     ) => (
       <CustomInput
-        className="example-custom-input"
         onClick={onClick}
         ref={ref}
       >
@@ -74,7 +73,6 @@ const Calendar = () => {
       ref: ForwardedRef<HTMLButtonElement>
     ) => (
       <CustomInput
-        className="example-custom-input"
         onClick={onClick}
         ref={ref}
       >
@@ -91,10 +89,10 @@ const Calendar = () => {
     <>
       <DatePicker
         dateFormat="yyyy.MM.dd"
-        selected={input.startDateObject}
+        selected={input.startDate ? new Date(input.startDate) : null}
         selectsStart
-        startDate={input.startDateObject}
-        endDate={input.endDateObject}
+        startDate={input.startDate ? new Date(input.startDate) : null}
+        endDate={input.endDate ? new Date(input.endDate) : null}
         minDate={tomorrow}
         onChange={handleStartDateChange}
         customInput={<StartDateInput onClick={() => {}} />}
@@ -102,11 +100,11 @@ const Calendar = () => {
       <Dash>-</Dash>
       <DatePicker
         dateFormat="yyyy.MM.dd"
-        selected={input.endDateObject}
+        selected={input.endDate ? new Date(input.endDate) : null}
         selectsEnd
-        startDate={input.startDateObject}
-        endDate={input.endDateObject}
-        minDate={tomorrow}
+        startDate={input.startDate ? new Date(input.startDate) : null}
+        endDate={input.endDate ? new Date(input.endDate) : null}
+        minDate={input.startDate ? new Date(input.startDate) : null}
         onChange={handleEndDateChange}
         customInput={<EndDateInput onClick={() => {}} />}
       />
