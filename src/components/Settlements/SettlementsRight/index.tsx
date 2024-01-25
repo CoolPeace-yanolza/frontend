@@ -93,7 +93,7 @@ const StyledSettlementsExpected = styled.div`
 const StyledSettlementsBefore = styled.div`
   position: relative;
 
-  z-index: 1;
+  z-index: 10;
 
   ${theme.response.tablet} {
     width: 50%;
