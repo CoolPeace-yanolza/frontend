@@ -57,7 +57,7 @@ const ToastContainer = styled.div`
   border-radius: 5px;
 
   background: #404446;
-  font-size: 15px;
+  font-size: 13px;
   color: ${theme.colors.white};
 
   span {

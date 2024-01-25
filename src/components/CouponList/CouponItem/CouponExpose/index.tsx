@@ -45,7 +45,7 @@ const CouponExpose = ({ couponInfo }: CouponListProps) => {
             <span onClick={() => toggleUpdate(!isNewToggle)}>실행 취소</span>
           )}
         </div>,
-        5000
+        2000
       );
     } catch (error) {
       console.log(error);

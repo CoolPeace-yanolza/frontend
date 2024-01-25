@@ -7,7 +7,7 @@ import deleteIcon from '@assets/icons/ic-couponlist-delete.svg';
 import { useCouponDelete, useOutsideClick } from '@hooks/index';
 import { CouponListProps } from '@/types/couponList';
 import Modal from '@components/modal';
-import CouponCondition, { couponCondition } from '@utils/lib/couponCondition';
+import { couponCondition } from '@utils/lib/couponCondition';
 import { useToast } from '@components/common/ToastContext';
 import couponRoomType from '@utils/lib/couponRoomType';
 
