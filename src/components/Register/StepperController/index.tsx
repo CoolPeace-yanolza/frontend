@@ -7,7 +7,11 @@ import {
   PreviousButtonStyleProps,
   NextButtonStyleProps
 } from '@/types/register';
-import { registerInputState, registerValidState } from '@recoil/index';
+import {
+  registerInputState,
+  registerValidState,
+  previewState
+} from '@recoil/index';
 
 const StepperController = ({
   currentStep,
@@ -16,6 +20,7 @@ const StepperController = ({
 }: StepperControllerProps) => {
   const input = useRecoilValue(registerInputState);
   const setIsValid = useSetRecoilState(registerValidState);
+  const setPreview = useSetRecoilState(previewState);
 
   const handlePreviousButton = () => {
     if (currentStep > 0) {
@@ -51,6 +56,13 @@ const StepperController = ({
         setIsValid(prev => ({ ...prev, isRoomTypeValid: false }));
       !input.toAllRooms &&
         setIsValid(prev => ({ ...prev, isToAllRoomsValid: false }));
+    }
+
+    if (currentStep === 2) {
+      !input.minimumPrice &&
+        setPreview(prev => ({ ...prev, minimumPrice: '' }));
+      (!input.whenToUse || (input.whenToUse === '하루만' && !input.day)) &&
+        setPreview(prev => ({ ...prev, day: '' }));
     }
 
     if (currentStep === 3) {
@@ -141,5 +153,5 @@ const NextButton = styled.button<NextButtonStyleProps>`
   background: ${props =>
     props.$isFilled ? `${theme.colors.hover}` : '#cdcfd0'};
 
-  cursor: pointer;
+  cursor: ${props => (props.$isFilled ? 'pointer' : 'default')};
 `;
