@@ -12,6 +12,7 @@ import { useGetSettlements } from 'src/hooks/queries/useGetSettlements';
 import { SettlementedItem } from '@/types/settlements';
 import { settlementsDateState } from '@recoil/atoms/settlemented';
 import headerAccommodationState from '@recoil/atoms/headerAccommodationState';
+import { getCurrentYearStartDate, getCurrentYearEndDate } from '@utils/index';
 import theme from '@styles/theme';
 
 const Settlemented = () => {
@@ -54,21 +55,6 @@ const Settlemented = () => {
         break;
     }
   };
-
-  const today = new Date();
-  const currentYear = today.getFullYear();
-  
-  const getCurrentYearStartDate = () => {
-    const defaultStartYear = new Date(currentYear - 1, today.getMonth(), 1);
-    defaultStartYear.setDate(defaultStartYear.getDate() + 1);
-    return new Date(defaultStartYear).toISOString().split('T')[0]; 
-  };
-
-  const getCurrentEndDate = () => {
-    const defaultEndYear = new Date(today.getFullYear(), today.getMonth(), 0)
-    defaultEndYear.setDate(defaultEndYear.getDate() + 1)
-    return new Date(defaultEndYear).toISOString().split('T')[0];
-  };
   
   let adjustedStartDate: string | null = null;
   if (startDate !== null) {
@@ -80,7 +66,7 @@ const Settlemented = () => {
   const { data: settlements } = useGetSettlements(
     accommodation.id,
     adjustedStartDate ? adjustedStartDate : getCurrentYearStartDate(),
-    endDate ? endDate.toISOString().split('T')[0] : getCurrentEndDate(),
+    endDate ? endDate.toISOString().split('T')[0] : getCurrentYearEndDate(),
     orderBy,
     currentPage - 1,
     itemsPerPage
@@ -114,7 +100,7 @@ const Settlemented = () => {
       const response = await getSettlements(
         accommodation.id,
         startDate ? startDate.toISOString().split('T')[0] : '2000-01-01',
-        endDate ? endDate.toISOString().split('T')[0] : getCurrentEndDate(),
+        endDate ? endDate.toISOString().split('T')[0] : getCurrentYearEndDate(),
         orderBy,
         0,
         totalItems
@@ -134,7 +120,6 @@ const Settlemented = () => {
       console.error('Error fetching all settlements data for download:', error);
     }
   };
-  
   
   useEffect(() => {
     setCurrentPage(1);

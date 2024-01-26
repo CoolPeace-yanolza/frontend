@@ -11,6 +11,7 @@ import { useQueryErrorResetBoundary } from '@tanstack/react-query';
 import { ErrorModal } from '@components/common';
 import { ERROR_MODAL_MESSAGE } from 'src/constants';
 import { settlementsDateState } from '@recoil/atoms/settlemented';
+import { getCurrentYearStartDate, getCurrentYearEndDate } from '@utils/index';
 import Settlemented from './Settlemented';
 import SettlementsHeader from './SettlementsHeader';
 import CalendarIcon from '@assets/icons/calendar-number-outline.svg';
@@ -22,8 +23,9 @@ const SettlementsSetting = () => {
 
   const { reset } = useQueryErrorResetBoundary();
 
-  const [startDate, setStartDate] = useState<Date | null>(null);
-  const [endDate, setEndDate] = useState<Date | null>(null);
+  const [startDate, setStartDate] = useState<Date | null>(new Date(getCurrentYearStartDate()));
+  const [endDate, setEndDate] = useState<Date | null>(new Date(getCurrentYearEndDate()));
+
   
   const [isModalOpen, setIsModalOpen] = useState(false);
   const handleModalClose = () => setIsModalOpen(false);
