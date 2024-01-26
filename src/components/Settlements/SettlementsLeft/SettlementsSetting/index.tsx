@@ -127,6 +127,7 @@ const SettlementsSetting = () => {
                 locale={ko}
                 calendarClassName="custom-header"  
             />
+            -
             <StyledDatePicker
                 selected={endDate}
                 onChange={handleEndDateChange}
@@ -203,7 +204,7 @@ const Calendar = styled.img`
 `;
 
 const StyledDatePicker = styled(DatePicker)`
-  margin-right: 10px;
+  margin: 6px;
   padding: 5px;
 
   width: 100px;
@@ -252,6 +253,8 @@ const StyledDatePickerContainer = styled.div`
 
   display: flex;
   align-items: center;
+
+  color: white;
 
   ${theme.response.tablet} {
     margin-left: auto;
