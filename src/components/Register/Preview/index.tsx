@@ -1,9 +1,15 @@
+import { useRecoilValue } from 'recoil';
 import styled from '@emotion/styled';
 
+import theme from '@styles/theme';
+import { DayStyleProps } from '@/types/register';
 import search from '@assets/icons/ic-register-search.svg';
 import side from '@assets/icons/ic-register-side.svg';
+import { previewState } from '@recoil/index';
 
 const Preview = () => {
+  const preview = useRecoilValue(previewState);
+
   return (
     <PreviewContainer>
       <Header>
@@ -17,6 +23,37 @@ const Preview = () => {
         <Subtitle>고객님들께 제공 될 쿠폰 이미지를 확인해보세요!</Subtitle>
       </Header>
       <Coupon>
+        <TopSection>
+          <Customer>{preview.customer}</Customer>
+          <Discount>{preview.discount}</Discount>
+          <MinimumPrice>{preview.minimumPrice}</MinimumPrice>
+        </TopSection>
+        <BottomSection>
+          <LeftSection>
+            <span>
+              {preview.roomType.length
+                ? preview.roomType.join(', ')
+                : '적용 유형'}
+            </span>
+            <span> / </span>
+            <span>
+              {(() => {
+                if (preview.toAllRooms === 'true') {
+                  return '모든 객실';
+                } else if (preview.toAllRooms === 'false') {
+                  return '선택 객실';
+                } else {
+                  return preview.toAllRooms;
+                }
+              })()}
+            </span>
+            <Day $hasValue={!!preview.day}>{preview.day}</Day>
+          </LeftSection>
+          <RightSection>
+            <span>{preview.startDate}</span>
+            <span>{preview.endDate}</span>
+          </RightSection>
+        </BottomSection>
         <SideImage
           src={side}
           alt="쿠폰 사이드 이미지"
@@ -90,11 +127,66 @@ const Coupon = styled.div`
   height: 189px;
 
   margin: 8% auto;
+  padding: 30px 20px;
   border-radius: 13px;
 
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  
   box-shadow: 0px 3px 3px 0px rgba(0, 0, 0, 0.25);
 
   overflow: hidden;
+`;
+
+const TopSection = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+`;
+
+const Customer = styled.div`
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-position: under;
+`;
+
+const Discount = styled.div`
+  margin-top: 4px;
+
+  color: ${theme.colors.pink500};
+  font-size: 25px;
+  font-weight: 800;
+`;
+
+const MinimumPrice = styled.div`
+  color: #9fa1a2;
+  font-size: 13px;
+`;
+
+const BottomSection = styled.div`
+  margin-right: 20px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+`;
+
+const LeftSection = styled.div`
+  font-size: 13px;
+`;
+
+const Day = styled.div<DayStyleProps>`
+  margin-top: 3px;
+
+  display: ${props => (props.$hasValue ? 'block' : 'none')};
+`;
+
+const RightSection = styled.div`
+  color: #ff3478;
+  font-size: 11px;
+  font-weight: 700;
 `;
 
 const SideImage = styled.img`

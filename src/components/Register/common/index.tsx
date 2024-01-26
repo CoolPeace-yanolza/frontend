@@ -5,3 +5,4 @@ export { default as InputField } from './InputField';
 export { default as InputCheckBox } from './InputCheckBox';
 export { default as InputRadio } from './InputRadio';
 export { default as InputWrapper } from './InputWrapper';
+export { default as ErrorMessage } from './ErrorMessage';

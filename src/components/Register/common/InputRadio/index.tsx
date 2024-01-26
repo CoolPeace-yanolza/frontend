@@ -5,14 +5,31 @@ import { InputRadioProps, InputRadioStyleProps } from '@/types/register';
 import selected from '@assets/icons/ic-register-selected.svg';
 import unselected from '@assets/icons/ic-register-unselected.svg';
 
-const InputRadio = ({ id, name, text, children }: InputRadioProps) => {
+const InputRadio = ({
+  id,
+  name,
+  value,
+  isChecked,
+  text,
+  children,
+  onButtonChange
+}: InputRadioProps) => {
+  const handleButtonChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (onButtonChange) {
+      onButtonChange(e);
+    }
+  };
+
   return (
-    <RadioWrapper>
+    <div>
       <Radio
         type="radio"
         id={id}
         name={name}
+        value={value}
+        defaultChecked={isChecked}
         $src={selected}
+        onChange={handleButtonChange}
       />
       <Label htmlFor={id}>
         <ContentWrapper>
@@ -26,13 +43,11 @@ const InputRadio = ({ id, name, text, children }: InputRadioProps) => {
       {children && (
         <ChildrenWrapper className="children">{children}</ChildrenWrapper>
       )}
-    </RadioWrapper>
+    </div>
   );
 };
 
 export default InputRadio;
-
-const RadioWrapper = styled.div``;
 
 const Radio = styled.input<InputRadioStyleProps>`
   display: none;
