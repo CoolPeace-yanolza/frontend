@@ -1,22 +1,72 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import styled from '@emotion/styled';
 
 import theme from '@styles/theme';
 import toggleOnIcon from '@assets/icons/ic-couponlist-toggleOn.svg';
 import toggleOffIcon from '@assets/icons/ic-couponlist-toggleOff.svg';
-import { ToggleStyleProps } from '@/types/couponList';
+import rightIcon from '@assets/icons/ic-couponlist-right.svg';
+import deleteIcon from '@assets/icons/ic-couponlist-delete.svg';
+import { CouponListProps, ToggleStyleProps } from '@/types/couponList';
+import { useOutsideClick, useToggleChange } from '@hooks/index';
+import { couponCondition } from '@utils/lib/couponCondition';
+import { useToast } from '@components/common/ToastContext';
+import couponRoomType from '@utils/lib/couponRoomType';
 
-const CouponStop = () => {
+const CouponStop = ({ couponInfo }: CouponListProps) => {
   const [isToggle, setIsToggle] = useState(false);
+  const [isShowRoomList, setIsShowRoomList] = useState(false);
+  const roomListRef = useRef<HTMLDivElement>(null);
+  const { mutateAsync } = useToggleChange();
+  const { showToast } = useToast();
+
+  useOutsideClick(roomListRef, () => setIsShowRoomList(false));
+
+  const handleRoomList = () => {
+    setIsShowRoomList(!isShowRoomList);
+  };
 
   const handleToggle = () => {
     setIsToggle(!isToggle);
+    toggleUpdate();
   };
+
+  const toggleUpdate = async () => {
+    try {
+      await mutateAsync({
+        coupon_number: couponInfo.coupon_number,
+        coupon_status: '노출 ON'
+      });
+      console.log(couponInfo.coupon_number);
+
+      showToast(
+        <div>
+          {couponInfo.title} 쿠폰이 노출되었습니다.
+          <span onClick={retryToggleUpdate}>실행 취소</span>
+        </div>,
+        2000
+      );
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const retryToggleUpdate = () => {
+    setIsToggle(!isToggle);
+    mutateAsync({
+      coupon_number: couponInfo.coupon_number,
+      coupon_status: '노출 OFF'
+    });
+    showToast(
+      <div>{couponInfo.title} 쿠폰의 노출이 중단되었습니다.</div>,
+      2000
+    );
+  };
+
   return (
     <CouponContainer $isToggle={isToggle}>
       <CouponHeaderContainer>
         <CouponHeader>
-          <CouponTitle>2024 신년행사</CouponTitle>
+          <CouponTitle>{couponInfo.title}</CouponTitle>
           <ToggleWrap
             $isToggle={isToggle}
             onClick={handleToggle}
@@ -40,40 +90,84 @@ const CouponStop = () => {
             )}
           </ToggleWrap>
         </CouponHeader>
-        <CouponCustomer>모든 고객 10% 할인</CouponCustomer>
+        <CouponCustomer>{couponInfo.coupon_concat_title}</CouponCustomer>
       </CouponHeaderContainer>
       <CouponMain>
         <CountWrap>
           <CountText>다운로드</CountText>
-          <CountNumber>50</CountNumber>
+          <CountNumber>{couponInfo.download_count}</CountNumber>
         </CountWrap>
         <CountWrap>
           <CountText>사용완료</CountText>
-          <CountNumber>50</CountNumber>
+          <CountNumber>{couponInfo.use_count}</CountNumber>
         </CountWrap>
-        <ContentContainer>
+        <div>
           <ContentWrap>
             <ContentTitle>가격</ContentTitle>
-            <ContentValue>99,999,999원 이상</ContentValue>
+            <ContentValue>
+              {couponInfo.minimum_reservation_price}원 이상
+            </ContentValue>
           </ContentWrap>
           <ContentWrap>
             <ContentTitle>일정</ContentTitle>
-            <ContentValue>2박 이상, 일~목</ContentValue>
+            <ContentValue>
+              {couponRoomType(couponInfo.coupon_room_types).join(', ')},
+              <span>
+                {couponCondition(couponInfo.coupon_use_condition_days)}
+              </span>
+            </ContentValue>
           </ContentWrap>
           <ContentWrap>
             <ContentTitle>객실</ContentTitle>
-            <ContentValue>전체</ContentValue>
+            {couponInfo.register_room_numbers.length === 0 ? (
+              <ContentValue>전체</ContentValue>
+            ) : (
+              <>
+                <ContentRoom onClick={handleRoomList}>
+                  <div>일부 객실</div>
+                  <img
+                    src={rightIcon}
+                    alt="오른쪽 화살표"
+                  />
+                </ContentRoom>
+                {isShowRoomList && (
+                  <RoomList ref={roomListRef}>
+                    <RoomListTitleWrap>
+                      <RoomListTitle>쿠폰 적용 객실</RoomListTitle>
+                      <img
+                        onClick={handleRoomList}
+                        src={deleteIcon}
+                        alt="리스트 닫기 아이콘"
+                      />
+                    </RoomListTitleWrap>
+                    <RoomListItem>
+                      <ul>
+                        {couponInfo.register_room_numbers.map((room, index) => (
+                          <li key={index}>
+                            {room.length > 10
+                              ? `${room.substring(0, 10)}...`
+                              : room}
+                          </li>
+                        ))}
+                      </ul>
+                    </RoomListItem>
+                  </RoomList>
+                )}
+              </>
+            )}
           </ContentWrap>
-        </ContentContainer>
+        </div>
       </CouponMain>
       <DateContainer>
         <ExposeDateWrap>
           <ExposeDateTitle>노출기간</ExposeDateTitle>
-          <ExposeValue>2024.01.31 ~ 2024.02.10</ExposeValue>
+          <ExposeValue>
+            {couponInfo.exposure_start_date} ~ {couponInfo.exposure_end_date}
+          </ExposeValue>
         </ExposeDateWrap>
         <ExposeDateWrap>
           <RegisterDateTitle>등록일</RegisterDateTitle>
-          <RegisterDateValue>2024.12.01</RegisterDateValue>
+          <RegisterDateValue>{couponInfo.created_date}</RegisterDateValue>
         </ExposeDateWrap>
       </DateContainer>
     </CouponContainer>
@@ -83,6 +177,8 @@ const CouponStop = () => {
 export default CouponStop;
 
 const CouponContainer = styled.div<ToggleStyleProps>`
+  position: relative;
+
   width: 290px;
   height: 203px;
 
@@ -199,11 +295,8 @@ const CountNumber = styled.div`
   font-weight: 700;
 `;
 
-// HACK: ContentContainer 로직 추가하기
-const ContentContainer = styled.div``;
-
 const ContentWrap = styled.div`
-  margin: 8px;
+  margin: 8px 4px;
 
   display: flex;
   align-items: center;
@@ -223,6 +316,10 @@ const ContentValue = styled.div`
   font-size: 11px;
   font-style: normal;
   font-weight: 400;
+
+  span {
+    margin-left: 3px;
+  }
 `;
 
 const DateContainer = styled.div`
@@ -266,4 +363,99 @@ const RegisterDateValue = styled.div`
   font-size: 10px;
   font-style: normal;
   font-weight: 400;
+`;
+
+const ContentRoom = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+
+  div {
+    margin-right: 3px;
+    padding: 2px 0px;
+    border-bottom: 1px solid #757676;
+
+    color: #757676;
+    font-size: 11px;
+    font-style: normal;
+    font-weight: 600;
+  }
+`;
+
+const RoomList = styled.div`
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 1;
+
+  width: 188px;
+  height: 204px;
+
+  margin-top: 150px;
+  border-radius: 18px;
+  text-align: center;
+
+  background: #415574;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-bottom: 10px solid #415574;
+  }
+`;
+
+const RoomListTitleWrap = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  margin: 10px;
+  padding: 8px;
+  border-bottom: 1px solid #cdcfd0;
+
+  img {
+    cursor: pointer;
+  }
+`;
+
+const RoomListTitle = styled.div`
+  margin-left: 35px;
+
+  font-size: 15px;
+  font-weight: 700;
+  font-style: normal;
+  color: ${theme.colors.white};
+`;
+
+const RoomListItem = styled.div`
+  max-height: 125px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow-y: auto; // 세로 스크롤만 허용
+
+  color: ${theme.colors.white};
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 36px;
+
+  li {
+    max-width: 130px;
+
+    overflow: hidden;
+    overflow-y: scroll;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
 `;

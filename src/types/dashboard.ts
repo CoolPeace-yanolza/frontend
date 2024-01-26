@@ -6,6 +6,17 @@ type HeaderTagStyleProps = {
 
 export type GraphHeaderTag = Pick<HeaderTagStyleProps, '$active'>;
 
+export type MonthReportsResults = {
+  statistics_year: number;
+  statistics_month: number;
+  total_sales: number;
+  coupon_total_sales: number;
+  download_count: number;
+  used_count: number;
+  settlement_amount: number;
+  conversion_rate: number;
+};
+
 // DownloadReport
 
 type CouponCounterType = 'download' | 'used';
@@ -33,6 +44,13 @@ export type StatusItemStyleProps = {
   $index?: number;
 };
 
+export type CouponStatusResults = {
+  coupon_total_sales: number;
+  used_count: number;
+  settlement_amount: number;
+  download_count: number;
+};
+
 // LocalInformationSection
 
 export type RankingBoxProps = {
@@ -42,4 +60,23 @@ export type RankingBoxProps = {
 
 export type RankingBoxStyleProps = {
   $rankingColor: number;
+};
+
+export type CouponRankingResult = {
+  first_coupon_title: string;
+  second_coupon_title: string;
+  third_coupon_title: string;
+};
+
+export type LocalCouponUsageResult = {
+  address: string;
+  coupon_avg: string;
+};
+
+// DailyReport
+
+export type DailyReportResult = {
+  condition_num: number;
+  condition: string;
+  coupon_titles: string[];
 };

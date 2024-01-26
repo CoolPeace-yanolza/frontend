@@ -1,126 +1,82 @@
+import { useEffect } from 'react';
+import { useRecoilState } from 'recoil';
 import styled from '@emotion/styled';
+import { Dropdown, DropdownProps } from 'semantic-ui-react';
+
+import { headerAccommodationState } from '@recoil/index';
+import useGetHeaderAccommodation from '@hooks/queries/useGetHeaderAccommodation';
 import theme from '@styles/theme';
 
-import { useRecoilState } from 'recoil';
-import { headerAccommodationState } from '@recoil/index';
-
 const Select = () => {
-  /* HACK: 예시 데이터, 리액트 쿼리를 활용하여 넘겨 selectList 배열을 받음
-
-    const { data: selectList } = useFetchAccommodation();
-
-  */
-
-  const selectList = [
-    {
-      accommodationId: 1,
-      accommodationName: '영덕 아이스 풀빌라'
-    },
-    {
-      accommodationId: 2,
-      accommodationName: '영덕 아이스 풀빌라2'
-    },
-    {
-      accommodationId: 3,
-      accommodationName: '영덕 아이스 풀빌라3'
-    },
-    {
-      accommodationId: 4,
-      accommodationName: '영덕 아이스 풀빌라4'
-    }
-  ];
-
+  const { data: selectList } = useGetHeaderAccommodation();
   const [headerAccommodation, setHeaderAccommodation] = useRecoilState(
     headerAccommodationState
   );
 
-  const handleSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const accommodationId = Number(e.target.value);
+  useEffect(() => {
+    setHeaderAccommodation(selectList[0]);
+  }, []);
 
-    setHeaderAccommodation({
-      accommodationId,
-      accommodationName: `${e.target.children[accommodationId - 1].textContent}`
-    });
+  const handleSelect = (
+    _e: React.SyntheticEvent<HTMLElement>,
+    data: DropdownProps
+  ) => {
+    const selectId = Number(data.value);
+
+    const selectAccommodation = selectList.find(
+      select => select.id === selectId
+    );
+
+    selectAccommodation ? setHeaderAccommodation(selectAccommodation) : null;
   };
 
   return (
-    <Container>
-      <Accommodations
-        name="Accommodations"
-        onChange={handleSelect}
-        value={headerAccommodation.accommodationId}
-      >
-        {selectList.map(item => (
-          <Accommodation
-            value={item.accommodationId}
-            key={item.accommodationId}
-          >
-            {item.accommodationName}
-          </Accommodation>
-        ))}
-      </Accommodations>
-      <SelectButton></SelectButton>
-    </Container>
+    <StyledDropdown
+      selection
+      options={selectList.map(item => ({
+        key: item.id,
+        text: item.name,
+        value: item.id
+      }))}
+      onChange={handleSelect}
+      value={headerAccommodation.id}
+    />
   );
 };
 
 export default Select;
 
-const Container = styled.div`
-  position: relative;
-`;
+const StyledDropdown = styled(Dropdown)`
+  &.ui.dropdown {
+    min-width: 200px;
 
-const Accommodations = styled.select`
-  position: relative;
+    border-radius: 12px;
+    padding: 10px 20px;
 
-  width: 200px;
-  height: 40px;
+    display: flex;
+    align-items: center;
 
-  margin-right: 30px;
-  border: none;
-  border-radius: 12px;
-  padding: 10px 20px;
+    color: rgba(60, 60, 67, 0.6);
+    background-color: rgba(247, 248, 252, 1);
+    font-weight: 500;
 
-  font-weight: 500;
-
-  color: rgba(60, 60, 67, 0.6);
-  background-color: rgba(247, 248, 252, 1);
-  outline-color: ${theme.colors.brand};
-
-  appearance: none;
-
-  &::-ms-expand {
-    display: none;
+    .text {
+      color: rgba(60, 60, 67, 0.6);
+    }
   }
 
   ${theme.response.tablet} {
-    width: 150px;
-    height: 30px;
+    &.ui.dropdown {
+      min-width: 180px;
 
-    margin-right: 0;
-    padding: 0 20px;
+      margin-right: 15px;
+      padding: 5px 15px;
 
-    font-size: 12px;
+      font-size: 12px;
+    }
+
+    .text {
+      color: rgba(60, 60, 67, 0.6);
+    }
   }
-`;
-
-const Accommodation = styled.option`
-  position: absolute;
-  top: 0;
-  right: 0;
-`;
-
-const SelectButton = styled.div`
-  position: absolute;
-  top: 16px;
-  right: 45px;
-
-  width: 0;
-  height: 0;
-
-  border-style: solid;
-  border-width: 8px 5px 0 5px;
-  border-color: #9c9c9c transparent transparent transparent;
-
-  pointer-events: none;
 `;

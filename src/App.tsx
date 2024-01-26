@@ -13,18 +13,11 @@ import { Suspense } from 'react';
 import { MainRouter } from './routes';
 import GlobalStyles from '@styles/GlobalStyles';
 import theme from '@styles/theme';
-import { ErrorApp } from '@components/ErrorFallback';
-import { LoadingApp } from '@components/Loading';
+import ErrorFallback from './App.error';
+import Loading from './App.loading';
+import { ToastProvider } from '@components/common/ToastContext';
 
 const queryClient = new QueryClient();
-
-/* HACK: logError 논의 필요
-
-  const logError = (error: Error, info: { componentStack: string }) => {
-    // Do something with the error, e.g. log to an external API
-  };
-  
- */
 
 const App = () => {
   const { reset } = useQueryErrorResetBoundary();
@@ -36,17 +29,13 @@ const App = () => {
           <GlobalStyles />
           <ErrorBoundary
             onReset={reset}
-            FallbackComponent={ErrorApp}
-
-            /* HACK: logError 논의 필요
-
-              onError={logError}
-
-            */
+            FallbackComponent={ErrorFallback}
           >
-            <Suspense fallback={<LoadingApp />}>
+            <Suspense fallback={<Loading />}>
               <BrowserRouter>
-                <MainRouter />
+                <ToastProvider>
+                  <MainRouter />
+                </ToastProvider>
               </BrowserRouter>
             </Suspense>
           </ErrorBoundary>

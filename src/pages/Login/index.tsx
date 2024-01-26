@@ -1,19 +1,35 @@
+import { useState } from 'react';
 import styled from '@emotion/styled';
 
-import { Footer } from '@components/common';
+import { ErrorModal, Footer } from '@components/common';
 import { LoginForm, LoginTitle } from '@components/Login';
+import { ERROR_MODAL_MESSAGE } from 'src/constants';
 
 const Login = () => {
+  const [modalContent, setModalContent] = useState(ERROR_MODAL_MESSAGE.LOGIN);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleModalClose = () => setIsModalOpen(prev => !prev);
+  const handleModalOpen = (text: string) => {
+    setModalContent(prev => ({ ...prev, text }));
+    setIsModalOpen(true);
+  };
+
   return (
     <WhiteBackground>
       <Container>
         <Content>
           <LoginTitle />
-          <LoginForm />
+          <LoginForm handleModalOpen={handleModalOpen} />
         </Content>
       </Container>
       <Footer />
-      {/* HACK: 모달 제작 후 오류 메세지 표시 예정 */}
+      {isModalOpen && (
+        <ErrorModal
+          modalContent={modalContent}
+          ButtonFunc={handleModalClose}
+        />
+      )}
     </WhiteBackground>
   );
 };
@@ -36,10 +52,18 @@ const WhiteBackground = styled.div`
 `;
 
 const Container = styled.div`
+  --footer-height: 100px;
+
   max-width: 524px;
-  height: calc(100% - 100px);
+  height: calc(100% - var(--footer-height));
 
   margin: auto;
+
+  @media screen and (max-width: 649px) {
+    min-width: 295px;
+    max-width: 80%;
+    width: 100%;
+  }
 `;
 
 const Content = styled.div`

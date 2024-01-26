@@ -1,5 +1,9 @@
 export type LoginFormStyleProps = {
-  $isInvalid: boolean;
+  $isValid: boolean;
 };
 
-export type InputValidation = Pick<LoginFormStyleProps, '$isInvalid'>;
+export type InputValidation = Pick<LoginFormStyleProps, '$isValid'>;
+
+export type LoginFormProps = {
+  handleModalOpen: (text: string) => void;
+};
