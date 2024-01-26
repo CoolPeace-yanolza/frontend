@@ -1,4 +1,11 @@
-import { ReactNode } from 'react';
+import { ReactNode, RefObject } from 'react';
+
+// Backdrop
+export type BackdropProps = {
+  backdropRef: RefObject<HTMLDivElement>;
+  onBackdropClick: (e: React.MouseEvent<HTMLDivElement>) => void;
+  children: ReactNode;
+};
 
 // DisplayStep
 export type DisplayStepProps = {
@@ -17,17 +24,68 @@ export type InputButtonProps = {
   id: string;
   name: string;
   buttonName: string;
+  value?: number;
+  currentInput?: number;
+  onButtonClick?: React.Dispatch<React.SetStateAction<number>>;
 };
 
 // InputAccordion
 export type InputAccordionProps = {
   title: string;
-  content: JSX.Element;
+  children: ReactNode;
 };
 
 export type ButtonStyleProps = {
   $isOpen: boolean;
   src: string;
+};
+
+// InputField
+export type InputFieldProps = {
+  placeholder: string;
+  text: string;
+};
+
+export type InputFieldStyleProps = {
+  $text: string;
+};
+
+// InputCheckBox
+export type InputCheckBoxProps = {
+  id: string;
+  text: string;
+  onCheck?: React.Dispatch<React.SetStateAction<boolean>>;
+};
+
+export type LabelStyleProps = {
+  $isChecked: boolean;
+};
+
+export type CheckIconStyleProps = {
+  $src: string;
+};
+
+// InputRadio
+export type InputRadioProps = {
+  id: string;
+  name: string;
+  text: string;
+  children?: ReactNode;
+};
+
+export type InputRadioStyleProps = {
+  $src: string;
+};
+
+// InputWrapper
+export type InputWrapperProps = {
+  whichInput: number;
+  currentInput: number;
+  children: ReactNode;
+};
+
+export type WrapperStyleProps = {
+  $isSelected: boolean;
 };
 
 // Stepper
@@ -62,4 +120,54 @@ export type StepTitleProps = {
     isCompleted: boolean;
   }[];
   currentStep: number;
+};
+
+// FirstStep
+export type LimitWrapperStyleProps = {
+  $isLimited: boolean;
+};
+
+// SecondStep
+export type RoomType = {
+  id: number;
+  roomNumber: number;
+  roomType: string;
+  price: number;
+};
+
+export type RoomsType = RoomType[];
+
+// RoomSelectModal
+export type RoomSelectModalProps = {
+  value: number;
+  setToAllRoom: React.Dispatch<React.SetStateAction<number>>;
+  rooms: RoomsType;
+  setRooms: React.Dispatch<React.SetStateAction<RoomsType>>;
+  onButtonClick: React.Dispatch<React.SetStateAction<boolean>>;
+};
+
+export type RoomSelectModalStyleProps = {
+  $src: string;
+};
+
+// RoomSelectButton
+export type RoomSelectButtonProps = {
+  type: string;
+  id: string;
+  name: string;
+  buttonName: string;
+  rooms: number;
+  onButtonClick: React.Dispatch<React.SetStateAction<boolean>>;
+};
+
+// RoomList
+export type RoomListProps = {
+  rooms: RoomsType;
+};
+
+// RadioProps
+export type RadioProps = {
+  id: string;
+  name: string;
+  text: string;
 };
