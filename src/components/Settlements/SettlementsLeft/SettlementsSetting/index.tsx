@@ -8,6 +8,8 @@ import { createGlobalStyle } from 'styled-components';
 import { ErrorBoundary } from 'react-error-boundary';
 import { useQueryErrorResetBoundary } from '@tanstack/react-query';
 
+import { ErrorModal } from '@components/common';
+import { ERROR_MODAL_MESSAGE } from 'src/constants';
 import CalendarIcon from '@assets/icons/calendar-number-outline.svg';
 import Settlemented from './Settlemented';
 import SettlementsHeader from './SettlementsHeader';
@@ -22,6 +24,10 @@ const SettlementsSetting = () => {
 
   const [startDate, setStartDate] = useState<Date | null>(null);
   const [endDate, setEndDate] = useState<Date | null>(null);
+  
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const handleModalClose = () => setIsModalOpen(false);
+  const handleModalOpen = () => setIsModalOpen(true);
 
   const setSettlementsDate = useSetRecoilState(settlementsDateState);
 
@@ -46,21 +52,20 @@ const SettlementsSetting = () => {
     const currentDate = new Date();
     const currentMonth = currentDate.getMonth();
     const currentYear = currentDate.getFullYear();
-  
+
     if (startDate && endDate) {
       if (
-        (startDate.getFullYear() === currentYear && startDate.getMonth() === currentMonth) ||
-        endDate.getFullYear() > currentYear || 
-        (endDate.getFullYear() === currentYear && endDate.getMonth() >= currentMonth) ||
-        (startDate > endDate)
+        startDate.getFullYear() === currentYear && startDate.getMonth() === currentMonth ||
+        endDate.getFullYear() > currentYear ||
+        endDate.getFullYear() === currentYear && endDate.getMonth() >= currentMonth ||
+        startDate > endDate
       ) {
-        alert("조회할 기간을 다시 선택해주세요.");
+        handleModalOpen();
         return;
       }
       setSettlementsDate({ startDate, endDate });
     }
   };
-  
 
   const DatePickerCustom = createGlobalStyle`
   .react-datepicker {
@@ -119,23 +124,23 @@ const SettlementsSetting = () => {
             <StyledDatePickerContainer>
             <DatePickerCustom />
             <StyledDatePicker
-                selected={startDate}
-                onChange={handleStartDateChange}
-                dateFormat="yyyy/MM"
-                showMonthYearPicker
-                placeholderText=""
-                locale={ko}
-                calendarClassName="custom-header"  
+              selected={startDate}
+              onChange={handleStartDateChange}
+              dateFormat="yyyy/MM"
+              showMonthYearPicker
+              placeholderText=""
+              locale={ko}
+              calendarClassName="custom-header"  
             />
             -
             <StyledDatePicker
-                selected={endDate}
-                onChange={handleEndDateChange}
-                dateFormat="yyyy/MM"
-                showMonthYearPicker
-                placeholderText=""
-                locale={ko}
-                calendarClassName="custom-header"  
+              selected={endDate}
+              onChange={handleEndDateChange}
+              dateFormat="yyyy/MM"
+              showMonthYearPicker
+              placeholderText=""
+              locale={ko}
+              calendarClassName="custom-header"  
             />
             <StyledButton onClick={handleButtonClick}>조회하기</StyledButton>
             </StyledDatePickerContainer>
@@ -151,6 +156,12 @@ const SettlementsSetting = () => {
       <Settlemented />
     </Suspense>
     </ErrorBoundary>
+    {isModalOpen && (
+      <ErrorModal
+        modalContent={ERROR_MODAL_MESSAGE.DATE_ERROR}
+        ButtonFunc={handleModalClose}
+      />
+    )}
     </Container>
   )
 }
