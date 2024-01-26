@@ -165,7 +165,7 @@ const SignUpForm = ({
               : 'disabled'
           }
           text="회원가입"
-          disabled={!isValid || emailValidMessage.type === 'failure'}
+          disabled={!isValid || emailValidMessage.type !== 'success'}
           buttonFunc={handleSubmit(onSubmit)}
         />
       </Form>
