@@ -29,7 +29,7 @@ const SettlementsTable = ({ data, pageStartNumber }: SettlementsTableProps) => {
         </Header>
         <FrameContainer>
           <Frame>
-            <NoDataText>데이터가 없습니다.</NoDataText>
+            <NoDataText>쿠폰 정산 내역이 없습니다.</NoDataText>
           </Frame>
         </FrameContainer>
       </Container>
@@ -89,17 +89,19 @@ const Container = styled.div`
 const Header = styled.div`
   padding: 20px 0;
 
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+
   display: flex;
   justify-content: space-between;
 
-  border: 1px solid #000;
-  border-radius: 10px;
   background-color: rgba(255, 255, 255, 0.05);
+  
+  box-shadow: inset 0px 0px 5px rgba(205, 207, 208, 0.5), 0px 0px 5px rgba(0, 0, 0, 0.5);
 
   ${theme.response.tablet} {
     display: none;
   }
-  
 `;
 
 const KeyElement = styled.div`
@@ -121,8 +123,10 @@ const FrameContainer = styled.div`
 `;
 
 const Frame = styled.div<{ hasData?: boolean }>`
-  width: 99%;
+  width: 99.7%;
   height: 500px;
+
+  top: -1px;
 
   margin-left: auto;
   margin-right: auto;
