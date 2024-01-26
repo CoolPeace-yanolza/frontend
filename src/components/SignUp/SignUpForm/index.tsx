@@ -30,8 +30,8 @@ const SignUpForm = ({
   const { errors, isValid } = formState;
 
   const emailValue: string = getValues('user_email');
-  const isEmailTouched = getFieldState('user_email', formState).isTouched;
-  const isEmailValueValid = isEmailTouched ? !errors?.user_email : false;
+  const isEmailDirty = getFieldState('user_email', formState).isDirty;
+  const isEmailValueValid = isEmailDirty ? !errors?.user_email : false;
 
   const emailValidInitialValue = {
     message: '',
