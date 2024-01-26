@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { useRecoilState } from 'recoil';
 
 import styled from '@emotion/styled';
@@ -139,8 +138,7 @@ const FirstStep = () => {
             value="정액 할인"
             isChecked={input.discountType === '정액 할인'}
             buttonName="정액 할인"
-            value={1}
-            onButtonClick={setCurrentInput}
+            onButtonChange={handleDiscountTypeChange}
           />
           <InputButton
             type="radio"
