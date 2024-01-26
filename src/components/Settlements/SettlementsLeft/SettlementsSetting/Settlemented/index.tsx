@@ -13,6 +13,7 @@ import { SettlementedItem } from '@/types/settlements';
 import { settlementsDateState } from '@recoil/atoms/settlemented';
 import headerAccommodationState from '@recoil/atoms/headerAccommodationState';
 import { getCurrentYearStartDate, getCurrentYearEndDate } from '@utils/index';
+import { convertKeysToKorean } from '@utils/index';
 import theme from '@styles/theme';
 
 const Settlemented = () => {
@@ -95,32 +96,31 @@ const Settlemented = () => {
     return totalItems - (currentPage - 1) * itemsPerPage;
   };
 
-  const handleDownloadExcel = async () => {
-    try {
-      const response = await getSettlements(
-        accommodation.id,
-        startDate ? startDate.toISOString().split('T')[0] : getCurrentYearStartDate(),
-        endDate ? endDate.toISOString().split('T')[0] : getCurrentYearEndDate(),
-        orderBy,
-        0,
-        totalItems
-      );
+const handleDownloadExcel = async () => {
+  try {
+    const response = await getSettlements(
+      accommodation.id,
+      startDate ? startDate.toISOString().split('T')[0] : getCurrentYearStartDate(),
+      endDate ? endDate.toISOString().split('T')[0] : getCurrentYearEndDate(),
+      orderBy,
+      0,
+      totalItems
+    );
 
-      const allData = response.settlement_responses.map((data: SettlementedItem, index: number) => ({
-        ...data,
-        NO: index + 1,
-      }));
-  
-      const workBook = XLSX.utils.book_new();
-      const workSheet = XLSX.utils.json_to_sheet(allData);
-  
-      XLSX.utils.book_append_sheet(workBook, workSheet, "Sheet1");
-      XLSX.writeFile(workBook, "SettlementedDownload.xlsx");
-    } catch (error) {
-      console.error('Error fetching all settlements data for download:', error);
-    }
-  };
-  
+    const allData = response.settlement_responses.map((data: SettlementedItem) => {
+      return convertKeysToKorean(data);
+    });
+
+    const workBook = XLSX.utils.book_new();
+    const workSheet = XLSX.utils.json_to_sheet(allData);
+    
+    XLSX.utils.book_append_sheet(workBook, workSheet, "Sheet1");
+    XLSX.writeFile(workBook, "SettlementedDownload.xlsx");
+  } catch (error) {
+    console.error('Error fetching all settlements data for download:', error);
+  }
+};
+
   useEffect(() => {
     setCurrentPage(1);
   }, [accommodation]);
