@@ -62,7 +62,7 @@ export const getInputOptions = (inputName: string, password?: string) => {
       };
     case 'login_id':
       return {
-        required: '아이디를 입력해주세요.'
+        required: '아이디(이메일)을 입력해주세요.'
       };
     case 'login_password':
       return {
