@@ -43,6 +43,7 @@ export interface CouponInformationResponse {
   coupon_room_types: string[];
   minimum_reservation_price: number;
   coupon_use_condition_days: string;
+  coupon_use_condition_day_of_week: string;
   exposure_start_date: string;
   exposure_end_date: string;
   coupon_expiration: number;

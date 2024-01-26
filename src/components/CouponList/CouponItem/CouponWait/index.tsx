@@ -96,7 +96,10 @@ const CouponWait = ({ couponInfo }: CouponListProps) => {
             <ContentValue>
               {couponRoomType(couponInfo.coupon_room_types).join(', ')},
               <span>
-                {couponCondition(couponInfo.coupon_use_condition_days)}
+                {couponCondition(
+                  couponInfo.coupon_use_condition_days,
+                  couponInfo.coupon_use_condition_day_of_week
+                )}
               </span>
             </ContentValue>
           </ContentWrap>

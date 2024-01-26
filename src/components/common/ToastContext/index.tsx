@@ -58,7 +58,7 @@ const ToastContainer = styled.div`
   border-radius: 5px;
 
   background: #404446;
-  font-size: 13px;
+  font-size: 15px;
   color: ${theme.colors.white};
 
   span {
@@ -71,10 +71,17 @@ const ToastContainer = styled.div`
   }
 
   @media (max-width: 900px) {
-    font-size: 10px;
+    padding: 10px 10px;
+    line-height: 20px;
+
+    font-size: 13px;
+
     span {
-      margin-left: 20px;
-      font-size: 10px;
+      display: block;
+      display: flex;
+      justify-content: center;
+      margin-left: 10px;
+      font-size: 13px;
     }
   }
 `;
