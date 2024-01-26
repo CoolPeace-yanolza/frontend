@@ -26,22 +26,18 @@ const Register = () => {
   const steps = [
     {
       title: '정보 입력',
-      isCurrentStep: false,
       isCompleted: isCompleted.isFirstStepCompleted
     },
     {
       title: '유형 선택',
-      isCurrentStep: false,
       isCompleted: isCompleted.isSecondStepCompleted
     },
     {
       title: '조건 선택',
-      isCurrentStep: false,
       isCompleted: isCompleted.isThirdStepCompleted
     },
     {
       title: '노출 기간 선택',
-      isCurrentStep: false,
       isCompleted: isCompleted.isFourthStepCompleted
     }
   ];
