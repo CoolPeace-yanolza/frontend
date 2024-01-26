@@ -49,7 +49,7 @@ const SettlementsTable = ({ data, pageStartNumber }: SettlementsTableProps) => {
             <Row key={index} isLast={false}>
               {keys.map((key) => (
                  <DataElement key={key}>
-                  <MobileDataElement>{key}</MobileDataElement>
+                  <MobileDataElement>{keyToLabelMap[key]}</MobileDataElement>
                   <MobileData>
                     {key === 'NO' ? pageStartNumber - index : null}
                     {key === 'coupon_count' ? `${row[key].toLocaleString()}건` : null}
