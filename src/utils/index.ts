@@ -9,3 +9,4 @@ export { getUpdatedDate } from './lib/calculation';
 export { getStatusToLocaleString } from './lib/dashboard';
 export { inputFilter } from './lib/inputFilter';
 export { sliceName } from './lib/sliceName';
+export { getStepperConfig } from './lib/getStepperConfig';

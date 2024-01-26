@@ -1,5 +1,4 @@
-import { useState, useEffect } from 'react';
-import { useRecoilValue } from 'recoil';
+import { useState } from 'react';
 import styled from '@emotion/styled';
 
 import {
@@ -9,74 +8,14 @@ import {
   Preview
 } from '@components/Register';
 import DisplayStep from './DisplayStep';
-import { registerInputState } from '@recoil/index';
+import { useStepValidation } from '@hooks/index';
+import { getStepperConfig } from '@utils/index';
 
 const Register = () => {
-  const input = useRecoilValue(registerInputState);
-
   const [currentStep, setCurrentStep] = useState(0);
-  const [isFilled, setIsFilled] = useState(false);
-  const [isCompleted, setIsCompleted] = useState({
-    isFirstStepCompleted: false,
-    isSecondStepCompleted: false,
-    isThirdStepCompleted: false,
-    isFourthStepCompleted: false
-  });
 
-  const steps = [
-    {
-      title: '정보 입력',
-      isCompleted: isCompleted.isFirstStepCompleted
-    },
-    {
-      title: '유형 선택',
-      isCompleted: isCompleted.isSecondStepCompleted
-    },
-    {
-      title: '조건 선택',
-      isCompleted: isCompleted.isThirdStepCompleted
-    },
-    {
-      title: '노출 기간 선택',
-      isCompleted: isCompleted.isFourthStepCompleted
-    }
-  ];
-
-  useEffect(() => {
-    let submitRequirements;
-
-    if (currentStep === 0) {
-      submitRequirements =
-        !!input.title &&
-        !!input.customerType &&
-        ((input.discountType === '정액 할인' && !!input.discountFlat) ||
-          (input.discountType === '정률 할인' && !!input.discountFlatRate));
-      setIsCompleted({
-        ...isCompleted,
-        isFirstStepCompleted: submitRequirements
-      });
-    } else if (currentStep === 1) {
-      submitRequirements = !!input.roomType.length && !!input.toAllRooms;
-      setIsCompleted({
-        ...isCompleted,
-        isSecondStepCompleted: submitRequirements
-      });
-    } else if (currentStep === 2) {
-      submitRequirements = !!input.minimumPrice || !!input.whenToUse;
-      setIsCompleted({
-        ...isCompleted,
-        isThirdStepCompleted: submitRequirements
-      });
-    } else {
-      submitRequirements = !!input.startDate && !!input.endDate;
-      setIsCompleted({
-        ...isCompleted,
-        isFourthStepCompleted: submitRequirements
-      });
-    }
-
-    setIsFilled(submitRequirements);
-  }, [currentStep, input]);
+  const { isCompleted, isFilled } = useStepValidation(currentStep);
+  const steps = getStepperConfig(isCompleted);
 
   return (
     <Background>
@@ -86,7 +25,6 @@ const Register = () => {
           <Stepper
             steps={steps}
             currentStep={currentStep}
-            isFilled={isFilled}
           />
         </TitleContainer>
         <ContentContainer>

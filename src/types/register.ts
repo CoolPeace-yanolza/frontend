@@ -109,7 +109,6 @@ export type StepperProps = {
     isCompleted: boolean;
   }[];
   currentStep: number;
-  isFilled: boolean;
 };
 
 export type NumberStyleProps = {
