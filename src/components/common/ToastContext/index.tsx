@@ -52,36 +52,23 @@ const ToastContainer = styled.div`
   bottom: 50px;
   left: 50%;
   transform: translateX(-50%);
-  white-space: nowrap;
+  line-height:20px;
 
-  padding: 15px 31px;
+  width: 336px;
+  height: 90px;
+  padding: 24px 28px;
+
   border-radius: 5px;
 
   background: #404446;
-  font-size: 15px;
   color: ${theme.colors.white};
 
-  span {
-    margin-left: 59px;
-
-    color: #3182f6;
-    font-size: 15px;
-    text-decoration-line: underline;
-    cursor: pointer;
-  }
-
-  @media (max-width: 900px) {
-    padding: 10px 10px;
-    line-height: 20px;
-
-    font-size: 13px;
-
-    span {
-      display: block;
-      display: flex;
-      justify-content: center;
-      margin-left: 10px;
-      font-size: 13px;
+    p {
+      color: #65a6eb;
+      font-size: 15px;
+      text-decoration-line: underline;
+      cursor: pointer;
+      margin-left:54px;
     }
   }
 `;

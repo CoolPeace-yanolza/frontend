@@ -44,11 +44,14 @@ const CouponExpose = ({ couponInfo }: CouponListProps) => {
       console.log(couponInfo.coupon_number);
 
       showToast(
-        <div>
-          {filterTitle} 쿠폰의 노출이 중단되었습니다.
-          <span onClick={retryToggleUpdate}>실행 취소</span>
-        </div>,
-        2000
+        <ToastWrap>
+          <div>
+            {filterTitle} 쿠폰의 <br />
+            노출이 중단되었습니다.
+          </div>
+          <p onClick={retryToggleUpdate}>실행 취소</p>
+        </ToastWrap>,
+        1000000
       );
     } catch (error) {
       console.log(error);
@@ -482,4 +485,9 @@ const RegisterDateValue = styled.div`
   font-size: 10px;
   font-style: normal;
   font-weight: 400;
+`;
+
+const ToastWrap = styled.div`
+  display: flex;
+  align-items: center;
 `;
