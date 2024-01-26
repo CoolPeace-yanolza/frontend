@@ -197,9 +197,11 @@ const AlarmInnerContainer = styled.div`
 const AlarmHeaderText = styled.div`
   width: 100%;
 
-  font-size: 15px;
+  font-size: 14px;
   font-weight: 700;
   line-height: 1.4;
+
+  white-space: nowrap;
 
   ${theme.response.tablet} {
     font-size: 11px;
