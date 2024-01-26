@@ -201,6 +201,7 @@ const CalendarText = styled.div`
 `;
 
 const StyledButton = styled.button`
+  margin-left: 10px;
   padding: 7px 14px;
 
   background-color: #3182F6;
