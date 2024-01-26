@@ -126,8 +126,6 @@ const Frame = styled.div<{ hasData?: boolean }>`
   width: 99.7%;
   height: 500px;
 
-  top: -1px;
-
   margin-left: auto;
   margin-right: auto;
 
