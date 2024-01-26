@@ -10,3 +10,10 @@ export { getStatusToLocaleString } from './lib/dashboard';
 export { inputFilter } from './lib/inputFilter';
 export { sliceName } from './lib/sliceName';
 export { getStepperConfig } from './lib/getStepperConfig';
+export {
+  showFirstStepValidationMessage,
+  showSecondStepValidationMessage,
+  showThirdStepValidationMessage,
+  showFourthStepValidationMessage
+} from './lib/showValidationMessage';
+export { handleStepLessThan3 } from './lib/handleStepLessThan3';

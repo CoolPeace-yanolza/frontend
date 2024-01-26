@@ -12,6 +12,13 @@ import {
   registerValidState,
   previewState
 } from '@recoil/index';
+import {
+  showFirstStepValidationMessage,
+  showSecondStepValidationMessage,
+  showThirdStepValidationMessage,
+  showFourthStepValidationMessage,
+  handleStepLessThan3
+} from '@utils/index';
 
 const StepperController = ({
   currentStep,
@@ -29,60 +36,25 @@ const StepperController = ({
   };
 
   const handleNextButton = () => {
-    if (currentStep === 0) {
-      !input.title && setIsValid(prev => ({ ...prev, isTitleValid: false }));
-      !input.customerType &&
-        setIsValid(prev => ({ ...prev, isCustomerTypeValid: false }));
-      !input.discountType &&
-        setIsValid(prev => ({ ...prev, isDiscountTypeValid: false }));
-      if (input.discountType === '정액 할인') {
-        if (input.discountFlat === '' || Number(input.discountFlat) === 0) {
-          setIsValid(prev => ({ ...prev, isDiscountFlatValid: false }));
-        } else if (Number(input.discountFlat) % 1000) {
-          setIsValid(prev => ({ ...prev, isThousands: false }));
-        }
-      } else if (input.discountType === '정률 할인') {
-        if (
-          input.discountFlatRate === '' ||
-          Number(input.discountFlatRate) === 0
-        ) {
-          setIsValid(prev => ({ ...prev, isDiscountFlatRateValid: false }));
-        }
-      }
-    }
-
-    if (currentStep === 1) {
-      !input.roomType.length &&
-        setIsValid(prev => ({ ...prev, isRoomTypeValid: false }));
-      !input.toAllRooms &&
-        setIsValid(prev => ({ ...prev, isToAllRoomsValid: false }));
-    }
-
-    if (currentStep === 2) {
-      !input.minimumPrice &&
-        setPreview(prev => ({ ...prev, minimumPrice: '' }));
-      (!input.whenToUse || (input.whenToUse === '하루만' && !input.day)) &&
-        setPreview(prev => ({ ...prev, day: '' }));
-    }
-
-    if (currentStep === 3) {
-      if (!input.startDate || !input.endDate) {
-        setIsValid(prev => ({ ...prev, isDateValid: false }));
-      } else if (input.startDate > input.endDate) {
-        setIsValid(prev => ({ ...prev, endDateAfterStartDate: false }));
-      }
+    switch (currentStep) {
+      case 0:
+        showFirstStepValidationMessage(input, setIsValid);
+        break;
+      case 1:
+        showSecondStepValidationMessage(input, setIsValid);
+        break;
+      case 2:
+        showThirdStepValidationMessage(input, setPreview);
+        break;
+      case 3:
+        showFourthStepValidationMessage(input, setIsValid);
+        break;
+      default:
+        break;
     }
 
     if (currentStep < 3) {
-      if (
-        currentStep === 0 &&
-        input.discountType === '정액 할인' &&
-        Number(input.discountFlat) % 1000
-      ) {
-        return;
-      } else if (currentStep === 2 || isFilled) {
-        onButtonClick(prev => prev + 1);
-      }
+      handleStepLessThan3(currentStep, input, isFilled, onButtonClick);
     }
   };
 
