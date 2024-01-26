@@ -27,56 +27,25 @@ const SecondStep = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const handleRoomTypeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.value === '대실') {
-      if (e.target.checked) {
-        setInput(prev => ({
-          ...prev,
-          roomType: ['대실', ...prev.roomType]
-        }));
-        setPreview(prev => ({
-          ...prev,
-          roomType: ['대실', ...prev.roomType]
-        }));
+    const { value, checked } = e.target;
+    let updatedRoomType = [...input.roomType];
+
+    if (value === '대실') {
+      if (checked) {
+        updatedRoomType = ['대실', ...updatedRoomType];
       } else {
-        setInput(prev => ({
-          ...prev,
-          roomType: prev.roomType.filter(element => element !== '대실')
-        }));
-        setPreview(prev => ({
-          ...prev,
-          roomType: prev.roomType.filter(element => element !== '대실')
-        }));
+        updatedRoomType = updatedRoomType.filter(element => element !== '대실');
       }
     } else {
-      if (e.target.checked) {
-        setInput(prev => ({
-          ...prev,
-          roomType: [...prev.roomType, '숙박']
-        }));
-        setPreview(prev => ({
-          ...prev,
-          roomType: [...prev.roomType, '숙박']
-        }));
+      if (checked) {
+        updatedRoomType = [...updatedRoomType, '숙박'];
       } else {
-        if (input.roomType.includes('대실')) {
-          setInput(prev => ({
-            ...prev,
-            roomType: prev.roomType.slice(0, 1)
-          }));
-          setPreview(prev => ({
-            ...prev,
-            roomType: prev.roomType.slice(0, 1)
-          }));
+        if (updatedRoomType.includes('대실')) {
+          updatedRoomType = updatedRoomType.slice(0, 1);
         } else {
-          setInput(prev => ({
-            ...prev,
-            roomType: []
-          }));
-          setPreview(prev => ({
-            ...prev,
-            roomType: []
-          }));
+          updatedRoomType = [];
         }
+
         if (input.severalNights) {
           setInput(prev => ({
             ...prev,
@@ -85,6 +54,16 @@ const SecondStep = () => {
         }
       }
     }
+
+    setInput(prev => ({
+      ...prev,
+      roomType: updatedRoomType
+    }));
+
+    setPreview(prev => ({
+      ...prev,
+      roomType: updatedRoomType
+    }));
 
     setIsValid(prev => ({
       ...prev,
