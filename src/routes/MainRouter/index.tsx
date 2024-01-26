@@ -1,26 +1,28 @@
-// import CouponList from '@pages/CouponList';
 import { Route, Routes } from 'react-router-dom';
 
-import { Layout } from '@components/common';
+import { PrivateRouter, PublicRouter } from '..';
 import Login from '@pages/Login';
 import SignUp from '@pages/SignUp';
 import Dashboard from '@pages/Dashboard';
 import Report from '@pages/Report';
 import CouponList from '@pages/CouponList';
 import Register from '@pages/Register';
+import Settlements from '@pages/Settlements';
 
 const MainRouter = () => {
   return (
     <Routes>
-      <Route
-        path="/login"
-        element={<Login />}
-      />
-      <Route
-        path="/signup"
-        element={<SignUp />}
-      />
-      <Route element={<Layout />}>
+      <Route element={<PublicRouter />}>
+        <Route
+          path="/login"
+          element={<Login />}
+        />
+        <Route
+          path="/signup"
+          element={<SignUp />}
+        />
+      </Route>
+      <Route element={<PrivateRouter />}>
         <Route
           path="/"
           element={<Dashboard />}
@@ -35,19 +37,7 @@ const MainRouter = () => {
         />
         <Route
           path="/settlements"
-          element={
-            <div
-              style={{
-                height: '100%',
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-                fontSize: '1.5rem'
-              }}
-            >
-              🧃 정산관리 페이지 입주 예정 🧃
-            </div>
-          }
+          element={<Settlements />}
         />
         <Route
           path="/coupons/report"

@@ -133,7 +133,7 @@ const Coupon = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-
+  
   box-shadow: 0px 3px 3px 0px rgba(0, 0, 0, 0.25);
 
   overflow: hidden;

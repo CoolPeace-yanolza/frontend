@@ -18,7 +18,10 @@ export default LoginTitle;
 
 const LogoIcon = styled.img`
   width: 288px;
-  height: 60px;
+
+  @media screen and (max-width: 649px) {
+    width: 200px;
+  }
 `;
 
 const TitleWrapper = styled.div`
@@ -26,14 +29,21 @@ const TitleWrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 11px;
+  gap: 8px;
 
-  text-align: center;
+  @media screen and (max-width: 649px) {
+    gap: 5px;
+  }
 `;
 
 const Title = styled.h1`
+  text-align: center;
   color: #1a2849;
-  font-size: 44.374px;
-  font-weight: 900;
-  line-height: 51.769px;
+  font-family: 'Noto Sans KR';
+  font-size: 44px;
+  font-weight: 800;
+
+  @media screen and (max-width: 649px) {
+    font-size: 31px;
+  }
 `;

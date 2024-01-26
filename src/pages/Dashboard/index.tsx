@@ -1,23 +1,16 @@
 import styled from '@emotion/styled';
 
+import theme from '@styles/theme';
 import {
-  GraphSection,
-  CouponStatusSection,
-  LocalInformationSection,
-  DailyReportSection
+  DashboardLeftSection,
+  DashboardRightSection
 } from '@components/Dashboard';
 
 const Dashboard = () => {
   return (
     <Container>
-      <LeftSection>
-        <GraphSection />
-        <LocalInformationSection />
-      </LeftSection>
-      <RightSection>
-        <CouponStatusSection />
-        <DailyReportSection />
-      </RightSection>
+      <DashboardLeftSection />
+      <DashboardRightSection />
     </Container>
   );
 };
@@ -31,21 +24,11 @@ const Container = styled.div`
   display: flex;
   justify-content: space-between;
   gap: 25px;
-`;
 
-const LeftSection = styled.div`
-  min-width: 1016px;
-  height: 100%;
+  ${theme.response.tablet} {
+    height: auto;
 
-  display: flex;
-  flex-direction: column;
-  flex: 2;
-`;
-
-const RightSection = styled.div`
-  min-width: 250px;
-  height: 100%;
-
-  display: flex;
-  flex-direction: column;
+    flex-direction: column-reverse;
+    gap: 5px;
+  }
 `;
