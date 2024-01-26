@@ -113,6 +113,8 @@ const handleDownloadExcel = async () => {
 
     const workBook = XLSX.utils.book_new();
     const workSheet = XLSX.utils.json_to_sheet(allData);
+
+    workSheet['!cols'] = [{wch:12}, {wch:12}, {wch:25}, {wch:5}, {wch:12}, {wch:12}, {wch:12}, {wch:12}];
     
     XLSX.utils.book_append_sheet(workBook, workSheet, "Sheet1");
     XLSX.writeFile(workBook, "SettlementedDownload.xlsx");
