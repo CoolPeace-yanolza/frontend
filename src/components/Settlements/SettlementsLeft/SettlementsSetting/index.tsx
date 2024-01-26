@@ -14,7 +14,7 @@ import { settlementsDateState } from '@recoil/atoms/settlemented';
 import { getCurrentYearStartDate, getCurrentYearEndDate } from '@utils/index';
 import Settlemented from './Settlemented';
 import SettlementsHeader from './SettlementsHeader';
-import CalendarIcon from '@assets/icons/calendar-number-outline.svg';
+import CalendarIcon from '@assets/icons/calendar-outline.svg';
 import theme from '@styles/theme';
 import Loading from './Settlemented/index.loading';
 import ErrorFallback from './Settlemented/index.error';
@@ -172,8 +172,8 @@ const CalendarInnerContainer = styled.div`
 `;
 
 const Calendar = styled.img`
-  width: 24px;
-  height: 24px;
+  width: 15px;
+  height: 15px;
 
   margin-right: 4px;
 `;
