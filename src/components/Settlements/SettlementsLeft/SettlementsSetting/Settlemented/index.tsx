@@ -297,8 +297,6 @@ const StyledDropdown = styled(Dropdown)`
 }
 `;
 
-
-
 const ExcelDownload = styled.div`
   margin-left: 10px;
 
@@ -312,6 +310,7 @@ const ExcelDownload = styled.div`
     font-size: 12px;
     font-weight: bold;
     color: white;
+    font-family: 'Noto Sans KR';
 
     text-decoration: underline;
     cursor: pointer;
