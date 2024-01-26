@@ -13,8 +13,6 @@ const SettlementsBeforeUpdate = () => {
     lastMonth.setMonth(currentDate.getMonth() - 1);
     lastMonth.setDate(1);
   
-    // const isBeforeDueDate = currentDate.getDate() < 10;
-  
     const { data: summary } = useGetSettlemented(accommodation.id);
 
   return (
