@@ -17,7 +17,7 @@ import {
   showSecondStepValidationMessage,
   showThirdStepValidationMessage,
   showFourthStepValidationMessage,
-  handleStepLessThan3
+  handleSteps
 } from '@utils/index';
 
 const StepperController = ({
@@ -54,7 +54,7 @@ const StepperController = ({
     }
 
     if (currentStep < 3) {
-      handleStepLessThan3(currentStep, input, isFilled, onButtonClick);
+      handleSteps(currentStep, input, isFilled, onButtonClick);
     }
   };
 

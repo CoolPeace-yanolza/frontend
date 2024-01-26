@@ -1,6 +1,6 @@
 import { registerInputAtom } from '@/types/register';
 
-export const handleStepLessThan3 = (
+export const handleSteps = (
   currentStep: number,
   input: registerInputAtom,
   isFilled: boolean,
