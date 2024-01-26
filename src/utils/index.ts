@@ -13,8 +13,6 @@ export { setCookies, getCookies, deleteAllCookies } from './lib/cookies';
 export { getCurrentYearStartDate, getCurrentYearEndDate } from './lib/dateSetting';
 export { inputFilter } from './lib/inputFilter';
 export { sliceName } from './lib/sliceName';
-export { inputFilter } from './lib/inputFilter';
-export { sliceName } from './lib/sliceName';
 export { getStepperConfig } from './lib/getStepperConfig';
 export {
   showFirstStepValidationMessage,
