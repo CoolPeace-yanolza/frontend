@@ -11,3 +11,5 @@ export { getStatusToLocaleString } from './lib/dashboard';
 export { getInputOptions } from './lib/auth';
 export { setCookies, getCookies, deleteAllCookies } from './lib/cookies';
 export { getCurrentYearStartDate, getCurrentYearEndDate } from './lib/dateSetting';
+export { inputFilter } from './lib/inputFilter';
+export { sliceName } from './lib/sliceName';
