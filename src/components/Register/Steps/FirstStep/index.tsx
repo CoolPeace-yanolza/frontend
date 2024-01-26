@@ -15,6 +15,15 @@ import {
   registerValidState,
   previewState
 } from '@recoil/index';
+import {
+  validateTitle,
+  validateCustomerType,
+  validateDiscountType,
+  validateDiscountFlat,
+  validateDiscountFlatRate,
+  validateLabel,
+  validateMaximumDiscount
+} from '@utils/index';
 
 const FirstStep = () => {
   const [input, setInput] = useRecoilState(registerInputState);
@@ -23,30 +32,18 @@ const FirstStep = () => {
 
   const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInput({ ...input, title: e.target.value });
-    setIsValid(prev => ({
-      ...prev,
-      isTitleValid: true
-    }));
+    validateTitle(e.target.value, setIsValid);
   };
 
   const handleCustomerTypeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInput({ ...input, customerType: e.target.value });
     setPreview({ ...preview, customer: e.target.value + ' 대상' });
-    setIsValid(prev => ({
-      ...prev,
-      isCustomerTypeValid: true
-    }));
+    validateCustomerType(e.target.value, setIsValid);
   };
 
   const handleDiscountTypeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInput({ ...input, discountType: e.target.value });
-    setIsValid(prev => ({
-      ...prev,
-      isDiscountTypeValid: true,
-      isDiscountFlatValid: true,
-      isDiscountFlatRateValid: true,
-      isThousands: true
-    }));
+    validateDiscountType(e.target.value, setIsValid);
   };
 
   const handleDiscountFlatChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -55,11 +52,7 @@ const FirstStep = () => {
       ...preview,
       discount: Number(e.target.value).toLocaleString() + '원 할인'
     });
-    setIsValid(prev => ({
-      ...prev,
-      isDiscountFlatValid: true,
-      isThousands: true
-    }));
+    validateDiscountFlat(setIsValid);
   };
 
   const handleDiscountFlatRateChange = (
@@ -70,11 +63,7 @@ const FirstStep = () => {
       ...preview,
       discount: e.target.value + '% 할인'
     });
-    setIsValid(prev => ({
-      ...prev,
-      isDiscountFlatRateValid: true,
-      isThousands: true
-    }));
+    validateDiscountFlatRate(setIsValid);
   };
 
   const handleLabelChange = () => {
@@ -82,21 +71,14 @@ const FirstStep = () => {
       ...prev,
       hasLimit: !input.hasLimit
     }));
-    setIsValid(prev => ({
-      ...prev,
-      isDiscountFlatRateValid: true,
-      isThousands: true
-    }));
+    validateLabel(setIsValid);
   };
 
   const handleMaximumDiscountChange = (
     e: React.ChangeEvent<HTMLInputElement>
   ) => {
     setInput({ ...input, maximumDiscount: e.target.value });
-    setIsValid(prev => ({
-      ...prev,
-      isDiscountFlatRateValid: true
-    }));
+    validateMaximumDiscount(setIsValid);
   };
 
   return (

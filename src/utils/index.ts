@@ -17,3 +17,12 @@ export {
   showFourthStepValidationMessage
 } from './lib/showValidationMessage';
 export { handleStepLessThan3 } from './lib/handleStepLessThan3';
+export {
+  validateTitle,
+  validateCustomerType,
+  validateDiscountType,
+  validateDiscountFlat,
+  validateDiscountFlatRate,
+  validateLabel,
+  validateMaximumDiscount
+} from './lib/validationUtils';
