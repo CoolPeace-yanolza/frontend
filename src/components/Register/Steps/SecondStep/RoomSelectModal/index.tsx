@@ -1,10 +1,10 @@
 import { useState, useRef } from 'react';
+import { useRecoilState } from 'recoil';
 import styled from '@emotion/styled';
 
 import { Backdrop } from '@components/common';
 import {
   RoomType,
-  RoomsType,
   RoomSelectModalProps,
   RoomSelectModalStyleProps
 } from '@/types/register';
@@ -15,60 +15,61 @@ import filterUnchecked from '@assets/icons/ic-register-filter-unchecked.svg';
 import listChecked from '@assets/icons/ic-register-checked.svg';
 import listUnchecked from '@assets/icons/ic-register-unchecked.svg';
 import { sliceName } from '@utils/index';
+import { registerInputState, previewState } from '@recoil/index';
 
 const list = [
   {
     id: 12,
-    roomNumber: 101,
-    roomType: '트윈베드룸',
+    roomNumber: '101',
+    roomType: '대실',
     price: 10000
   },
   {
     id: 13,
-    roomNumber: 102,
-    roomType: '싱글베드룸',
+    roomNumber: '102',
+    roomType: '대실',
     price: 20000
   },
   {
     id: 13,
-    roomNumber: 102,
-    roomType: '디럭스',
+    roomNumber: '110',
+    roomType: '숙박',
     price: 70000
   },
   {
     id: 13,
-    roomNumber: 102,
-    roomType: '스탠다드 더블',
+    roomNumber: '301',
+    roomType: '숙박',
     price: 85000
   },
   {
     id: 13,
-    roomNumber: 102,
-    roomType: 'VIP 더블',
+    roomNumber: '204',
+    roomType: '대실',
     price: 100000
   }
 ];
 
-const RoomSelectModal = ({
-  value,
-  setToAllRoom,
-  rooms,
-  setRooms,
-  onButtonClick
-}: RoomSelectModalProps) => {
-  const [selectedRooms, setSelectedRooms] = useState([...rooms]);
+const RoomSelectModal = ({ setIsOpen }: RoomSelectModalProps) => {
+  const [input, setInput] = useRecoilState(registerInputState);
+  const [preview, setPreview] = useRecoilState(previewState);
+
+  const [selectedRooms, setSelectedRooms] = useState([...input.rooms]);
   const [sortedRooms, setSortedRooms] = useState([...list]);
-  const [isSortedByName, setIsSortedByName] = useState(false);
+  const [isSortedByNumber, setIsSortedByNumber] = useState(false);
   const [isSortedByPrice, setIsSortedByPrice] = useState(true);
   const backdropRef = useRef<HTMLDivElement>(null);
 
-  setToAllRoom(value);
-
   const handleClose = () => {
-    if (!rooms) {
-      setToAllRoom(0);
+    if (!input.rooms.length) {
+      const falseRadioButton =
+        document.querySelector<HTMLInputElement>('#false')!;
+      falseRadioButton.checked = false;
+
+      setInput({ ...input, toAllRooms: '' });
+      setPreview({ ...preview, toAllRooms: '적용 객실' });
     }
-    onButtonClick(false);
+    setIsOpen(false);
   };
 
   const handleBackdropClick = (e: React.MouseEvent<HTMLDivElement>) => {
@@ -78,8 +79,8 @@ const RoomSelectModal = ({
   };
 
   const handleApply = () => {
-    setRooms(selectedRooms);
-    onButtonClick(false);
+    setInput({ ...input, rooms: [...selectedRooms] });
+    setIsOpen(false);
   };
 
   const handleSelectAll = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -91,7 +92,7 @@ const RoomSelectModal = ({
     room: RoomType
   ) => {
     if (e.target.checked) {
-      setSelectedRooms((prev: RoomsType) => [...prev, room]);
+      setSelectedRooms(prev => [...prev, room]);
     } else {
       setSelectedRooms(selectedRooms.filter(element => element !== room));
     }
@@ -105,13 +106,15 @@ const RoomSelectModal = ({
       ? [...sortedRooms].reverse()
       : sortedRooms.sort(compareFunction);
 
-    setIsSortedByName(prev => !prev);
+    setIsSortedByNumber(prev => !prev);
     setIsSortedByPrice(prev => !prev);
     setSortedRooms(sortedList);
   };
 
   const handleSortByName = () => {
-    handleSort(isSortedByName, (a, b) => a.roomType.localeCompare(b.roomType));
+    handleSort(isSortedByNumber, (a, b) =>
+      a.roomNumber.localeCompare(b.roomNumber)
+    );
   };
 
   const handleSortByPrice = () => {
@@ -173,7 +176,7 @@ const RoomSelectModal = ({
                     <ListCheckIcon $src={listUnchecked} />
                   </label>
                 </ListCell>
-                <ListCell>{sliceName(room.roomType)}</ListCell>
+                <ListCell>{sliceName(room.roomNumber)}</ListCell>
                 <ListCell>{room.price.toLocaleString()}원</ListCell>
               </List>
             );
