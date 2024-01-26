@@ -10,6 +10,10 @@ export interface CategoryTabStyleProps {
   $categoryTab: boolean;
 }
 
+export interface RoomListProps {
+  $isBottom: boolean;
+}
+
 // api 쿠폰 리스트정보 응답 데이터
 export interface CouponListResponse {
   content: CouponInformationResponse[];

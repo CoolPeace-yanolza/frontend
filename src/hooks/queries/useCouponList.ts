@@ -1,3 +1,4 @@
+import { getCouponList } from './../../api/lib/getCouponList';
 import {
   CouponDeleteCredential,
   CouponListResponse,
@@ -14,8 +15,7 @@ import {
 import {
   couponDeleteApi,
   couponToggleApi,
-  couponUpdateApi,
-  getCouponList
+  couponUpdateApi
 } from 'src/api/lib/getCouponList';
 
 // 쿠폰 조회

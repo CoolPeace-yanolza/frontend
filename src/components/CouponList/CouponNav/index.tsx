@@ -150,7 +150,7 @@ const TabContainer = styled.div`
   @media (max-width: 656px) {
     position: sticky;
     top: 0;
-    z-index: 50;
+    z-index: 60;
 
     margin: 0px;
     background-color: ${theme.colors.white};

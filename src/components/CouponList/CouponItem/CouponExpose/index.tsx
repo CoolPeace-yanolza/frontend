@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import styled from '@emotion/styled';
 
 import theme from '@styles/theme';
@@ -6,16 +6,24 @@ import toggleOnIcon from '@assets/icons/ic-couponlist-toggleOn.svg';
 import toggleOffIcon from '@assets/icons/ic-couponlist-toggleOff.svg';
 import rightIcon from '@assets/icons/ic-couponlist-right.svg';
 import deleteIcon from '@assets/icons/ic-couponlist-delete.svg';
-import { CouponListProps, ToggleStyleProps } from '@/types/couponList';
+import {
+  CouponListProps,
+  RoomListProps,
+  ToggleStyleProps
+} from '@/types/couponList';
 import { useOutsideClick, useToggleChange } from '@hooks/index';
 import couponCondition from '@utils/lib/couponCondition';
 import { useToast } from '@components/common/ToastContext';
 import couponRoomType from '@utils/lib/couponRoomType';
+import { useUpdateRoomListPosition } from '@utils/lib/roomListPosition';
 
 const CouponExpose = ({ couponInfo }: CouponListProps) => {
   const [isToggle, setIsToggle] = useState(true);
   const [isShowRoomList, setIsShowRoomList] = useState(false);
   const roomListRef = useRef<HTMLDivElement>(null);
+  const roomListStyleRef = useRef<HTMLDivElement>(null);
+  const [isBottom, setIsBottom] = useState(false); // RoomList가 하단에 닿았는지 여부를 나타내는 상태
+
   const { mutateAsync } = useToggleChange();
   const { showToast } = useToast();
 
@@ -73,19 +81,8 @@ const CouponExpose = ({ couponInfo }: CouponListProps) => {
     );
   };
 
-  // const retryToggleUpdate = async () => {
-  //   try {
-  //     setIsToggle(!isToggle);
-  //     mutateAsync({
-  //       coupon_number: couponInfo.coupon_number,
-  //       coupon_status: '노출 ON'
-  //     });
-  //     console.log(isToggle);
-  //     showToast(<div>{couponInfo.title} 쿠폰의 노출되었습니다.</div>, 3000);
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
+  // 객실 리스트 스크롤에 따라 위치 조정
+  useUpdateRoomListPosition({ isShowRoomList, roomListStyleRef, setIsBottom });
 
   return (
     <CouponContainer $isToggle={isToggle}>
@@ -165,7 +162,10 @@ const CouponExpose = ({ couponInfo }: CouponListProps) => {
                   />
                 </ContentRoom>
                 {isShowRoomList && (
-                  <RoomList>
+                  <RoomList
+                    $isBottom={isBottom}
+                    ref={roomListStyleRef}
+                  >
                     <RoomListTitleWrap>
                       <RoomListTitle>쿠폰 적용 객실</RoomListTitle>
                       <img
@@ -362,33 +362,42 @@ const ContentRoom = styled.div`
   }
 `;
 
-const RoomList = styled.div`
+const RoomList = styled.div<RoomListProps>`
   position: absolute;
-  top: 0;
+  top: ${({ $isBottom }) => ($isBottom ? 'auto' : '0')};
+  bottom: ${({ $isBottom }) => ($isBottom ? '0' : 'auto')};
   right: 0;
   z-index: 50;
+  transform: ${({ $isBottom }) => ($isBottom ? 'translateY(-100%)' : 'none')};
 
   width: 188px;
   height: 204px;
 
-  margin-top: 150px;
+  margin-top: ${({ $isBottom }) => ($isBottom ? 'auto' : '150px')};
+  margin-bottom: ${({ $isBottom }) => ($isBottom ? '-110px' : '150px')};
   border-radius: 18px;
-  text-align: center;
 
+  text-align: center;
   background: #415574;
 
   &::before {
     content: '';
     position: absolute;
-    top: -10px;
+    top: ${({ $isBottom }) => ($isBottom ? 'auto' : '-10px')};
+    bottom: ${({ $isBottom }) => ($isBottom ? '0px' : 'auto')};
     left: 50%;
-    transform: translateX(-50%);
+    transform: translateX(-50%)
+      ${({ $isBottom }) => ($isBottom ? 'translateY(100%)' : '')};
 
     width: 0;
     height: 0;
+
     border-left: 10px solid transparent;
     border-right: 10px solid transparent;
-    border-bottom: 10px solid #415574;
+    border-top: ${({ $isBottom }) =>
+      $isBottom ? '10px solid #415574' : 'none'};
+    border-bottom: ${({ $isBottom }) =>
+      $isBottom ? 'none' : '10px solid #415574'};
   }
 `;
 

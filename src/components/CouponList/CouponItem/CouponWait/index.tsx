@@ -7,10 +7,11 @@ import centerIcon from '@assets/icons/ic-couponlist-center.svg';
 import rightIcon from '@assets/icons/ic-couponlist-right.svg';
 import deleteIcon from '@assets/icons/ic-couponlist-delete.svg';
 import { useCouponDelete, useOutsideClick } from '@hooks/index';
-import { CouponListProps } from '@/types/couponList';
+import { CouponListProps, RoomListProps } from '@/types/couponList';
 import Modal from '@components/modal';
 import { couponCondition } from '@utils/lib/couponCondition';
 import couponRoomType from '@utils/lib/couponRoomType';
+import { useUpdateRoomListPosition } from '@utils/lib/roomListPosition';
 
 const CouponWait = ({ couponInfo }: CouponListProps) => {
   const [isShowRoomList, setIsShowRoomList] = useState(false);
@@ -18,6 +19,8 @@ const CouponWait = ({ couponInfo }: CouponListProps) => {
   const roomListRef = useRef<HTMLDivElement>(null);
   const [modalType, setModalType] = useState('');
   const navigate = useNavigate();
+  const roomListStyleRef = useRef<HTMLDivElement>(null);
+  const [isBottom, setIsBottom] = useState(false); // RoomList가 하단에 닿았는지 여부를 나타내는 상태
   const [modalContent, setModalContent] = useState({
     modalText: '',
     subText: false
@@ -62,6 +65,9 @@ const CouponWait = ({ couponInfo }: CouponListProps) => {
   const handleModalClose = () => {
     setIsShowModal(false);
   };
+
+  // 객실 리스트 스크롤에 따라 위치 조정
+  useUpdateRoomListPosition({ isShowRoomList, roomListStyleRef, setIsBottom });
 
   return (
     <CouponContainer>
@@ -120,7 +126,10 @@ const CouponWait = ({ couponInfo }: CouponListProps) => {
                   />
                 </ContentRoom>
                 {isShowRoomList && (
-                  <RoomList>
+                  <RoomList
+                    $isBottom={isBottom}
+                    ref={roomListStyleRef}
+                  >
                     <RoomListTitleWrap>
                       <RoomListTitle>쿠폰 적용 객실</RoomListTitle>
                       <img
@@ -391,33 +400,42 @@ const ContentRoom = styled.div`
   }s
 `;
 
-const RoomList = styled.div`
+const RoomList = styled.div<RoomListProps>`
   position: absolute;
-  top: 0;
+  top: ${({ $isBottom }) => ($isBottom ? 'auto' : '0')};
+  bottom: ${({ $isBottom }) => ($isBottom ? '0' : 'auto')};
   right: 0;
   z-index: 50;
+  transform: ${({ $isBottom }) => ($isBottom ? 'translateY(-100%)' : 'none')};
 
   width: 188px;
   height: 204px;
 
-  margin-top: 150px;
+  margin-top: ${({ $isBottom }) => ($isBottom ? 'auto' : '150px')};
+  margin-bottom: ${({ $isBottom }) => ($isBottom ? '-110px' : '150px')};
   border-radius: 18px;
-  text-align: center;
 
+  text-align: center;
   background: #415574;
 
   &::before {
     content: '';
     position: absolute;
-    top: -10px;
+    top: ${({ $isBottom }) => ($isBottom ? 'auto' : '-10px')};
+    bottom: ${({ $isBottom }) => ($isBottom ? '0px' : 'auto')};
     left: 50%;
-    transform: translateX(-50%);
+    transform: translateX(-50%)
+      ${({ $isBottom }) => ($isBottom ? 'translateY(100%)' : '')};
 
     width: 0;
     height: 0;
+
     border-left: 10px solid transparent;
     border-right: 10px solid transparent;
-    border-bottom: 10px solid #415574;
+    border-top: ${({ $isBottom }) =>
+      $isBottom ? '10px solid #415574' : 'none'};
+    border-bottom: ${({ $isBottom }) =>
+      $isBottom ? 'none' : '10px solid #415574'};
   }
 `;
 
