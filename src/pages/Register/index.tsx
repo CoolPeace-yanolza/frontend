@@ -14,8 +14,8 @@ import { getStepperConfig } from '@utils/index';
 const Register = () => {
   const [currentStep, setCurrentStep] = useState(0);
 
-  const { isCompleted, isFilled } = useStepValidation(currentStep);
-  const steps = getStepperConfig(isCompleted);
+  const { isFilled } = useStepValidation(currentStep);
+  const steps = getStepperConfig();
 
   return (
     <Background>

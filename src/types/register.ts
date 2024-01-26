@@ -106,7 +106,6 @@ export type DayStyleProps = {
 export type StepperProps = {
   steps: {
     title: string;
-    isCompleted: boolean;
   }[];
   currentStep: number;
 };
@@ -138,7 +137,6 @@ export type NextButtonStyleProps = {
 export type StepTitleProps = {
   steps: {
     title: string;
-    isCompleted: boolean;
   }[];
   currentStep: number;
 };
