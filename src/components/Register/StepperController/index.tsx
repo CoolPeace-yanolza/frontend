@@ -19,22 +19,14 @@ const StepperController = ({
   };
 
   return (
-    <ControllerContainer>
-      <InnerControllerContainer>
-        <ControllerButton onClick={handlePreviousButton}>이전</ControllerButton>
-        <ControllerButton onClick={handleNextButton}>다음</ControllerButton>
-      </InnerControllerContainer>
-    </ControllerContainer>
+    <InnerControllerContainer>
+      <ControllerButton onClick={handlePreviousButton}>이전</ControllerButton>
+      <ControllerButton onClick={handleNextButton}>다음</ControllerButton>
+    </InnerControllerContainer>
   );
 };
 
 export default StepperController;
-
-const ControllerContainer = styled.div`
-  display: grid;
-  grid-column: 2 / 3;
-  grid-row: 3 / 4;
-`;
 
 const InnerControllerContainer = styled.div`
   display: flex;

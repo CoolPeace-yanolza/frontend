@@ -1,8 +1,19 @@
+import { useState } from 'react';
 import styled from '@emotion/styled';
 
-import { InputContainer, InputButton } from '@components/Register/common';
+import {
+  InputContainer,
+  InputButton,
+  InputField,
+  InputCheckBox,
+  InputWrapper
+} from '@components/Register/common';
+import { LimitWrapperStyleProps } from '@/types/register';
 
 const FirstStep = () => {
+  const [currentInput, setCurrentInput] = useState(0);
+  const [isLimited, setIsLimited] = useState(false);
+
   return (
     <>
       <InputContainer title="쿠폰의 이름을 입력해주세요.">
@@ -37,14 +48,54 @@ const FirstStep = () => {
             id="price"
             name="discountType"
             buttonName="정액 할인"
+            value={1}
+            onButtonClick={setCurrentInput}
           />
           <InputButton
             type="radio"
             id="rate"
             name="discountType"
             buttonName="정률 할인"
+            value={2}
+            onButtonClick={setCurrentInput}
           />
         </ButtonWrapper>
+        <InputWrapper
+          whichInput={1}
+          currentInput={currentInput}
+        >
+          <InputField
+            placeholder="ex) 5000"
+            text="원"
+          />
+        </InputWrapper>
+        <InputWrapper
+          whichInput={2}
+          currentInput={currentInput}
+        >
+          <ContentWrapper>
+            <InputField
+              placeholder="ex) 50"
+              text="% 할인"
+            />
+            <InputCheckBox
+              id="discountLimit"
+              text="최대 할인 한도 설정하기"
+              onCheck={setIsLimited}
+            />
+          </ContentWrapper>
+        </InputWrapper>
+        <LimitWrapper $isLimited={isLimited}>
+          <InputWrapper
+            whichInput={2}
+            currentInput={currentInput}
+          >
+            <InputField
+              placeholder="ex) 5000"
+              text="원"
+            />
+          </InputWrapper>
+        </LimitWrapper>
       </InputContainer>
     </>
   );
@@ -79,4 +130,12 @@ const ButtonWrapper = styled.div`
 
   display: flex;
   gap: 23px;
+`;
+
+const ContentWrapper = styled.div`
+  display: flex;
+`;
+
+const LimitWrapper = styled.div<LimitWrapperStyleProps>`
+  display: ${props => (props.$isLimited ? 'block' : 'none')};
 `;

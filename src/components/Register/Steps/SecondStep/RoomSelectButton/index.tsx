@@ -1,25 +1,18 @@
 import styled from '@emotion/styled';
 
 import theme from '@styles/theme';
-import { InputButtonProps } from '@/types/register';
+import { RoomSelectButtonProps } from '@/types/register';
 
-const InputButton = ({
+const RoomSelectButton = ({
   type,
   id,
   name,
   buttonName,
-  value,
-  currentInput,
+  rooms,
   onButtonClick
-}: InputButtonProps) => {
-  const handleToggle = () => {
-    if (value && onButtonClick) {
-      if (currentInput) {
-        value === currentInput ? onButtonClick(0) : onButtonClick(value);
-      } else {
-        onButtonClick(value);
-      }
-    }
+}: RoomSelectButtonProps) => {
+  const handleModal = () => {
+    onButtonClick(true);
   };
 
   return (
@@ -28,10 +21,11 @@ const InputButton = ({
         id={id}
         type={type}
         name={name}
+        checked={rooms ? true : false}
       />
       <Button
         htmlFor={id}
-        onClick={handleToggle}
+        onClick={handleModal}
       >
         {buttonName}
       </Button>
@@ -39,7 +33,7 @@ const InputButton = ({
   );
 };
 
-export default InputButton;
+export default RoomSelectButton;
 
 const Input = styled.input`
   display: none;

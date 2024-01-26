@@ -4,7 +4,7 @@ import styled from '@emotion/styled';
 import { InputAccordionProps, ButtonStyleProps } from '@/types/register';
 import toggle from '@assets/icons/ic-register-toggle.svg';
 
-const InputAccordion = ({ title, content }: InputAccordionProps) => {
+const InputAccordion = ({ title, children }: InputAccordionProps) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const contentWrapperRef = useRef<HTMLDivElement>(null);
@@ -30,7 +30,7 @@ const InputAccordion = ({ title, content }: InputAccordionProps) => {
         />
       </Header>
       <ContentWrapper ref={contentWrapperRef}>
-        <Content ref={contentRef}>{content}</Content>
+        <Content ref={contentRef}>{children}</Content>
       </ContentWrapper>
     </Container>
   );
@@ -89,5 +89,5 @@ const ContentWrapper = styled.div`
 `;
 
 const Content = styled.div`
-  padding: 24px 0px 6px;
+  padding-top: 20px;
 `;

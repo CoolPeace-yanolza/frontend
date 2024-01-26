@@ -12,7 +12,7 @@ const ErrorFallback = ({ resetErrorBoundary }: FallbackProps) => {
         src={errorIcon}
         alt="에러 발생"
       />
-      <ErrorWord>정산 내역을 불러올 수 없습니다.</ErrorWord>
+      <ErrorWord>예상 정산 내역을 불러올 수 없습니다.</ErrorWord>
       <ReLoadButton onClick={resetErrorBoundary}>
         <ReloadIcon
           src={reloadIcon}
@@ -28,27 +28,25 @@ export default ErrorFallback;
 
 const Container = styled.div`
   width: 100%;
-  height: 580px;
+  height: 155.67px;
 
-  margin-left: 10px;
-  padding: 30px 15px;
-  border-radius: 20px;
+  margin-top: 20px;
+  border: 1px solid white;
+  border-radius: 5px;
+
+  gap: 10px;
 
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 20px;
 
   background-color: white;
 
-  ${theme.response.tablet} {
-    width: 90%;
-    max-height: 250px;
 
-    margin: 20px 0;
+  ${theme.response.tablet} {
     padding: 15px 15px;
-    border-radius: 10px;
+    border-radius: 5px;
 
     gap: 15px;
 
@@ -61,22 +59,30 @@ const ErrorIcon = styled.img`
   height: 35px;
 
   ${theme.response.tablet} {
-    width: 40px;
-    height: 40px;
+    width: 30px;
+    height: 30px;
   }
+
+  @media (max-width: 592px) {
+    width: 25px;
+    height: 25px;
+  } 
 `;
 
 const ErrorWord = styled.span`
   font-size: 14px;
   font-weight: 500;
 
-  ${theme.response.tablet} {
-    font-size: 13px;
+  @media (max-width: 592px) {
+    font-size: 10px;
+  }
+
+  @media (max-width: 526px) {
+    font-size: 8px;
   }
 `;
 
 const ReLoadButton = styled.button`
-  margin-top: 15px;
   margin-left: 3px;
   border: none;
 
@@ -85,7 +91,7 @@ const ReLoadButton = styled.button`
   align-items: center;
 
   background-color: transparent;
-  font-size: 12px;
+  font-size: 10px;
   text-align: center;
 
   transition: all 0.5s;
@@ -94,10 +100,12 @@ const ReLoadButton = styled.button`
     color: gray;
   }
 
-  ${theme.response.tablet} {
-    margin: 0;
+  @media (max-width: 592px) {
+    font-size: 8px;
+  }
 
-    font-size: 10px;
+  @media (max-width: 526px) {
+    font-size: 6px;
   }
 `;
 
@@ -105,10 +113,15 @@ const ReloadIcon = styled.img`
   width: 20px;
   height: 20px;
 
-  margin-right: 10px;
+  margin-right: 3px;
 
   ${theme.response.tablet} {
     width: 15px;
     height: 15px;
+  }
+
+  @media (max-width: 592px) {
+    width: 22px;
+    height: 12px;
   }
 `;
