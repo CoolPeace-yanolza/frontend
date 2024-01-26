@@ -48,6 +48,7 @@ const InnerContainer = styled.div`
   height: 100%;
 
   border: 1px solid rgba(255, 255, 255, 0.1); 
+  border-bottom-right-radius: 1.25rem;
 
   flex-direction: column; 
   align-items: center; 
