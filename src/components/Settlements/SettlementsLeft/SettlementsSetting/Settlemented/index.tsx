@@ -55,15 +55,19 @@ const Settlemented = () => {
     }
   };
 
+  const today = new Date();
+  const currentYear = today.getFullYear();
+  
+  const getCurrentYearStartDate = () => {
+    const defaultStartYear = new Date(currentYear - 1, today.getMonth(), 1);
+    defaultStartYear.setDate(defaultStartYear.getDate() + 1);
+    return new Date(defaultStartYear).toISOString().split('T')[0]; 
+  };
+
   const getCurrentEndDate = () => {
-    const today = new Date();
-    if (today.getDate() <= 10) {
-      return new Date(today.getFullYear(), today.getMonth() - 2, 31).toISOString().split('T')[0];
-    } else if (today.getDate() > 10 && today.getDate() <= 31) {
-      return new Date(today.getFullYear(), today.getMonth() - 1, 31).toISOString().split('T')[0];
-    } else {
-      return today.toISOString().split('T')[0];
-    }
+    const defaultEndYear = new Date(today.getFullYear(), today.getMonth(), 0)
+    defaultEndYear.setDate(defaultEndYear.getDate() + 1)
+    return new Date(defaultEndYear).toISOString().split('T')[0];
   };
   
   let adjustedStartDate: string | null = null;
@@ -75,7 +79,7 @@ const Settlemented = () => {
 
   const { data: settlements } = useGetSettlements(
     accommodation.id,
-    adjustedStartDate ? adjustedStartDate : '2000-01-01',
+    adjustedStartDate ? adjustedStartDate : getCurrentYearStartDate(),
     endDate ? endDate.toISOString().split('T')[0] : getCurrentEndDate(),
     orderBy,
     currentPage - 1,
