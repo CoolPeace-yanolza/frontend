@@ -78,7 +78,7 @@ const InnerContainer = styled.div`
 `;
 
 const LeftSection = styled.div`
-  height: 98%;
+  height: 100%;
 
   flex: 1;
 
