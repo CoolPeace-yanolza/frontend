@@ -19,9 +19,9 @@ import { useRecoilValue } from 'recoil';
 import theme from '@styles/theme';
 import { GraphHeaderTag } from '@/types/dashboard';
 import graphOptions from './graphOptions';
-import { getUpdatedDate } from '@utils/index';
 import { headerAccommodationState } from '@recoil/index';
 import { useGetMonthReports } from '@hooks/index';
+import reloadIcon from '@assets/icons/ic-dashboard-reload.svg';
 
 ChartJS.register(
   LinearScale,
@@ -62,7 +62,6 @@ const GraphContainer = () => {
         yAxisID: 'y1',
         barPercentage: 0.8
       },
-
       {
         type: 'bar' as const,
         label: '쿠폰 사용완료',
@@ -105,16 +104,22 @@ const GraphContainer = () => {
       <Header>
         <Title>월별 차트</Title>
         <HeaderDescription>
-          프로모션 적용 이후 예약 현황을 알려드립니다.{' '}
-          <span>({getUpdatedDate()} 업데이트)</span>
+          프로모션 적용 이후 예약 현황을 알려드립니다.
+          <HeaderSubDescription>
+            <ReloadIcon src={reloadIcon} />
+            매월 1일 00시 00분에 업데이트
+          </HeaderSubDescription>
         </HeaderDescription>
       </Header>
       <GraphWrapper>
         <MobileHeader>
           <MobileTitle>월별 차트</MobileTitle>
           <MobileHeaderDescription>
-            프로모션 적용 이후 예약 현황을 알려드립니다.{' '}
-            <span>({getUpdatedDate()} 업데이트)</span>
+            프로모션 적용 이후 예약 현황을 알려드립니다.
+            <HeaderSubDescription>
+              <ReloadIcon src={reloadIcon} />
+              매월 1일 00시 00분에 업데이트
+            </HeaderSubDescription>
           </MobileHeaderDescription>
         </MobileHeader>
         <GraphHeader>
@@ -177,14 +182,29 @@ const Title = styled.span`
 const HeaderDescription = styled.div`
   padding: 0px 10px 3px;
 
+  display: flex;
+  align-items: flex-end;
+
   color: #5e5e5e;
   font-size: 12px;
   font-weight: 700;
+`;
 
-  & > span {
-    color: #8e8e8e;
-    font-size: 10.519px;
-    font-weight: 500;
+const HeaderSubDescription = styled.div`
+  padding-left: 5px;
+
+  display: flex;
+  align-items: flex-end;
+
+  color: #6c7072;
+  font-size: 11px;
+  font-weight: 400;
+
+  ${theme.response.tablet} {
+    padding-left: 0px;
+    padding-top: 3px;
+
+    font-size: 8px;
   }
 `;
 
@@ -237,16 +257,15 @@ const GraphHeaderTag = styled.span<GraphHeaderTag>`
 
 const GraphInnerWrapper = styled.div`
   width: 98%;
-  height: 100%;
-  max-height: 300px;
+  height: 88%;
 
-  border-radius: 20px;
+  border-radius: 15px;
 
   background-color: white;
 
   ${theme.response.tablet} {
     height: calc(100vw / 2);
-    min-height: calc(100vw / 2);
+    min-height: 250px;
   }
 `;
 
@@ -254,16 +273,18 @@ const MobileHeader = styled.div`
   display: none;
 
   ${theme.response.tablet} {
-    padding-bottom: 20px;
+    padding-bottom: 15px;
 
     align-self: flex-start;
     display: flex;
-    align-items: flex-end;
+    align-items: flex-start;
     gap: 3px;
   }
 `;
 
 const MobileTitle = styled.span`
+  padding-right: 5px;
+
   font-size: 15px;
   font-weight: 700;
   line-height: 100%;
@@ -273,12 +294,16 @@ const MobileHeaderDescription = styled.div`
   padding-bottom: 2px;
 
   color: #5e5e5e;
-  font-size: 9px;
+  font-size: 10px;
   font-weight: 700;
+`;
 
-  & > span {
-    color: #8e8e8e;
-    font-size: 8px;
-    font-weight: 500;
+const ReloadIcon = styled.img`
+  padding-right: 3px;
+
+  ${theme.response.tablet} {
+    display: block;
+
+    width: 12px;
   }
 `;
