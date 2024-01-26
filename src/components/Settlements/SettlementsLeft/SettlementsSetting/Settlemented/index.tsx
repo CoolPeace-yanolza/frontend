@@ -99,7 +99,7 @@ const Settlemented = () => {
     try {
       const response = await getSettlements(
         accommodation.id,
-        startDate ? startDate.toISOString().split('T')[0] : '2000-01-01',
+        startDate ? startDate.toISOString().split('T')[0] : getCurrentYearStartDate(),
         endDate ? endDate.toISOString().split('T')[0] : getCurrentYearEndDate(),
         orderBy,
         0,
