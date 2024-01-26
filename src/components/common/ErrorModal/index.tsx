@@ -2,6 +2,7 @@ import styled from '@emotion/styled';
 
 import ErrorIcon from '@assets/icons/ic-error.svg';
 import { ErrorModalProps } from '@/types/errorModal';
+import theme from '@styles/theme';
 
 const ErrorModal = ({ modalContent, ButtonFunc }: ErrorModalProps) => {
   return (
@@ -51,6 +52,11 @@ const Modal = styled.div`
 
   background-color: #fff;
   box-shadow: 0px 5px 10px 5px rgba(0, 0, 0, 0.25);
+
+  ${theme.response.tablet} {
+    width: 336px;
+    height: 210px;
+  }
 `;
 
 const Icon = styled.img`
@@ -61,6 +67,8 @@ const Icon = styled.img`
 `;
 
 const Text = styled.p`
+  max-width: 85%;
+
   color: #404446;
   text-align: center;
   font-family: 'Noto Sans KR';
@@ -70,6 +78,8 @@ const Text = styled.p`
 `;
 
 const ErrorText = styled.p`
+  max-width: 85%;
+
   margin-bottom: 28px;
 
   color: #da1e28;
@@ -98,5 +108,12 @@ const ConfirmButton = styled.button`
   &:hover {
     background-color: #5f6980;
     cursor: pointer;
+  }
+
+  ${theme.response.tablet} {
+    width: 211px;
+    height: 36px;
+
+    font-size: 14px;
   }
 `;

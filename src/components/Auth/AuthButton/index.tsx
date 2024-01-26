@@ -25,7 +25,7 @@ export default AuthButton;
 
 const SubmitButton = styled.button<AuthButtonStyleProps>`
   width: ${props => (props.$size === 'small' ? '152px' : '524px')};
-  height: 78px;
+  height: 79px;
 
   border: none;
   border-radius: 16px;
@@ -54,5 +54,12 @@ const SubmitButton = styled.button<AuthButtonStyleProps>`
         return 'pointer';
       }
     }};
+  }
+
+  @media screen and (max-width: 649px) {
+    width: ${props => (props.$size === 'small' ? '27%' : '100%')};
+    height: 55px;
+
+    font-size: 15px;
   }
 `;

@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import styled from '@emotion/styled';
 import {
   FieldValues,
@@ -20,9 +19,10 @@ import {
 } from '@components/Auth';
 import { getEmailValid, postSignUp } from 'src/api';
 
-const SignUpForm = ({ handleModalOpen }: SignUpFormProps) => {
-  const navigate = useNavigate();
-
+const SignUpForm = ({
+  handleModalOpen,
+  setIsSignUpComplete
+}: SignUpFormProps) => {
   const methods = useForm({
     mode: 'all'
   });
@@ -70,7 +70,7 @@ const SignUpForm = ({ handleModalOpen }: SignUpFormProps) => {
     const response = await postSignUp(formData);
 
     if (response?.status === 201) {
-      navigate('/signup/complete', { replace: true });
+      setIsSignUpComplete(true);
     } else {
       handleModalOpen();
     }
@@ -181,6 +181,12 @@ const Form = styled.form`
   display: flex;
   flex-direction: column;
   gap: 23px;
+
+  @media screen and (max-width: 649px) {
+    margin-top: 20px;
+
+    gap: 15px;
+  }
 `;
 
 const InputLabelWrapper = styled.div`
@@ -195,6 +201,11 @@ const Label = styled.label`
   font-size: 18px;
   font-weight: 700;
   line-height: 32px;
+
+  @media screen and (max-width: 649px) {
+    font-size: 15px;
+    line-height: 25px;
+  }
 `;
 
 const EmailInputWrapper = styled.div`
@@ -210,4 +221,12 @@ const ValidationText = styled.p<SignUpInputValidation>`
   font-size: 15px;
   font-weight: 700;
   line-height: 32px;
+
+  @media screen and (max-width: 649px) {
+    margin-top: 5px;
+    margin-left: 10px;
+
+    font-size: 13px;
+    line-height: 25px;
+  }
 `;
