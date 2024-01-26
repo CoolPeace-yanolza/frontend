@@ -43,10 +43,13 @@ const CouponStop = ({ couponInfo }: CouponListProps) => {
       console.log(couponInfo.coupon_number);
 
       showToast(
-        <div>
-          {filterTitle} 쿠폰이 노출되었습니다.
-          <span onClick={retryToggleUpdate}>실행 취소</span>
-        </div>,
+        <ToastWrap>
+          <div>
+            {filterTitle} 쿠폰이 <br />
+            노출되었습니다.
+          </div>
+          <p onClick={retryToggleUpdate}>실행 취소</p>
+        </ToastWrap>,
         2000
       );
     } catch (error) {
@@ -60,7 +63,13 @@ const CouponStop = ({ couponInfo }: CouponListProps) => {
       coupon_number: couponInfo.coupon_number,
       coupon_status: '노출 OFF'
     });
-    showToast(<div>{filterTitle} 쿠폰의 노출이 중단되었습니다.</div>, 2000);
+    showToast(
+      <ToastText>
+        {filterTitle} 쿠폰의 노출이 <br />
+        중단되었습니다.
+      </ToastText>,
+      2000
+    );
   };
 
   return (
@@ -468,4 +477,14 @@ const RoomListItem = styled.div`
     overflow: hidden;
     text-overflow: ellipsis;
   }
+`;
+
+const ToastWrap = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+const ToastText = styled.div`
+  text-align: center;
 `;

@@ -52,23 +52,26 @@ const ToastContainer = styled.div`
   bottom: 50px;
   left: 50%;
   transform: translateX(-50%);
-  line-height:20px;
 
   width: 336px;
-  height: 90px;
+
   padding: 24px 28px;
+  white-space: nowrap;
 
   border-radius: 5px;
 
   background: #404446;
   color: ${theme.colors.white};
+  font-size:15px;
+  line-height:20px;
+
 
     p {
       color: #65a6eb;
       font-size: 15px;
       text-decoration-line: underline;
       cursor: pointer;
-      margin-left:54px;
+      text-align: center;
     }
   }
 `;

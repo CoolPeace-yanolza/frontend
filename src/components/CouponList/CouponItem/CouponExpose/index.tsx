@@ -51,7 +51,7 @@ const CouponExpose = ({ couponInfo }: CouponListProps) => {
           </div>
           <p onClick={retryToggleUpdate}>실행 취소</p>
         </ToastWrap>,
-        1000000
+        2000
       );
     } catch (error) {
       console.log(error);
@@ -64,7 +64,13 @@ const CouponExpose = ({ couponInfo }: CouponListProps) => {
       coupon_number: couponInfo.coupon_number,
       coupon_status: '노출 ON'
     });
-    showToast(<div>{couponInfo.title} 쿠폰이 노출되었습니다.</div>, 2000);
+    showToast(
+      <ToastText>
+        {couponInfo.title} 쿠폰이 <br />
+        노출되었습니다.
+      </ToastText>,
+      2000
+    );
   };
 
   // const retryToggleUpdate = async () => {
@@ -489,5 +495,10 @@ const RegisterDateValue = styled.div`
 
 const ToastWrap = styled.div`
   display: flex;
+  justify-content: space-between;
   align-items: center;
+`;
+
+const ToastText = styled.div`
+  text-align: center;
 `;
