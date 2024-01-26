@@ -13,7 +13,7 @@ const SettlementsBeforeUpdate = () => {
     lastMonth.setMonth(currentDate.getMonth() - 1);
     lastMonth.setDate(1);
   
-    const isBeforeDueDate = currentDate.getDate() < 10;
+    // const isBeforeDueDate = currentDate.getDate() < 10;
   
     const { data: summary } = useGetSettlemented(accommodation.id);
 
@@ -22,17 +22,11 @@ const SettlementsBeforeUpdate = () => {
     <UpdatedWrapper>
       <WrapperTop>
         <DueDateText>
-          {isBeforeDueDate
-            ? `정산 예정 금액`
-            : `정산 완료 금액`
-          }
+            정산 완료 금액
         </DueDateText>
         <DueDateInnerContainer>
           <DueDateDay>
-            {isBeforeDueDate
-              ? `${currentDate.getMonth() + 1}월 10일에 정산할 금액`
-              : `${currentDate.getMonth() + 1}월 10일 정산 완료 금액`
-            }
+            {currentDate.getMonth() + 1}월 1일 정산 완료 금액
           </DueDateDay>
           <DueDateMoney>
           {summary ? (summary.last_month_settlement_amount === 0 ? '-' : new Intl.NumberFormat('ko-KR').format(summary.last_month_settlement_amount) + '원') : '데이터 로딩 중...'}

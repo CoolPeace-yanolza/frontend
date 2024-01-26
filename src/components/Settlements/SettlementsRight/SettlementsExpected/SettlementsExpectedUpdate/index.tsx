@@ -24,7 +24,7 @@ const SettlementsExpectedUpdate = () => {
               정산예정일
             </DueDateText>
             <DueDateDay>
-            {`${currentDate.getFullYear()}년 ${currentDate.getMonth() + 2}월 10일`}
+            {`${currentDate.getFullYear()}년 ${currentDate.getMonth() + 2}월 1일`}
             </DueDateDay>
           </WrapperTop>
           <WrapperBottom>
