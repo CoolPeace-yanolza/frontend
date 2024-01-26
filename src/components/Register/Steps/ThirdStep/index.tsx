@@ -33,7 +33,6 @@ const ThirdStep = () => {
     }
   };
 
-const ThirdStep = () => {
   return (
     <>
       <InputAccordion
