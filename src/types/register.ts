@@ -2,8 +2,8 @@ import { ReactNode, RefObject } from 'react';
 
 // Backdrop
 export type BackdropProps = {
-  backdropRef: RefObject<HTMLDivElement>;
-  onBackdropClick: (e: React.MouseEvent<HTMLDivElement>) => void;
+  backdropRef?: RefObject<HTMLDivElement>;
+  onBackdropClick?: (e: React.MouseEvent<HTMLDivElement>) => void;
   children: ReactNode;
 };
 
@@ -219,6 +219,7 @@ export type registerInputAtom = {
   day?: string;
   startDate: string;
   endDate: string;
+  isModalOpen: boolean;
 };
 
 // registerValidState

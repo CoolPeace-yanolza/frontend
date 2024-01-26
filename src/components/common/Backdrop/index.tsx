@@ -16,7 +16,9 @@ const Backdrop = ({
   }, []);
 
   const handleBackdropClick = (e: React.MouseEvent<HTMLDivElement>) => {
-    onBackdropClick(e);
+    if (onBackdropClick) {
+      onBackdropClick(e);
+    }
   };
 
   return (

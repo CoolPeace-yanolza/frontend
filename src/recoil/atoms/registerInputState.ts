@@ -20,7 +20,8 @@ const registerInputState = atom<registerInputAtom>({
     whenToUse: '',
     day: '',
     startDate: '',
-    endDate: ''
+    endDate: '',
+    isModalOpen: false
   }
 });
 

@@ -1,4 +1,4 @@
-import { useRecoilValue, useSetRecoilState } from 'recoil';
+import { useRecoilState, useSetRecoilState } from 'recoil';
 import styled from '@emotion/styled';
 
 import theme from '@styles/theme';
@@ -25,7 +25,7 @@ const StepperController = ({
   isFilled,
   onButtonClick
 }: StepperControllerProps) => {
-  const input = useRecoilValue(registerInputState);
+  const [input, setInput] = useRecoilState(registerInputState);
   const setIsValid = useSetRecoilState(registerValidState);
   const setPreview = useSetRecoilState(previewState);
 
@@ -53,9 +53,7 @@ const StepperController = ({
         break;
     }
 
-    if (currentStep < 3) {
-      handleSteps(currentStep, input, isFilled, onButtonClick);
-    }
+    handleSteps(currentStep, input, setInput, isFilled, onButtonClick);
   };
 
   return (
