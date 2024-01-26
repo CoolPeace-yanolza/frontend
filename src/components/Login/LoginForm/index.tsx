@@ -60,7 +60,7 @@ const LoginForm = ({ handleModalOpen }: LoginFormProps) => {
       } else {
         navigate('/');
       }
-    } else if (response?.status === 404) {
+    } else if (response?.status === 404 || 400) {
       handleModalOpen(response?.data.message);
     }
   };
