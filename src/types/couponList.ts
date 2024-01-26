@@ -38,7 +38,7 @@ export interface CouponInformationResponse {
   discount_type: string;
   discount_value: number;
   customer_type: string;
-  coupon_room_type: string;
+  coupon_room_types: string[];
   minimum_reservation_price: number;
   coupon_use_condition_days: string;
   exposure_start_date: string;

@@ -10,7 +10,7 @@ const SignUpComplete = () => {
   const moveToLogin = () => navigate('/login', { replace: true });
 
   return (
-    <WhiteBackground>
+    <>
       <Logo>
         <LogoIcon
           src={logo}
@@ -34,44 +34,46 @@ const SignUpComplete = () => {
           buttonFunc={moveToLogin}
         />
       </Content>
-    </WhiteBackground>
+    </>
   );
 };
 
 export default SignUpComplete;
-
-const WhiteBackground = styled.div`
-  position: relative;
-
-  width: 100%;
-  height: 100%;
-  min-height: 100vh;
-
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-
-  background-color: #fff;
-
-  gap: 180px;
-`;
 
 const Logo = styled.div`
   height: 36px;
 
   margin-top: 48px;
   margin-left: 57px;
+
+  @media screen and (max-width: 649px) {
+    height: 30px;
+
+    margin-top: 26px;
+    margin-left: 26px;
+  }
 `;
 
 const LogoIcon = styled.img`
   width: 172.8px;
   height: 100%;
+
+  @media screen and (max-width: 649px) {
+    width: 142px;
+  }
 `;
 
 const Content = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  margin: auto;
+
+  @media screen and (max-width: 649px) {
+    max-width: 295px;
+    width: 100%;
+  }
 `;
 
 const Image = styled.img`
@@ -79,6 +81,11 @@ const Image = styled.img`
   height: 151px;
 
   margin-bottom: 33px;
+
+  @media screen and (max-width: 649px) {
+    width: 130px;
+    height: 130px;
+  }
 `;
 
 const Title = styled.h1`
@@ -99,9 +106,15 @@ const Title = styled.h1`
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+
+  @media screen and (max-width: 649px) {
+    margin-bottom: 20px;
+
+    font-size: 24px;
+  }
 `;
 
-const Description = styled.p`
+const Description = styled.div`
   margin-bottom: 74px;
 
   color: #090a0a;
@@ -110,4 +123,11 @@ const Description = styled.p`
   font-size: 20px;
   font-weight: 500;
   line-height: 32px;
+
+  @media screen and (max-width: 649px) {
+    margin-bottom: 40px;
+
+    font-size: 15px;
+    line-height: 25px;
+  }
 `;
