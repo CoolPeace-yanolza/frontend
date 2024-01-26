@@ -23,7 +23,7 @@ const LoginForm = ({ handleModalOpen }: LoginFormProps) => {
 
   const methods = useForm({ mode: 'onBlur' });
   const {
-    formState: { errors, isValid },
+    formState: { errors },
     handleSubmit
   } = methods;
   const isError = !!errors?.login_id || !!errors?.login_password ? true : false;
@@ -39,29 +39,31 @@ const LoginForm = ({ handleModalOpen }: LoginFormProps) => {
       password: data.login_password
     };
 
-    const response = await postLogin(formData);
+    if (formData) {
+      const response = await postLogin(formData);
 
-    if (response?.status === 200) {
-      setCookies('userName', response.data.name, response.data.expires_in);
-      setCookies('userEmail', response.data.email, response.data.expires_in);
-      setCookies(
-        'accessToken',
-        response.data.access_token,
-        response.data.expires_in
-      );
-      setCookies(
-        'refreshToken',
-        response.data.refresh_token,
-        response.data.expires_in
-      );
+      if (response?.status === 200) {
+        setCookies('userName', response.data.name, response.data.expires_in);
+        setCookies('userEmail', response.data.email, response.data.expires_in);
+        setCookies(
+          'accessToken',
+          response.data.access_token,
+          response.data.expires_in
+        );
+        setCookies(
+          'refreshToken',
+          response.data.refresh_token,
+          response.data.expires_in
+        );
 
-      if (state) {
-        navigate(state.from);
-      } else {
-        navigate('/');
+        if (state) {
+          navigate(state.from);
+        } else {
+          navigate('/');
+        }
+      } else if (response?.status === 404 || 400) {
+        handleModalOpen(response?.data.message);
       }
-    } else if (response?.status === 404 || 400) {
-      handleModalOpen(response?.data.message);
     }
   };
 
@@ -98,7 +100,6 @@ const LoginForm = ({ handleModalOpen }: LoginFormProps) => {
             size="large"
             variant="navy"
             text="로그인"
-            disabled={!isValid}
             buttonFunc={handleSubmit(onSubmit)}
           />
           <AuthButton
