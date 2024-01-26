@@ -10,3 +10,4 @@ export { getUpdatedDate } from './lib/calculation';
 export { getStatusToLocaleString } from './lib/dashboard';
 export { getInputOptions } from './lib/auth';
 export { setCookies, getCookies, deleteAllCookies } from './lib/cookies';
+export { getCurrentYearStartDate, getCurrentYearEndDate } from './lib/dateSetting';

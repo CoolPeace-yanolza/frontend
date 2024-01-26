@@ -8,11 +8,13 @@ import reloadIcon from '@assets/icons/ic-reload.svg';
 const ErrorFallback = ({ resetErrorBoundary }: FallbackProps) => {
   return (
     <Container>
+      <ErrorContainer>
       <ErrorIcon
         src={errorIcon}
         alt="에러 발생"
       />
-      <ErrorWord>정산 내역을 불러올 수 없습니다.</ErrorWord>
+      <ErrorWord>이전 정산 내역을 불러올 수 없습니다.</ErrorWord>
+      </ErrorContainer>
       <ReLoadButton onClick={resetErrorBoundary}>
         <ReloadIcon
           src={reloadIcon}
@@ -27,56 +29,65 @@ const ErrorFallback = ({ resetErrorBoundary }: FallbackProps) => {
 export default ErrorFallback;
 
 const Container = styled.div`
-  height: 619.13px;
+  width: 100%;
+  height: 72.67px;
 
-  margin-left: 43px;
-  margin-right: 43px;
   margin-top: 20px;
-  padding: 30px 15px;
-  border-radius: 20px;
+  border: 1px solid white;
+  border-radius: 5px;
 
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 20px;
 
   background-color: white;
 
+
   ${theme.response.tablet} {
-    max-height: 250px;
-
-    margin: 20px;
     padding: 15px 15px;
-    border-radius: 10px;
-
-    gap: 15px;
+    border-radius: 5px;
 
     background-color: #f2f4f5;
   }
+`;
+
+const ErrorContainer = styled.div`
+  display: flex;
+  align-items: center;
 `;
 
 const ErrorIcon = styled.img`
   width: 35px;
   height: 35px;
 
+  margin-right: 3px;
+
   ${theme.response.tablet} {
-    width: 40px;
-    height: 40px;
+    width: 30px;
+    height: 30px;
+  }
+
+  @media (max-width: 592px) {
+    width: 25px;
+    height: 25px;
   }
 `;
 
 const ErrorWord = styled.span`
-  font-size: 14px;
+  font-size: 12px;
   font-weight: 500;
 
-  ${theme.response.tablet} {
-    font-size: 13px;
+  @media (max-width: 592px) {
+    font-size: 10px;
+  }
+
+  @media (max-width: 526px) {
+    font-size: 8px;
   }
 `;
 
 const ReLoadButton = styled.button`
-  margin-top: 15px;
   margin-left: 3px;
   border: none;
 
@@ -85,7 +96,7 @@ const ReLoadButton = styled.button`
   align-items: center;
 
   background-color: transparent;
-  font-size: 12px;
+  font-size: 10px;
   text-align: center;
 
   transition: all 0.5s;
@@ -96,8 +107,14 @@ const ReLoadButton = styled.button`
 
   ${theme.response.tablet} {
     margin: 0;
+  }
 
-    font-size: 10px;
+  @media (max-width: 592px) {
+    font-size: 8px;
+  }
+
+  @media (max-width: 526px) {
+    font-size: 6px;
   }
 `;
 
@@ -105,10 +122,15 @@ const ReloadIcon = styled.img`
   width: 20px;
   height: 20px;
 
-  margin-right: 10px;
+  margin-right: 3px;
 
   ${theme.response.tablet} {
     width: 15px;
     height: 15px;
+  }
+
+  @media (max-width: 592px) {
+    width: 22px;
+    height: 12px;
   }
 `;
