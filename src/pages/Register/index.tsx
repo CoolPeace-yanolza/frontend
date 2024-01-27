@@ -29,6 +29,7 @@ const Register = () => {
     roomType: room.room_type,
     price: room.price
   }));
+  list.sort((a, b) => a.price - b.price);
 
   useEffect(() => {
     setInput(prev => ({ ...prev, rooms: list }));
