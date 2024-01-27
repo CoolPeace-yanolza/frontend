@@ -269,6 +269,8 @@ const CouponCustomer = styled.div`
 `;
 
 const ToggleWrap = styled.button<ToggleStyleProps>`
+  width: 50px;
+
   border-radius: 22.93px;
   border: 1px solid;
   border-color: ${props => (props.$isToggle ? '#FF3478' : '#404446')};
