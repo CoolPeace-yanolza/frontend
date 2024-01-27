@@ -171,7 +171,7 @@ const CouponWait = ({ couponInfo }: CouponListProps) => {
         <ExposeDateWrap>
           <ExposeDateTitle>노출기간</ExposeDateTitle>
           <ExposeValue>
-            {formatDate(couponInfo.exposure_start_date)} ~
+            {formatDate(couponInfo.exposure_start_date)} ~{' '}
             {formatDate(couponInfo.exposure_end_date)}
           </ExposeValue>
         </ExposeDateWrap>
