@@ -16,6 +16,7 @@ import { couponCondition } from '@utils/lib/couponCondition';
 import { useToast } from '@components/common/ToastContext';
 import couponRoomType from '@utils/lib/couponRoomType';
 import { useUpdateRoomListPosition } from '@utils/lib/roomListPosition';
+import concatTitle from '@utils/lib/concatTitle';
 
 const CouponStop = ({ couponInfo }: CouponListProps) => {
   const [isToggle, setIsToggle] = useState(false);
@@ -115,7 +116,13 @@ const CouponStop = ({ couponInfo }: CouponListProps) => {
             )}
           </ToggleWrap>
         </CouponHeader>
-        <CouponCustomer>{couponInfo.coupon_concat_title}</CouponCustomer>
+        <CouponCustomer>
+          {concatTitle({
+            customer_type: couponInfo.customer_type,
+            discount_flat_rate: couponInfo.discount_flat_rate,
+            discount_flat_value: couponInfo.discount_flat_value
+          })}
+        </CouponCustomer>
       </CouponHeaderContainer>
       <CouponMain>
         <CountWrap>

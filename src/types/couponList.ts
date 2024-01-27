@@ -42,6 +42,7 @@ export interface CouponInformationResponse {
   discount_type: string;
   discount_value: number;
   discount_flat_rate: number | null;
+  discount_flat_value: number | null;
   maximum_discount_price: number | null;
   customer_type: string;
   coupon_room_types: string[];

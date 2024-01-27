@@ -11,6 +11,7 @@ import { couponCondition } from '@utils/lib/couponCondition';
 import { useToast } from '@components/common/ToastContext';
 import couponRoomType from '@utils/lib/couponRoomType';
 import { useUpdateRoomListPosition } from '@utils/lib/roomListPosition';
+import concatTitle from '@utils/lib/concatTitle';
 
 const CouponExpired = ({ couponInfo }: CouponListProps) => {
   const [isShowRoomList, setIsShowRoomList] = useState(false);
@@ -58,7 +59,13 @@ const CouponExpired = ({ couponInfo }: CouponListProps) => {
           <CouponTitle>{couponInfo.title}</CouponTitle>
           <CouponStatus>기간만료</CouponStatus>
         </CouponHeader>
-        <CouponCustomer>{couponInfo.coupon_concat_title}</CouponCustomer>
+        <CouponCustomer>
+          {concatTitle({
+            customer_type: couponInfo.customer_type,
+            discount_flat_rate: couponInfo.discount_flat_rate,
+            discount_flat_value: couponInfo.discount_flat_value
+          })}
+        </CouponCustomer>
       </CouponHeaderContainer>
       <CouponMain>
         <CountWrap>
