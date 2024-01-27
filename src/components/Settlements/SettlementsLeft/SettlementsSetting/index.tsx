@@ -3,7 +3,7 @@ import { Suspense, forwardRef, useState } from 'react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { ko } from 'date-fns/locale';
-import { useSetRecoilState } from 'recoil';
+import { useRecoilState, useSetRecoilState } from 'recoil';
 import { createGlobalStyle } from 'styled-components';
 import { ErrorBoundary } from 'react-error-boundary';
 import { useQueryErrorResetBoundary } from '@tanstack/react-query';
@@ -18,10 +18,13 @@ import CalendarIcon from '@assets/icons/calendar-outline.svg';
 import theme from '@styles/theme';
 import Loading from './Settlemented/index.loading';
 import ErrorFallback from './Settlemented/index.error';
+import { currentPageState } from '@recoil/index';
 
 const SettlementsSetting = () => {
 
   const { reset } = useQueryErrorResetBoundary();
+
+  const [,setCurrentPage] = useRecoilState(currentPageState);
 
   const [startDate, setStartDate] = useState<Date | null>(new Date(getCurrentYearStartDate()));
   const [endDate, setEndDate] = useState<Date | null>(new Date(getCurrentYearEndDate()));
@@ -66,6 +69,7 @@ const SettlementsSetting = () => {
         return;
       }
       setSettlementsDate({ startDate, endDate });
+      setCurrentPage(1);
     }
   };
 

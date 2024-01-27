@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 import 'semantic-ui-css/semantic.min.css';
 import { Dropdown, DropdownProps } from 'semantic-ui-react';
 import { useState, useEffect } from 'react';
-import { useRecoilValue } from 'recoil';
+import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
 import XLSX from 'xlsx-js-style';
 
 import SettlementsTable from './SettlementsTable';
@@ -16,6 +16,7 @@ import { getCurrentYearStartDate, getCurrentYearEndDate } from '@utils/index';
 import { convertKeysToKorean } from '@utils/index';
 import { SORT_OPTION } from 'src/constants';
 import theme from '@styles/theme';
+import { currentPageState } from '@recoil/index';
 
 const Settlemented = () => {
 
@@ -23,7 +24,7 @@ const Settlemented = () => {
   const [, setSortOrder] = useState('couponDateDesc');
   const [orderBy, setOrderBy] = useState('COUPON_USE_DATE');
   const [currentData, setCurrentData] = useState<SettlementedItem[]>([]);
-  const [currentPage, setCurrentPage] = useState<number>(1);
+  const [currentPage, setCurrentPage] = useRecoilState(currentPageState);
 
   const accommodation = useRecoilValue(headerAccommodationState);
 
