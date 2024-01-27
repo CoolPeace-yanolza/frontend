@@ -91,12 +91,12 @@ const CouponWait = ({ couponInfo }: CouponListProps) => {
       </CouponHeaderContainer>
       <CouponMain>
         <CountWrap>
-          <CountText>다운로드</CountText>
-          <CountNumber>{couponInfo.download_count}</CountNumber>
-        </CountWrap>
-        <CountWrap>
           <CountText>사용완료</CountText>
           <CountNumber>{couponInfo.use_count}</CountNumber>
+        </CountWrap>
+        <CountWrap>
+          <CountText>다운로드</CountText>
+          <CountNumber>{couponInfo.download_count}</CountNumber>
         </CountWrap>
         <div>
           <ContentWrap>
@@ -184,7 +184,7 @@ const CouponWait = ({ couponInfo }: CouponListProps) => {
       </DateContainer>
       <CouponModifiedWrap>
         <UpdateButton onClick={handleUpdateClick}>수정</UpdateButton>
-        <img
+        <CenterImg
           src={centerIcon}
           alt="분리 선 이미지"
         />
@@ -373,12 +373,12 @@ const CouponModifiedWrap = styled.div`
 
   width: 56px;
 
-  margin-right: 14px;
+  margin-right: -5px;
   margin-bottom: 14px;
 
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-around;
 
   color: #757676;
   font-size: 11px;
@@ -389,7 +389,12 @@ const CouponModifiedWrap = styled.div`
 `;
 
 const UpdateButton = styled.div`
+  display: none;
   cursor: pointer;
+`;
+
+const CenterImg = styled.img`
+  display: none;
 `;
 
 const DeleteButton = styled.div`
