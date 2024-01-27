@@ -29,11 +29,15 @@ export interface SettlementList {
 };
 
 export interface SettlementedList {
+    total_cancel_price: number;
+    total_coupon_count: number;
+    total_discount_price: number;
+    total_sum_price: number;
     total_settlement_count: number;
     total_page_count: number;
     settlement_responses: SettlementedItem[];
 };
-  
+
 export interface SettlementedItem {
     NO: number;
     coupon_use_date: string;

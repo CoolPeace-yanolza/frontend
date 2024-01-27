@@ -3,7 +3,7 @@ import { useSuspenseQuery } from '@tanstack/react-query';
 import { getSettlements } from 'src/api';
 
 export const useGetSettlements = (
-  accommodationId: number,
+  accommodation_id: number,
   start: string, 
   end: string, 
   order: string, 
@@ -11,6 +11,6 @@ export const useGetSettlements = (
   pageSize: number
 ) =>
   useSuspenseQuery({
-    queryKey: ['Settlements', accommodationId, start, end, order, page],
-    queryFn: () => getSettlements(accommodationId, start, end, order, page, pageSize)
+    queryKey: ['Settlements', accommodation_id, start, end, order, page],
+    queryFn: () => getSettlements(accommodation_id, start, end, order, page, pageSize)
   });

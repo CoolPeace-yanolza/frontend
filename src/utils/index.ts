@@ -30,3 +30,4 @@ export {
   validateLabel,
   validateMaximumDiscount
 } from './lib/validationUtils';
+export { convertKeysToKorean } from './lib/convertKeysToKorean';

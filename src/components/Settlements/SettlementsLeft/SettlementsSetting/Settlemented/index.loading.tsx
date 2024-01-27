@@ -18,11 +18,11 @@ const Loading = () => {
 export default Loading;
 
 const Container = styled.div`
-  height: 619.13px;
+  height: 554px;
 
   margin-left: 43px;
   margin-right: 43px;
-  margin-top: 20px;
+  margin-top: 110px;
   padding: 30px 15px;
   border-radius: 20px;
 

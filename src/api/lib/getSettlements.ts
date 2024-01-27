@@ -2,7 +2,7 @@ import { SettlementedList } from '@/types/settlements';
 import { instance } from '..';
 
 const getSettlements = async (
-  accommodationId: number,
+  accommodation_id: number,
   start?: string,
   end?: string,
   order?: string,
@@ -25,7 +25,7 @@ const getSettlements = async (
   };
 
   try {
-    const response = await instance.get(`/v1/settlements/${accommodationId}`, {
+    const response = await instance.get(`/v1/settlements/${accommodation_id}`, {
       params,
     });
 
