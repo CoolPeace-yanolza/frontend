@@ -65,10 +65,6 @@ export type LabelStyleProps = {
   $isChecked: boolean;
 };
 
-export type CheckIconStyleProps = {
-  $src: string;
-};
-
 // InputRadio
 export type InputRadioProps = {
   id: string;
