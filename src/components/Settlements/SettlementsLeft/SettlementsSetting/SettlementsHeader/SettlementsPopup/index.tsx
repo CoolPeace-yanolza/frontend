@@ -15,7 +15,7 @@ const SettlementsPopup: React.FC<SettlementsPopupProps> = ({ isOpen, onClose }) 
             <p><strong>⦁ 쿠폰 번호</strong>는 쿠폰을 등록하면 자동으로 발행되는 관리목적의 번호입니다.</p>
             <p><strong>⦁ 관리 쿠폰명</strong>은 사장님께서 직접 설정한 쿠폰명입니다.</p>
             <p><strong>⦁ 사용 건수</strong>는 쿠폰 적용일에 고객들이 쿠폰을 사용한 건 수입니다.</p>
-            <p><strong>⦁ 구폰 적용일</strong>은 사용자가 쿠폰을 적용하여 결제(예약)를 한 날입니다.</p>
+            <p><strong>⦁ 쿠폰 적용일</strong>은 사용자가 쿠폰을 적용하여 결제(예약)를 한 날입니다.</p>
             <p><strong>⦁ 정산 완료일</strong>은 정산이 완료된 날로 매월 1일 (영업일 기준)입니다.</p>
         </PopupContentHeader>
         <PopupContentMiddle>
