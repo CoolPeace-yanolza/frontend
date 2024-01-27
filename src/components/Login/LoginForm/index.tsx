@@ -97,12 +97,14 @@ const LoginForm = ({ handleModalOpen }: LoginFormProps) => {
         )}
         <Buttons $isValid={!isError}>
           <AuthButton
+            buttonType="submit"
             size="large"
             variant="navy"
             text="로그인"
             buttonFunc={handleSubmit(onSubmit)}
           />
           <AuthButton
+            buttonType="button"
             size="large"
             variant="pink"
             text="회원가입"
