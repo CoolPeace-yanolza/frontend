@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import styled from '@emotion/styled';
 
 import logo from '@assets/icons/ic-logo.svg';
@@ -7,6 +8,8 @@ import { SignUpComplete, SignUpForm, SignUpTitle } from '@components/SignUp';
 import { ERROR_MODAL_MESSAGE } from 'src/constants';
 
 const SignUp = () => {
+  const navigate = useNavigate();
+
   const [isSignUpComplete, setIsSignUpComplete] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const handleModalClose = () => setIsModalOpen(false);
@@ -19,7 +22,7 @@ const SignUp = () => {
       ) : (
         <>
           <WithoutFooterSection>
-            <Logo>
+            <Logo onClick={() => navigate('/login')}>
               <LogoIcon
                 src={logo}
                 alt="사장님 비서ya"
@@ -85,6 +88,8 @@ const Logo = styled.div`
 
   margin-top: 48px;
   margin-left: 57px;
+
+  cursor: pointer;
 
   @media screen and (max-width: 649px) {
     height: 30px;
