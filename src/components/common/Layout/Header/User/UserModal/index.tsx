@@ -143,4 +143,6 @@ const Logout = styled.button<UserModalStyleProps>`
   font-weight: 700;
   white-space: nowrap;
   transition: all 0.5s;
+
+  cursor: pointer;
 `;
