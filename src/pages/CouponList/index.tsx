@@ -47,7 +47,7 @@ const CouponList = () => {
     const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
-          console.log(page);
+          // console.log(page);
           if (couponRef.current && page <= couponRef.current.total_pages) {
             setPage(prev => prev + 1);
           }
