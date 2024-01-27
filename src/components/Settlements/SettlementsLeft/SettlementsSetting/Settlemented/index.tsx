@@ -116,8 +116,6 @@ const Settlemented = () => {
         [''],
         ['', '', '', '', '', '', ''],
         ['', '', '', '', '', '', ''], 
-        [''],
-        ['']
       ];
 
       
@@ -137,7 +135,7 @@ const Settlemented = () => {
         v: '쿠폰 정산',
         s: {
           font: {sz: 16}, 
-          fill: { fgColor: { rgb: "FF87CEFA" } },
+          fill: { fgColor: { rgb: "809FFF" } },
           alignment: {horizontal: 'right'} 
         }
       };
@@ -146,7 +144,7 @@ const Settlemented = () => {
         v: '내역 리스트',
         s: {
           font: {sz: 16},
-          fill: { fgColor: { rgb: "FF87CEFA" } }, 
+          fill: { fgColor: { rgb: "809FFF" } }, 
           alignment: {horizontal: 'left'} 
         }
       };
