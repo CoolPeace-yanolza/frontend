@@ -87,7 +87,7 @@ const Container = styled.div<SidebarOpen>`
   align-items: center;
 
   z-index: 100;
-  transition: all 0.5s;
+  transition: all 0.3s;
 `;
 
 const Navigation = styled.div`
@@ -101,7 +101,8 @@ const Navigation = styled.div`
   justify-content: center;
   align-items: center;
 
-  background: white;
+  background-color: white;
+  box-shadow: 2px 2px 3px 0px rgba(0, 0, 0, 0.25);
 `;
 
 const Header = styled.div`
@@ -159,8 +160,6 @@ const CouponHeader = styled.div`
   height: 100%;
 
   display: flex;
-
-  transition: all 0.3s;
 `;
 
 const Contents = styled.div`
@@ -208,5 +207,5 @@ const LeftoverScreen = styled.div<SidebarOpen>`
   width: 100%;
   height: 100%;
 
-  background-color: #4242427c;
+  background-color: transparent;
 `;

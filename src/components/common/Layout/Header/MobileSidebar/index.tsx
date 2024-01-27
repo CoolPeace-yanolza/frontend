@@ -3,6 +3,7 @@ import { useState } from 'react';
 import styled from '@emotion/styled';
 import hamburger from '@assets/icons/ic-sidebar-hamburger.svg';
 import OpenMobileSidebar from './OpenMobileSidebar';
+import theme from '@styles/theme';
 
 const MobileSidebar = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -25,17 +26,21 @@ const MobileSidebar = () => {
 export default MobileSidebar;
 
 const Container = styled.div`
-  width: 40px;
-  height: 40px;
+  display: none;
 
-  border-radius: 11px;
+  ${theme.response.tablet} {
+    width: 40px;
+    height: 40px;
 
-  display: flex;
-  justify-content: center;
-  align-items: center;
+    border-radius: 11px;
 
-  &:hover {
-    background-color: #e9eef6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &:hover {
+      background-color: #e9eef6;
+    }
   }
 `;
 
