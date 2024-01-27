@@ -33,3 +33,4 @@ export {
   validateLabel,
   validateMaximumDiscount
 } from './lib/validationUtils';
+export { getRegisterInformation } from './lib/getRegisterInformation';

@@ -215,8 +215,8 @@ export type registerInputAtom = {
   toAllRooms: string;
   rooms: RoomType[];
   minimumPrice?: string;
-  whenToUse?: string;
-  day?: string;
+  whenToUse: string;
+  day: string;
   startDate: string;
   endDate: string;
   isModalOpen: boolean;
@@ -247,4 +247,25 @@ export type previewAtom = {
   day: string;
   startDate: string;
   endDate: string;
+};
+
+// postRegisterCoupon
+export type PostRegisterCouponProps = {
+  registerInfo: {
+    title: string;
+    customer_type: string;
+    discount_type: string;
+    discount_flat_value: number;
+    discount_flat_rate: number;
+    maximum_discount_price: number;
+    coupon_room_types: string[];
+    accommodation_id: number;
+    register_all_room: boolean;
+    register_rooms: string[];
+    minimum_reservation_price: number;
+    coupon_use_condition_days: string;
+    coupon_use_condition_day_of_week: string;
+    exposure_start_date: string;
+    exposure_end_date: string;
+  };
 };

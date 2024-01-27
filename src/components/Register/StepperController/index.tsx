@@ -1,4 +1,4 @@
-import { useRecoilState, useSetRecoilState } from 'recoil';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
 import styled from '@emotion/styled';
 
 import theme from '@styles/theme';
@@ -8,6 +8,7 @@ import {
   NextButtonStyleProps
 } from '@/types/register';
 import {
+  headerAccommodationState,
   registerInputState,
   registerValidState,
   previewState
@@ -17,17 +18,22 @@ import {
   showSecondStepValidationMessage,
   showThirdStepValidationMessage,
   showFourthStepValidationMessage,
-  handleSteps
+  handleSteps,
+  getRegisterInformation
 } from '@utils/index';
+import { usePostRegisterCoupon } from '@hooks/queries/usePostRegisterCoupon';
 
 const StepperController = ({
   currentStep,
   isFilled,
   onButtonClick
 }: StepperControllerProps) => {
-  const [input, setInput] = useRecoilState(registerInputState);
+  const header = useRecoilValue(headerAccommodationState);
+  const input = useRecoilValue(registerInputState);
   const setIsValid = useSetRecoilState(registerValidState);
   const setPreview = useSetRecoilState(previewState);
+
+  const { mutate: postRegisterCoupon } = usePostRegisterCoupon();
 
   const handlePreviousButton = () => {
     if (currentStep > 0) {
@@ -53,7 +59,12 @@ const StepperController = ({
         break;
     }
 
-    handleSteps(currentStep, input, setInput, isFilled, onButtonClick);
+    if (currentStep < 3) {
+      handleSteps(currentStep, input, isFilled, onButtonClick);
+    } else if (currentStep === 3 && input.startDate < input.endDate) {
+      const registerInfo = getRegisterInformation(input, header);
+      postRegisterCoupon({ registerInfo });
+    }
   };
 
   return (

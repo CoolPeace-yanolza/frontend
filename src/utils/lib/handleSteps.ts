@@ -1,11 +1,8 @@
-import { SetterOrUpdater } from 'recoil';
-
 import { registerInputAtom } from '@/types/register';
 
 export const handleSteps = (
   currentStep: number,
   input: registerInputAtom,
-  setInput: SetterOrUpdater<registerInputAtom>,
   isFilled: boolean,
   onButtonClick: React.Dispatch<React.SetStateAction<number>>
 ) => {
@@ -19,8 +16,5 @@ export const handleSteps = (
     } else if (currentStep === 2 || isFilled) {
       onButtonClick(prev => prev + 1);
     }
-  } else {
-    if (currentStep === 3 && input.startDate < input.endDate)
-      setInput(prev => ({ ...prev, isModalOpen: true }));
   }
 };

@@ -18,6 +18,12 @@ const RegisterCompleteModal = () => {
     resetPreview();
   };
 
+  const handleRegisterButton = () => {
+    navigate('/coupons/register');
+    resetInput();
+    resetPreview();
+  };
+
   return (
     <Backdrop>
       <Container>
@@ -29,7 +35,9 @@ const RegisterCompleteModal = () => {
         <CheckCoupons onClick={handleCheckButton}>
           쿠폰 확인하러 가기
         </CheckCoupons>
-        <RegisterNewCoupon>쿠폰 추가 등록하기</RegisterNewCoupon>
+        <RegisterNewCoupon onClick={handleRegisterButton}>
+          쿠폰 추가 등록하기
+        </RegisterNewCoupon>
       </Container>
     </Backdrop>
   );

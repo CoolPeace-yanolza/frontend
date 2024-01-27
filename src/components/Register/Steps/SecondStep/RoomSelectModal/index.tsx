@@ -19,34 +19,34 @@ import { registerInputState, previewState } from '@recoil/index';
 
 const list = [
   {
-    id: 12,
-    roomNumber: '101',
-    roomType: '대실',
-    price: 10000
+    id: 62,
+    roomNumber: '퍼플',
+    roomType: '퍼플',
+    price: 250000
   },
   {
-    id: 13,
-    roomNumber: '102',
-    roomType: '대실',
-    price: 20000
+    id: 63,
+    roomNumber: '릴랙스',
+    roomType: '릴랙스',
+    price: 270000
   },
   {
-    id: 13,
-    roomNumber: '110',
-    roomType: '숙박',
-    price: 70000
+    id: 64,
+    roomNumber: '오키드',
+    roomType: '오키드',
+    price: 220000
   },
   {
-    id: 13,
-    roomNumber: '301',
-    roomType: '숙박',
-    price: 85000
+    id: 65,
+    roomNumber: '레드',
+    roomType: '레드',
+    price: 60000
   },
   {
-    id: 13,
-    roomNumber: '204',
-    roomType: '대실',
-    price: 100000
+    id: 66,
+    roomNumber: '라임',
+    roomType: '라임',
+    price: 240000
   }
 ];
 
