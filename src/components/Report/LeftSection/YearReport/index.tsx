@@ -87,6 +87,8 @@ const Text = styled.span`
   color: #484e59;
 
   ${theme.response.tablet} {
+    align-self: center;
+
     font-size: 10px;
   }
 `;

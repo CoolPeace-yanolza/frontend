@@ -52,10 +52,18 @@ const WhiteBackground = styled.div`
 `;
 
 const Container = styled.div`
+  --footer-height: 100px;
+
   max-width: 524px;
-  height: calc(100% - 100px);
+  height: calc(100% - var(--footer-height));
 
   margin: auto;
+
+  @media screen and (max-width: 649px) {
+    min-width: 295px;
+    max-width: 80%;
+    width: 100%;
+  }
 `;
 
 const Content = styled.div`
