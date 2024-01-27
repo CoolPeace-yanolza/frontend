@@ -84,6 +84,8 @@ const Text = styled.span`
 
   align-self: flex-start;
 
+  color: #484e59;
+
   ${theme.response.tablet} {
     font-size: 10px;
   }
