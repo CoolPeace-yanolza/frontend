@@ -1,0 +1,17 @@
+<svg width="34" height="190" viewBox="0 0 34 190" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Union" filter="url(#filter0_i_3535_25632)">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M13.2009 189.109L34.0019 189.109L34.002 0.108475L13.2009 0.108473L13.2009 79.8658C13.1349 79.8646 13.0688 79.864 13.0026 79.864C5.87238 79.864 0.092214 86.6651 0.0922133 95.0546C0.0922125 103.444 5.87238 110.245 13.0026 110.245C13.0688 110.245 13.1349 110.245 13.2009 110.243L13.2009 189.109Z" fill="#FF3478"/>
+</g>
+<defs>
+<filter id="filter0_i_3535_25632" x="0.0917969" y="0.108398" width="33.9102" height="191.714" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+<feOffset dy="2.7128"/>
+<feGaussianBlur stdDeviation="1.3564"/>
+<feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1"/>
+<feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"/>
+<feBlend mode="normal" in2="shape" result="effect1_innerShadow_3535_25632"/>
+</filter>
+</defs>
+</svg>

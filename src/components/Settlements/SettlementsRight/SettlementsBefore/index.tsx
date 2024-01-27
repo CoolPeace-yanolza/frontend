@@ -1,14 +1,18 @@
 import styled from '@emotion/styled';
-import { useRecoilValue } from 'recoil';
-import { useGetSettlemented } from 'src/hooks/queries/useGetSettlemented';
+import { ErrorBoundary } from 'react-error-boundary';
+import { useQueryErrorResetBoundary } from '@tanstack/react-query';
+import { Suspense } from 'react';
 
-import headerAccommodationState from '@recoil/atoms/headerAccommodationState';
 import SyncIcon from '@assets/icons/sync-outline.svg';
 import receiptIcon from '@assets/icons/receipt-sharp.svg';
 import theme from '@styles/theme'; 
+import SettlementedBeforeUpdate from './SettlementsBeforeUpdate';
+import Loading from './SettlementsBeforeUpdate/index.loading';
+import ErrorFallback from './SettlementsBeforeUpdate/index.error';
 
 const SettlementsBefore = () => {
-  const accommodation = useRecoilValue(headerAccommodationState);
+
+  const { reset } = useQueryErrorResetBoundary();
 
   const currentDate = new Date();
   const lastMonth = new Date(currentDate);
@@ -23,8 +27,6 @@ const SettlementsBefore = () => {
   };
 
   const isBeforeDueDate = currentDate.getDate() < 10;
-
-  const { data: summary } = useGetSettlemented(accommodation.id);
 
   return (
     <Container>
@@ -57,29 +59,14 @@ const SettlementsBefore = () => {
           {`${lastMonth.getFullYear()}.${lastMonth.getMonth() < 9 ? '0' : ''}${lastMonth.getMonth() + 1}.01 ~ ${formatDate(new Date(currentDate.getFullYear(), currentDate.getMonth(), 0))}`}
           </MoneyDay>
         </MoneyContainer>
-      <UpdatedInnerContainer>
-        <UpdatedWrapper>
-          <WrapperTop>
-            <DueDateText>
-              {isBeforeDueDate
-                ? `정산 예정 금액`
-                : `정산 완료 금액`
-              }
-            </DueDateText>
-            <DueDateInnerContainer>
-              <DueDateDay>
-                {isBeforeDueDate
-                  ? `${currentDate.getMonth() + 1}월 10일에 정산할 금액`
-                  : `${currentDate.getMonth() + 1}월 10일 정산 완료 금액`
-                }
-              </DueDateDay>
-              <DueDateMoney>
-              {summary ? (summary.last_month_settlement_amount === 0 ? '-' : new Intl.NumberFormat('ko-KR').format(summary.last_month_settlement_amount) + '원') : '데이터 로딩 중...'}
-              </DueDateMoney>
-            </DueDateInnerContainer>
-          </WrapperTop>
-        </UpdatedWrapper>
-      </UpdatedInnerContainer>
+        <ErrorBoundary
+              onReset={reset}
+              fallbackRender={ErrorFallback}
+            >
+          <Suspense fallback={<Loading />}>
+        <SettlementedBeforeUpdate/>
+        </Suspense>
+        </ErrorBoundary>
       </UpdatedContainer>
     </InnerContainer>
     <ReceiptIcon
@@ -164,80 +151,6 @@ const UpdatedContainer = styled.div`
   margin-top: 25px;
   border: 1.5px solid white;
   border-radius: 8px;
-`;
-
-const UpdatedInnerContainer = styled.div`
-  margin-top: 20px;
-  border: 1px solid white;
-  border-radius: 5px;
-
-  background-color: white;
-`;
-
-const UpdatedWrapper = styled.div`
-  margin: 15px;
-`;
-
-const WrapperTop = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
-
-const DueDateText = styled.div`
-  font-size: 14px;
-  font-weight: bold;
-  color: black;
-  
-  @media (max-width: 478px) {
-    font-size: 11px;
-  }
-`;
-
-const DueDateInnerContainer = styled.div`
-  margin-top: 10px;
-
-  display: flex;
-  flex-direction: row;
-
-  justify-content: space-between;
-  align-items: center;
-
-  @media (max-width: 530px) {
-    flex-direction: column;
-  }
-`;
-
-const DueDateDay = styled.div`
-  font-size: 12px;
-  font-weight: regular;
-  color: black;
-
-  @media (max-width: 530px) {
-    width: 100%;
-  }
-
-  @media (max-width: 478px) {
-    font-size: 10px;
-  }
-`;
-
-const DueDateMoney = styled.div`
-  margin-left: auto;
-
-  align-items: flex-end
-
-  font-size: 16px;
-  font-weight: bold;
-
-  @media (max-width: 530px) {
-    margin-top: 8px;
-
-    width: 100%;
-  }
-
-  @media (max-width: 478px) {
-    font-size: 10px;
-  }
 `;
 
 const MoneyContainer = styled.div`

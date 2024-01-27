@@ -85,6 +85,8 @@ const Text = styled.span`
   align-self: flex-start;
 
   ${theme.response.tablet} {
+    align-self: center;
+
     font-size: 10px;
   }
 `;

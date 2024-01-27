@@ -66,12 +66,17 @@ const Container = styled.div<AuthInputStyleProps>`
 
   display: flex;
   align-items: center;
+
+  @media screen and (max-width: 649px) {
+    width: ${props =>
+      props.$usedFor === 'signup' && props.$type === 'email' ? '70%' : '100%'};
+    height: 55px;
+  }
 `;
 
 const Input = styled.input<AuthInputStyleProps>`
-  width: ${props =>
-    props.$usedFor === 'signup' && props.$type === 'email' ? '358px' : '524px'};
-  height: 79px;
+  width: 100%;
+  height: 100%;
 
   border-radius: 16px;
   border: 2px solid #757676;
@@ -96,28 +101,50 @@ const Input = styled.input<AuthInputStyleProps>`
     outline: 2px solid #1a2849;
     border-color: #1a2849;
   }
+
+  @media screen and (max-width: 649px) {
+    padding: 23px 15px;
+
+    font-size: 14px;
+
+    &::placeholder {
+      font-size: 14px;
+      font-weight: 500;
+    }
+  }
 `;
 
 const Buttons = styled.div`
   position: absolute;
   right: 22px;
 
-  width: 24px;
-  height: 24px;
+  @media screen and (max-width: 649px) {
+    right: 10px;
+  }
 `;
 
 const Button = styled.button`
-  width: 100%;
-  height: 100%;
+  width: 24px;
+  height: 24px;
 
   padding: 0;
   border: none;
 
   background-color: transparent;
   cursor: pointer;
+
+  @media screen and (max-width: 649px) {
+    width: 20px;
+    height: 20px;
+  }
 `;
 
 const Icon = styled.img`
   width: 24px;
   height: 24px;
+
+  @media screen and (max-width: 649px) {
+    width: 20px;
+    height: 20px;
+  }
 `;

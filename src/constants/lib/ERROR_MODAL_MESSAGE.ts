@@ -10,6 +10,10 @@ const ERROR_MODAL_MESSAGE = {
   USER_MODAL: {
     text: '로그아웃에 실패하였습니다.',
     errorText: '잠시후 재시도 해주세요.'
+  },
+  DATE_ERROR: {
+    text: '기간 설정이 잘못되었습니다.',
+    errorText: '기간을 다시 설정해주세요.'
   }
 };
 

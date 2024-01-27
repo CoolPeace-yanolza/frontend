@@ -8,6 +8,7 @@ import titleIcon from '@assets/icons/ic-dashboard-downloadReport.svg';
 import reloadIcon from '@assets/icons/ic-dashboard-reload.svg';
 import { headerAccommodationState } from '@recoil/index';
 import { useGetMonthReports } from '@hooks/index';
+import { calculateCouponRate } from '@utils/lib/calculation';
 
 const DownloadReport = () => {
   const headerSelectedState = useRecoilValue(headerAccommodationState);
@@ -46,7 +47,9 @@ const DownloadReport = () => {
             />
           </CouponCounterSection>
           <CouponRateSection>
-            <CouponRate result={lastestData.conversion_rate * 0.1} />
+            <CouponRate
+              result={calculateCouponRate(lastestData.conversion_rate)}
+            />
           </CouponRateSection>
         </InnerWrapper>
       </InnerContainer>

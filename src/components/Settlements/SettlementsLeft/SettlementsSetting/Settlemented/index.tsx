@@ -12,6 +12,7 @@ import { useGetSettlements } from 'src/hooks/queries/useGetSettlements';
 import { SettlementedItem } from '@/types/settlements';
 import { settlementsDateState } from '@recoil/atoms/settlemented';
 import headerAccommodationState from '@recoil/atoms/headerAccommodationState';
+import { getCurrentYearStartDate, getCurrentYearEndDate } from '@utils/index';
 import theme from '@styles/theme';
 
 const Settlemented = () => {
@@ -27,9 +28,9 @@ const Settlemented = () => {
   const itemsPerPage = 10;
 
   const sortOptions = [
-    { key: 'amountDesc', text: '정산금액 많은 순', value: 'amountDesc' },
-    { key: 'dateDesc', text: '정산 완료일 최근 순', value: 'dateDesc' },
     { key: 'couponDateDesc', text: '쿠폰 사용일 최근 순', value: 'couponDateDesc' },
+    { key: 'dateDesc', text: '정산 완료일 최근 순', value: 'dateDesc' },
+    { key: 'amountDesc', text: '정산금액 많은 순', value: 'amountDesc' },
     { key: 'usageCountDesc', text: '사용건 많은 순', value: 'usageCountDesc' },
   ];
 
@@ -54,11 +55,18 @@ const Settlemented = () => {
         break;
     }
   };
+  
+  let adjustedStartDate: string | null = null;
+  if (startDate !== null) {
+    const startDateObj = new Date(startDate);
+    startDateObj.setDate(startDateObj.getDate() + 1);
+    adjustedStartDate = startDateObj.toISOString().split('T')[0];
+  }
 
   const { data: settlements } = useGetSettlements(
     accommodation.id,
-    startDate ? startDate.toISOString().split('T')[0] : '2000-01-01',
-    endDate ? endDate.toISOString().split('T')[0] : new Date().toISOString().split('T')[0],
+    adjustedStartDate ? adjustedStartDate : getCurrentYearStartDate(),
+    endDate ? endDate.toISOString().split('T')[0] : getCurrentYearEndDate(),
     orderBy,
     currentPage - 1,
     itemsPerPage
@@ -70,7 +78,6 @@ const Settlemented = () => {
         ...data,
         NO: (currentPage - 1) * itemsPerPage + index + 1,
       }));
-
       setCurrentData(newSettlementData);
       setTotalItems(settlements.total_settlement_count);
       setTotalPages(settlements.total_page_count);
@@ -93,12 +100,12 @@ const Settlemented = () => {
       const response = await getSettlements(
         accommodation.id,
         startDate ? startDate.toISOString().split('T')[0] : '2000-01-01',
-        endDate ? endDate.toISOString().split('T')[0] : new Date().toISOString().split('T')[0],
+        endDate ? endDate.toISOString().split('T')[0] : getCurrentYearEndDate(),
         orderBy,
         0,
         totalItems
       );
-  
+
       const allData = response.settlement_responses.map((data: SettlementedItem, index: number) => ({
         ...data,
         NO: index + 1,
@@ -108,12 +115,15 @@ const Settlemented = () => {
       const workSheet = XLSX.utils.json_to_sheet(allData);
   
       XLSX.utils.book_append_sheet(workBook, workSheet, "Sheet1");
-  
       XLSX.writeFile(workBook, "SettlementedDownload.xlsx");
     } catch (error) {
       console.error('Error fetching all settlements data for download:', error);
     }
   };
+  
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [accommodation]);
   
   return (
     <Container>
@@ -272,8 +282,6 @@ const StyledDropdown = styled(Dropdown)`
 }
 `;
 
-
-
 const ExcelDownload = styled.div`
   margin-left: 10px;
 
@@ -287,6 +295,7 @@ const ExcelDownload = styled.div`
     font-size: 12px;
     font-weight: bold;
     color: white;
+    font-family: 'Noto Sans KR';
 
     text-decoration: underline;
     cursor: pointer;

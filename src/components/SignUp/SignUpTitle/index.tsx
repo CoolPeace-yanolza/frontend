@@ -15,9 +15,12 @@ export default SignUpTitle;
 
 const TitleWrapper = styled.div`
   display: flex;
-  flex-direction: row;
   justify-content: space-between;
   align-items: flex-start;
+
+  @media screen and (max-width: 649px) {
+    flex-direction: column;
+  }
 `;
 
 const Title = styled.h1`
@@ -26,6 +29,10 @@ const Title = styled.h1`
   font-weight: 700;
   line-height: 31px;
   letter-spacing: -0.78px;
+
+  @media screen and (max-width: 649px) {
+    font-size: 21px;
+  }
 `;
 
 const Description = styled.p`
@@ -33,4 +40,8 @@ const Description = styled.p`
   font-size: 18px;
   font-weight: 500;
   line-height: 32px;
+
+  @media screen and (max-width: 649px) {
+    font-size: 12.5px;
+  }
 `;

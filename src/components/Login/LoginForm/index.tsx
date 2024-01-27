@@ -121,6 +121,10 @@ const Inputs = styled.div<InputValidation>`
   display: flex;
   flex-direction: column;
   gap: 19px;
+
+  @media screen and (max-width: 649px) {
+    gap: 11px;
+  }
 `;
 
 const ValidationText = styled.p`
@@ -130,6 +134,12 @@ const ValidationText = styled.p`
   font-size: 15px;
   font-weight: 700;
   line-height: 32px;
+
+  @media screen and (max-width: 649px) {
+    padding-left: 10px;
+
+    font-size: 13px;
+  }
 `;
 
 const Buttons = styled.div<InputValidation>`
@@ -138,4 +148,8 @@ const Buttons = styled.div<InputValidation>`
   gap: 13px;
 
   margin-top: ${props => (props.$isValid ? 0 : '23px')};
+
+  @media screen and (max-width: 649px) {
+    gap: 11px;
+  }
 `;

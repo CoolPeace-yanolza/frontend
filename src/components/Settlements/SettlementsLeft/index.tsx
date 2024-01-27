@@ -16,7 +16,6 @@ export default SettlementsLeft;
 const Container = styled.div`
   width: 80%;
   min-width: 1110px;
-  // height: 100%;
 
   border-bottom-left-radius: 1.25rem;
 
@@ -25,6 +24,8 @@ const Container = styled.div`
   ${theme.response.tablet} {
     width: 100%;
     min-width: 0;
+
+    border-bottom-left-radius: 0;
 
     background: #1A2849;
   }

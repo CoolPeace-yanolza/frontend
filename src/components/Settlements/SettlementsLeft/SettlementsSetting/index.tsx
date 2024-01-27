@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { Suspense, useState } from 'react';
+import { Suspense, forwardRef, useState } from 'react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { ko } from 'date-fns/locale';
@@ -8,10 +8,13 @@ import { createGlobalStyle } from 'styled-components';
 import { ErrorBoundary } from 'react-error-boundary';
 import { useQueryErrorResetBoundary } from '@tanstack/react-query';
 
-import CalendarIcon from '@assets/icons/calendar-number-outline.svg';
+import { ErrorModal } from '@components/common';
+import { ERROR_MODAL_MESSAGE } from 'src/constants';
+import { settlementsDateState } from '@recoil/atoms/settlemented';
+import { getCurrentYearStartDate, getCurrentYearEndDate } from '@utils/index';
 import Settlemented from './Settlemented';
 import SettlementsHeader from './SettlementsHeader';
-import { settlementsDateState } from '@recoil/atoms/settlemented';
+import CalendarIcon from '@assets/icons/calendar-outline.svg';
 import theme from '@styles/theme';
 import Loading from './Settlemented/index.loading';
 import ErrorFallback from './Settlemented/index.error';
@@ -20,8 +23,13 @@ const SettlementsSetting = () => {
 
   const { reset } = useQueryErrorResetBoundary();
 
-  const [startDate, setStartDate] = useState<Date | null>(null);
-  const [endDate, setEndDate] = useState<Date | null>(null);
+  const [startDate, setStartDate] = useState<Date | null>(new Date(getCurrentYearStartDate()));
+  const [endDate, setEndDate] = useState<Date | null>(new Date(getCurrentYearEndDate()));
+
+  
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const handleModalClose = () => setIsModalOpen(false);
+  const handleModalOpen = () => setIsModalOpen(true);
 
   const setSettlementsDate = useSetRecoilState(settlementsDateState);
 
@@ -43,84 +51,60 @@ const SettlementsSetting = () => {
   };
 
   const handleButtonClick = () => {
+    const currentDate = new Date();
+    const currentMonth = currentDate.getMonth();
+    const currentYear = currentDate.getFullYear();
+
     if (startDate && endDate) {
-        setSettlementsDate({ startDate, endDate });
+      if (
+        startDate.getFullYear() === currentYear && startDate.getMonth() === currentMonth ||
+        endDate.getFullYear() > currentYear ||
+        endDate.getFullYear() === currentYear && endDate.getMonth() >= currentMonth ||
+        startDate > endDate
+      ) {
+        handleModalOpen();
+        return;
+      }
+      setSettlementsDate({ startDate, endDate });
     }
   };
 
-  const DatePickerCustom = createGlobalStyle`
-  .react-datepicker {
-    border: none;
-    border-radius: 1rem;
-  }
-
-  .react-datepicker__navigation-icon::before {
-    top: 10px;
-
-    border-color: white;
-  }
-
-  .custom-header {
-    .react-datepicker__current-month,
-    .react-datepicker-time__header,
-    .react-datepicker-year-header {
-      color: white;
-    }
-
-    .react-datepicker__header {
-      padding: 12px 0px;
-      border-top-left-radius: 1rem;
-      border-top-right-radius: 1rem;
-
-      background-color: #1A2849;
-
-    }
-
-    .react-datepicker__month-text--keyboard-selected {
-      background-color: #1A2849;
-      color: white !important;
-
-      font-weight: 700;
-    }
-
-    .react-datepicker__month .react-datepicker__month-text {
-      padding: 4px;
-
-      color: #1A2849;
-      font-weight: 600;
-    }
-  }
-`;
+  const CustomInput = forwardRef(({ value, onClick }: any, ref: any) => (
+    <CustomInputContainer onClick={onClick} ref={ref}>
+            <span>{value}</span>
+      <Calendar src={CalendarIcon} alt="캘린더" />
+    </CustomInputContainer>
+  ));
 
   return (
     <Container>
       <SettlementsHeader/>
         <CalendarContainer>
           <CalendarInnerContainer>
-            <Calendar
-                src={CalendarIcon}
-                alt="캘린더" />
             <CalendarText>기간 설정</CalendarText>
             </CalendarInnerContainer>
             <StyledDatePickerContainer>
             <DatePickerCustom />
             <StyledDatePicker
-                selected={startDate}
-                onChange={handleStartDateChange}
-                dateFormat="yyyy/MM"
-                showMonthYearPicker
-                placeholderText=""
-                locale={ko}
-                calendarClassName="custom-header"  
+              selected={startDate}
+              onChange={handleStartDateChange}
+              dateFormat="yyyy/MM"
+              showMonthYearPicker
+              placeholderText=""
+              locale={ko}
+              calendarClassName="custom-header" 
+              customInput={<CustomInput />}  
             />
+            -
             <StyledDatePicker
-                selected={endDate}
-                onChange={handleEndDateChange}
-                dateFormat="yyyy/MM"
-                showMonthYearPicker
-                placeholderText=""
-                locale={ko}
-                calendarClassName="custom-header"  
+              selected={endDate}
+              onChange={handleEndDateChange}
+              dateFormat="yyyy/MM"
+              showMonthYearPicker
+              placeholderText=""
+              locale={ko}
+              calendarClassName="custom-header"  
+              customInput={<CustomInput />}  
             />
             <StyledButton onClick={handleButtonClick}>조회하기</StyledButton>
             </StyledDatePickerContainer>
@@ -136,6 +120,12 @@ const SettlementsSetting = () => {
       <Settlemented />
     </Suspense>
     </ErrorBoundary>
+    {isModalOpen && (
+      <ErrorModal
+        modalContent={ERROR_MODAL_MESSAGE.DATE_ERROR}
+        ButtonFunc={handleModalClose}
+      />
+    )}
     </Container>
   )
 }
@@ -172,7 +162,7 @@ const CalendarContainer = styled.nav`
 `;
 
 const CalendarInnerContainer = styled.div`
-  margin-top: 10px;
+  margin-top: 15px;
 
   display: flex;
 
@@ -182,14 +172,14 @@ const CalendarInnerContainer = styled.div`
 `;
 
 const Calendar = styled.img`
-  width: 24px;
-  height: 24px;
+  width: 15px;
+  height: 15px;
 
-  margin-right: 10px;
+  margin-right: 4px;
 `;
 
 const StyledDatePicker = styled(DatePicker)`
-  margin-right: 10px;
+  margin: 6px;
   padding: 5px;
 
   width: 100px;
@@ -211,6 +201,7 @@ const CalendarText = styled.div`
 `;
 
 const StyledButton = styled.button`
+  margin-left: 10px;
   padding: 7px 14px;
 
   background-color: #3182F6;
@@ -218,6 +209,7 @@ const StyledButton = styled.button`
 
   font-weight: 600;
   font-size: 12px;
+  font-family: 'Noto Sans KR';
 
   border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 8px;
@@ -239,6 +231,8 @@ const StyledDatePickerContainer = styled.div`
   display: flex;
   align-items: center;
 
+  color: white;
+
   ${theme.response.tablet} {
     margin-left: auto;
     margin-right: 0px;
@@ -247,4 +241,70 @@ const StyledDatePickerContainer = styled.div`
   @media (max-width: 500px) {
     width: 100%;
   }
+`;
+
+const DatePickerCustom = createGlobalStyle`
+.react-datepicker {
+  border: none;
+  border-radius: 1rem;
+}
+
+.react-datepicker__navigation-icon::before {
+  top: 10px;
+
+  border-color: white;
+}
+
+.custom-header {
+  .react-datepicker__current-month,
+  .react-datepicker-time__header,
+  .react-datepicker-year-header {
+    color: white;
+  }
+
+  .react-datepicker__header {
+    padding: 12px 0px;
+    border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem;
+
+    background-color: #1A2849;
+
+  }
+
+  .react-datepicker__month-text--keyboard-selected {
+    background-color: #1A2849;
+    color: white !important;
+
+    font-weight: 700;
+  }
+
+  .react-datepicker__month .react-datepicker__month-text {
+    padding: 4px;
+
+    color: #1A2849;
+    font-weight: 600;
+  }
+}
+`;
+
+const CustomInputContainer = styled.button`
+  width: 100px;
+  height: 26px;
+
+  padding: 2px;
+  margin: 6px;
+  border: none;
+  border-radius: 6px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  font-family: 'Noto Sans KR';
+  font-size: 15px;
+  font-weight: 700;
+
+  background: #fff;
+
+  cursor: pointer;
 `;
