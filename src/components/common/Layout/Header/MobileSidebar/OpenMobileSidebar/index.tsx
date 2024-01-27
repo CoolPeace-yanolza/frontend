@@ -7,7 +7,7 @@ import coupon from '@assets/icons/ic-sidebar-coupon.svg';
 import logo from '@assets/icons/ic-logo.svg';
 import CouponNav from '@components/common/Layout/Sidebar/Navigation/Coupon/CouponNav';
 import Settlements from '@components/common/Layout/Sidebar/Navigation/Settlements';
-import { ToggleOpen } from '@/types/layout';
+import { SidebarOpen, ToggleOpen } from '@/types/layout';
 import theme from '@styles/theme';
 
 const OpenMobileSidebar = ({
@@ -24,8 +24,8 @@ const OpenMobileSidebar = ({
   }, [isSidebarOpen]);
 
   return (
-    <>
-      <Container $isSidebarOpen={isSidebarOpen}>
+    <Container $isSidebarOpen={isSidebarOpen}>
+      <Navigation>
         <Header>
           <Hamburger onClick={() => setIsSidebarOpen(prev => !prev)}>
             <HamburgerIcon
@@ -62,20 +62,36 @@ const OpenMobileSidebar = ({
           </div>
         </Coupon>
         <Settlements isSidebarOpen={true} />
-      </Container>
-    </>
+      </Navigation>
+      <LeftoverScreen
+        $isSidebarOpen={isSidebarOpen}
+        onClick={() => setIsSidebarOpen(false)}
+      />
+    </Container>
   );
 };
 
 export default OpenMobileSidebar;
 
-const Container = styled.div<{ $isSidebarOpen: boolean }>`
+const Container = styled.div<SidebarOpen>`
   position: fixed;
-  top: ${props => (props.$isSidebarOpen ? 0 : '-250px')};
+  top: ${props => (props.$isSidebarOpen ? 0 : '-100vh')};
   left: 0;
 
   width: 100vw;
-  height: fit-content;
+  height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  z-index: 100;
+  transition: all 0.5s;
+`;
+
+const Navigation = styled.div`
+  width: 100%;
 
   padding: 10px;
   padding-top: 15px;
@@ -86,8 +102,6 @@ const Container = styled.div<{ $isSidebarOpen: boolean }>`
   align-items: center;
 
   background: white;
-  z-index: 100;
-  transition: all 0.5s;
 `;
 
 const Header = styled.div`
@@ -188,4 +202,11 @@ const Toggle = styled.button<ToggleOpen>`
 const ToggleIcon = styled.img`
   width: 15px;
   height: 10px;
+`;
+
+const LeftoverScreen = styled.div<SidebarOpen>`
+  width: 100%;
+  height: 100%;
+
+  background-color: #4242427c;
 `;
