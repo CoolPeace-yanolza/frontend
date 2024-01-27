@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import { useState } from 'react';
 
-import settlementsAdminIcon from '@assets/icons/settlements-admin.svg';
+import settlementsAdminIcon from '@assets/icons/settlemented-admin.svg';
 import informationIcon from '@assets/icons/information-circle-outline.svg';
 import SettlementsPopup from './SettlementsPopup';
 import theme from '@styles/theme';
