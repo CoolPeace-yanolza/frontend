@@ -18,6 +18,7 @@ import {
   AuthInputPassword
 } from '@components/Auth';
 import { getEmailValid, postSignUp } from 'src/api';
+import { hasWhiteSpace } from '@utils/index';
 
 const SignUpForm = ({
   handleModalOpen,
@@ -29,7 +30,7 @@ const SignUpForm = ({
   const { watch, getValues, getFieldState, formState, handleSubmit } = methods;
   const { errors, isValid } = formState;
 
-  const emailValue: string = getValues('user_email');
+  const { user_email: emailValue, user_password: passwordValue } = getValues();
   const isEmailDirty = getFieldState('user_email', formState).isDirty;
   const isEmailValueValid = isEmailDirty ? !errors?.user_email : false;
 
@@ -142,6 +143,11 @@ const SignUpForm = ({
               {errors?.user_password?.message?.toString()}
             </ValidationText>
           )}
+          {!errors.user_password && hasWhiteSpace(passwordValue) && (
+            <ValidationText>
+              비밀번호에는 공백이 포함될 수 없습니다.
+            </ValidationText>
+          )}
         </InputLabelWrapper>
         <InputLabelWrapper>
           <Label htmlFor="user_password_confirm">비밀번호 확인</Label>
@@ -160,12 +166,18 @@ const SignUpForm = ({
         <AuthButton
           size="large"
           variant={
-            isValid && emailValidMessage.type === 'success'
+            isValid &&
+            emailValidMessage.type === 'success' &&
+            !hasWhiteSpace(passwordValue)
               ? 'navy'
               : 'disabled'
           }
           text="회원가입"
-          disabled={!isValid || emailValidMessage.type !== 'success'}
+          disabled={
+            !isValid ||
+            emailValidMessage.type !== 'success' ||
+            hasWhiteSpace(passwordValue)
+          }
           buttonFunc={handleSubmit(onSubmit)}
         />
       </Form>

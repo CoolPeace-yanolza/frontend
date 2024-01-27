@@ -36,7 +36,8 @@ export const getInputOptions = (inputName: string, password?: string) => {
         },
         pattern: {
           value: passwordRegex,
-          message: '8-20자의 영문 대/소문자, 숫자, 특수문자를 사용해 주세요.'
+          message:
+            '8~20자의 영문, 숫자, 특수문자(공백제외)를 모두 포함하여 입력해주세요.'
         }
       };
     case 'user_password_confirm':
@@ -58,3 +59,6 @@ export const getInputOptions = (inputName: string, password?: string) => {
       };
   }
 };
+
+export const hasWhiteSpace = (value: string) =>
+  !!value && value.search(/\s/) !== -1;

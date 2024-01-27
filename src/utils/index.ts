@@ -8,5 +8,5 @@ export {
 } from './lib/report';
 export { getUpdatedDate } from './lib/calculation';
 export { getStatusToLocaleString } from './lib/dashboard';
-export { getInputOptions } from './lib/auth';
+export { getInputOptions, hasWhiteSpace } from './lib/auth';
 export { setCookies, getCookies, deleteAllCookies } from './lib/cookies';

@@ -2,13 +2,13 @@ import { useState } from 'react';
 import styled from '@emotion/styled';
 import { useFormContext } from 'react-hook-form';
 
-import { AuthInput } from '@/types/auth';
 import eyeOn from '@assets/icons/ic-login-eye-on.svg';
 import eyeOff from '@assets/icons/ic-login-eye-off.svg';
 import closeIcon from '@assets/icons/ic-login-close.svg';
 import checkInvalid from '@assets/icons/ic-signup-check-invalid.svg';
 import checkValid from '@assets/icons/ic-signup-check-valid.svg';
-import { getInputOptions } from '@utils/index';
+import { AuthInput } from '@/types/auth';
+import { getInputOptions, hasWhiteSpace } from '@utils/index';
 
 const AuthInputPassword = ({
   id,
@@ -16,17 +16,15 @@ const AuthInputPassword = ({
   usedFor,
   isError
 }: AuthInput) => {
-  const { register, watch, resetField, getFieldState, formState } =
-    useFormContext();
+  const { register, watch, resetField } = useFormContext();
 
-  const inputValue = watch(id);
-  const handleReset = () => resetField(id);
-
-  const passwordValue = watch('user_password');
-  const isInputTouched = getFieldState(id, formState).isTouched;
-  const isValid = isInputTouched ? !isError : false;
+  const inputValue: string = watch(id);
+  const passwordValue: string = watch('user_password');
+  const isValid = !!inputValue ? !isError && !hasWhiteSpace(inputValue) : false;
 
   const [showPW, setShowPW] = useState(false);
+
+  const handleReset = () => resetField(id);
 
   const handleShowPW = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
