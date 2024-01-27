@@ -17,10 +17,10 @@ const OpenMobileSidebar = ({
   isSidebarOpen: boolean;
   setIsSidebarOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
-  const [isToggleOpen, setIsToggleOpen] = useState(false);
+  const [isToggleOpen, setIsToggleOpen] = useState(true);
 
   useEffect(() => {
-    if (!isSidebarOpen) setIsToggleOpen(false);
+    if (isSidebarOpen) setIsToggleOpen(true);
   }, [isSidebarOpen]);
 
   return (
