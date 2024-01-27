@@ -41,7 +41,10 @@ const AuthInputPassword = ({
       />
       <Buttons>
         {!!inputValue && (
-          <Button onClick={handleShowPW}>
+          <Button
+            type="button"
+            onClick={handleShowPW}
+          >
             <Icon
               src={showPW ? eyeOn : eyeOff}
               alt={showPW ? '비밀번호 보기 버튼' : '비밀번호 숨김 버튼'}
@@ -49,7 +52,10 @@ const AuthInputPassword = ({
           </Button>
         )}
         {usedFor === 'login' && !!inputValue && (
-          <Button onClick={handleReset}>
+          <Button
+            type="button"
+            onClick={handleReset}
+          >
             <Icon
               src={closeIcon}
               alt="지우기 버튼"

@@ -109,6 +109,7 @@ const SignUpForm = ({
               isError={!!errors?.user_email}
             />
             <AuthButton
+              buttonType="button"
               size="small"
               variant={isEmailValueValid ? 'navy' : 'disabled'}
               text="중복확인"
@@ -158,6 +159,7 @@ const SignUpForm = ({
           )}
         </InputLabelWrapper>
         <AuthButton
+          buttonType="submit"
           size="large"
           variant={
             isValid && emailValidMessage.type === 'success'
