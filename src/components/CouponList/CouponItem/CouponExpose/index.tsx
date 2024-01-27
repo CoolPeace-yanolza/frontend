@@ -270,9 +270,6 @@ const CouponCustomer = styled.div`
 `;
 
 const ToggleWrap = styled.button<ToggleStyleProps>`
-  width: 50px;
-  height: 22.93;
-
   border-radius: 22.93px;
   border: 1px solid;
   border-color: ${props => (props.$isToggle ? '#FF3478' : '#404446')};
@@ -286,8 +283,6 @@ const ToggleWrap = styled.button<ToggleStyleProps>`
 `;
 
 const ToggleOn = styled.div`
-  margin-right: 6px;
-
   font-size: 10px;
   font-weight: 700;
   color: ${theme.colors.pink500};
@@ -300,7 +295,7 @@ const ToggleOff = styled.div`
 `;
 
 const ToggleOnImg = styled.img`
-  margin: 1px;
+  margin: 1px 0px 1px 3px;
 `;
 
 const ToggleOffImg = styled.img`
