@@ -66,19 +66,23 @@ const CouponExpose = ({ couponInfo }: CouponListProps) => {
     }
   };
 
-  const retryToggleUpdate = () => {
-    setIsToggle(!isToggle);
-    mutateAsync({
-      coupon_number: couponInfo.coupon_number,
-      coupon_status: '노출 ON'
-    });
-    showToast(
-      <ToastText>
-        {couponInfo.title} 쿠폰이 <br />
-        노출되었습니다.
-      </ToastText>,
-      2000
-    );
+  const retryToggleUpdate = async () => {
+    try {
+      setIsToggle(!isToggle);
+      await mutateAsync({
+        coupon_number: couponInfo.coupon_number,
+        coupon_status: '노출 ON'
+      });
+      showToast(
+        <ToastText>
+          {couponInfo.title} 쿠폰이 <br />
+          노출되었습니다.
+        </ToastText>,
+        2000
+      );
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   // 객실 리스트 스크롤에 따라 위치 조정

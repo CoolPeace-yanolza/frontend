@@ -6,7 +6,6 @@ export interface RoomListStyleProps {
   setIsBottom: (isBottom: boolean) => void;
 }
 
-// 커스텀 훅 정의
 export const useUpdateRoomListPosition = ({
   isShowRoomList,
   roomListStyleRef,

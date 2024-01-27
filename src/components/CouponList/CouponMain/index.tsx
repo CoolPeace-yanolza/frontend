@@ -11,7 +11,10 @@ import {
 import theme from '@styles/theme';
 import mobileRegister from '@assets/icons/ic-couponlist-mobileregister.svg';
 import categoryTabState from '@recoil/atoms/categoryTabState';
-import { CouponListResponse } from '@/types/couponList';
+import {
+  CouponInformationResponse,
+  CouponListResponse
+} from '@/types/couponList';
 
 interface CouponMainProps {
   coupons: CouponListResponse;
@@ -20,7 +23,6 @@ interface CouponMainProps {
 const CouponMain = ({ coupons }: CouponMainProps) => {
   const navigate = useNavigate();
   const categoryTab = useRecoilValue(categoryTabState);
-  console.log(coupons);
 
   const handleRegisterClick = () => {
     navigate('/coupons/register');
@@ -36,33 +38,33 @@ const CouponMain = ({ coupons }: CouponMainProps) => {
           쿠폰은 조회되지 않습니다.
         </CouponDescription>
       </TabBottomWrap>
-      {coupons?.content?.map(coupon => {
+      {coupons?.content.map((coupon, index) => {
         switch (coupon.coupon_status) {
           case '노출 ON':
             return (
               <CouponExpose
-                key={coupon.coupon_number}
+                key={`${coupon.coupon_number}-${index}`}
                 couponInfo={coupon}
               />
             );
           case '노출 OFF':
             return (
               <CouponStop
-                key={coupon.coupon_number}
+                key={`${coupon.coupon_number}-${index}`}
                 couponInfo={coupon}
               />
             );
           case '노출 대기중':
             return (
               <CouponWait
-                key={coupon.coupon_number}
+                key={`${coupon.coupon_number}-${index}`}
                 couponInfo={coupon}
               />
             );
           case '노출 기간 만료':
             return (
               <CouponExpired
-                key={coupon.coupon_number}
+                key={`${coupon.coupon_number}-${index}`}
                 couponInfo={coupon}
               />
             );
