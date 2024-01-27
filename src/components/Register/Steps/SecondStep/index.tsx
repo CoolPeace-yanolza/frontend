@@ -1,7 +1,6 @@
 import ReactDOM from 'react-dom';
 import { useState } from 'react';
 import { useRecoilState } from 'recoil';
-        
 import styled from '@emotion/styled';
 
 import {
@@ -174,7 +173,7 @@ const SecondStep = () => {
           currentState={input.toAllRooms}
         >
           <ContentWrapper>
-            <RoomList rooms={input.rooms} />
+            <RoomList rooms={input.selectedRooms} />
           </ContentWrapper>
         </InputWrapper>
         {!isValid.isToAllRoomsValid && (

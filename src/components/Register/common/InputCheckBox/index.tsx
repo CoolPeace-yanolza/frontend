@@ -1,11 +1,7 @@
 import styled from '@emotion/styled';
 
 import theme from '@styles/theme';
-import {
-  InputCheckBoxProps,
-  LabelStyleProps,
-  CheckIconStyleProps
-} from '@/types/register';
+import { InputCheckBoxProps, LabelStyleProps } from '@/types/register';
 import checked from '@assets/icons/ic-register-checked.svg';
 import unchecked from '@assets/icons/ic-register-unchecked.svg';
 
@@ -33,7 +29,10 @@ const InputCheckBox = ({
         htmlFor={id}
         $isChecked={isChecked}
       >
-        <CheckIcon $src={isChecked ? checked : unchecked} />
+        <CheckIcon
+          src={isChecked ? checked : unchecked}
+          alt="체크박스 아이콘"
+        />
         {text}
       </Label>
     </Container>
@@ -59,11 +58,9 @@ const Label = styled.label<LabelStyleProps>`
   font-size: 15px;
 `;
 
-const CheckIcon = styled.div<CheckIconStyleProps>`
+const CheckIcon = styled.img`
   width: 20px;
   height: 20px;
 
   margin-right: 5px;
-
-  background: url(${props => props.$src}) no-repeat;
 `;
