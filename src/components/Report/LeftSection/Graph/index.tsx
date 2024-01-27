@@ -33,7 +33,7 @@ const Graph = ({ graphData }: { graphData: ReportGraphProps }) => {
     datasets: [
       {
         label: '전체 매출',
-        data: graphData.map(data => parseInt(data.total_sales)),
+        data: graphData.map(data => data.total_sales),
         backgroundColor: '#3182F6',
         borderColor: '#3182F6',
         borderWidth: 1,
@@ -42,7 +42,7 @@ const Graph = ({ graphData }: { graphData: ReportGraphProps }) => {
       },
       {
         label: '쿠폰 적용 매출',
-        data: graphData.map(data => parseInt(data.coupon_total_sales)),
+        data: graphData.map(data => data.coupon_total_sales),
         backgroundColor: '#FF3478',
         borderColor: '#FF3478',
         borderWidth: 1,
@@ -57,7 +57,22 @@ const Graph = ({ graphData }: { graphData: ReportGraphProps }) => {
     plugins: {
       legend: {
         onClick: () => undefined
-      }
+      },
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      },
+      datasets: [
+        {
+          label: '전체 매출',
+          data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+        },
+        {
+          label: '쿠폰 적용 매출',
+          data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+        }
+      ]
     }
   };
 

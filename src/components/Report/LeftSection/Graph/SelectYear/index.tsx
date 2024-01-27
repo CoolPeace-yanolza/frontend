@@ -1,27 +1,33 @@
-import { useEffect } from 'react';
-import { useRecoilState, useRecoilValue } from 'recoil';
+import { useContext, useEffect, useTransition } from 'react';
+import { useRecoilValue } from 'recoil';
 import { Dropdown, DropdownProps } from 'semantic-ui-react';
 import styled from '@emotion/styled';
 
-import { headerAccommodationState, selectedYearState } from '@recoil/index';
+import { headerAccommodationState } from '@recoil/index';
+import UseSelectedYear from '../../index.context';
 import { initYearSelectList } from '@utils/index';
 import theme from '@styles/theme';
 
 const SelectYear = () => {
-  const selectYearReport = initYearSelectList();
-  const [selectedYear, setSelectedYear] = useRecoilState(selectedYearState);
   const headerAccommodation = useRecoilValue(headerAccommodationState);
-
-  useEffect(() => {
-    setSelectedYear({ year: selectYearReport[0] });
-  }, [headerAccommodation]);
+  const selectYearReport = initYearSelectList();
+  const [selectedYear, setSelectedYear] = useContext(UseSelectedYear);
+  const [, startTransition] = useTransition();
 
   const handleSelect = (
     _e: React.SyntheticEvent<HTMLElement>,
     data: DropdownProps
   ) => {
-    setSelectedYear({ year: Number(data.value) });
+    startTransition(() => {
+      setSelectedYear({ year: Number(data.value) });
+    });
   };
+
+  useEffect(() => {
+    startTransition(() => {
+      setSelectedYear({ year: 2023 });
+    });
+  }, [headerAccommodation]);
 
   return (
     <StyledDropdown

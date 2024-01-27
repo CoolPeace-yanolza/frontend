@@ -1,7 +1,9 @@
-import { useRecoilValue } from 'recoil';
+import { useState } from 'react';
+import { useRecoilValue_TRANSITION_SUPPORT_UNSTABLE } from 'recoil';
 import styled from '@emotion/styled';
 
-import { headerAccommodationState, selectedYearState } from '@recoil/index';
+import { headerAccommodationState } from '@recoil/index';
+import UseSelectedYear from './index.context';
 import { useGetYearReport } from '@hooks/index';
 import { DashboardHeader } from '@components/common';
 import YearReport from './YearReport';
@@ -9,21 +11,26 @@ import Graph from './Graph';
 import theme from '@styles/theme';
 
 const LeftSection = () => {
-  const selectedAccommodation = useRecoilValue(headerAccommodationState);
-  const selectedYear = useRecoilValue(selectedYearState);
+  const selectedAccommodation = useRecoilValue_TRANSITION_SUPPORT_UNSTABLE(
+    headerAccommodationState
+  );
+  const useSelectedYear = useState({ year: 2024 });
+
   const { data: yearReportData } = useGetYearReport(
     selectedAccommodation.id,
-    selectedYear.year
+    useSelectedYear[0].year
   );
   const { coupon_sales_list: graphProps, ...yearReportProps } = yearReportData;
   const yearReport = Object.entries(yearReportProps);
 
   return (
-    <Container>
-      <DashboardHeader />
-      <Graph graphData={graphProps} />
-      <YearReport yearReport={yearReport} />
-    </Container>
+    <UseSelectedYear.Provider value={useSelectedYear}>
+      <Container>
+        <DashboardHeader />
+        <Graph graphData={graphProps} />
+        <YearReport yearReport={yearReport} />
+      </Container>
+    </UseSelectedYear.Provider>
   );
 };
 

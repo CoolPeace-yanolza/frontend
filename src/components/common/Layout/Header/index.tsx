@@ -4,6 +4,7 @@ import styled from '@emotion/styled';
 import logo from '@assets/icons/ic-logo.svg';
 import Select from './Select';
 import User from './User';
+import MobileSidebar from './MobileSidebar';
 import theme from '@styles/theme';
 
 const Header = () => {
@@ -19,7 +20,7 @@ const Header = () => {
         />
       </LogoLink>
       <Buttons>
-        <MobileDiv></MobileDiv>
+        <MobileSidebar />
         <Select />
         <User />
       </Buttons>
@@ -81,16 +82,5 @@ const Buttons = styled.div`
 
   ${theme.response.tablet} {
     width: 100%;
-  }
-`;
-
-const MobileDiv = styled.div`
-  display: none;
-
-  ${theme.response.tablet} {
-    width: 50px;
-    height: 50px;
-
-    display: block;
   }
 `;

@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import { useRecoilState } from 'recoil';
 import styled from '@emotion/styled';
 import { Dropdown, DropdownProps } from 'semantic-ui-react';
@@ -12,10 +11,6 @@ const Select = () => {
   const [headerAccommodation, setHeaderAccommodation] = useRecoilState(
     headerAccommodationState
   );
-
-  useEffect(() => {
-    setHeaderAccommodation(selectList[0]);
-  }, []);
 
   const handleSelect = (
     _e: React.SyntheticEvent<HTMLElement>,

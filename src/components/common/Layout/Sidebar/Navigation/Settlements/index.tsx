@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 
-import settlement from '@assets/icons/ic-sidebar-settlement.svg';
+import settlement from '/images/ic-sidebar-settlement.png';
 import CustomNavLink from '../CustomNavLink';
 import { SidebarOpen } from '@/types/layout';
 import theme from '@styles/theme';
@@ -60,6 +60,10 @@ const Contents = styled.div<SidebarOpen>`
   flex-direction: ${props => (props.$isSidebarOpen ? 'row' : 'column')};
   justify-content: ${props => (props.$isSidebarOpen ? 'flex-start' : 'center')};
   align-items: center;
+
+  ${theme.response.tablet} {
+    font-size: 14px;
+  }
 `;
 
 const SettlementsIcon = styled.img<SidebarOpen>`

@@ -30,8 +30,8 @@ const Modal = ({
           <ModalSubText>삭제한 쿠폰은 복구할 수 없습니다.</ModalSubText>
         )}
         <ButtonWrap>
-          <ConfirmButton onClick={handleConfirmClick}>확인</ConfirmButton>
           <CancelButton onClick={handleModalClose}>취소</CancelButton>
+          <ConfirmButton onClick={handleConfirmClick}>확인</ConfirmButton>
         </ButtonWrap>
       </ModalWrap>
     </ModalContainer>
@@ -42,14 +42,14 @@ export default Modal;
 
 const ModalContainer = styled.div`
   position: fixed;
-  z-index: 1;
+  z-index: 100;
   top: 0;
   left: 0;
 
   width: 100%;
   height: 100%;
 
-  background: var(--Back-Ground, rgba(66, 66, 66, 0.5));
+  background: rgba(66, 66, 66, 0.5);
 `;
 
 const ModalWrap = styled.div`
@@ -70,6 +70,13 @@ const ModalWrap = styled.div`
 
   background: var(--Main-Color-White, #fff);
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+
+  @media (max-width: 900px) {
+    width: 336px;
+    height: 210px;
+
+    transform: translate(-50%, -50%);
+  }
 `;
 
 const ModalText = styled.div`
@@ -110,6 +117,11 @@ const ConfirmButton = styled.button`
   &:hover {
     background: #5f6980;
   }
+
+  @media (max-width: 900px) {
+    width: 140px;
+    height: 40px;
+  }
 `;
 const CancelButton = styled.button`
   width: 158px;
@@ -124,5 +136,10 @@ const CancelButton = styled.button`
 
   &:hover {
     background: #404446;
+  }
+
+  @media (max-width: 900px) {
+    width: 140px;
+    height: 40px;
   }
 `;
