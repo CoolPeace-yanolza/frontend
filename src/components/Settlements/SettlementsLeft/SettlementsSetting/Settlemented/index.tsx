@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 import 'semantic-ui-css/semantic.min.css';
 import { Dropdown, DropdownProps } from 'semantic-ui-react';
 import { useState, useEffect } from 'react';
-import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
+import { useRecoilState, useRecoilValue } from 'recoil';
 import XLSX from 'xlsx-js-style';
 
 import SettlementsTable from './SettlementsTable';
