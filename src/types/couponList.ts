@@ -1,3 +1,5 @@
+import { RefObject } from 'react';
+
 export interface ToggleStyleProps {
   $isToggle: boolean;
 }
@@ -97,10 +99,19 @@ export interface CategoryTab {
   categoryTab: string;
 }
 
-// HACK : 쿠폰 요청  타입
-// export interface GetCouponListCredential {
-//   accommodationId: number;
-//   date?: string;
-//   status?: string;
-//   title?: string;
-// }
+export interface RoomListStyleProps {
+  isShowRoomList: boolean;
+  roomListStyleRef: RefObject<HTMLDivElement>;
+  setIsBottom: (isBottom: boolean) => void;
+}
+
+export interface CouponConditionProps {
+  day: string | null;
+  dayOfWeek: string | null;
+}
+
+export interface ConcatTitleProps {
+  customer_type: string;
+  discount_flat_rate: number | null;
+  discount_flat_value: number | null;
+}

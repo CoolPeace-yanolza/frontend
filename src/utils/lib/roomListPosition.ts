@@ -1,10 +1,5 @@
-import { RefObject, useEffect } from 'react';
-
-export interface RoomListStyleProps {
-  isShowRoomList: boolean;
-  roomListStyleRef: RefObject<HTMLDivElement>;
-  setIsBottom: (isBottom: boolean) => void;
-}
+import { RoomListStyleProps } from '@/types/couponList';
+import { useEffect } from 'react';
 
 export const useUpdateRoomListPosition = ({
   isShowRoomList,

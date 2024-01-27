@@ -36,7 +36,6 @@ const CouponExpired = ({ couponInfo }: CouponListProps) => {
     setIsShowModal(true);
   };
 
-  // 모달 확인 버튼에 대한 동작
   const handleModalConfirm = () => {
     try {
       mutateAsync({ coupon_number: couponInfo.coupon_number });
@@ -48,7 +47,6 @@ const CouponExpired = ({ couponInfo }: CouponListProps) => {
     setIsShowModal(false);
   };
 
-  // 모달 취소 버튼에 대한 동작
   const handleModalClose = () => {
     setIsShowModal(false);
   };

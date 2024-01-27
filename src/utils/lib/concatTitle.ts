@@ -1,8 +1,4 @@
-export interface ConcatTitleProps {
-  customer_type: string;
-  discount_flat_rate: number | null;
-  discount_flat_value: number | null;
-}
+import { ConcatTitleProps } from '@/types/couponList';
 
 export const concatTitle = ({
   customer_type,

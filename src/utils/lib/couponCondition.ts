@@ -1,7 +1,4 @@
-export interface CouponConditionProps {
-  day: string | null;
-  dayOfWeek: string | null;
-}
+import { CouponConditionProps } from '@/types/couponList';
 
 export const couponCondition = ({ day, dayOfWeek }: CouponConditionProps) => {
   if (day === '하루만') {

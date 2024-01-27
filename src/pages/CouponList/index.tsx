@@ -62,7 +62,7 @@ const CouponList = () => {
     return () => {
       observer.disconnect();
     };
-  }, [page]); // 의존성 배열에 필요한 상태 변수 추가 가능
+  }, [page]);
 
   const handleChangeSearch = (value: string) => {
     setSearch(value);
