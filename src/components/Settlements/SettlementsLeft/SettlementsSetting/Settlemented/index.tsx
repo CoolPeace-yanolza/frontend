@@ -3,7 +3,7 @@ import 'semantic-ui-css/semantic.min.css';
 import { Dropdown, DropdownProps } from 'semantic-ui-react';
 import { useState, useEffect } from 'react';
 import { useRecoilValue } from 'recoil';
-import * as XLSX from 'xlsx';
+import XLSX from 'xlsx-js-style';
 
 import SettlementsTable from './SettlementsTable';
 import SettlementsPagination from './SettlementsPagination';
@@ -58,10 +58,16 @@ const Settlemented = () => {
     adjustedStartDate = startDateObj.toISOString().split('T')[0];
   }
 
+  let adjustedEndDate: string | null = null;
+  if (endDate != null) {
+    const endDateObj = new Date(endDate);
+    adjustedEndDate = endDateObj.toISOString().split('T')[0];
+  };
+
   const { data: settlements } = useGetSettlements(
     accommodation.id,
     adjustedStartDate ? adjustedStartDate : getCurrentYearStartDate(),
-    endDate ? endDate.toISOString().split('T')[0] : getCurrentYearEndDate(),
+    adjustedEndDate ? adjustedEndDate : getCurrentYearEndDate(),
     orderBy,
     currentPage - 1,
     itemsPerPage
@@ -90,33 +96,259 @@ const Settlemented = () => {
     return totalItems - (currentPage - 1) * itemsPerPage;
   };
 
-const handleDownloadExcel = async () => {
-  try {
-    const response = await getSettlements(
-      accommodation.id,
-      startDate ? startDate.toISOString().split('T')[0] : getCurrentYearStartDate(),
-      endDate ? endDate.toISOString().split('T')[0] : getCurrentYearEndDate(),
-      orderBy,
-      0,
-      totalItems
-    );
+  const handleDownloadExcel = async () => {
+    try {
+      const response = await getSettlements(
+        accommodation.id,
+        startDate ? startDate.toISOString().split('T')[0] : getCurrentYearStartDate(),
+        endDate ? endDate.toISOString().split('T')[0] : getCurrentYearEndDate(),
+        orderBy,
+        0,
+        totalItems
+      );
 
-    const allData = response.settlement_responses.map((data: SettlementedItem) => {
-      return convertKeysToKorean(data);
-    });
+      const totalInfo = [
+        [''],
+        [''],
+        ['', '', ''], 
+        [''],
+        ['', '', ''],
+        [''],
+        ['', '', '', '', '', '', ''],
+        ['', '', '', '', '', '', ''], 
+        [''],
+        ['']
+      ];
 
-    const workBook = XLSX.utils.book_new();
-    const workSheet = XLSX.utils.json_to_sheet(allData);
+      
+      const allData = response.settlement_responses.map((data: SettlementedItem) => {
+        return convertKeysToKorean(data);
+      });
+  
+      const workBook = XLSX.utils.book_new();
+      const workSheetSummary = XLSX.utils.json_to_sheet(totalInfo);
+      const workSheetData = XLSX.utils.json_to_sheet(allData); 
+      
+      const totalDiscountPriceKR = response.total_discount_price.toLocaleString('ko-KR');
+      const totalCancelPriceKR = response.total_cancel_price.toLocaleString('ko-KR');
+      const totalSumPriceKR = response.total_sum_price.toLocaleString('ko-KR');
 
-    workSheet['!cols'] = [{wch:12}, {wch:12}, {wch:25}, {wch:5}, {wch:12}, {wch:12}, {wch:12}, {wch:12}];
-    
-    XLSX.utils.book_append_sheet(workBook, workSheet, "Sheet1");
+      workSheetSummary['A3'] = {
+        v: '쿠폰 정산',
+        s: {
+          font: {sz: 16}, 
+          fill: { fgColor: { rgb: "FF87CEFA" } },
+          alignment: {horizontal: 'right'} 
+        }
+      };
+      
+      workSheetSummary['B3'] = {
+        v: '내역 리스트',
+        s: {
+          font: {sz: 16},
+          fill: { fgColor: { rgb: "FF87CEFA" } }, 
+          alignment: {horizontal: 'left'} 
+        }
+      };
+
+      workSheetSummary['A6'] = {
+        v: '쿠폰 정산 조회 기간: ',
+        s: {
+          font: {sz: 12}, 
+          alignment: {horizontal: 'right'},
+          border: {
+            top: { style: 'thick' },
+            bottom: { style: 'thick' },
+            left: { style: 'thick' }
+          }
+        }
+      };
+      
+      workSheetSummary['B6'] = {
+        v: (startDate === null ? getCurrentYearStartDate() : adjustedStartDate) + ' ~ ' + (endDate === null ? getCurrentYearEndDate() : adjustedEndDate),
+        s: {
+          font: {sz: 12},
+          alignment: {horizontal: 'left'},
+          border: {
+            top: { style: 'thick' },
+            bottom: { style: 'thick' },
+            right: { style: 'thick' }
+          }
+        }
+      };
+
+      workSheetSummary['A8'] = {
+        v: '조회 기간 내 총 합계 내역',
+        s: {
+          font: {sz: 12}, 
+          alignment: {horizontal: 'center', vertical: 'center'},
+          border: {
+            top: { style: 'thick' },
+            left: { style: 'thick' },
+          } 
+        }
+      };
+
+      workSheetSummary['A9'] = {
+        v: '조회 기간 내 총 합계 내역',
+        s: {
+          font: {sz: 12}, 
+          alignment: {horizontal: 'center', vertical: 'center'},
+          border: {
+            bottom: { style: 'thick' },
+            left: { style: 'thick' },
+          } 
+        }
+      };
+
+      workSheetSummary['B8'] = {
+        v: '조회 기간 내 총 합계 내역',
+        s: {
+          font: {sz: 12}, 
+          alignment: {horizontal: 'center', vertical: 'center'},
+          border: {
+            top: { style: 'thick' },
+          } 
+        }
+      };
+
+      workSheetSummary['B9'] = {
+        v: '조회 기간 내 총 합계 내역',
+        s: {
+          font: {sz: 12}, 
+          alignment: {horizontal: 'center', vertical: 'center'},
+          border: {
+            bottom: { style: 'thick' },
+          } 
+        }
+      };
+
+      workSheetSummary['C8'] = {
+        v: '사용 건수',
+        s: {
+          font: {sz: 12}, 
+          alignment: {horizontal: 'center', vertical: 'center'},
+          border: {
+            top: { style: 'thick' },
+          } 
+        }
+      };
+
+      workSheetSummary['C9'] = {
+        v: response.total_coupon_count,
+        s: {
+          font: {sz: 12}, 
+          alignment: {horizontal: 'center', vertical: 'center'},
+          border: {
+            bottom: { style: 'thick' },
+          } 
+        }
+      };
+
+      workSheetSummary['D8'] = {
+        v: '쿠폰 할인 금액',
+        s: {
+          font: {sz: 12}, 
+          alignment: {horizontal: 'center', vertical: 'center'},
+          border: {
+            top: { style: 'thick' },
+          } 
+        }
+      };
+
+      workSheetSummary['D9'] = {
+        v: totalDiscountPriceKR,
+        s: {
+          font: {sz: 12}, 
+          alignment: {horizontal: 'center', vertical: 'center'},
+          border: {
+            bottom: { style: 'thick' },
+          } 
+        }
+      };
+
+      workSheetSummary['E8'] = {
+        v: '쿠폰 취소 금액',
+        s: {
+          font: {sz: 12}, 
+          alignment: {horizontal: 'center', vertical: 'center'},
+          border: {
+            top: { style: 'thick' },
+          } 
+        }
+      };
+
+      workSheetSummary['E9'] = {
+        v: totalCancelPriceKR,
+        s: {
+          font: {sz: 12}, 
+          alignment: {horizontal: 'center', vertical: 'center'},
+          border: {
+            bottom: { style: 'thick' },
+          } 
+        }
+      };
+
+      workSheetSummary['F8'] = {
+        v: '정산 금액',
+        s: {
+          font: {sz: 12}, 
+          alignment: {horizontal: 'center', vertical: 'center'},
+          border: {
+            top: { style: 'thick' },
+            right: { style: 'thick' }
+          } 
+        }
+      };
+
+      workSheetSummary['F9'] = {
+        v: totalSumPriceKR,
+        s: {
+          font: {sz: 12}, 
+          alignment: {horizontal: 'center', vertical: 'center'},
+          border: {
+            bottom: { style: 'thick' },
+            right: { style: 'thick' }
+          } 
+        }
+      };
+      
+      workSheetSummary["!merges"] = [
+        {s: {r: 1, c: 0}, e: {r: 1, c: 1}},  
+      ];
+
+      workSheetSummary["!merges"] = [
+        {s: {r: 2, c: 1}, e: {r: 2, c: 3}},
+      ];
+
+      workSheetSummary["!merges"] = [
+        {s: {r: 3, c: 1}, e: {r: 3, c: 2}}, 
+      ];
+
+      workSheetSummary["!merges"] = [
+        {s: {r: 7, c: 0}, e: {r: 8, c: 1}}, 
+      ];
+      
+      workSheetSummary['!cols'] = [{wch: 22}, {wch:22}, {wch: 22}, {wch: 22}, {wch: 22}, {wch: 22}, {wch: 22}, {wch: 22}]
+      
+      
+      if (workSheetData['!ref']) {
+        const range = XLSX.utils.decode_range(workSheetData['!ref']);
+        range.s.r++; 
+      range.e.r++;
+      } else {
+      };
+
+    XLSX.utils.sheet_add_json(workSheetSummary, [{}], { origin: -1 });
+    XLSX.utils.sheet_add_json(workSheetSummary, allData, { origin: -1 });
+    XLSX.utils.book_append_sheet(workBook, workSheetSummary, "정산내역");
+
     XLSX.writeFile(workBook, "SettlementedDownload.xlsx");
-  } catch (error) {
-    console.error('Error fetching all settlements data for download:', error);
-  }
-};
-
+    } catch (error) {
+      console.error('Error fetching all settlements data for download:', error);
+    }
+  }; 
+        
   useEffect(() => {
     setCurrentPage(1);
   }, [accommodation]);
