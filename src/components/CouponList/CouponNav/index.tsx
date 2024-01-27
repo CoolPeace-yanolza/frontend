@@ -153,6 +153,7 @@ const TabContainer = styled.div`
     z-index: 60;
 
     margin: 0px;
+
     background-color: ${theme.colors.white};
     box-shadow: 0 8px 10px -5px rgba(0, 0, 0, 0.2);
   }
@@ -273,10 +274,11 @@ const SearchImg = styled.img`
   margin-left: 20px;
 
   @media (max-width: 656px) {
-    margin-top: 10px;
-    margin-left: 10px;
     width: 18px;
     height: 18px;
+
+    margin-top: 10px;
+    margin-left: 10px;
   }
 `;
 
@@ -297,6 +299,7 @@ const SearchButton = styled.button`
 
   @media (max-width: 656px) {
     width: 70px;
+
     font-size: 14px;
   }
 `;
@@ -330,9 +333,10 @@ const SecondTabName = styled.div`
   font-weight: 700;
 
   @media (max-width: 656px) {
+    white-space: nowrap;
+
     font-size: 11px;
     font-weight: 700;
-    white-space: nowrap;
   }
 `;
 
@@ -344,10 +348,6 @@ const SecondTabCount = styled.div`
   font-weight: 700;
 
   @media (max-width: 656px) {
-    leading-trim: both;
-
-    text-edge: cap;
-    font-family: 'Noto Sans KR';
     font-size: 11px;
     font-style: normal;
     font-weight: 700;
@@ -362,11 +362,12 @@ const CouponDescription = styled.div`
   font-weight: 700;
 
   @media (max-width: 656px) {
+    width: 220px;
+
     font-size: 10.5px;
     font-style: normal;
     font-weight: 400;
     line-height: 14px;
-    width: 220px;
   }
 `;
 
@@ -380,10 +381,11 @@ const ResisterPeriodWrap = styled.div`
 `;
 
 const ResisterPeriodTitle = styled.div`
+  margin: 0px 5px;
+
   color: #a4a4a4;
   font-size: 12px;
   font-weight: 400;
-  margin: 0px 5px;
 `;
 
 const ResisterPeriod = styled.div<ResisterDateStyleProps>`

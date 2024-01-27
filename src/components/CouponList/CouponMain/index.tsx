@@ -11,10 +11,7 @@ import {
 import theme from '@styles/theme';
 import mobileRegister from '@assets/icons/ic-couponlist-mobileregister.svg';
 import categoryTabState from '@recoil/atoms/categoryTabState';
-import {
-  CouponInformationResponse,
-  CouponListResponse
-} from '@/types/couponList';
+import { CouponListResponse } from '@/types/couponList';
 
 interface CouponMainProps {
   coupons: CouponListResponse;
@@ -95,10 +92,12 @@ const MainContainer = styled.div`
     margin: 20px 20px 0px 20px;
     border-radius: 10px;
     padding-bottom:30px;
+
     display: flex;
     justify-content: center;
     gap: 27px;
     align-items: center;
+
     background-color: ${theme.colors.white};
 `;
 
@@ -107,6 +106,7 @@ const TabBottomWrap = styled.div`
 
   @media (max-width: 656px) {
     margin: 20px 28px -5px 28px;
+
     display: flex;
     align-items: center;
   }
@@ -134,12 +134,7 @@ const SecondTabCount = styled.div`
   font-weight: 700;
 
   @media (max-width: 656px) {
-    leading-trim: both;
-
-    text-edge: cap;
-    font-family: 'Noto Sans KR';
     font-size: 11px;
-    font-style: normal;
     font-weight: 700;
     white-space: nowrap;
   }
@@ -152,11 +147,12 @@ const CouponDescription = styled.div`
   font-weight: 700;
 
   @media (max-width: 656px) {
+    width: 220px;
+
     font-size: 10.5px;
     font-style: normal;
     font-weight: 400;
     line-height: 14px;
-    width: 220px;
   }
 `;
 
@@ -167,18 +163,23 @@ const MobileRegister = styled.div`
     position: absolute;
     bottom: 0;
     left: 0;
+
     margin-left: 15px;
     margin-bottom: 15px;
+
     display: flex;
+
     cursor: pointer;
 
     p {
       position: absolute;
+
+      margin-left: 68px;
+      margin-top: 23px;
+
       color: ${theme.colors.white};
       font-size: 14px;
       font-weight: 600;
-      margin-left: 68px;
-      margin-top: 23px;
     }
   }
 `;
