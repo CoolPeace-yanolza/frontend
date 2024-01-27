@@ -214,6 +214,7 @@ export type registerInputAtom = {
   severalNights: boolean;
   toAllRooms: string;
   rooms: RoomType[];
+  selectedRooms: RoomType[];
   minimumPrice?: string;
   whenToUse: string;
   day: string;
@@ -268,4 +269,14 @@ export type PostRegisterCouponProps = {
     exposure_start_date: string;
     exposure_end_date: string;
   };
+};
+
+// useGetRoomList
+export type RoomListType = {
+  room_responses: {
+    id: number;
+    room_number: string;
+    room_type: string;
+    price: number;
+  }[];
 };

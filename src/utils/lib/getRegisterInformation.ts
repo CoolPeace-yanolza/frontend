@@ -15,7 +15,7 @@ export const getRegisterInformation = (
     coupon_room_types: input.roomType,
     accommodation_id: header.id,
     register_all_room: input.toAllRooms === 'true' ? true : false,
-    register_rooms: input.rooms.map(room => {
+    register_rooms: input.selectedRooms.map(room => {
       return room.roomNumber;
     }),
     minimum_reservation_price: Number(input.minimumPrice),
