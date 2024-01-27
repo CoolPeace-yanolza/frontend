@@ -455,6 +455,8 @@ const StyledDropdown = styled(Dropdown)`
     }
 
     .text {
+      position: relative;
+      top: -1.5px;
       max-height: 30px;
 
       font-size: 11px;
