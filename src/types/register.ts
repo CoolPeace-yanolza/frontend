@@ -155,10 +155,6 @@ export type RoomSelectModalProps = {
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-export type RoomSelectModalStyleProps = {
-  $src: string;
-};
-
 // RoomSelectButton
 export type RoomSelectButtonProps = {
   type: string;

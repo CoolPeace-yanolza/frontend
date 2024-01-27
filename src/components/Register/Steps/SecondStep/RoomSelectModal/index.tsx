@@ -3,11 +3,7 @@ import { useRecoilState } from 'recoil';
 import styled from '@emotion/styled';
 
 import { Backdrop } from '@components/common';
-import {
-  RoomType,
-  RoomSelectModalProps,
-  RoomSelectModalStyleProps
-} from '@/types/register';
+import { RoomType, RoomSelectModalProps } from '@/types/register';
 import close from '@assets/icons/ic-register-close.svg';
 import sort from '@assets/icons/ic-register-sort.svg';
 import filterChecked from '@assets/icons/ic-register-filter-checked.svg';
@@ -96,10 +92,12 @@ const RoomSelectModal = ({ setIsOpen }: RoomSelectModalProps) => {
       <Container>
         <Header>
           적용 객실 설정
-          <CloseButton
-            $src={close}
-            onClick={handleClose}
-          />
+          <CloseButton onClick={handleClose}>
+            <CloseIcon
+              src={close}
+              alt="닫기 아이콘"
+            />
+          </CloseButton>
         </Header>
         <Filter>
           <FilterCell>
@@ -109,10 +107,16 @@ const RoomSelectModal = ({ setIsOpen }: RoomSelectModalProps) => {
                 checked={
                   selectedRooms.length === sortedRooms.length ? true : false
                 }
-                $src={filterChecked}
                 onChange={handleSelectAll}
               />
-              <FilterCheckIcon $src={filterUnchecked} />
+              <FilterCheckIcon
+                src={
+                  selectedRooms.length === sortedRooms.length
+                    ? filterChecked
+                    : filterUnchecked
+                }
+                alt="체크박스 아이콘"
+              />
             </label>
           </FilterCell>
           <FilterCell>
@@ -137,10 +141,16 @@ const RoomSelectModal = ({ setIsOpen }: RoomSelectModalProps) => {
                     <SelectOne
                       type="checkbox"
                       checked={selectedRooms.includes(room) ? true : false}
-                      $src={listChecked}
                       onChange={e => handleSelectOne(e, room)}
                     />
-                    <ListCheckIcon $src={listUnchecked} />
+                    <ListCheckIcon
+                      src={
+                        selectedRooms.includes(room)
+                          ? listChecked
+                          : listUnchecked
+                      }
+                      alt="체크박스 아이콘"
+                    />
                   </label>
                 </ListCell>
                 <ListCell>{sliceName(room.roomNumber)}</ListCell>
@@ -190,16 +200,21 @@ const Header = styled.div`
   font-size: 18px;
 `;
 
-const CloseButton = styled.button<RoomSelectModalStyleProps>`
+const CloseButton = styled.button`
   width: 35px;
   height: 35px;
 
   padding: 0px;
   border: none;
 
-  background: url(${props => props.$src}) center / contain;
+  background: #fff;
 
   cursor: pointer;
+`;
+
+const CloseIcon = styled.img`
+  width: 35px;
+  height: 35px;
 `;
 
 const Filter = styled.div`
@@ -224,19 +239,13 @@ const FilterCell = styled.div`
   align-items: center;
 `;
 
-const SelectAll = styled.input<RoomSelectModalStyleProps>`
+const SelectAll = styled.input`
   display: none;
-
-  &:checked + div {
-    background: url(${props => props.$src}) no-repeat;
-  }
 `;
 
-const FilterCheckIcon = styled.div<RoomSelectModalStyleProps>`
+const FilterCheckIcon = styled.img`
   width: 21px;
   height: 21px;
-
-  background: url(${props => props.$src}) no-repeat;
 `;
 
 const SortButton = styled.button`
@@ -289,19 +298,13 @@ const ListCell = styled.div`
   align-items: center;
 `;
 
-const SelectOne = styled.input<RoomSelectModalStyleProps>`
+const SelectOne = styled.input`
   display: none;
-
-  &:checked + div {
-    background: url(${props => props.$src}) no-repeat;
-  }
 `;
 
-const ListCheckIcon = styled.div<RoomSelectModalStyleProps>`
+const ListCheckIcon = styled.img`
   width: 21px;
   height: 21px;
-
-  background: url(${props => props.$src}) no-repeat;
 `;
 
 const Footer = styled.div`
