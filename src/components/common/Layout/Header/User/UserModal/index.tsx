@@ -60,15 +60,10 @@ const UserModal = ({ isOpen }: UserModal) => {
     <>
       <Modal $isOpen={isOpen}>
         <UserInformation>
-          <Name $isOpen={isOpen}>{userName}</Name>
-          <Email $isOpen={isOpen}>{userEmail}</Email>
+          <Name>{userName}</Name>
+          <Email>{userEmail}</Email>
         </UserInformation>
-        <Logout
-          $isOpen={isOpen}
-          onClick={handleLogout}
-        >
-          로그아웃
-        </Logout>
+        <Logout onClick={handleLogout}>로그아웃</Logout>
       </Modal>
       {isErrorModalOpen && (
         <ErrorModal
@@ -84,14 +79,14 @@ export default UserModal;
 
 const Modal = styled.div<UserModalStyleProps>`
   position: absolute;
-  right: 60px;
+  right: ${props => (props.$isOpen ? '60px' : '-400px')};
   top: 60px;
 
-  width: ${props => (props.$isOpen ? '335px' : 0)};
-  height: ${props => (props.$isOpen ? '90px' : 0)};
+  width: 335px;
+  height: 90px;
 
   border-radius: 20px 0 20px 20px;
-  padding: ${props => (props.$isOpen ? '20px' : 0)};
+  padding: 20px;
 
   display: flex;
 
@@ -99,11 +94,11 @@ const Modal = styled.div<UserModalStyleProps>`
   transition: all 0.5s;
 
   ${theme.response.tablet} {
-    right: 35px;
+    right: ${props => (props.$isOpen ? '35px' : '-400px')};
     top: 45px;
 
-    width: ${props => (props.$isOpen ? '300px' : 0)};
-    height: ${props => (props.$isOpen ? '90px' : 0)};
+    width: 300px;
+    height: 90px;
   }
 `;
 
@@ -115,22 +110,22 @@ const UserInformation = styled.div`
   justify-content: space-between;
 `;
 
-const Name = styled.span<UserModalStyleProps>`
+const Name = styled.span`
   transition: all 0.5s;
-  font-size: ${props => (props.$isOpen ? '16px' : 0)};
+  font-size: 16px;
   font-weight: 700;
 `;
 
-const Email = styled.span<UserModalStyleProps>`
+const Email = styled.span`
   width: fit-content;
 
   border-bottom: 1px solid gray;
 
   transition: all 0.5s;
-  font-size: ${props => (props.$isOpen ? '15px' : 0)};
+  font-size: 15px;
 `;
 
-const Logout = styled.button<UserModalStyleProps>`
+const Logout = styled.button`
   width: 70px;
 
   padding: 0;
@@ -140,9 +135,10 @@ const Logout = styled.button<UserModalStyleProps>`
   align-self: flex-end;
 
   background-color: transparent;
-  font-size: ${props => (props.$isOpen ? '15px' : 0)};
+  font-size: 15px;
   font-weight: 700;
   white-space: nowrap;
+  text-decoration: none;
   transition: all 0.5s;
 
   cursor: pointer;
