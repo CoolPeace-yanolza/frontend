@@ -40,7 +40,7 @@ const LocalTop3Coupons = () => {
             />
             우리 숙소 주변의
             <br />
-            인기 쿠폰을 알아보세요
+            <span>인기 쿠폰</span>을 알아보세요
           </InformationSubText>
         </InformationSection>
       </InnerContainer>
@@ -155,6 +155,14 @@ const InformationSubText = styled.div`
   font-size: 13.005px;
   text-align: end;
   line-height: 1.4;
+
+  & > span {
+    margin-right: 3px;
+
+    display: inline;
+
+    box-shadow: inset 0 -7px 0 #d7e8ff;
+  }
 
   ${theme.response.tablet} {
     padding: 10px 0px 0px 0px;

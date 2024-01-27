@@ -28,17 +28,25 @@ const CouponHeader = () => {
 export default CouponHeader;
 
 const CouponHeaderContainer = styled.div`
-  margin: 56px 50px 0px;
+  margin: 36px 25px 0px;
   border-bottom: 1px solid #dde1e6;
 
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  @media (max-width: 656px) {
+    display: none;
+  }
 `;
 
 const CouponHeaderWrapper = styled.div`
   display: flex;
   align-items: center;
+
+  @media (max-width: 656px) {
+    display: flex;
+  }
 `;
 
 const CouponTitle = styled.div`

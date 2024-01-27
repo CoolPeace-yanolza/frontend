@@ -9,3 +9,11 @@ export const getUpdatedDate = () => {
 
   return `${year}.${month}.${day}`; // ex> 2023.12.31 (지난달 마지막 날 반환)
 };
+
+export const calculateCouponRate = (rate: number) => {
+  if (rate % 10) {
+    return Number((rate * 0.1).toFixed(1));
+  } else {
+    return Number((rate * 0.1).toFixed(0));
+  }
+};

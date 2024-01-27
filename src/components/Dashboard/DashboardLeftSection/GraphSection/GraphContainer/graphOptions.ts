@@ -1,9 +1,13 @@
 const graphOptions: any = {
-  responsive: true,
   maintainAspectRatio: false,
   plugins: {
     legend: {
-      display: false
+      onClick: () => undefined,
+      labels: {
+        font: {
+          size: 10
+        }
+      }
     }
   },
 
@@ -19,7 +23,7 @@ const graphOptions: any = {
       ticks: {
         color: 'gray',
         font: {
-          size: 14,
+          size: 12,
           weight: 500
         }
       }

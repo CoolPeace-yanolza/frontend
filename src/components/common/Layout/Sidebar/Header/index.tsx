@@ -3,15 +3,11 @@ import styled from '@emotion/styled';
 import hamburger from '@assets/icons/ic-sidebar-hamburger.svg';
 import logo from '@assets/icons/ic-logo.svg';
 import { SidebarHeader, SidebarOpen } from '@/types/layout';
-import theme from '@styles/theme';
 
 const Header = ({ isSidebarOpen, setIsSidebarOpen }: SidebarHeader) => {
   return (
     <Container $isSidebarOpen={isSidebarOpen}>
-      <Hamburger
-        $isSidebarOpen={isSidebarOpen}
-        onClick={() => setIsSidebarOpen(prev => !prev)}
-      >
+      <Hamburger onClick={() => setIsSidebarOpen(prev => !prev)}>
         <HamburgerIcon
           src={hamburger}
           alt="메뉴"
@@ -38,13 +34,9 @@ const Container = styled.div<SidebarOpen>`
   display: flex;
   justify-content: space-between;
   align-items: center;
-
-  ${theme.response.tablet} {
-    margin-left: 5px;
-  }
 `;
 
-const Hamburger = styled.button<SidebarOpen>`
+const Hamburger = styled.button`
   width: 60px;
   height: 60px;
 
@@ -59,25 +51,11 @@ const Hamburger = styled.button<SidebarOpen>`
   &:hover {
     background-color: #e9eef6;
   }
-
-  ${theme.response.tablet} {
-    width: 50px;
-    height: 50px;
-
-    margin: 10px 5px 8px 5px;
-    ${props =>
-      props.$isSidebarOpen ? 'padding: 18px 0' : 'padding: 10px 0 0 0'};
-  }
 `;
 
 const HamburgerIcon = styled.img`
   width: 30px;
   height: 20px;
-
-  ${theme.response.tablet} {
-    width: 21px;
-    height: 14px;
-  }
 `;
 
 const LogoIcon = styled.img`

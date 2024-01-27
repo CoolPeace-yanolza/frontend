@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 import { SettlementedItem, SettlementsTableProps } from '@/types/settlements';
 import settlementsFrame from '@assets/icons/settlements-data-frame.svg'; 
 import theme from '@styles/theme';
-import keyToLabelMap from 'src/constants/lib/SETTLEMENTS_TABLE_KEY';
+import { SETTLEMENTS_TABLE_KEY } from 'src/constants';
 
 const SettlementsTable = ({ data, pageStartNumber }: SettlementsTableProps) => {
   
@@ -24,7 +24,7 @@ const SettlementsTable = ({ data, pageStartNumber }: SettlementsTableProps) => {
       <Container>
         <Header>
           {keys.map((key, index) => (
-            <KeyElement key={index}>{keyToLabelMap[key]}</KeyElement>
+            <KeyElement key={index}>{SETTLEMENTS_TABLE_KEY[key]}</KeyElement>
           ))}
         </Header>
         <FrameContainer>
@@ -40,7 +40,7 @@ const SettlementsTable = ({ data, pageStartNumber }: SettlementsTableProps) => {
     <Container>
       <Header>
         {keys.map((key, index) => (
-          <KeyElement key={index}>{keyToLabelMap[key]}</KeyElement>
+          <KeyElement key={index}>{SETTLEMENTS_TABLE_KEY[key]}</KeyElement>
         ))}
       </Header>
       <FrameContainer>
@@ -49,7 +49,7 @@ const SettlementsTable = ({ data, pageStartNumber }: SettlementsTableProps) => {
             <Row key={index} isLast={false}>
               {keys.map((key) => (
                  <DataElement key={key}>
-                  <MobileDataElement>{key}</MobileDataElement>
+                  <MobileDataElement>{SETTLEMENTS_TABLE_KEY[key]}</MobileDataElement>
                   <MobileData>
                     {key === 'NO' ? pageStartNumber - index : null}
                     {key === 'coupon_count' ? `${row[key].toLocaleString()}건` : null}

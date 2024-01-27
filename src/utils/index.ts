@@ -34,3 +34,4 @@ export {
   validateMaximumDiscount
 } from './lib/validationUtils';
 export { getRegisterInformation } from './lib/getRegisterInformation';
+export { convertKeysToKorean } from './lib/convertKeysToKorean';
