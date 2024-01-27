@@ -155,7 +155,7 @@ const CouponExpose = ({ couponInfo }: CouponListProps) => {
               <span>
                 {couponCondition({
                   day: couponInfo.coupon_use_condition_days,
-                  dayOfWeek: couponInfo.coupon_use_condition_days
+                  dayOfWeek: couponInfo.coupon_use_condition_day_of_week
                 })}
               </span>
             </ContentValue>
