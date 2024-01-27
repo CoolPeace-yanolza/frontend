@@ -97,7 +97,10 @@ const SecondStep = () => {
 
   const handleToAllRoomsChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInput({ ...input, toAllRooms: e.target.value });
-    setPreview({ ...preview, toAllRooms: e.target.value });
+    setPreview({
+      ...preview,
+      toAllRooms: e.target.value === 'true' ? '모든 객실' : '일부 객실'
+    });
     setIsValid(prev => ({
       ...prev,
       isToAllRoomsValid: true
