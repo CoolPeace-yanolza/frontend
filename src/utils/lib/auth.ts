@@ -1,7 +1,8 @@
 const nameRegex = /^[가-힣]{2,20}$/i;
 const emailRegex =
   /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
-const passwordRegex = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,20}$/g;
+const passwordRegex =
+  /^(?=.*[A-Za-z])(?=.*[0-9])(?=.*[!@#$%^*+=-])[A-Za-z0-9!@#$%^*+=-]{8,20}$/i;
 
 export const getInputOptions = (inputName: string, password?: string) => {
   switch (inputName) {
