@@ -19,9 +19,9 @@ const RegisterCompleteModal = () => {
   };
 
   const handleRegisterButton = () => {
-    navigate('/coupons/register');
     resetInput();
     resetPreview();
+    location.reload();
   };
 
   return (
