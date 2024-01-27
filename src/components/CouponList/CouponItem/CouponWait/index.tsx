@@ -91,12 +91,12 @@ const CouponWait = ({ couponInfo }: CouponListProps) => {
       </CouponHeaderContainer>
       <CouponMain>
         <CountWrap>
-          <CountText>다운로드</CountText>
-          <CountNumber>{couponInfo.download_count}</CountNumber>
-        </CountWrap>
-        <CountWrap>
           <CountText>사용완료</CountText>
           <CountNumber>{couponInfo.use_count}</CountNumber>
+        </CountWrap>
+        <CountWrap>
+          <CountText>다운로드</CountText>
+          <CountNumber>{couponInfo.download_count}</CountNumber>
         </CountWrap>
         <div>
           <ContentWrap>
