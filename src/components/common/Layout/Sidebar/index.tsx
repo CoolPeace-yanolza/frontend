@@ -78,10 +78,10 @@ const Menu = styled.div`
 `;
 
 const LeftoverScreen = styled.div`
+  position: fixed;
+
   width: 100%;
   height: 100vh;
-
-  position: fixed;
 
   background-color: #4242427c;
   z-index: 90;

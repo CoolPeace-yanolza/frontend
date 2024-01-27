@@ -8,10 +8,12 @@ import { getCookies, deleteAllCookies } from '@utils/lib/cookies';
 import { UserModal, UserModalStyleProps } from '@/types/layout';
 import { ERROR_MODAL_MESSAGE } from 'src/constants';
 import theme from '@styles/theme';
+import { useQueryClient } from '@tanstack/react-query';
 
 const UserModal = ({ isOpen }: UserModal) => {
   const [isErrorModalOpen, setIsErrorModalOpen] = useState(false);
   const navigate = useNavigate();
+  const queryClient = useQueryClient();
 
   const userName = getCookies('userName');
   const userEmail = getCookies('userEmail');
@@ -21,6 +23,7 @@ const UserModal = ({ isOpen }: UserModal) => {
   const handleLogout = async () => {
     await postLogout();
     deleteAllCookies();
+    queryClient.removeQueries({ queryKey: ['Accommodation'] });
     navigate('/login'), { replace: true };
     /* HACK: 로그아웃 에러 response 가 있을 경우 사용
 

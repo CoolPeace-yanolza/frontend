@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 
-import settlement from '@assets/icons/ic-sidebar-settlement.svg';
+import settlement from '/images/ic-sidebar-settlement.png';
 import CustomNavLink from '../CustomNavLink';
 import { SidebarOpen } from '@/types/layout';
 import theme from '@styles/theme';
