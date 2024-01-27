@@ -6,11 +6,17 @@ import toggleOnIcon from '@assets/icons/ic-couponlist-toggleOn.svg';
 import toggleOffIcon from '@assets/icons/ic-couponlist-toggleOff.svg';
 import rightIcon from '@assets/icons/ic-couponlist-right.svg';
 import deleteIcon from '@assets/icons/ic-couponlist-delete.svg';
-import { CouponListProps, ToggleStyleProps } from '@/types/couponList';
+import {
+  CouponListProps,
+  RoomListProps,
+  ToggleStyleProps
+} from '@/types/couponList';
 import { useOutsideClick, useToggleChange } from '@hooks/index';
 import { couponCondition } from '@utils/lib/couponCondition';
 import { useToast } from '@components/common/ToastContext';
 import couponRoomType from '@utils/lib/couponRoomType';
+import { useUpdateRoomListPosition } from '@utils/lib/roomListPosition';
+import concatTitle from '@utils/lib/concatTitle';
 
 const CouponStop = ({ couponInfo }: CouponListProps) => {
   const [isToggle, setIsToggle] = useState(false);
@@ -18,8 +24,14 @@ const CouponStop = ({ couponInfo }: CouponListProps) => {
   const roomListRef = useRef<HTMLDivElement>(null);
   const { mutateAsync } = useToggleChange();
   const { showToast } = useToast();
+  const roomListStyleRef = useRef<HTMLDivElement>(null);
+  const [isBottom, setIsBottom] = useState(false); // RoomList가 하단에 닿았는지 여부를 나타내는 상태
 
   useOutsideClick(roomListRef, () => setIsShowRoomList(false));
+
+  const formatDate = (dateString: string) => {
+    return dateString.replace(/-/g, '.');
+  };
 
   const handleRoomList = () => {
     setIsShowRoomList(!isShowRoomList);
@@ -30,6 +42,11 @@ const CouponStop = ({ couponInfo }: CouponListProps) => {
     toggleUpdate();
   };
 
+  const filterTitle =
+    couponInfo.title.length > 10
+      ? `${couponInfo.title.substring(0, 10)}...`
+      : couponInfo.title;
+
   const toggleUpdate = async () => {
     try {
       await mutateAsync({
@@ -39,10 +56,13 @@ const CouponStop = ({ couponInfo }: CouponListProps) => {
       console.log(couponInfo.coupon_number);
 
       showToast(
-        <div>
-          {couponInfo.title} 쿠폰이 노출되었습니다.
-          <span onClick={retryToggleUpdate}>실행 취소</span>
-        </div>,
+        <ToastWrap>
+          <div>
+            {filterTitle} 쿠폰이 <br />
+            노출되었습니다.
+          </div>
+          <p onClick={retryToggleUpdate}>실행 취소</p>
+        </ToastWrap>,
         2000
       );
     } catch (error) {
@@ -50,17 +70,27 @@ const CouponStop = ({ couponInfo }: CouponListProps) => {
     }
   };
 
-  const retryToggleUpdate = () => {
-    setIsToggle(!isToggle);
-    mutateAsync({
-      coupon_number: couponInfo.coupon_number,
-      coupon_status: '노출 OFF'
-    });
-    showToast(
-      <div>{couponInfo.title} 쿠폰의 노출이 중단되었습니다.</div>,
-      2000
-    );
+  const retryToggleUpdate = async () => {
+    try {
+      setIsToggle(!isToggle);
+      await mutateAsync({
+        coupon_number: couponInfo.coupon_number,
+        coupon_status: '노출 OFF'
+      });
+      showToast(
+        <ToastText>
+          {filterTitle} 쿠폰의 노출이 <br />
+          중단되었습니다.
+        </ToastText>,
+        2000
+      );
+    } catch (error) {
+      console.log(error);
+    }
   };
+
+  // 객실 리스트 스크롤에 따라 위치 조정
+  useUpdateRoomListPosition({ isShowRoomList, roomListStyleRef, setIsBottom });
 
   return (
     <CouponContainer $isToggle={isToggle}>
@@ -90,7 +120,13 @@ const CouponStop = ({ couponInfo }: CouponListProps) => {
             )}
           </ToggleWrap>
         </CouponHeader>
-        <CouponCustomer>{couponInfo.coupon_concat_title}</CouponCustomer>
+        <CouponCustomer>
+          {concatTitle({
+            customer_type: couponInfo.customer_type,
+            discount_flat_rate: couponInfo.discount_flat_rate,
+            discount_flat_value: couponInfo.discount_flat_value
+          })}
+        </CouponCustomer>
       </CouponHeaderContainer>
       <CouponMain>
         <CountWrap>
@@ -105,7 +141,10 @@ const CouponStop = ({ couponInfo }: CouponListProps) => {
           <ContentWrap>
             <ContentTitle>가격</ContentTitle>
             <ContentValue>
-              {couponInfo.minimum_reservation_price}원 이상
+              {new Intl.NumberFormat().format(
+                couponInfo.minimum_reservation_price as number
+              )}
+              원 이상
             </ContentValue>
           </ContentWrap>
           <ContentWrap>
@@ -113,7 +152,10 @@ const CouponStop = ({ couponInfo }: CouponListProps) => {
             <ContentValue>
               {couponRoomType(couponInfo.coupon_room_types).join(', ')},
               <span>
-                {couponCondition(couponInfo.coupon_use_condition_days)}
+                {couponCondition({
+                  day: couponInfo.coupon_use_condition_days,
+                  dayOfWeek: couponInfo.coupon_use_condition_days
+                })}
               </span>
             </ContentValue>
           </ContentWrap>
@@ -123,7 +165,10 @@ const CouponStop = ({ couponInfo }: CouponListProps) => {
               <ContentValue>전체</ContentValue>
             ) : (
               <>
-                <ContentRoom onClick={handleRoomList}>
+                <ContentRoom
+                  ref={roomListRef}
+                  onClick={handleRoomList}
+                >
                   <div>일부 객실</div>
                   <img
                     src={rightIcon}
@@ -131,7 +176,10 @@ const CouponStop = ({ couponInfo }: CouponListProps) => {
                   />
                 </ContentRoom>
                 {isShowRoomList && (
-                  <RoomList ref={roomListRef}>
+                  <RoomList
+                    $isBottom={isBottom}
+                    ref={roomListStyleRef}
+                  >
                     <RoomListTitleWrap>
                       <RoomListTitle>쿠폰 적용 객실</RoomListTitle>
                       <img
@@ -162,12 +210,15 @@ const CouponStop = ({ couponInfo }: CouponListProps) => {
         <ExposeDateWrap>
           <ExposeDateTitle>노출기간</ExposeDateTitle>
           <ExposeValue>
-            {couponInfo.exposure_start_date} ~ {couponInfo.exposure_end_date}
+            {formatDate(couponInfo.exposure_start_date)} ~
+            {formatDate(couponInfo.exposure_end_date)}
           </ExposeValue>
         </ExposeDateWrap>
         <ExposeDateWrap>
           <RegisterDateTitle>등록일</RegisterDateTitle>
-          <RegisterDateValue>{couponInfo.created_date}</RegisterDateValue>
+          <RegisterDateValue>
+            {formatDate(couponInfo.created_date)}
+          </RegisterDateValue>
         </ExposeDateWrap>
       </DateContainer>
     </CouponContainer>
@@ -383,33 +434,42 @@ const ContentRoom = styled.div`
   }
 `;
 
-const RoomList = styled.div`
+const RoomList = styled.div<RoomListProps>`
   position: absolute;
-  top: 0;
+  top: ${({ $isBottom }) => ($isBottom ? 'auto' : '0')};
+  bottom: ${({ $isBottom }) => ($isBottom ? '0' : 'auto')};
   right: 0;
-  z-index: 1;
+  z-index: 50;
+  transform: ${({ $isBottom }) => ($isBottom ? 'translateY(-100%)' : 'none')};
 
   width: 188px;
   height: 204px;
 
-  margin-top: 150px;
+  margin-top: ${({ $isBottom }) => ($isBottom ? 'auto' : '150px')};
+  margin-bottom: ${({ $isBottom }) => ($isBottom ? '-110px' : '150px')};
   border-radius: 18px;
-  text-align: center;
 
+  text-align: center;
   background: #415574;
 
   &::before {
     content: '';
     position: absolute;
-    top: -10px;
+    top: ${({ $isBottom }) => ($isBottom ? 'auto' : '-10px')};
+    bottom: ${({ $isBottom }) => ($isBottom ? '0px' : 'auto')};
     left: 50%;
-    transform: translateX(-50%);
+    transform: translateX(-50%)
+      ${({ $isBottom }) => ($isBottom ? 'translateY(100%)' : '')};
 
     width: 0;
     height: 0;
+
     border-left: 10px solid transparent;
     border-right: 10px solid transparent;
-    border-bottom: 10px solid #415574;
+    border-top: ${({ $isBottom }) =>
+      $isBottom ? '10px solid #415574' : 'none'};
+    border-bottom: ${({ $isBottom }) =>
+      $isBottom ? 'none' : '10px solid #415574'};
   }
 `;
 
@@ -458,4 +518,14 @@ const RoomListItem = styled.div`
     overflow: hidden;
     text-overflow: ellipsis;
   }
+`;
+
+const ToastWrap = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+const ToastText = styled.div`
+  text-align: center;
 `;
