@@ -30,6 +30,10 @@ const CouponWait = ({ couponInfo }: CouponListProps) => {
 
   useOutsideClick(roomListRef, () => setIsShowRoomList(false));
 
+  const formatDate = (dateString: string) => {
+    return dateString.replace(/-/g, '.');
+  };
+
   const handleRoomList = () => {
     setIsShowRoomList(!isShowRoomList);
   };
@@ -109,10 +113,10 @@ const CouponWait = ({ couponInfo }: CouponListProps) => {
             <ContentValue>
               {couponRoomType(couponInfo.coupon_room_types).join(', ')},
               <span>
-                {couponCondition(
-                  couponInfo.coupon_use_condition_days,
-                  couponInfo.coupon_use_condition_day_of_week
-                )}
+                {couponCondition({
+                  day: couponInfo.coupon_use_condition_days,
+                  dayOfWeek: couponInfo.coupon_use_condition_days
+                })}
               </span>
             </ContentValue>
           </ContentWrap>
@@ -167,12 +171,15 @@ const CouponWait = ({ couponInfo }: CouponListProps) => {
         <ExposeDateWrap>
           <ExposeDateTitle>노출기간</ExposeDateTitle>
           <ExposeValue>
-            {couponInfo.exposure_start_date} ~ {couponInfo.exposure_end_date}
+            {formatDate(couponInfo.exposure_start_date)} ~
+            {formatDate(couponInfo.exposure_end_date)}
           </ExposeValue>
         </ExposeDateWrap>
         <ExposeDateWrap>
           <RegisterDateTitle>등록일</RegisterDateTitle>
-          <RegisterDateValue>{couponInfo.created_date}</RegisterDateValue>
+          <RegisterDateValue>
+            {formatDate(couponInfo.created_date)}
+          </RegisterDateValue>
         </ExposeDateWrap>
       </DateContainer>
       <CouponModifiedWrap>

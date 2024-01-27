@@ -159,8 +159,6 @@ const TabContainer = styled.div`
 `;
 
 const TabNavContainer = styled.div`
-  margin: 19px 0px;
-
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;

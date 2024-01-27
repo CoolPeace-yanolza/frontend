@@ -1,4 +1,9 @@
-export const couponCondition = (day: string, dayOfWeek: string): string => {
+export interface CouponConditionProps {
+  day: string | null;
+  dayOfWeek: string | null;
+}
+
+export const couponCondition = ({ day, dayOfWeek }: CouponConditionProps) => {
   if (day === '하루만') {
     return `${dayOfWeek}`;
   } else if (day === '평일') {
@@ -6,7 +11,7 @@ export const couponCondition = (day: string, dayOfWeek: string): string => {
   } else if (day === '주말') {
     return '금~토';
   }
-  return day;
+  return '전체';
 };
 
 export default couponCondition;
