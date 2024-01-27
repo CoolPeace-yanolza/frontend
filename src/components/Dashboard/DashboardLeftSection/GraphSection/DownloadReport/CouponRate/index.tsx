@@ -54,6 +54,8 @@ const Icon = styled.img`
   right: 20px;
 
   ${theme.response.tablet} {
+    right: 15px;
+
     width: 80px;
   }
 `;
