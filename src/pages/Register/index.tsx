@@ -8,31 +8,14 @@ import {
   Preview
 } from '@components/Register';
 import DisplayStep from './DisplayStep';
+import { useStepValidation } from '@hooks/index';
+import { getStepperConfig } from '@utils/index';
 
 const Register = () => {
   const [currentStep, setCurrentStep] = useState(0);
-  const steps = [
-    {
-      title: '정보 입력',
-      isCurrent: false,
-      isCompleted: false
-    },
-    {
-      title: '유형 선택',
-      isCurrent: false,
-      isCompleted: false
-    },
-    {
-      title: '조건 선택',
-      isCurrent: false,
-      isCompleted: false
-    },
-    {
-      title: '노출 기간 선택',
-      isCurrent: false,
-      isCompleted: false
-    }
-  ];
+
+  const { isFilled } = useStepValidation(currentStep);
+  const steps = getStepperConfig();
 
   return (
     <Background>
@@ -58,6 +41,7 @@ const Register = () => {
                 <Preview />
                 <StepperController
                   currentStep={currentStep}
+                  isFilled={isFilled}
                   onButtonClick={setCurrentStep}
                 />
               </RightSection>

@@ -23,15 +23,16 @@ export type InputButtonProps = {
   type: string;
   id: string;
   name: string;
+  value: string;
+  isChecked: boolean;
   buttonName: string;
-  value?: number;
-  currentInput?: number;
-  onButtonClick?: React.Dispatch<React.SetStateAction<number>>;
+  onButtonChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 };
 
 // InputAccordion
 export type InputAccordionProps = {
   title: string;
+  value: string | undefined;
   children: ReactNode;
 };
 
@@ -43,7 +44,9 @@ export type ButtonStyleProps = {
 // InputField
 export type InputFieldProps = {
   placeholder: string;
+  defaultValue?: string;
   text: string;
+  onInputChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 };
 
 export type InputFieldStyleProps = {
@@ -54,7 +57,8 @@ export type InputFieldStyleProps = {
 export type InputCheckBoxProps = {
   id: string;
   text: string;
-  onCheck?: React.Dispatch<React.SetStateAction<boolean>>;
+  isChecked: boolean;
+  onCheck?: () => void;
 };
 
 export type LabelStyleProps = {
@@ -69,8 +73,11 @@ export type CheckIconStyleProps = {
 export type InputRadioProps = {
   id: string;
   name: string;
+  value?: string;
+  isChecked: boolean;
   text: string;
   children?: ReactNode;
+  onButtonChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 };
 
 export type InputRadioStyleProps = {
@@ -79,21 +86,26 @@ export type InputRadioStyleProps = {
 
 // InputWrapper
 export type InputWrapperProps = {
-  whichInput: number;
-  currentInput: number;
+  state?: string;
+  currentState?: string;
+  isSelected?: boolean;
   children: ReactNode;
 };
 
-export type WrapperStyleProps = {
-  $isSelected: boolean;
+// ErrorMessage
+export type ErrorMessageProps = {
+  children: ReactNode;
+};
+
+// Preview
+export type DayStyleProps = {
+  $hasValue: boolean;
 };
 
 // Stepper
 export type StepperProps = {
   steps: {
     title: string;
-    isCurrent: boolean;
-    isCompleted: boolean;
   }[];
   currentStep: number;
 };
@@ -107,43 +119,44 @@ export type LineStyleProps = {
 };
 
 // StepperController
-export interface StepperControllerProps {
+export type StepperControllerProps = {
   currentStep: number;
+  isFilled: boolean;
   onButtonClick: React.Dispatch<React.SetStateAction<number>>;
-}
+};
+
+export type PreviousButtonStyleProps = {
+  $currentStep: number;
+};
+
+export type NextButtonStyleProps = {
+  $isFilled: boolean;
+};
 
 // StepTitle
 export type StepTitleProps = {
   steps: {
     title: string;
-    isCurrent: boolean;
-    isCompleted: boolean;
   }[];
   currentStep: number;
 };
 
 // FirstStep
 export type LimitWrapperStyleProps = {
-  $isLimited: boolean;
+  $hasLimit: boolean;
 };
 
 // SecondStep
 export type RoomType = {
   id: number;
-  roomNumber: number;
+  roomNumber: string;
   roomType: string;
   price: number;
 };
 
-export type RoomsType = RoomType[];
-
 // RoomSelectModal
 export type RoomSelectModalProps = {
-  value: number;
-  setToAllRoom: React.Dispatch<React.SetStateAction<number>>;
-  rooms: RoomsType;
-  setRooms: React.Dispatch<React.SetStateAction<RoomsType>>;
-  onButtonClick: React.Dispatch<React.SetStateAction<boolean>>;
+  setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 export type RoomSelectModalStyleProps = {
@@ -155,19 +168,82 @@ export type RoomSelectButtonProps = {
   type: string;
   id: string;
   name: string;
+  value: string;
+  isChecked: boolean;
   buttonName: string;
-  rooms: number;
-  onButtonClick: React.Dispatch<React.SetStateAction<boolean>>;
+  setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  onButtonChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 };
 
 // RoomList
 export type RoomListProps = {
-  rooms: RoomsType;
+  rooms: RoomType[];
 };
 
-// RadioProps
+// Radio
 export type RadioProps = {
   id: string;
   name: string;
+  value: string;
+  isChecked: boolean;
   text: string;
+  onButtonChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+};
+
+// FourthStep
+export type CalendarWrapperStyleProps = {
+  $isSelected: boolean;
+};
+
+// CustomInput
+export type CustomInputProps = {
+  value?: string;
+  onClick: () => void;
+};
+
+// registerInputState
+export type registerInputAtom = {
+  title: string;
+  customerType: string;
+  discountType: string;
+  discountFlat: string;
+  discountFlatRate: string;
+  hasLimit: boolean;
+  maximumDiscount: string;
+  roomType: string[];
+  severalNights: boolean;
+  toAllRooms: string;
+  rooms: RoomType[];
+  minimumPrice?: string;
+  whenToUse?: string;
+  day?: string;
+  startDate: string;
+  endDate: string;
+};
+
+// registerValidState
+export type registerValidAtom = {
+  isTitleValid: boolean;
+  isCustomerTypeValid: boolean;
+  isDiscountTypeValid: boolean;
+  isDiscountFlatValid: boolean;
+  isDiscountFlatRateValid: boolean;
+  isThousands: boolean;
+  isRoomTypeValid: boolean;
+  isToAllRoomsValid: boolean;
+  isMinimumPriceValid: boolean;
+  isDateValid: boolean;
+  endDateAfterStartDate: boolean;
+};
+
+// previewState
+export type previewAtom = {
+  customer: string;
+  discount: string;
+  minimumPrice?: string;
+  roomType: string[];
+  toAllRooms: string;
+  day: string;
+  startDate: string;
+  endDate: string;
 };
