@@ -5,7 +5,7 @@ import { useQueryErrorResetBoundary } from '@tanstack/react-query';
 
 import theme from '@styles/theme';
 import { DashboardHeader } from '@components/common';
-const GraphContainer = React.lazy(() => import('./GraphContainer'));
+import GraphContainer from './GraphContainer';
 import GraphContainerErrorFallback from './GraphContainer/index.error';
 import GraphContainerLoading from './GraphContainer/index.loading';
 const DownloadReport = React.lazy(() => import('./DownloadReport'));
