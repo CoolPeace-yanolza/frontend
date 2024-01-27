@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
 import styled from '@emotion/styled';
 
 import {
@@ -8,31 +9,31 @@ import {
   Preview
 } from '@components/Register';
 import DisplayStep from './DisplayStep';
+import { useStepValidation, useGetRoomList } from '@hooks/index';
+import { getStepperConfig } from '@utils/index';
+import { headerAccommodationState, registerInputState } from '@recoil/index';
 
 const Register = () => {
+  const header = useRecoilValue(headerAccommodationState);
+  const setInput = useSetRecoilState(registerInputState);
+
   const [currentStep, setCurrentStep] = useState(0);
-  const steps = [
-    {
-      title: '정보 입력',
-      isCurrent: false,
-      isCompleted: false
-    },
-    {
-      title: '유형 선택',
-      isCurrent: false,
-      isCompleted: false
-    },
-    {
-      title: '조건 선택',
-      isCurrent: false,
-      isCompleted: false
-    },
-    {
-      title: '노출 기간 선택',
-      isCurrent: false,
-      isCompleted: false
-    }
-  ];
+
+  const { isFilled } = useStepValidation(currentStep);
+  const steps = getStepperConfig();
+
+  const { data } = useGetRoomList(header.id);
+  const list = data.room_responses.map(room => ({
+    id: room.id,
+    roomNumber: room.room_number,
+    roomType: room.room_type,
+    price: room.price
+  }));
+  list.sort((a, b) => a.price - b.price);
+
+  useEffect(() => {
+    setInput(prev => ({ ...prev, rooms: list }));
+  }, []);
 
   return (
     <Background>
@@ -58,6 +59,7 @@ const Register = () => {
                 <Preview />
                 <StepperController
                   currentStep={currentStep}
+                  isFilled={isFilled}
                   onButtonClick={setCurrentStep}
                 />
               </RightSection>

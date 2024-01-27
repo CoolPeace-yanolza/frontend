@@ -18,10 +18,11 @@ const Loading = () => {
 export default Loading;
 
 const Container = styled.div`
-  width: 100%;
-  height: 100%;
+  height: 554px;
 
-  margin-left: 10px;
+  margin-left: 43px;
+  margin-right: 43px;
+  margin-top: 110px;
   padding: 30px 15px;
   border-radius: 20px;
 
@@ -31,13 +32,15 @@ const Container = styled.div`
   background-color: white;
 
   ${theme.response.tablet} {
-    width: 90%;
-    max-height: 220px;
+    max-height: 250px;
 
-    margin: 0;
-    padding: 10px 10px;
+    margin: 20px;
+    padding: 15px 15px;
+    border-radius: 10px;
 
-    overflow: hidden;
+    gap: 15px;
+
+    background-color: #f2f4f5;
   }
 `;
 

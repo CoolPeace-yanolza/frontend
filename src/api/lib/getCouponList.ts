@@ -11,12 +11,14 @@ export const getCouponList = async (
   accommodationId: number,
   date?: string,
   status?: string,
-  title?: string
+  title?: string,
+  size?: number
 ): Promise<CouponListResponse> => {
   const params = {
     date,
     status,
-    title
+    title,
+    size
   };
   const response = await instance.get(
     `/v1/accommodations/${accommodationId}/coupons`,
@@ -46,7 +48,16 @@ export const couponDeleteApi = async (
   return response.data;
 };
 
-// 토클 on/off api
+// // 토클 on/off api
+// export const couponToggleApi = async (credential: CouponToggleCredential) => {
+//   const couponNumber = credential.coupon_number;
+//   const response = await instance.put(
+//     `/v1/coupons/${couponNumber}/expose`,
+//     credential
+//   );
+//   return response.data;
+// };
+
 export const couponToggleApi = async (credential: CouponToggleCredential) => {
   const couponNumber = credential.coupon_number;
   await new Promise(resolve => setTimeout(resolve, 500));
@@ -54,5 +65,6 @@ export const couponToggleApi = async (credential: CouponToggleCredential) => {
     `/v1/coupons/${couponNumber}/expose`,
     credential
   );
+
   return response.data;
 };

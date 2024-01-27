@@ -5,11 +5,13 @@ import theme from '@styles/theme';
 import rightIcon from '@assets/icons/ic-couponlist-right.svg';
 import deleteIcon from '@assets/icons/ic-couponlist-delete.svg';
 import { useCouponDelete, useOutsideClick } from '@hooks/index';
-import { CouponListProps } from '@/types/couponList';
+import { CouponListProps, RoomListProps } from '@/types/couponList';
 import Modal from '@components/modal';
 import { couponCondition } from '@utils/lib/couponCondition';
 import { useToast } from '@components/common/ToastContext';
 import couponRoomType from '@utils/lib/couponRoomType';
+import { useUpdateRoomListPosition } from '@utils/lib/roomListPosition';
+import concatTitle from '@utils/lib/concatTitle';
 
 const CouponExpired = ({ couponInfo }: CouponListProps) => {
   const [isShowRoomList, setIsShowRoomList] = useState(false);
@@ -17,8 +19,14 @@ const CouponExpired = ({ couponInfo }: CouponListProps) => {
   const [isShowModal, setIsShowModal] = useState(false);
   const { mutateAsync } = useCouponDelete();
   const { showToast } = useToast();
+  const roomListStyleRef = useRef<HTMLDivElement>(null);
+  const [isBottom, setIsBottom] = useState(false); // RoomList가 하단에 닿았는지 여부를 나타내는 상태
 
   useOutsideClick(roomListRef, () => setIsShowRoomList(false));
+
+  const formatDate = (dateString: string) => {
+    return dateString.replace(/-/g, '.');
+  };
 
   const handleRoomList = () => {
     setIsShowRoomList(!isShowRoomList);
@@ -28,7 +36,6 @@ const CouponExpired = ({ couponInfo }: CouponListProps) => {
     setIsShowModal(true);
   };
 
-  // 모달 확인 버튼에 대한 동작
   const handleModalConfirm = () => {
     try {
       mutateAsync({ coupon_number: couponInfo.coupon_number });
@@ -40,10 +47,12 @@ const CouponExpired = ({ couponInfo }: CouponListProps) => {
     setIsShowModal(false);
   };
 
-  // 모달 취소 버튼에 대한 동작
   const handleModalClose = () => {
     setIsShowModal(false);
   };
+
+  // 객실 리스트 스크롤에 따라 위치 조정
+  useUpdateRoomListPosition({ isShowRoomList, roomListStyleRef, setIsBottom });
 
   return (
     <CouponContainer>
@@ -52,22 +61,31 @@ const CouponExpired = ({ couponInfo }: CouponListProps) => {
           <CouponTitle>{couponInfo.title}</CouponTitle>
           <CouponStatus>기간만료</CouponStatus>
         </CouponHeader>
-        <CouponCustomer>{couponInfo.coupon_concat_title}</CouponCustomer>
+        <CouponCustomer>
+          {concatTitle({
+            customer_type: couponInfo.customer_type,
+            discount_flat_rate: couponInfo.discount_flat_rate,
+            discount_flat_value: couponInfo.discount_flat_value
+          })}
+        </CouponCustomer>
       </CouponHeaderContainer>
       <CouponMain>
         <CountWrap>
-          <CountText>다운로드</CountText>
-          <CountNumber>{couponInfo.download_count}</CountNumber>
-        </CountWrap>
-        <CountWrap>
           <CountText>사용완료</CountText>
           <CountNumber>{couponInfo.use_count}</CountNumber>
+        </CountWrap>
+        <CountWrap>
+          <CountText>다운로드</CountText>
+          <CountNumber>{couponInfo.download_count}</CountNumber>
         </CountWrap>
         <div>
           <ContentWrap>
             <ContentTitle>가격</ContentTitle>
             <ContentValue>
-              {couponInfo.minimum_reservation_price}원 이상
+              {new Intl.NumberFormat().format(
+                couponInfo.minimum_reservation_price as number
+              )}
+              원 이상
             </ContentValue>
           </ContentWrap>
           <ContentWrap>
@@ -75,7 +93,10 @@ const CouponExpired = ({ couponInfo }: CouponListProps) => {
             <ContentValue>
               {couponRoomType(couponInfo.coupon_room_types).join(', ')},
               <span>
-                {couponCondition(couponInfo.coupon_use_condition_days)}
+                {couponCondition({
+                  day: couponInfo.coupon_use_condition_days,
+                  dayOfWeek: couponInfo.coupon_use_condition_day_of_week
+                })}
               </span>
             </ContentValue>
           </ContentWrap>
@@ -85,7 +106,10 @@ const CouponExpired = ({ couponInfo }: CouponListProps) => {
               <ContentValue>전체</ContentValue>
             ) : (
               <>
-                <ContentRoom onClick={handleRoomList}>
+                <ContentRoom
+                  ref={roomListRef}
+                  onClick={handleRoomList}
+                >
                   <div>일부 객실</div>
                   <img
                     src={rightIcon}
@@ -93,7 +117,10 @@ const CouponExpired = ({ couponInfo }: CouponListProps) => {
                   />
                 </ContentRoom>
                 {isShowRoomList && (
-                  <RoomList ref={roomListRef}>
+                  <RoomList
+                    $isBottom={isBottom}
+                    ref={roomListStyleRef}
+                  >
                     <RoomListTitleWrap>
                       <RoomListTitle>쿠폰 적용 객실</RoomListTitle>
                       <img
@@ -124,12 +151,15 @@ const CouponExpired = ({ couponInfo }: CouponListProps) => {
         <ExposeDateWrap>
           <ExposeDateTitle>노출기간</ExposeDateTitle>
           <ExposeValue>
-            {couponInfo.exposure_start_date} ~ {couponInfo.exposure_end_date}
+            {formatDate(couponInfo.exposure_start_date)} ~{' '}
+            {formatDate(couponInfo.exposure_end_date)}
           </ExposeValue>
         </ExposeDateWrap>
         <ExposeDateWrap>
           <RegisterDateTitle>등록일</RegisterDateTitle>
-          <RegisterDateValue>{couponInfo.created_date}</RegisterDateValue>
+          <RegisterDateValue>
+            {formatDate(couponInfo.created_date)}
+          </RegisterDateValue>
         </ExposeDateWrap>
       </DateContainer>
       <Delete onClick={handleDeleteClick}>삭제</Delete>
@@ -342,33 +372,42 @@ const ContentRoom = styled.div`
   }
 `;
 
-const RoomList = styled.div`
+const RoomList = styled.div<RoomListProps>`
   position: absolute;
-  top: 0;
+  top: ${({ $isBottom }) => ($isBottom ? 'auto' : '0')};
+  bottom: ${({ $isBottom }) => ($isBottom ? '0' : 'auto')};
   right: 0;
-  z-index: 1;
+  z-index: 50;
+  transform: ${({ $isBottom }) => ($isBottom ? 'translateY(-100%)' : 'none')};
 
   width: 188px;
   height: 204px;
 
-  margin-top: 150px;
+  margin-top: ${({ $isBottom }) => ($isBottom ? 'auto' : '150px')};
+  margin-bottom: ${({ $isBottom }) => ($isBottom ? '-110px' : '150px')};
   border-radius: 18px;
-  text-align: center;
 
+  text-align: center;
   background: #415574;
 
   &::before {
     content: '';
     position: absolute;
-    top: -10px;
+    top: ${({ $isBottom }) => ($isBottom ? 'auto' : '-10px')};
+    bottom: ${({ $isBottom }) => ($isBottom ? '0px' : 'auto')};
     left: 50%;
-    transform: translateX(-50%);
+    transform: translateX(-50%)
+      ${({ $isBottom }) => ($isBottom ? 'translateY(100%)' : '')};
 
     width: 0;
     height: 0;
+
     border-left: 10px solid transparent;
     border-right: 10px solid transparent;
-    border-bottom: 10px solid #415574;
+    border-top: ${({ $isBottom }) =>
+      $isBottom ? '10px solid #415574' : 'none'};
+    border-bottom: ${({ $isBottom }) =>
+      $isBottom ? 'none' : '10px solid #415574'};
   }
 `;
 

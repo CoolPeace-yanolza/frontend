@@ -27,10 +27,11 @@ const ErrorFallback = ({ resetErrorBoundary }: FallbackProps) => {
 export default ErrorFallback;
 
 const Container = styled.div`
-  width: 100%;
-  height: 580px;
+  height: 554px;
 
-  margin-left: 10px;
+  margin-left: 43px;
+  margin-right: 43px;
+  margin-top: 110px;
   padding: 30px 15px;
   border-radius: 20px;
 
@@ -43,10 +44,9 @@ const Container = styled.div`
   background-color: white;
 
   ${theme.response.tablet} {
-    width: 90%;
     max-height: 250px;
 
-    margin: 20px 0;
+    margin: 20px;
     padding: 15px 15px;
     border-radius: 10px;
 

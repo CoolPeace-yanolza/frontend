@@ -106,6 +106,7 @@ const Contents = styled.div`
 `;
 
 const Text = styled.span`
+  color: #484e59;
   font-size: 13px;
   font-weight: 700;
 
