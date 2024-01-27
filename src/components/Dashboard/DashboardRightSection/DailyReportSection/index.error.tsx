@@ -44,11 +44,13 @@ const Container = styled.div`
   align-items: center;
   gap: 30px;
 
+  color: #404446;
+
   background-color: white;
 
   ${theme.response.tablet} {
     width: 95vw;
-    min-height: 100px;
+    min-height: 180px;
 
     margin: 10px;
     padding: 20px 10px;
