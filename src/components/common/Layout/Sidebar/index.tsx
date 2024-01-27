@@ -56,14 +56,7 @@ const Container = styled.div<SidebarOpen>`
   transition: all 0.3s;
 
   ${theme.response.tablet} {
-    width: ${props => (props.$isSidebarOpen ? '100%' : 'auto')};
-    height: ${props => (props.$isSidebarOpen ? 'fit-content' : '60px')};
-    min-height: ${props => (props.$isSidebarOpen ? 'fit-content' : '60px')};
-
-    padding: 0;
-
-    background-color: ${props =>
-      props.$isSidebarOpen ? 'white' : 'transparent'};
+    display: none;
   }
 `;
 

@@ -14,7 +14,7 @@ const LeftSection = () => {
   const selectedAccommodation = useRecoilValue_TRANSITION_SUPPORT_UNSTABLE(
     headerAccommodationState
   );
-  const useSelectedYear = useState({ year: 2023 });
+  const useSelectedYear = useState({ year: 2024 });
 
   const { data: yearReportData } = useGetYearReport(
     selectedAccommodation.id,

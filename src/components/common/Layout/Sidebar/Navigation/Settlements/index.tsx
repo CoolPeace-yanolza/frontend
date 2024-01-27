@@ -60,6 +60,10 @@ const Contents = styled.div<SidebarOpen>`
   flex-direction: ${props => (props.$isSidebarOpen ? 'row' : 'column')};
   justify-content: ${props => (props.$isSidebarOpen ? 'flex-start' : 'center')};
   align-items: center;
+
+  ${theme.response.tablet} {
+    font-size: 14px;
+  }
 `;
 
 const SettlementsIcon = styled.img<SidebarOpen>`
