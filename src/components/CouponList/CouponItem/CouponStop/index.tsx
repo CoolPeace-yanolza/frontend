@@ -293,6 +293,8 @@ const ToggleOff = styled.div`
   color: #404446;
 `;
 const ToggleOnImg = styled.img`
+  margin: 1px 0px 1px 3px;
+
   margin: 1px;
 `;
 

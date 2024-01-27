@@ -295,7 +295,7 @@ const ToggleOff = styled.div`
 `;
 
 const ToggleOnImg = styled.img`
-  margin: 1px;
+  margin: 1px 0px 1px 3px;
 `;
 
 const ToggleOffImg = styled.img`
