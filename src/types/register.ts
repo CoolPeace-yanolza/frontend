@@ -38,7 +38,6 @@ export type InputAccordionProps = {
 
 export type ButtonStyleProps = {
   $isOpen: boolean;
-  src: string;
 };
 
 // InputField

@@ -34,9 +34,13 @@ const InputAccordion = ({ title, value, children }: InputAccordionProps) => {
         <Description>{title}</Description>
         <Button
           $isOpen={isOpen}
-          src={toggle}
           onClick={handleToggle}
-        />
+        >
+          <img
+            src={toggle}
+            alt="아코디언 토글 아이콘"
+          />
+        </Button>
       </Header>
       <ContentWrapper ref={contentWrapperRef}>
         <Content ref={contentRef}>{children}</Content>
@@ -77,7 +81,7 @@ const Button = styled.button<ButtonStyleProps>`
   padding: 0px;
   border: none;
 
-  background: url(${props => props.src});
+  background: #fff;
 
   transform: rotate(
     ${props => {
