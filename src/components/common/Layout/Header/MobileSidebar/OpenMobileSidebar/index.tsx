@@ -74,20 +74,24 @@ const OpenMobileSidebar = ({
 export default OpenMobileSidebar;
 
 const Container = styled.div<SidebarOpen>`
-  position: fixed;
-  top: ${props => (props.$isSidebarOpen ? 0 : '-100vh')};
-  left: 0;
+  display: none;
 
-  width: 100vw;
-  height: 100vh;
+  ${theme.response.tablet} {
+    position: fixed;
+    top: ${props => (props.$isSidebarOpen ? 0 : '-100vh')};
+    left: 0;
 
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+    width: 100vw;
+    height: 100vh;
 
-  z-index: 100;
-  transition: all 0.3s;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    z-index: 100;
+    transition: all 0.3s;
+  }
 `;
 
 const Navigation = styled.div`
