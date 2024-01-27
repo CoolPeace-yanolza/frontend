@@ -103,6 +103,7 @@ const Modal = styled.div<UserModalStyleProps>`
     top: 45px;
 
     width: ${props => (props.$isOpen ? '300px' : 0)};
+    height: ${props => (props.$isOpen ? '90px' : 0)};
   }
 `;
 
