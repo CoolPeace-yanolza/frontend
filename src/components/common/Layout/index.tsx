@@ -38,8 +38,6 @@ const Container = styled.div`
   background-color: ${theme.colors.background};
   overflow: hidden;
 
-  z-index: 100;
-
   ${theme.response.tablet} {
     background-color: white;
   }
