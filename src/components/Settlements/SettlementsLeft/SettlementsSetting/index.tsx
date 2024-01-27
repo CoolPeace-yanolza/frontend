@@ -71,7 +71,7 @@ const SettlementsSetting = () => {
 
   const CustomInput = forwardRef(({ value, onClick }: any, ref: any) => (
     <CustomInputContainer onClick={onClick} ref={ref}>
-            <span>{value}</span>
+            <InputText>{value}</InputText>
       <Calendar src={CalendarIcon} alt="캘린더" />
     </CustomInputContainer>
   ));
@@ -307,4 +307,8 @@ const CustomInputContainer = styled.button`
   background: #fff;
 
   cursor: pointer;
+`;
+
+const InputText = styled.div`
+  color: black;
 `;
