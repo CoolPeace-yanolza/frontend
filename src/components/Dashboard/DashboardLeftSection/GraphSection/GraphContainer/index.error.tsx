@@ -1,28 +1,24 @@
 import styled from '@emotion/styled';
 import { FallbackProps } from 'react-error-boundary';
-import { useState } from 'react';
 
 import theme from '@styles/theme';
 import errorIcon from '@assets/icons/ic-error.svg';
 import reloadIcon from '@assets/icons/ic-reload.svg';
-import { setMonthReportError } from '@utils/lib/dashboard';
 
-const ErrorFallback = ({ error, resetErrorBoundary }: FallbackProps) => {
+const ErrorFallback = ({ resetErrorBoundary }: FallbackProps) => {
   return (
     <Container>
       <ErrorIcon
         src={errorIcon}
         alt="에러 발생"
       />
-      <ErrorMessage>
-        {setMonthReportError(error.response.data.code)}
-      </ErrorMessage>
+      <ErrorMessage>월별 차트를 불러올 수 없습니다.</ErrorMessage>
       <ReloadButton onClick={resetErrorBoundary}>
         <ReloadIcon
           src={reloadIcon}
           alt="재시도"
         />
-        다시 시도
+        다시 시도 하기
       </ReloadButton>
     </Container>
   );
