@@ -18,7 +18,7 @@ const ErrorFallback = ({ resetErrorBoundary }: FallbackProps) => {
           src={reloadIcon}
           alt="에러 발생"
         />
-        다시 시도 하기
+        다시 시도
       </ReLoadButton>
     </Container>
   );

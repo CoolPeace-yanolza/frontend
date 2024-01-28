@@ -18,7 +18,7 @@ const ErrorFallback = ({ resetErrorBoundary }: FallbackProps) => {
           src={reloadIcon}
           alt="에러 발생"
         />
-        다시 시도 하기
+        다시 시도
       </ReLoadButton>
     </Container>
   );
@@ -43,7 +43,6 @@ const Container = styled.div`
 
   background-color: white;
 
-
   ${theme.response.tablet} {
     padding: 15px 15px;
     border-radius: 5px;
@@ -66,7 +65,7 @@ const ErrorIcon = styled.img`
   @media (max-width: 592px) {
     width: 25px;
     height: 25px;
-  } 
+  }
 `;
 
 const ErrorWord = styled.span`
