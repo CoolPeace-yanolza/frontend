@@ -78,6 +78,20 @@ const Number = styled.div<NumberStyleProps>`
       color: #979c9e;
     }
   }
+
+  ${theme.response.tablet} {
+    width: 4vw;
+    height: 4vw;
+
+    font-size: 2vw;
+  }
+
+  @media (max-width: 550px) {
+    width: 22px;
+    height: 22px;
+
+    font-size: 11px;
+  }
 `;
 
 const Description = styled.div`
@@ -91,10 +105,18 @@ const Description = styled.div`
     color: #979c9e;
     font-weight: 500;
   }
+
+  ${theme.response.tablet} {
+    display: none;
+  }
 `;
 
 const Line = styled.div<LineStyleProps>`
   margin: 0px 40px;
 
   display: ${props => (props.$isLastStep === 3 ? 'none' : 'block')};
+
+  ${theme.response.tablet} {
+    margin: 0px 4vw;
+  }
 `;
