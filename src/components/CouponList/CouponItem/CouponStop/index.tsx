@@ -285,7 +285,7 @@ const ToggleWrap = styled.button<ToggleStyleProps>`
 `;
 
 const ToggleOn = styled.div`
-  margin: 0px 4px 0px 2px;
+  margin: 0px 5px 0px 1px;
 
   font-size: 10px;
   font-weight: 700;
@@ -298,8 +298,6 @@ const ToggleOff = styled.div`
   color: #404446;
 `;
 const ToggleOnImg = styled.img`
-  margin: 1px 0px 1px 3px;
-
   margin: 1px;
 `;
 

@@ -286,7 +286,7 @@ const ToggleWrap = styled.button<ToggleStyleProps>`
 `;
 
 const ToggleOn = styled.div`
-  margin: 0px 2px 0px 2px;
+  margin: 0px 3px 0px 1px;
   font-size: 10px;
   font-weight: 700;
   color: ${theme.colors.pink500};
