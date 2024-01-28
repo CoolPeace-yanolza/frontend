@@ -47,15 +47,7 @@ const Container = styled.div`
   }
 
   ${theme.response.tablet} {
-    max-height: 250px;
-
-    margin: 20px;
-    padding: 15px 15px;
-    border-radius: 10px;
-
-    gap: 15px;
-
-    background-color: #f2f4f5;
+    height: 100%;
   }
 `;
 
@@ -67,6 +59,10 @@ const Header = styled(Skeleton)`
   background-color: rgba(255, 255, 255, 0.05);
   
   box-shadow: inset 0px 0px 5px rgba(205, 207, 208, 0.5), 0px 0px 5px rgba(0, 0, 0, 0.5);
+
+  ${theme.response.tablet} {
+    display: none;
+  }
 `;
 
 
@@ -83,5 +79,9 @@ background: url(${settlementsFrame});
 
   .react-loading-skeleton {
     --base-color: #ebebeb;
+  }
+
+  ${theme.response.tablet} {
+    background: none;
   }
 `;
