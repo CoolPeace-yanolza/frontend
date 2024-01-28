@@ -1,30 +1,38 @@
-# React + TypeScript + Vite
+# 쿨피스 X 야놀자 : 사장님 비서 Ya Client
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+<img width="527" alt="image" src="https://github.com/CoolPeace-yanolza/frontend/assets/101972330/f3b7442d-e849-40eb-a5bf-b1b115534a46">
+<img width="569" alt="image" src="https://github.com/CoolPeace-yanolza/frontend/assets/101972330/509c47e9-1b2d-42de-8fce-179ba70e3ae5">
 
-Currently, two official plugins are available:
+## Contributor
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- @로그인/회원가입 ([김다빈](https://github.com/dabin-Hailey) : Leader)
+- @대시보드 ([김특희](https://github.com/turkey-kim))
+- @누적리포트 ([최지훈](https://github.com/JitHoon))
+- @쿠폰조회 ([정진주](https://github.com/jinjoo-jung))
+- @쿠폰등록 ([한은지](https://github.com/ovoxiix))
+- @정산관리 ([정지오](https://github.com/jiohjung98))
 
-## Expanding the ESLint configuration
+## Tech Stack
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+> [사장님 비서 ya 보일러플레이트 코드 생성 Doc](https://sugar-gasoline-6bc.notion.site/5c6f48673f124145b3322f60663d322e?pvs=4)
 
-- Configure the top-level `parserOptions` property like this:
+- Concurrent UI Pattern ([적용 전 실습](https://github.com/JitHoon/react-error-loading))
+- 어플리케이션 보일러플레이트 코드 : Vite (react-swc-ts, React 18)
+- 스타일 : emotion (styled), reset css
+- 코드 컨벤션 : Eslint, prettier
+- 배포, CI/CD : Vercel (+ Github Actions)
+- 테스트 : Jest
+- 비동기 처리, 상태 관리, 에러 컨트롤 : Axios, Reac-Query, Recoil, react-error-boundary
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
+## Team Convention
+
+> [사장님 비서 ya 컨벤션 Doc](https://sugar-gasoline-6bc.notion.site/FE-adb78e85671b4d80988cd08cb88a93cf?pvs=4)
+
+## Script
+
+앱 실행
+
 ```
-
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+$ npm run build
+$ npm run dev
+```

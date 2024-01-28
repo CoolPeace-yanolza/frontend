@@ -1,35 +1,49 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { BrowserRouter } from 'react-router-dom';
+import { ThemeProvider } from '@emotion/react';
+import {
+  QueryClient,
+  QueryClientProvider,
+  useQueryErrorResetBoundary
+} from '@tanstack/react-query';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+import { RecoilRoot } from 'recoil';
+import { ErrorBoundary } from 'react-error-boundary';
+import { Suspense } from 'react';
 
-function App() {
-  const [count, setCount] = useState(0)
+import { MainRouter } from './routes';
+import GlobalStyles from '@styles/GlobalStyles';
+import theme from '@styles/theme';
+import ErrorFallback from './App.error';
+import Loading from './App.loading';
+import { ToastProvider } from '@components/common/ToastContext';
+
+const queryClient = new QueryClient();
+
+const App = () => {
+  const { reset } = useQueryErrorResetBoundary();
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+    <QueryClientProvider client={queryClient}>
+      <RecoilRoot>
+        <ThemeProvider theme={theme}>
+          <GlobalStyles />
+          <ErrorBoundary
+            onReset={reset}
+            FallbackComponent={ErrorFallback}
+          >
+            <Suspense fallback={<Loading />}>
+              <BrowserRouter>
+                <ToastProvider>
+                  <MainRouter />
+                </ToastProvider>
+              </BrowserRouter>
+            </Suspense>
+          </ErrorBoundary>
+        </ThemeProvider>
+        <ReactQueryDevtools initialIsOpen={false} />
+      </RecoilRoot>
+    </QueryClientProvider>
+  );
+};
 
-export default App
+export default App;
