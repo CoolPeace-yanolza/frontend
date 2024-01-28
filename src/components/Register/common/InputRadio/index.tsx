@@ -72,6 +72,14 @@ const Label = styled.label`
 const ContentWrapper = styled.div`
   display: flex;
   align-items: center;
+
+  ${theme.response.tablet} {
+    font-size: 1.9vw;
+  }
+
+  @media (max-width: 550px) {
+    font-size: 11px;
+  }
 `;
 
 const SelectIcon = styled.img`
@@ -79,6 +87,16 @@ const SelectIcon = styled.img`
   height: 24px;
 
   margin-right: 5px;
+
+  ${theme.response.tablet} {
+    width: 2vw;
+    height: 2vw;
+  }
+
+  @media (max-width: 550px) {
+    width: 11px;
+    height: 11px;
+  }
 `;
 
 const ChildrenWrapper = styled.div`
@@ -86,4 +104,12 @@ const ChildrenWrapper = styled.div`
   padding-left: 29px;
 
   display: none;
+
+  ${theme.response.tablet} {
+    padding-left: 3vw;
+  }
+
+  @media (max-width: 550px) {
+    padding-left: 17px;
+  }
 `;
