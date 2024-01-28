@@ -26,6 +26,9 @@ const Container = styled.div`
 
   ${theme.response.tablet} {
     width: 100%;
+
+    margin-bottom: 20px;
+    padding: 17px;
   }
 `;
 

@@ -161,6 +161,10 @@ const ContentContainer = styled.div`
 
   width: 100%;
   height: 80%;
+
+  ${theme.response.tablet} {
+    overflow: auto;
+  }
 `;
 
 const InnerContentContainer = styled.div`
@@ -178,6 +182,8 @@ const InnerContentContainer = styled.div`
     height: 100%;
 
     margin-top: 5vw;
+
+    overflow: visible;
   }
 
   @media (max-width: 550px) {

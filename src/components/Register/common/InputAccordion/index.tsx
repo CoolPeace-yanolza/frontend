@@ -62,6 +62,11 @@ const Container = styled.div`
 
   display: flex;
   flex-direction: column;
+
+  ${theme.response.tablet} {
+    margin-bottom: 20px;
+    padding: 17px;
+  }
 `;
 
 const Header = styled.div`

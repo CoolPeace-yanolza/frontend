@@ -117,6 +117,8 @@ const PreviousButton = styled.button<PreviousButtonStyleProps>`
   ${theme.response.tablet} {
     width: 123px;
     height: 39px;
+
+    font-size: 12px;
   }
 `;
 
@@ -144,5 +146,7 @@ const NextButton = styled.button<NextButtonStyleProps>`
   ${theme.response.tablet} {
     width: 225px;
     height: 39px;
+
+    font-size: 12px;
   }
 `;
