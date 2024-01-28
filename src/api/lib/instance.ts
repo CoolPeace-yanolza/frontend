@@ -38,8 +38,8 @@ const onResponse = (response: AxiosResponse): AxiosResponse => {
 const onErrorResponse = async (error: AxiosResponseError<string>) => {
   const { config, response } = error;
 
+  // 액세스 토큰이 만료되었을 때
   if (response && response.status === 401) {
-    // 액세스 토큰이 만료되었을 때
     if (error.response.data.code === 'JWT_EXPIRED_AUTHORIZATION') {
       const originalRequest = config;
 
@@ -69,21 +69,10 @@ const onErrorResponse = async (error: AxiosResponseError<string>) => {
         deleteAllCookies();
         window.location.replace('/login');
       }
-    } else {
-      // 액세스 토큰이 만료 이외의 모든 인증 에러 처리
-      console.log(error.response.data.code, error.response);
-      alert('서버에서 인증 오류가 발생했습니다.\n다시 로그인해주세요.');
-      await postLogout();
-      deleteAllCookies();
-      window.location.replace('/login');
     }
-  } else {
     console.log(error.response.data.code, error.response);
-    alert('서버에서 인증 오류가 발생했습니다.\n다시 로그인해주세요.');
-    await postLogout();
-    deleteAllCookies();
-    window.location.replace('/login');
   }
+  console.log('response error : ', error);
 };
 
 // 요청 인터셉터 추가
