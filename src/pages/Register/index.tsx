@@ -134,6 +134,9 @@ const TitleContainer = styled.div`
   backdrop-filter: blur(71px);
 
   ${theme.response.tablet} {
+    height: 18%;
+
+    padding-left: 40px;
     border-radius: 0px 0px 0px 60px;
   }
 `;
@@ -170,6 +173,16 @@ const InnerContentContainer = styled.div`
   height: 84%;
 
   overflow: auto;
+
+  ${theme.response.tablet} {
+    height: 100%;
+
+    margin-top: 5vw;
+  }
+
+  @media (max-width: 550px) {
+    margin-top: 25px;
+  }
 `;
 
 const SectionContainer = styled.div`

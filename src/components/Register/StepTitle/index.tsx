@@ -30,10 +30,14 @@ const StepTitleContainer = styled.div`
   letter-spacing: -0.78px;
 
   ${theme.response.tablet} {
+    height: 7vw;
+
     font-size: 3vw;
   }
 
   @media (max-width: 550px) {
+    height: 40px;
+
     font-size: 16px;
   }
 `;
@@ -50,4 +54,8 @@ const Description = styled.span`
   font-size: 13px;
   letter-spacing: 0.1px;
   line-height: 150%;
+
+  ${theme.response.tablet} {
+    display: none;
+  }
 `;
