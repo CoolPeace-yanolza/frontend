@@ -62,7 +62,7 @@ const Calendar = () => {
         ref={ref}
       >
         <SelectedDate>{value}</SelectedDate>
-        <img
+        <CalendarIcon
           src={input.startDate ? selected : notSelected}
           alt="달력 아이콘"
         />
@@ -80,7 +80,7 @@ const Calendar = () => {
         ref={ref}
       >
         <SelectedDate>{value}</SelectedDate>
-        <img
+        <CalendarIcon
           src={input.endDate ? selected : notSelected}
           alt="달력 아이콘"
         />
@@ -198,10 +198,37 @@ const CustomInput = styled.button`
   background: #fff;
 
   cursor: pointer;
+
+  ${theme.response.tablet} {
+    width: 13.5vw;
+    height: 4.5vw;
+    min-width: 77px;
+    min-height: 27px;
+  }
 `;
 
 const SelectedDate = styled.span`
   color: ${theme.colors.hover};
+
+  ${theme.response.tablet} {
+    font-size: 1.7vw;
+  }
+
+  @media (max-width: 550px) {
+    font-size: 10px;
+  }
+`;
+
+const CalendarIcon = styled.img`
+  ${theme.response.tablet} {
+    width: 3.7vw;
+    height: 3.7vw;
+  }
+
+  @media (max-width: 550px) {
+    width: 20px;
+    height: 20px;
+  }
 `;
 
 const Dash = styled.div`
