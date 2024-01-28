@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import styled from '@emotion/styled';
+import { useLocation } from 'react-router-dom';
 
 import hamburger from '@assets/icons/ic-sidebar-hamburger.svg';
 import toggle from '@assets/icons/ic-sidebar-toggle.svg';
@@ -18,6 +19,9 @@ const OpenMobileSidebar = ({
   setIsSidebarOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
   const [isToggleOpen, setIsToggleOpen] = useState(true);
+  const location = useLocation();
+
+  console.log(location.pathname);
 
   useEffect(() => {
     if (isSidebarOpen) setIsToggleOpen(true);
@@ -38,7 +42,10 @@ const OpenMobileSidebar = ({
             alt="사장님 비서ya"
           />
         </Header>
-        <Coupon $isToggleOpen={isToggleOpen}>
+        <Coupon
+          $isToggleOpen={isToggleOpen}
+          $pathName={location.pathname}
+        >
           <div>
             <CouponHeader>
               <Contents>
@@ -144,7 +151,7 @@ const LogoIcon = styled.img`
   height: 25px;
 `;
 
-const Coupon = styled.div<ToggleOpen>`
+const Coupon = styled.div<{ $isToggleOpen: boolean; $pathName: string }>`
   width: 100%;
   height: ${props => (props.$isToggleOpen ? '250px' : '60px')};
 
@@ -153,7 +160,7 @@ const Coupon = styled.div<ToggleOpen>`
 
   color: white;
   background-color: ${props =>
-    props.$isToggleOpen ? '#1a2849' : theme.colors.ink100};
+    props.$pathName === '/settlements' ? theme.colors.ink100 : '#1a2849'};
   font-size: 14px;
   overflow: hidden;
   transition: all 0.5s;
