@@ -29,9 +29,9 @@ const SignUpForm = ({
   const { watch, getValues, getFieldState, formState, handleSubmit } = methods;
   const { errors, isValid } = formState;
 
-  const emailValue: string = getValues('user_email');
-  const isEmailTouched = getFieldState('user_email', formState).isTouched;
-  const isEmailValueValid = isEmailTouched ? !errors?.user_email : false;
+  const emailValue = getValues('user_email');
+  const isEmailDirty = getFieldState('user_email', formState).isDirty;
+  const isEmailValueValid = isEmailDirty ? !errors?.user_email : false;
 
   const emailValidInitialValue = {
     message: '',
@@ -109,6 +109,7 @@ const SignUpForm = ({
               isError={!!errors?.user_email}
             />
             <AuthButton
+              buttonType="button"
               size="small"
               variant={isEmailValueValid ? 'navy' : 'disabled'}
               text="중복확인"
@@ -158,6 +159,7 @@ const SignUpForm = ({
           )}
         </InputLabelWrapper>
         <AuthButton
+          buttonType="submit"
           size="large"
           variant={
             isValid && emailValidMessage.type === 'success'
@@ -165,7 +167,7 @@ const SignUpForm = ({
               : 'disabled'
           }
           text="회원가입"
-          disabled={!isValid || emailValidMessage.type === 'failure'}
+          disabled={!isValid || emailValidMessage.type !== 'success'}
           buttonFunc={handleSubmit(onSubmit)}
         />
       </Form>
