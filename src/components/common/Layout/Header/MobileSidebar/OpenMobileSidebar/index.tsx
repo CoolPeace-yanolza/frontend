@@ -21,8 +21,6 @@ const OpenMobileSidebar = ({
   const [isToggleOpen, setIsToggleOpen] = useState(true);
   const location = useLocation();
 
-  console.log(location.pathname);
-
   useEffect(() => {
     if (isSidebarOpen) setIsToggleOpen(true);
   }, [isSidebarOpen]);
