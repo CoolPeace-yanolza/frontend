@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import { useState, useEffect, useRef } from 'react';
 
-import settlementsAdminIcon from '@assets/icons/settlemented-admin.svg';
+import settlementsAdminIcon from '/images/ic-sidebar-settlement.png';
 import informationIcon from '@assets/icons/information-circle-outline.svg';
 import SettlementsPopup from './SettlementsPopup';
 import theme from '@styles/theme';
@@ -74,7 +74,7 @@ const Header = styled.nav`
 
 const SettlementsAdminIcon = styled.img`
   width: 44px;
-  height: 34.57px;
+  height: 44px;
 
   margin-right: 10px;
 `;
