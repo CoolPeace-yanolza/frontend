@@ -25,7 +25,7 @@ const SelectYear = () => {
 
   useEffect(() => {
     startTransition(() => {
-      setSelectedYear({ year: 2023 });
+      setSelectedYear({ year: 2024 });
     });
   }, [headerAccommodation]);
 

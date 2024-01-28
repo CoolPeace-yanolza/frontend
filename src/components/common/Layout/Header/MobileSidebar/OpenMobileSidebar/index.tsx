@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import styled from '@emotion/styled';
+import { useLocation } from 'react-router-dom';
 
 import hamburger from '@assets/icons/ic-sidebar-hamburger.svg';
 import toggle from '@assets/icons/ic-sidebar-toggle.svg';
@@ -17,10 +18,13 @@ const OpenMobileSidebar = ({
   isSidebarOpen: boolean;
   setIsSidebarOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
-  const [isToggleOpen, setIsToggleOpen] = useState(false);
+  const [isToggleOpen, setIsToggleOpen] = useState(true);
+  const location = useLocation();
+
+  console.log(location.pathname);
 
   useEffect(() => {
-    if (!isSidebarOpen) setIsToggleOpen(false);
+    if (isSidebarOpen) setIsToggleOpen(true);
   }, [isSidebarOpen]);
 
   return (
@@ -38,7 +42,10 @@ const OpenMobileSidebar = ({
             alt="사장님 비서ya"
           />
         </Header>
-        <Coupon $isToggleOpen={isToggleOpen}>
+        <Coupon
+          $isToggleOpen={isToggleOpen}
+          $pathName={location.pathname}
+        >
           <div>
             <CouponHeader>
               <Contents>
@@ -74,20 +81,24 @@ const OpenMobileSidebar = ({
 export default OpenMobileSidebar;
 
 const Container = styled.div<SidebarOpen>`
-  position: fixed;
-  top: ${props => (props.$isSidebarOpen ? 0 : '-100vh')};
-  left: 0;
+  display: none;
 
-  width: 100vw;
-  height: 100vh;
+  ${theme.response.tablet} {
+    position: fixed;
+    top: ${props => (props.$isSidebarOpen ? 0 : '-100vh')};
+    left: 0;
 
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+    width: 100vw;
+    height: 100vh;
 
-  z-index: 100;
-  transition: all 0.5s;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    z-index: 100;
+    transition: all 0.3s;
+  }
 `;
 
 const Navigation = styled.div`
@@ -101,7 +112,8 @@ const Navigation = styled.div`
   justify-content: center;
   align-items: center;
 
-  background: white;
+  background-color: white;
+  box-shadow: 2px 2px 3px 0px rgba(0, 0, 0, 0.25);
 `;
 
 const Header = styled.div`
@@ -139,7 +151,7 @@ const LogoIcon = styled.img`
   height: 25px;
 `;
 
-const Coupon = styled.div<ToggleOpen>`
+const Coupon = styled.div<{ $isToggleOpen: boolean; $pathName: string }>`
   width: 100%;
   height: ${props => (props.$isToggleOpen ? '250px' : '60px')};
 
@@ -148,7 +160,7 @@ const Coupon = styled.div<ToggleOpen>`
 
   color: white;
   background-color: ${props =>
-    props.$isToggleOpen ? '#1a2849' : theme.colors.ink100};
+    props.$pathName === '/settlements' ? theme.colors.ink100 : '#1a2849'};
   font-size: 14px;
   overflow: hidden;
   transition: all 0.5s;
@@ -159,8 +171,6 @@ const CouponHeader = styled.div`
   height: 100%;
 
   display: flex;
-
-  transition: all 0.3s;
 `;
 
 const Contents = styled.div`
@@ -208,5 +218,5 @@ const LeftoverScreen = styled.div<SidebarOpen>`
   width: 100%;
   height: 100%;
 
-  background-color: #4242427c;
+  background-color: transparent;
 `;
