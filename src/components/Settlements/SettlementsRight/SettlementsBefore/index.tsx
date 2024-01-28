@@ -26,8 +26,6 @@ const SettlementsBefore = () => {
     return `${year}.${month < 10 ? '0' : ''}${month}.${day < 10 ? '0' : ''}${day}`;
   };
 
-  const isBeforeDueDate = currentDate.getDate() < 10;
-
   return (
     <Container>
     <InnerContainer>
@@ -43,10 +41,7 @@ const SettlementsBefore = () => {
         src={SyncIcon}
         alt="업데이트" />
       <UpdatedText>
-        {isBeforeDueDate
-          ? `매월 1일 00시 00분 업데이트`
-          : `매월 11일 00시 00분 업데이트`
-        }
+        매월 1일 00시 00분 업데이트
       </UpdatedText>
       </CommonContainer>
       </ExpectedContainer>

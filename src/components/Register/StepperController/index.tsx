@@ -8,6 +8,7 @@ import {
   NextButtonStyleProps
 } from '@/types/register';
 import {
+  headerAccommodationState,
   registerInputState,
   registerValidState,
   previewState
@@ -17,17 +18,22 @@ import {
   showSecondStepValidationMessage,
   showThirdStepValidationMessage,
   showFourthStepValidationMessage,
-  handleStepLessThan3
+  handleSteps,
+  getRegisterInformation
 } from '@utils/index';
+import { usePostRegisterCoupon } from '@hooks/queries/usePostRegisterCoupon';
 
 const StepperController = ({
   currentStep,
   isFilled,
   onButtonClick
 }: StepperControllerProps) => {
+  const header = useRecoilValue(headerAccommodationState);
   const input = useRecoilValue(registerInputState);
   const setIsValid = useSetRecoilState(registerValidState);
   const setPreview = useSetRecoilState(previewState);
+
+  const { mutate: postRegisterCoupon } = usePostRegisterCoupon();
 
   const handlePreviousButton = () => {
     if (currentStep > 0) {
@@ -54,7 +60,10 @@ const StepperController = ({
     }
 
     if (currentStep < 3) {
-      handleStepLessThan3(currentStep, input, isFilled, onButtonClick);
+      handleSteps(currentStep, input, isFilled, onButtonClick);
+    } else if (currentStep === 3 && input.startDate < input.endDate) {
+      const registerInfo = getRegisterInformation(input, header);
+      postRegisterCoupon({ registerInfo });
     }
   };
 

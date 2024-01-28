@@ -20,3 +20,5 @@ export { default as getEmailValid } from './lib/getEmailValid';
 export { default as postSignUp } from './lib/postSignUp';
 export { default as getSettlements } from './lib/getSettlements';
 export { default as getSettlemented } from './lib/getSettlemented';
+export { default as postRegisterCoupon } from './lib/postRegisterCoupon';
+export { default as getRoomList } from './lib/getRoomList';

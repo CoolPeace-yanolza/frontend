@@ -1,4 +1,4 @@
-const keyToLabelMap = {
+const SETTLEMENTS_TABLE_KEY = {
     'NO': 'NO',
     'coupon_number': '쿠폰번호',
     'coupon_name': '관리 쿠폰명',
@@ -10,4 +10,4 @@ const keyToLabelMap = {
     'complete_at': '정산 완료일'
   };
 
-export default keyToLabelMap;
+export default SETTLEMENTS_TABLE_KEY;

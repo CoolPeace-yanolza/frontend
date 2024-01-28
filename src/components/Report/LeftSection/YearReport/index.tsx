@@ -57,7 +57,7 @@ const Contents = styled.div`
   min-height: 130px;
 
   border-radius: 18.5px;
-  padding: 20px 15px;
+  padding: 10px 15px;
 
   display: flex;
   flex-direction: column;
@@ -79,10 +79,14 @@ const Contents = styled.div`
 `;
 
 const Text = styled.span`
-  font-size: 13px;
+  font-size: 15px;
   font-weight: 700;
 
+  margin-left: 8px;
+
   align-self: flex-start;
+
+  color: #484e59;
 
   ${theme.response.tablet} {
     align-self: center;

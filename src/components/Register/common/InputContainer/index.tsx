@@ -1,5 +1,6 @@
 import styled from '@emotion/styled';
 
+import theme from '@styles/theme';
 import { InputContainerProps } from '@/types/register';
 
 const InputContainer = ({ title, children }: InputContainerProps) => {
@@ -25,5 +26,7 @@ const Container = styled.div`
 `;
 
 const Description = styled.div`
-  font-size: 18px;
+  color: ${theme.colors.hover};
+  font-size: 17px;
+  font-weight: 600;
 `;

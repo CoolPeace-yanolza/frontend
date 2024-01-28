@@ -227,6 +227,7 @@ const Input = styled.input`
 
   &::placeholder {
     color: #979C9e;
+    font-weight: 500;
   }
 }
 `;

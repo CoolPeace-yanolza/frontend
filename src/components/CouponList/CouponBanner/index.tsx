@@ -1,28 +1,28 @@
 import styled from '@emotion/styled';
 import theme from '@styles/theme';
 
-import bannerIcon from '@assets/icons/ic-couponlist-speaker.svg';
+import seakerIcon from '@assets/icons/ic-couponlist-speaker.svg';
 import { useRecoilValue } from 'recoil';
 import { headerAccommodationState } from '@recoil/index';
-// import { useGetCouponRanking } from '@hooks/queries/useGetCouponRanking';
+import { useGetCouponRanking } from '@hooks/index';
 
 const CouponBanner = () => {
   const headerAccommodation = useRecoilValue(headerAccommodationState);
   const sigunguData = headerAccommodation.sigungu;
-  // const { data } = useGetCouponRanking(headerAccommodation.id);
+  const { data } = useGetCouponRanking(headerAccommodation.id);
 
   return (
     <BannerContainer>
       <TabBanner>
         <img
-          src={bannerIcon}
+          src={seakerIcon}
           alt="bannerIcon"
         />
         <div>
           <TabBannerTitle>이번 달 우리 지역 인기 쿠폰</TabBannerTitle>
           <TabBannerContent>
-            {sigunguData}에서 가장 많이 사용된 쿠폰은?
-            {/* <span>{data.first_coupon_title}쿠폰</span>이에요! */}
+            {sigunguData}에서 가장 많이 다운로드된 쿠폰은?
+            <span>{data.first_coupon_title}쿠폰</span>이에요!
           </TabBannerContent>
         </div>
       </TabBanner>
@@ -33,7 +33,11 @@ const CouponBanner = () => {
 export default CouponBanner;
 
 const BannerContainer = styled.div`
-  margin: 20px 50px;
+  margin: 20px 25px;
+
+  @media (max-width: 656px) {
+    display: none;
+  }
 `;
 
 const TabBanner = styled.div`

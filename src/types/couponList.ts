@@ -1,3 +1,5 @@
+import { RefObject } from 'react';
+
 export interface ToggleStyleProps {
   $isToggle: boolean;
 }
@@ -8,6 +10,10 @@ export interface ResisterDateStyleProps {
 
 export interface CategoryTabStyleProps {
   $categoryTab: boolean;
+}
+
+export interface RoomListProps {
+  $isBottom: boolean;
 }
 
 // api 쿠폰 리스트정보 응답 데이터
@@ -37,10 +43,14 @@ export interface CouponInformationResponse {
   coupon_concat_title: string;
   discount_type: string;
   discount_value: number;
+  discount_flat_rate: number | null;
+  discount_flat_value: number | null;
+  maximum_discount_price: number | null;
   customer_type: string;
   coupon_room_types: string[];
   minimum_reservation_price: number;
   coupon_use_condition_days: string;
+  coupon_use_condition_day_of_week: string | null;
   exposure_start_date: string;
   exposure_end_date: string;
   coupon_expiration: number;
@@ -56,12 +66,15 @@ export interface CouponListProps {
   couponInfo: CouponInformationResponse;
 }
 
+// 쿠폰 수정
 export interface CouponUpdateCredential {
   coupon_number: string | undefined;
   accommodation_id: number;
   customer_type: string;
   discount_type: string;
   discount_value: number;
+  discount_flat_rate: number | null;
+  maximum_discount_price: number | null;
   coupon_room_type: string;
   register_all_room: false;
   register_rooms: string[];
@@ -71,6 +84,7 @@ export interface CouponUpdateCredential {
   exposure_end_date: string;
 }
 
+// 쿠폰 삭제
 export interface CouponDeleteCredential {
   coupon_number: string | undefined;
 }
@@ -81,10 +95,23 @@ export interface CouponToggleCredential {
   coupon_status: string;
 }
 
-// HACK : 쿠폰 요청  타입
-// export interface GetCouponListCredential {
-//   accommodationId: number;
-//   date?: string;
-//   status?: string;
-//   title?: string;
-// }
+export interface CategoryTab {
+  categoryTab: string;
+}
+
+export interface RoomListStyleProps {
+  isShowRoomList: boolean;
+  roomListStyleRef: RefObject<HTMLDivElement>;
+  setIsBottom: (isBottom: boolean) => void;
+}
+
+export interface CouponConditionProps {
+  day: string | null;
+  dayOfWeek: string | null;
+}
+
+export interface ConcatTitleProps {
+  customer_type: string;
+  discount_flat_rate: number | null;
+  discount_flat_value: number | null;
+}
