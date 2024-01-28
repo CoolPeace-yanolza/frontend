@@ -70,7 +70,7 @@ const ResultContainer = styled.div<StatusItemStyleProps>`
     padding: 5px 10px;
     border-radius: 8px;
 
-    font-size: 13px;
+    font-size: 11px;
 
     white-space: nowrap;
   }

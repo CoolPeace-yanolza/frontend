@@ -54,6 +54,8 @@ const Icon = styled.img`
   right: 20px;
 
   ${theme.response.tablet} {
+    right: 15px;
+
     width: 80px;
   }
 `;
@@ -66,6 +68,8 @@ const Title = styled.div`
   font-weight: 700;
 
   ${theme.response.tablet} {
+    padding-left: 10px;
+
     font-size: 12px;
   }
 `;
@@ -77,6 +81,8 @@ const Description = styled.p`
   line-height: 1.4;
 
   ${theme.response.tablet} {
+    padding-left: 10px;
+
     font-size: 10px;
   }
 `;

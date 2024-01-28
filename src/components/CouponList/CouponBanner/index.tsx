@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import theme from '@styles/theme';
 
-import bannerIcon from '@assets/icons/ic-couponlist-speaker.svg';
+import seakerIcon from '@assets/icons/ic-couponlist-speaker.svg';
 import { useRecoilValue } from 'recoil';
 import { headerAccommodationState } from '@recoil/index';
 import { useGetCouponRanking } from '@hooks/index';
@@ -15,7 +15,7 @@ const CouponBanner = () => {
     <BannerContainer>
       <TabBanner>
         <img
-          src={bannerIcon}
+          src={seakerIcon}
           alt="bannerIcon"
         />
         <div>

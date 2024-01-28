@@ -18,7 +18,7 @@ const ErrorFallback = ({ resetErrorBoundary }: FallbackProps) => {
           src={reloadIcon}
           alt="에러 발생"
         />
-        다시 시도 하기
+        다시 시도
       </ReLoadButton>
     </Container>
   );
@@ -27,13 +27,14 @@ const ErrorFallback = ({ resetErrorBoundary }: FallbackProps) => {
 export default ErrorFallback;
 
 const Container = styled.div`
-  height: 554px;
+  height: 558px;
 
   margin-left: 43px;
   margin-right: 43px;
-  margin-top: 110px;
+  margin-top: 90px;
+  margin-bottom: 90px;
   padding: 30px 15px;
-  border-radius: 20px;
+  border-radius: 10px;
 
   display: flex;
   flex-direction: column;
