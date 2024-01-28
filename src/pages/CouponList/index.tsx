@@ -18,6 +18,7 @@ const CouponList = () => {
   const headerAccommodation = useRecoilValue(headerAccommodationState);
   const [registerDateClick, setRegisterDateClick] = useState<string>('1년');
   const [categoryTab, setCategoryTab] = useState<string>('전체');
+  const [couponCount, setCouponCount] = useState(0);
   const observerRef = useRef(null);
   const [page, setPage] = useState(1);
   const couponRef = useRef<CouponListResponse | null>(null);
@@ -41,7 +42,13 @@ const CouponList = () => {
     if (coupons) {
       couponRef.current = coupons;
     }
+    setCouponCount(coupons.total_elements);
   }, [coupons]);
+
+  useEffect(() => {
+    setDebouncePrefix('');
+    setSearch('');
+  }, [headerAccommodation.id]);
 
   useEffect(() => {
     const observer = new IntersectionObserver(entries => {
@@ -67,16 +74,19 @@ const CouponList = () => {
   const handleChangeSearch = (value: string) => {
     setSearch(value);
     debounceOnChange(value);
+    setCouponCount(coupons.content.length);
   };
 
   const handleChangeDate = (value: string) => {
     setRegisterDateClick(value);
     setPage(1);
+    setCouponCount(coupons.content.length);
   };
 
   const handleChangeCategory = (value: string) => {
     setCategoryTab(value);
     setPage(1);
+    setCouponCount(coupons.content.length);
   };
 
   return (
@@ -90,7 +100,7 @@ const CouponList = () => {
             exposure_on={coupons.category.exposure_on}
             exposure_off={coupons.category.exposure_off}
             expiration={coupons.category.expiration}
-            length={coupons.content.length}
+            length={couponCount}
             search={search}
             onSearchChange={handleChangeSearch}
             registerDateClick={registerDateClick}
