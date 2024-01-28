@@ -46,6 +46,11 @@ const CouponList = () => {
   }, [coupons]);
 
   useEffect(() => {
+    setDebouncePrefix('');
+    setSearch('');
+  }, [headerAccommodation.id]);
+
+  useEffect(() => {
     const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
