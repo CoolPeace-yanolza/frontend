@@ -75,10 +75,6 @@ export type InputRadioProps = {
   onButtonChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 };
 
-export type InputRadioStyleProps = {
-  $src: string;
-};
-
 // InputWrapper
 export type InputWrapperProps = {
   state?: string;

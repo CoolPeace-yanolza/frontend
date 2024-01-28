@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 
 import theme from '@styles/theme';
-import { InputRadioProps, InputRadioStyleProps } from '@/types/register';
+import { InputRadioProps } from '@/types/register';
 import selected from '@assets/icons/ic-register-selected.svg';
 import unselected from '@assets/icons/ic-register-unselected.svg';
 
@@ -28,14 +28,13 @@ const InputRadio = ({
         name={name}
         value={value}
         defaultChecked={isChecked}
-        $src={selected}
         onChange={handleButtonChange}
       />
       <Label htmlFor={id}>
         <ContentWrapper>
           <SelectIcon
-            className="icon"
-            $src={unselected}
+            src={isChecked ? selected : unselected}
+            alt="라디오버튼 아이콘"
           />
           {text}
         </ContentWrapper>
@@ -49,15 +48,11 @@ const InputRadio = ({
 
 export default InputRadio;
 
-const Radio = styled.input<InputRadioStyleProps>`
+const Radio = styled.input`
   display: none;
 
   &:checked + label {
     color: ${theme.colors.hover};
-  }
-
-  &:checked + label .icon {
-    background: url(${props => props.$src});
   }
 
   &:checked ~ .children {
@@ -79,13 +74,11 @@ const ContentWrapper = styled.div`
   align-items: center;
 `;
 
-const SelectIcon = styled.div<InputRadioStyleProps>`
+const SelectIcon = styled.img`
   width: 24px;
   height: 24px;
 
   margin-right: 5px;
-
-  background: url(${props => props.$src});
 `;
 
 const ChildrenWrapper = styled.div`
