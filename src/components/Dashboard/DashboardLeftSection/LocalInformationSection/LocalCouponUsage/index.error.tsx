@@ -5,7 +5,7 @@ import theme from '@styles/theme';
 import errorIcon from '@assets/icons/ic-error.svg';
 import reloadIcon from '@assets/icons/ic-reload.svg';
 
-const ErrorFallback = ({ resetErrorBoundary }: FallbackProps) => {
+const ErrorFallback = ({ error, resetErrorBoundary }: FallbackProps) => {
   return (
     <Container>
       <ErrorIcon
@@ -13,7 +13,14 @@ const ErrorFallback = ({ resetErrorBoundary }: FallbackProps) => {
         alt="에러 발생"
       />
       <ErrorMessage>
-        우리 지역 숙소의 쿠폰 현황을 <br /> 불러올 수 없습니다
+        {error.response.data.code ===
+        'MONTHLY_STATISTICS_NOT_FOUND_EXCEPTION' ? (
+          <>지역 월간 통계가 아직 집계되지 않았습니다</>
+        ) : (
+          <>
+            우리 지역 숙소의 쿠폰 현황을 <br /> 불러올 수 없습니다
+          </>
+        )}
       </ErrorMessage>
       <ReloadButton onClick={resetErrorBoundary}>
         <ReloadIcon
