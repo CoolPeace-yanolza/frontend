@@ -78,4 +78,8 @@ const LeftoverScreen = styled.div`
 
   background-color: #4242427c;
   z-index: 90;
+
+  ${theme.response.tablet} {
+    display: none;
+  }
 `;

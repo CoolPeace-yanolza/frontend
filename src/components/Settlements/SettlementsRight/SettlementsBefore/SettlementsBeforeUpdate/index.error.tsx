@@ -9,18 +9,18 @@ const ErrorFallback = ({ resetErrorBoundary }: FallbackProps) => {
   return (
     <Container>
       <ErrorContainer>
-      <ErrorIcon
-        src={errorIcon}
-        alt="에러 발생"
-      />
-      <ErrorWord>이전 정산 내역을 불러올 수 없습니다.</ErrorWord>
+        <ErrorIcon
+          src={errorIcon}
+          alt="에러 발생"
+        />
+        <ErrorWord>이전 정산 내역을 불러올 수 없습니다.</ErrorWord>
       </ErrorContainer>
       <ReLoadButton onClick={resetErrorBoundary}>
         <ReloadIcon
           src={reloadIcon}
           alt="에러 발생"
         />
-        다시 시도 하기
+        다시 시도
       </ReLoadButton>
     </Container>
   );
@@ -42,7 +42,6 @@ const Container = styled.div`
   align-items: center;
 
   background-color: white;
-
 
   ${theme.response.tablet} {
     padding: 15px 15px;

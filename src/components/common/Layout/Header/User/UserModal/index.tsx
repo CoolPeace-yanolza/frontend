@@ -25,35 +25,6 @@ const UserModal = ({ isOpen }: UserModal) => {
     deleteAllCookies();
     queryClient.removeQueries({ queryKey: ['Accommodation'] });
     navigate('/login'), { replace: true };
-    /* HACK: 로그아웃 에러 response 가 있을 경우 사용
-
-      [ 대안 1 ]
-      const response = await postLogout();
-
-      if (response === undefined) {
-        setIsErrorModalOpen(true);
-      } else if (response?.status === 200) {
-        deleteAllCookies();
-        navigate('/login');
-      }
-
-      [ 대안 2 ]
-        try {
-          const response = await postLogout();
-          deleteAllCookies();
-          navigate('/login');
-        }catch (error) {
-          const modalContent = {
-            text: '로그아웃에 실패하였습니다.',
-            errorText: '잠시후 재시도 해주세요.'
-          };
-
-          const ButtonFunc = () => {};
-
-          ErrorModal({ modalContent, ButtonFunc });
-        } 
-
-     */
   };
 
   return (
@@ -91,7 +62,7 @@ const Modal = styled.div<UserModalStyleProps>`
   display: flex;
 
   background-color: #e3e5e5;
-  transition: all 0.5s;
+  transition: all 0.3s;
 
   ${theme.response.tablet} {
     right: ${props => (props.$isOpen ? '35px' : '-400px')};
@@ -111,7 +82,6 @@ const UserInformation = styled.div`
 `;
 
 const Name = styled.span`
-  transition: all 0.5s;
   font-size: 16px;
   font-weight: 700;
 `;
@@ -121,7 +91,6 @@ const Email = styled.span`
 
   border-bottom: 1px solid gray;
 
-  transition: all 0.5s;
   font-size: 15px;
 `;
 
@@ -140,6 +109,6 @@ const Logout = styled.button`
   white-space: nowrap;
   text-decoration: none;
   transition: all 0.5s;
-
+  text-decoration: none;
   cursor: pointer;
 `;
