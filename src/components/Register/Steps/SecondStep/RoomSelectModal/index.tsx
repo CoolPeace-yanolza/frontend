@@ -17,51 +17,18 @@ import listUnchecked from '@assets/icons/ic-register-unchecked.svg';
 import { sliceName } from '@utils/index';
 import { registerInputState, previewState } from '@recoil/index';
 
-const list = [
-  {
-    id: 12,
-    roomNumber: '101',
-    roomType: '대실',
-    price: 10000
-  },
-  {
-    id: 13,
-    roomNumber: '102',
-    roomType: '대실',
-    price: 20000
-  },
-  {
-    id: 13,
-    roomNumber: '110',
-    roomType: '숙박',
-    price: 70000
-  },
-  {
-    id: 13,
-    roomNumber: '301',
-    roomType: '숙박',
-    price: 85000
-  },
-  {
-    id: 13,
-    roomNumber: '204',
-    roomType: '대실',
-    price: 100000
-  }
-];
-
 const RoomSelectModal = ({ setIsOpen }: RoomSelectModalProps) => {
   const [input, setInput] = useRecoilState(registerInputState);
   const [preview, setPreview] = useRecoilState(previewState);
 
-  const [selectedRooms, setSelectedRooms] = useState([...input.rooms]);
-  const [sortedRooms, setSortedRooms] = useState([...list]);
+  const [selectedRooms, setSelectedRooms] = useState([...input.selectedRooms]);
+  const [sortedRooms, setSortedRooms] = useState([...input.rooms]);
   const [isSortedByNumber, setIsSortedByNumber] = useState(false);
   const [isSortedByPrice, setIsSortedByPrice] = useState(true);
   const backdropRef = useRef<HTMLDivElement>(null);
 
   const handleClose = () => {
-    if (!input.rooms.length) {
+    if (!input.selectedRooms.length) {
       const falseRadioButton =
         document.querySelector<HTMLInputElement>('#false')!;
       falseRadioButton.checked = false;
@@ -79,7 +46,7 @@ const RoomSelectModal = ({ setIsOpen }: RoomSelectModalProps) => {
   };
 
   const handleApply = () => {
-    setInput({ ...input, rooms: [...selectedRooms] });
+    setInput({ ...input, selectedRooms: [...selectedRooms] });
     setIsOpen(false);
   };
 

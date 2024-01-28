@@ -16,11 +16,13 @@ const registerInputState = atom<registerInputAtom>({
     severalNights: false,
     toAllRooms: '',
     rooms: [],
+    selectedRooms: [],
     minimumPrice: '',
     whenToUse: '',
     day: '',
     startDate: '',
-    endDate: ''
+    endDate: '',
+    isModalOpen: false
   }
 });
 

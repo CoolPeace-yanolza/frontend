@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import theme from '@styles/theme';
 
-import bannerIcon from '@assets/icons/ic-couponlist-speaker.svg';
+import seakerIcon from '@assets/icons/ic-couponlist-speaker.svg';
 import { useRecoilValue } from 'recoil';
 import { headerAccommodationState } from '@recoil/index';
 import { useGetCouponRanking } from '@hooks/index';
@@ -15,13 +15,13 @@ const CouponBanner = () => {
     <BannerContainer>
       <TabBanner>
         <img
-          src={bannerIcon}
+          src={seakerIcon}
           alt="bannerIcon"
         />
         <div>
           <TabBannerTitle>이번 달 우리 지역 인기 쿠폰</TabBannerTitle>
           <TabBannerContent>
-            {sigunguData}에서 가장 많이 사용된 쿠폰은?
+            {sigunguData}에서 가장 많이 다운로드된 쿠폰은?
             <span>{data.first_coupon_title}쿠폰</span>이에요!
           </TabBannerContent>
         </div>

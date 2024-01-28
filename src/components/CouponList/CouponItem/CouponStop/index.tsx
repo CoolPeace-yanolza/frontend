@@ -97,28 +97,29 @@ const CouponStop = ({ couponInfo }: CouponListProps) => {
       <CouponHeaderContainer>
         <CouponHeader>
           <CouponTitle>{couponInfo.title}</CouponTitle>
-          <ToggleWrap
-            $isToggle={isToggle}
-            onClick={handleToggle}
-          >
-            {isToggle ? (
-              <>
-                <ToggleOn>ON</ToggleOn>
-                <ToggleOnImg
-                  src={toggleOnIcon}
-                  alt="토글 On 이미지 "
-                />
-              </>
-            ) : (
-              <>
-                <ToggleOffImg
-                  src={toggleOffIcon}
-                  alt="toggle off icon"
-                />
-                <ToggleOff>OFF</ToggleOff>
-              </>
-            )}
-          </ToggleWrap>
+          {isToggle ? (
+            <ToggleWrap
+              $isToggle={isToggle}
+              onClick={handleToggle}
+            >
+              <ToggleOn>ON</ToggleOn>
+              <ToggleOnImg
+                src={toggleOnIcon}
+                alt="toggleOnIcon"
+              />
+            </ToggleWrap>
+          ) : (
+            <ToggleWrap
+              $isToggle={isToggle}
+              onClick={handleToggle}
+            >
+              <ToggleOffImg
+                src={toggleOffIcon}
+                alt="toggleOffIcon"
+              />
+              <ToggleOff>OFF</ToggleOff>
+            </ToggleWrap>
+          )}
         </CouponHeader>
         <CouponCustomer>
           {concatTitle({
@@ -130,12 +131,12 @@ const CouponStop = ({ couponInfo }: CouponListProps) => {
       </CouponHeaderContainer>
       <CouponMain>
         <CountWrap>
-          <CountText>다운로드</CountText>
-          <CountNumber>{couponInfo.download_count}</CountNumber>
-        </CountWrap>
-        <CountWrap>
           <CountText>사용완료</CountText>
           <CountNumber>{couponInfo.use_count}</CountNumber>
+        </CountWrap>
+        <CountWrap>
+          <CountText>다운로드</CountText>
+          <CountNumber>{couponInfo.download_count}</CountNumber>
         </CountWrap>
         <div>
           <ContentWrap>
@@ -154,7 +155,7 @@ const CouponStop = ({ couponInfo }: CouponListProps) => {
               <span>
                 {couponCondition({
                   day: couponInfo.coupon_use_condition_days,
-                  dayOfWeek: couponInfo.coupon_use_condition_days
+                  dayOfWeek: couponInfo.coupon_use_condition_day_of_week
                 })}
               </span>
             </ContentValue>
@@ -269,7 +270,6 @@ const CouponCustomer = styled.div`
 
 const ToggleWrap = styled.button<ToggleStyleProps>`
   width: 50px;
-  height: 22.93;
 
   border-radius: 22.93px;
   border: 1px solid;
@@ -284,21 +284,19 @@ const ToggleWrap = styled.button<ToggleStyleProps>`
 `;
 
 const ToggleOn = styled.div`
-  margin: 2px 5px 1px 1px;
-
   font-size: 10px;
   font-weight: 700;
   color: ${theme.colors.pink500};
 `;
 
 const ToggleOff = styled.div`
-  margin-top: 2px;
-
   font-size: 10px;
   font-weight: 700;
   color: #404446;
 `;
 const ToggleOnImg = styled.img`
+  margin: 1px 0px 1px 3px;
+
   margin: 1px;
 `;
 
