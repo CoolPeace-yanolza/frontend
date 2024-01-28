@@ -270,6 +270,7 @@ const CouponCustomer = styled.div`
 
 const ToggleWrap = styled.button<ToggleStyleProps>`
   width: 50px;
+  height: 23px;
 
   border-radius: 22.93px;
   border: 1px solid;
@@ -284,6 +285,8 @@ const ToggleWrap = styled.button<ToggleStyleProps>`
 `;
 
 const ToggleOn = styled.div`
+  margin: 0px 4px 0px 2px;
+
   font-size: 10px;
   font-weight: 700;
   color: ${theme.colors.pink500};
