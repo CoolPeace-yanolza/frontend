@@ -1,5 +1,6 @@
 import styled from '@emotion/styled';
 
+import theme from '@styles/theme';
 import { StepTitleProps } from '@/types/register';
 
 const StepTitle = ({ steps, currentStep }: StepTitleProps) => {
@@ -27,6 +28,14 @@ const StepTitleContainer = styled.div`
   font-weight: 600;
   line-height: 31px;
   letter-spacing: -0.78px;
+
+  ${theme.response.tablet} {
+    font-size: 3vw;
+  }
+
+  @media (max-width: 550px) {
+    font-size: 16px;
+  }
 `;
 
 const StepTitleWrapper = styled.div`

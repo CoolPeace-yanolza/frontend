@@ -113,6 +113,11 @@ const PreviousButton = styled.button<PreviousButtonStyleProps>`
   background: #fff;
 
   cursor: pointer;
+
+  ${theme.response.tablet} {
+    width: 123px;
+    height: 39px;
+  }
 `;
 
 const NextButton = styled.button<NextButtonStyleProps>`
@@ -135,4 +140,9 @@ const NextButton = styled.button<NextButtonStyleProps>`
     props.$isFilled ? `${theme.colors.hover}` : '#cdcfd0'};
 
   cursor: ${props => (props.$isFilled ? 'pointer' : 'default')};
+
+  ${theme.response.tablet} {
+    width: 225px;
+    height: 39px;
+  }
 `;
