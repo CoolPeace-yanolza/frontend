@@ -1,9 +1,21 @@
+import { useState, useEffect } from 'react';
 import styled from '@emotion/styled';
-import theme from '@styles/theme';
 import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
 
+import theme from '@styles/theme';
+
 const Loading = () => {
+
+  const [show, setShow] = useState(true);  
+
+  useEffect(() => {
+    let timeout = setTimeout(() => setShow(false), 5000); 
+    return () => clearTimeout(timeout);
+  }, []);
+
+  if (!show) return null;
+
   return (
     <Container>
       <Title />
@@ -22,9 +34,10 @@ const Container = styled.div`
 
   margin-left: 43px;
   margin-right: 43px;
-  margin-top: 110px;
+  margin-top: 100px;
+  margin-bottom: 85px;
   padding: 30px 15px;
-  border-radius: 20px;
+  border-radius: 10px;
 
   display: flex;
   flex-direction: column;

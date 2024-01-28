@@ -31,9 +31,10 @@ const Container = styled.div`
 
   margin-left: 43px;
   margin-right: 43px;
-  margin-top: 110px;
+  margin-top: 100px;
+  margin-bottom: 85px;
   padding: 30px 15px;
-  border-radius: 20px;
+  border-radius: 10px;
 
   display: flex;
   flex-direction: column;
