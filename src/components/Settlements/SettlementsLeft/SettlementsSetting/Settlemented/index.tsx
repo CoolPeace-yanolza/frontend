@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import 'semantic-ui-css/semantic.min.css';
 import { Dropdown, DropdownProps } from 'semantic-ui-react';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useTransition } from 'react';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import XLSX from 'xlsx-js-style';
 
@@ -32,20 +32,30 @@ const Settlemented = () => {
 
   const defaultOption = SORT_OPTION.find(option => option.value === 'couponDateDesc');
 
+  const [, startTransition] = useTransition();
+
   const handleSortChange = (_e: React.SyntheticEvent<HTMLElement>, data: DropdownProps) => {
     setSortOrder(data.value as string);
     switch (data.value) {
       case 'amountDesc':
-        setOrderBy('SUM_PRICE');
+        startTransition(() => {
+          setOrderBy('SUM_PRICE');
+        });
         break;
       case 'dateDesc':
-        setOrderBy('COMPLETE_AT');
+        startTransition(() => {
+          setOrderBy('COMPLETE_AT');
+        });
         break;
       case 'couponDateDesc':
-        setOrderBy('COUPON_USE_DATE');
+        startTransition(() => {
+          setOrderBy('COUPON_USE_DATE');
+        });
         break;
       case 'usageCountDesc':
-        setOrderBy('COUPON_COUNT');
+        startTransition(() => {
+          setOrderBy('COUPON_COUNT');
+        });
         break;
       default:
         break;
@@ -80,14 +90,19 @@ const Settlemented = () => {
         ...data,
         NO: (currentPage - 1) * itemsPerPage + index + 1,
       }));
+      startTransition(() => {      
       setCurrentData(newSettlementData);
       setTotalItems(settlements.total_settlement_count);
       setTotalPages(settlements.total_page_count);
+      });
+
     }
   }, [settlements]);
 
   const handlePageChange = (page: number) => {
-    setCurrentPage(page);
+    startTransition(() => {      
+      setCurrentPage(page);
+      });
   };
 
   const [totalItems, setTotalItems] = useState<number>(0);

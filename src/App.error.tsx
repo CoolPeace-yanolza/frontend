@@ -1,11 +1,26 @@
 import { FallbackProps } from 'react-error-boundary';
 import styled from '@emotion/styled';
+import { useQueryClient } from '@tanstack/react-query';
+import { useNavigate } from 'react-router-dom';
 
 import theme from '@styles/theme';
+import { postLogout } from './api';
+import { deleteAllCookies } from './utils';
 import errorIcon from '@assets/icons/ic-error.svg';
 import reloadIcon from '@assets/icons/ic-reload.svg';
+import reLogin from '@assets/icons/ic-error-login.svg';
 
-const ErrorFallback = ({ resetErrorBoundary }: FallbackProps) => {
+const ErrorFallback = ({ error, resetErrorBoundary }: FallbackProps) => {
+  const queryClient = useQueryClient();
+  const navigate = useNavigate();
+
+  const handleLogout = async () => {
+    await postLogout();
+    deleteAllCookies();
+    queryClient.removeQueries({ queryKey: ['Accommodation'] });
+    navigate('/login'), { replace: true };
+  };
+
   return (
     <Container>
       <ErrorIcon
@@ -18,8 +33,16 @@ const ErrorFallback = ({ resetErrorBoundary }: FallbackProps) => {
           src={reloadIcon}
           alt="에러 발생"
         />
-        다시 시도 하기
+        {error.respo.daata.code}
+        다시 시도
       </ReLoadButton>
+      <ReLoginButton onClick={handleLogout}>
+        <ReloginIcon
+          src={reLogin}
+          alt="재로그인"
+        />
+        다시 로그인
+      </ReLoginButton>
     </Container>
   );
 };
@@ -95,3 +118,7 @@ const ReloadIcon = styled.img`
     height: 20px;
   }
 `;
+
+const ReLoginButton = styled(ReLoadButton)``;
+
+const ReloginIcon = styled(ReloadIcon)``;
