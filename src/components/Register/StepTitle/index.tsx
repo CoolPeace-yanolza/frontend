@@ -32,6 +32,8 @@ const StepTitleContainer = styled.div`
   ${theme.response.tablet} {
     height: 7vw;
 
+    margin-top: 10px;
+
     font-size: 3vw;
   }
 
