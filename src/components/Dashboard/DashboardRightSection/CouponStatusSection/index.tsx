@@ -48,6 +48,8 @@ const Container = styled.div`
   flex-direction: column;
   align-items: center;
 
+  color: #404446;
+
   background-color: white;
 
   ${theme.response.tablet} {
