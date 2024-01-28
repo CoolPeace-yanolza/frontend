@@ -1,7 +1,7 @@
 import { keyframes } from '@emotion/react';
 import styled from '@emotion/styled';
 
-import rocket from '@assets/icons/ic-catchphrase-rocket.svg';
+import rocket from '/images/ic-catchphrase-rocket.png';
 import theme from '@styles/theme';
 
 const Catchphrase = () => {
