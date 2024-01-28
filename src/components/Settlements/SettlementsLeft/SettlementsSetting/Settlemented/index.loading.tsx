@@ -4,13 +4,14 @@ import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
 
 import theme from '@styles/theme';
+import settlementsFrame from '@assets/icons/settlements-data-frame.svg'; 
 
 const Loading = () => {
 
   const [show, setShow] = useState(true);  
 
   useEffect(() => {
-    let timeout = setTimeout(() => setShow(false), 5000); 
+    let timeout = setTimeout(() => setShow(false), 30000); 
     return () => clearTimeout(timeout);
   }, []);
 
@@ -18,11 +19,9 @@ const Loading = () => {
 
   return (
     <Container>
-      <Title />
-      <ContentsWrapper>
-        <ContentsTop count={2} />
-        <ContentsBottom count={2} />
-      </ContentsWrapper>
+      <Header>
+      </Header>
+      <Frame></Frame>
     </Container>
   );
 };
@@ -30,19 +29,22 @@ const Loading = () => {
 export default Loading;
 
 const Container = styled.div`
-  height: 554px;
+  height: 558px;
 
   margin-left: 43px;
   margin-right: 43px;
-  margin-top: 100px;
-  margin-bottom: 85px;
-  padding: 30px 15px;
+  margin-top: 95px;
+  margin-bottom: 90px;
   border-radius: 10px;
 
   display: flex;
   flex-direction: column;
 
-  background-color: white;
+  background: none;
+
+  .react-loading-skeleton {
+    --base-color: rgba(17, 31, 63, 1);
+  }
 
   ${theme.response.tablet} {
     max-height: 250px;
@@ -57,72 +59,29 @@ const Container = styled.div`
   }
 `;
 
-const BaseSkeleton = styled(Skeleton)`
-  width: 100%;
-
-  border-radius: 16px;
-
-  background-color: #f2f4f5;
-`;
-
-const Title = styled(BaseSkeleton)`
-  width: 60%;
-
-  margin: 10px 0 20px 0;
-  padding: 5px 0;
+const Header = styled(Skeleton)`
+  height: 54px;
 
   border-radius: 12px;
 
-  ${theme.response.tablet} {
-    width: 30%;
-
-    margin-bottom: 15px;
-    border-radius: 7px;
-    padding-bottom: 5px;
-  }
+  background-color: rgba(255, 255, 255, 0.05);
+  
+  box-shadow: inset 0px 0px 5px rgba(205, 207, 208, 0.5), 0px 0px 5px rgba(0, 0, 0, 0.5);
 `;
 
-const ContentsWrapper = styled.div`
-  width: 100%;
 
-  border-radius: 16px;
+const Frame = styled(Skeleton)`
+width: 100%;
+height: 500px;
 
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
+margin-left: auto;
+margin-right: auto;
 
-  ${theme.response.tablet} {
-    border-radius: 10px;
+position: relative; 
 
-    gap: 5px;
-  }
-`;
+background: url(${settlementsFrame});
 
-const ContentsTop = styled(BaseSkeleton)`
-  height: 100px;
-
-  padding: 10px;
-
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-
-  ${theme.response.tablet} {
-    width: 100%;
-    height: 50px;
-  }
-`;
-
-const ContentsBottom = styled(BaseSkeleton)`
-  height: 100px;
-
-  padding: 10px;
-
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-
-  ${theme.response.tablet} {
-    display: none;
+  .react-loading-skeleton {
+    --base-color: #ebebeb;
   }
 `;

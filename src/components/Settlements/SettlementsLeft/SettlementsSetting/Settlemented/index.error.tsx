@@ -27,12 +27,12 @@ const ErrorFallback = ({ resetErrorBoundary }: FallbackProps) => {
 export default ErrorFallback;
 
 const Container = styled.div`
-  height: 554px;
+  height: 558px;
 
   margin-left: 43px;
   margin-right: 43px;
-  margin-top: 100px;
-  margin-bottom: 85px;
+  margin-top: 90px;
+  margin-bottom: 90px;
   padding: 30px 15px;
   border-radius: 10px;
 
