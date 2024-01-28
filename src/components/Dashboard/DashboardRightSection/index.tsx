@@ -3,8 +3,8 @@ import { useQueryErrorResetBoundary } from '@tanstack/react-query';
 import { ErrorBoundary } from 'react-error-boundary';
 import styled from '@emotion/styled';
 
-const CouponStatusSection = React.lazy(() => import('./CouponStatusSection'));
 const DailyReportSection = React.lazy(() => import('./DailyReportSection'));
+import CouponStatusSection from './CouponStatusSection';
 import StatusErrorFallback from './CouponStatusSection/index.error';
 import StatusSectionLoading from './CouponStatusSection/index.loading';
 import DailyReportErrorFallback from './DailyReportSection/index.error';
