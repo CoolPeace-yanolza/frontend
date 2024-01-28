@@ -62,7 +62,7 @@ const Modal = styled.div<UserModalStyleProps>`
   display: flex;
 
   background-color: #e3e5e5;
-  transition: all 0.5s;
+  transition: all 0.3s;
 
   ${theme.response.tablet} {
     right: ${props => (props.$isOpen ? '35px' : '-400px')};
@@ -82,7 +82,6 @@ const UserInformation = styled.div`
 `;
 
 const Name = styled.span`
-  transition: all 0.5s;
   font-size: 16px;
   font-weight: 700;
 `;
@@ -92,7 +91,6 @@ const Email = styled.span`
 
   border-bottom: 1px solid gray;
 
-  transition: all 0.5s;
   font-size: 15px;
 `;
 
@@ -111,6 +109,6 @@ const Logout = styled.button`
   white-space: nowrap;
   text-decoration: none;
   transition: all 0.5s;
-
+  text-decoration: none;
   cursor: pointer;
 `;
