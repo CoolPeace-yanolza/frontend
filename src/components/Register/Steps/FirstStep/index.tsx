@@ -1,7 +1,7 @@
 import { useRecoilState } from 'recoil';
-
 import styled from '@emotion/styled';
 
+import theme from '@styles/theme';
 import {
   InputContainer,
   InputButton,
@@ -225,10 +225,30 @@ const Input = styled.input`
   outline: none;
 
   &::placeholder {
-    color: #979C9e;
+    color: #979c9e;
     font-weight: 500;
   }
-}
+
+  ${theme.response.tablet} {
+    width: 44vw;
+    height: 4.5vw;
+    min-width: 220px;
+    min-height: 24px;
+
+    font-size: 1.7vw;
+
+    &::placeholder {
+      font-size: 1.7vw;
+    }
+  }
+
+  @media (max-width: 550px) {
+    font-size: 9px;
+
+    &::placeholder {
+      font-size: 9px;
+    }
+  }
 `;
 
 const ButtonWrapper = styled.div`
@@ -236,6 +256,14 @@ const ButtonWrapper = styled.div`
 
   display: flex;
   gap: 23px;
+
+  ${theme.response.tablet} {
+    gap: 3vw;
+  }
+
+  @media (max-width: 550px) {
+    gap: 16px;
+  }
 `;
 
 const ContentWrapper = styled.div`
