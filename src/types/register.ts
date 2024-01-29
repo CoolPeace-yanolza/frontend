@@ -38,7 +38,6 @@ export type InputAccordionProps = {
 
 export type ButtonStyleProps = {
   $isOpen: boolean;
-  src: string;
 };
 
 // InputField
@@ -63,10 +62,6 @@ export type InputCheckBoxProps = {
 
 export type LabelStyleProps = {
   $isChecked: boolean;
-};
-
-export type CheckIconStyleProps = {
-  $src: string;
 };
 
 // InputRadio
@@ -157,10 +152,6 @@ export type RoomType = {
 // RoomSelectModal
 export type RoomSelectModalProps = {
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
-};
-
-export type RoomSelectModalStyleProps = {
-  $src: string;
 };
 
 // RoomSelectButton

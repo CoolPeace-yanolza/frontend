@@ -193,11 +193,10 @@ const FirstStep = () => {
             />
           </InputWrapper>
         </LimitWrapper>
-        {!isValid.isDiscountTypeValid && (
+        {(!isValid.isDiscountTypeValid ||
+          !isValid.isDiscountFlatValid ||
+          !isValid.isDiscountFlatRateValid) && (
           <ErrorMessage>쿠폰 할인 설정은 필수입니다.</ErrorMessage>
-        )}
-        {(!isValid.isDiscountFlatValid || !isValid.isDiscountFlatRateValid) && (
-          <ErrorMessage>숫자로 입력해주세요.</ErrorMessage>
         )}
         {!isValid.isThousands && (
           <ErrorMessage>1,000 원 단위로 입력 가능합니다.</ErrorMessage>
