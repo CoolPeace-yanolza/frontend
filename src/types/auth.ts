@@ -23,6 +23,7 @@ export type MoveToSignUpButton = (
 ) => void;
 
 export type AuthButton = {
+  buttonType: 'button' | 'submit' | 'reset' | undefined;
   size: string;
   variant: string;
   text: string;

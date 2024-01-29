@@ -1,17 +1,31 @@
 import styled from '@emotion/styled';
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
-import settlementsAdminIcon from '@assets/icons/settlements-admin.svg';
+import settlementsAdminIcon from '/images/ic-sidebar-settlement.png';
 import informationIcon from '@assets/icons/information-circle-outline.svg';
 import SettlementsPopup from './SettlementsPopup';
 import theme from '@styles/theme';
 
 const SettlementsHeader = () => {
-  const [isPopupOpen, setIsPopupOpen] = useState(false)
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
 
   const handlePopupToggle = () => {
     setIsPopupOpen(!isPopupOpen);
   };
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (isPopupOpen && ref.current && !ref.current.contains(event.target as Node)) {
+        setIsPopupOpen(false);
+      }
+    }
+
+    document.addEventListener('click', handleClickOutside);
+    return () => {
+      document.removeEventListener('click', handleClickOutside);
+    };
+  }, [isPopupOpen]);
 
   return (
     <Container>
@@ -27,7 +41,7 @@ const SettlementsHeader = () => {
         <MiddleText>
             쿠폰 프로모션에 적용한 정산 내역을 확인할 수 있습니다.
         </MiddleText>
-        <InformationContainer>
+        <InformationContainer ref={ref}>
         <InformationIcon
          src={informationIcon}
          alt="정보"
@@ -60,7 +74,7 @@ const Header = styled.nav`
 
 const SettlementsAdminIcon = styled.img`
   width: 44px;
-  height: 34.57px;
+  height: 44px;
 
   margin-right: 10px;
 `;

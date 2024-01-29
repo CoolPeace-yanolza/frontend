@@ -29,7 +29,6 @@ const SettlementsSetting = () => {
   const [startDate, setStartDate] = useState<Date | null>(new Date(getCurrentYearStartDate()));
   const [endDate, setEndDate] = useState<Date | null>(new Date(getCurrentYearEndDate()));
 
-  
   const [isModalOpen, setIsModalOpen] = useState(false);
   const handleModalClose = () => setIsModalOpen(false);
   const handleModalOpen = () => setIsModalOpen(true);

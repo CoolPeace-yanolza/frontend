@@ -71,10 +71,8 @@ const onErrorResponse = async (error: AxiosResponseError<string>) => {
       }
     }
     console.log(error.response.data.code, error.response);
-    return Promise.reject(error);
   }
   console.log('response error : ', error);
-  return Promise.reject(error);
 };
 
 // 요청 인터셉터 추가

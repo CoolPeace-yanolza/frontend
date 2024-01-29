@@ -3,6 +3,7 @@ import styled from '@emotion/styled';
 import { AuthButton, AuthButtonStyleProps } from '@/types/auth';
 
 const AuthButton = ({
+  buttonType,
   size,
   variant,
   text,
@@ -11,6 +12,7 @@ const AuthButton = ({
 }: AuthButton) => {
   return (
     <SubmitButton
+      type={buttonType}
       $size={size}
       $variant={variant}
       onClick={buttonFunc}

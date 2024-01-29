@@ -12,13 +12,16 @@ const ErrorFallback = ({ resetErrorBoundary }: FallbackProps) => {
         src={errorIcon}
         alt="에러 발생"
       />
-      <ErrorMessage>이번 달 똑똑 현황을 불러올 수 없습니다.</ErrorMessage>
+      <ErrorMessage>
+        이번 달 똑똑 현황을
+        <br /> 불러올 수 없습니다.
+      </ErrorMessage>
       <ReloadButton onClick={resetErrorBoundary}>
         <ReloadIcon
           src={reloadIcon}
-          alt="에러 발생"
+          alt="재시도"
         />
-        다시 시도 하기
+        다시 시도
       </ReloadButton>
     </Container>
   );
@@ -40,14 +43,20 @@ const Container = styled.div`
   align-items: center;
   gap: 30px;
 
+  color: #404446;
+
   background-color: white;
 
   ${theme.response.tablet} {
     width: 100%;
-    height: auto;
-    min-height: auto;
+    min-height: 100px;
 
-    flex-direction: row;
+    margin: 10px;
+
+    align-self: center;
+    gap: 10px;
+
+    background-color: #fafafb;
   }
 `;
 
@@ -55,9 +64,11 @@ const ErrorMessage = styled.span`
   text-align: center;
   font-size: 18px;
   font-weight: 700;
+  line-height: 1.4;
 
   ${theme.response.tablet} {
-    font-size: 13px;
+    width: 100%;
+    font-size: 12px;
   }
 `;
 
@@ -104,7 +115,7 @@ const ErrorIcon = styled.img`
   height: 60px;
 
   ${theme.response.tablet} {
-    width: 40px;
-    height: 40px;
+    width: 30px;
+    height: 30px;
   }
 `;

@@ -28,6 +28,7 @@ const SignUpComplete = () => {
           <p>지금 바로 사장님만의 혜택을 받아보세요!</p>
         </Description>
         <AuthButton
+          buttonType="button"
           size="large"
           variant="navy"
           text="로그인 페이지로 이동"
