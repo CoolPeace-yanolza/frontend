@@ -57,20 +57,3 @@ export const showFourthStepValidationMessage = (
     setIsValid(prev => ({ ...prev, endDateAfterStartDate: false }));
   }
 };
-
-// export const handleStepLessThan3 = (
-//   currentStep,
-//   input,
-//   isFilled,
-//   onButtonClick
-// ) => {
-//   if (
-//     currentStep === 0 &&
-//     input.discountType === '정액 할인' &&
-//     Number(input.discountFlat) % 1000
-//   ) {
-//     return;
-//   } else if (currentStep === 2 || isFilled) {
-//     onButtonClick(prev => prev + 1);
-//   }
-// };

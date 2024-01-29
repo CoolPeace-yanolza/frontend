@@ -2,12 +2,9 @@ import { useState, useRef } from 'react';
 import { useRecoilState } from 'recoil';
 import styled from '@emotion/styled';
 
+import theme from '@styles/theme';
 import { Backdrop } from '@components/common';
-import {
-  RoomType,
-  RoomSelectModalProps,
-  RoomSelectModalStyleProps
-} from '@/types/register';
+import { RoomType, RoomSelectModalProps } from '@/types/register';
 import close from '@assets/icons/ic-register-close.svg';
 import sort from '@assets/icons/ic-register-sort.svg';
 import filterChecked from '@assets/icons/ic-register-filter-checked.svg';
@@ -96,10 +93,12 @@ const RoomSelectModal = ({ setIsOpen }: RoomSelectModalProps) => {
       <Container>
         <Header>
           적용 객실 설정
-          <CloseButton
-            $src={close}
-            onClick={handleClose}
-          />
+          <CloseButton onClick={handleClose}>
+            <CloseIcon
+              src={close}
+              alt="닫기 아이콘"
+            />
+          </CloseButton>
         </Header>
         <Filter>
           <FilterCell>
@@ -109,10 +108,16 @@ const RoomSelectModal = ({ setIsOpen }: RoomSelectModalProps) => {
                 checked={
                   selectedRooms.length === sortedRooms.length ? true : false
                 }
-                $src={filterChecked}
                 onChange={handleSelectAll}
               />
-              <FilterCheckIcon $src={filterUnchecked} />
+              <FilterCheckIcon
+                src={
+                  selectedRooms.length === sortedRooms.length
+                    ? filterChecked
+                    : filterUnchecked
+                }
+                alt="체크박스 아이콘"
+              />
             </label>
           </FilterCell>
           <FilterCell>
@@ -137,10 +142,16 @@ const RoomSelectModal = ({ setIsOpen }: RoomSelectModalProps) => {
                     <SelectOne
                       type="checkbox"
                       checked={selectedRooms.includes(room) ? true : false}
-                      $src={listChecked}
                       onChange={e => handleSelectOne(e, room)}
                     />
-                    <ListCheckIcon $src={listUnchecked} />
+                    <ListCheckIcon
+                      src={
+                        selectedRooms.includes(room)
+                          ? listChecked
+                          : listUnchecked
+                      }
+                      alt="체크박스 아이콘"
+                    />
                   </label>
                 </ListCell>
                 <ListCell>{sliceName(room.roomNumber)}</ListCell>
@@ -176,6 +187,11 @@ const Container = styled.div`
   box-shadow:
     0px 17px 22px 0px rgba(0, 0, 0, 0.05),
     -0.73px 0.73px 0.73px -1.46px rgba(255, 255, 255, 0.35) inset;
+
+  ${theme.response.tablet} {
+    width: 270px;
+    height: 535px;
+  }
 `;
 
 const Header = styled.div`
@@ -188,18 +204,39 @@ const Header = styled.div`
   align-items: center;
 
   font-size: 18px;
+  font-weight: 600;
+
+  ${theme.response.tablet} {
+    height: 55px;
+
+    font-size: 13px;
+  }
 `;
 
-const CloseButton = styled.button<RoomSelectModalStyleProps>`
+const CloseButton = styled.button`
   width: 35px;
   height: 35px;
 
   padding: 0px;
   border: none;
 
-  background: url(${props => props.$src}) center / contain;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+
+  background: #fff;
 
   cursor: pointer;
+`;
+
+const CloseIcon = styled.img`
+  width: 35px;
+  height: 35px;
+
+  ${theme.response.tablet} {
+    width: 26px;
+    height: 26px;
+  }
 `;
 
 const Filter = styled.div`
@@ -213,6 +250,10 @@ const Filter = styled.div`
 
   display: grid;
   grid-template-columns: 1fr 2fr 2fr;
+
+  ${theme.response.tablet} {
+    height: 50px;
+  }
 `;
 
 const FilterCell = styled.div`
@@ -224,19 +265,18 @@ const FilterCell = styled.div`
   align-items: center;
 `;
 
-const SelectAll = styled.input<RoomSelectModalStyleProps>`
+const SelectAll = styled.input`
   display: none;
-
-  &:checked + div {
-    background: url(${props => props.$src}) no-repeat;
-  }
 `;
 
-const FilterCheckIcon = styled.div<RoomSelectModalStyleProps>`
+const FilterCheckIcon = styled.img`
   width: 21px;
   height: 21px;
 
-  background: url(${props => props.$src}) no-repeat;
+  ${theme.response.tablet} {
+    width: 17px;
+    height: 17px;
+  }
 `;
 
 const SortButton = styled.button`
@@ -250,6 +290,10 @@ const SortButton = styled.button`
   font-size: 15px;
 
   background: transparent;
+
+  ${theme.response.tablet} {
+    font-size: 12px;
+  }
 `;
 
 const SortIcon = styled.img`
@@ -257,6 +301,11 @@ const SortIcon = styled.img`
   height: 20px;
 
   margin-left: 10px;
+
+  ${theme.response.tablet} {
+    width: 15px;
+    height: 15px;
+  }
 `;
 
 const ContentWrapper = styled.div`
@@ -272,12 +321,22 @@ const ContentWrapper = styled.div`
     -0.73px 0.73px 0.73px -1.46px rgba(255, 255, 255, 0.35) inset;
 
   overflow: auto;
+
+  ${theme.response.tablet} {
+    height: 355px;
+
+    padding: 5px 0px;
+  }
 `;
 
 const List = styled.div`
   display: grid;
   grid-template-columns: 1fr 2fr 2fr;
   grid-template-rows: 46px;
+
+  ${theme.response.tablet} {
+    grid-template-rows: 38px;
+  }
 `;
 
 const ListCell = styled.div`
@@ -287,21 +346,24 @@ const ListCell = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-`;
 
-const SelectOne = styled.input<RoomSelectModalStyleProps>`
-  display: none;
-
-  &:checked + div {
-    background: url(${props => props.$src}) no-repeat;
+  ${theme.response.tablet} {
+    font-size: 12px;
   }
 `;
 
-const ListCheckIcon = styled.div<RoomSelectModalStyleProps>`
+const SelectOne = styled.input`
+  display: none;
+`;
+
+const ListCheckIcon = styled.img`
   width: 21px;
   height: 21px;
 
-  background: url(${props => props.$src}) no-repeat;
+  ${theme.response.tablet} {
+    width: 17px;
+    height: 17px;
+  }
 `;
 
 const Footer = styled.div`
@@ -310,15 +372,22 @@ const Footer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+
+  ${theme.response.tablet} {
+    height: 75px;
+  }
 `;
 
 const Button = styled.button`
   width: 170px;
   height: 44px;
 
-  padding: 13px 16px;
   border: none;
   border-radius: 8px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
   color: #fff;
   font-size: 18px;
@@ -330,5 +399,12 @@ const Button = styled.button`
 
   &:disabled {
     background: #cdcfd0;
+  }
+
+  ${theme.response.tablet} {
+    width: 135px;
+    height: 34px;
+
+    font-size: 13px;
   }
 `;

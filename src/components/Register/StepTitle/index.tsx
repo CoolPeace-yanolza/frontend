@@ -1,5 +1,6 @@
 import styled from '@emotion/styled';
 
+import theme from '@styles/theme';
 import { StepTitleProps } from '@/types/register';
 
 const StepTitle = ({ steps, currentStep }: StepTitleProps) => {
@@ -27,6 +28,20 @@ const StepTitleContainer = styled.div`
   font-weight: 600;
   line-height: 31px;
   letter-spacing: -0.78px;
+
+  ${theme.response.tablet} {
+    height: 7vw;
+
+    margin-top: 10px;
+
+    font-size: 3vw;
+  }
+
+  @media (max-width: 550px) {
+    height: 40px;
+
+    font-size: 16px;
+  }
 `;
 
 const StepTitleWrapper = styled.div`
@@ -41,4 +56,8 @@ const Description = styled.span`
   font-size: 13px;
   letter-spacing: 0.1px;
   line-height: 150%;
+
+  ${theme.response.tablet} {
+    display: none;
+  }
 `;

@@ -1,7 +1,7 @@
 import { useRecoilState } from 'recoil';
-
 import styled from '@emotion/styled';
 
+import theme from '@styles/theme';
 import {
   InputContainer,
   InputButton,
@@ -193,11 +193,10 @@ const FirstStep = () => {
             />
           </InputWrapper>
         </LimitWrapper>
-        {!isValid.isDiscountTypeValid && (
+        {(!isValid.isDiscountTypeValid ||
+          !isValid.isDiscountFlatValid ||
+          !isValid.isDiscountFlatRateValid) && (
           <ErrorMessage>쿠폰 할인 설정은 필수입니다.</ErrorMessage>
-        )}
-        {(!isValid.isDiscountFlatValid || !isValid.isDiscountFlatRateValid) && (
-          <ErrorMessage>숫자로 입력해주세요.</ErrorMessage>
         )}
         {!isValid.isThousands && (
           <ErrorMessage>1,000 원 단위로 입력 가능합니다.</ErrorMessage>
@@ -226,10 +225,30 @@ const Input = styled.input`
   outline: none;
 
   &::placeholder {
-    color: #979C9e;
+    color: #979c9e;
     font-weight: 500;
   }
-}
+
+  ${theme.response.tablet} {
+    width: 44vw;
+    height: 4.5vw;
+    min-width: 220px;
+    min-height: 24px;
+
+    font-size: 1.7vw;
+
+    &::placeholder {
+      font-size: 1.7vw;
+    }
+  }
+
+  @media (max-width: 550px) {
+    font-size: 9px;
+
+    &::placeholder {
+      font-size: 9px;
+    }
+  }
 `;
 
 const ButtonWrapper = styled.div`
@@ -237,6 +256,14 @@ const ButtonWrapper = styled.div`
 
   display: flex;
   gap: 23px;
+
+  ${theme.response.tablet} {
+    gap: 3vw;
+  }
+
+  @media (max-width: 550px) {
+    gap: 16px;
+  }
 `;
 
 const ContentWrapper = styled.div`

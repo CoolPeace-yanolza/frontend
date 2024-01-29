@@ -3,6 +3,11 @@
 <img width="527" alt="image" src="https://github.com/CoolPeace-yanolza/frontend/assets/101972330/f3b7442d-e849-40eb-a5bf-b1b115534a46">
 <img width="569" alt="image" src="https://github.com/CoolPeace-yanolza/frontend/assets/101972330/509c47e9-1b2d-42de-8fce-179ba70e3ae5">
 
+[사장님 비서Ya 바로가기](https://sajangnim-ya.vercel.app/)
+
+- testID : pmtest1@gamil.com
+- testPW : test1234!
+
 ## Contributor
 
 - @로그인/회원가입 ([김다빈](https://github.com/dabin-Hailey) : Leader)

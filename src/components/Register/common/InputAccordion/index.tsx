@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import styled from '@emotion/styled';
 
+import theme from '@styles/theme';
 import { InputAccordionProps, ButtonStyleProps } from '@/types/register';
 import toggle from '@assets/icons/ic-register-toggle.svg';
 
@@ -34,9 +35,13 @@ const InputAccordion = ({ title, value, children }: InputAccordionProps) => {
         <Description>{title}</Description>
         <Button
           $isOpen={isOpen}
-          src={toggle}
           onClick={handleToggle}
-        />
+        >
+          <img
+            src={toggle}
+            alt="아코디언 토글 아이콘"
+          />
+        </Button>
       </Header>
       <ContentWrapper ref={contentWrapperRef}>
         <Content ref={contentRef}>{children}</Content>
@@ -57,6 +62,11 @@ const Container = styled.div`
 
   display: flex;
   flex-direction: column;
+
+  ${theme.response.tablet} {
+    margin-bottom: 20px;
+    padding: 17px;
+  }
 `;
 
 const Header = styled.div`
@@ -68,6 +78,14 @@ const Header = styled.div`
 const Description = styled.div`
   color: #979c9e;
   font-size: 15px;
+
+  ${theme.response.tablet} {
+    font-size: 2vw;
+  }
+
+  @media (max-width: 550px) {
+    font-size: 11px;
+  }
 `;
 
 const Button = styled.button<ButtonStyleProps>`
@@ -77,7 +95,7 @@ const Button = styled.button<ButtonStyleProps>`
   padding: 0px;
   border: none;
 
-  background: url(${props => props.src});
+  background: #fff;
 
   transform: rotate(
     ${props => {
@@ -99,4 +117,8 @@ const ContentWrapper = styled.div`
 
 const Content = styled.div`
   padding-top: 20px;
+
+  ${theme.response.tablet} {
+    padding-top: 2vw;
+  }
 `;

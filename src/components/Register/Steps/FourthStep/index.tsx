@@ -52,6 +52,10 @@ const ContentContainer = styled.div`
 
 const Description = styled.div`
   font-size: 14px;
+
+  ${theme.response.tablet} {
+    display: none;
+  }
 `;
 
 const CalendarWrapper = styled.button<CalendarWrapperStyleProps>`
@@ -77,4 +81,13 @@ const CalendarWrapper = styled.button<CalendarWrapperStyleProps>`
   font-size: 15px;
 
   cursor: pointer;
+
+  ${theme.response.tablet} {
+    width: 36vw;
+    height: 5vw;
+    min-width: 220px;
+    min-height: 32px;
+
+    border-radius: 11px;
+  }
 `;

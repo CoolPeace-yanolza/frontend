@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { useRecoilState } from 'recoil';
 import styled from '@emotion/styled';
 
+import theme from '@styles/theme';
 import {
   InputContainer,
   InputButton,
@@ -97,7 +98,10 @@ const SecondStep = () => {
 
   const handleToAllRoomsChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInput({ ...input, toAllRooms: e.target.value });
-    setPreview({ ...preview, toAllRooms: e.target.value });
+    setPreview({
+      ...preview,
+      toAllRooms: e.target.value === 'true' ? '모든 객실' : '일부 객실'
+    });
     setIsValid(prev => ({
       ...prev,
       isToAllRoomsValid: true
@@ -195,4 +199,36 @@ const ButtonWrapper = styled.div`
 
 const ContentWrapper = styled.div`
   padding-left: 134px;
+
+  ${theme.response.tablet} {
+    padding-left: 15.7vw;
+  }
+
+  @media (max-width: 850px) {
+    padding-left: 15.8vw;
+  }
+
+  @media (max-width: 800px) {
+    padding-left: 16vw;
+  }
+
+  @media (max-width: 750px) {
+    padding-left: 16.2vw;
+  }
+
+  @media (max-width: 700px) {
+    padding-left: 16.5vw;
+  }
+
+  @media (max-width: 650px) {
+    padding-left: 16.7vw;
+  }
+
+  @media (max-width: 600px) {
+    padding-left: 17vw;
+  }
+
+  @media (max-width: 550px) {
+    padding-left: 93px;
+  }
 `;

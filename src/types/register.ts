@@ -38,7 +38,6 @@ export type InputAccordionProps = {
 
 export type ButtonStyleProps = {
   $isOpen: boolean;
-  src: string;
 };
 
 // InputField
@@ -65,10 +64,6 @@ export type LabelStyleProps = {
   $isChecked: boolean;
 };
 
-export type CheckIconStyleProps = {
-  $src: string;
-};
-
 // InputRadio
 export type InputRadioProps = {
   id: string;
@@ -78,10 +73,6 @@ export type InputRadioProps = {
   text: string;
   children?: ReactNode;
   onButtonChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
-};
-
-export type InputRadioStyleProps = {
-  $src: string;
 };
 
 // InputWrapper
@@ -157,10 +148,6 @@ export type RoomType = {
 // RoomSelectModal
 export type RoomSelectModalProps = {
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
-};
-
-export type RoomSelectModalStyleProps = {
-  $src: string;
 };
 
 // RoomSelectButton

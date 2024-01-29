@@ -1,5 +1,6 @@
 import styled from '@emotion/styled';
 
+import theme from '@styles/theme';
 import { RoomListProps } from '@/types/register';
 import { sliceName } from '@utils/index';
 
@@ -32,10 +33,27 @@ const Container = styled.div`
   flex-direction: column;
   gap: 10px;
 
-  overflow: auto;
-`;
-
-const Room = styled.div`
   font-size: 10px;
   font-weight: 400;
+
+  overflow: auto;
+
+  ${theme.response.tablet} {
+    width: 13vw;
+    max-height: 80px;
+
+    padding: 1.2vw;
+
+    font-size: 1.4vw;
+
+    overflow-y: hidden;
+  }
+
+  @media (max-width: 550px) {
+    width: 70px;
+
+    font-size: 8px;
+  }
 `;
+
+const Room = styled.div``;

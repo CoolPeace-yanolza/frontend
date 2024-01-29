@@ -79,6 +79,10 @@ const PreviewContainer = styled.div`
   border-radius: 20px;
 
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+
+  ${theme.response.tablet} {
+    display: none;
+  }
 `;
 
 const Header = styled.div`
@@ -133,7 +137,7 @@ const Coupon = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  
+
   box-shadow: 0px 3px 3px 0px rgba(0, 0, 0, 0.25);
 
   overflow: hidden;
