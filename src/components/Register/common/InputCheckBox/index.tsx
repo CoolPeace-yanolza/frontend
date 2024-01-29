@@ -56,6 +56,14 @@ const Label = styled.label<LabelStyleProps>`
 
   color: ${props => (props.$isChecked ? theme.colors.hover : '#757676')};
   font-size: 15px;
+
+  ${theme.response.tablet} {
+    font-size: 1.7vw;
+  }
+
+  @media (max-width: 550px) {
+    font-size: 9px;
+  }
 `;
 
 const CheckIcon = styled.img`
@@ -63,4 +71,14 @@ const CheckIcon = styled.img`
   height: 20px;
 
   margin-right: 5px;
+
+  ${theme.response.tablet} {
+    width: 2vw;
+    height: 2vw;
+  }
+
+  @media (max-width: 550px) {
+    width: 11px;
+    height: 11px;
+  }
 `;

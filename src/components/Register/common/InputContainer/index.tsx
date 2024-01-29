@@ -23,10 +23,25 @@ const Container = styled.div`
   border-radius: 16px;
 
   display: inline-block;
+
+  ${theme.response.tablet} {
+    width: 100%;
+
+    margin-bottom: 20px;
+    padding: 17px;
+  }
 `;
 
 const Description = styled.div`
   color: ${theme.colors.hover};
   font-size: 17px;
   font-weight: 600;
+
+  ${theme.response.tablet} {
+    font-size: 2vw;
+  }
+
+  @media (max-width: 550px) {
+    font-size: 11px;
+  }
 `;

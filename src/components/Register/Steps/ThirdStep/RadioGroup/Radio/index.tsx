@@ -62,4 +62,18 @@ const Label = styled.label`
   font-weight: 400;
 
   cursor: pointer;
+
+  ${theme.response.tablet} {
+    width: 4vw;
+    height: 4vw;
+
+    font-size: 1.7vw;
+  }
+
+  @media (max-width: 550px) {
+    width: 22px;
+    height: 22px;
+
+    font-size: 9px;
+  }
 `;

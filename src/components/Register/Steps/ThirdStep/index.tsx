@@ -96,6 +96,14 @@ const ContentWrapper = styled.div`
 const Text = styled.span`
   color: ${theme.colors.hover};
   font-size: 15px;
+
+  ${theme.response.tablet} {
+    font-size: 1.7vw;
+  }
+
+  @media (max-width: 550px) {
+    font-size: 9px;
+  }
 `;
 
 const RadioWrapper = styled.div`
@@ -104,4 +112,12 @@ const RadioWrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: 17px;
+
+  ${theme.response.tablet} {
+    height: 20vw;
+  }
+
+  @media (max-width: 550px) {
+    height: 110px;
+  }
 `;
