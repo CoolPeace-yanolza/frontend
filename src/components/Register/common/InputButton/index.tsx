@@ -28,12 +28,7 @@ const InputButton = ({
         defaultChecked={isChecked}
         onChange={handleButtonChange}
       />
-      <Button
-        htmlFor={id}
-        // onClick={handleToggle}
-      >
-        {buttonName}
-      </Button>
+      <Button htmlFor={id}>{buttonName}</Button>
     </>
   );
 };
@@ -67,4 +62,18 @@ const Button = styled.label`
   font-size: 15px;
 
   cursor: pointer;
+
+  ${theme.response.tablet} {
+    width: 13vw;
+    height: 5vw;
+
+    font-size: 1.7vw;
+  }
+
+  @media (max-width: 550px) {
+    width: 70px;
+    height: 26px;
+
+    font-size: 9px;
+  }
 `;

@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import styled from '@emotion/styled';
 
+import theme from '@styles/theme';
 import { InputAccordionProps, ButtonStyleProps } from '@/types/register';
 import toggle from '@assets/icons/ic-register-toggle.svg';
 
@@ -61,6 +62,11 @@ const Container = styled.div`
 
   display: flex;
   flex-direction: column;
+
+  ${theme.response.tablet} {
+    margin-bottom: 20px;
+    padding: 17px;
+  }
 `;
 
 const Header = styled.div`
@@ -72,6 +78,14 @@ const Header = styled.div`
 const Description = styled.div`
   color: #979c9e;
   font-size: 15px;
+
+  ${theme.response.tablet} {
+    font-size: 2vw;
+  }
+
+  @media (max-width: 550px) {
+    font-size: 11px;
+  }
 `;
 
 const Button = styled.button<ButtonStyleProps>`
@@ -103,4 +117,8 @@ const ContentWrapper = styled.div`
 
 const Content = styled.div`
   padding-top: 20px;
+
+  ${theme.response.tablet} {
+    padding-top: 2vw;
+  }
 `;

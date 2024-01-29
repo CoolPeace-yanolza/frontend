@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
 import styled from '@emotion/styled';
 
+import theme from '@styles/theme';
 import {
   Stepper,
   StepperController,
@@ -74,7 +75,7 @@ const Register = () => {
 export default Register;
 
 const Background = styled.div`
-  width: 100%;
+  min-width: 1225px;
   height: 100%;
 
   padding: 2.5%;
@@ -86,6 +87,11 @@ const Background = styled.div`
     rgba(163, 191, 255, 0.1) 49.57%,
     #fff 100%
   );
+
+  ${theme.response.tablet} {
+    max-width: 890px;
+    min-width: 375px;
+  }
 `;
 
 const RegisterContainer = styled.div`
@@ -101,6 +107,12 @@ const RegisterContainer = styled.div`
     0px 17.525px 21.907px 0px rgba(0, 0, 0, 0.05),
     -0.73px 0.73px 0.73px -1.46px rgba(255, 255, 255, 0.35) inset;
   backdrop-filter: blur(71px);
+
+  ${theme.response.tablet} {
+    height: 100%;
+
+    border-radius: 0px;
+  }
 `;
 
 const TitleContainer = styled.div`
@@ -120,6 +132,13 @@ const TitleContainer = styled.div`
     0px 17.525px 21.907px 0px rgba(0, 0, 0, 0.05),
     -0.73px 0.73px 0.73px -1.46px rgba(255, 255, 255, 0.35) inset;
   backdrop-filter: blur(71px);
+
+  ${theme.response.tablet} {
+    height: 18%;
+
+    padding-left: 40px;
+    border-radius: 0px 0px 0px 60px;
+  }
 `;
 
 const Title = styled.span`
@@ -127,6 +146,14 @@ const Title = styled.span`
   font-weight: 600;
   line-height: 31px;
   letter-spacing: -0.78px;
+
+  ${theme.response.tablet} {
+    font-size: 3vw;
+  }
+
+  @media (max-width: 550px) {
+    font-size: 16px;
+  }
 `;
 
 const ContentContainer = styled.div`
@@ -134,6 +161,10 @@ const ContentContainer = styled.div`
 
   width: 100%;
   height: 80%;
+
+  ${theme.response.tablet} {
+    overflow: auto;
+  }
 `;
 
 const InnerContentContainer = styled.div`
@@ -146,31 +177,51 @@ const InnerContentContainer = styled.div`
   height: 84%;
 
   overflow: auto;
+
+  ${theme.response.tablet} {
+    height: 100%;
+
+    margin-top: 5vw;
+
+    overflow: visible;
+  }
+
+  @media (max-width: 550px) {
+    margin-top: 25px;
+  }
 `;
 
 const SectionContainer = styled.div`
-  position: relative;
-
   width: 100%;
 
-  display: inline-block;
+  display: flex;
+  justify-content: space-between;
+
+  ${theme.response.tablet} {
+    flex-direction: column;
+  }
 `;
 
 const LeftSection = styled.div`
   width: 47%;
 
-  display: inline-block;
+  display: flex;
+  flex-direction: column;
+
+  ${theme.response.tablet} {
+    width: 100%;
+  }
 `;
 
 const RightSection = styled.div`
-  position: absolute;
-  top: 0px;
-  right: 0px;
-
   width: 47%;
   height: 100%;
 
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+
+  ${theme.response.tablet} {
+    width: 100%;
+  }
 `;

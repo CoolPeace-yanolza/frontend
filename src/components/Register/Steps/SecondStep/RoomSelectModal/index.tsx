@@ -2,6 +2,7 @@ import { useState, useRef } from 'react';
 import { useRecoilState } from 'recoil';
 import styled from '@emotion/styled';
 
+import theme from '@styles/theme';
 import { Backdrop } from '@components/common';
 import { RoomType, RoomSelectModalProps } from '@/types/register';
 import close from '@assets/icons/ic-register-close.svg';
@@ -186,6 +187,11 @@ const Container = styled.div`
   box-shadow:
     0px 17px 22px 0px rgba(0, 0, 0, 0.05),
     -0.73px 0.73px 0.73px -1.46px rgba(255, 255, 255, 0.35) inset;
+
+  ${theme.response.tablet} {
+    width: 270px;
+    height: 535px;
+  }
 `;
 
 const Header = styled.div`
@@ -198,6 +204,13 @@ const Header = styled.div`
   align-items: center;
 
   font-size: 18px;
+  font-weight: 600;
+
+  ${theme.response.tablet} {
+    height: 55px;
+
+    font-size: 13px;
+  }
 `;
 
 const CloseButton = styled.button`
@@ -207,6 +220,10 @@ const CloseButton = styled.button`
   padding: 0px;
   border: none;
 
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+
   background: #fff;
 
   cursor: pointer;
@@ -215,6 +232,11 @@ const CloseButton = styled.button`
 const CloseIcon = styled.img`
   width: 35px;
   height: 35px;
+
+  ${theme.response.tablet} {
+    width: 26px;
+    height: 26px;
+  }
 `;
 
 const Filter = styled.div`
@@ -228,6 +250,10 @@ const Filter = styled.div`
 
   display: grid;
   grid-template-columns: 1fr 2fr 2fr;
+
+  ${theme.response.tablet} {
+    height: 50px;
+  }
 `;
 
 const FilterCell = styled.div`
@@ -246,6 +272,11 @@ const SelectAll = styled.input`
 const FilterCheckIcon = styled.img`
   width: 21px;
   height: 21px;
+
+  ${theme.response.tablet} {
+    width: 17px;
+    height: 17px;
+  }
 `;
 
 const SortButton = styled.button`
@@ -259,6 +290,10 @@ const SortButton = styled.button`
   font-size: 15px;
 
   background: transparent;
+
+  ${theme.response.tablet} {
+    font-size: 12px;
+  }
 `;
 
 const SortIcon = styled.img`
@@ -266,6 +301,11 @@ const SortIcon = styled.img`
   height: 20px;
 
   margin-left: 10px;
+
+  ${theme.response.tablet} {
+    width: 15px;
+    height: 15px;
+  }
 `;
 
 const ContentWrapper = styled.div`
@@ -281,12 +321,22 @@ const ContentWrapper = styled.div`
     -0.73px 0.73px 0.73px -1.46px rgba(255, 255, 255, 0.35) inset;
 
   overflow: auto;
+
+  ${theme.response.tablet} {
+    height: 355px;
+
+    padding: 5px 0px;
+  }
 `;
 
 const List = styled.div`
   display: grid;
   grid-template-columns: 1fr 2fr 2fr;
   grid-template-rows: 46px;
+
+  ${theme.response.tablet} {
+    grid-template-rows: 38px;
+  }
 `;
 
 const ListCell = styled.div`
@@ -296,6 +346,10 @@ const ListCell = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+
+  ${theme.response.tablet} {
+    font-size: 12px;
+  }
 `;
 
 const SelectOne = styled.input`
@@ -305,6 +359,11 @@ const SelectOne = styled.input`
 const ListCheckIcon = styled.img`
   width: 21px;
   height: 21px;
+
+  ${theme.response.tablet} {
+    width: 17px;
+    height: 17px;
+  }
 `;
 
 const Footer = styled.div`
@@ -313,15 +372,22 @@ const Footer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+
+  ${theme.response.tablet} {
+    height: 75px;
+  }
 `;
 
 const Button = styled.button`
   width: 170px;
   height: 44px;
 
-  padding: 13px 16px;
   border: none;
   border-radius: 8px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
   color: #fff;
   font-size: 18px;
@@ -333,5 +399,12 @@ const Button = styled.button`
 
   &:disabled {
     background: #cdcfd0;
+  }
+
+  ${theme.response.tablet} {
+    width: 135px;
+    height: 34px;
+
+    font-size: 13px;
   }
 `;
