@@ -5,7 +5,7 @@
 
 [사장님 비서Ya 바로가기](https://sajangnim-ya.vercel.app/)
 
-- testID : pmtest1@gamil.com
+- testID : pmtest1@gmail.com
 - testPW : test1234!
 
 ## Contributor
