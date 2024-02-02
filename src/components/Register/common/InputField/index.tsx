@@ -6,6 +6,7 @@ import { InputFieldProps, InputFieldStyleProps } from '@/types/register';
 const InputField = ({
   placeholder,
   defaultValue,
+  mode = 'won',
   text,
   onInputChange
 }: InputFieldProps) => {
@@ -21,7 +22,7 @@ const InputField = ({
         type="number"
         placeholder={placeholder}
         defaultValue={defaultValue}
-        {...(text !== '원' && { maxLength: 2 })}
+        {...(mode === 'percent' && { maxLength: 2 })}
         $text={text}
         onChange={handleInputChange}
       />

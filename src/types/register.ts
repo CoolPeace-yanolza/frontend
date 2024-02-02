@@ -44,6 +44,7 @@ export type ButtonStyleProps = {
 export type InputFieldProps = {
   placeholder: string;
   defaultValue?: string;
+  mode?: string;
   text: string;
   onInputChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 };

@@ -169,6 +169,7 @@ const FirstStep = () => {
             <InputField
               placeholder="ex) 50"
               defaultValue={input.discountFlatRate}
+              mode="percent"
               text="% 할인"
               onInputChange={handleDiscountFlatRateChange}
             />
