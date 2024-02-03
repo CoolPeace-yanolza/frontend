@@ -43,6 +43,8 @@ const SubmitButton = styled.button<AuthButtonStyleProps>`
       return '#C1C1C1';
     } else if (props.$variant === 'pink') {
       return 'linear-gradient(91deg, #FF3478 1.39%, #FF83AD 98.63%)';
+    } else if (props.$variant === 'skyblue') {
+      return 'linear-gradient(89.18deg, #3182F6 0%, #6AB2FF 111.65%)';
     } else {
       return '#1A2849';
     }

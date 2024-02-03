@@ -21,12 +21,20 @@ const LoginForm = ({ handleModalOpen }: LoginFormProps) => {
   const navigate = useNavigate();
   const { state } = useLocation();
 
-  const methods = useForm({ mode: 'onBlur' });
+  const methods = useForm({
+    mode: 'onBlur'
+  });
   const {
+    setValue,
     formState: { errors },
     handleSubmit
   } = methods;
   const isError = !!errors?.login_id || !!errors?.login_password ? true : false;
+
+  const setDefaultValues = async () => {
+    setValue('login_id', 'prince@gmail.com');
+    setValue('login_password', 'test1234!');
+  };
 
   const movetoSignUp = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
@@ -109,6 +117,13 @@ const LoginForm = ({ handleModalOpen }: LoginFormProps) => {
             variant="pink"
             text="회원가입"
             buttonFunc={movetoSignUp}
+          />
+          <AuthButton
+            buttonType="button"
+            size="large"
+            variant="skyblue"
+            text="게스트 계정으로 둘러보기"
+            buttonFunc={setDefaultValues}
           />
         </Buttons>
       </form>
