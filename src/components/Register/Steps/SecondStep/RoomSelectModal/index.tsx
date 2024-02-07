@@ -105,9 +105,7 @@ const RoomSelectModal = ({ setIsOpen }: RoomSelectModalProps) => {
             <label>
               <SelectAll
                 type="checkbox"
-                checked={
-                  selectedRooms.length === sortedRooms.length ? true : false
-                }
+                checked={selectedRooms.length === sortedRooms.length}
                 onChange={handleSelectAll}
               />
               <FilterCheckIcon
