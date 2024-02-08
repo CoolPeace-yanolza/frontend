@@ -38,7 +38,7 @@ const Container = styled.div`
 
   width: 245px;
 
-  margin-right: 10px;
+  margin: 9px 10px 0px 0px;
 
   ${theme.response.tablet} {
     width: 29vw;

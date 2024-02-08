@@ -76,14 +76,6 @@ export type InputRadioProps = {
   onButtonChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 };
 
-// InputWrapper
-export type InputWrapperProps = {
-  state?: string;
-  currentState?: string;
-  isSelected?: boolean;
-  children: ReactNode;
-};
-
 // ErrorMessage
 export type ErrorMessageProps = {
   children: ReactNode;

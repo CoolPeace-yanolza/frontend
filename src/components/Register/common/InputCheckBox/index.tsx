@@ -42,6 +42,8 @@ const InputCheckBox = ({
 export default InputCheckBox;
 
 const Container = styled.div`
+  margin-top: 9px;
+
   display: flex;
   align-items: center;
 `;
