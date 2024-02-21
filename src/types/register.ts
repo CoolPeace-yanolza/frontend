@@ -44,6 +44,7 @@ export type ButtonStyleProps = {
 export type InputFieldProps = {
   placeholder: string;
   defaultValue?: string;
+  mode?: string;
   text: string;
   onInputChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 };
@@ -73,14 +74,6 @@ export type InputRadioProps = {
   text: string;
   children?: ReactNode;
   onButtonChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
-};
-
-// InputWrapper
-export type InputWrapperProps = {
-  state?: string;
-  currentState?: string;
-  isSelected?: boolean;
-  children: ReactNode;
 };
 
 // ErrorMessage

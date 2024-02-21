@@ -7,7 +7,6 @@ import {
   InputButton,
   InputField,
   InputCheckBox,
-  InputWrapper,
   ErrorMessage
 } from '@components/Register/common';
 import { LimitWrapperStyleProps } from '@/types/register';
@@ -150,25 +149,20 @@ const FirstStep = () => {
             onButtonChange={handleDiscountTypeChange}
           />
         </ButtonWrapper>
-        <InputWrapper
-          state="정액 할인"
-          currentState={input.discountType}
-        >
+        {input.discountType === '정액 할인' && (
           <InputField
             placeholder="ex) 5000"
             defaultValue={input.discountFlat}
             text="원"
             onInputChange={handleDiscountFlatChange}
           />
-        </InputWrapper>
-        <InputWrapper
-          state="정률 할인"
-          currentState={input.discountType}
-        >
+        )}
+        {input.discountType === '정률 할인' && (
           <ContentWrapper>
             <InputField
               placeholder="ex) 50"
               defaultValue={input.discountFlatRate}
+              mode="percent"
               text="% 할인"
               onInputChange={handleDiscountFlatRateChange}
             />
@@ -179,19 +173,16 @@ const FirstStep = () => {
               onCheck={handleLabelChange}
             />
           </ContentWrapper>
-        </InputWrapper>
+        )}
         <LimitWrapper $hasLimit={input.hasLimit}>
-          <InputWrapper
-            state="정률 할인"
-            currentState={input.discountType}
-          >
+          {input.discountType === '정률 할인' && (
             <InputField
               placeholder="ex) 5000"
               defaultValue={input.maximumDiscount}
               text="원"
               onInputChange={handleMaximumDiscountChange}
             />
-          </InputWrapper>
+          )}
         </LimitWrapper>
         {(!isValid.isDiscountTypeValid ||
           !isValid.isDiscountFlatValid ||
