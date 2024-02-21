@@ -8,7 +8,6 @@ import {
   InputContainer,
   InputButton,
   InputCheckBox,
-  InputWrapper,
   ErrorMessage
 } from '@components/Register/common';
 import RoomSelectModal from './RoomSelectModal';
@@ -136,7 +135,7 @@ const SecondStep = () => {
             onButtonChange={handleRoomTypeChange}
           />
         </ButtonWrapper>
-        <InputWrapper isSelected={input.roomType.includes('숙박')}>
+        {input.roomType.includes('숙박') && (
           <ContentWrapper>
             <InputCheckBox
               id="severalNights"
@@ -145,7 +144,7 @@ const SecondStep = () => {
               onCheck={handleLabelChange}
             />
           </ContentWrapper>
-        </InputWrapper>
+        )}
         {!isValid.isRoomTypeValid && (
           <ErrorMessage>쿠폰 적용 유형 선택은 필수입니다.</ErrorMessage>
         )}
@@ -172,14 +171,11 @@ const SecondStep = () => {
             onButtonChange={handleToAllRoomsChange}
           />
         </ButtonWrapper>
-        <InputWrapper
-          state="false"
-          currentState={input.toAllRooms}
-        >
+        {input.discountType === 'false' && (
           <ContentWrapper>
             <RoomList rooms={input.selectedRooms} />
           </ContentWrapper>
-        </InputWrapper>
+        )}
         {!isValid.isToAllRoomsValid && (
           <ErrorMessage>쿠폰 적용 객실 선택은 필수입니다.</ErrorMessage>
         )}

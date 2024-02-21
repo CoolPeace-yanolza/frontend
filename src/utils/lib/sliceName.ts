@@ -1,3 +1,3 @@
-export const sliceName = (name: string) => {
-  return name.length < 8 ? name : name.slice(0, 7) + '...';
+export const sliceName = (name: string, max = 7) => {
+  return name.length <= max ? name : name.slice(0, max) + '…';
 };

@@ -2,18 +2,14 @@ import styled from '@emotion/styled';
 
 import theme from '@styles/theme';
 import { InputFieldProps, InputFieldStyleProps } from '@/types/register';
-import { inputFilter } from '@utils/index';
 
 const InputField = ({
   placeholder,
   defaultValue,
+  mode = 'won',
   text,
   onInputChange
 }: InputFieldProps) => {
-  const handleInput = (e: React.FormEvent<HTMLInputElement>) => {
-    inputFilter(e);
-  };
-
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (onInputChange) {
       onInputChange(e);
@@ -23,11 +19,11 @@ const InputField = ({
   return (
     <Container>
       <Input
+        type="number"
         placeholder={placeholder}
         defaultValue={defaultValue}
-        {...(text !== '원' && { maxLength: 2 })}
+        {...(mode === 'percent' && { maxLength: 2 })}
         $text={text}
-        onInput={handleInput}
         onChange={handleInputChange}
       />
       <Text $text={text}>{text}</Text>
@@ -42,7 +38,7 @@ const Container = styled.div`
 
   width: 245px;
 
-  margin-right: 10px;
+  margin: 9px 10px 0px 0px;
 
   ${theme.response.tablet} {
     width: 29vw;
@@ -64,6 +60,16 @@ const Input = styled.input<InputFieldStyleProps>`
 
   font-size: 15px;
   text-align: right;
+
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  &[type='number'] {
+    -moz-appearance: textfield;
+  }
 
   ${theme.response.tablet} {
     height: 5vw;
