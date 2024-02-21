@@ -18,6 +18,10 @@ const SettlementsExpected = () => {
   const nextMonth = new Date(currentDate);
   nextMonth.setMonth(currentDate.getMonth() + 1);
 
+  if (nextMonth.getMonth() !== (currentDate.getMonth() + 1) % 12) {
+    nextMonth.setDate(0);
+  }
+
   const formatDate = (date: Date) => {
     const year = date.getFullYear();
     const month = date.getMonth() + 1;
